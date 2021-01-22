@@ -5,24 +5,54 @@ import {Batata, Batata2} from '../../Api'
 import Api from '../../Api'
 export default function Frame3() {
   const navigation = useRef(useNavigation());
-  // const game= ()=> { setIdJogo(Api.idJogo()); console.log(idJogo)  }
-  // const [idJogo, setIdJogo] = useState();
+  //const mundo = () =>{
+    //  let resqust = Api.Mundo(idJogo);
+    //  resquest.then()
+    //}
+    const [idJogo, setIdJogo] = useState();
+    // const game = () => {
+    //   let request = Api.idJogo();
+    //   request.then(id => {
+    //     setIdJogo(id);
+    //     console.log(id);
+    //   });
+    // }
+    const game = () => {
+      Batata().then(async (id) => {
+        setIdJogo(id.data);
+        console.log(idJogo);
+      });
+    }
+
+  const selectScreen = () => {
+    setTimeout(() => {
+
+      let selected = Math.floor(Math.random() * 2)
+      if (selected === 1) {
+        navigation.current.navigate("Agricultor1");
+      }
+      if (selected === 0) {
+        navigation.current.navigate("Empresario1");
+      }
+    }, 2000); 
+  }
   useEffect(()=> {
-    function SelectScreen(){
-      setTimeout(() => {
-        let selected=Math.floor(Math.random() * 2)
-        if(selected===1){
-          navigation.current.navigate("Agricultor1");
-          // game()
-        }
-        if(selected===0){
-          navigation.current.navigate("Empresario1");
-          // game()
-        }
-      }, 2000);
-    } 
-    
-    SelectScreen();
+    // function SelectScreen(){
+    //   setTimeout(() => {
+
+    //     let selected=Math.floor(Math.random() * 2)
+    //     if(selected===1){
+    //       navigation.current.navigate("Agricultor1");
+    //       // game()
+    //     }
+    //     if(selected===0){
+    //       navigation.current.navigate("Empresario1");
+    //       // game()
+    //     }
+    //   }, 2000);
+    // } 
+    game();
+    selectScreen();
   },[])
 
   return (
