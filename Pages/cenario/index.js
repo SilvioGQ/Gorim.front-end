@@ -5,7 +5,7 @@ const Tela = Dimensions.get('screen').width
 //<Image style={{width: 18, height: 25}} source= {require('../../assets/emojis/feliz.png')}/>
 //</View>  por isso por dntro de outra view
 export default function Cenario() {
-    let poluicao = 74
+    let poluicao = 25
    let value= require('../../assets/linhas/linha20.png')
    let value2= require('../../assets/linhas/linha40.png')
    let value3= require('../../assets/linhas/linha60.png')
