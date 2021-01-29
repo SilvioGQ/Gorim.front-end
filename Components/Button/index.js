@@ -28,7 +28,6 @@ export default function Comecar(props){
     margin: '2%',
     alignItems:'center',
     backgroundColor:"#66BF00",
-    color:"#FFFFFF",
     borderRadius: 25 ,
     width: '80%',
     shadowColor: "#000",

@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
   logo: {
     height: 40,
     width: 45,
-    // alignItems: 'center'
   },
   logo2: {
     height: 280,
