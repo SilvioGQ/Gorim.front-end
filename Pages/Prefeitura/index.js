@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, CheckBox, Dimensions, Animated } from 'react-native';
-import Cenarios from '../../Components/Cenario';
+import Cenarios from '../../Components/CenarioBotao';
 const Tela = Dimensions.get('screen').width
-import Money from '../../Components/Money'
+import Money from '../../Components/Dinheiro'
 export default function Prefeitura({ navigation }) {
   const [isSelected3, setSelection3] = useState(false);
   return (

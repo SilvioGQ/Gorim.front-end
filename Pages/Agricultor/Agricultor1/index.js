@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
 const Tela = Dimensions.get('screen').width
-import Money from '../../../Components/Money'
-import Cenarios from '../../../Components/Cenario';
+import Money from '../../../Components/Dinheiro'
+import Cenarios from '../../../Components/CenarioBotao';
 import Conf from '../../../Components/selo verde confirmacao/index'
 export default function Agricultor1({ navigation }) {
   const [isVisible, setisVisible] = useState(false);

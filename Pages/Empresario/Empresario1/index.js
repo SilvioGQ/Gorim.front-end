@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
-import Cenarios from '../../../Components/Cenario';
+import Cenarios from '../../../Components/CenarioBotao';
 const Tela = Dimensions.get('screen').width
-import Money from '../../../Components/Money/index'
-import Cenario from '../../cenario';
+import Money from '../../../Components/Dinheiro/index'
+import Cenarios from '../../../Components/CenarioBotao';
 export default function Agricultor1({ navigation }) {
   const [value, onChangeText] = React.useState('Adicione uma informação');
  const [isSelected3, setSelection3] = useState(false);

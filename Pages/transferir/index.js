@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions
 const Tela = Dimensions.get('screen').width;
 import Comecar from '../../Components/Button';
 import Quadrados from '../../Components/Quadrado/indez'
-import Money from '../../Components/Money'
+import Money from '../../Components/Dinheiro'
 export default function Transferindo({ navigation }) {
   const [count, setCount] = useState(0);
   const [Selected, setSelected] = useState(0)

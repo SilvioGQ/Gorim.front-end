@@ -1,37 +1,14 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
-import Money from '../../../Components/Money'
+import Money from '../../../Components/Dinheiro'
+import Oferta from '../../../Components/Ofertas'
 const Tela = Dimensions.get('screen').width
 export default function Proposta() {
   return (
     <View style={styles.container}>
       <Money/>
     <Text style={styles.header}> Ofertas</Text>
-    <View style= {styles.colunm}>
-    <View style={styles.row3}>
-        <View>
-        <Image style= {styles.icone} source={require('../../../assets/perfils/empresariox1/Empresario.png')}/>
-        <Text style= {{textAlign: 'center'}}>Empresário</Text>
-        </View>
-        <View>
-            <Text>Produto</Text>
-            <Text>Soja</Text>
-        </View>
-        <Image style= {[styles.icone,{marginTop: -6}]} source={require('../../../assets/agricultorIcones/rice.png')}/>
-        <View>
-            <Text>Preço</Text>
-            <Text>Baixo</Text>
-        </View>
-        <Image style= {[styles.icone,{marginTop: -6}]} source={require('../../../assets/moedas/normal.png')}/>
-    </View>
-    <View style={styles.row3}>
-            <Text> Quantidade: 4</Text>
-            <TouchableOpacity style={[styles.button, {backgroundColor: '#66BF00'}]}><Text style={styles.textbutton}>CONFIRMAR</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, {backgroundColor: '#BF0000'}]}><Text style={styles.textbutton}>REJEITAR</Text>
-            </TouchableOpacity>
-    </View>
-    </View>
+    <Oferta  vendedor='Agricultor' preço='80$' produto='Soja'/>
     </View>
     
       );

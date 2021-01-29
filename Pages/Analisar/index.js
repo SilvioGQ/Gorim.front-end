@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
-import Money from '../../Components/Money'
+import Money from '../../Components/Dinheiro'
 import Produtos from '../../Components/produtos'
 const Tela = Dimensions.get('screen').width
 export default function Analizar() {
