@@ -34,7 +34,7 @@ export default function Routes() {
     return (
         <Stack.Navigator initialRouteName= "frame1">
           
-            <Stack.Screen name="frame1" component= {Frame1}  options={{
+            <Stack.Screen name="Gorim" component= {Frame1}  options={{
     headerTransparent: true,
     headerTitle: ''
   }}/>
