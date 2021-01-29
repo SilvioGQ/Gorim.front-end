@@ -6,19 +6,19 @@ export default function Oferta(props) {
     <View style= {styles.colunm}>
     <View style={styles.row3}>
         <View>
-        <Image style= {styles.icone} source={require('../../../assets/perfils/empresariox1/Empresario.png')}/>
+        <Image style= {styles.icone} source={require('../../assets/perfils/empresariox1/Empresario.png')}/>
         <Text style= {{textAlign: 'center'}}>{props.vendedor}</Text>
         </View>
         <View>
             <Text>Produto</Text>
             <Text>{props.produto}</Text>
         </View>
-        <Image style= {[styles.icone,{marginTop: -6}]} source={require('../../../assets/agricultorIcones/rice.png')}/>
+        <Image style= {[styles.icone,{marginTop: -6}]} source={require('../../assets/agricultorIcones/rice.png')}/>
         <View>
             <Text>Preço</Text>
             <Text>{props.preço}</Text>
         </View>
-        <Image style= {[styles.icone,{marginTop: -6}]} source={require('../../../assets/moedas/normal.png')}/>
+        <Image style= {[styles.icone,{marginTop: -6}]} source={require('../../assets/moedas/normal.png')}/>
     </View>
     <View style={styles.row3}>
             <Text> Quantidade: 4</Text>

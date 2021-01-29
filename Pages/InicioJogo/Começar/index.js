@@ -1,58 +1,59 @@
-import React, {useEffect, useState} from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Text, View, StyleSheet, Image } from 'react-native';
+import COLORS from '../../../styles/Colors';
 import Comecar from '../../../Components/Button'
 
-export default function Frame1( { navigation }) {
-  
-  /*
-  Batata().then(function(response){setidJogo(response.data)})
-  Batata2(idJogo).then(function(response){console.log(response)})
-  */
+import Trator from '../../../assets/Logo/Trator.png';
+import Animacao from '../../../assets/Logo/Animação.png';
+
+export default function Frame1({ navigation }) {
+
   return (
     <View style={styles.container}>
-    <View style={styles.row}>
-    <Image
-    style={styles.logo}
-    source={require('../../../assets/Logo/Trator.png')}
-    />
-    <Text style={styles.texto}>Gorim</Text>
-    </View>
-     <Image
-    style={styles.logo2}
-    source={require('../../../assets/Logo/Animação.png')}
-    />
-    <View style={styles.container}>
-    <Comecar 
-    onClick= {()=> navigation.navigate('Inicio')}
-    name= 'COMEÇAR'/>
-    </View>
+      <View style={styles.row}>
+        <Image
+          style={styles.logo}
+          source={Trator}
+        />
+        <Text style={styles.text}>Gorim</Text>
+      </View>
+      <Image
+        style={styles.logo2}
+        source={Animacao}
+      />
+      <View style={styles.container}>
+        <Comecar
+          onClick={() => navigation.navigate('Inicio')}
+          name='COMEÇAR' />
+      </View>
     </View>
   );
 }
-  
-  const styles = StyleSheet.create({
+
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-around',
-    backgroundColor: '#EBFFFD',
-    alignItems:'center'
+    backgroundColor: COLORS.bgColorPrimary,
+    alignItems: 'center'
   },
-  texto:{
-    fontSize:60,
-    color:'#58AB23'
+  text: {
+    fontSize: 60,
+    color: COLORS.successButton
   },
-  row:{
-    flex:1,
-    flexDirection:'row',
-    alignItems:'center'
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
-  logo:{
-    height:40,
-    width:42,
-    alignItems:'center'
+  logo: {
+    height: 40,
+    width: 45,
+    // alignItems: 'center'
   },
-    logo2:{
-    height:280,
-    width:280
+  logo2: {
+    height: 280,
+    width: 280
   },
 });

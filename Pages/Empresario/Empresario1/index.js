@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, CheckBox, 
 import Cenarios from '../../../Components/CenarioBotao';
 const Tela = Dimensions.get('screen').width
 import Money from '../../../Components/Dinheiro/index'
-import Cenarios from '../../../Components/CenarioBotao';
 export default function Agricultor1({ navigation }) {
   const [value, onChangeText] = React.useState('Adicione uma informação');
  const [isSelected3, setSelection3] = useState(false);
