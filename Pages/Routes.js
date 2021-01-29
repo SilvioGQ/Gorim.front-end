@@ -1,22 +1,15 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Frame1 from './InicioJogo/frame1'
-import Frame2 from './InicioJogo/frame2'
-import Frame3 from './InicioJogo/frame3'
-import Frame4 from './InicioJogo/frame4/index'
-import Frame5 from './InicioJogo/frame5'
-import Frame6 from './InicioJogo/frame6/index'
-import Frame7 from './InicioJogo/frame7/index'
-import Frame8 from './InicioJogo/frame8/index'
-import Frame10 from './InicioJogo/frame10/index'
+import Frame1 from './InicioJogo/Começar'
+import Frame3 from './InicioJogo/Sorteio'
+import Frame4 from './InicioJogo/Personagem'
+import Frame5 from './InicioJogo/Candidatura'
+import Frame6 from './InicioJogo/Votaçao'
+import Frame7 from './InicioJogo/Eleitos'
 import Agricultor1 from './Agricultor/Agricultor1/index'
 import Espera from './tela de espera/index'
 import Tranferenciaconfirmada from './Transferencias/confirmada/index'
-import Tranferenciacancelada from './Transferencias/cancelada/index'
 import Insumo from './Transferencias/insumo/index'
-import Maquinas from './Agricultor/AlugarMaquinas/index'
-import Sementes from './Empresario/Sementes/index'
-import Fertilizantes from './Empresario/Fertilizantes/index'
 import Parcela from './Agricultor/Parcelaterra/index'
 import Agrotoxicos from './Empresario/Agrotoxicos/index'
 import Transferindo from './transferir/index'
@@ -34,8 +27,7 @@ import Analizar from './Analisar'
 import Prevençao from './Prefeitura/Prevencao/index'
 import Prefeitura from './Prefeitura/index'
 import Imposto from './Prefeitura/Imposto'
-import Raquel from './Raquel';
-import Inicio from './inicio';
+import Inicio from './InicioJogo/CriarJogo';
 const Stack = createStackNavigator();
 
 export default function Routes() {
@@ -43,10 +35,6 @@ export default function Routes() {
         <Stack.Navigator initialRouteName= "frame1">
           
             <Stack.Screen name="frame1" component= {Frame1}  options={{
-    headerTransparent: true,
-    headerTitle: ''
-  }}/>
-            <Stack.Screen name="frame2" component= {Frame2}  options={{
     headerTransparent: true,
     headerTitle: ''
   }}/>
@@ -106,14 +94,6 @@ export default function Routes() {
           },
           headerTintColor: '#fff',
   }}/>
-              <Stack.Screen name="frame8" component= {Frame8}  options={{
-    headerTransparent: true,
-    headerTitle: ''
-  }}/>
-              <Stack.Screen name="Raquel" component= {Raquel}  options={{
-    headerTransparent: true,
-    headerTitle: ''
-  }}/>
                 <Stack.Screen name="Agricultor1" component= {Agricultor1}  options={{
     
     headerTitle: ' Rodada 1',
@@ -155,20 +135,6 @@ export default function Routes() {
             height:77
           },
      }}/>
-    <Stack.Screen name="Tranferenciacancelada" component= {Tranferenciacancelada}  options={{
-    headerTransparent: true,
-    headerTitle: 'Gorim',
-    headerTitleStyle: {
-            fontSize: 41,
-      marginLeft: '25%',      
-            fontFamily: 'Rubik_300Light',
-          },
-     headerStyle: {
-            
-      backgroundColor: '#EBFFFD',
-            height:77
-          },
-     }}/>
             <Stack.Screen name="insumo" component= {Insumo}  options={{
     headerTransparent: true,
     headerTitle: 'Gorim',
@@ -182,22 +148,6 @@ export default function Routes() {
             
             height:677
           },
-     }}/>
-           <Stack.Screen name="Maquinas" component= {Maquinas}  options={{
-    headerTransparent: true,
-    headerTitle: '',
-     }}/>
-           <Stack.Screen name="Sementes" component= {Sementes}  options={{
-    headerTransparent: true,
-    headerTitle: '',
-     }}/>
-          <Stack.Screen name="Fertilizantes" component= {Fertilizantes}  options={{
-    headerTransparent: true,
-    headerTitle: '',
-     }}/>
-          <Stack.Screen name="frame10" component= {Frame10}  options={{
-    headerTransparent: true,
-    headerTitle: '',
      }}/>
           <Stack.Screen name="Parcela" component= {Parcela}  options={{
     headerTransparent: true,

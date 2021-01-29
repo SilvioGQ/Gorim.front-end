@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Comecar from '../../Components/Button'
+import Comecar from '../../../Components/Button'
 export default function Raquel( { navigation }) {
   return (
     <View style={styles.container}>

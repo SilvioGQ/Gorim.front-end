@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 const Tela = Dimensions.get('screen').width
-import {Batata, Batata2} from '../Api'
-import Api from '../Api'
+import {Batata, Batata2} from '../../../Pages/Api'
+import Api from '../../../Pages/Api'
 export default function Inicio({ navigation }) {
-  const [value, onChangeText] = React.useState('Nome');
-
-  
- 
+  const [value, onChangeText] = React.useState('Nome'); 
   return (
     <View style={styles.container}>
         <TextInput style={styles.input}  onChangeText={text => onChangeText(text)}
@@ -16,7 +13,7 @@ export default function Inicio({ navigation }) {
         <Text style={styles.header}> HOST </Text>
         <View style={{width: '100%', borderWidth: 1}}/>
             <View style={styles.row}>
-                <Image style={styles.logo2} source={require('../../assets/Group28.png')}/>
+                <Image style={styles.logo2} source={require('../../../assets/Group28.png')}/>
                 <TouchableOpacity
                 style={styles.button2}
                 onPress= {()=> navigation.navigate('frame3')}
@@ -28,11 +25,11 @@ export default function Inicio({ navigation }) {
             <Text style={[styles.header, {marginTop: -80}]}> ENTRAR </Text>
             <View style={{width: '100%', borderWidth: 1}}/>
             <View style={styles.row}>
-                <Image style={styles.logo2} source={require('../../assets/Group29.png')}/>
+                <Image style={styles.logo2} source={require('../../../assets/Group29.png')}/>
                 <TextInput style={[styles.button2, styles.texto2]} placeholder= 'ESCREVER CÓDIGO'>
                 </TextInput>
                 <TouchableOpacity >
-                <Image style= {styles.arrow} source={require('../../assets/right-arrow.png')} />
+                <Image style= {styles.arrow} source={require('../../../assets/right-arrow.png')} />
                 </TouchableOpacity>
             </View>
             
