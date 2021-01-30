@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Frame1 from './InicioJogo/Começar'
+import Frame1 from './InicioJogo/Frame1'
 import Frame3 from './InicioJogo/Sorteio'
 import Frame4 from './InicioJogo/Personagem'
 import Frame5 from './InicioJogo/Candidatura'

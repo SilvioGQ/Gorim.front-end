@@ -1,51 +1,56 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import COLORS from '../../styles/Colors';
+
 const Tela = Dimensions.get('screen').width
-export default function Comecar(props){
+export default function Button({ name, onClick }) {
   return (
     <View style={styles.container}>
-    <TouchableOpacity
+      <TouchableOpacity
         style={styles.button}
-        onPress= {props.onClick}
-        >
-        <Text style= {styles.texto}>{props.name}</Text>
-    </TouchableOpacity>
-    
+        onPress={onClick}
+      >
+        <Text style={styles.text}>{name}</Text>
+      </TouchableOpacity>
+
     </View>
   );
 }
-  
-  const styles = StyleSheet.create({
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#EBFFFD',
-    alignItems:'center',
+    backgroundColor: COLORS.bgColorPrimary,
+    alignItems: 'center',
     width: Tela
   },
-  button:{
+  button: {
+    textTransform: 'uppercase',
     height: 45,
     margin: '2%',
-    alignItems:'center',
-    backgroundColor:"#66BF00",
-    borderRadius: 25 ,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.successButton,
+    borderRadius: 25,
     width: '80%',
     shadowColor: "#000",
     shadowOffset: {
-    	width: 0,
-    	height: 4,
+      width: 0,
+      height: 4,
     },
     shadowOpacity: 0.32,
     shadowRadius: 4.46,
-    
-    elevation: 6,
+
+    elevation: 50,
   },
-  texto:{
-    color:'#FFFFFF',
-    fontSize:15,
+  text: {
+    // alignSelf: 'center',
+    color: COLORS.textWhite,
+    fontSize: 15,
     fontFamily: 'Rubik_400Regular',
-    textAlign: 'center',
-    alignItems: 'center',
-    marginTop: 15
+    // textAlign: 'center',
+    // alignItems: 'center',
+    // marginTop: 15
   }
-  });
+});
