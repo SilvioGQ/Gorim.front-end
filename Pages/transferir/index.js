@@ -1,47 +1,52 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 import Comecar from '../../Components/Button';
 import Quadrados from '../../Components/Quadrado/indez'
 import Money from '../../Components/Dinheiro'
+
+import setaDireita from '../../assets/agricultorIcones/setadireita.png';
+import Money2 from '../../assets/agricultorIcones/money2.png';
+import setaEsquerda from '../../assets/agricultorIcones/setaesquerda.png';
+
 export default function Transferindo({ navigation }) {
   const [count, setCount] = useState(0);
   const [Selected, setSelected] = useState(0)
-  if(count===-5){
+  if (count === -5) {
     setCount(count + 5)
   }
- 
+
   return (
     <View style={styles.container}>
-      <Money/>
-    <View style={styles.espaco}>
-    <Image  style={{width: 63, height: 61}} source={require('../../assets/agricultorIcones/money2.png')}/>
-    <Text style={styles.header}>Fazer {'\n'} transferência</Text>
-    </View>
-    <Text style={{fontSize: 18, marginTop: 20, fontFamily: 'Rubik_300Light'}}> Destinatário:</Text>
+      <Money />
+      <View style={styles.espaco}>
+        <Image style={{ width: 63, height: 61 }} source={Money2} />
+        <Text style={styles.header}>Fazer {'\n'} transferência</Text>
+      </View>
+      <Text style={{ fontSize: 18, marginTop: 20, fontFamily: 'Rubik_300Light' }}> Destinatário:</Text>
 
-    <Quadrados/>
+      <Quadrados />
 
-    <Text style={{fontSize: 18, marginTop: 25, fontFamily: 'Rubik_300Light'}}> Valor:</Text>
-    <View style={{flex:1, marginTop: 35}}>
-     <View style={styles.setas}>
-    <TouchableOpacity onPress={() => setCount(count - 5)}>
-    <Image style={styles.icone2} source={require('../../assets/agricultorIcones/setaesquerda.png')}/>
-    </TouchableOpacity>
-    <View style={styles.bgbranco}>
-    <Text style={styles.bgbrancotext}>{count}</Text>
+      <Text style={{ fontSize: 18, marginTop: 25, fontFamily: 'Rubik_300Light' }}>Valor:</Text>
+      <View style={{ flex: 1, marginTop: 35 }}>
+        <View style={styles.setas}>
+          <TouchableOpacity onPress={() => setCount(count - 5)}>
+            <Image style={styles.icone2} source={setaEsquerda} />
+          </TouchableOpacity>
+          <View style={styles.bgbranco}>
+            <Text style={styles.bgbrancotext}>{count}</Text>
+          </View>
+          <TouchableOpacity onPress={() => setCount(count + 5)}>
+            <Image style={styles.icone2} source={setaDireita} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <Comecar
+        onClick={Selected === 0 ? () => navigation.navigate('FazerTransferencia', { valor: count }) : ''}
+        name='CONTINUAR' />
     </View>
-    <TouchableOpacity onPress={() => setCount(count + 5)}>
-    <Image style={styles.icone2} source={require('../../assets/agricultorIcones/setadireita.png')} />
-    </TouchableOpacity>
-    </View>
-    </View>
-    <Comecar 
-    onClick= {Selected===0 ? ()=> navigation.navigate('FazerTransferencia', {valor: count}) : '' }
-    name= 'CONTINUAR'/>
-    </View>
-    
-      );
+
+  );
 }
 
 
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginEnd: 5
   },
-  row:{
+  row: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
@@ -68,28 +73,28 @@ const styles = StyleSheet.create({
     width: Tela,
     flexWrap: 'wrap'
   },
-  espaco:{
+  espaco: {
     flexDirection: 'row',
     alignSelf: 'center',
     justifyContent: 'center',
     margin: 15,
     width: Tela
   },
-  row3:{
+  row3: {
     flexDirection: 'row',
     alignSelf: 'center',
     justifyContent: 'flex-end',
     margin: 10,
     width: Tela
   },
-    row2:{
+  row2: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     marginTop: 10,
     marginLeft: 6
-      },
-  colunm:{
+  },
+  colunm: {
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
@@ -99,32 +104,32 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
-    	width: 0,
-    	height: 4,
-      },
+      width: 0,
+      height: 4,
+    },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-    
+
     elevation: 9
-    },
+  },
   header: {
     fontFamily: 'Rubik_300Light',
-    
+
     fontSize: 20,
   },
-    textinhos: {
-    fontFamily: 'Rubik_300Light', 
+  textinhos: {
+    fontFamily: 'Rubik_300Light',
     fontSize: 14,
   },
-  logo:{
+  logo: {
     width: 20,
     height: 23
   },
-  icone:{
+  icone: {
     width: 32,
     height: 35,
   },
-  icone2:{
+  icone2: {
     width: 46,
     height: 48
   },

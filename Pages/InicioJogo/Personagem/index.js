@@ -1,70 +1,72 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import Comecar from '../../../Components/Button'
-const Tela= Dimensions.get('screen').width
+import Button from '../../../Components/Button'
+
+const Tela = Dimensions.get('screen').width
 export default function Frame4({ navigation }) {
   const [value, onChangeText] = React.useState('Fale sobre você');
+  
   return (
-     <View style={styles.container}>
-       <ScrollView
-    showsVerticalScrollIndicator= {false}>
-    <View style={styles.branco}>
-    <Text style={styles.subheader}> Sobre você </Text>
-    <Image  style={styles.logo2} source={require('../../../assets/perfils/agricultor/agricultorFundo.png')}/>   
-    </View>
-    <View style={styles.row}>
-    <Image  style={styles.simbolo} source={require('../../../assets/simbolos/bag.png')}/>
-    <View style={{paddingHorizontal: '15%', paddingRight: '5%'}}>
-    <Text style={styles.superior}> Profissão</Text>
-    <Text style={styles.inferior}> Profissão</Text>
-    </View>
-    </View>
-     <View style={styles.row}>
-    <Image  style={styles.simbolo} source={require('../../../assets/simbolos/maps-and-location.png')}/>
-    <View style={{paddingHorizontal: '15%', paddingRight: '5%'}}>
-    <Text style={styles.superior}> Localização</Text>
-    <Text style={styles.inferior}> Localização</Text>
-    </View>
-    </View>
-     <View style={styles.row}>
-    <Image  style={styles.simbolo} source={require('../../../assets/simbolos/name.png')}/>
-    <View style={{paddingHorizontal: '15%', paddingRight: '5%'}}>
-    <Text style={styles.superior}> Nome</Text>
-    <Text
-    style= {styles.inferior}
-    > Nome 
+    <View style={styles.container}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.branco}>
+          <Text style={styles.subheader}> Sobre você </Text>
+          <Image style={styles.logo2} source={require('../../../assets/perfils/agricultor/agricultorFundo.png')} />
+        </View>
+        <View style={styles.row}>
+          <Image style={styles.simbolo} source={require('../../../assets/simbolos/bag.png')} />
+          <View style={{ paddingHorizontal: '15%', paddingRight: '5%' }}>
+            <Text style={styles.superior}> Profissão</Text>
+            <Text style={styles.inferior}> Profissão</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Image style={styles.simbolo} source={require('../../../assets/simbolos/maps-and-location.png')} />
+          <View style={{ paddingHorizontal: '15%', paddingRight: '5%' }}>
+            <Text style={styles.superior}> Localização</Text>
+            <Text style={styles.inferior}> Localização</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Image style={styles.simbolo} source={require('../../../assets/simbolos/name.png')} />
+          <View style={{ paddingHorizontal: '15%', paddingRight: '5%' }}>
+            <Text style={styles.superior}> Nome</Text>
+            <Text
+              style={styles.inferior}
+            > Nome
     </Text>
-    </View>
-    </View>
-     <View style={styles.row}>
-    <Image  style={styles.simbolo} source={require('../../../assets/simbolos/dislike.png')}/>
-    <View style={{paddingHorizontal: '15%', paddingRight: '5%'}}>
-    <Text style={styles.superior}> Fraquezas</Text>
-    <Text style={styles.inferior}> Fraquezas</Text>
-    </View>
-    </View>
-     <View style={styles.row}>
-    <Image  style={styles.simbolo} source={require('../../../assets/simbolos/letter.png')}/>
-    <View style={{paddingHorizontal: '15%', paddingRight: '5%'}}>
-    <Text style={styles.superior}> Mais sobre você</Text>
-    <TextInput
-    style= {styles.input}
-      onChangeText={text => onChangeText(text)}
-      value={value.sobre}
-      backgroundColor= '#EBFFFD'
-      placeholder='Fale sobre você'
-    />
-    </View>
-    </View>
-    <Comecar 
-    onClick= {()=> navigation.navigate('frame5')}
-    name= 'CONTINUAR'/>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Image style={styles.simbolo} source={require('../../../assets/simbolos/dislike.png')} />
+          <View style={{ paddingHorizontal: '15%', paddingRight: '5%' }}>
+            <Text style={styles.superior}> Fraquezas</Text>
+            <Text style={styles.inferior}> Fraquezas</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Image style={styles.simbolo} source={require('../../../assets/simbolos/letter.png')} />
+          <View style={{ paddingHorizontal: '15%', paddingRight: '5%' }}>
+            <Text style={styles.superior}> Mais sobre você</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={text => onChangeText(text)}
+              value={value.sobre}
+              backgroundColor='#EBFFFD'
+              placeholder='Fale sobre você'
+            />
+          </View>
+        </View>
+        <Button
+          onClick={() => navigation.navigate('frame5')}
+          name='CONTINUAR' />
 
-    </ScrollView>
+      </ScrollView>
     </View>
-    
-      );
+
+  );
 }
 
 
@@ -82,38 +84,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 25
   },
-  input:{
+  input: {
     height: 30,
     fontSize: 15,
-    color:'#A1A1A1',
+    color: '#A1A1A1',
     width: '100%',
     textDecorationColor: '#BF0000'
   },
-  row:{
+  row: {
     flexDirection: 'row',
     marginVertical: '6%',
     paddingLeft: '15%'
   },
-  subheader:{
+  subheader: {
     fontFamily: 'Rubik_400Regular',
     fontSize: 24,
     alignItems: 'center',
     margin: '5%'
   },
-  logo2:{
-  width: 80,
-  height: 95,
+  logo2: {
+    width: 80,
+    height: 95,
   },
-  simbolo:{
+  simbolo: {
     width: 45,
     height: 45,
   },
-  superior:{
+  superior: {
     fontSize: 15,
   },
   inferior: {
     fontSize: 20,
     fontWeight: 'bold',
   },
-  
+
 });
