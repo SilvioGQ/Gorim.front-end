@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Loading from './loading'
-export default function Frame2() {
+export default function Frame23() {
   return (
     <View style={styles.container}>
     <Text style={styles.header}> Gorim </Text>

@@ -27,7 +27,7 @@ import Analizar from './Analisar'
 import Prevençao from './Prefeitura/Prevencao/index'
 import Prefeitura from './Prefeitura/index'
 import Imposto from './Prefeitura/Imposto'
-import Inicio from './InicioJogo/CriarJogo';
+import Inicio from './InicioJogo/Frame2';
 
 const Stack = createStackNavigator();
 

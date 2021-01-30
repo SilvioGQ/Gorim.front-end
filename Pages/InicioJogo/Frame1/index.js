@@ -30,7 +30,6 @@ export default function Frame1({ navigation }) {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
