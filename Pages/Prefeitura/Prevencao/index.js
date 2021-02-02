@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions, Animated, TouchableWithoutFeedback, CheckBox } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 import Comecar from '../../../Components/Button';
-import Quadrados from '../../../Components/Quadrado/indez';
+import Quadrados from '../../../Components/Quadrado';
 export default function Prevençao({ navigation}) {
     const [isSelected, setSelection] = useState(false);
     const [isSelected2, setSelection2] = useState(false);

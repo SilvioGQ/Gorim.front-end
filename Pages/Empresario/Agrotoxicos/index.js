@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
 import Comecar from '../../../Components/Button'
-import Quadrados from '../../../Components/Quadrado/indez';
 import Quantidade from '../../../Components/Quantidades';
 
 const Tela = Dimensions.get('screen').width

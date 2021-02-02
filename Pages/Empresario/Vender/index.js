@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
 import Comecar from '../../../Components/Button'
-import Quadrados from '../../../Components/Quadrado/indez'
+import Quadrados from '../../../Components/Quadrado'
 import Quantidades from '../../../Components/Quantidades'
 const Tela = Dimensions.get('screen').width
 export default function Vendas({ navigation, route }) {

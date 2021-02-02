@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 import Comecar from '../../Components/Button';
-import Quadrados from '../../Components/Quadrado/indez'
+import Quadrados from '../../Components/Quadrado'
 import Money from '../../Components/Dinheiro'
 
 import setaDireita from '../../assets/agricultorIcones/setadireita.png';
