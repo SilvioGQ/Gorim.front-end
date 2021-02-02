@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
-import Money from '../../../Components/Dinheiro'
+import Money from '../../../Components/Dinheiro';
 import Cenarios from '../../../Components/CenarioBotao';
-import Conf from '../../../Components/selo verde confirmacao'
+import Conf from '../../../Components/selo verde confirmacao';
 
 import Selo from '../../../assets/moedas/Selo.png';
 import Agricultor from '../../../assets/perfils/agricultor/Agricultor2.png';
@@ -21,39 +21,57 @@ export default function Agricultor1({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.row3}>
-        <Text style={styles.header}> Agricultora 1 {'\n'} em Atlantis</Text>
+        <Text style={styles.header}>Agricultora 1 {'\n'} em Atlantis</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.logo} source={Selo} />
-          <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular' }}> 123 </Text>
+          <Image
+            style={styles.logo}
+            source={Selo}
+          />
+          <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular' }}>123</Text>
         </View>
         <View>
           <Money />
         </View>
-        <Image style={styles.person} source={Agricultor} />
+        <Image
+          style={styles.person}
+          source={Agricultor}
+        />
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
         <View style={styles.row2}>
-          <Image style={styles.icone} source={Parcela} />
-          <Text style={styles.textos}> Parcelas de terra </Text>
+          <Image
+            style={styles.icone}
+            source={Parcela}
+          />
+          <Text style={styles.textos}>Parcelas de terra</Text>
         </View>
       </TouchableOpacity>
       <View style={styles.row}>
         <TouchableOpacity onPress={() => navigation.navigate('Proposta')}>
           <View style={styles.colunm}>
-            <Image style={styles.icone} source={Handshake} />
-            <Text style={styles.textinhos}> Checar {'\n'} Propostas </Text>
+            <Image
+              style={styles.icone}
+              source={Handshake}
+            />
+            <Text style={styles.textinhos}>Checar {'\n'} Propostas</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Transferindo')}>
           <View style={styles.colunm}>
-            <Image style={styles.icone} source={Money2} />
-            <Text style={styles.textinhos}> Fazer {'\n'} tranferência </Text>
+            <Image
+              style={styles.icone}
+              source={Money2}
+            />
+            <Text style={styles.textinhos}>Fazer {'\n'} tranferência</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Analizar')}>
           <View style={styles.colunm}>
-            <Image style={styles.icone} source={Lupa} />
-            <Text style={styles.textinhos}> Analizar {'\n'} produtos </Text>
+            <Image
+              style={styles.icone}
+              source={Lupa}
+            />
+            <Text style={styles.textinhos}>Analizar {'\n'} produtos</Text>
           </View>
         </TouchableOpacity>
         <Modal
@@ -68,8 +86,11 @@ export default function Agricultor1({ navigation }) {
         </Modal>
         <TouchableOpacity onPress={() => setisVisible(true)}>
           <View style={[styles.colunm, styles.vermelho]}>
-            <Image style={styles.icone} source={SeloG} />
-            <Text style={styles.textinhos}> Pedir selo {'\n'} verde </Text>
+            <Image
+              style={styles.icone}
+              source={SeloG}
+            />
+            <Text style={styles.textinhos}>Pedir selo {'\n'} verde</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -124,7 +145,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: '6%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.bgColorSecondary,
     width: 320,
     height: 50,
     borderRadius: 20,
@@ -141,7 +162,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.bgColorSecondary,
     width: 96,
     height: 84,
     borderRadius: 20,
