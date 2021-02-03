@@ -12,7 +12,6 @@ export default function Button({ name, onClick }) {
       >
         <Text style={styles.text}>{name}</Text>
       </TouchableOpacity>
-
     </View>
   );
 }

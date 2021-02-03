@@ -21,7 +21,8 @@ export default function Frame2({ navigation }) {
       <Text style={styles.header}>HOST</Text>
       <View style={styles.line} />
       <View style={styles.row}>
-        <Image style={styles.logo2}
+        <Image
+          style={styles.logo2}
           source={Group28}
         />
         <TouchableOpacity
@@ -34,15 +35,18 @@ export default function Frame2({ navigation }) {
       <Text style={[styles.header]}>ENTRAR</Text>
       <View style={styles.line} />
       <View style={styles.row}>
-        <Image style={styles.logo2}
+        <Image 
+          style={styles.logo2}
           source={Group29}
         />
-        <TextInput style={[styles.button2, styles.text2]}
+        <TextInput 
+          style={[styles.button2, styles.text2]}
           placeholder='ESCREVER CÓDIGO'
         >
         </TextInput>
         <TouchableOpacity >
-          <Image style={styles.arrow}
+          <Image
+            style={styles.arrow}
             source={rightArrow}
           />
         </TouchableOpacity>

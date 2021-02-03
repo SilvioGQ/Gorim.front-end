@@ -1,70 +1,84 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions, Animated, TouchableWithoutFeedback } from 'react-native';
-const Tela = Dimensions.get('screen').width;
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Animated } from 'react-native';
 import Comecar from '../../../Components/Button';
+
+import Imposto2 from '../../../assets/simbolos/imposto.png';
+import Rectangle from '../../../assets/Rectangle.png';
+
+const Tela = Dimensions.get('screen').width;
 export default function Imposto() {
   return (
     <View style={styles.container}>
-    <View style={styles.espaco}>
-    <Image  style={{width: 62, height: 48}} source={require('../../../assets/simbolos/imposto.png')}/>
-    <Text style={styles.header}>Aplicação {"\n"}de multa</Text>
-    </View>
-    <Text style={styles.font}> Para produtividade nula:</Text>
-    <View style= {styles.linha}>
-        <View style= {{zIndex: 1, marginTop: -5, marginLeft: 4}}>
-          <View style= {{justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%'}}>
-          <TouchableOpacity style= {styles.traco}  />
-          <TouchableOpacity style= {styles.traco}  />
-          <TouchableOpacity style= {styles.traco}  />
+      <View style={styles.espaco}>
+        <Image
+          style={{ width: 62, height: 48 }}
+          source={Imposto2}
+        />
+        <Text style={styles.header}>Aplicação {"\n"}de multa</Text>
+      </View>
+      <Text style={styles.font}> Para produtividade nula:</Text>
+      <View style={styles.linha}>
+        <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
+          <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
+            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} />
           </View>
-        <Animated.Image style={{width: 10, height: 19, marginTop: -15, marginLeft: '46%'}} source= {require('../../../assets/Rectangle.png')}/>
-        </View> 
-    </View>
-    <View style={styles.nivel}>
-          <Text styles={styles.texto}>Baixo</Text>
-          <Text styles={styles.texto}>Medio</Text>
-          <Text styles={styles.texto}>Alto</Text>
+          <Animated.Image
+            style={{ width: 10, height: 19, marginTop: -15, marginLeft: '46%' }}
+            source={Rectangle}
+          />
         </View>
-    <Text style= {styles.font}> Para produtividade entre 1 e 200:</Text>
-    <View style= {styles.linha}>
-        <View style= {{zIndex: 1, marginTop: -5, marginLeft: 4}}>
-          <View style= {{justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%'}}>
-          <TouchableOpacity style= {styles.traco}  />
-          <TouchableOpacity style= {styles.traco}  />
-          <TouchableOpacity style= {styles.traco}  />
+      </View>
+      <View style={styles.nivel}>
+        <Text styles={styles.texto}>Baixo</Text>
+        <Text styles={styles.texto}>Medio</Text>
+        <Text styles={styles.texto}>Alto</Text>
+      </View>
+      <Text style={styles.font}> Para produtividade entre 1 e 200:</Text>
+      <View style={styles.linha}>
+        <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
+          <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
+            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} />
           </View>
-        <Animated.Image style={{width: 10, height: 19, marginTop: -15, marginLeft: '46%'}} source= {require('../../../assets/Rectangle.png')}/>
-        </View> 
-    </View>
-    <View style={styles.nivel}>
-          <Text styles={styles.texto}>Baixo</Text>
-          <Text styles={styles.texto}>Medio</Text>
-          <Text styles={styles.texto}>Alto</Text>
+          <Animated.Image
+            style={{ width: 10, height: 19, marginTop: -15, marginLeft: '46%' }}
+            source={Rectangle}
+          />
         </View>
-    <Text style= {styles.font}> Para produtividade acima de 200:</Text>
-    <View style= {styles.linha}>
-        <View style= {{zIndex: 1, marginTop: -5, marginLeft: 4}}>
-          <View style= {{justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%'}}>
-          <TouchableOpacity style= {styles.traco}  />
-          <TouchableOpacity style= {styles.traco}  />
-          <TouchableOpacity style= {styles.traco}  />
+      </View>
+      <View style={styles.nivel}>
+        <Text styles={styles.texto}>Baixo</Text>
+        <Text styles={styles.texto}>Medio</Text>
+        <Text styles={styles.texto}>Alto</Text>
+      </View>
+      <Text style={styles.font}> Para produtividade acima de 200:</Text>
+      <View style={styles.linha}>
+        <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
+          <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
+            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} />
           </View>
-        <Animated.Image style={{width: 10, height: 19, marginTop: -15, marginLeft: '46%'}} source= {require('../../../assets/Rectangle.png')}/>
-        </View> 
-    </View>
-        <View style={styles.nivel}>
-          <Text styles={styles.texto}>Baixo</Text>
-          <Text styles={styles.texto}>Medio</Text>
-          <Text styles={styles.texto}>Alto</Text>
+          <Animated.Image
+            style={{ width: 10, height: 19, marginTop: -15, marginLeft: '46%' }}
+            source={Rectangle}
+          />
         </View>
-    <Comecar 
-    onClick= {()=> navigation.navigate('Fiscal')}
-    name= 'APLICAR'/>
+      </View>
+      <View style={styles.nivel}>
+        <Text styles={styles.texto}>Baixo</Text>
+        <Text styles={styles.texto}>Medio</Text>
+        <Text styles={styles.texto}>Alto</Text>
+      </View>
+      <Comecar
+        onClick={() => navigation.navigate('Fiscal')}
+        name='APLICAR' />
     </View>
-    
-      );
+  );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -74,7 +88,7 @@ const styles = StyleSheet.create({
     width: Tela,
     paddingTop: 35
   },
-  espaco:{
+  espaco: {
     flexDirection: 'row',
     alignSelf: 'center',
     justifyContent: 'center',
@@ -86,8 +100,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   font: {
-    fontSize: 20, 
-    marginTop: 15, 
+    fontSize: 20,
+    marginTop: 15,
     fontFamily: 'Rubik_300Light'
   },
   linha: {

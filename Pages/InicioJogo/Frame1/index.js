@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../../styles/Colors';
-import Button from '../../../Components/Button'
+import Button from '../../../Components/Button';
 
 import Trator from '../../../assets/Logo/Trator.png';
 import Animacao from '../../../assets/Logo/Animação.png';

@@ -1,58 +1,82 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
-import Comecar from '../../../Components/Button'
-import Quadrados from '../../../Components/Quadrado/indez'
-import Quantidades from '../../../Components/Quantidades'
-const Tela = Dimensions.get('screen').width
+import Comecar from '../../../Components/Button';
+import Quadrados from '../../../Components/Quadrado';
+import Quantidades from '../../../Components/Quantidades';
+
+import Selo from '../../../assets/moedas/Selo.png';
+import Moeda from '../../../assets/moedas/Moeda.png';
+import Tractor from '../../../assets/agricultorIcones/tractor.png';
+import Baixo from '../../../assets/moedas/baixo.png';
+import Normal from '../../../assets/moedas/normal.png';
+import Alto from '../../../assets/moedas/alto.png';
+
+const Tela = Dimensions.get('screen').width;
 export default function Vendas({ navigation, route }) {
-  const {name}= route.params;
+  const { name } = route.params;
   const [Selected, setSelected] = useState(-1);
   return (
     <View style={styles.container}>
-    <View style={styles.end}>
-     <Image  style={styles.logo} source={require('../../../assets/moedas/Selo.png')}/>
-    <Text> 123 </Text>
-     <Image  style={styles.logo} source={require('../../../assets/moedas/Moeda.png')}/>
-     <Text> 000 </Text>
-     </View>
-    <View style={styles.center}>
-    <Image  style={styles.person} source={require('../../../assets/agricultorIcones/tractor.png')}/>
-    <Text style={styles.header}> Venda de {'\n'} {JSON.stringify(name)} </Text>
-    </View>
-    <Text style= {{alignSelf: 'flex-start', fontSize: 20, fontFamily: 'Rubik_300Light', marginLeft: 25}}> Clientes: </Text>
-    <Quadrados/>
-    <Text style= {{alignSelf: 'flex-start', fontSize: 20, fontFamily: 'Rubik_300Light', marginLeft: 25, marginTop: 10}}> Valor: </Text>
-    <View style={styles.row}>
-    <TouchableOpacity onPress={()=>setSelected(0)}> 
-    <View style={[styles.colunm,{backgroundColor:  Selected == 0 ? "#8ACF3A" : '#fff'}]}>
-       <Image  style={styles.icone} source={require('../../../assets/moedas/baixo.png')}/>
-       <Text style= {styles.valor}> Baixo </Text>
-    </View>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={()=>setSelected(1)}> 
-      <View style={[styles.colunm,{backgroundColor: Selected == 1 ? "#8ACF3A" : '#fff'}]}>
-        <Image  style={styles.icone} source={require('../../../assets/moedas/normal.png')}/>
-        <Text style= {styles.valor}> Normal </Text>
+      <View style={styles.end}>
+        <Image
+          style={styles.logo}
+          source={Selo}
+        />
+        <Text> 123 </Text>
+        <Image
+          style={styles.logo}
+          source={Moeda}
+        />
+        <Text> 000 </Text>
       </View>
-    </TouchableOpacity>
-        <TouchableOpacity onPress={()=>setSelected(2)}> 
-    <View style={[styles.colunm,{backgroundColor:  Selected == 2 ? "#8ACF3A" : '#fff'}]}>
-       <Image  style={styles.icone} source={require('../../../assets/moedas/alto.png')}/>
-       <Text style= {styles.valor}> Alto </Text>
+      <View style={styles.center}>
+        <Image
+          style={styles.person}
+          source={Tractor}
+        />
+        <Text style={styles.header}> Venda de {'\n'} {JSON.stringify(name)} </Text>
+      </View>
+      <Text style={{ alignSelf: 'flex-start', fontSize: 20, fontFamily: 'Rubik_300Light', marginLeft: 25 }}> Clientes: </Text>
+      <Quadrados />
+      <Text style={{ alignSelf: 'flex-start', fontSize: 20, fontFamily: 'Rubik_300Light', marginLeft: 25, marginTop: 10 }}> Valor: </Text>
+      <View style={styles.row}>
+        <TouchableOpacity onPress={() => setSelected(0)}>
+          <View style={[styles.colunm, { backgroundColor: Selected == 0 ? "#8ACF3A" : '#fff' }]}>
+            <Image
+              style={styles.icone}
+              source={Baixo}
+            />
+            <Text style={styles.valor}> Baixo </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setSelected(1)}>
+          <View style={[styles.colunm, { backgroundColor: Selected == 1 ? "#8ACF3A" : '#fff' }]}>
+            <Image
+              style={styles.icone}
+              source={Normal}
+            />
+            <Text style={styles.valor}> Normal </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setSelected(2)}>
+          <View style={[styles.colunm, { backgroundColor: Selected == 2 ? "#8ACF3A" : '#fff' }]}>
+            <Image
+              style={styles.icone}
+              source={Alto}
+            />
+            <Text style={styles.valor}> Alto </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <Quantidades />
+      <Comecar
+        onClick={() => {
+          navigation.navigate('Tranferenciaconfirmada');
+        }}
+        name='VENDER' />
     </View>
-    </TouchableOpacity>
-    </View>
-    <Quantidades/>
-    <Comecar
-    onClick={()=> {navigation.navigate('Tranferenciaconfirmada');
-  }}
-    name= 'VENDER'/>
-
-    </View>
-    
-      );
+  );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -68,22 +92,22 @@ const styles = StyleSheet.create({
     fontSize: 12,
     margin: '7%'
   },
-  row:{
+  row: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
     justifyContent: 'space-around',
     margin: 14,
   },
-  center:{
+  center: {
     flexDirection: 'row',
     justifyContent: 'center',
     margin: 15,
   },
-  end:{
+  end: {
     flexDirection: 'row',
     alignSelf: 'flex-end',
   },
-    row2:{
+  row2: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -94,14 +118,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
-    	width: 0,
-    	height: 4,
+      width: 0,
+      height: 4,
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
     elevation: 9,
-      },
-  colunm:{
+  },
+  colunm: {
     alignItems: 'center',
     justifyContent: 'center',
     margin: 7,
@@ -111,14 +135,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
-    	width: 0,
-    	height: 4,
-      },
+      width: 0,
+      height: 4,
+    },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-    
+
     elevation: 9
-    },
+  },
   header: {
     fontFamily: 'Rubik_300Light',
     fontWeight: 'bold',
@@ -126,24 +150,24 @@ const styles = StyleSheet.create({
   },
   textos: {
     fontFamily: 'Rubik_300Light',
-     
+
     fontSize: 20,
     alignSelf: 'center'
   },
-    textinhos: {
+  textinhos: {
     fontFamily: 'Rubik_300Light',
     fontSize: 14,
     marginTop: '7%'
   },
-  logo:{
+  logo: {
     width: 20,
     height: 23
   },
-  person:{
+  person: {
     width: 64,
     height: 60
   },
-  icone:{
+  icone: {
     width: 40,
     height: 40,
   }

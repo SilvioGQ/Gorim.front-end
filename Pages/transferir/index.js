@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 import Comecar from '../../Components/Button';
-import Quadrados from '../../Components/Quadrado/indez'
+import Quadrados from '../../Components/Quadrado'
 import Money from '../../Components/Dinheiro'
 
 import setaDireita from '../../assets/agricultorIcones/setadireita.png';
@@ -20,24 +20,31 @@ export default function Transferindo({ navigation }) {
     <View style={styles.container}>
       <Money />
       <View style={styles.espaco}>
-        <Image style={{ width: 63, height: 61 }} source={Money2} />
+        <Image
+          style={{ width: 63, height: 61 }}
+          source={Money2}
+        />
         <Text style={styles.header}>Fazer {'\n'} transferência</Text>
       </View>
       <Text style={{ fontSize: 18, marginTop: 20, fontFamily: 'Rubik_300Light' }}> Destinatário:</Text>
-
       <Quadrados />
-
       <Text style={{ fontSize: 18, marginTop: 25, fontFamily: 'Rubik_300Light' }}>Valor:</Text>
       <View style={{ flex: 1, marginTop: 35 }}>
         <View style={styles.setas}>
           <TouchableOpacity onPress={() => setCount(count - 5)}>
-            <Image style={styles.icone2} source={setaEsquerda} />
+            <Image
+              style={styles.icone2}
+              source={setaEsquerda}
+            />
           </TouchableOpacity>
           <View style={styles.bgbranco}>
             <Text style={styles.bgbrancotext}>{count}</Text>
           </View>
           <TouchableOpacity onPress={() => setCount(count + 5)}>
-            <Image style={styles.icone2} source={setaDireita} />
+            <Image
+              style={styles.icone2}
+              source={setaDireita}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -48,7 +55,6 @@ export default function Transferindo({ navigation }) {
 
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
