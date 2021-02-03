@@ -27,7 +27,7 @@ import Analizar from './Analisar'
 import Prevençao from './Prefeitura/Prevencao/index'
 import Prefeitura from './Prefeitura/index'
 import Imposto from './Prefeitura/Imposto'
-import Inicio from './InicioJogo/Frame2';
+import Frame2 from './InicioJogo/Frame2';
 
 const Stack = createStackNavigator();
 
@@ -251,7 +251,7 @@ export default function Routes() {
         headerTransparent: true,
         headerTitle: '',
       }} />
-      <Stack.Screen name="Inicio" component={Inicio} options={{
+      <Stack.Screen name="Frame2" component={Frame2} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />

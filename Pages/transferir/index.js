@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 import Comecar from '../../Components/Button';
 import Quadrados from '../../Components/Quadrado/indez'
@@ -64,15 +64,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginEnd: 5
   },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    marginTop: 20,
-    marginLeft: 8,
-    width: Tela,
-    flexWrap: 'wrap'
-  },
   espaco: {
     flexDirection: 'row',
     alignSelf: 'center',
@@ -80,50 +71,10 @@ const styles = StyleSheet.create({
     margin: 15,
     width: Tela
   },
-  row3: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    justifyContent: 'flex-end',
-    margin: 10,
-    width: Tela
-  },
-  row2: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    marginTop: 10,
-    marginLeft: 6
-  },
-  colunm: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
-    backgroundColor: '#FFFFFF',
-    width: 96,
-    height: 84,
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-
-    elevation: 9
-  },
   header: {
     fontFamily: 'Rubik_300Light',
 
     fontSize: 20,
-  },
-  textinhos: {
-    fontFamily: 'Rubik_300Light',
-    fontSize: 14,
-  },
-  logo: {
-    width: 20,
-    height: 23
   },
   icone: {
     width: 32,

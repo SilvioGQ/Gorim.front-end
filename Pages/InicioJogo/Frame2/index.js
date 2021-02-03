@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     borderWidth: 1,
     width: '80%',
-    textAlign: 'center'
+    textAlign: 'center',
+    borderRadius: 20
   },
   row: {
     flex: 1,
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
   },
   button2: {
     height: 45,
+    borderRadius: 20,
     // margin: '2%',
     alignItems: 'center',
     width: 175,

@@ -23,7 +23,7 @@ export default function Frame1({ navigation }) {
       />
       <View style={styles.container}>
         <Button
-          onClick={() => navigation.navigate('Inicio')}
+          onClick={() => navigation.navigate('Frame2')}
           name='começar' />
       </View>
     </View>
