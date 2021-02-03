@@ -8,27 +8,27 @@ import Frame6 from './InicioJogo/Votaçao'
 import Frame7 from './InicioJogo/Eleitos'
 import Agricultor1 from './Agricultor/Agricultor1'
 import Espera from './Tela de espera'
-import Tranferenciaconfirmada from './Transferencias/confirmada'
-import Insumo from './Transferencias/insumo'
+import Tranferenciaconfirmada from './Transferencias/Confirmada'
+import Insumo from './Transferencias/Insumo'
 import Parcela from './Agricultor/Parcelaterra'
 import Agrotoxicos from './Empresario/Agrotoxicos'
-import Transferindo from './transferir'
+import Transferindo from './Transferir'
 import Empresario1 from './Empresario/Empresario1'
 import Vendas from './Empresario/Vender'
-import FazerTransferencia from './Transferencias/transferencia'
+import FazerTransferencia from './Transferencias/Transferencia'
 import Cenario from "./Cenario";
-import Fiscal from './Fiscal/fiscal1';
-import Selo from './Fiscal/selo';
+import Fiscal from './Fiscal/Fiscal1';
+import Selo from './Fiscal/Selo';
 import Multa from './Fiscal/Multa';
 import Aparcela from './Agricultor/Parcelaterra/aparcela'
-import Pacotes from '../Components/teladaseta'
+import Pacotes from '../Components/Teladaseta'
 import Proposta from './Agricultor/Propostas'
 import Analizar from './Analisar'
 import Prevençao from './Prefeitura/Prevencao'
 import Prefeitura from './Prefeitura'
 import Imposto from './Prefeitura/Imposto'
 import Inicio from './InicioJogo/Frame2';
-import Inicio2 from './InicioJogo/Frame2/lobby';
+import Inicio2 from './InicioJogo/Frame2/Lobby';
 
 const Stack = createStackNavigator();
 

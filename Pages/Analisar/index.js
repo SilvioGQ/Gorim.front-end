@@ -17,7 +17,6 @@ export default function Analizar() {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

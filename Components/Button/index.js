@@ -12,7 +12,6 @@ export default function Button({ name, onClick }) {
       >
         <Text style={styles.text}>{name}</Text>
       </TouchableOpacity>
-
     </View>
   );
 }
@@ -26,7 +25,6 @@ const styles = StyleSheet.create({
     width: Tela
   },
   button: {
-    textTransform: 'uppercase',
     height: 45,
     margin: '2%',
     alignItems: 'center',
@@ -46,6 +44,7 @@ const styles = StyleSheet.create({
   },
   text: {
     // alignSelf: 'center',
+    textTransform: 'uppercase',
     color: COLORS.textWhite,
     fontSize: 15,
     fontFamily: 'Rubik_400Regular',
