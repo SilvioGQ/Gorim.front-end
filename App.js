@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {AppLoading} from 'expo';
-import Routes from './Pages/Routes';
+import Routes from './Routes';
 import { useFonts, Rubik_300Light, Rubik_400Regular, Rubik_700Bold } from '@expo-google-fonts/rubik';
 
 export default function App() {

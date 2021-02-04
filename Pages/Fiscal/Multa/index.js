@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions, Animated, TouchableWithoutFeedback } from 'react-native';
-import Comecar from '../../../Components/Button';
+import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 
 import Moeda from '../../../assets/moedas/Moeda.png';
@@ -92,7 +92,7 @@ export default function Multa({ navigation }) {
         <Text styles={styles.texto}>Medio</Text>
         <Text styles={styles.texto}>Alto</Text>
       </View>
-      <Comecar
+      <Button
         onClick={() => navigation.navigate('Fiscal')}
         name='APLICAR' />
     </View>

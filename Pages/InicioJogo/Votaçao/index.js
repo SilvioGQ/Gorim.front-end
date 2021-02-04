@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
-import Comecar from '../../../Components/Button';
+import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import COLORS from '../../../styles/Colors';
 
@@ -26,7 +26,7 @@ export default function Frame6({ navigation }) {
           <Text style={styles.texto}> Vote em um candidato à fiscal:</Text>
           <Quadrados />
         </View>
-        <Comecar
+        <Button
           onClick={() => navigation.navigate('frame7')}
           name='VOTAR'
         />

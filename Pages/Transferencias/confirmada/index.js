@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Constants from 'expo-constants';
+import { Text, View, StyleSheet, Image } from 'react-native';
 
 import Confirmacao from '../../../assets/Logo/confirmacao.png';
 

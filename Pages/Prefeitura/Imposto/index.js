@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Animated } from 'react-native';
-import Comecar from '../../../Components/Button';
+import Button from '../../../Components/Button';
 
 import Imposto2 from '../../../assets/simbolos/imposto.png';
 import Rectangle from '../../../assets/Rectangle.png';
@@ -73,7 +73,7 @@ export default function Imposto() {
         <Text styles={styles.texto}>Medio</Text>
         <Text styles={styles.texto}>Alto</Text>
       </View>
-      <Comecar
+      <Button
         onClick={() => navigation.navigate('Fiscal')}
         name='APLICAR' />
     </View>

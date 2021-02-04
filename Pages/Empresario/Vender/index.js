@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
-import Comecar from '../../../Components/Button';
+import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Quantidades from '../../../Components/Quantidades';
 
@@ -69,7 +69,7 @@ export default function Vendas({ navigation, route }) {
         </TouchableOpacity>
       </View>
       <Quantidades />
-      <Comecar
+      <Button
         onClick={() => {
           navigation.navigate('Tranferenciaconfirmada');
         }}

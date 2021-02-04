@@ -1,29 +1,36 @@
-import React, {useState} from 'react';
-import { Text, View, Image, TouchableOpacity, Dimensions,StyleSheet, CheckBox } from 'react-native';
-const Tela = Dimensions.get('screen').width
-export default function Cenarios(props) {
- const [isSelected3, setSelection3] = useState(false);
+import React, { useState } from 'react';
+import { CheckBox } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
+
+import Papel from '../../assets/agricultorIcones/papel.png';
+
+const Tela = Dimensions.get('screen').width;
+export default function Cenarios({ onClick }) {
+  const [isSelected3, setSelection3] = useState(false);
   return (
     <View style={styles.container}>
-    <View style={{flex:1, justifyContent: 'flex-end', alignItems: 'center' , padding: 30, width: Tela}}>
-    <TouchableOpacity onPress={props.onClick}>
-    <View style={styles.resumo}>  
-    <Image style={styles.logo} source={require('../../assets/agricultorIcones/papel.png')}/>
-    <Text style= {{fontFamily: 'Rubik_300Light',fontSize: 15, textAlign: 'center', margin: 5}}> Resumo de cenário </Text>
+      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', padding: 30, width: Tela }}>
+        <TouchableOpacity onPress={onClick}>
+          <View style={styles.resumo}>
+            <Image
+              style={styles.logo}
+              source={Papel}
+            />
+            <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 15, textAlign: 'center', margin: 5 }}> Resumo de cenário </Text>
+          </View>
+        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', alignSelf: 'flex-start', marginLeft: 20, marginTop: 10 }}>
+          <CheckBox
+            value={isSelected3}
+            onValueChange={setSelection3}
+            style={styles.checkbox}
+          />
+          <Text style={styles.candidato}>Terminei minhas ações</Text>
+        </View>
+      </View>
     </View>
-    </TouchableOpacity>
-    <View style= {{flexDirection: 'row', alignSelf: 'flex-start', marginLeft: 20, marginTop: 10}}>
-     <CheckBox
-          value={isSelected3}
-          onValueChange={setSelection3}
-          style={styles.checkbox}
-        />
-    <Text style={styles.candidato}>Terminei minhas ações</Text>
-    </View>
-    </View>
-    </View>
-    
-      );
+
+  );
 }
 
 
@@ -36,7 +43,7 @@ const styles = StyleSheet.create({
     padding: '2%',
     width: Tela,
   },
-    resumo:{
+  resumo: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -47,8 +54,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
-    	width: 0,
-    	height: 4,
+      width: 0,
+      height: 4,
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
@@ -60,7 +67,7 @@ const styles = StyleSheet.create({
     marginTop: -1
   },
   logo: {
-    width: 30, 
+    width: 30,
     height: 30,
     marginRight: 16,
     margin: 7

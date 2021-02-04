@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
-import Comecar from '../../../Components/Button';
-import Quadrados from '../../../Components/Quadrado';
+import Button from '../../../Components/Button';
 
 import Moeda from '../../../assets/moedas/Moeda.png';
 import Agua from '../../../assets/simbolos/agua.png';
@@ -68,7 +67,7 @@ export default function Prevençao({ navigation }) {
           />
         </View>
       </View>
-      <Comecar
+      <Button
         onClick={() => navigation.navigate('Fiscal')}
         name='APLICAR' />
     </View>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
-import Comecar from '../../../../Components/Button';
+import Button from '../../../../Components/Button';
 import COLORS from '../../../../styles/Colors';
 
 import Interrogacao from '../../../../assets/interrogacao.png';
@@ -71,7 +71,7 @@ export default function Aparcela({ navigation }) {
         </View>
 
       </View>
-      <Comecar
+      <Button
         onClick={() => navigation.navigate('Agricultor1')}
         name='ADICIONAR'
       />

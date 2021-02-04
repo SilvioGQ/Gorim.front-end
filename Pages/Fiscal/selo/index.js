@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
-import Comecar from '../../../Components/Button';
+import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 
 import Moeda from '../../../assets/moedas/Moeda.png';
@@ -28,7 +28,7 @@ export default function Selo({ navigation, route }) {
       </View>
       <Text style={{ fontSize: 18, marginTop: 15, fontFamily: 'Rubik_300Light' }}> Destinatário:</Text>
       <Quadrados />
-      <Comecar
+      <Button
         onClick={() => navigation.navigate('Fiscal')}
         name='CONCEDER' />
     </View>

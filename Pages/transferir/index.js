@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-const Tela = Dimensions.get('screen').width;
-import Comecar from '../../Components/Button';
-import Quadrados from '../../Components/Quadrado'
-import Money from '../../Components/Dinheiro'
+import Button from '../../Components/Button';
+import Quadrados from '../../Components/Quadrado';
+import Money from '../../Components/Dinheiro';
 
 import setaDireita from '../../assets/agricultorIcones/setadireita.png';
 import Money2 from '../../assets/agricultorIcones/money2.png';
 import setaEsquerda from '../../assets/agricultorIcones/setaesquerda.png';
 
+const Tela = Dimensions.get('screen').width;
 export default function Transferindo({ navigation }) {
   const [count, setCount] = useState(0);
   const [Selected, setSelected] = useState(0)
@@ -48,11 +48,10 @@ export default function Transferindo({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-      <Comecar
+      <Button
         onClick={Selected === 0 ? () => navigation.navigate('FazerTransferencia', { valor: count }) : ''}
         name='CONTINUAR' />
     </View>
-
   );
 }
 

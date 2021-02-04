@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Candidato from '../../../Components/Checkbox';
-import Comecar from '../../../Components/Button';
+import Button from '../../../Components/Button';
 import COLORS from '../../../styles/Colors';
 
 import Voto from '../../../assets/Logo/vote.png';
@@ -22,7 +22,7 @@ export default function Frame5({ navigation }) {
         <Text style={styles.paragrafo}> Antes de começar, a cidade de Atlantis precisa de representantes e reguladores que serão responsáveis por gerir os recursos públicos em busca de alinhar lucro e meio ambiente. Você pode se candidatar à estes cargos e, logo, haverá uma votação para eleger os líderes da cidade! </Text>
       </View>
       <Candidato />
-      <Comecar
+      <Button
         onClick={() => navigation.navigate('frame6')}
         name='CONTINUAR'
       />

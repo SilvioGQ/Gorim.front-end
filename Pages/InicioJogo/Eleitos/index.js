@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
-import Comecar from '../../../Components/Button';
+import Button from '../../../Components/Button';
 import COLORS from '../../../styles/Colors';
 
 import Voto from '../../../assets/Logo/vote.png';
@@ -39,8 +39,7 @@ export default function Frame7({ navigation }) {
           />
           <Text style={styles.self2}>Joao</Text>
         </View>
-
-        <Comecar
+        <Button
           onClick={() => navigation.reset({
             routes: [{ name: 'frame8' }]
           })}
@@ -50,7 +49,6 @@ export default function Frame7({ navigation }) {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

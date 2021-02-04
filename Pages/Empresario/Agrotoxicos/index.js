@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import Comecar from '../../../Components/Button'
+import Button from '../../../Components/Button'
 import Quantidade from '../../../Components/Quantidades';
 
 import Agricultor from '../../../assets/perfils/agricultor/Agricultor.png';
@@ -171,7 +171,7 @@ export default function Agrotoxicos({ navigation }) {
         </TouchableOpacity>
       </View>
       <Quantidade />
-      <Comecar
+      <Button
         onClick={() => {
           navigation.navigate('insumo', { texto: 'Compra de Agrotóxico XXXXXX' });
         }}
