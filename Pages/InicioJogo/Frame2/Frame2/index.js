@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
-import COLORS from '../../../styles/Colors';
+import COLORS from '../../../../styles/Colors';
 
-import Group28 from '../../../assets/Group28.png';
-import Group29 from '../../../assets/Group29.png';
-import rightArrow from '../../../assets/right-arrow.png';
+import Group28 from '../../../../assets/Group28.png';
+import Group29 from '../../../../assets/Group29.png';
+import rightArrow from '../../../../assets/right-arrow.png';
 
 const Tela = Dimensions.get('screen').width
 export default function Frame2({ navigation }) {

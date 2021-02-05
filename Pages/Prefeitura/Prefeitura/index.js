@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import Cenarios from '../../Components/CenarioBotao';
-import Money from '../../Components/Dinheiro';
+import Cenarios from '../../../Components/CenarioBotao';
+import Money from '../../../Components/Dinheiro';
 
-import Agricultor2 from '../../assets/perfils/agricultor/Agricultor2.png';
-import Agua from '../../assets/simbolos/agua.png';
-import Imposto from '../../assets/simbolos/imposto.png';
-import Money2 from '../../assets/agricultorIcones/money2.png';
+import Agricultor2 from '../../../assets/perfils/agricultor/Agricultor2.png';
+import Agua from '../../../assets/simbolos/agua.png';
+import Imposto from '../../../assets/simbolos/imposto.png';
+import Money2 from '../../../assets/agricultorIcones/money2.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function Prefeitura({ navigation }) {
