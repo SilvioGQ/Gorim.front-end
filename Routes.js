@@ -1,33 +1,33 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Frame1 from './Pages/InicioJogo/Frame1'
-import Frame3 from './Pages/InicioJogo/Sorteio'
-import Frame4 from './Pages/InicioJogo/Personagem'
-import Frame5 from './Pages/InicioJogo/Candidatura'
-import Frame6 from './Pages/InicioJogo/Votaçao'
-import Frame7 from './Pages/InicioJogo/Eleitos'
-import Agricultor1 from './Pages/Agricultor/Agricultor1'
-import Espera from './Pages/Tela de espera'
-import Tranferenciaconfirmada from './Pages/Transferencias/Confirmada'
-import Insumo from './Pages/Transferencias/Insumo'
-import Parcela from './Pages/Agricultor/Parcelaterra'
-import Agrotoxicos from './Pages/Empresario/Agrotoxicos'
-import Transferindo from './Pages/Transferir'
-import Empresario1 from './Pages/Empresario/Empresario1'
-import Vendas from './Pages/Empresario/Vender'
-import FazerTransferencia from './Pages/Transferencias/Transferencia'
-import Cenario from "./Pages/Cenario";
+import Frame1 from './Pages/InicioJogo/Frame1';
+import Frame3 from './Pages/InicioJogo/Sorteio';
+import Frame4 from './Pages/InicioJogo/Personagem';
+import Frame5 from './Pages/InicioJogo/Candidatura';
+import Frame6 from './Pages/InicioJogo/Votaçao';
+import Frame7 from './Pages/InicioJogo/Eleitos';
+import Agricultor1 from './Pages/Agricultor/Agricultor1';
+import Espera from './Pages/Tela de Espera';
+import Tranferenciaconfirmada from './Pages/Transferencias/Confirmada';
+import Insumo from './Pages/Transferencias/Insumo';
+import Parcela from './Pages/Agricultor/Parcelaterra';
+import Agrotoxicos from './Pages/Empresario/Agrotoxicos';
+import Transferindo from './Pages/Transferir';
+import Empresario1 from './Pages/Empresario/Empresario1';
+import Vendas from './Pages/Empresario/Vender';
+import FazerTransferencia from './Pages/Transferencias/Transferencia';
+import Cenario from './Pages/Cenario';
 import Fiscal from './Pages/Fiscal/Fiscal1';
 import Selo from './Pages/Fiscal/Selo';
 import Multa from './Pages/Fiscal/Multa';
-import Aparcela from './Pages/Agricultor/Parcelaterra/aparcela'
-import Pacotes from './Components/Teladaseta'
-import Proposta from './Pages/Agricultor/Propostas'
-import Analizar from './Pages/Analisar'
-import Prevençao from './Pages/Prefeitura/Prevencao'
-import Prefeitura from './Pages/Prefeitura'
-import Imposto from './Pages/Prefeitura/Imposto'
-import Frame2 from './Pages/InicioJogo/Frame2';
+import Aparcela from './Pages/Agricultor/Parcelaterra/aparcela';
+import Pacotes from './Components/Teladaseta';
+import Proposta from './Pages/Agricultor/Propostas';
+import Analizar from './Pages/Analisar';
+import Prevençao from './Pages/Prefeitura/Prevencao';
+import Prefeitura from './Pages/Prefeitura/Prefeitura';
+import Imposto from './Pages/Prefeitura/Imposto';
+import Frame2 from './Pages/InicioJogo/Frame2/Frame2';
 
 const Stack = createStackNavigator();
 
