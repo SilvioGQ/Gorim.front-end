@@ -21,7 +21,7 @@ import Fiscal from './Pages/Fiscal/Fiscal1';
 import Selo from './Pages/Fiscal/Selo';
 import Multa from './Pages/Fiscal/Multa';
 import Aparcela from './Pages/Agricultor/Parcelaterra/aparcela';
-import Pacotes from './Components/Teladaseta';
+import Pacotes from './Components/TelaDaSeta';
 import Proposta from './Pages/Agricultor/Propostas';
 import Analizar from './Pages/Analisar';
 import Prevençao from './Pages/Prefeitura/Prevencao';
@@ -33,7 +33,7 @@ const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="frame1">
+    <Stack.Navigator initialRouteName="Cenario">
 
       <Stack.Screen name="Gorim" component={Frame1} options={{
         headerTransparent: true,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
 import Money from '../../../Components/Dinheiro';
 import Cenarios from '../../../Components/CenarioBotao';
-import Conf from '../../../Components/selo verde confirmacao';
+import Conf from '../../../Components/Selo Verde Confirmacao';
 
 import Selo from '../../../assets/moedas/Selo.png';
 import Agricultor from '../../../assets/perfils/agricultor/Agricultor2.png';
@@ -18,11 +18,17 @@ const Height = Dimensions.get('screen').height
 export default function Agricultor1({ navigation }) {
   const [isVisible, setisVisible] = useState(false);
   // const [unblock, setunblock] = useState(false);
-  const [invisible, setinvisible] = useState('none')
-
-  //  if(Height>600){
-   //   setinvisible('flex')
-  //  }    
+  const [invisible, setinvisible] = useState('flex')
+  const Banana = () => {
+  if(Height===640){
+    setinvisible('none')
+  }else{
+    setinvisible('flex')
+  }
+  
+}
+  console.log(Banana) 
+  console.log(invisible)  
   return (
     <View style={styles.container}>
       <View style={styles.row3}>
@@ -99,6 +105,7 @@ export default function Agricultor1({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
+<<<<<<< HEAD
       {Height >= 600 && (
         <View>
           <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
@@ -113,6 +120,17 @@ export default function Agricultor1({ navigation }) {
             onClick={() => {
               navigation.navigate('Cenario');
             }} />
+=======
+
+      <View style={{display:Banana}}>
+        <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
+          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
+          <Text style={styles.candidato, { color: 'white' }}>Produtividade atual</Text>
+        </View>
+        <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#BF0000', marginTop: 20 }}>
+          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
+          <Text style={styles.candidato, { color: 'white' }}>Poluição atual</Text>
+>>>>>>> b0215e143064f74c7c7fa0fba137d4fb90cb7fd3
         </View>
       )}
       </View>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import Money from '../../Components/Dinheiro';
-import Produtos from '../../Components/produtos';
+import Produtos from '../../Components/Produtos';
 import COLORS from '../../styles/Colors';
 
 const Tela = Dimensions.get('screen').width
