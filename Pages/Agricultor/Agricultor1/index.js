@@ -99,22 +99,23 @@ export default function Agricultor1({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
-
-      <View style={{display:invisible}}>
-        <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
-          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
-          <Text style={styles.candidato, { color: 'white' }}>Produtividade atual</Text>
+      {Height >= 600 && (
+        <View>
+          <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
+            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
+            <Text style={styles.candidato, { color: 'white' }}>Produtividade atual</Text>
+          </View>
+          <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#BF0000', marginTop: 20 }}>
+            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
+            <Text style={styles.candidato, { color: 'white' }}>Poluição atual</Text>
+          </View>
+          <Cenarios
+            onClick={() => {
+              navigation.navigate('Cenario');
+            }} />
         </View>
-        <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#BF0000', marginTop: 20 }}>
-          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
-          <Text style={styles.candidato, { color: 'white' }}>Poluição atual</Text>
-        </View>
+      )}
       </View>
-      <Cenarios
-        onClick={() => {
-          navigation.navigate('Cenario');
-        }} />
-    </View>
   );
 }
 
