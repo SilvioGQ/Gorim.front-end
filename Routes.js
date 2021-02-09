@@ -33,7 +33,7 @@ const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="">
+    <Stack.Navigator initialRouteName="Agricultor1">
 
       <Stack.Screen name="Gorim" component={Frame1} options={{
         headerTransparent: true,

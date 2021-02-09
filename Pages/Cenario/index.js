@@ -48,8 +48,8 @@ useEffect(() => {
                     <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
                 </View>
                 <Text style={styles.texto}>Nível de poluição:</Text>
-                <View style={[styles.row, {backgroundColor: '#bf0000', marginTop:20, borderRadius: 20, height: 75, width: '50%'}]}>
-                    <Text style={{fontSize: 48, marginLeft: 7, textAlign: 'center'}}>{poluicao}%</Text>
+                <View style={[styles.row, {backgroundColor: '#FFFFFF', marginTop:20, borderRadius: 20, height: 75, width: 167, shadowColor: "#000",shadowOffset: {width: 0,height: 4},shadowOpacity: 0.32,shadowRadius: 5.46,elevation: 9}]}>
+                    <Text style={{fontSize: 36, marginLeft: 7, textAlign: 'center', alignItems: 'center', marginTop: 13}}>{poluicao}%</Text>
                     <Image style={styles.emoji} source={Image1} />
                 </View>
                 <Text style={styles.texto}>Saldos:</Text>
@@ -140,8 +140,8 @@ const styles = StyleSheet.create({
         width: "90%"
     },
     emoji: {
-        width: 60,
-        height: 60,
+        width: 65,
+        height: 65,
         alignItems: 'center',
         marginLeft: 20,
         marginTop:5

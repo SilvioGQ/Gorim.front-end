@@ -5,7 +5,6 @@ import Cenarios from '../../../Components/CenarioBotao';
 import Parcela from '../../../assets/agricultorIcones/ParcelaPequena.png';
 import COLORS from '../../../styles/Colors';
 import { Item } from 'react-native-paper/lib/typescript/components/List/List';
-
 const Tela = Dimensions.get('screen').width
 const Height = Dimensions.get('screen').height
 export default function Agricultor1({ navigation }, props) {
@@ -13,7 +12,7 @@ export default function Agricultor1({ navigation }, props) {
   // const [unblock, setunblock] = useState(false);
   return (
     <View style={styles.container}>
-      <Header nome='Joao' cidade='Atlantis'/>
+      <Header nome='Joao' cidade='Atlantis' image=''/>
       <View style={{display: isVisible}}>
       <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
         <View style={styles.row2}>

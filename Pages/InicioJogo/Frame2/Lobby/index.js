@@ -8,12 +8,36 @@ export default function Lobby({ navigation,route }) {
   const Jogadores=[
     {  
       id: 1,
-      nome: nome
+      nome: nome,
     },
     {
       id: 2,
       nome:'Alan'
-    }
+    },
+    {
+      id: 3,
+      nome:'Alan'
+    },
+    {
+      id: 4,
+      nome:'Alan'
+    },
+    {
+      id: 5,
+      nome:'Alan'
+    },
+    {
+      id: 6,
+      nome:'Alan'
+    },
+    {
+      id: 7,
+      nome:'Alan'
+    },
+    {
+      id: 8,
+      nome:'Alan'
+    },
   ]
 
   return (
@@ -29,7 +53,11 @@ export default function Lobby({ navigation,route }) {
        />
        <Button 
        name= 'começar'
-       onClick={()=> navigation.navigate('Agricultor1')}/>
+       onClick={()=> navigation.navigate('Agricultor1')}
+        //navigation.reset({
+        //routes: [{ name: 'Agricultor1' }],
+      //})
+      />
      </View>
 
       );
