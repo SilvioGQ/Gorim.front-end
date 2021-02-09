@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, FlatList} from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList} from 'react-native';
 import Button from '../../../../Components/Button/index'
 const Tela = Dimensions.get('screen').width
 // import Api from '../Api'
 export default function Lobby({ navigation,route }) {
-  const [value, onChangeText] = React.useState('Nome');
   const {nome} = route.params
   const Jogadores=[
     {  
@@ -19,16 +18,18 @@ export default function Lobby({ navigation,route }) {
 
   return (
      <View style={styles.container}>
-       <Text style={styles.texto}>CODIGO DA SALA</Text>
+       <Text style={styles.texto}>CÓDIGO DA SALA</Text>
        <View style={{borderWidth: 1, width: '70%'}}/>
-       <Text style={styles.texto2}>13KJ21</Text>
+       <Text style={styles.texto2}>13KJ2F</Text>
+       <Text style={styles.texto}>Aguardando jogadores</Text>
        <FlatList
        data={Jogadores}
        keyExtractor= {item=> item.id}
        renderItem={({item})=><View style={styles.linha}><Text style={styles.texto3}>{item.nome}</Text></View>}
        />
        <Button 
-       name= 'começar'/>
+       name= 'começar'
+       onClick={()=> navigation.navigate('Agricultor1')}/>
      </View>
 
       );
@@ -46,12 +47,12 @@ const styles = StyleSheet.create({
     width:Tela
   },
   linha: {
-    paddingVertical: 15,
+    paddingVertical: 10,
     borderWidth:1,
-    width:Tela,
+    width:Tela-75,
   },
   texto:{
-    fontSize:28,
+    fontSize:32,
     fontFamily: 'Rubik_300Light',
     marginTop: 5,
     textAlign: 'center',
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     lineHeight:32
   },
   texto2:{
-    fontSize:32,
+    fontSize:35,
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
     alignItems: 'center',
