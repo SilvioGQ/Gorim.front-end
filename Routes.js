@@ -28,12 +28,12 @@ import Prevençao from './Pages/Prefeitura/Prevencao';
 import Prefeitura from './Pages/Prefeitura/Prefeitura';
 import Imposto from './Pages/Prefeitura/Imposto';
 import Frame2 from './Pages/InicioJogo/Frame2/Frame2';
-
+import Lobby from './Pages/InicioJogo/Frame2/Lobby/index'
 const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="Cenario">
+    <Stack.Navigator initialRouteName="">
 
       <Stack.Screen name="Gorim" component={Frame1} options={{
         headerTransparent: true,
@@ -252,6 +252,10 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="Frame2" component={Frame2} options={{
+        headerTransparent: true,
+        headerTitle: '',
+      }} />
+      <Stack.Screen name="Lobby" component={Lobby} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />

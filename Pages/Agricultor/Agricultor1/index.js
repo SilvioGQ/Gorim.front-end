@@ -18,17 +18,7 @@ const Height = Dimensions.get('screen').height
 export default function Agricultor1({ navigation }) {
   const [isVisible, setisVisible] = useState(false);
   // const [unblock, setunblock] = useState(false);
-  const [invisible, setinvisible] = useState('flex')
-  const Banana = () => {
-  if(Height===640){
-    setinvisible('none')
-  }else{
-    setinvisible('flex')
-  }
-  
-}
-  console.log(Banana) 
-  console.log(invisible)  
+  console.log(Height)
   return (
     <View style={styles.container}>
       <View style={styles.row3}>
@@ -105,8 +95,7 @@ export default function Agricultor1({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
-<<<<<<< HEAD
-      {Height >= 600 && (
+      {Height >= 750 && (
         <View>
           <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
             <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
@@ -116,23 +105,12 @@ export default function Agricultor1({ navigation }) {
             <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
             <Text style={styles.candidato, { color: 'white' }}>Poluição atual</Text>
           </View>
-          <Cenarios
-            onClick={() => {
-              navigation.navigate('Cenario');
-            }} />
-=======
-
-      <View style={{display:Banana}}>
-        <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
-          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
-          <Text style={styles.candidato, { color: 'white' }}>Produtividade atual</Text>
-        </View>
-        <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#BF0000', marginTop: 20 }}>
-          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
-          <Text style={styles.candidato, { color: 'white' }}>Poluição atual</Text>
->>>>>>> b0215e143064f74c7c7fa0fba137d4fb90cb7fd3
         </View>
       )}
+      <Cenarios
+        onClick={() => {
+          navigation.navigate('Cenario');
+        }} />
       </View>
   );
 }
