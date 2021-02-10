@@ -20,7 +20,7 @@ export default function Produtos() {
           <View style={styles.row3}>
             <View>
               <Image
-                style={styles.icone}
+                style={styles.logo}
                 source={FertilizanteComum}
               />
               <Text style={styles.textos}>Fertilizante comum</Text>
@@ -44,7 +44,7 @@ export default function Produtos() {
           <View style={styles.row3}>
             <View>
               <Image
-                style={styles.icone}
+                style={styles.logo}
                 source={FertilizantePremium}
               />
               <Text style={styles.textos}>Fertilizante Premium</Text>
@@ -67,7 +67,7 @@ export default function Produtos() {
           <View style={styles.row3}>
             <View>
               <Image
-                style={styles.icone}
+                style={styles.logo}
                 source={FertilizanteSuperPremium}
               />
               <Text style={styles.textos}>Fertilizante SP</Text>
@@ -90,7 +90,7 @@ export default function Produtos() {
           <View style={styles.row3}>
             <View>
               <Image
-                style={styles.icone}
+                style={styles.logo}
                 source={AgrotoxicoComum}
               />
               <Text style={styles.textos}>Agrotóxico comum</Text>
@@ -113,7 +113,7 @@ export default function Produtos() {
           <View style={styles.row3}>
             <View>
               <Image
-                style={styles.icone}
+                style={styles.logo}
                 source={AgrotoxicoPremium}
               />
               <Text style={styles.textos}>Agrotóxico Premium</Text>
@@ -136,7 +136,7 @@ export default function Produtos() {
           <View style={styles.row3}>
             <View>
               <Image
-                style={styles.icone}
+                style={styles.logo}
                 source={AgrotoxicoSuperPremium}
               />
               <Text style={styles.textos}>Agrotóxico SP</Text>
@@ -159,7 +159,7 @@ export default function Produtos() {
           <View style={styles.row3}>
             <View>
               <Image
-                style={styles.icone}
+                style={styles.logo}
                 source={Hortalicas}
               />
               <Text style={styles.textos}>Hortaliças</Text>
@@ -182,7 +182,7 @@ export default function Produtos() {
           <View style={styles.row3}>
             <View>
               <Image
-                style={styles.icone}
+                style={styles.logo}
                 source={Arroz}
               />
               <Text style={styles.textos}>Arroz</Text>
@@ -205,7 +205,7 @@ export default function Produtos() {
   <View style={styles.row3}>
     <View>
       <Image
-        style={styles.icone}
+        style={styles.logo}
         source={Rice}
       />
       <Text style={styles.textos}>Soja</Text>
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: '6%',
     backgroundColor: '#FFFFFF',
-    width: Tela-35,
+    width: Tela-25,
     height: 95,
     borderRadius: 20,
     shadowColor: "#000",
@@ -272,8 +272,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   logo: {
-    width: 20,
-    height: 23
+    width: 35,
+    height: 36
   },
 
 });

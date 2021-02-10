@@ -4,15 +4,25 @@ import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
 
 import Button from '../../../../Components/Button/index'
 import PlayerService from '../../../../firebase/services/PlayerService';
+import { db } from '../../../../firebase';
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
+  const nome =route.params.nome
+  let idJogo = 200;
+  console.log(nome)
   const [players, setPlayers] = useState([]);
   const isFocused = useIsFocused();
-
+  const addNome= ()=>{
+    db.collection('players').add({
+      name:nome,
+      id:14,
+      idJogo:idJogo
+    })
+  }
+  addNome()
   useEffect(() => {
     if (isFocused) {
-      let idJogo = 200;
       PlayerService.getPlayers(idJogo).then(resp => setPlayers(resp));
     }
   }, [isFocused]);

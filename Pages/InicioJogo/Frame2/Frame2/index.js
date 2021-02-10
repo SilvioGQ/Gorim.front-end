@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import COLORS from '../../../../styles/Colors';
 
@@ -8,7 +8,8 @@ import rightArrow from '../../../../assets/right-arrow.png';
 
 const Tela = Dimensions.get('screen').width
 export default function Frame2({ navigation }) {
-  const [name, setName] = React.useState();
+  const [block,setBlock] = useState(true)
+  const [name, setName] = useState('');
   return (
     <View style={styles.container}>
       <TextInput style={styles.input}
@@ -26,9 +27,9 @@ export default function Frame2({ navigation }) {
         />
         <TouchableOpacity
           style={styles.button2}
-          onPress={() => navigation.navigate('Lobby', {
-            nome:name
-          })}
+          onPress={block ? () => navigation.navigate('Lobby', {
+            nome:name,
+          }) : ''}
         >
           <Text style={styles.text}>CRIAR JOGO</Text>
         </TouchableOpacity>
