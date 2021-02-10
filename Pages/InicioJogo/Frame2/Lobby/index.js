@@ -9,7 +9,8 @@ export default function Lobby({ navigation, route }) {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    PlayerService.getPlayers().then(resp => setPlayers(resp));
+    let idJogo = 200;
+    PlayerService.getPlayers(idJogo).then(resp => setPlayers(resp));
   }, [players]);
 
   return (
@@ -21,7 +22,7 @@ export default function Lobby({ navigation, route }) {
         <Text style={styles.texto}>Aguardando jogadores</Text> :
         <FlatList
           data={players}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => <View style={styles.linha}><Text style={styles.texto3}>{item.name}</Text></View>}
         />
       }

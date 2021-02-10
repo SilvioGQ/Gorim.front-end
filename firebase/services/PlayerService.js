@@ -1,9 +1,9 @@
 import { db } from '../index';
 
 const PlayerService = {
-    async getPlayers() {
+    getPlayers(idJogo) {
         const plaryers = db
-            .collection('players')
+            .collection('players').where('idJogo', "==", idJogo)
             .get()
             .then(snapshot => {
                 let _plaryers = [];
