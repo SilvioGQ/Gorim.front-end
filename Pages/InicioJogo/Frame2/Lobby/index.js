@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
 
 import Button from '../../../../Components/Button/index'
@@ -7,11 +8,14 @@ import PlayerService from '../../../../firebase/services/PlayerService';
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [players, setPlayers] = useState([]);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    let idJogo = 200;
-    PlayerService.getPlayers(idJogo).then(resp => setPlayers(resp));
-  }, [players]);
+    if (isFocused) {
+      let idJogo = 200;
+      PlayerService.getPlayers(idJogo).then(resp => setPlayers(resp));
+    }
+  }, [isFocused]);
 
   return (
     <View style={styles.container}>
