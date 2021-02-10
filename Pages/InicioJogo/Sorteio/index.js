@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { Batata } from '../../../Api';
+import { Batata } from '../../Api';
 import COLORS from '../../../styles/Colors';
 
 import Dados from '../../../assets/Logo/Dados.png';

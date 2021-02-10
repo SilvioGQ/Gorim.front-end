@@ -4,14 +4,20 @@ import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions
 import Agricultor2 from '../../assets/perfils/agricultor/Agricultor2.png';
 
 const Tela = Dimensions.get('screen').width;
-export default function Quadrados() {
-  const [Selected, setSelected] = useState(-1)
+export default function Quadrados({ onPress = null }) {
+  const [selected, setSelected] = useState(-1)
+
+  const handleOnPress = (item, index) => {
+    onPress();
+    setSelected(index);
+    console.log(item);
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <TouchableOpacity onPress={() => setSelected(0)}>
-          <View style={[styles.colunm, { backgroundColor: Selected == 0 ? "#8ACF3A" : '#fff' }]} >
+        <TouchableOpacity onPress={handleOnPress}>
+          <View style={[styles.colunm, { backgroundColor: selected == 0 ? "#8ACF3A" : '#fff' }]} >
             <Image
               style={styles.icone}
               source={Agricultor2}
@@ -20,7 +26,7 @@ export default function Quadrados() {
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelected(1)}>
-          <View style={[styles.colunm, { backgroundColor: Selected == 1 ? "#8ACF3A" : '#fff' }]}>
+          <View style={[styles.colunm, { backgroundColor: selected == 1 ? "#8ACF3A" : '#fff' }]}>
             <Image
               style={styles.icone}
               source={Agricultor2}
@@ -29,7 +35,7 @@ export default function Quadrados() {
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelected(2)}>
-          <View style={[styles.colunm, { backgroundColor: Selected == 2 ? "#8ACF3A" : '#fff' }]} >
+          <View style={[styles.colunm, { backgroundColor: selected == 2 ? "#8ACF3A" : '#fff' }]} >
             <Image
               style={styles.icone}
               source={Agricultor2}
@@ -38,7 +44,7 @@ export default function Quadrados() {
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelected(3)}>
-          <View style={[styles.colunm, { backgroundColor: Selected == 3 ? "#8ACF3A" : '#fff' }]}>
+          <View style={[styles.colunm, { backgroundColor: selected == 3 ? "#8ACF3A" : '#fff' }]}>
             <Image
               style={styles.icone}
               source={Agricultor2}

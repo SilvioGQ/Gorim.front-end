@@ -1,39 +1,39 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Frame1 from './Pages/InicioJogo/Frame1';
-import Frame3 from './Pages/InicioJogo/Sorteio';
-import Frame4 from './Pages/InicioJogo/Personagem';
-import Frame5 from './Pages/InicioJogo/Candidatura';
-import Frame6 from './Pages/InicioJogo/Votaçao';
-import Frame7 from './Pages/InicioJogo/Eleitos';
-import Agricultor1 from './Pages/Agricultor/Agricultor1';
-import Espera from './Pages/Tela de Espera';
-import Tranferenciaconfirmada from './Pages/Transferencias/Confirmada';
-import Insumo from './Pages/Transferencias/Insumo';
-import Parcela from './Pages/Agricultor/Parcelaterra';
-import Agrotoxicos from './Pages/Empresario/Agrotoxicos';
-import Transferindo from './Pages/Transferir';
-import Empresario1 from './Pages/Empresario/Empresario1';
-import Vendas from './Pages/Empresario/Vender';
-import FazerTransferencia from './Pages/Transferencias/Transferencia';
-import Cenario from './Pages/Cenario';
-import Fiscal from './Pages/Fiscal/Fiscal1';
-import Selo from './Pages/Fiscal/Selo';
-import Multa from './Pages/Fiscal/Multa';
-import Aparcela from './Pages/Agricultor/Parcelaterra/aparcela';
-import Pacotes from './Components/TelaDaSeta';
-import Proposta from './Pages/Agricultor/Propostas';
-import Analizar from './Pages/Analisar';
-import Prevençao from './Pages/Prefeitura/Prevencao';
-import Prefeitura from './Pages/Prefeitura/Prefeitura';
-import Imposto from './Pages/Prefeitura/Imposto';
-import Frame2 from './Pages/InicioJogo/Frame2/Frame2';
+import Frame1 from './InicioJogo/Frame1';
+import Frame3 from './InicioJogo/Sorteio';
+import Frame4 from './InicioJogo/Personagem';
+import Frame5 from './InicioJogo/Candidatura';
+import Frame6 from './InicioJogo/Votaçao';
+import Frame7 from './InicioJogo/Eleitos';
+import Agricultor1 from './Agricultor/Agricultor1';
+import Espera from './Tela de Espera';
+import Tranferenciaconfirmada from './Transferencias/Confirmada';
+import Insumo from './Transferencias/Insumo';
+import Parcela from './Agricultor/Parcelaterra';
+import Agrotoxicos from './Empresario/Agrotoxicos';
+import Transferindo from './Transferir';
+import Empresario1 from './Empresario/Empresario1';
+import Vendas from './Empresario/Vender';
+import FazerTransferencia from './Transferencias/Transferencia';
+import Cenario from './Cenario';
+import Fiscal from './Fiscal/Fiscal1';
+import Selo from './Fiscal/Selo';
+import Multa from './Fiscal/Multa';
+import Aparcela from './Agricultor/Parcelaterra/aparcela';
+import Pacotes from '../Components/TelaDaSeta';
+import Proposta from './Agricultor/Propostas';
+import Analizar from './Analisar';
+import Prevençao from './Prefeitura/Prevencao';
+import Prefeitura from './Prefeitura/Prefeitura';
+import Imposto from './Prefeitura/Imposto';
+import Frame2 from './InicioJogo/Frame2/Frame2';
 
 const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="Cenario">
+    <Stack.Navigator initialRouteName="Gorim">
 
       <Stack.Screen name="Gorim" component={Frame1} options={{
         headerTransparent: true,
@@ -45,7 +45,7 @@ export default function Routes() {
       }} />
       <Stack.Screen name="frame4" component={Frame4} options={{
         headerTransparent: true,
-        headerTitle: 'Gorim',
+        headerTitle: '',
         headerTitleStyle: {
           fontSize: 41,
           marginLeft: '25%',
