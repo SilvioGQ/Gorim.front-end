@@ -28,6 +28,7 @@ import Prevençao from './Prefeitura/Prevencao';
 import Prefeitura from './Prefeitura/Prefeitura';
 import Imposto from './Prefeitura/Imposto';
 import Frame2 from './InicioJogo/Frame2/Frame2';
+import Lobby from './InicioJogo/Frame2/Lobby';
 
 const Stack = createStackNavigator();
 
@@ -252,6 +253,10 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="Frame2" component={Frame2} options={{
+        headerTransparent: true,
+        headerTitle: '',
+      }} />
+      <Stack.Screen name="Lobby" component={Lobby} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />

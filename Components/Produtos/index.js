@@ -26,8 +26,13 @@ export default function Produtos() {
               <Text style={styles.textos}>Fertilizante comum</Text>
             </View>
             <View>
-              <Text style={styles.textinhos}>Preço</Text>
-              <Text style={styles.textinhos}>80$</Text>
+              <Text style={styles.textinhos}>Preços:</Text>
+              <View style={{flexDirection:'row'}} >
+              <Text style={styles.textinhos}>25$</Text>
+              <Text style={styles.textinhos}>30$</Text>
+              <Text style={styles.textinhos}>35$</Text>
+              
+              </View>
             </View>
             <View>
               <Text style={styles.textinhos}>Poluição</Text>
@@ -45,8 +50,12 @@ export default function Produtos() {
               <Text style={styles.textos}>Fertilizante Premium</Text>
             </View>
             <View>
-              <Text style={styles.textinhos}>Preço</Text>
-              <Text style={styles.textinhos}>85$</Text>
+              <Text style={styles.textinhos}>Preços:</Text>
+              <View style={{flexDirection:'row'}} >
+              <Text style={styles.textinhos}>55$</Text>
+              <Text style={styles.textinhos}>60$</Text>
+              <Text style={styles.textinhos}>65$</Text>
+            </View>
             </View>
             <View>
               <Text style={styles.textinhos}>Poluição</Text>
@@ -64,8 +73,12 @@ export default function Produtos() {
               <Text style={styles.textos}>Fertilizante SP</Text>
             </View>
             <View>
-              <Text style={styles.textinhos}>Preço</Text>
+              <Text style={styles.textinhos}>Preços:</Text>
+              <View style={{flexDirection:'row'}} >
+              <Text style={styles.textinhos}>85$</Text>
               <Text style={styles.textinhos}>90$</Text>
+              <Text style={styles.textinhos}>95$</Text>
+            </View>
             </View>
             <View>
               <Text style={styles.textinhos}>Poluição</Text>
@@ -83,12 +96,16 @@ export default function Produtos() {
               <Text style={styles.textos}>Agrotóxico comum</Text>
             </View>
             <View>
-              <Text style={styles.textinhos}>Preço</Text>
-              <Text style={styles.textinhos}>80$</Text>
+              <Text style={styles.textinhos}>Preços:</Text>
+              <View style={{flexDirection:'row'}} >
+              <Text style={styles.textinhos}>5$</Text>
+              <Text style={styles.textinhos}>10$</Text>
+              <Text style={styles.textinhos}>15$</Text>
+            </View>
             </View>
             <View>
               <Text style={styles.textinhos}>Poluição</Text>
-              <Text style={styles.textinhos}>0</Text>
+              <Text style={styles.textinhos}>3</Text>
             </View>
           </View>
         </View>
@@ -102,12 +119,16 @@ export default function Produtos() {
               <Text style={styles.textos}>Agrotóxico Premium</Text>
             </View>
             <View>
-              <Text style={styles.textinhos}>Preço</Text>
-              <Text style={styles.textinhos}>85$</Text>
+              <Text style={styles.textinhos}>Preços:</Text>
+              <View style={{flexDirection:'row'}} >
+              <Text style={styles.textinhos}>15$</Text>
+              <Text style={styles.textinhos}>20$</Text>
+              <Text style={styles.textinhos}>25$</Text>
+            </View>
             </View>
             <View>
               <Text style={styles.textinhos}>Poluição</Text>
-              <Text style={styles.textinhos}>0</Text>
+              <Text style={styles.textinhos}>2</Text>
             </View>
           </View>
         </View>
@@ -121,50 +142,16 @@ export default function Produtos() {
               <Text style={styles.textos}>Agrotóxico SP</Text>
             </View>
             <View>
-              <Text style={styles.textinhos}>Preço</Text>
-              <Text style={styles.textinhos}>90$</Text>
+              <Text style={styles.textinhos}>Preços:</Text>
+              <View style={{flexDirection:'row'}} >
+              <Text style={styles.textinhos}>25$</Text>
+              <Text style={styles.textinhos}>30$</Text>
+              <Text style={styles.textinhos}>35$</Text>
+            </View>
             </View>
             <View>
               <Text style={styles.textinhos}>Poluição</Text>
-              <Text style={styles.textinhos}>0</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.colunm}>
-          <View style={styles.row3}>
-            <View>
-              <Image
-                style={styles.icone}
-                source={Rice}
-              />
-              <Text style={styles.textos}>Soja</Text>
-            </View>
-            <View>
-              <Text style={styles.textinhos}>Preço</Text>
-              <Text style={styles.textinhos}>80$</Text>
-            </View>
-            <View>
-              <Text style={styles.textinhos}>Poluição</Text>
-              <Text style={styles.textinhos}>0</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.colunm}>
-          <View style={styles.row3}>
-            <View>
-              <Image
-                style={styles.icone}
-                source={Arroz}
-              />
-              <Text style={styles.textos}>Arroz</Text>
-            </View>
-            <View>
-              <Text style={styles.textinhos}>Preço</Text>
-              <Text style={styles.textinhos}>85$</Text>
-            </View>
-            <View>
-              <Text style={styles.textinhos}>Poluição</Text>
-              <Text style={styles.textinhos}>0</Text>
+              <Text style={styles.textinhos}>1</Text>
             </View>
           </View>
         </View>
@@ -178,15 +165,65 @@ export default function Produtos() {
               <Text style={styles.textos}>Hortaliças</Text>
             </View>
             <View>
-              <Text style={styles.textinhos}>Preço</Text>
-              <Text style={styles.textinhos}>90$</Text>
+              <Text style={styles.textinhos}>Preços:</Text>
+              <View style={{flexDirection:'row'}} >
+              <Text style={styles.textinhos}>5$</Text>
+              <Text style={styles.textinhos}>10$</Text>
+              <Text style={styles.textinhos}>15$</Text>
+            </View>
             </View>
             <View>
               <Text style={styles.textinhos}>Poluição</Text>
-              <Text style={styles.textinhos}>0</Text>
+              <Text style={styles.textinhos}>1</Text>
             </View>
           </View>
         </View>
+        <View style={styles.colunm}>
+          <View style={styles.row3}>
+            <View>
+              <Image
+                style={styles.icone}
+                source={Arroz}
+              />
+              <Text style={styles.textos}>Arroz</Text>
+            </View>
+            <View>
+              <Text style={styles.textinhos}>Preços:</Text>
+              <View style={{flexDirection:'row'}} >
+              <Text style={styles.textinhos}>15$</Text>
+              <Text style={styles.textinhos}>20$</Text>
+              <Text style={styles.textinhos}>25$</Text>
+            </View>
+            </View>
+            <View>
+              <Text style={styles.textinhos}>Poluição</Text>
+              <Text style={styles.textinhos}>2</Text>
+            </View>
+          </View>
+        </View>
+<View style={styles.colunm}>
+  <View style={styles.row3}>
+    <View>
+      <Image
+        style={styles.icone}
+        source={Rice}
+      />
+      <Text style={styles.textos}>Soja</Text>
+    </View>
+    <View>
+      <Text style={styles.textinhos}>Preços:</Text>
+      <View style={{flexDirection:'row'}} >
+      <Text style={styles.textinhos}>25$</Text>
+      <Text style={styles.textinhos}>30$</Text>
+      <Text style={styles.textinhos}>35$</Text>
+    </View>
+    </View>
+    <View>
+      <Text style={styles.textinhos}>Poluição</Text>
+      <Text style={styles.textinhos}>3</Text>
+    </View>
+  </View>
+</View>
       </View>
     </ScrollView>
   );
@@ -201,8 +238,7 @@ const styles = StyleSheet.create({
   row3: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    justifyContent: 'space-around',
-    margin: '1%',
+    marginLeft: '1%',
     width: Tela
   },
   colunm: {
@@ -210,7 +246,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: '6%',
     backgroundColor: '#FFFFFF',
-    width: Tela,
+    width: Tela-35,
     height: 95,
     borderRadius: 20,
     shadowColor: "#000",
@@ -222,47 +258,22 @@ const styles = StyleSheet.create({
     shadowRadius: 5.46,
     elevation: 7
   },
-  header: {
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 24,
-    paddingTop: 10
-  },
   textos: {
     fontFamily: 'Rubik_700Bold',
-    fontSize: 16,
+    fontSize: 13,
     alignSelf: 'center',
     marginTop: 7
   },
   textinhos: {
     fontFamily: 'Rubik_300Light',
     alignItems: 'center',
-    alignSelf: 'center',
-    margin: '4%',
-    fontSize: 20,
+    textAlign: 'center',
+    margin: '2%',
+    fontSize: 18,
   },
   logo: {
     width: 20,
     height: 23
   },
-  person: {
-    width: 46,
-    height: 50,
-    marginRight: '5%'
-  },
-  icone: {
-    width: 42,
-    height: 42,
-  },
-  map: {
-    width: 50,
-    height: 50,
-    marginRight: '8%'
-  },
-  vermelho: {
-    backgroundColor: '#FF7F7E'
-  },
-  candidato: {
-    fontFamily: 'Rubik_300Light',
-    fontSize: 18
-  }
+
 });

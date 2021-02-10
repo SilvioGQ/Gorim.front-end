@@ -2,41 +2,18 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
 import Money from '../../../Components/Dinheiro';
 import Cenarios from '../../../Components/CenarioBotao';
-import Conf from '../../../Components/Selo Verde Confirmacao';
-
-import Selo from '../../../assets/moedas/Selo.png';
-import Agricultor from '../../../assets/perfils/agricultor/Agricultor2.png';
 import Parcela from '../../../assets/agricultorIcones/ParcelaPequena.png';
-import Lupa from '../../../assets/agricultorIcones/lupa.png';
-import Money2 from '../../../assets/agricultorIcones/money2.png';
-import SeloG from '../../../assets/agricultorIcones/seloG.png';
-import Handshake from '../../../assets/agricultorIcones/handshake.png';
 import COLORS from '../../../styles/Colors';
-
+import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 const Tela = Dimensions.get('screen').width
 const Height = Dimensions.get('screen').height
-export default function Agricultor1({ navigation }) {
-  const [isVisible, setisVisible] = useState(false);
+export default function Agricultor1({ navigation }, props) {
+  const [isVisible, setisVisible] = useState('flex');
   // const [unblock, setunblock] = useState(false);
   return (
     <View style={styles.container}>
-      <View style={styles.row3}>
-        <Text style={styles.header}>Agricultora 1 {'\n'} em Atlantis</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image
-            style={styles.logo}
-            source={Selo}
-          />
-          <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular' }}>123</Text>
-        </View>
-        <View>
-          <Money />
-        </View>
-        <Image
-          style={styles.person}
-          source={Agricultor}
-        />
-      </View>
+      <Header nome='Joao' cidade='Atlantis' image=''/>
+      <View style={{display: isVisible}}>
       <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
         <View style={styles.row2}>
           <Image
@@ -46,62 +23,20 @@ export default function Agricultor1({ navigation }) {
           <Text style={styles.textos}>Parcelas de terra</Text>
         </View>
       </TouchableOpacity>
+      </View>
       <View style={styles.row}>
-        <TouchableOpacity onPress={() => navigation.navigate('Proposta')}>
-          <View style={styles.colunm}>
-            <Image
-              style={styles.icone}
-              source={Handshake}
-            />
-            <Text style={styles.textinhos}>Checar {'\n'} Propostas</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Transferindo')}>
-          <View style={styles.colunm}>
-            <Image
-              style={styles.icone}
-              source={Money2}
-            />
-            <Text style={styles.textinhos}>Fazer {'\n'} tranferência</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Analizar')}>
-          <View style={styles.colunm}>
-            <Image
-              style={styles.icone}
-              source={Lupa}
-            />
-            <Text style={styles.textinhos}>Analizar {'\n'} produtos</Text>
-          </View>
-        </TouchableOpacity>
-        <Modal
-          style={styles.modal}
-          animationType={'fade'}
-          visible={isVisible}
-          transparent={true}
-        >
-          <View style={styles.modal}>
-            <Conf Conf={() => setisVisible(false)} />
-          </View>
-        </Modal>
-        <TouchableOpacity onPress={() => setisVisible(true)}>
-          <View style={[styles.colunm, styles.vermelho]}>
-            <Image
-              style={styles.icone}
-              source={SeloG}
-            />
-            <Text style={styles.textinhos}>Pedir selo {'\n'} verde</Text>
-          </View>
-        </TouchableOpacity>
+       <Item navigationName='Propostas' icone='../../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
+       <Item navigationName='Propostas' icone='../../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
+       <Item navigationName='Propostas' icone='../../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
       </View>
       {Height >= 750 && (
         <View>
           <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
-            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
+            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>{produtividade}</Text>
             <Text style={styles.candidato, { color: 'white' }}>Produtividade atual</Text>
           </View>
           <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#BF0000', marginTop: 20 }}>
-            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>400</Text>
+            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>{poluicao}</Text>
             <Text style={styles.candidato, { color: 'white' }}>Poluição atual</Text>
           </View>
         </View>
@@ -113,6 +48,7 @@ export default function Agricultor1({ navigation }) {
       </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -213,3 +149,65 @@ const styles = StyleSheet.create({
     width: Tela,
   }
 });
+
+//Header
+//<View style={styles.row3}>
+//        <Text style={styles.header}>{props.agricultor}{'\n'} em {props.cidade}</Text>
+//        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+//         <Image
+//            style={styles.logo}
+//            source={Selo}
+//          />
+//          <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular' }}>{props}</Text>
+//       </View>
+//        <View>
+//          <Money />
+//        </View>
+//        <Image
+//          style={styles.person}
+//          source={Agricultor}
+//        />
+//      </View>
+
+
+/*
+A parcela item só do agricultor
+
+      */
+
+
+      /*
+      cada item dos quadradinhos
+       <TouchableOpacity onPress={() => navigation.navigate({props.navigationName})}>
+          <View style={styles.colunm}>
+            <Image
+              style={styles.icone}
+              source={{props.icone}}
+            />
+            <Text style={styles.textinhos}>{props.texto}</Text>
+          </View>
+        </TouchableOpacity>
+        */
+
+        /*
+        Não sei como fazer, selo verde tem o modal e bg diferente
+        <Modal
+          style={styles.modal}
+          animationType={'fade'}
+          visible={isVisible}
+          transparent={true}
+        >
+          <View style={styles.modal}>
+            <Conf Conf={() => setisVisible(false)} />
+          </View>
+        </Modal>
+        <TouchableOpacity onPress={() => setisVisible(true)}>
+          <View style={[styles.colunm, styles.vermelho]}>
+            <Image
+              style={styles.icone}
+              source={SeloG}
+            />
+            <Text style={styles.textinhos}>Pedir selo {'\n'} verde</Text>
+          </View>
+        </TouchableOpacity>
+        */

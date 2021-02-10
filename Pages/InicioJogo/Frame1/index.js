@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../../styles/Colors';
 import Button from '../../../Components/Button';
-import PlayerService from '../../../firebase/services/PlayerService';
 
 import Trator from '../../../assets/Logo/Trator.png';
 import Animacao from '../../../assets/Logo/Animação.png';
 
 export default function Frame1({ navigation }) {
-  const [players, setPlayers] = useState([]);
-
-  useEffect(() => {
-    PlayerService.getPlayers().then(resp => setPlayers(resp));
-  }, [players]);
-
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -27,13 +20,6 @@ export default function Frame1({ navigation }) {
         style={styles.logo2}
         source={Animacao}
       />
-      <View>
-        {players.map(player => (
-          <Text key={player.id}>
-            {player.name}
-          </Text>
-        ))}
-      </View>
       <View style={styles.container}>
         <Button
           onClick={() => navigation.navigate('Frame2')}
