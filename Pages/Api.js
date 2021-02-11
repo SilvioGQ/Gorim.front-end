@@ -58,253 +58,255 @@ export async function Batata5(idJogo, {route}){
         return resp
     }
     */
-   import axios from 'axios'
-   export function Batata(){
-    return axios.post(`${BASE_API}/mestre`, {quantidadeJogadores: 10})
-   }
-   export function Batata2(idJogo){
-    return axios.get(`${BASE_API}/${idJogo}/mestre/infoMundo`)
-   }
+import axios from 'axios';
 const BASE_API = 'http://localhost:8080/request/api';
+
+export function Batata() {
+    return axios.post(`${BASE_API}/mestre`, { quantidadeJogadores: 10 });
+}
+export function Batata2(idJogo) {
+    return axios.get(`${BASE_API}/${idJogo}/mestre/infoMundo`);
+}
+
 export default {
-    idJogo: async() => {
+    idJogo: async () => {
         const req = await fetch(`${BASE_API}/mestre`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({quantidadeJogadores: 10})
+            body: JSON.stringify({ quantidadeJogadores: 10 })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    Mundo: async(idJogo) => {
+    Mundo: async (idJogo) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/infoMundo`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo})
+            body: JSON.stringify({ idJogo })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    FlagFimEtapa: async(idJogo) => {
+    FlagFimEtapa: async (idJogo) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/changeFlagFimEtapa`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo})
+            body: JSON.stringify({ idJogo })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    infoPessoas: async(idJogo,etapa) => {
+    infoPessoas: async (idJogo, etapa) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/infoPessoasByEtapa`, {
-            method:'GET',
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo,etapa})
+            body: JSON.stringify({ idJogo, etapa })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    infoPessoasClass: async(idJogo, classe) => {
+    infoPessoasClass: async (idJogo, classe) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/infoPessoasByClasse`, {
-            method:'GET',
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo, classe})
+            body: JSON.stringify({ idJogo, classe })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    Votos: async(votos) => {
+    Votos: async (votos) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/infoPessoasForVoting/{cidade}`, {
-            method:'GET',
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({votos})
+            body: JSON.stringify({ votos })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json
     },
-    GreenSeal: async(quantidadeJogadores) => {
+    GreenSeal: async (quantidadeJogadores) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/infoPessoasForGreenSeal/{cidade}`, {
-            method:'GET',
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({quantidadeJogadores})
+            body: JSON.stringify({ quantidadeJogadores })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    Transferencia: async(transferencia) => {
+    Transferencia: async (transferencia) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/adicionaTransferencia`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({transferencia})
+            body: JSON.stringify({ transferencia })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    verificarFinalizados: async(quantidadeJogadores) => {
+    verificarFinalizados: async (quantidadeJogadores) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/verificaFinalizados`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({quantidadeJogadores})
+            body: JSON.stringify({ quantidadeJogadores })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    verificaFimEtapa: async(quantidadeJogadores) => {
+    verificaFimEtapa: async (quantidadeJogadores) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/verificaFimEtapa/{etapa}`, {
-            method:'GET',
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({quantidadeJogadores})
+            body: JSON.stringify({ quantidadeJogadores })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    papelSegundaEtapa: async(quantidadeJogadores) => {
+    papelSegundaEtapa: async (quantidadeJogadores) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/papelSegundaEtapa/{idPessoa}`, {
-            method:'GET',
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({quantidadeJogadores})
+            body: JSON.stringify({ quantidadeJogadores })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    MestreVoto: async(votos) => {
+    MestreVoto: async (votos) => {
         const req = await fetch(`${BASE_API}/{idJogo}/mestre/votar`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({votos})
+            body: JSON.stringify({ votos })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    ArquivoResumo: async(idJogo, idPessoa) => {
+    ArquivoResumo: async (idJogo, idPessoa) => {
         const req = await fetch(`${BASE_API}/{idJogo}/arquivoResumo/{idPessoa}`, {
-            method:'GET',
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({votos})
+            body: JSON.stringify({ votos })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    EmpresarioPOST: async(idJogo,idEmp) => {
+    EmpresarioPOST: async (idJogo, idEmp) => {
         const req = await fetch(`${BASE_API}/{idJogo}/empresario/{idEmp}`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({votos})
+            body: JSON.stringify({ votos })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    EmpresarioGET: async(idJogo,idEmp) => {
+    EmpresarioGET: async (idJogo, idEmp) => {
         const req = await fetch(`${BASE_API}/{idJogo}/empresario/{idEmp}`, {
-            method:'GET',
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo,idEmp})
+            body: JSON.stringify({ idJogo, idEmp })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    Agricultor: async(idJogo,Venda) => {
+    Agricultor: async (idJogo, Venda) => {
         const req = await fetch(`${BASE_API}/{idJogo}/empresario/venda/{idAgr}`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo,Venda})
+            body: JSON.stringify({ idJogo, Venda })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    EmpresarioVenda: async(idJogo,idEmp) => {
+    EmpresarioVenda: async (idJogo, idEmp) => {
         const req = await fetch(`/{idJogo}/empresario/venda/{idEmp}`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo,idEmp})
+            body: JSON.stringify({ idJogo, idEmp })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    Agricultor: async(idJogo, idAgr) => {
+    Agricultor: async (idJogo, idAgr) => {
         const req = await fetch(`/{idJogo}/agricultor/{idAgr}`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo, idAgr})
+            body: JSON.stringify({ idJogo, idAgr })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    EmpresarioOrçamento: async(idJogo, venda) => {
+    EmpresarioOrçamento: async (idJogo, venda) => {
         const req = await fetch(`/{idJogo}/agricultor/venda/{idEmp}`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo, venda})
+            body: JSON.stringify({ idJogo, venda })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
-    EmpresarioVenda: async(idJogo, idAgr) => {
+    EmpresarioVenda: async (idJogo, idAgr) => {
         const req = await fetch(`/{idJogo}/agricultor{idAgr}`, {
-            method:'POST',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idJogo, idAgr})
+            body: JSON.stringify({ idJogo, idAgr })
         });
-        const json= await req.json(); 
+        const json = await req.json();
         return json;
     },
 }

@@ -2,26 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useIsFocused } from '@react-navigation/native';
 import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
 
-import Button from '../../../../Components/Button/index'
+import Button from '../../../../Components/Button';
 import PlayerService from '../../../../firebase/services/PlayerService';
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [players, setPlayers] = useState([]);
   const isFocused = useIsFocused();
+  const idJogo = route.params.room;
 
   useEffect(() => {
-    if (isFocused) {
-      let idJogo = 200;
+    if(isFocused) {
       PlayerService.getPlayers(idJogo).then(resp => setPlayers(resp));
     }
-  }, [isFocused]);
+  }, [players]);
 
   return (
     <View style={styles.container}>
       <Text style={styles.texto}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
-      <Text style={styles.texto2}>13KJ2F</Text>
+      <Text style={styles.texto2}>{idJogo}</Text>
       {players.length === 0 ?
         <Text style={styles.texto}>Aguardando jogadores</Text> :
         <FlatList

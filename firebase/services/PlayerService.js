@@ -1,4 +1,5 @@
 import { db } from '../index';
+import { v4 } from 'uuid';
 
 const PlayerService = {
     getPlayers(idJogo) {
@@ -11,8 +12,16 @@ const PlayerService = {
                     _plaryers.push(doc.data());
                 });
                 return _plaryers;
-            })
+            });
         return plaryers;
+    },
+    addPlayer(name, idJogo) {
+        let id = v4();
+        db.collection('players').add({
+            name: name,
+            idJogo: idJogo,
+            id: id
+        });
     }
 }
 

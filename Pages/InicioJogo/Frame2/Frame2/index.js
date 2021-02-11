@@ -1,14 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import COLORS from '../../../../styles/Colors';
+import PlayerService from '../../../../firebase/services/PlayerService';
+import { Batata } from '../../../Api';
 
 import Group28 from '../../../../assets/Group28.png';
 import Group29 from '../../../../assets/Group29.png';
 import rightArrow from '../../../../assets/right-arrow.png';
 
-const Tela = Dimensions.get('screen').width
+const Tela = Dimensions.get('screen').width;
 export default function Frame2({ navigation }) {
-  const [name, setName] = React.useState();
+  const [name, setName] = useState('');
+  const [room, setRoom] = useState('');
+  const [idJogo, setIdJogo] = useState(-1);
+
+  const createRoom = () => {
+    Batata().then(data => {
+      let room = data.data;
+      setRoom(room);
+      setIdJogo(room)
+    
+      PlayerService.addPlayer(name, room);
+      navigation.navigate('Lobby', {
+        name: name,
+        room: room
+      });
+    }).catch(() => {
+      console.log('Erro ao criar partida');
+    })
+  }
+
+  const selectRoom = () => {
+    PlayerService.getPlayers(room).then(resp => {
+
+      if(resp.length >= 1 && resp.length < 10) {
+        PlayerService.addPlayer(name, room);
+        navigation.navigate('Lobby', {
+          name: name,
+          room: room
+        });
+      } else {
+        console.log('Sala não encontrada');
+      }
+    });
+  }
+
   return (
     <View style={styles.container}>
       <TextInput style={styles.input}
@@ -26,9 +62,8 @@ export default function Frame2({ navigation }) {
         />
         <TouchableOpacity
           style={styles.button2}
-          onPress={() => navigation.navigate('Lobby', {
-            nome:name
-          })}
+
+          onPress={createRoom}
         >
           <Text style={styles.text}>CRIAR JOGO</Text>
         </TouchableOpacity>
@@ -42,10 +77,12 @@ export default function Frame2({ navigation }) {
         />
         <TextInput 
           style={[styles.button2, styles.text2]}
+          onChangeText={room => setRoom(parseInt(room))}
           placeholder='ESCREVER CÓDIGO'
+          value={room}
         >
         </TextInput>
-        <TouchableOpacity >
+        <TouchableOpacity onPress={selectRoom}>
           <Image
             style={styles.arrow}
             source={rightArrow}
@@ -53,7 +90,6 @@ export default function Frame2({ navigation }) {
         </TouchableOpacity>
       </View>
     </View>
-
   );
 }
 
