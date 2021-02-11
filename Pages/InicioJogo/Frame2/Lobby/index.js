@@ -4,6 +4,7 @@ import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
 
 import Button from '../../../../Components/Button';
 import PlayerService from '../../../../firebase/services/PlayerService';
+import { db } from '../../../../firebase';
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {

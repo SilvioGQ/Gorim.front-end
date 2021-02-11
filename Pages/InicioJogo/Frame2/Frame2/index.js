@@ -45,6 +45,8 @@ export default function Frame2({ navigation }) {
     });
   }
 
+  const [block,setBlock] = useState(true)
+  // const [name, setName] = useState('');
   return (
     <View style={styles.container}>
       <TextInput style={styles.input}
