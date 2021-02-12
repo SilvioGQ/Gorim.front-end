@@ -1,4 +1,4 @@
-import { db } from '../index';
+import { db } from '../firebase/index';
 import { v4 } from 'uuid';
 
 const PlayerService = {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import COLORS from '../../../../styles/Colors';
-import PlayerService from '../../../../firebase/services/PlayerService';
+import PlayerService from '../../../../services/PlayerService';
 import { Batata } from '../../../Api';
 
 import Group28 from '../../../../assets/Group28.png';
@@ -12,13 +12,11 @@ const Tela = Dimensions.get('screen').width;
 export default function Frame2({ navigation }) {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
-  const [idJogo, setIdJogo] = useState(-1);
 
   const createRoom = () => {
     Batata().then(data => {
       let room = data.data;
       setRoom(room);
-      setIdJogo(room)
     
       PlayerService.addPlayer(name, room);
       navigation.navigate('Lobby', {
@@ -33,12 +31,17 @@ export default function Frame2({ navigation }) {
   const selectRoom = () => {
     PlayerService.getPlayers(room).then(resp => {
 
-      if(resp.length >= 1 && resp.length < 10) {
-        PlayerService.addPlayer(name, room);
-        navigation.navigate('Lobby', {
-          name: name,
-          room: room
-        });
+      if(resp.length >= 1) {
+        if (resp.length < 10) {
+
+          PlayerService.addPlayer(name, room);
+          navigation.navigate('Lobby', {
+            name: name,
+            room: room
+          });
+        } else {
+          console.log('Sala atingiu número máximo de jogadores');
+        }
       } else {
         console.log('Sala não encontrada');
       }
@@ -46,7 +49,6 @@ export default function Frame2({ navigation }) {
   }
 
   const [block,setBlock] = useState(true)
-  // const [name, setName] = useState('');
   return (
     <View style={styles.container}>
       <TextInput style={styles.input}
@@ -81,7 +83,7 @@ export default function Frame2({ navigation }) {
           style={[styles.button2, styles.text2]}
           onChangeText={room => setRoom(parseInt(room))}
           placeholder='ESCREVER CÓDIGO'
-          value={room}
+          value={room.toString()}
         >
         </TextInput>
         <TouchableOpacity onPress={selectRoom}>
