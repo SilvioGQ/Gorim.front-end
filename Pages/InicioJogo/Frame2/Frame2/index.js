@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import COLORS from '../../../../styles/Colors';
 import PlayerService from '../../../../services/PlayerService';
@@ -12,13 +12,15 @@ const Tela = Dimensions.get('screen').width;
 export default function Frame2({ navigation }) {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
+  const [idUser, setIdUser] = useState();
 
   const createRoom = () => {
     Batata().then(data => {
       let room = data.data;
       setRoom(room);
     
-      PlayerService.addPlayer(name, room);
+      let id = PlayerService.addPlayer(name, room);
+      setIdUser(id);
       navigation.navigate('Lobby', {
         name: name,
         room: room
@@ -34,7 +36,8 @@ export default function Frame2({ navigation }) {
       if(resp.length >= 1) {
         if (resp.length < 10) {
 
-          PlayerService.addPlayer(name, room);
+          let id = PlayerService.addPlayer(name, room);
+          setIdUser(id);
           navigation.navigate('Lobby', {
             name: name,
             room: room
@@ -47,6 +50,13 @@ export default function Frame2({ navigation }) {
       }
     });
   }
+
+  navigation.addListener('focus', () => {
+    if (idUser !== undefined) {
+      PlayerService.deletePlayer(idUser);
+      setIdUser(undefined);
+    }
+  });
 
   const [block,setBlock] = useState(true)
   return (

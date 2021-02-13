@@ -22,6 +22,17 @@ const PlayerService = {
             idJogo: idJogo,
             id: id
         });
+        
+        return id;
+    },
+    deletePlayer(idUser) {
+        db.collection('players').where('id', '==', idUser)
+            .get()
+            .then(function (snapshot) {
+            snapshot.forEach(function (doc) {
+                doc.ref.delete();
+            });
+        });
     }
 }
 
