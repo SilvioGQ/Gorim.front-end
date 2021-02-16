@@ -1,4 +1,4 @@
-import { db } from '../index';
+import { db } from '../firebase/index';
 import { v4 } from 'uuid';
 
 const PlayerService = {
@@ -21,6 +21,17 @@ const PlayerService = {
             name: name,
             idJogo: idJogo,
             id: id
+        });
+        
+        return id;
+    },
+    deletePlayer(idUser) {
+        db.collection('players').where('id', '==', idUser)
+            .get()
+            .then(function (snapshot) {
+            snapshot.forEach(function (doc) {
+                doc.ref.delete();
+            });
         });
     }
 }

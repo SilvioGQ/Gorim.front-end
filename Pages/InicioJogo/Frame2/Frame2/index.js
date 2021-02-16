@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput, Modal } from 'react-native';
 import COLORS from '../../../../styles/Colors';
-import PlayerService from '../../../../firebase/services/PlayerService';
+import PlayerService from '../../../../services/PlayerService';
 import { Batata } from '../../../Api';
 
 import Group28 from '../../../../assets/Group28.png';
@@ -10,17 +10,18 @@ import rightArrow from '../../../../assets/right-arrow.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function Frame2({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
-  const [idJogo, setIdJogo] = useState(-1);
+  const [idUser, setIdUser] = useState();
 
   const createRoom = () => {
     Batata().then(data => {
       let room = data.data;
       setRoom(room);
-      setIdJogo(room)
     
-      PlayerService.addPlayer(name, room);
+      let id = PlayerService.addPlayer(name, room);
+      setIdUser(id);
       navigation.navigate('Lobby', {
         name: name,
         room: room
@@ -33,20 +34,33 @@ export default function Frame2({ navigation }) {
   const selectRoom = () => {
     PlayerService.getPlayers(room).then(resp => {
 
-      if(resp.length >= 1 && resp.length < 10) {
-        PlayerService.addPlayer(name, room);
-        navigation.navigate('Lobby', {
-          name: name,
-          room: room
-        });
+      if(resp.length >= 1) {
+        if (resp.length < 10) {
+
+          let id = PlayerService.addPlayer(name, room);
+          setIdUser(id);
+          navigation.navigate('Lobby', {
+            name: name,
+            room: room
+          });
+        } else {
+          console.log('Sala atingiu número máximo de jogadores');
+        }
       } else {
+        setModalVisible('true')
         console.log('Sala não encontrada');
       }
     });
   }
 
+  navigation.addListener('focus', () => {
+    if (idUser !== undefined) {
+      PlayerService.deletePlayer(idUser);
+      setIdUser(undefined);
+    }
+  });
+
   const [block,setBlock] = useState(true)
-  // const [name, setName] = useState('');
   return (
     <View style={styles.container}>
       <TextInput style={styles.input}
@@ -70,6 +84,24 @@ export default function Frame2({ navigation }) {
           <Text style={styles.text}>CRIAR JOGO</Text>
         </TouchableOpacity>
       </View>
+        <Modal
+        
+        animationType="fade"
+        visible={modalVisible}
+        transparent={true}
+      >
+        <View style={{flex: 1,justifyContent: "center",alignItems: "center",marginTop: 22,     backgroundColor: '#000000aa',}}>
+          <View style={{margin: 20,backgroundColor: "white",borderRadius: 20,padding: 35,alignItems: "center",shadowColor: "#000", shadowOffset: {width: 0,height: 2},shadowOpacity: 0.25,shadowRadius: 4,elevation: 5}}>
+            <Text style={{marginBottom: 15,textAlign: "center", fontFamily:'Rubik_300Light', fontSize:18}}>Sala não encontrada!</Text>
+            <TouchableOpacity
+              style={{borderRadius: 20,padding: 15,elevation: 5, backgroundColor: COLORS.successButton, alignItems:'center'}}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={{textAlign:'center', fontFamily:'Rubik_400Regular', fontSize:18, color:COLORS.textWhite}}>Voltar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <Text style={[styles.header]}>ENTRAR</Text>
       <View style={styles.line} />
       <View style={styles.row}>
@@ -81,7 +113,7 @@ export default function Frame2({ navigation }) {
           style={[styles.button2, styles.text2]}
           onChangeText={room => setRoom(parseInt(room))}
           placeholder='ESCREVER CÓDIGO'
-          value={room}
+          value={room.toString()}
         >
         </TextInput>
         <TouchableOpacity onPress={selectRoom}>
