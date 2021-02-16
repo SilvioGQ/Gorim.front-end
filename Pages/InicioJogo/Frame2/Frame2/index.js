@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput,
 import COLORS from '../../../../styles/Colors';
 import PlayerService from '../../../../services/PlayerService';
 import { Batata } from '../../../Api';
-
+import ModalFrame2 from '../../../../Components/Modal'
 import Group28 from '../../../../assets/Group28.png';
 import Group29 from '../../../../assets/Group29.png';
 import rightArrow from '../../../../assets/right-arrow.png';
@@ -11,12 +11,19 @@ import rightArrow from '../../../../assets/right-arrow.png';
 const Tela = Dimensions.get('screen').width;
 export default function Frame2({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible2, setModalVisible2] = useState(false);
+  const [modalVisible3, setModalVisible3] = useState(false);
+  const [TemNome, setTemNome] = useState(true)
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [idUser, setIdUser] = useState();
 
   const createRoom = () => {
     Batata().then(data => {
+      if(name===''){
+        setTemNome(false)
+        console.log('Erro ao criar partida');
+        }
       let room = data.data;
       setRoom(room);
     
@@ -27,7 +34,7 @@ export default function Frame2({ navigation }) {
         room: room
       });
     }).catch(() => {
-      console.log('Erro ao criar partida');
+      
     })
   }
 
@@ -44,11 +51,10 @@ export default function Frame2({ navigation }) {
             room: room
           });
         } else {
-          console.log('Sala atingiu número máximo de jogadores');
+          setModalVisible2(true)
         }
       } else {
-        setModalVisible('true')
-        console.log('Sala não encontrada');
+        setModalVisible(true)
       }
     });
   }
@@ -79,29 +85,14 @@ export default function Frame2({ navigation }) {
         <TouchableOpacity
           style={styles.button2}
 
-          onPress={createRoom}
+          onPress={TemNome ? createRoom : ''}
         >
           <Text style={styles.text}>CRIAR JOGO</Text>
         </TouchableOpacity>
       </View>
-        <Modal
-        
-        animationType="fade"
-        visible={modalVisible}
-        transparent={true}
-      >
-        <View style={{flex: 1,justifyContent: "center",alignItems: "center",marginTop: 22,     backgroundColor: '#000000aa',}}>
-          <View style={{margin: 20,backgroundColor: "white",borderRadius: 20,padding: 35,alignItems: "center",shadowColor: "#000", shadowOffset: {width: 0,height: 2},shadowOpacity: 0.25,shadowRadius: 4,elevation: 5}}>
-            <Text style={{marginBottom: 15,textAlign: "center", fontFamily:'Rubik_300Light', fontSize:18}}>Sala não encontrada!</Text>
-            <TouchableOpacity
-              style={{borderRadius: 20,padding: 15,elevation: 5, backgroundColor: COLORS.successButton, alignItems:'center'}}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={{textAlign:'center', fontFamily:'Rubik_400Regular', fontSize:18, color:COLORS.textWhite}}>Voltar</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+        <ModalFrame2 Ativar={modalVisible} onClick={()=>setModalVisible(!modalVisible)} text="Sala não encontrada!"/>
+        <ModalFrame2 Ativar={modalVisible2} onClick={()=>setModalVisible(!modalVisible2)} text="Sala atingiu número máximo de jogadores!"/>
+        <ModalFrame2 Ativar={modalVisible3} onClick={()=>setModalVisible(!modalVisible3)} text="Erro ao criar partida"/>
       <Text style={[styles.header]}>ENTRAR</Text>
       <View style={styles.line} />
       <View style={styles.row}>
