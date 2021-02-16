@@ -112,6 +112,10 @@ const styles = StyleSheet.create({
         paddingTop: 60,
         
     },
+    title:{
+        fontSize: 20,
+        fontFamily: 'Rubik_300Light'
+    },
     row: {
         flexDirection: 'row'
     },

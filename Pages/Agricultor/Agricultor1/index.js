@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
 import Money from '../../../Components/Dinheiro';
 import Cenarios from '../../../Components/CenarioBotao';
-import Conf from '../../../Components/Selo verde confirmacao';
+import Conf from '../../../Components/Selo-Verde-Confirmacao/index';
 
 import Selo from '../../../assets/moedas/Selo.png';
 import Agricultor from '../../../assets/perfils/agricultor/Agricultor2.png';

@@ -11,7 +11,7 @@ import setaEsquerda from '../../assets/agricultorIcones/setaesquerda.png';
 const Tela = Dimensions.get('screen').width;
 export default function Transferindo({ navigation }) {
   const [count, setCount] = useState(0);
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(true);
 
   const handleOnPress = () => setSelected(true);
   const increaseCount = () => setCount(count + 5);

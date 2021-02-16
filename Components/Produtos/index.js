@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     alignItems: 'center',
     textAlign: 'center',
-    margin: '2%',
+    margin: 2,
     fontSize: 18,
   },
   logo: {
