@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput, Modal } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import COLORS from '../../../../styles/Colors';
 import PlayerService from '../../../../services/PlayerService';
 import { Batata } from '../../../Api';
@@ -10,20 +10,13 @@ import rightArrow from '../../../../assets/right-arrow.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function Frame2({ navigation }) {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalVisible2, setModalVisible2] = useState(false);
-  const [modalVisible3, setModalVisible3] = useState(false);
-  const [TemNome, setTemNome] = useState(true)
+  const [modalVisible, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [idUser, setIdUser] = useState();
 
   const createRoom = () => {
     Batata().then(data => {
-      if(name===''){
-        setTemNome(false)
-        console.log('Erro ao criar partida');
-        }
       let room = data.data;
       setRoom(room);
     
@@ -34,7 +27,7 @@ export default function Frame2({ navigation }) {
         room: room
       });
     }).catch(() => {
-      
+      setModalText('Erro ao criar partida!');
     })
   }
 
@@ -51,10 +44,10 @@ export default function Frame2({ navigation }) {
             room: room
           });
         } else {
-          setModalVisible2(true)
+          setModalText('Sala atingiu número máximo de jogadores!')
         }
       } else {
-        setModalVisible(true)
+        setModalText('Sala não encontrada!')
       }
     });
   }
@@ -66,10 +59,10 @@ export default function Frame2({ navigation }) {
     }
   });
 
-  const [block,setBlock] = useState(true)
   return (
     <View style={styles.container}>
       <TextInput style={styles.input}
+        maxLength="15"
         onChangeText={name => setName(name)}
         placeholder="Digite seu nome"
         value={name}
@@ -84,15 +77,15 @@ export default function Frame2({ navigation }) {
         />
         <TouchableOpacity
           style={styles.button2}
-
-          onPress={TemNome ? createRoom : ''}
+          onPress={createRoom}
+          disabled={name === ''}
         >
           <Text style={styles.text}>CRIAR JOGO</Text>
         </TouchableOpacity>
       </View>
-        <ModalFrame2 Ativar={modalVisible} onClick={()=>setModalVisible(!modalVisible)} text="Sala não encontrada!"/>
-        <ModalFrame2 Ativar={modalVisible2} onClick={()=>setModalVisible(!modalVisible2)} text="Sala atingiu número máximo de jogadores!"/>
-        <ModalFrame2 Ativar={modalVisible3} onClick={()=>setModalVisible(!modalVisible3)} text="Erro ao criar partida"/>
+      {modalVisible !== '' && (
+        <ModalFrame2 onClick={()=>setModalText('')} text={modalVisible}/>
+      )}
       <Text style={[styles.header]}>ENTRAR</Text>
       <View style={styles.line} />
       <View style={styles.row}>
@@ -100,14 +93,18 @@ export default function Frame2({ navigation }) {
           style={styles.logo2}
           source={Group29}
         />
-        <TextInput 
+        <TextInput
+          maxLength="6"
           style={[styles.button2, styles.text2]}
           onChangeText={room => setRoom(parseInt(room))}
           placeholder='ESCREVER CÓDIGO'
           value={room.toString()}
         >
         </TextInput>
-        <TouchableOpacity onPress={selectRoom}>
+        <TouchableOpacity 
+          onPress={selectRoom}
+          disabled={name === '' || room === ''}
+        >
           <Image
             style={styles.arrow}
             source={rightArrow}
