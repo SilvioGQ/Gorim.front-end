@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
-import COLORS from '../../../../styles/Colors';
-import PlayerService from '../../../../services/PlayerService';
-import { Batata } from '../../../Api';
-import ModalFrame2 from '../../../../Components/Modal'
-import Group28 from '../../../../assets/Group28.png';
-import Group29 from '../../../../assets/Group29.png';
-import rightArrow from '../../../../assets/right-arrow.png';
+import COLORS from '../../styles/Colors';
+import PlayerService from '../../services/PlayerService';
+import { Batata } from '../Api';
+import ModalFrame2 from '../../Components/Modal'
+import Group28 from '../../assets/Group28.png';
+import Group29 from '../../assets/Group29.png';
+import rightArrow from '../../assets/right-arrow.png';
 
 const Tela = Dimensions.get('screen').width;
-export default function Frame2({ navigation }) {
+export default function CriarPartida({ navigation }) {
   const [modalVisible, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');

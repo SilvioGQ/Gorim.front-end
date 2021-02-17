@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
-import Money from '../../../Components/Dinheiro';
-import Cenarios from '../../../Components/CenarioBotao';
-import Parcela from '../../../assets/agricultorIcones/ParcelaPequena.png';
-import COLORS from '../../../styles/Colors';
-import { Item } from 'react-native-paper/lib/typescript/components/List/List';
+import Cenarios from '../../Components/CenarioBotao';
+import Parcela from '../../assets/agricultorIcones/ParcelaPequena.png';
+import COLORS from '../../styles/Colors';
+import Header from '../../Components/Header'
+import Item from '../../Components/Item'
 const Tela = Dimensions.get('screen').width
 const Height = Dimensions.get('screen').height
 export default function Agricultor1({ navigation }, props) {
@@ -12,7 +12,7 @@ export default function Agricultor1({ navigation }, props) {
   // const [unblock, setunblock] = useState(false);
   return (
     <View style={styles.container}>
-      <Header nome='Joao' cidade='Atlantis' image=''/>
+      <Header nome='Agrucultor' cidade='Atlantis' image='../../assets/perfils/agricultor/Agricultor2.png' Selo={1}/>
       <View style={{display: isVisible}}>
       <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
         <View style={styles.row2}>
@@ -25,18 +25,18 @@ export default function Agricultor1({ navigation }, props) {
       </TouchableOpacity>
       </View>
       <View style={styles.row}>
-       <Item navigationName='Propostas' icone='../../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
-       <Item navigationName='Propostas' icone='../../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
-       <Item navigationName='Propostas' icone='../../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
+       <Item navigationName='Propostas' icone='../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
+       <Item navigationName='Propostas' icone='../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
+       <Item navigationName='Propostas' icone='../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
       </View>
       {Height >= 750 && (
         <View>
           <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
-            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>{produtividade}</Text>
+            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>200</Text>
             <Text style={styles.candidato, { color: 'white' }}>Produtividade atual</Text>
           </View>
           <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#BF0000', marginTop: 20 }}>
-            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>{poluicao}</Text>
+            <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>100</Text>
             <Text style={styles.candidato, { color: 'white' }}>Poluição atual</Text>
           </View>
         </View>

@@ -27,14 +27,14 @@ import Analizar from './Analisar';
 import Prevençao from './Prefeitura/Prevencao';
 import Prefeitura from './Prefeitura/Prefeitura';
 import Imposto from './Prefeitura/Imposto';
-import Frame2 from './InicioJogo/Frame2/Frame2';
-import Lobby from './InicioJogo/Frame2/Lobby';
-
+import CriarPartida from './CriarPartida';
+import Lobby from './Lobby';
+import MenuJogador from './MenuJogador'
 const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="Gorim">
+    <Stack.Navigator initialRouteName="MenuJogador">
 
       <Stack.Screen name="Gorim" component={Frame1} options={{
         headerTransparent: true,
@@ -89,6 +89,19 @@ export default function Routes() {
         headerTitleStyle: {
           fontSize: 15,
           fontFamily: 'Rubik_300Light'
+        },
+        headerStyle: {
+          backgroundColor: '#58AB23',
+          height: 75,
+        },
+        headerTintColor: '#fff',
+      }} />
+      <Stack.Screen name="MenuJogador" component={MenuJogador} options={{
+
+        headerTitle: ' Rodada 1',
+        headerTitleStyle: {
+          fontSize: 15,
+          fontFamily: 'Rubik_300Light',
         },
         headerStyle: {
           backgroundColor: '#58AB23',
@@ -252,7 +265,7 @@ export default function Routes() {
         headerTransparent: true,
         headerTitle: '',
       }} />
-      <Stack.Screen name="Frame2" component={Frame2} options={{
+      <Stack.Screen name="CriarPartida" component={CriarPartida} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />
