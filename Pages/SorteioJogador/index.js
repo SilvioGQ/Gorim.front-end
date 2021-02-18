@@ -1,42 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { Batata } from '../../Api';
-import COLORS from '../../../styles/Colors';
+import COLORS from '../../styles/Colors';
 
-import Dados from '../../../assets/Logo/Dados.png';
+import Dados from '../../assets/Logo/Dados.png';
 
-export default function Frame3() {
-  const navigation = useRef(useNavigation());
-  const [idJogo, setIdJogo] = useState();
-  // const game = () => {
-  //   let request = Api.idJogo();
-  //   request.then(id => {
-  //     setIdJogo(id);
-  //     console.log(id);
-  //   });
-  // }
-  const game = () => {
-    Batata().then(async (id) => {
-      setIdJogo(id.data);
-      console.log(idJogo);
-    });
-  }
-
+export default function SorteioJogador({ navigation, route }) {
   const selectScreen = () => {
     setTimeout(() => {
 
       let selected = Math.floor(Math.random() * 2)
       if (selected === 1) {
-        navigation.current.navigate("Agricultor1");
+        navigation.navigate("Agricultor1");
       }
       if (selected === 0) {
-        navigation.current.navigate("Empresario1");
+        navigation.navigate("Empresario1");
       }
     }, 2000);
   }
   useEffect(() => {
-    game();
     selectScreen();
   }, [])
 
@@ -48,12 +29,11 @@ export default function Frame3() {
           style={styles.logo}
           source={Dados}
         />
-        <Text style={styles.loading}> Sorteando Personagens... </Text>
+        <Text style={styles.loading}>Sorteando Personagens...</Text>
       </View>
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

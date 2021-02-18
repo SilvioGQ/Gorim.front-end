@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Frame1 from './InicioJogo/Frame1';
-import Frame3 from './InicioJogo/Sorteio';
+import SorteioJogador from './SorteioJogador';
 import Frame4 from './InicioJogo/Personagem';
 import Frame5 from './InicioJogo/Candidatura';
 import Frame6 from './InicioJogo/Votaçao';
@@ -34,13 +34,13 @@ const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="MenuJogador">
+    <Stack.Navigator initialRouteName="Frame1">
 
       <Stack.Screen name="Gorim" component={Frame1} options={{
         headerTransparent: true,
         headerTitle: ''
       }} />
-      <Stack.Screen name="frame3" component={Frame3} options={{
+      <Stack.Screen name="SorteioJogador" component={SorteioJogador} options={{
         headerTransparent: true,
         headerTitle: ''
       }} />

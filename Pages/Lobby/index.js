@@ -28,7 +28,7 @@ export default function Lobby({ navigation, route }) {
       }
       <Button
         name='começar'
-        onClick={() => navigation.navigate('Agricultor1')}
+        onClick={() => navigation.navigate('SorteioJogador')}
       //navigation.reset({
       //routes: [{ name: 'Agricultor1' }],
       //})
