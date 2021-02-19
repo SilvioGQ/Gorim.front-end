@@ -15,12 +15,13 @@ const PlayerService = {
             });
         return plaryers;
     },
-    addPlayer(name, idJogo) {
+    addPlayer(name, idJogo, host = false) {
         let id = v4();
         db.collection('players').add({
             name: name,
             idJogo: idJogo,
-            id: id
+            id: id,
+            host: host
         });
         
         return id;

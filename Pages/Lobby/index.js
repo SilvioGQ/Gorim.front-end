@@ -8,6 +8,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [players, setPlayers] = useState([]);
   const room = route.params.room;
+  const host = route.params.host;
 
   useEffect(() => {
     PlayerService.getPlayers(room).then(setPlayers);
@@ -19,16 +20,18 @@ export default function Lobby({ navigation, route }) {
       <View style={{ borderWidth: 1, width: '70%' }} />
       <Text style={styles.texto2}>{room}</Text>
       {players.length === 0 ?
-        <Text style={styles.texto}>Aguardando jogadores</Text> :
+      <Text style={styles.texto}>Aguardando jogadores</Text> :
         <FlatList
           data={players}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => <View style={styles.linha}><Text style={styles.texto3}>{item.name}</Text></View>}
         />
       }
+      { host ? console.log('sou host') : console.log('n sou host') }
       <Button
         name='começar'
         onClick={() => navigation.navigate('SorteioJogador')}
+        disabled={!host}
       //navigation.reset({
       //routes: [{ name: 'Agricultor1' }],
       //})

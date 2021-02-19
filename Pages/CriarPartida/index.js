@@ -20,11 +20,13 @@ export default function CriarPartida({ navigation }) {
       let room = data.data;
       setRoom(room);
     
-      let id = PlayerService.addPlayer(name, room);
+      let id = PlayerService.addPlayer(name, room, true);
       setIdUser(id);
       navigation.navigate('Lobby', {
         name: name,
-        room: room
+        room: room,
+        idUser: idUser,
+        host: true
       });
     }).catch(() => {
       setModalText('Erro ao criar partida!');
@@ -41,7 +43,9 @@ export default function CriarPartida({ navigation }) {
           setIdUser(id);
           navigation.navigate('Lobby', {
             name: name,
-            room: room
+            room: room,
+            idUser: idUser,
+            host: false
           });
         } else {
           setModalText('Sala atingiu número máximo de jogadores!')
