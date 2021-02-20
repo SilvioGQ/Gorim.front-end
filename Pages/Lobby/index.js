@@ -27,15 +27,15 @@ export default function Lobby({ navigation, route }) {
           renderItem={({ item }) => <View style={styles.linha}><Text style={styles.texto3}>{item.name}</Text></View>}
         />
       }
-      { host ? console.log('sou host') : console.log('n sou host') }
-      <Button
+      { host ?  <Button
         name='começar'
         onClick={() => navigation.navigate('SorteioJogador')}
         disabled={!host}
       //navigation.reset({
       //routes: [{ name: 'Agricultor1' }],
       //})
-      />
+      />: <Text style={[styles.texto3,{marginBottom:35}]}>AGUARDANDO NOVOS JOGADORES</Text> }
+      
     </View>
   );
 }
