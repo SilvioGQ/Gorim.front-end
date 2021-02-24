@@ -7,11 +7,24 @@ import PlayerService from '../../services/PlayerService';
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [players, setPlayers] = useState([]);
+  const [isMounted, setIsMounted] = useState(true);
   const room = route.params.room;
   const host = route.params.host;
 
   useEffect(() => {
-    PlayerService.getPlayers(room).then(setPlayers);
+    if(isMounted) {
+
+      PlayerService.getPlayers(room).then(setPlayers);
+  
+      if(players.length) {
+        if(players[0].inGame) {
+          return () => {
+            setIsMounted(false);
+            navigation.navigate('SorteioJogador');
+          }
+        }
+      }
+    }
   }, [players]);
 
   return (
@@ -29,8 +42,7 @@ export default function Lobby({ navigation, route }) {
       }
       { host ?  <Button
         name='começar'
-        onClick={() => navigation.navigate('SorteioJogador')}
-        disabled={!host}
+        onClick={() => PlayerService.startGame(room)}
       //navigation.reset({
       //routes: [{ name: 'Agricultor1' }],
       //})

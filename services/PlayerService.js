@@ -21,7 +21,8 @@ const PlayerService = {
             name: name,
             idJogo: idJogo,
             id: id,
-            host: host
+            host: host,
+            inGame: false
         });
         
         return id;
@@ -32,6 +33,17 @@ const PlayerService = {
             .then(function (snapshot) {
             snapshot.forEach(function (doc) {
                 doc.ref.delete();
+            });
+        });
+    },
+    startGame(idJogo) {
+        db.collection('players').where('idJogo', '==', idJogo)
+            .get()
+            .then(function (snapshot) {
+            snapshot.forEach(function (doc) {
+                doc.ref.update({
+                    inGame: true
+                });
             });
         });
     }

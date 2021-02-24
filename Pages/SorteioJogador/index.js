@@ -17,6 +17,7 @@ export default function SorteioJogador({ navigation, route }) {
       }
     }, 2000);
   }
+  
   useEffect(() => {
     selectScreen();
   }, [])
