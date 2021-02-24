@@ -1,16 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
+import React, { useState, useEffect,useRef } from 'react';
+import { Text, View, StyleSheet, Dimensions, FlatList, AppState } from 'react-native';
 
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
-
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [players, setPlayers] = useState([]);
   const [isMounted, setIsMounted] = useState(true);
   const room = route.params.room;
   const host = route.params.host;
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  
+  useEffect(() => {
+    AppState.addEventListener('change', _handleAppStateChange);
 
+    return () => {
+      AppState.removeEventListener('change', _handleAppStateChange);
+    };
+  }, []);
+
+  const _handleAppStateChange = (nextAppState) => {
+    if (
+      appState.current.match(/active/)
+    ) {
+      PlayerService.deletePlayer(idUser)
+    }
+    if (
+      appState.current.match(/inactive|background/) &&
+      nextAppState === 'active'
+    ) {
+      console.log('Aplicativo aberto novamente');
+    }
+
+    appState.current = nextAppState;
+    setAppStateVisible(appState.current);
+    console.log('AppState', appState.current);
+  };
   useEffect(() => {
     if(isMounted) {
 
