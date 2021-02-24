@@ -66,7 +66,7 @@ export default function CriarPartida({ navigation }) {
   return (
     <View style={styles.container}>
       <TextInput style={styles.input}
-        maxLength="15"
+        maxLength={15}
         onChangeText={name => setName(name)}
         placeholder="Digite seu nome"
         value={name}
@@ -98,7 +98,7 @@ export default function CriarPartida({ navigation }) {
           source={Group29}
         />
         <TextInput
-          maxLength="6"
+          maxLength={6}
           style={[styles.button2, styles.text2]}
           onChangeText={room => setRoom(parseInt(room))}
           placeholder='ESCREVER CÓDIGO'
