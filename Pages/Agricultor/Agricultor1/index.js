@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } fr
 import Money from '../../../Components/Dinheiro';
 import Cenarios from '../../../Components/CenarioBotao';
 import Conf from '../../../Components/Selo-Verde-Confirmacao/index';
-
+import Rodada from '../../../Components/Rodada'
 import Selo from '../../../assets/moedas/Selo.png';
 import Agricultor from '../../../assets/perfils/agricultor/Agricultor2.png';
 import Parcela from '../../../assets/agricultorIcones/ParcelaPequena.png';
@@ -20,6 +20,7 @@ export default function Agricultor1({ navigation }) {
   // const [unblock, setunblock] = useState(false);
   return (
     <View style={styles.container}>
+      <Rodada/>
       <View style={styles.row3}>
         <Text style={styles.header}>Agricultora 1 {'\n'} em Atlantis</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -120,7 +121,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    padding: '2%',
     width: Tela,
   },
   row: {

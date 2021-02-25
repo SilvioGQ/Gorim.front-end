@@ -119,6 +119,14 @@ export default function CriarPartida({ navigation }) {
   );
 }
 
+      //caso volte  navigation.reset({ 
+      //  routes:[{name:'Lobby',
+      //  params:{name: name,
+      //  room: room,
+      //  idUser: idUser,
+      //  host: true} }]
+     // });
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

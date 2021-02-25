@@ -24,7 +24,7 @@ export default function Lobby({ navigation, route }) {
     if (
       appState.current.match(/active/)
     ) {
-      PlayerService.deletePlayer(idUser)
+      console.log('dsifj')
     }
     if (
       appState.current.match(/inactive|background/) &&
@@ -46,7 +46,9 @@ export default function Lobby({ navigation, route }) {
         if(players[0].inGame) {
           return () => {
             setIsMounted(false);
-            navigation.navigate('SorteioJogador');
+            navigation.reset({
+            routes: [{ name: 'SorteioJogador' }],
+            })
           }
         }
       }
@@ -69,9 +71,7 @@ export default function Lobby({ navigation, route }) {
       { host ?  <Button
         name='começar'
         onClick={() => PlayerService.startGame(room)}
-      //navigation.reset({
-      //routes: [{ name: 'Agricultor1' }],
-      //})
+      
       />: <Text style={[styles.texto3,{marginBottom:35}]}>AGUARDANDO NOVOS JOGADORES</Text> }
       
     </View>
