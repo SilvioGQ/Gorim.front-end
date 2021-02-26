@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import ModalFrame2 from '../../Components/Modal'
+import ModalHeader from '../Modal/ModalHeader';
+import PlayerService from '../../services/PlayerService';
 export default function Rodada({navigation}) {
+    
+  const DeletePlayer = () => {
+    PlayerService.deletePlayer(idUser);
+    navigation.navigate('Gorim')
+  }
+
     const [modalVisible, setModalText] = useState(false)
   return (
     <View style={styles.container}>
         <Text style={styles.textLarge}>Rodada </Text>
         <TouchableOpacity onPress={() => setModalText(!modalVisible)}>
-        <Image style={{width:25, height:27, marginTop:28}} source={require('../../assets/Logo/Fechar.png')}/>
+        <Image style={{width:25, height:27, marginTop:28, marginRight:15}} source={require('../../assets/Logo/Fechar.png')}/>
         </TouchableOpacity>
         {modalVisible === true && (
-        <ModalFrame2 onClick={() => navigation.navigate('Gorim')} text='Tem certeza que deseja sair da partida?'/>
+        <ModalHeader DeletePlayer={DeletePlayer} text='Tem certeza que deseja sair da partida?' onClick={()=> setModalText(!modalVisible)}/>
       )}
     </View>
   );
@@ -30,8 +37,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_300Light',
         justifyContent:'flex-start',
         textAlign:'flex-star',
-        marginTop:32,
-        alignItems:'flex-start'
+        marginTop:30,
+        alignItems:'flex-start',
+        marginLeft:15
     },
 
 });
