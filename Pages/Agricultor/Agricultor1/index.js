@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal, StatusBar } from 'react-native';
 import Money from '../../../Components/Dinheiro';
 import Cenarios from '../../../Components/CenarioBotao';
 import Conf from '../../../Components/Selo-Verde-Confirmacao/index';
@@ -15,12 +15,14 @@ import COLORS from '../../../styles/Colors';
 
 const Tela = Dimensions.get('screen').width
 const Height = Dimensions.get('screen').height
-export default function Agricultor1({ navigation }) {
+export default function Agricultor1({ navigation, route }) {
+  const idUser = route.params.idUser
   const [isVisible, setisVisible] = useState(false);
   // const [unblock, setunblock] = useState(false);
   return (
     <View style={styles.container}>
-      <Rodada/>
+      <StatusBar barStyle='light-content' backgroundColor='#58AB23'/>
+      <Rodada idUser={idUser} navigationG={()=>navigation.reset({routes: [{name: 'Gorim'} ] })} />
       <View style={styles.row3}>
         <Text style={styles.header}>Agricultora 1 {'\n'} em Atlantis</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>

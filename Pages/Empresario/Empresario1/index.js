@@ -11,7 +11,7 @@ import Hortalicas from '../../../assets/agricultorIcones/hortaliças.png';
 import Money2 from '../../../assets/agricultorIcones/money2.png';
 
 const Tela = Dimensions.get('screen').width;
-export default function Agricultor1({ navigation }) {
+export default function Agricultor1({ navigation,route }) {
   const [value, onChangeText] = React.useState('Adicione uma informação');
   const [isSelected3, setSelection3] = useState(false);
   return (

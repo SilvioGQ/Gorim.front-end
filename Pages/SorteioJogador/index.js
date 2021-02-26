@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../styles/Colors';
-
+import { CommonActions } from '@react-navigation/native';
 import Dados from '../../assets/Logo/Dados.png';
 
 export default function SorteioJogador({ navigation, route }) {
@@ -11,19 +11,32 @@ export default function SorteioJogador({ navigation, route }) {
       let selected = Math.floor(Math.random() * 2)
       if (selected === 1) {
         navigation.reset({
-          routes: [{ name: 'Agricultor1' }],
-          })
+          routes: [{
+            name: 'Agricultor1',
+            params: {
+              host: route.params.host,
+              idUser: route.params.idUser
+            }
+          }]
+        })
       }
       if (selected === 0) {
         navigation.reset({
-          routes: [{ name: 'Empresario1' }],
-          })
+          routes: [{
+            name: 'Agricultor1',
+            params: {
+              host: route.params.host,
+              idUser: route.params.idUser
+            }
+          }]
+        })
       }
     }, 2000);
   }
   
   useEffect(() => {
     selectScreen();
+    console.log(route.params.idUser)
   }, [])
 
   return (
