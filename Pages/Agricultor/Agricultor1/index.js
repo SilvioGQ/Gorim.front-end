@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
 import Money from '../../../Components/Dinheiro';
 import Cenarios from '../../../Components/CenarioBotao';
@@ -15,9 +15,13 @@ import COLORS from '../../../styles/Colors';
 
 const Tela = Dimensions.get('screen').width
 const Height = Dimensions.get('screen').height
-export default function Agricultor1({ navigation }) {
+export default function Agricultor1({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
-  // const [unblock, setunblock] = useState(false);
+
+  useEffect(() => {
+    console.log(route.params.idUser)
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.row3}>

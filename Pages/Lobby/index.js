@@ -46,7 +46,10 @@ export default function Lobby({ navigation, route }) {
         if(players[0].inGame) {
           return () => {
             setIsMounted(false);
-            navigation.navigate('SorteioJogador');
+            navigation.navigate('SorteioJogador', {
+              host: route.params.host,
+              idUser: route.params.idUser
+            });
           }
         }
       }

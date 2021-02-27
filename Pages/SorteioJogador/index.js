@@ -10,10 +10,26 @@ export default function SorteioJogador({ navigation, route }) {
 
       let selected = Math.floor(Math.random() * 2)
       if (selected === 1) {
-        navigation.navigate("Agricultor1");
+        navigation.reset({
+          routes: [{
+            name: 'Agricultor1',
+            params: {
+              host: route.params.host,
+              idUser: route.params.idUser
+            }
+          }]
+        })
       }
       if (selected === 0) {
-        navigation.navigate("Empresario1");
+        navigation.reset({
+          routes: [{
+            name: 'Empresario1',
+            params: {
+              host: route.params.host,
+              idUser: route.params.idUser
+            }
+          }]
+        })
       }
     }, 2000);
   }
