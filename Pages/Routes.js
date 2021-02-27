@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Image, Text} from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import Frame1 from './InicioJogo/Frame1';
 import SorteioJogador from './SorteioJogador';
@@ -59,68 +60,26 @@ export default function Routes() {
         },
       }} />
       <Stack.Screen name="frame5" component={Frame5} options={{
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light'
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75
-        },
-        headerTintColor: '#fff',
-      }} />
+        headerTransparent: true,
+        headerTitle: '',
+             }} />
       <Stack.Screen name="frame6" component={Frame6} options={{
+        headerTransparent: true,
+        headerTitle: '',
 
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light'
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75,
-        },
-        headerTintColor: '#fff',
-      }} />
+              }} />
       <Stack.Screen name="frame7" component={Frame7} options={{
+        headerTransparent: true,
+        headerTitle: '',
 
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light'
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75,
-        },
-        headerTintColor: '#fff',
-      }} />
+              }} />
       <Stack.Screen name="MenuJogador" component={MenuJogador} options={{
-
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75,
-        },
-        headerTintColor: '#fff',
+        headerTransparent: true,
+        headerTitle: '',
       }} />
       <Stack.Screen name="Agricultor1" component={Agricultor1} options={{
-
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75,
-        },
-        headerTintColor: '#fff',
+        headerTransparent: true,
+        headerTitle: '',
       }} />
       <Stack.Screen name="Espera" component={Espera} options={{
         headerTransparent: true,
@@ -181,48 +140,25 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="Empresario1" component={Empresario1} options={{
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75,
-        },
-        headerTintColor: '#fff',
+        headerTransparent: true,
+        headerTitle: '',
       }} />
+
       <Stack.Screen name="Vendas" component={Vendas} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />
       <Stack.Screen name="Prefeitura" component={Prefeitura} options={{
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75,
-        },
-        headerTintColor: '#fff',
+        headerTransparent: true,
+        headerTitle: '',
       }} />
       <Stack.Screen name="Cenario" component={Cenario} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />
       <Stack.Screen name="Fiscal" component={Fiscal} options={{
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75,
-        },
-        headerTintColor: '#fff',
+        headerTransparent: true,
+        headerTitle: '',
       }} />
       <Stack.Screen name="Selo" component={Selo} options={{
         headerTransparent: true,
@@ -233,16 +169,8 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="Aparcela" component={Aparcela} options={{
-        headerTitle: ' Rodada 1',
-        headerTitleStyle: {
-          fontSize: 15,
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-          backgroundColor: '#58AB23',
-          height: 75,
-        },
-        headerTintColor: '#fff',
+        headerTransparent: true,
+        headerTitle: '',
       }} />
       <Stack.Screen name="Pacotes" component={Pacotes} options={{
         headerTransparent: true,

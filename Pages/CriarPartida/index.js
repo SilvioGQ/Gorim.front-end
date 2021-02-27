@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput 
 import COLORS from '../../styles/Colors';
 import PlayerService from '../../services/PlayerService';
 import { Batata } from '../Api';
-import ModalFrame2 from '../../Components/Modal'
+import ModalFrame2 from '../../Components/Modal/ModalFrame2'
 import Group28 from '../../assets/Group28.png';
 import Group29 from '../../assets/Group29.png';
 import rightArrow from '../../assets/right-arrow.png';
@@ -118,6 +118,14 @@ export default function CriarPartida({ navigation }) {
     </View>
   );
 }
+
+      //caso volte  navigation.reset({ 
+      //  routes:[{name:'Lobby',
+      //  params:{name: name,
+      //  room: room,
+      //  idUser: idUser,
+      //  host: true} }]
+     // });
 
 const styles = StyleSheet.create({
   container: {

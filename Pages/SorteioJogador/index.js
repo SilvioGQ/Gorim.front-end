@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../styles/Colors';
-
 import Dados from '../../assets/Logo/Dados.png';
 
 export default function SorteioJogador({ navigation, route }) {

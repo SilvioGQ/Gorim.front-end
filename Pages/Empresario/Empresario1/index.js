@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions, StatusBar } from 'react-native';
 import Cenarios from '../../../Components/CenarioBotao';
 import Money from '../../../Components/Dinheiro/index';
-
+import Rodada from '../../../Components/Rodada'
 import Selo from '../../../assets/moedas/Selo.png';
 import Empresario from '../../../assets/perfils/empresariox1/Empresario.png';
 import Arroz from '../../../assets/agricultorIcones/arroz.png';
@@ -12,15 +12,14 @@ import Money2 from '../../../assets/agricultorIcones/money2.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function Agricultor1({ navigation, route }) {
-  const [value, onChangeText] = React.useState('Adicione uma informação');
-  const [isSelected3, setSelection3] = useState(false);
-
-  useEffect(()=> {
-    console.log(route.params.idUser)
-  }, []);
+  const idUser = route.params.idUser;
+  // const [value, onChangeText] = React.useState('Adicione uma informação');
+  // const [isSelected3, setSelection3] = useState(false);
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle='light-content' backgroundColor='#58AB23'/>
+      <Rodada idUser={idUser} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
       <View style={styles.row3}>
         <Text style={styles.header}> Empresário 1 {'\n'} em Atlantis</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -100,7 +99,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: '#EBFFFD',
     alignItems: 'center',
-    padding: '2%',
     width: Tela,
   },
   row: {
