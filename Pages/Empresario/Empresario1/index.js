@@ -16,6 +16,7 @@ export default function Agricultor1({ navigation,route }) {
   const [isSelected3, setSelection3] = useState(false);
   return (
     <View style={styles.container}>
+      <StatusBar barStyle='light-content' backgroundColor='#58AB23'/>
       <Rodada/>
       <View style={styles.row3}>
         <Text style={styles.header}> Empresário 1 {'\n'} em Atlantis</Text>
