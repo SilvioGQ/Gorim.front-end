@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'rea
 import Button from '../../Components/Button';
 import Quadrados from '../../Components/Quadrado';
 import Money from '../../Components/Dinheiro';
-
+import COLORS from '../../styles/Colors'
 import setaDireita from '../../assets/agricultorIcones/setadireita.png';
 import Money2 from '../../assets/agricultorIcones/money2.png';
 import setaEsquerda from '../../assets/agricultorIcones/setaesquerda.png';
@@ -59,7 +59,7 @@ export default function Transferindo({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBFFFD',
+    backgroundColor: COLORS.bgColorPrimary,
     padding: 6,
     width: Tela,
     paddingTop: 25
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     height: 48
   },
   bgbranco: {
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.textWhite,
     borderWidth: 1,
     borderRadius: 20,
     height: 51,

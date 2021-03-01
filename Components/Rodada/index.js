@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import ModalHeader from '../Modal/ModalHeader';
 import PlayerService from '../../services/PlayerService';
+import COLORS from '../../styles/Colors'
 export default function Rodada({navigationG, route, idUser}) {
   const DeletePlayer = () => {
     PlayerService.deletePlayer(idUser);
@@ -26,7 +27,7 @@ export default function Rodada({navigationG, route, idUser}) {
 const styles = StyleSheet.create({
     container: {
         flexDirection:'row',
-        backgroundColor: '#58AB23',
+        backgroundColor: COLORS.headerColor,
         justifyContent:'space-between',
         height: 75,
         width:'100%',

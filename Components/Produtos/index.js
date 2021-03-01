@@ -10,7 +10,7 @@ import AgrotoxicoSuperPremium from '../../assets/agricultorIcones/rice.png';
 import Hortalicas from '../../assets/agricultorIcones/hortaliças.png';
 import Arroz from '../../assets/agricultorIcones/arroz.png';
 import Rice from '../../assets/agricultorIcones/rice.png';
-
+import COLORS from '../../styles/Colors'
 const Tela = Dimensions.get('screen').width;
 export default function Produtos() {
   return (
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: '6%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.textWhite,
     width: Tela-25,
     height: 95,
     borderRadius: 20,

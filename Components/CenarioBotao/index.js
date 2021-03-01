@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CheckBox } from 'react-native';
 import { Text, View, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
-
+import COLORS from '../../styles/Colors'
 import Papel from '../../assets/agricultorIcones/papel.png';
 
 const Tela = Dimensions.get('screen').width;
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: '#EBFFFD',
+    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: '2%',
     width: Tela,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: '1%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.textWhite,
     width: 260,
     height: 44,
     borderRadius: 20,

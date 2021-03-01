@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
-
+import COLORS from '../../styles/Colors'
 import Agricultor2 from '../../assets/perfils/agricultor/Agricultor2.png';
 
 const Tela = Dimensions.get('screen').width;
@@ -59,7 +59,7 @@ export default function Quadrados({ onPress = null }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#EBFFFD',
+    backgroundColor: COLORS.bgColorPrimary,
     padding: 3,
     width: Tela
   },
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 5.6,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.textWhite,
     width: 96,
     height: 84,
     borderRadius: 20,

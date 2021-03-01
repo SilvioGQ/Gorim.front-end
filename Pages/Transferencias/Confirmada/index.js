@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-
+import COLORS from '../../../styles/Colors'
 import Confirmacao from '../../../assets/Logo/confirmacao.png';
 
 export default function Tranferenciaconfirmada({ navigation }) {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#EBFFFD',
+    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center'
   },
   logo: {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-
+import COLORS from '../../styles/Colors'
 export default function Conf({ Conf }) {
   return (
     <View style={styles.container}>
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.bgColorSecondary,
     padding: 10,
     width: 318,
     height: 217,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 274,
     height: 35,
-    backgroundColor: '#66BF00',
+    backgroundColor: COLORS.successButton,
     borderRadius: 12,
     margin: 10,
     shadowColor: "#000",
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   button2: {
-    backgroundColor: '#BF0000',
+    backgroundColor: COLORS.warningButton,
   },
   buttontext: {
     alignSelf: 'center',

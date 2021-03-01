@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-
+import COLORS from '../../../styles/Colors'
 import Handshake from '../../../assets/Logo/handshake.png';
 
 export default function Insumo({ route, navigation }) {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#EBFFFD',
+    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center'
   },
   logo: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontSize: 14,
     textAlign: 'center',
-    color: "#FFFFFF",
+    color: COLORS.textWhite,
   },
   button: {
     padding: 13,

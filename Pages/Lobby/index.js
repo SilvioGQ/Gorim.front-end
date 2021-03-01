@@ -1,6 +1,6 @@
 import React, { useState, useEffect,useRef } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, AppState } from 'react-native';
-
+import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
 const Tela = Dimensions.get('screen').width;
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#EBFFFD',
+    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: '1%',
     paddingTop: 45,

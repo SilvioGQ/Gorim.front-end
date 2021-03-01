@@ -6,6 +6,7 @@ const COLORS = {
   warningButton: '#BF0000',
   bgColorPrimary: '#EBFFFD',
   bgColorSecondary: '#FFFFFF',
+  headerColor: '#58AB23'
 }
 
 export default COLORS;

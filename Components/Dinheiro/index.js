@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row-reverse',
     alignItems: 'flex-end',
-    backgroundColor: '#EBFFFD',
     paddingTop: 15,
     width: '90%'
   },

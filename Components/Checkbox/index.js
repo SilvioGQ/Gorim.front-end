@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, CheckBox, TouchableOpacity } from 'react-native';
-
+import COLORS from '../../styles/Colors'
 export default function Candidato() {
   const [isSelected, setSelection] = useState(false);
   const [isSelected2, setSelection2] = useState(false);
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.8,
     justifyContent: 'space-around',
-    backgroundColor: '#EBFFFD',
+    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     marginTop: 40
   },

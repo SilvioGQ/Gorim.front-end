@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-
+import COLORS from '../../styles/Colors'
 import Empresario from '../../assets/perfils/empresariox1/Empresario.png';
 import Rice from '../../assets/agricultorIcones/rice.png';
 import Normal from '../../assets/moedas/normal.png';
@@ -12,30 +12,30 @@ export default function Oferta({ vendedor, produto, preço }) {
       <View style={styles.row3}>
         <View>
           <Image
-            style={styles.icone}
+            style={styles.person}
             source={Empresario}
           />
-          <Text style={{ textAlign: 'center' }}>{vendedor}</Text>
+          <Text style={styles.text}>{vendedor}</Text>
         </View>
         <View>
-          <Text>Produto</Text>
-          <Text>{produto}</Text>
+          <Text style={styles.text}>Produto:</Text>
+          <Text style={styles.textBold}>{produto}</Text>
         </View>
         <Image
-          style={[styles.icone, { marginTop: -6 }]}
+          style={[styles.icone, { marginTop: -12 }]}
           source={Rice}
         />
         <View>
-          <Text>Preço</Text>
-          <Text>{preço}</Text>
+          <Text style={styles.text}>Preço:</Text>
+          <Text style={styles.textBold}>{preço}</Text>
         </View>
         <Image
-          style={[styles.icone, { marginTop: -6 }]}
+          style={[styles.icone, { marginTop: -12 }]}
           source={Normal}
         />
       </View>
+        <Text style={[styles.text, { marginTop: -15 }]}> Quantidade: 4</Text>
       <View style={styles.row3}>
-        <Text> Quantidade: 4</Text>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
         </TouchableOpacity>
@@ -48,45 +48,14 @@ export default function Oferta({ vendedor, produto, preço }) {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    width: 85,
-    height: 30,
-    borderRadius: 20,
-    backgroundColor: '#BF0000'
-  },
-  textbutton: {
-    color: '#FFFFFF',
-    fontSize: 9,
-    textAlign: 'center',
-    marginTop: '10%',
-    fontFamily: 'Rubik_400Regular'
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    alignSelf: 'flex-start',
-    justifyContent: 'flex-start',
-    margin: '5%',
-    marginTop: '8%',
-    width: Tela,
-    flexWrap: 'wrap'
-  },
-  row3: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    justifyContent: 'space-around',
-    margin: '1%',
-    width: Tela
-  },
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
     margin: 7,
-    marginTop: '8%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.bgColorPrimary,
+    borderRadius:20,
     width: Tela,
-    height: 95,
-    borderRadius: 20,
+    height: 125,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -94,13 +63,51 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-
+  
     elevation: 6
+  },
+  button: {
+    width: 140,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: COLORS.warningButton,
+    padding:5
+  },
+  textbutton: {
+    color: COLORS.textWhite,
+    fontSize: 9,
+    textAlign: 'center',
+    marginTop: 6,
+    fontFamily: 'Rubik_400Regular'
+  },
+  row: {
+    flexDirection: 'row',
+    margin: '5%',
+    width: Tela,
+  },
+  row3: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    margin: 5,
+    width: Tela
   },
   icone: {
     width: 36,
     height: 36,
     alignSelf: 'center',
-
-  }
+  },
+  person: {
+    width: 56,
+    height: 58,
+    alignSelf: 'center',
+  },
+  textBold: {
+    fontSize: 15,
+    fontFamily: 'Rubik_700bold'
+  },
+  text:{ 
+    textAlign: 'center',
+    fontSize:15,
+    alignItems:'center',
+}
 });

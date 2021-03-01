@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
-
+import COLORS from '../../../styles/Colors'
 import Trans from '../../../assets/moedas/trans.png';
 
 const Tela = Dimensions.get('screen').width;
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#EBFFFD',
+    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     width: Tela,
     paddingTop: 75
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   textobuton: {
-    color: '#FFFFFF',
+    color: COLORS.textWhite,
     fontSize: 15,
     fontFamily: 'Rubik_400Regular',
     textAlign: 'center',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 45,
-    backgroundColor: "#BF0000",
+    backgroundColor: COLORS.warningButton,
     borderRadius: 25,
     marginTop: -105,
     width: '80%',
