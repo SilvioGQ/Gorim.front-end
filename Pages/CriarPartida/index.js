@@ -36,17 +36,21 @@ export default function CriarPartida({ navigation }) {
   const selectRoom = () => {
     PlayerService.getPlayers(room).then(resp => {
 
-      if(resp.length >= 1) {
+      if (resp.length >= 1) {
         if (resp.length < 10) {
+          if (!resp[0].inGame) {
 
-          let id = PlayerService.addPlayer(name, room);
-          setIdUser(id);
-          navigation.navigate('Lobby', {
-            name: name,
-            room: room,
-            idUser: idUser,
-            host: false
-          });
+            let id = PlayerService.addPlayer(name, room);
+            setIdUser(id);
+            navigation.navigate('Lobby', {
+              name: name,
+              room: room,
+              idUser: idUser,
+              host: false
+            });
+          } else {
+            setModalText('Sala está em partida!')
+          }
         } else {
           setModalText('Sala atingiu número máximo de jogadores!')
         }

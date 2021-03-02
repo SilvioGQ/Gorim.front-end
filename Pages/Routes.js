@@ -35,7 +35,7 @@ const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="Proposta">
+    <Stack.Navigator initialRouteName="Gorim">
 
       <Stack.Screen name="Gorim" component={Frame1} options={{
         headerTransparent: true,
