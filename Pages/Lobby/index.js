@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Dimensions, FlatList, AppState } from 'react-na
 import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
+
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [players, setPlayers] = useState([]);
@@ -48,7 +49,8 @@ export default function Lobby({ navigation, route }) {
             setIsMounted(false);
             navigation.navigate('SorteioJogador', {
               host: route.params.host,
-              idUser: route.params.idUser
+              idUser: route.params.idUser,
+              room: route.params.room
             });
           }
         }

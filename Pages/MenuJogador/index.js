@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
+
 import Cenarios from '../../Components/CenarioBotao';
 import Parcela from '../../assets/agricultorIcones/ParcelaPequena.png';
 import COLORS from '../../styles/Colors';
-import Header from '../../Components/Header'
-import Item from '../../Components/Item'
-const Tela = Dimensions.get('screen').width
-const Height = Dimensions.get('screen').height
-export default function Agricultor1({ navigation }, props) {
+import Header from '../../Components/Header';
+import Item from '../../Components/Item';
+
+import PlayerService from '../../services/PlayerService';
+
+const Tela = Dimensions.get('screen').width;
+const Height = Dimensions.get('screen').height;
+export default function Agricultor1({ navigation, route }) {
   const [isVisible, setisVisible] = useState('flex');
-  // const [unblock, setunblock] = useState(false);
+  const [player, setPlayer] = useState({});
+
+  useEffect(() => {
+    PlayerService.getPlayer(route.params.idUser).then(setPlayer);
+  }, []);
+
+
   return (
     <View style={styles.container}>
-      <Header nome='Agrucultor' cidade='Atlantis' image='../../assets/perfils/agricultor/Agricultor2.png' Selo={1}/>
+      <Header nome={player.name} cidade='Atlantis' image='../../assets/perfils/agricultor/Agricultor2.png' Selo={1}/>
       <View style={{display: isVisible}}>
       <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
         <View style={styles.row2}>

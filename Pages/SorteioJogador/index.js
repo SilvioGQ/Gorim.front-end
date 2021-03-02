@@ -1,40 +1,30 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
+
 import COLORS from '../../styles/Colors';
 import Dados from '../../assets/Logo/Dados.png';
+import PlayerService from '../../services/PlayerService';
 
 export default function SorteioJogador({ navigation, route }) {
-  const selectScreen = () => {
-    setTimeout(() => {
-
-      let selected = Math.floor(Math.random() * 2)
-      if (selected === 1) {
-        navigation.reset({
-          routes: [{
-            name: 'Agricultor1',
-            params: {
-              host: route.params.host,
-              idUser: route.params.idUser
-            }
-          }]
-        })
-      }
-      if (selected === 0) {
-        navigation.reset({
-          routes: [{
-            name: 'Empresario1',
-            params: {
-              host: route.params.host,
-              idUser: route.params.idUser
-            }
-          }]
-        })
-      }
-    }, 2000);
-  }
   
   useEffect(() => {
-    selectScreen();
+    if(route.params.host) { 
+      let players = PlayerService.getPlayers(route.params.room);
+      PlayerService.typesRaffle(route.params.room, players.length);
+    }
+    
+    setTimeout(() => {
+      navigation.reset({
+        routes: [{
+          name: 'MenuJogador',
+          params: {
+            host: route.params.host,
+            idUser: route.params.idUser,
+            room: route.params.room
+          }
+        }]
+      })
+    }, 2000);
   }, [])
 
   return (
