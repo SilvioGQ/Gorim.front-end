@@ -19,7 +19,6 @@ export default function Agricultor1({ navigation, route }) {
     PlayerService.getPlayer(route.params.idUser).then(setPlayer);
   }, []);
 
-
   return (
     <View style={styles.container}>
       <Header nome={player.name} cidade='Atlantis' image='../../assets/perfils/agricultor/Agricultor2.png' Selo={1}/>
