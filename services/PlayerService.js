@@ -66,14 +66,16 @@ const PlayerService = {
                         doc.ref.update({
                             type: 'Agricultor',
                             coin: 300,
-                            stamp: 0
+                            stamp: 0,
+                            image:'../../assets/perfils/agricultor/Agricultor2.png'
                         });
                         agr--;
                     } else {
                         doc.ref.update({
                             type: 'Empresário',
                             coin: 300,
-                            stamp: 0
+                            stamp: 0,
+                            image:'../../assets/perfils/empresariox1/Empresario.png'
                         });
                         emp--;
                     }

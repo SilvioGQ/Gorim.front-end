@@ -4,10 +4,10 @@ import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Moeda from '../../assets/moedas/Moeda.png';
 
 const Tela = Dimensions.get('screen').width;
-export default function Money() {
+export default function Money({coin}) {
   return (
     <View style={styles.container}>
-      <Text style={styles.nuemro}>000</Text>
+      <Text style={styles.nuemro}>{coin}</Text>
       <Image
         style={styles.logo}
         source={Moeda}

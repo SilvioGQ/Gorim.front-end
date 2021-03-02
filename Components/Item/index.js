@@ -4,11 +4,11 @@ import COLORS from '../../styles/Colors';
 import HandShake from '../../assets/agricultorIcones/handshake.png'
 export default function Item(props) {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(props.navigationName)}>
+    <TouchableOpacity onPress={props.onClick}>
       <View style={styles.colunm}>
         <Image
           style={styles.icone}
-          source={HandShake}
+          source={props.icone}
         />
         <Text style={styles.textinhos}>{props.texto}</Text>
       </View>

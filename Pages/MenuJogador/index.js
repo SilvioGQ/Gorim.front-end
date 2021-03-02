@@ -6,38 +6,52 @@ import Parcela from '../../assets/agricultorIcones/ParcelaPequena.png';
 import COLORS from '../../styles/Colors';
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
-
+import Rodada from '../../Components/Rodada'
 import PlayerService from '../../services/PlayerService';
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {
-  const [isVisible, setisVisible] = useState('flex');
   const [player, setPlayer] = useState({});
-
+  const idUser = route.params.idUser;
   useEffect(() => {
     PlayerService.getPlayer(route.params.idUser).then(setPlayer);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Header nome={player.name} cidade='Atlantis' image='../../assets/perfils/agricultor/Agricultor2.png' Selo={1}/>
-      <View style={{display: isVisible}}>
-      <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
-        <View style={styles.row2}>
-          <Image
-            style={styles.icone}
-            source={Parcela}
-          />
-          <Text style={styles.textos}>Parcelas de terra</Text>
+      <Rodada idUser={idUser} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
+      <Header nome={player.name} cidade='Atlantis' image={player.image} Selo={player.stamp} coin={player.coin} />
+      {player.type === 'Agricultor' && (
+        <>
+          <View>
+            <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
+              <View style={styles.row2}>
+                <Image
+                  style={styles.icone}
+                  source={Parcela}
+                />
+                <Text style={styles.textos}>Parcelas de terra</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
+            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
+            <Item onClick={() => navigation.navigate('Transferindo')} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer transferencia' />
+            <Item onClick={() => navigation.navigate('Analizar')} icone={require('../../assets/agricultorIcones/lupa.png')} texto='Analisar propostas' />
+            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/seloG.png')} texto='Pedir selo verde' />
+          </View>
+        </>
+      )}
+      {player.type === 'Empresário' && (
+        <View style={styles.row}>
+          <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
+          <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
+          <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
+          <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
         </View>
-      </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
-       <Item navigationName='Propostas' icone='../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
-       <Item navigationName='Propostas' icone='../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
-       <Item navigationName='Propostas' icone='../../assets/agricultorIcones/handshake.png' texto='Checar propostas'/>
-      </View>
+      )
+      }
       {Height >= 750 && (
         <View>
           <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
@@ -54,7 +68,7 @@ export default function Agricultor1({ navigation, route }) {
         onClick={() => {
           navigation.navigate('Cenario');
         }} />
-      </View>
+    </View>
   );
 }
 
@@ -185,38 +199,38 @@ A parcela item só do agricultor
       */
 
 
-      /*
-      cada item dos quadradinhos
-       <TouchableOpacity onPress={() => navigation.navigate({props.navigationName})}>
-          <View style={styles.colunm}>
-            <Image
-              style={styles.icone}
-              source={{props.icone}}
-            />
-            <Text style={styles.textinhos}>{props.texto}</Text>
-          </View>
-        </TouchableOpacity>
-        */
+/*
+cada item dos quadradinhos
+ <TouchableOpacity onPress={() => navigation.navigate({props.navigationName})}>
+    <View style={styles.colunm}>
+      <Image
+        style={styles.icone}
+        source={{props.icone}}
+      />
+      <Text style={styles.textinhos}>{props.texto}</Text>
+    </View>
+  </TouchableOpacity>
+  */
 
-        /*
-        Não sei como fazer, selo verde tem o modal e bg diferente
-        <Modal
-          style={styles.modal}
-          animationType={'fade'}
-          visible={isVisible}
-          transparent={true}
-        >
-          <View style={styles.modal}>
-            <Conf Conf={() => setisVisible(false)} />
-          </View>
-        </Modal>
-        <TouchableOpacity onPress={() => setisVisible(true)}>
-          <View style={[styles.colunm, styles.vermelho]}>
-            <Image
-              style={styles.icone}
-              source={SeloG}
-            />
-            <Text style={styles.textinhos}>Pedir selo {'\n'} verde</Text>
-          </View>
-        </TouchableOpacity>
-        */
+/*
+Não sei como fazer, selo verde tem o modal e bg diferente
+<Modal
+  style={styles.modal}
+  animationType={'fade'}
+  visible={isVisible}
+  transparent={true}
+>
+  <View style={styles.modal}>
+    <Conf Conf={() => setisVisible(false)} />
+  </View>
+</Modal>
+<TouchableOpacity onPress={() => setisVisible(true)}>
+  <View style={[styles.colunm, styles.vermelho]}>
+    <Image
+      style={styles.icone}
+      source={SeloG}
+    />
+    <Text style={styles.textinhos}>Pedir selo {'\n'} verde</Text>
+  </View>
+</TouchableOpacity>
+*/

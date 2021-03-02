@@ -1,18 +1,25 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
 import COLORS from '../../styles/Colors'
 export default function Conf({ Conf }) {
+  const [isVisible, setisVisible] = useState(false);
   return (
+    <Modal 
+    style={styles.modal}
+    animationType={'fade'}
+    visible={isVisible}
+    transparent={true}>
     <View style={styles.container}>
       <Text style={styles.header}> Gorim </Text>
       <Text style={styles.loading}> Tem certeza de que deseja solicitar o selo {'\n'} verde ao fiscal? </Text>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={()=>setisVisible(false)}>
         <Text style={styles.buttontext}> CONFIRMAR </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.button2, styles.buttontext]} onPress={Conf}>
+      <TouchableOpacity style={[styles.button, styles.button2, styles.buttontext]} onPress={()=>setisVisible(false)}>
         <Text style={styles.buttontext}> CANCELAR </Text>
       </TouchableOpacity>
     </View>
+    </Modal>
   );
 }
 
