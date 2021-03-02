@@ -17,7 +17,7 @@ export default function Header(props) {
         <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular' }}>{props.Selo}</Text>
       </View>
       <View>
-        <Money />
+        <Money coin={props.coin} />
       </View>
       <Image
         style={styles.person}
