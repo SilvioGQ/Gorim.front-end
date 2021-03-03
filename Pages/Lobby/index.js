@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useRef } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, AppState } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList, AppState, YellowBox } from 'react-native';
 import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
@@ -19,6 +19,7 @@ export default function Lobby({ navigation, route }) {
     return () => {
       AppState.removeEventListener('change', _handleAppStateChange);
     };
+    YellowBox.ignoreWarnings(['Setting a timer']);
   }, []);
 
   const _handleAppStateChange = (nextAppState) => {

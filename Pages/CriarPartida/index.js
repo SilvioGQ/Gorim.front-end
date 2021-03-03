@@ -45,7 +45,7 @@ export default function CriarPartida({ navigation }) {
             navigation.navigate('Lobby', {
               name: name,
               room: room,
-              idUser: idUser,
+              idUser: id,
               host: false
             });
           } else {

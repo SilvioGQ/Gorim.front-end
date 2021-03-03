@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import Cenarios from '../../Components/CenarioBotao';
 import Parcela from '../../assets/agricultorIcones/ParcelaPequena.png';
 import COLORS from '../../styles/Colors';
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
-import Rodada from '../../Components/Rodada'
+import Rodada from '../../Components/Rodada';
 import PlayerService from '../../services/PlayerService';
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {
   const [player, setPlayer] = useState({});
-  const idUser = route.params.idUser;
+
   useEffect(() => {
     PlayerService.getPlayer(route.params.idUser).then(setPlayer);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Rodada idUser={idUser} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
+      <Rodada idUser={player.id} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
       <Header nome={player.name} cidade='Atlantis' image={player.image} Selo={player.stamp} coin={player.coin} />
       {player.type === 'Agricultor' && (
         <>

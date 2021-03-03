@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, YellowBox } from 'react-native';
 
 import COLORS from '../../styles/Colors';
 import Dados from '../../assets/Logo/Dados.png';
@@ -9,8 +9,9 @@ export default function SorteioJogador({ navigation, route }) {
   
   useEffect(() => {
     if(route.params.host) { 
-      let players = PlayerService.getPlayers(route.params.room);
-      PlayerService.typesRaffle(route.params.room, players.length);
+      PlayerService.getPlayers(route.params.room).then(resp => {
+        PlayerService.typesRaffle(route.params.room, resp.length);
+      });
     }
     
     setTimeout(() => {
@@ -25,6 +26,8 @@ export default function SorteioJogador({ navigation, route }) {
         }]
       })
     }, 2000);
+    
+    YellowBox.ignoreWarnings(['Setting a timer']);
   }, [])
 
   return (

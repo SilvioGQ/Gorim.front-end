@@ -62,7 +62,14 @@ const PlayerService = {
             .then(function (snapshot) {
                 snapshot.forEach(function (doc) {
                     let random = Math.round(Math.random() * 1);
-                    if (random == 1) {
+                    while(true) {
+                        if (random == 1 && agr < 1) { 
+                            random = Math.round(Math.random() * 1);
+                        } else if (random == 0 && emp < 1) {
+                            random = Math.round(Math.random() * 1);
+                        } else { break; }
+                    }
+                    if (random == 1 && agr >= 1) {
                         doc.ref.update({
                             type: 'Agricultor',
                             coin: 300,
@@ -70,7 +77,7 @@ const PlayerService = {
                             image:'../../assets/perfils/agricultor/Agricultor2.png'
                         });
                         agr--;
-                    } else {
+                    } else if (emp >= 1){
                         doc.ref.update({
                             type: 'Empresário',
                             coin: 300,
