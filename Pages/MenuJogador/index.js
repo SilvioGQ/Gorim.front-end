@@ -8,11 +8,12 @@ import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import Rodada from '../../Components/Rodada';
 import PlayerService from '../../services/PlayerService';
-
+import Conf from '../../Components/Selo-Verde-Confirmacao'
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {
   const [player, setPlayer] = useState({});
+  const [isVisible, setisVisible] = useState(false);
 
   useEffect(() => {
     PlayerService.getPlayer(route.params.idUser).then(setPlayer);
@@ -36,10 +37,11 @@ export default function Agricultor1({ navigation, route }) {
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
-            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
-            <Item onClick={() => navigation.navigate('Transferindo')} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer transferencia' />
-            <Item onClick={() => navigation.navigate('Analizar')} icone={require('../../assets/agricultorIcones/lupa.png')} texto='Analisar propostas' />
-            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/seloG.png')} texto='Pedir selo verde' />
+            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas'backgroundColor='#fff' />
+            <Item onClick={() => navigation.navigate('Transferindo')} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer transferencia' backgroundColor='#fff'/>
+            <Item onClick={() => navigation.navigate('Analizar')} icone={require('../../assets/agricultorIcones/lupa.png')} texto='Analisar propostas' backgroundColor='#fff' />
+            <Item onClick={()=>setisVisible(true)} icone={require('../../assets/agricultorIcones/seloG.png')} texto='Pedir selo verde' backgroundColor='#FF7F7E' />
+            <Conf isVisible={isVisible} Conf={()=>setisVisible(false)}/>
           </View>
         </>
       )}

@@ -1,24 +1,26 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Modal, Dimensions } from 'react-native';
+const Tela = Dimensions.get('screen').width;
 import COLORS from '../../styles/Colors'
-export default function Conf({ Conf }) {
-  const [isVisible, setisVisible] = useState(false);
+export default function Conf({ Conf, isVisible }) {
   return (
-    <Modal 
-    style={styles.modal}
-    animationType={'fade'}
-    visible={isVisible}
-    transparent={true}>
-    <View style={styles.container}>
-      <Text style={styles.header}> Gorim </Text>
-      <Text style={styles.loading}> Tem certeza de que deseja solicitar o selo {'\n'} verde ao fiscal? </Text>
-      <TouchableOpacity style={styles.button} onPress={()=>setisVisible(false)}>
-        <Text style={styles.buttontext}> CONFIRMAR </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.button2, styles.buttontext]} onPress={()=>setisVisible(false)}>
-        <Text style={styles.buttontext}> CANCELAR </Text>
-      </TouchableOpacity>
-    </View>
+    <Modal
+      style={styles.modal}
+      animationType={'fade'}
+      visible={isVisible}
+      transparent={true}>
+      <View style={styles.modal}>
+        <View style={styles.container}>
+          <Text style={styles.header}> Gorim </Text>
+          <Text style={styles.loading}> Tem certeza de que deseja solicitar o selo {'\n'} verde ao fiscal? </Text>
+          <TouchableOpacity style={styles.button} onPress={Conf}>
+            <Text style={styles.buttontext}> CONFIRMAR </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.button2, styles.buttontext]} onPress={Conf}>
+            <Text style={styles.buttontext}> CANCELAR </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </Modal>
   );
 }
@@ -41,6 +43,13 @@ const styles = StyleSheet.create({
     shadowRadius: 5.46,
     elevation: 9,
     marginLeft: 50
+  },
+  modal: {
+    flex: 1,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000000aa',
+    width: Tela,
   },
   header: {
     fontFamily: 'Rubik_300Light',

@@ -5,7 +5,7 @@ import HandShake from '../../assets/agricultorIcones/handshake.png'
 export default function Item(props) {
   return (
     <TouchableOpacity onPress={props.onClick}>
-      <View style={styles.colunm}>
+      <View style={[styles.colunm, {backgroundColor:props.backgroundColor}]}>
         <Image
           style={styles.icone}
           source={props.icone}
