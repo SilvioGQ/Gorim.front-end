@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import {AppLoading} from 'expo';
+import { AppLoading } from 'expo';
 import Routes from './Pages/Routes';
 import { useFonts, Rubik_300Light, Rubik_400Regular, Rubik_700Bold } from '@expo-google-fonts/rubik';
 
@@ -12,12 +12,12 @@ export default function App() {
     Rubik_300Light
   });
 
-  if(!fontsLoaded){
+  if (!fontsLoaded) {
     return <AppLoading />
   }
-    return(
-      <NavigationContainer>
+  return (
+    <NavigationContainer>
       <Routes />
-      </NavigationContainer>
-    );
+    </NavigationContainer>
+  );
 }

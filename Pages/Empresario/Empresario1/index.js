@@ -4,7 +4,7 @@ import Cenarios from '../../../Components/CenarioBotao';
 import Money from '../../../Components/Dinheiro/index';
 import Rodada from '../../../Components/Rodada'
 import Selo from '../../../assets/moedas/Selo.png';
-import Empresario from '../../../assets/perfils/empresariox1/Empresario.png';
+// import Empresario from '../../../assets/perfils/empresariox1/Empresario.png';
 import Arroz from '../../../assets/agricultorIcones/arroz.png';
 import Rice from '../../../assets/agricultorIcones/rice.png';
 import Hortalicas from '../../../assets/agricultorIcones/hortaliças.png';

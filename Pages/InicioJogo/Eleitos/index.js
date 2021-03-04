@@ -4,7 +4,7 @@ import Button from '../../../Components/Button';
 import COLORS from '../../../styles/Colors';
 
 import Voto from '../../../assets/Logo/vote.png';
-import Man from '../../../assets/perfils/empresariox2/man1x2.png';
+// import Man from '../../../assets/perfils/empresariox2/man1x2.png';
 
 const Tela = Dimensions.get('screen').width
 export default function Frame7({ navigation }) {

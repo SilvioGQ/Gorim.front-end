@@ -53,38 +53,28 @@ const PlayerService = {
             });
         });
     },
-    typesRaffle(idJogo, lenPlayer) {
-        let agr = Math.round(lenPlayer * 0.6);
-        let emp = Math.round(lenPlayer * 0.4);
+    typesRaffle(idJogo) {
+        let emp = 4;
+        let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
 
         db.collection('players').where('idJogo', '==', idJogo)
             .get()
             .then(function (snapshot) {
                 snapshot.forEach(function (doc) {
-                    let random = Math.round(Math.random() * 1);
-                    while(true) {
-                        if (random == 1 && agr < 1) { 
-                            random = Math.round(Math.random() * 1);
-                        } else if (random == 0 && emp < 1) {
-                            random = Math.round(Math.random() * 1);
-                        } else { break; }
-                    }
-                    if (random == 1 && agr >= 1) {
+                    if (emp >= 1) {
+                        doc.ref.update({
+                            type: 'Empresário',
+                            speciality: speciality[0],
+                            coin: 300
+                        });
+                        emp--;
+                        speciality.splice(0, 1);
+                    } else {
                         doc.ref.update({
                             type: 'Agricultor',
                             coin: 300,
-                            stamp: 0,
-                            image:'../../assets/perfils/agricultor/Agricultor2.png'
+                            stamp: 0
                         });
-                        agr--;
-                    } else if (emp >= 1){
-                        doc.ref.update({
-                            type: 'Empresário',
-                            coin: 300,
-                            stamp: 0,
-                            image:'../../assets/perfils/empresariox1/Empresario.png'
-                        });
-                        emp--;
                     }
                 });
             });

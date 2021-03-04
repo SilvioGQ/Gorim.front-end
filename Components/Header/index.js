@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Modal } from 'react-native';
-import Money from '../Dinheiro';
-const Tela = Dimensions.get('screen').width
+import React from 'react';
+import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 
+import Money from '../Dinheiro';
 import Selo from '../../assets/moedas/Selo.png';
-import Agricultor from '../../assets/perfils/agricultor/Agricultor2.png';
+
+const Tela = Dimensions.get('screen').width;
 export default function Header(props) {
   return (
     <View style={styles.row3}>
@@ -21,7 +21,7 @@ export default function Header(props) {
       </View>
       <Image
         style={styles.person}
-        source={Agricultor}
+        source={props.image}
       />
     </View>
   )

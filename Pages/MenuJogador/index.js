@@ -8,7 +8,8 @@ import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import Rodada from '../../Components/Rodada';
 import PlayerService from '../../services/PlayerService';
-import Conf from '../../Components/Selo-Verde-Confirmacao'
+import Conf from '../../Components/Selo-Verde-Confirmacao';
+
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {
@@ -22,9 +23,11 @@ export default function Agricultor1({ navigation, route }) {
   return (
     <View style={styles.container}>
       <Rodada idUser={player.id} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
-      <Header nome={player.name} cidade='Atlantis' image={player.image} Selo={player.stamp} coin={player.coin} />
       {player.type === 'Agricultor' && (
         <>
+          <Header nome={player.name} cidade='Atlantis'
+            image={require('../../assets/perfils/agricultor/Agricultor.png')}
+            Selo={player.stamp} coin={player.coin} />
           <View>
             <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
               <View style={styles.row2}>
@@ -37,23 +40,30 @@ export default function Agricultor1({ navigation, route }) {
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
-            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas'backgroundColor='#fff' />
-            <Item onClick={() => navigation.navigate('Transferindo')} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer transferencia' backgroundColor='#fff'/>
+            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' backgroundColor='#fff' />
+            <Item onClick={() => navigation.navigate('Transferindo')} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer transferencia' backgroundColor='#fff' />
             <Item onClick={() => navigation.navigate('Analizar')} icone={require('../../assets/agricultorIcones/lupa.png')} texto='Analisar propostas' backgroundColor='#fff' />
-            <Item onClick={()=>setisVisible(true)} icone={require('../../assets/agricultorIcones/seloG.png')} texto='Pedir selo verde' backgroundColor='#FF7F7E' />
-            <Conf isVisible={isVisible} Conf={()=>setisVisible(false)}/>
+            <Item onClick={() => setisVisible(true)} icone={require('../../assets/agricultorIcones/seloG.png')} texto='Pedir selo verde' backgroundColor='#FF7F7E' />
+            <Conf isVisible={isVisible} Conf={() => setisVisible(false)} />
           </View>
         </>
       )}
       {player.type === 'Empresário' && (
-        <View style={styles.row}>
-          <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
-          <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
-          <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
-          <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
-        </View>
-      )
-      }
+        <>
+          <Header nome={player.name} cidade='Atlantis'
+            image={require(`../../assets/perfils/empresariox1/${player.speciality}.png`)}
+            coin={player.coin} />
+          <View style={styles.row}>
+            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
+            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
+            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
+            {player.speciality === 'Fertilizante' && (
+              <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
+              // <Text>{`../../assets/perfils/empresariox1/${player.speciality}.png`}</Text>
+            )}
+          </View>
+        </>
+      )}
       {Height >= 750 && (
         <View>
           <View style={{ width: 306, height: 70, borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
@@ -174,65 +184,3 @@ const styles = StyleSheet.create({
     width: Tela,
   }
 });
-
-//Header
-//<View style={styles.row3}>
-//        <Text style={styles.header}>{props.agricultor}{'\n'} em {props.cidade}</Text>
-//        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-//         <Image
-//            style={styles.logo}
-//            source={Selo}
-//          />
-//          <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular' }}>{props}</Text>
-//       </View>
-//        <View>
-//          <Money />
-//        </View>
-//        <Image
-//          style={styles.person}
-//          source={Agricultor}
-//        />
-//      </View>
-
-
-/*
-A parcela item só do agricultor
-
-      */
-
-
-/*
-cada item dos quadradinhos
- <TouchableOpacity onPress={() => navigation.navigate({props.navigationName})}>
-    <View style={styles.colunm}>
-      <Image
-        style={styles.icone}
-        source={{props.icone}}
-      />
-      <Text style={styles.textinhos}>{props.texto}</Text>
-    </View>
-  </TouchableOpacity>
-  */
-
-/*
-Não sei como fazer, selo verde tem o modal e bg diferente
-<Modal
-  style={styles.modal}
-  animationType={'fade'}
-  visible={isVisible}
-  transparent={true}
->
-  <View style={styles.modal}>
-    <Conf Conf={() => setisVisible(false)} />
-  </View>
-</Modal>
-<TouchableOpacity onPress={() => setisVisible(true)}>
-  <View style={[styles.colunm, styles.vermelho]}>
-    <Image
-      style={styles.icone}
-      source={SeloG}
-    />
-    <Text style={styles.textinhos}>Pedir selo {'\n'} verde</Text>
-  </View>
-</TouchableOpacity>
-*/

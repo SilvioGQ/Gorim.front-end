@@ -9,9 +9,7 @@ export default function SorteioJogador({ navigation, route }) {
   
   useEffect(() => {
     if(route.params.host) { 
-      PlayerService.getPlayers(route.params.room).then(resp => {
-        PlayerService.typesRaffle(route.params.room, resp.length);
-      });
+      PlayerService.typesRaffle(route.params.room);
     }
     
     setTimeout(() => {
