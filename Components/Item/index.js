@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   textinhos: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 14,
+    fontSize: 12,
     textAlign:'center'
   },
 })

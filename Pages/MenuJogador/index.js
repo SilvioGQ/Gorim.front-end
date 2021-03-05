@@ -54,13 +54,28 @@ export default function Agricultor1({ navigation, route }) {
             image={require(`../../assets/perfils/empresariox1/${player.speciality}.png`)}
             coin={player.coin} />
           <View style={styles.row}>
-            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
-            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
-            <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
             {player.speciality === 'Fertilizante' && (
-              <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
-              // <Text>{`../../assets/perfils/empresariox1/${player.speciality}.png`}</Text>
+              <>
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Comum' })} icone={require('../../assets/agricultorIcones/fertilizanteComum.png')} texto='Vender Fertilizante Comum' />
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Premium' })} icone={require('../../assets/agricultorIcones/fertilizantePremium.png')} texto='Vender Fertilizante Premium' />
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante SP' })} icone={require('../../assets/agricultorIcones/fertilizanteSuperPremium.png')} texto='Vender Fertilizante Super Premium' />
+              </> 
             )}
+            {player.speciality === 'Agrotoxico' && (
+              <>
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Agrotoxico Comum' })} icone={require('../../assets/agricultorIcones/agrotoxicoComum.png')} texto='Vender Agrotoxico Comum' />
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Agrotoxico Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoPremium.png')} texto='Vender Agrotoxico Premium' />
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Agrotoxico SP' })} icone={require('../../assets/agricultorIcones/agrotoxicoSuperPremium.png')} texto='Vender Agrotoxico Super Premium' />
+              </> 
+            )}
+            {player.speciality === 'Semente' && (
+              <>
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Soja' })} icone={require('../../assets/agricultorIcones/arroz.png')} texto='Vender Soja' />
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Arroz' })} icone={require('../../assets/agricultorIcones/rice.png')} texto='Vender Arroz' />
+              <Item onClick={() => navigation.navigate('Vendas', { name: 'Hortaliças' })} icone={require('../../assets/agricultorIcones/hortaliças.png')} texto='Vender Hortaliças' />
+              </> 
+            )}
+            <Item onClick={() => navigation.navigate('Transferindo')} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer Transferencia' />
           </View>
         </>
       )}
