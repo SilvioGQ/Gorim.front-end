@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions }
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Quantidades from '../../../Components/Quantidades';
-
+import COLORS from '../../../styles/Colors'
 import Selo from '../../../assets/moedas/Selo.png';
 import Moeda from '../../../assets/moedas/Moeda.png';
 import Tractor from '../../../assets/agricultorIcones/tractor.png';
@@ -81,10 +81,7 @@ export default function Vendas({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#EBFFFD',
-    alignItems: 'center',
-    padding: 6,
+    backgroundColor: COLORS.bgColorPrimary,
     paddingTop: 35
   },
   valor: {
@@ -94,9 +91,11 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignSelf: 'flex-start',
-    justifyContent: 'space-around',
-    margin: 14,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    margin: 8,
+    width: Tela,
+    flexWrap: 'wrap'
   },
   center: {
     flexDirection: 'row',
@@ -129,7 +128,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 7,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.textWhite,
     width: 96,
     height: 84,
     borderRadius: 20,
