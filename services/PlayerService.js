@@ -65,7 +65,8 @@ const PlayerService = {
                         doc.ref.update({
                             type: 'Empresário',
                             speciality: speciality[0],
-                            coin: 300
+                            coin: 300,
+                            stamp: false
                         });
                         emp--;
                         speciality.splice(0, 1);
@@ -73,7 +74,7 @@ const PlayerService = {
                         doc.ref.update({
                             type: 'Agricultor',
                             coin: 300,
-                            stamp: 0
+                            stamp: false
                         });
                     }
                 });

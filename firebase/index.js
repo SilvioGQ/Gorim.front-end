@@ -15,6 +15,16 @@ const firebaseConfig = {
     measurementId: "G-05PKQV9GQF"
 };
 
+// const firebaseConfig = {
+//     apiKey: "AIzaSyChCMVE8F10vKpVAxoJ6tMV8GJ7qMyj690",
+//     authDomain: "gorim2.firebaseapp.com",
+//     projectId: "gorim2",
+//     storageBucket: "gorim2.appspot.com",
+//     messagingSenderId: "17487844325",
+//     appId: "1:17487844325:web:4a7f982b5c44ac8b4b950c",
+//     measurementId: "G-4LD8PYZGRT"
+// };
+
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 

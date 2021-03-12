@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, AppState, YellowBox } from 'react-native';
 import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
@@ -6,13 +6,12 @@ import PlayerService from '../../services/PlayerService';
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
-  const [players, setPlayers] = useState([]);
   const [isMounted, setIsMounted] = useState(true);
-  const room = route.params.room;
-  const host = route.params.host;
+  const [players, setPlayers] = useState([]);
+  const [player, setPlayer] = useState(route.params);
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
-  
+
   useEffect(() => {
     AppState.addEventListener('change', _handleAppStateChange);
 
@@ -39,23 +38,21 @@ export default function Lobby({ navigation, route }) {
     setAppStateVisible(appState.current);
     console.log('AppState', appState.current);
   };
-  useEffect(() => {
-    if(isMounted) {
+  // useEffect(() => {
+  //   PlayerService.getPlayers(player.room).then(setPlayers);
+  // });
 
-      PlayerService.getPlayers(room).then(setPlayers);
-  
-      if(players.length) {
-        if(players[0].inGame) {
-          return () => {
-            setIsMounted(false);
-            navigation.navigate('SorteioJogador', {
-              host: route.params.host,
-              idUser: route.params.idUser,
-              room: route.params.room
-            });
-          }
-        }
-      }
+  useEffect(() => {
+    if (isMounted) {
+
+      // setTimeout(() => {
+      PlayerService.getPlayers(player.room).then(setPlayers);
+      // }, 1000 * 5);
+    }
+    if (players.length && players[0].inGame) {
+      navigation.navigate('SorteioJogador', { player });
+
+      return () => setIsMounted(false);
     }
   }, [players]);
 
@@ -63,21 +60,18 @@ export default function Lobby({ navigation, route }) {
     <View style={styles.container}>
       <Text style={styles.texto}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
-      <Text style={styles.texto2}>{room}</Text>
+      <Text style={styles.texto2}>{player.room}</Text>
       {players.length === 0 ?
-      <Text style={styles.texto}>Aguardando jogadores</Text> :
+        <Text style={styles.texto}>Aguardando jogadores</Text> :
         <FlatList
           data={players}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => <View style={styles.linha}><Text style={styles.texto3}>{item.name}</Text></View>}
         />
       }
-      { host ?  <Button
-        name='começar'
-        onClick={() => PlayerService.startGame(room)}
-      
-      />: <Text style={[styles.texto3,{marginBottom:35}]}>AGUARDANDO NOVOS JOGADORES</Text> }
-      
+      {player.host ?
+        <Button name='começar' onClick={() => PlayerService.startGame(player.room)} /> :
+        <Text style={[styles.texto3, { marginBottom: 35 }]}>AGUARDANDO NOVOS JOGADORES</Text>}
     </View>
   );
 }

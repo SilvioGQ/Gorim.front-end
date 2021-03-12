@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, YellowBox } from 'react-native';
 
 import COLORS from '../../styles/Colors';
@@ -6,25 +6,20 @@ import Dados from '../../assets/Logo/Dados.png';
 import PlayerService from '../../services/PlayerService';
 
 export default function SorteioJogador({ navigation, route }) {
-  
+  const [player, setPlayer] = useState(route.params.player);
+
   useEffect(() => {
-    if(route.params.host) { 
-      PlayerService.typesRaffle(route.params.room);
-    }
-    
+    if (player.host) PlayerService.typesRaffle(player.room);
+
     setTimeout(() => {
       navigation.reset({
         routes: [{
           name: 'MenuJogador',
-          params: {
-            host: route.params.host,
-            idUser: route.params.idUser,
-            room: route.params.room
-          }
+          params: { idUser: player.idUser }
         }]
       })
-    }, 2000);
-    
+    }, 1000 * 2);
+
     YellowBox.ignoreWarnings(['Setting a timer']);
   }, [])
 

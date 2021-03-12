@@ -31,6 +31,20 @@ export default function CriarPartida({ navigation }) {
     }).catch(() => {
       setModalText('Erro ao criar partida!');
     })
+    // Batata().then(data => { 
+    //   setRoom(data.data);
+      
+    //   let id = PlayerService.addPlayer(name, room, true);
+    //   setIdUser(id);
+    //   navigation.navigate('Lobby', {
+    //     name: name,
+    //     room: room,
+    //     idUser: id,
+    //     host: true
+    //   });
+    // }).catch(() => {
+    //   setModalText('Erro ao criar partida!');
+    // });
   }
 
   const selectRoom = () => {

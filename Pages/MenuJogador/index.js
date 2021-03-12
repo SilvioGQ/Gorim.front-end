@@ -13,8 +13,8 @@ import Conf from '../../Components/Selo-Verde-Confirmacao';
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {
-  const [player, setPlayer] = useState({});
   const [isVisible, setisVisible] = useState(false);
+  const [player, setPlayer] = useState({});
 
   useEffect(() => {
     PlayerService.getPlayer(route.params.idUser).then(setPlayer);
@@ -25,9 +25,10 @@ export default function Agricultor1({ navigation, route }) {
       <Rodada idUser={player.id} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
       {player.type === 'Agricultor' && (
         <>
-          <Header nome={player.name} cidade='Atlantis'
+          <Header
+            player
             image={require('../../assets/perfils/agricultor/Agricultor.png')}
-            Selo={player.stamp} coin={player.coin} />
+          />
           <View>
             <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
               <View style={styles.row2}>
@@ -50,9 +51,10 @@ export default function Agricultor1({ navigation, route }) {
       )}
       {player.type === 'Empresário' && (
         <>
-          <Header nome={player.name} cidade='Atlantis'
+          <Header
+            player={player}
             image={require(`../../assets/perfils/empresariox1/${player.speciality}.png`)}
-            coin={player.coin} />
+          />
           <View style={styles.row}>
             <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />
             <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' />

@@ -2,26 +2,28 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 
 import Money from '../Dinheiro';
-import Selo from '../../assets/moedas/Selo.png';
+import Stamp from '../../assets/moedas/Selo.png';
 
 const Tela = Dimensions.get('screen').width;
-export default function Header(props) {
+export default function Header({ player, image }) {
+
   return (
     <View style={styles.row3}>
-      <Text style={styles.header}>{props.nome}{'\n'}em {props.cidade}</Text>
+      <Text style={styles.header}>{player.name}{'\n'}em Atlantis</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Image
-          style={styles.logo}
-          source={Selo}
-        />
-        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular' }}>{props.Selo}</Text>
+        {player.stamp && (
+          <Image
+            style={styles.logo}
+            source={Stamp}
+          />
+        )}
       </View>
       <View>
-        <Money coin={props.coin} />
+        <Money coin={player.coin} />
       </View>
       <Image
         style={styles.person}
-        source={props.image}
+        source={image}
       />
     </View>
   )
