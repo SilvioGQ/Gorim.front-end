@@ -17,9 +17,10 @@ export default function CriarPartida({ navigation }) {
 
   const createRoom = () => {
     Batata().then(data => {
+      if (name !== '') {
       let room = data.data;
       setRoom(room);
-    
+
       let id = PlayerService.addPlayer(name, room, true);
       setIdUser(id);
       navigation.navigate('Lobby', {
@@ -28,6 +29,9 @@ export default function CriarPartida({ navigation }) {
         idUser: id,
         host: true
       });
+    } else{
+      setModalText('Você precisa adicionar um nome')
+    }
     }).catch(() => {
       setModalText('Erro ao criar partida!');
     })
@@ -53,15 +57,18 @@ export default function CriarPartida({ navigation }) {
       if (resp.length >= 1) {
         if (resp.length < 10) {
           if (!resp[0].inGame) {
-
-            let id = PlayerService.addPlayer(name, room);
-            setIdUser(id);
-            navigation.navigate('Lobby', {
-              name: name,
-              room: room,
-              idUser: id,
-              host: false
-            });
+            if (name !== '') {
+              let id = PlayerService.addPlayer(name, room);
+              setIdUser(id);
+              navigation.navigate('Lobby', {
+                name: name,
+                room: room,
+                idUser: id,
+                host: false
+              });
+            } else {
+              setModalText('Você precisa adicionar um nome')
+            }
           } else {
             setModalText('Sala está em partida!')
           }
@@ -100,18 +107,17 @@ export default function CriarPartida({ navigation }) {
         <TouchableOpacity
           style={styles.button2}
           onPress={createRoom}
-          disabled={name === ''}
         >
           <Text style={styles.text}>CRIAR JOGO</Text>
         </TouchableOpacity>
       </View>
       {modalVisible !== '' && (
-        <ModalFrame2 onClick={()=>setModalText('')} text={modalVisible}/>
+        <ModalFrame2 onClick={() => setModalText('')} text={modalVisible} />
       )}
       <Text style={[styles.header]}>ENTRAR</Text>
       <View style={styles.line} />
       <View style={styles.row}>
-        <Image 
+        <Image
           style={styles.logo2}
           source={Group29}
         />
@@ -121,11 +127,11 @@ export default function CriarPartida({ navigation }) {
           onChangeText={room => setRoom(parseInt(room))}
           placeholder='ESCREVER CÓDIGO'
           value={room.toString()}
+          keyboardType='numeric'
         >
         </TextInput>
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={selectRoom}
-          disabled={name === '' || room === ''}
         >
           <Image
             style={styles.arrow}
@@ -137,13 +143,13 @@ export default function CriarPartida({ navigation }) {
   );
 }
 
-      //caso volte  navigation.reset({ 
-      //  routes:[{name:'Lobby',
-      //  params:{name: name,
-      //  room: room,
-      //  idUser: idUser,
-      //  host: true} }]
-     // });
+//caso volte  navigation.reset({ 
+//  routes:[{name:'Lobby',
+//  params:{name: name,
+//  room: room,
+//  idUser: idUser,
+//  host: true} }]
+// });
 
 const styles = StyleSheet.create({
   container: {

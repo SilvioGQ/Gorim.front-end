@@ -25,7 +25,7 @@ export default function Quadrados({ onPress = null }) {
             <Text style={styles.textinhos}> Agricultor </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelected(1)}>
+        <TouchableOpacity onPress={handleOnPress}>
           <View style={[styles.colunm, { backgroundColor: selected == 1 ? "#8ACF3A" : '#fff' }]}>
             <Image
               style={styles.icone}
@@ -34,7 +34,7 @@ export default function Quadrados({ onPress = null }) {
             <Text style={styles.textinhos}> Agricultor </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelected(2)}>
+        <TouchableOpacity onPress={handleOnPress}>
           <View style={[styles.colunm, { backgroundColor: selected == 2 ? "#8ACF3A" : '#fff' }]} >
             <Image
               style={styles.icone}
@@ -43,7 +43,7 @@ export default function Quadrados({ onPress = null }) {
             <Text style={styles.textinhos}> Agricultor </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelected(3)}>
+        <TouchableOpacity onPress={handleOnPress}>
           <View style={[styles.colunm, { backgroundColor: selected == 3 ? "#8ACF3A" : '#fff' }]}>
             <Image
               style={styles.icone}
@@ -59,6 +59,7 @@ export default function Quadrados({ onPress = null }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     backgroundColor: COLORS.bgColorPrimary,
     padding: 3,
     width: Tela
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 5.6,
+    margin: 7,
     backgroundColor: COLORS.textWhite,
     width: 96,
     height: 84,
