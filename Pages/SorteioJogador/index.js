@@ -21,6 +21,7 @@ export default function SorteioJogador({ navigation, route }) {
     }, 1000 * 2);
 
     YellowBox.ignoreWarnings(['Setting a timer']);
+
   }, [])
 
   return (

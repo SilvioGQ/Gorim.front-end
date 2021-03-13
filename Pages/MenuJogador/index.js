@@ -21,6 +21,7 @@ import Agricultor from '../../assets/perfils/agricultor/Agricultor2.png';
 import Lupa from '../../assets/agricultorIcones/lupa.png';
 import SeloG from '../../assets/agricultorIcones/seloG.png';
 import Handshake from '../../assets/agricultorIcones/handshake.png';
+
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {

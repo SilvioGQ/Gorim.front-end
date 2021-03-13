@@ -13,35 +13,34 @@ export default function CriarPartida({ navigation }) {
   const [modalVisible, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
-  const [idUser, setIdUser] = useState();
 
   const createRoom = () => {
     Batata().then(data => {
       if (name !== '') {
-      let room = data.data;
-      setRoom(room);
+        let room = data.data;
+        setRoom(room);
 
-      let id = PlayerService.addPlayer(name, room, true);
-      setIdUser(id);
-      navigation.reset({
-        routes: [{
-          name: 'Lobby',
-          params: {
-            name: name,
-            room: room,
-            idUser: id,
-            host: true}
-        }]
-      });
-    } else{
-      setModalText('Você precisa adicionar um nome')
-    }
+        let id = PlayerService.addPlayer(name, room, true);
+        navigation.reset({
+          routes: [{
+            name: 'Lobby',
+            params: {
+              name: name,
+              room: room,
+              idUser: id,
+              host: true
+            }
+          }]
+        });
+      } else {
+        setModalText('Você precisa adicionar um nome')
+      }
     }).catch(() => {
       setModalText('Erro ao criar partida!');
     })
     // Batata().then(data => { 
     //   setRoom(data.data);
-      
+
     //   let id = PlayerService.addPlayer(name, room, true);
     //   setIdUser(id);
     //   navigation.navigate('Lobby', {
@@ -63,7 +62,6 @@ export default function CriarPartida({ navigation }) {
           if (!resp[0].inGame) {
             if (name !== '') {
               let id = PlayerService.addPlayer(name, room);
-              setIdUser(id);
               navigation.navigate('Lobby', {
                 name: name,
                 room: room,
@@ -84,13 +82,6 @@ export default function CriarPartida({ navigation }) {
       }
     });
   }
-
-  navigation.addListener('focus', () => {
-    if (idUser !== undefined) {
-      PlayerService.deletePlayer(idUser);
-      setIdUser(undefined);
-    }
-  });
 
   return (
     <View style={styles.container}>
@@ -146,14 +137,6 @@ export default function CriarPartida({ navigation }) {
     </View>
   );
 }
-
-//caso volte  navigation.reset({ 
-//  routes:[{name:'Lobby',
-//  params:{name: name,
-//  room: room,
-//  idUser: idUser,
-//  host: true} }]
-// });
 
 const styles = StyleSheet.create({
   container: {

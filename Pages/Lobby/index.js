@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, AppState, YellowBox, TouchableOpacity, Image } from 'react-native';
+
 import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
-import ModalHeader from '../../Components/Modal/ModalHeader'
+import ModalHeader from '../../Components/Modal/ModalHeader';
+
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [isMounted, setIsMounted] = useState(true);
@@ -11,18 +13,19 @@ export default function Lobby({ navigation, route }) {
   const [player, setPlayer] = useState(route.params);
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
-  const DeletePlayer = () => {
-    PlayerService.deletePlayer(player);
+  const [modalVisible, setModalText] = useState(false);
+
+  const deletePlayer = () => {
+    PlayerService.deletePlayer(player.idUser);
     navigation.reset({
       routes: [{
         name: 'CriarPartida',
         params: {}
       }]
     });
+    setIsMounted(false);
     setModalText(!modalVisible)
   }
-
-  const [modalVisible, setModalText] = useState(false)
 
   useEffect(() => {
     AppState.addEventListener('change', _handleAppStateChange);
@@ -50,30 +53,33 @@ export default function Lobby({ navigation, route }) {
     setAppStateVisible(appState.current);
     console.log('AppState', appState.current);
   };
-  // useEffect(() => {
-  //   PlayerService.getPlayers(player.room).then(setPlayers);
-  // });
+  
+  useEffect(() => {
+    PlayerService.getPlayers(player.room).then(setPlayers);
+  });
 
   useEffect(() => {
     if (isMounted) {
 
-      // setTimeout(() => {
-      PlayerService.getPlayers(player.room).then(setPlayers);
-      // }, 1000 * 5);
+      setTimeout(() => {
+        PlayerService.getPlayers(player.room).then(setPlayers);
+      }, 1000 * 5);
     }
     if (players.length && players[0].inGame) {
       navigation.navigate('SorteioJogador', { player });
 
       return () => setIsMounted(false);
     }
+    
   }, [players]);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalText(!modalVisible)}>
-        <Image style={{ width: 25, height: 27, marginRight: 20, marginTop: -10, marginVertical:10 }} source={require('../../assets/Logo/FecharPreto.png')} />
+        <Image style={{ width: 25, height: 27, marginRight: 20, marginTop: -10, marginVertical: 10 }} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
       {modalVisible === true && (
-        <ModalHeader DeletePlayer={DeletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalText(!modalVisible)} />
+        <ModalHeader DeletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalText(!modalVisible)} />
       )}
       <Text style={styles.texto}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
