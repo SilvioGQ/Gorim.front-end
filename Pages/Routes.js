@@ -7,14 +7,12 @@ import Frame4 from './InicioJogo/Personagem';
 import Frame5 from './InicioJogo/Candidatura';
 import Frame6 from './InicioJogo/Votaçao';
 import Frame7 from './InicioJogo/Eleitos';
-import Agricultor1 from './Agricultor/Agricultor1';
 import Espera from './Tela de Espera';
 import Tranferenciaconfirmada from './Transferencias/Confirmada';
 import Insumo from './Transferencias/Insumo';
 import Parcela from './Agricultor/Parcelaterra';
-import Agrotoxicos from './Empresario/Agrotoxicos';
+import Agrotoxicos from './TELAS NÃO UTILIZADAS/Agrotoxicos';
 import Transferindo from './Transferir';
-import Empresario1 from './Empresario/Empresario1';
 import Vendas from './Empresario/Vender';
 import FazerTransferencia from './Transferencias/Transferencia';
 import Cenario from './Cenario';
@@ -77,10 +75,6 @@ export default function Routes() {
         headerTransparent: true,
         headerTitle: '',
       }} />
-      <Stack.Screen name="Agricultor1" component={Agricultor1} options={{
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
       <Stack.Screen name="Espera" component={Espera} options={{
         headerTransparent: true,
         headerTitle: 'Gorim',
@@ -136,10 +130,6 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="FazerTransferencia" component={FazerTransferencia} options={{
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="Empresario1" component={Empresario1} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />

@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
-import Cenarios from '../../Components/CenarioBotao';
+
 import Parcela from '../../assets/agricultorIcones/ParcelaPequena.png';
 import COLORS from '../../styles/Colors';
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
-import Rodada from '../../Components/Rodada';
 import PlayerService from '../../services/PlayerService';
 import Conf from '../../Components/Selo-Verde-Confirmacao';
-
+import Cenarios from '../../Components/CenarioBotao';
+import Money from '../../Components/Dinheiro/index';
+import Rodada from '../../Components/Rodada'
+import Selo from '../../assets/moedas/Selo.png';
+// import Empresario from '../../assets/perfils/empresariox1/Empresario.png';
+import Arroz from '../../assets/agricultorIcones/arroz.png';
+import Rice from '../../assets/agricultorIcones/rice.png';
+import Hortalicas from '../../assets/agricultorIcones/hortaliças.png';
+import Money2 from '../../assets/agricultorIcones/money2.png';
+import Agricultor from '../../assets/perfils/agricultor/Agricultor2.png';
+import Lupa from '../../assets/agricultorIcones/lupa.png';
+import SeloG from '../../assets/agricultorIcones/seloG.png';
+import Handshake from '../../assets/agricultorIcones/handshake.png';
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {

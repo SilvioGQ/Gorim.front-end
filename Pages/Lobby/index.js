@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, AppState, YellowBox } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList, AppState, YellowBox, TouchableOpacity, Image } from 'react-native';
 import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
@@ -55,9 +55,21 @@ export default function Lobby({ navigation, route }) {
       return () => setIsMounted(false);
     }
   }, [players]);
+  const DeletePlayer = () => {
+    PlayerService.deletePlayer(idUser);
+    navigationG()
+    setModalText(!modalVisible)
+  }
 
+    const [modalVisible, setModalText] = useState(false)
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={{alignSelf:'flex-end'}} onPress={() => setModalText(!modalVisible)}>
+        <Image style={{ width: 25, height: 27, marginTop: 10, marginRight: 20 }} source={require('../../assets/Logo/Fechar.png')} />
+      </TouchableOpacity>
+      {modalVisible === true && (
+        <ModalHeader DeletePlayer={DeletePlayer} text='Tem certeza que deseja sair da partida?' onClick={()=> setModalText(!modalVisible)}/>
+      )}
       <Text style={styles.texto}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
       <Text style={styles.texto2}>{player.room}</Text>
