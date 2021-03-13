@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Dimensions, FlatList, AppState, YellowBox, Touc
 import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
-
+import ModalHeader from '../../Components/Modal/ModalHeader'
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [isMounted, setIsMounted] = useState(true);
@@ -11,6 +11,18 @@ export default function Lobby({ navigation, route }) {
   const [player, setPlayer] = useState(route.params);
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  const DeletePlayer = () => {
+    PlayerService.deletePlayer(player);
+    navigation.reset({
+      routes: [{
+        name: 'CriarPartida',
+        params: {}
+      }]
+    });
+    setModalText(!modalVisible)
+  }
+
+  const [modalVisible, setModalText] = useState(false)
 
   useEffect(() => {
     AppState.addEventListener('change', _handleAppStateChange);
@@ -55,20 +67,13 @@ export default function Lobby({ navigation, route }) {
       return () => setIsMounted(false);
     }
   }, [players]);
-  const DeletePlayer = () => {
-    PlayerService.deletePlayer(idUser);
-    navigationG()
-    setModalText(!modalVisible)
-  }
-
-    const [modalVisible, setModalText] = useState(false)
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={{alignSelf:'flex-end'}} onPress={() => setModalText(!modalVisible)}>
-        <Image style={{ width: 25, height: 27, marginTop: 10, marginRight: 20 }} source={require('../../assets/Logo/Fechar.png')} />
+      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalText(!modalVisible)}>
+        <Image style={{ width: 25, height: 27, marginRight: 20, marginTop: -10, marginVertical:10 }} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
       {modalVisible === true && (
-        <ModalHeader DeletePlayer={DeletePlayer} text='Tem certeza que deseja sair da partida?' onClick={()=> setModalText(!modalVisible)}/>
+        <ModalHeader DeletePlayer={DeletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalText(!modalVisible)} />
       )}
       <Text style={styles.texto}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: '1%',
-    paddingTop: 45,
+    paddingTop: 40,
     width: Tela
   },
   linha: {

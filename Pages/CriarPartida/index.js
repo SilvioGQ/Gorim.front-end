@@ -23,11 +23,15 @@ export default function CriarPartida({ navigation }) {
 
       let id = PlayerService.addPlayer(name, room, true);
       setIdUser(id);
-      navigation.navigate('Lobby', {
-        name: name,
-        room: room,
-        idUser: id,
-        host: true
+      navigation.reset({
+        routes: [{
+          name: 'Lobby',
+          params: {
+            name: name,
+            room: room,
+            idUser: id,
+            host: true}
+        }]
       });
     } else{
       setModalText('Você precisa adicionar um nome')
