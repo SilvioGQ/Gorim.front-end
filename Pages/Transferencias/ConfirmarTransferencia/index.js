@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+
 import Button from '../../../Components/Button';
 import COLORS from '../../../styles/Colors'
 import Trans from '../../../assets/moedas/trans.png';
@@ -9,7 +10,7 @@ export default function FazerTransferencia({ navigation, route }) {
   const { valor } = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.texto}> Fazer transferência </Text>
+      <Text style={styles.texto}>Fazer transferência</Text>
       <Image
         style={styles.logo}
         source={Trans}
@@ -17,10 +18,10 @@ export default function FazerTransferencia({ navigation, route }) {
       <Text style={styles.texto2}> Deseja confirmar a transação?  </Text>
       <Text style={styles.texto3}>{JSON.stringify(valor)}$ </Text>
       <Button
-        onClick={() => navigation.navigate('Tranferenciaconfirmada')}
+        onClick={() => navigation.reset({ routes: [{ name: 'TransferenciaConfirmada' }] })}
         name='CONTINUAR' />
       <View style={{ width: Tela }}>
-        <TouchableOpacity onPress={() => navigation.navigate('Transferindo')} style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.navigate('FazerTransferencia')} style={styles.button}>
           <Text style={styles.textobuton}> CANCELAR </Text>
         </TouchableOpacity>
       </View>

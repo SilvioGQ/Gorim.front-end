@@ -9,10 +9,10 @@ import Item from '../../Components/Item';
 import PlayerService from '../../services/PlayerService';
 import Conf from '../../Components/Selo-Verde-Confirmacao';
 import Cenarios from '../../Components/CenarioBotao';
-import Money from '../../Components/Dinheiro/index';
-import Rodada from '../../Components/Rodada'
-import Selo from '../../assets/moedas/Selo.png';
+import Rodada from '../../Components/Rodada';
 // import Empresario from '../../assets/perfils/empresariox1/Empresario.png';
+import Selo from '../../assets/moedas/Selo.png';
+import Money from '../../Components/Dinheiro/index';
 import Arroz from '../../assets/agricultorIcones/arroz.png';
 import Rice from '../../assets/agricultorIcones/rice.png';
 import Hortalicas from '../../assets/agricultorIcones/hortaliças.png';
@@ -89,7 +89,7 @@ export default function Agricultor1({ navigation, route }) {
               <Item onClick={() => navigation.navigate('Vendas', { name: 'Hortaliças' })} icone={require('../../assets/agricultorIcones/hortaliças.png')} texto='Vender Hortaliças' />
               </> 
             )}
-            <Item onClick={() => navigation.navigate('Transferindo')} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer Transferencia' />
+            <Item onClick={() => navigation.navigate('FazerTransferencia', { player })} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer Transferencia' />
           </View>
         </>
       )}
@@ -105,10 +105,7 @@ export default function Agricultor1({ navigation, route }) {
           </View>
         </View>
       )}
-      <Cenarios
-        onClick={() => {
-          navigation.navigate('Cenario');
-        }} />
+      <Cenarios onClick={() => navigation.navigate('Cenario')} />
     </View>
   );
 }

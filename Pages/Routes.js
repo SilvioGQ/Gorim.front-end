@@ -8,13 +8,13 @@ import Frame5 from './InicioJogo/Candidatura';
 import Frame6 from './InicioJogo/Votaçao';
 import Frame7 from './InicioJogo/Eleitos';
 import Espera from './Tela de Espera';
-import Tranferenciaconfirmada from './Transferencias/Confirmada';
 import Insumo from './Transferencias/Insumo';
 import Parcela from './Agricultor/Parcelaterra';
 import Agrotoxicos from './TELAS NÃO UTILIZADAS/Agrotoxicos';
-import Transferindo from './Transferir';
 import Vendas from './Empresario/Vender';
-import FazerTransferencia from './Transferencias/Transferencia';
+import FazerTransferencia from './Transferencias/FazerTransferencia';
+import ConfirmarTransferencia from './Transferencias/ConfirmarTransferencia';
+import TransferenciaConfirmada from './Transferencias/Confirmada';
 import Cenario from './Cenario';
 import Fiscal from './Fiscal/Fiscal1';
 import Selo from './Fiscal/Selo';
@@ -89,7 +89,11 @@ export default function Routes() {
           height: 77
         },
       }} />
-      <Stack.Screen name="Tranferenciaconfirmada" component={Tranferenciaconfirmada} options={{
+      <Stack.Screen name="FazerTransferencia" component={FazerTransferencia} options={{
+        headerTransparent: true,
+        headerTitle: '',
+      }} />
+      <Stack.Screen name="ConfirmarTransferencia" component={ConfirmarTransferencia} options={{
         headerTransparent: true,
         headerTitle: 'Gorim',
         headerTitleStyle: {
@@ -102,6 +106,10 @@ export default function Routes() {
 
           height: 77
         },
+      }} />
+      <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada} options={{
+        headerTransparent: true,
+        headerTitle: '',
       }} />
       <Stack.Screen name="insumo" component={Insumo} options={{
         headerTransparent: true,
@@ -125,15 +133,6 @@ export default function Routes() {
         headerTransparent: true,
         headerTitle: '',
       }} />
-      <Stack.Screen name="Transferindo" component={Transferindo} options={{
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="FazerTransferencia" component={FazerTransferencia} options={{
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-
       <Stack.Screen name="Vendas" component={Vendas} options={{
         headerTransparent: true,
         headerTitle: '',

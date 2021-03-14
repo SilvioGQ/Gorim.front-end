@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+
 import COLORS from '../../styles/Colors';
 import PlayerService from '../../services/PlayerService';
 import { Batata } from '../Api';
-import ModalFrame2 from '../../Components/Modal/ModalFrame2'
+import Modal from '../../Components/Modal/ModalFrame2';
 import Group28 from '../../assets/Group28.png';
 import Group29 from '../../assets/Group29.png';
 import rightArrow from '../../assets/right-arrow.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function CriarPartida({ navigation }) {
-  const [modalVisible, setModalText] = useState('');
+  const [modalText, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
 
@@ -106,8 +107,8 @@ export default function CriarPartida({ navigation }) {
           <Text style={styles.text}>CRIAR JOGO</Text>
         </TouchableOpacity>
       </View>
-      {modalVisible !== '' && (
-        <ModalFrame2 onClick={() => setModalText('')} text={modalVisible} />
+      {modalText !== '' && (
+        <Modal onClick={() => setModalText('')} text={modalText} />
       )}
       <Text style={[styles.header]}>ENTRAR</Text>
       <View style={styles.line} />

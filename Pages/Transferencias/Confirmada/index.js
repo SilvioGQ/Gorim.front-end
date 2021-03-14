@@ -1,16 +1,24 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
+
 import COLORS from '../../../styles/Colors'
 import Confirmacao from '../../../assets/Logo/confirmacao.png';
 
 export default function Tranferenciaconfirmada({ navigation }) {
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.reset({ routes: [{ name: 'MenuJogador' }] });
+    }, 1000 * 2);
+  });
+
   return (
     <View style={styles.container}>
       <Image
         style={styles.logo}
         source={Confirmacao}
       />
-      <Text style={styles.texto}> Transação confirmada! </Text>
+      <Text style={styles.texto}>Transação confirmada!</Text>
     </View>
   );
 }

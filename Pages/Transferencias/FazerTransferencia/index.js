@@ -1,25 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import Button from '../../Components/Button';
-import Quadrados from '../../Components/Quadrado';
-import Money from '../../Components/Dinheiro';
-import COLORS from '../../styles/Colors'
-import setaDireita from '../../assets/agricultorIcones/setadireita.png';
-import Money2 from '../../assets/agricultorIcones/money2.png';
-import setaEsquerda from '../../assets/agricultorIcones/setaesquerda.png';
+
+import Modal from '../../../Components/Modal/ModalFrame2';
+import Button from '../../../Components/Button';
+import Quadrados from '../../../Components/Quadrado';
+import Money from '../../../Components/Dinheiro';
+import COLORS from '../../../styles/Colors'
+import setaDireita from '../../../assets/agricultorIcones/setadireita.png';
+import Money2 from '../../../assets/agricultorIcones/money2.png';
+import setaEsquerda from '../../../assets/agricultorIcones/setaesquerda.png';
+import PlayerService from '../../../services/PlayerService';
+import { FlatList } from 'react-native-gesture-handler';
 
 const Tela = Dimensions.get('screen').width;
-export default function Transferindo({ navigation }) {
+export default function Transferindo({ navigation, route }) {
+  const [modalText, setModalText] = useState('');
+  const [selected, setSelected] = useState(false);
+  const [players, setPlayers] = useState([]);
+  const [player, setPlayer] = useState(route.params.player);
   const [count, setCount] = useState(0);
-  const [selected, setSelected] = useState(true);
+
+  useEffect(() => {
+    PlayerService.getPlayers(player.idJogo).then(setPlayers);
+  })
 
   const handleOnPress = () => setSelected(true);
   const increaseCount = () => setCount(count + 5);
   const decreaseCount = () => setCount(count > 0 ? count - 5 : count);
+  const confirmTransfer = () => {
+    if(selected === false) {
+      setModalText('Selecione o destino!');
+    } else if (count === 0) {
+      setModalText('Adicione um valor!');
+    } else {
+      navigation.navigate('ConfirmarTransferencia', { valor: count });
+    }
+  }
 
   return (
     <View style={styles.container}>
-      <Money />
+      <Money coin={player.coin} />
       <View style={styles.espaco}>
         <Image
           style={{ width: 63, height: 61 }}
@@ -28,6 +48,11 @@ export default function Transferindo({ navigation }) {
         <Text style={styles.header}>Fazer {'\n'} transferência</Text>
       </View>
       <Text style={{ fontSize: 18, marginTop: 20, fontFamily: 'Rubik_300Light' }}>Destinatário:</Text>
+      <FlatList
+        data={players}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) => <Text>{item.name}</Text>}
+      />
       <Quadrados onPress={handleOnPress} />
       <Text style={{ fontSize: 18, marginTop: 25, fontFamily: 'Rubik_300Light' }}>Valor:</Text>
       <View style={{ flex: 1, marginTop: 35 }}>
@@ -49,9 +74,10 @@ export default function Transferindo({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-      <Button
-        onClick={() => navigation.navigate('FazerTransferencia', { valor: count })}
-        name='CONTINUAR' disable={!selected || count === 0 ? true : false} />
+      <Button onClick={confirmTransfer} name='CONTINUAR' />
+      {modalText !== '' && (
+        <Modal onClick={() => setModalText('')} text={modalText} />
+      )}
     </View>
   );
 }
