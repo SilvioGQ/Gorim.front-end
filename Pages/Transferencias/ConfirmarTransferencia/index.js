@@ -7,7 +7,13 @@ import Trans from '../../../assets/moedas/trans.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation, route }) {
-  const { valor } = route.params;
+  const { count } = route.params;
+  const { player } = route.params;
+
+  const makeTransfer = () => {
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player } }] })
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.texto}>Fazer transferência</Text>
@@ -16,13 +22,11 @@ export default function FazerTransferencia({ navigation, route }) {
         source={Trans}
       />
       <Text style={styles.texto2}> Deseja confirmar a transação?  </Text>
-      <Text style={styles.texto3}>{JSON.stringify(valor)}$ </Text>
-      <Button
-        onClick={() => navigation.reset({ routes: [{ name: 'TransferenciaConfirmada' }] })}
-        name='CONTINUAR' />
+      <Text style={styles.texto3}>{JSON.stringify(count)}$ </Text>
+      <Button onClick={makeTransfer} name='CONTINUAR' />
       <View style={{ width: Tela }}>
-        <TouchableOpacity onPress={() => navigation.navigate('FazerTransferencia')} style={styles.button}>
-          <Text style={styles.textobuton}> CANCELAR </Text>
+        <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador', params: {idUser: player.id} }] })} style={styles.button}>
+          <Text style={styles.textobuton}>CANCELAR</Text>
         </TouchableOpacity>
       </View>
     </View>

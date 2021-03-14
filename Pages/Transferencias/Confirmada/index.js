@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 import COLORS from '../../../styles/Colors'
 import Confirmacao from '../../../assets/Logo/confirmacao.png';
 
-export default function Tranferenciaconfirmada({ navigation }) {
+export default function Tranferenciaconfirmada({ navigation, route }) {
+  const { player } = route.params;
+  const [wait, setWait] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      navigation.reset({ routes: [{ name: 'MenuJogador' }] });
-    }, 1000 * 2);
-  });
+    const timer = setTimeout(() => {
+      navigation.reset({ routes: [{ name: 'MenuJogador', params: { player } }] })
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <View style={styles.container}>

@@ -29,7 +29,11 @@ export default function Agricultor1({ navigation, route }) {
   const [player, setPlayer] = useState({});
 
   useEffect(() => {
-    PlayerService.getPlayer(route.params.idUser).then(setPlayer);
+    if(route.params.player) {
+      setPlayer(route.params.player);
+    } else {
+      PlayerService.getPlayer(route.params.idUser).then(setPlayer);
+    }
   }, []);
 
   return (

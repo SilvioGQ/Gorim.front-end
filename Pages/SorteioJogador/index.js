@@ -6,7 +6,7 @@ import Dados from '../../assets/Logo/Dados.png';
 import PlayerService from '../../services/PlayerService';
 
 export default function SorteioJogador({ navigation, route }) {
-  const [player, setPlayer] = useState(route.params.player);
+  const { player } = route.params;
 
   useEffect(() => {
     if (player.host) PlayerService.typesRaffle(player.room);

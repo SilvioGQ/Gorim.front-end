@@ -33,7 +33,7 @@ export default function Transferindo({ navigation, route }) {
     } else if (count === 0) {
       setModalText('Adicione um valor!');
     } else {
-      navigation.navigate('ConfirmarTransferencia', { valor: count });
+      navigation.navigate('ConfirmarTransferencia', { player, count });
     }
   }
 

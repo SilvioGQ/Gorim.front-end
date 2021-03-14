@@ -10,67 +10,68 @@ const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [isMounted, setIsMounted] = useState(true);
   const [players, setPlayers] = useState([]);
-  const [player, setPlayer] = useState(route.params);
+  const player = route.params;
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const [modalVisible, setModalText] = useState(false);
 
   const deletePlayer = () => {
     PlayerService.deletePlayer(player.idUser);
-    navigation.reset({
-      routes: [{
-        name: 'CriarPartida',
-        params: {}
-      }]
-    });
+    navigation.reset({routes: [{name: 'CriarPartida'}]});
     setIsMounted(false);
-    setModalText(!modalVisible)
+    setModalText(!modalVisible);
   }
 
-  useEffect(() => {
-    AppState.addEventListener('change', _handleAppStateChange);
+  // useEffect(() => {
+  //   AppState.addEventListener('change', _handleAppStateChange);
 
-    return () => {
-      AppState.removeEventListener('change', _handleAppStateChange);
-    };
-    YellowBox.ignoreWarnings(['Setting a timer']);
-  }, []);
+  //   return () => {
+  //     AppState.removeEventListener('change', _handleAppStateChange);
+  //   };
+  //   YellowBox.ignoreWarnings(['Setting a timer']);
+  // }, []);
 
-  const _handleAppStateChange = (nextAppState) => {
-    if (
-      appState.current.match(/active/)
-    ) {
-      console.log('dsifj')
-    }
-    if (
-      appState.current.match(/inactive|background/) &&
-      nextAppState === 'active'
-    ) {
-      console.log('Aplicativo aberto novamente');
-    }
+  // const _handleAppStateChange = (nextAppState) => {
+  //   if (
+  //     appState.current.match(/active/)
+  //   ) {
+  //     console.log('dsifj')
+  //   }
+  //   if (
+  //     appState.current.match(/inactive|background/) &&
+  //     nextAppState === 'active'
+  //   ) {
+  //     console.log('Aplicativo aberto novamente');
+  //   }
 
-    appState.current = nextAppState;
-    setAppStateVisible(appState.current);
-    console.log('AppState', appState.current);
-  };
+  //   appState.current = nextAppState;
+  //   setAppStateVisible(appState.current);
+  //   console.log('AppState', appState.current);
+  // };
   
-  useEffect(() => {
-    PlayerService.getPlayers(player.room).then(setPlayers);
-  });
+  // useEffect(() => {
+  //   PlayerService.getPlayers(player.room).then(setPlayers);
+  // });
+
+  // const fetchData = () => {
+  //   setTimeout(() => {
+  //     PlayerService.getPlayers(player.room).then(setPlayers);
+  //     if(!isMounted) break;
+  //   }, 1000 * 5);
+  // }
 
   useEffect(() => {
-    if (isMounted) {
-
-      setTimeout(() => {
-        PlayerService.getPlayers(player.room).then(setPlayers);
-      }, 1000 * 5);
-    }
     if (players.length && players[0].inGame) {
       navigation.navigate('SorteioJogador', { player });
 
       return () => setIsMounted(false);
     }
-    
+
+    if (isMounted) {
+      setTimeout(() => {
+        PlayerService.getPlayers(player.room).then(setPlayers);
+      }, 1000 * 5);
+    }
   }, [players]);
 
   return (
