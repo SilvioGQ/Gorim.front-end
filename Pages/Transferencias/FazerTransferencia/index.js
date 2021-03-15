@@ -17,12 +17,12 @@ export default function Transferindo({ navigation, route }) {
   const [modalText, setModalText] = useState('');
   const [selected, setSelected] = useState(false);
   const [players, setPlayers] = useState([]);
-  const [player, setPlayer] = useState(route.params.player);
   const [count, setCount] = useState(0);
+  const { player } = route.params;
 
   useEffect(() => {
     PlayerService.getPlayers(player.idJogo).then(setPlayers);
-  })
+  }, []);
 
   const handleOnPress = () => setSelected(true);
   const increaseCount = () => setCount(count + 5);
