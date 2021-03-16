@@ -1,29 +1,16 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import React from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import COLORS from '../../styles/Colors'
 import Agricultor2 from '../../assets/perfils/agricultor/Agricultor2.png';
 
-const Tela = Dimensions.get('screen').width;
-export default function Quadrados({ onPress = null, player, onClick, backgroundColor }) {
-  const [selected, setSelected] = useState(-1)
-
-  const handleOnPress = (item, index) => {
-    onPress();
-    setSelected(index);
-    console.log(item);
-  }
-
+export default function Quadrados({ player, onClick, backgroundColor }) {
   return (
     <TouchableOpacity onPress={onClick}>
       <View style={[styles.colunm, { backgroundColor: backgroundColor }]} >
-        <Image
-          style={styles.icone}
-          source={Agricultor2}
-        />
-        <Text style={styles.textinhos}> {player.name} </Text>
+        <Image style={styles.icone} source={Agricultor2} />
+        <Text style={styles.textinhos}>{player.name}</Text>
       </View>
     </TouchableOpacity>
-
   );
 }
 

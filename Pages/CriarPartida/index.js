@@ -28,7 +28,7 @@ export default function CriarPartida({ navigation }) {
           params: {
             name: name,
             room: room,
-            idUser: id,
+            id: id,
             host: true}
         }]
       });
@@ -46,7 +46,7 @@ export default function CriarPartida({ navigation }) {
     //   navigation.navigate('Lobby', {
     //     name: name,
     //     room: room,
-    //     idUser: id,
+    //     id: id,
     //     host: true
     //   });
     // }).catch(() => {
@@ -68,7 +68,7 @@ export default function CriarPartida({ navigation }) {
                   params: {
                     name: name,
                     room: room,
-                    idUser: id,
+                    id: id,
                     host: false
                   }
                 }]
@@ -142,14 +142,6 @@ export default function CriarPartida({ navigation }) {
     </View>
   );
 }
-
-//caso volte  navigation.reset({ 
-//  routes:[{name:'Lobby',
-//  params:{name: name,
-//  room: room,
-//  idUser: idUser,
-//  host: true} }]
-// });
 
 const styles = StyleSheet.create({
   container: {

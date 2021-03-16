@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
-
 import Parcela from '../../assets/agricultorIcones/ParcelaPequena.png';
 import COLORS from '../../styles/Colors';
 import Header from '../../Components/Header';
@@ -10,34 +9,24 @@ import PlayerService from '../../services/PlayerService';
 import Conf from '../../Components/Selo-Verde-Confirmacao';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
-// import Empresario from '../../assets/perfils/empresariox1/Empresario.png';
-import Selo from '../../assets/moedas/Selo.png';
-import Money from '../../Components/Dinheiro/index';
-import Arroz from '../../assets/agricultorIcones/arroz.png';
-import Rice from '../../assets/agricultorIcones/rice.png';
-import Hortalicas from '../../assets/agricultorIcones/hortaliças.png';
-import Money2 from '../../assets/agricultorIcones/money2.png';
-import Agricultor from '../../assets/perfils/agricultor/Agricultor2.png';
-import Lupa from '../../assets/agricultorIcones/lupa.png';
-import SeloG from '../../assets/agricultorIcones/seloG.png';
-import Handshake from '../../assets/agricultorIcones/handshake.png';
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
   const [player, setPlayer] = useState({});
+
   useEffect(() => {
     if(route.params.player) {
       setPlayer(route.params.player);
     } else {
-      PlayerService.getPlayer(route.params.idUser).then(setPlayer);
+      PlayerService.getPlayer(route.params.id).then(setPlayer);
     }
   }, []);
 
   return (
     <View style={styles.container}>
-      <Rodada idUser={player.id} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
+      <Rodada id={player.id} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
       {player.type === 'Agricultor' && (
         <>
           <Header

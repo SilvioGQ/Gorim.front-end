@@ -2,9 +2,9 @@ import { db } from '../firebase/index';
 import { v4 } from 'uuid';
 
 const PlayerService = {
-    getPlayers(idJogo) {
+    getPlayers(room) {
         const players = db
-            .collection('players').where('idJogo', "==", idJogo)
+            .collection('players').where('room', "==", room)
             .get()
             .then(snapshot => {
                 let _players = [];
@@ -15,17 +15,17 @@ const PlayerService = {
             });
         return players;
     },
-    getPlayer(idUser) {
-        const player = db.collection('players').where('id', "==", idUser)
+    getPlayer(id) {
+        const player = db.collection('players').where('id', "==", id)
             .get()
             .then(snapshot => snapshot.docs[0].data());
         return player;
     },
-    addPlayer(name, idJogo, host = false) {
+    addPlayer(name, room, host = false) {
         let id = v4();
         db.collection('players').add({
             name: name,
-            idJogo: idJogo,
+            room: room,
             id: id,
             host: host,
             inGame: false
@@ -33,8 +33,8 @@ const PlayerService = {
 
         return id;
     },
-    setHost(idJogo) {
-        db.collection('players').where('idJogo', '==', idJogo)
+    setHost(room) {
+        db.collection('players').where('room', '==', room)
             .limit(2)
             .get()
             .then(function (snapshot) {
@@ -46,8 +46,8 @@ const PlayerService = {
             });
     },
 
-    deletePlayer(idUser) {
-        db.collection('players').where('id', '==', idUser)
+    deletePlayer(id) {
+        db.collection('players').where('id', '==', id)
             .get()
             .then(function (snapshot) {
                 snapshot.forEach(function (doc) {
@@ -55,8 +55,8 @@ const PlayerService = {
                 });
             });
     },
-    startGame(idJogo) {
-        db.collection('players').where('idJogo', '==', idJogo)
+    startGame(room) {
+        db.collection('players').where('room', '==', room)
             .get()
             .then(function (snapshot) {
                 snapshot.forEach(function (doc) {
@@ -66,11 +66,11 @@ const PlayerService = {
                 });
             });
     },
-    typesRaffle(idJogo) {
+    typesRaffle(room) {
         let emp = 4;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
 
-        db.collection('players').where('idJogo', '==', idJogo)
+        db.collection('players').where('room', '==', room)
             .get()
             .then(function (snapshot) {
                 snapshot.forEach(function (doc) {

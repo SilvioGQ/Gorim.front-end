@@ -15,21 +15,18 @@ export default function Lobby({ navigation, route }) {
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const [modalVisible, setModalText] = useState(false);
 
-  const fetchData = () => {
-    for( let x = 0 ; x <= players.length ; x++ ){
-      if(players[x].id==player.idUser){
-        setPlayer(players[x])
-      }
-    }
+  const updateData = () => {
+    let p = players.filter(item => {
+      if (item.id === player.id) return item;
+    });
+    setPlayer(p[0]);
   }
   const deletePlayer = () => {
-    PlayerService.deletePlayer(player.idUser);
-    if(player.host){
-      PlayerService.setHost(player.room)
-    }
-    navigation.reset({routes: [{name: 'CriarPartida'}]});
     setIsMounted(false);
     setModalText(!modalVisible);
+
+    PlayerService.setHost(player.room);
+    PlayerService.deletePlayer(player.id);
   }
 
   // useEffect(() => {
@@ -58,12 +55,12 @@ export default function Lobby({ navigation, route }) {
   //   setAppStateVisible(appState.current);
   //   console.log('AppState', appState.current);
   // };
-  
+
   // useEffect(() => {
   //   PlayerService.getPlayers(player.room).then(setPlayers);
   // });
 
-  // const fetchData = () => {
+  // const updateData = () => {
   //   setTimeout(() => {
   //     PlayerService.getPlayers(player.room).then(setPlayers);
   //     if(!isMounted) break;
@@ -72,8 +69,9 @@ export default function Lobby({ navigation, route }) {
 
   useEffect(() => {
     if (players.length && players[0].inGame) {
-      navigation.reset({ routes:[ { name: 'SorteioJogador', params:{player}}]
-    });
+      navigation.reset({
+        routes: [{ name: 'SorteioJogador', params: { player } }]
+      });
 
       return () => setIsMounted(false);
     }
@@ -81,10 +79,10 @@ export default function Lobby({ navigation, route }) {
     if (isMounted) {
       setTimeout(() => {
         PlayerService.getPlayers(player.room).then(setPlayers);
-        //if(players.length>0){
-         // fetchData()
-        //}
+        if (players.length > 0) updateData();
       }, 1000 * 1);
+    } else {
+      navigation.reset({ routes: [{ name: 'CriarPartida' }] });
     }
   }, [players]);
 

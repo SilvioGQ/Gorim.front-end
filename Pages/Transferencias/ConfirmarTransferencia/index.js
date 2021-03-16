@@ -25,7 +25,7 @@ export default function FazerTransferencia({ navigation, route }) {
       <Text style={styles.texto3}>{JSON.stringify(count)}$ </Text>
       <Button onClick={makeTransfer} name='CONTINUAR' />
       <View style={{ width: Tela }}>
-        <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador', params: {idUser: player.id} }] })} style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador', params: {id: player.id} }] })} style={styles.button}>
           <Text style={styles.textobuton}>CANCELAR</Text>
         </TouchableOpacity>
       </View>

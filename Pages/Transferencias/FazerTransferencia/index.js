@@ -15,28 +15,32 @@ import { FlatList } from 'react-native-gesture-handler';
 const Tela = Dimensions.get('screen').width;
 export default function Transferindo({ navigation, route }) {
   const [modalText, setModalText] = useState('');
-  const [id, setid] = useState('');
-  const [selected, setSelected] = useState(false);
   const [players, setPlayers] = useState([]);
   const [count, setCount] = useState(0);
+  const [id, setId] = useState();
   const { player } = route.params;
 
   useEffect(() => {
-    PlayerService.getPlayers(player.idJogo).then(setPlayers);
+    PlayerService.getPlayers(player.room).then(resp => {
+      resp = resp.filter(item => {
+        if(item.id !== player.id) return item;
+      });
+      setPlayers(resp);
+    });
   }, []);
 
-  const handleOnPress = () => setSelected(true);
-  const increaseCount = () => setCount(count + 5);
+  const increaseCount = () => setCount(count < player.coin ? count + 5 : count);
   const decreaseCount = () => setCount(count > 0 ? count - 5 : count);
   const confirmTransfer = () => {
-    if (selected === false) {
+    if (!id) {
       setModalText('Selecione o destino!');
     } else if (count === 0) {
       setModalText('Adicione um valor!');
     } else {
-      navigation.navigate('ConfirmarTransferencia', { player, count });
+      navigation.navigate('ConfirmarTransferencia', { player, dest: id, count });
     }
   }
+
   return (
     <View style={styles.container}>
       <Money coin={player.coin} />
@@ -53,7 +57,7 @@ export default function Transferindo({ navigation, route }) {
           numColumns={3}
           data={players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) =>  <Quadrados player={item} onClick={()=> setid(player.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
+          renderItem={({ item }) =>  <Quadrados player={item} onClick={()=> setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
         />
         </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30 }}>Valor:</Text>
@@ -61,7 +65,7 @@ export default function Transferindo({ navigation, route }) {
         <View style={styles.setas}>
           <TouchableOpacity onPress={decreaseCount}>
             <Image
-              style={styles.icone2}
+              style={[styles.icone2, { opacity: count === 0 ? 0.5 : 1 }]}
               source={setaEsquerda}
             />
           </TouchableOpacity>
@@ -70,7 +74,7 @@ export default function Transferindo({ navigation, route }) {
           </View>
           <TouchableOpacity onPress={increaseCount}>
             <Image
-              style={styles.icone2}
+              style={[styles.icone2, { opacity: count === 300 ? 0.5 : 1 }]}
               source={setaDireita}
             />
           </TouchableOpacity>

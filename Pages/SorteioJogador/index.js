@@ -15,7 +15,7 @@ export default function SorteioJogador({ navigation, route }) {
       navigation.reset({
         routes: [{
           name: 'MenuJogador',
-          params: { idUser: player.idUser }
+          params: { id: player.id }
         }]
       })
     }, 1000 * 2);
