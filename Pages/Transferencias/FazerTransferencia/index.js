@@ -15,6 +15,7 @@ import { FlatList } from 'react-native-gesture-handler';
 const Tela = Dimensions.get('screen').width;
 export default function Transferindo({ navigation, route }) {
   const [modalText, setModalText] = useState('');
+  const [id, setid] = useState('');
   const [selected, setSelected] = useState(false);
   const [players, setPlayers] = useState([]);
   const [count, setCount] = useState(0);
@@ -28,7 +29,7 @@ export default function Transferindo({ navigation, route }) {
   const increaseCount = () => setCount(count + 5);
   const decreaseCount = () => setCount(count > 0 ? count - 5 : count);
   const confirmTransfer = () => {
-    if(selected === false) {
+    if (selected === false) {
       setModalText('Selecione o destino!');
     } else if (count === 0) {
       setModalText('Adicione um valor!');
@@ -36,7 +37,6 @@ export default function Transferindo({ navigation, route }) {
       navigation.navigate('ConfirmarTransferencia', { player, count });
     }
   }
-
   return (
     <View style={styles.container}>
       <Money coin={player.coin} />
@@ -47,14 +47,16 @@ export default function Transferindo({ navigation, route }) {
         />
         <Text style={styles.header}>Fazer {'\n'} transferência</Text>
       </View>
-      <Text style={{ fontSize: 18, marginTop: 20, fontFamily: 'Rubik_300Light' }}>Destinatário:</Text>
-      <FlatList
-        data={players}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
-      />
-      <Quadrados onPress={handleOnPress} />
-      <Text style={{ fontSize: 18, marginTop: 25, fontFamily: 'Rubik_300Light' }}>Valor:</Text>
+      <Text style={{ fontSize: 18, marginTop: 30, fontFamily: 'Rubik_300Light', marginHorizontal:15 }}>Destinatário:</Text>
+      <View style={{marginHorizontal:15}}>
+        <FlatList
+          numColumns={3}
+          data={players}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({ item }) =>  <Quadrados player={item} onClick={()=> setid(player.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
+        />
+        </View>
+      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30 }}>Valor:</Text>
       <View style={{ flex: 1, marginTop: 35 }}>
         <View style={styles.setas}>
           <TouchableOpacity onPress={decreaseCount}>
@@ -88,7 +90,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     padding: 6,
     width: Tela,
-    paddingTop: 25
+    paddingTop: 25,
+
   },
   setas: {
     flexDirection: 'row',

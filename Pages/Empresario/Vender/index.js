@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
+import React, { useState,useEffect } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions, FlatList} from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Quantidades from '../../../Components/Quantidades';
@@ -10,11 +10,16 @@ import Tractor from '../../../assets/agricultorIcones/tractor.png';
 import Baixo from '../../../assets/moedas/baixo.png';
 import Normal from '../../../assets/moedas/normal.png';
 import Alto from '../../../assets/moedas/alto.png';
-
+import PlayerService from '../../../services/PlayerService';
 const Tela = Dimensions.get('screen').width;
 export default function Vendas({ navigation, route }) {
   const { name } = route.params;
+  const [players, setPlayers] = useState([]);
   const [Selected, setSelected] = useState(-1);
+  const { player } = route.params;
+  useEffect(() => {
+    PlayerService.getPlayers(player.idJogo).then(setPlayers);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.end}>
@@ -36,9 +41,16 @@ export default function Vendas({ navigation, route }) {
         />
         <Text style={styles.header}> Venda de {'\n'} {JSON.stringify(name)} </Text>
       </View>
-      <Text style={{ alignSelf: 'flex-start', fontSize: 20, fontFamily: 'Rubik_300Light', marginLeft: 25 }}> Clientes: </Text>
-      <Quadrados />
-      <Text style={{ alignSelf: 'flex-start', fontSize: 20, fontFamily: 'Rubik_300Light', marginLeft: 25, marginTop: 10 }}> Valor: </Text>
+      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30}}> Clientes: </Text>
+      <View style={{marginHorizontal:15}}>
+      <FlatList
+          numColumns={3}
+          data={players}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({ item }) => <Quadrados player={item} />}
+        />
+        </View>
+      <Text style={{fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30 }}> Valor: </Text>
       <View style={styles.row}>
         <TouchableOpacity onPress={() => setSelected(0)}>
           <View style={[styles.colunm, { backgroundColor: Selected == 0 ? "#8ACF3A" : '#fff' }]}>
@@ -82,7 +94,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    paddingTop: 35
+    paddingTop: 35,
+    padding: 6,
   },
   valor: {
     fontFamily: 'Rubik_300Light',
@@ -91,9 +104,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    margin: 8,
+    alignItems: 'center',
+    marginHorizontal:15,
     width: Tela,
     flexWrap: 'wrap'
   },
@@ -127,7 +139,7 @@ const styles = StyleSheet.create({
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 7,
+    margin: 10,
     backgroundColor: COLORS.textWhite,
     width: 96,
     height: 84,

@@ -8,49 +8,33 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenarios({ onClick }) {
   const [isSelected3, setSelection3] = useState(false);
   return (
-    <View style={styles.container}>
-      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', padding: 30, width: Tela }}>
+      <View style={{flex:1, justifyContent: 'space-around', alignItems: 'center', padding: 10, width: Tela, flexDirection:'row', backgroundColor: COLORS.bgColorPrimary, marginHorizontal:15}}>
         <TouchableOpacity onPress={onClick}>
-          <View style={styles.resumo}>
+          <View style={[styles.resumo,{justifyContent: 'space-between'}]}>
             <Image
               style={styles.logo}
               source={Papel}
             />
-            <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 15, textAlign: 'center', margin: 5 }}> Resumo de cenário </Text>
+            <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 12, textAlign: 'center', paddingHorizontal:25 }}> Resumo de cenário </Text>
           </View>
         </TouchableOpacity>
-        <View style={{ flexDirection: 'row', alignSelf: 'flex-start', marginLeft: 20, marginTop: 10 }}>
-          <CheckBox
-            value={isSelected3}
-            onValueChange={setSelection3}
-            style={styles.checkbox}
-          />
-          <Text style={styles.candidato}>Terminei minhas ações</Text>
+        <View style={styles.resumo}>
+          <Text style={styles.candidato}>Finalizar etapa</Text>
         </View>
       </View>
-    </View>
 
   );
 }
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    backgroundColor: COLORS.bgColorPrimary,
-    alignItems: 'center',
-    padding: '2%',
-    width: Tela,
-  },
   resumo: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     margin: '1%',
     backgroundColor: COLORS.textWhite,
-    width: 260,
-    height: 44,
+    height: 50,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -63,13 +47,13 @@ const styles = StyleSheet.create({
   },
   candidato: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 18,
-    marginTop: -1
+    fontSize: 12,
+    paddingHorizontal:25
+
   },
   logo: {
     width: 30,
     height: 30,
-    marginRight: 16,
-    margin: 7
+    marginLeft:15
   }
 });

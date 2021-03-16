@@ -10,13 +10,23 @@ const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [isMounted, setIsMounted] = useState(true);
   const [players, setPlayers] = useState([]);
-  const player = route.params;
+  const [player, setPlayer] = useState(route.params);
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const [modalVisible, setModalText] = useState(false);
 
+  const fetchData = () => {
+    for( let x = 0 ; x <= players.length ; x++ ){
+      if(players[x].id==player.idUser){
+        setPlayer(players[x])
+      }
+    }
+  }
   const deletePlayer = () => {
     PlayerService.deletePlayer(player.idUser);
+    if(player.host){
+      PlayerService.setHost(player.room)
+    }
     navigation.reset({routes: [{name: 'CriarPartida'}]});
     setIsMounted(false);
     setModalText(!modalVisible);
@@ -62,7 +72,8 @@ export default function Lobby({ navigation, route }) {
 
   useEffect(() => {
     if (players.length && players[0].inGame) {
-      navigation.navigate('SorteioJogador', { player });
+      navigation.reset({ routes:[ { name: 'SorteioJogador', params:{player}}]
+    });
 
       return () => setIsMounted(false);
     }
@@ -70,7 +81,10 @@ export default function Lobby({ navigation, route }) {
     if (isMounted) {
       setTimeout(() => {
         PlayerService.getPlayers(player.room).then(setPlayers);
-      }, 1000 * 5);
+        //if(players.length>0){
+         // fetchData()
+        //}
+      }, 1000 * 1);
     }
   }, [players]);
 

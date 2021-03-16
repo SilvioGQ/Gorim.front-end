@@ -30,28 +30,41 @@ const PlayerService = {
             host: host,
             inGame: false
         });
-        
+
         return id;
     },
+    setHost(idJogo) {
+        db.collection('players').where('idJogo', '==', idJogo)
+            .limit(2)
+            .get()
+            .then(function (snapshot) {
+                snapshot.forEach(function (doc) {
+                    doc.ref.update({
+                        host: true
+                    });
+                });
+            });
+    },
+
     deletePlayer(idUser) {
         db.collection('players').where('id', '==', idUser)
             .get()
             .then(function (snapshot) {
-            snapshot.forEach(function (doc) {
-                doc.ref.delete();
+                snapshot.forEach(function (doc) {
+                    doc.ref.delete();
+                });
             });
-        });
     },
     startGame(idJogo) {
         db.collection('players').where('idJogo', '==', idJogo)
             .get()
             .then(function (snapshot) {
-            snapshot.forEach(function (doc) {
-                doc.ref.update({
-                    inGame: true
+                snapshot.forEach(function (doc) {
+                    doc.ref.update({
+                        inGame: true
+                    });
                 });
             });
-        });
     },
     typesRaffle(idJogo) {
         let emp = 4;

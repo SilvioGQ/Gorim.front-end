@@ -7,7 +7,7 @@ export default function Quantidade() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ alignSelf: 'flex-start', fontSize: 20, fontFamily: 'Rubik_300Light', marginLeft: 25, marginTop: 5 }}>Quantidade:</Text>
+      <Text style={{fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30, alignSelf:'flex-start'}}>Quantidade:</Text>
       <View style={styles.view}>
         <TouchableOpacity style={[styles.numeros, { backgroundColor: Selected >= 0 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelected(0)}>
           <Text style={styles.numeros2}>1</Text>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    padding: '1%',
+    padding: 2,
     margin: '3%',
     alignItems: 'center',
     shadowColor: "#000",

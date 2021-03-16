@@ -27,7 +27,6 @@ const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
   const [player, setPlayer] = useState({});
-
   useEffect(() => {
     if(route.params.player) {
       setPlayer(route.params.player);
@@ -69,28 +68,28 @@ export default function Agricultor1({ navigation, route }) {
         <>
           <Header
             player={player}
-            image={require(`../../assets/perfils/empresariox1/${player.speciality}.png`)}
+            image={require(`../../assets/perfils/empresariox1/Semente.png`)}
           />
           <View style={styles.row}>
             {player.speciality === 'Fertilizante' && (
               <>
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Comum' })} icone={require('../../assets/agricultorIcones/fertilizanteComum.png')} texto='Vender Fertilizante Comum' />
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Premium' })} icone={require('../../assets/agricultorIcones/fertilizantePremium.png')} texto='Vender Fertilizante Premium' />
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Super Premium' })} icone={require('../../assets/agricultorIcones/fertilizanteSuperPremium.png')} texto='Vender Fertilizante Super Premium' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Comum' })} icone={require('../../assets/agricultorIcones/fertilizanteComum.png')} texto='Vender Fertilizante Comum' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Premium' })} icone={require('../../assets/agricultorIcones/fertilizantePremium.png')} texto='Vender Fertilizante Premium' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Super Premium' })} icone={require('../../assets/agricultorIcones/fertilizanteSuperPremium.png')} texto='Vender Fertilizante Super Premium' />
               </> 
             )}
             {player.speciality === 'Agrotoxico' && (
               <>
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Agrotoxico Comum' })} icone={require('../../assets/agricultorIcones/agrotoxicoComum.png')} texto='Vender Agrotoxico Comum' />
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Agrotoxico Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoPremium.png')} texto='Vender Agrotoxico Premium' />
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Agrotoxico Super Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoSuperPremium.png')} texto='Vender Agrotoxico Super Premium' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Comum' })} icone={require('../../assets/agricultorIcones/agrotoxicoComum.png')} texto='Vender Agrotoxico Comum' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoPremium.png')} texto='Vender Agrotoxico Premium' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Super Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoSuperPremium.png')} texto='Vender Agrotoxico Super Premium' />
               </> 
             )}
             {player.speciality === 'Semente' && (
               <>
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Soja' })} icone={require('../../assets/agricultorIcones/arroz.png')} texto='Vender Soja' />
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Arroz' })} icone={require('../../assets/agricultorIcones/rice.png')} texto='Vender Arroz' />
-              <Item onClick={() => navigation.navigate('Vendas', { name: 'Hortaliças' })} icone={require('../../assets/agricultorIcones/hortaliças.png')} texto='Vender Hortaliças' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Soja' })} icone={require('../../assets/agricultorIcones/arroz.png')} texto='Vender Soja' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Arroz' })} icone={require('../../assets/agricultorIcones/rice.png')} texto='Vender Arroz' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Hortaliças' })} icone={require('../../assets/agricultorIcones/hortaliças.png')} texto='Vender Hortaliças' />
               </> 
             )}
             <Item onClick={() => navigation.navigate('FazerTransferencia', { player })} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer Transferencia' />

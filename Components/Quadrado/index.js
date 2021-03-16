@@ -4,7 +4,7 @@ import COLORS from '../../styles/Colors'
 import Agricultor2 from '../../assets/perfils/agricultor/Agricultor2.png';
 
 const Tela = Dimensions.get('screen').width;
-export default function Quadrados({ onPress = null }) {
+export default function Quadrados({ onPress = null, player, onClick, backgroundColor }) {
   const [selected, setSelected] = useState(-1)
 
   const handleOnPress = (item, index) => {
@@ -14,68 +14,24 @@ export default function Quadrados({ onPress = null }) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.row}>
-        <TouchableOpacity onPress={handleOnPress}>
-          <View style={[styles.colunm, { backgroundColor: selected == 0 ? "#8ACF3A" : '#fff' }]} >
-            <Image
-              style={styles.icone}
-              source={Agricultor2}
-            />
-            <Text style={styles.textinhos}> Agricultor </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleOnPress}>
-          <View style={[styles.colunm, { backgroundColor: selected == 1 ? "#8ACF3A" : '#fff' }]}>
-            <Image
-              style={styles.icone}
-              source={Agricultor2}
-            />
-            <Text style={styles.textinhos}> Agricultor </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleOnPress}>
-          <View style={[styles.colunm, { backgroundColor: selected == 2 ? "#8ACF3A" : '#fff' }]} >
-            <Image
-              style={styles.icone}
-              source={Agricultor2}
-            />
-            <Text style={styles.textinhos}> Agricultor </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleOnPress}>
-          <View style={[styles.colunm, { backgroundColor: selected == 3 ? "#8ACF3A" : '#fff' }]}>
-            <Image
-              style={styles.icone}
-              source={Agricultor2}
-            />
-            <Text style={styles.textinhos}> Agricultor </Text>
-          </View>
-        </TouchableOpacity>
+    <TouchableOpacity onPress={onClick}>
+      <View style={[styles.colunm, { backgroundColor: backgroundColor }]} >
+        <Image
+          style={styles.icone}
+          source={Agricultor2}
+        />
+        <Text style={styles.textinhos}> {player.name} </Text>
       </View>
-    </View>
+    </TouchableOpacity>
+
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor: COLORS.bgColorPrimary,
-    padding: 3,
-    width: Tela
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    margin: 8,
-    width: Tela,
-    flexWrap: 'wrap'
-  },
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 7,
+    margin: 10,
     backgroundColor: COLORS.textWhite,
     width: 96,
     height: 84,

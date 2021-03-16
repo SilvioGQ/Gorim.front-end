@@ -38,7 +38,8 @@ useEffect(() => {
     SelectImage()
 })
     return (
-        <ScrollView>
+        <ScrollView 
+        showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 <View style={styles.row}>
                     <Image
@@ -48,8 +49,8 @@ useEffect(() => {
                     <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
                 </View>
                 <Text style={styles.texto}>Nível de poluição:</Text>
-                <View style={[styles.row, {backgroundColor: '#FFFFFF', marginTop:20, borderRadius: 20, height: 75, width: 167, shadowColor: "#000",shadowOffset: {width: 0,height: 4},shadowOpacity: 0.32,shadowRadius: 5.46,elevation: 9}]}>
-                    <Text style={{fontSize: 36, marginLeft: 7, textAlign: 'center', alignItems: 'center', marginTop: 13}}>{poluicao}%</Text>
+                <View style={[styles.row, {backgroundColor: '#FFFFFF', marginTop:20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000",shadowOffset: {width: 0,height: 4},shadowOpacity: 0.32,shadowRadius: 5.46,elevation: 9}]}>
+                    <Text style={{fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop:20}}>{poluicao}%</Text>
                     <Image style={styles.emoji} source={Image1} />
                 </View>
                 <Text style={styles.texto}>Saldos:</Text>
@@ -109,33 +110,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.bgColorPrimary,
         width: Tela,
-        paddingTop: 60,
-        
+        paddingTop: 45
     },
     title:{
         fontSize: 20,
-        fontFamily: 'Rubik_300Light'
+        fontFamily: 'Rubik_300Light',
+        marginTop:10
     },
     row: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginVertical:10
     },
     image: {
         width: 62,
         height: 60,
-    },
-    linha: {
-        width: '90%',
-        margin: '2%',
-        marginLeft: 9.5,
-        height: 14,
     },
     texto: {
         fontFamily: 'Rubik_400Regular',
         fontSize: 20,
         textAlign: 'left',
         alignSelf: 'flex-start',
-        marginTop: '8%',
-        marginLeft: '7%'
+        marginVertical: 15,
+        marginLeft: 15
     },
     numeros: {
         flexDirection: 'row',
@@ -144,11 +140,11 @@ const styles = StyleSheet.create({
         width: "90%"
     },
     emoji: {
-        width: 65,
-        height: 65,
+        width: 70,
+        height: 70,
         alignItems: 'center',
         marginLeft: 20,
-        marginTop:5
+        marginTop:10
     },
     bloquinho: {
         backgroundColor: COLORS.bgColorSecondary,
