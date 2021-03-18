@@ -18,41 +18,27 @@ export default function CriarPartida({ navigation }) {
   const createRoom = () => {
     Batata().then(data => {
       if (name !== '') {
-      let room = data.data;
-      // setRoom(room);
+        let room = data.data;
 
-      PlayerService.addPlayer(name, room, true).then(id => {
-        navigation.reset({
-          routes: [{
-            name: 'Lobby',
-            params: {
-              name: name,
-              room: room,
-              id: id,
-              host: true}
-          }]
+        PlayerService.addPlayer(name, room, true).then(id => {
+          navigation.reset({
+            routes: [{
+              name: 'Lobby',
+              params: {
+                name: name,
+                room: room,
+                id: id,
+                host: true
+              }
+            }]
+          });
         });
-      });
-    } else{
-      setModalText('Você precisa adicionar um nome')
-    }
+      } else {
+        setModalText('Você precisa adicionar um nome')
+      }
     }).catch(() => {
       setModalText('Erro ao criar partida!');
-    })
-    // Batata().then(data => { 
-    //   setRoom(data.data);
-      
-    //   let id = PlayerService.addPlayer(name, room, true);
-    //   setIdUser(id);
-    //   navigation.navigate('Lobby', {
-    //     name: name,
-    //     room: room,
-    //     id: id,
-    //     host: true
-    //   });
-    // }).catch(() => {
-    //   setModalText('Erro ao criar partida!');
-    // });
+    });
   }
 
   const selectRoom = () => {
@@ -71,7 +57,8 @@ export default function CriarPartida({ navigation }) {
                       name: name,
                       room: room,
                       id: id,
-                      host: false}
+                      host: false
+                    }
                   }]
                 });
               });

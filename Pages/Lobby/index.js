@@ -13,7 +13,7 @@ export default function Lobby({ navigation, route }) {
   const [player, setPlayer] = useState(route.params);
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
-  const [modalVisible, setModalText] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const updateData = () => {
     let p = players.filter(item => {
@@ -24,7 +24,7 @@ export default function Lobby({ navigation, route }) {
 
   const deletePlayer = () => {
     setIsMounted(false);
-    setModalText(!modalVisible);
+    setModalVisible(!modalVisible);
 
     PlayerService.setHost(player.room);
     PlayerService.deletePlayer(player.id);
@@ -82,11 +82,11 @@ export default function Lobby({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalText(!modalVisible)}>
+      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
         <Image style={{ width: 25, height: 27, marginRight: 20, marginTop: -10, marginVertical: 10 }} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
       {modalVisible === true && (
-        <ModalHeader DeletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalText(!modalVisible)} />
+        <ModalHeader DeletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
       )}
       <Text style={styles.texto}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />

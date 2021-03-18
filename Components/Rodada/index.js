@@ -7,13 +7,14 @@ import COLORS from '../../styles/Colors';
 
 const Tela = Dimensions.get('screen').width;
 export default function Rodada({ navigationG, route, id }) {
+  const [modalVisible, setModalVisible] = useState(false);
+  
   const deletePlayer = () => {
     PlayerService.deletePlayer(id);
     navigationG();
-    setModalText(!modalVisible);
+    setModalVisible(!modalVisible);
   }
 
-  const [modalVisible, setModalVisible] = useState(false)
   return (
     <View style={styles.container}>
       <Text style={styles.textLarge}>Rodada </Text>

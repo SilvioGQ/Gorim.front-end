@@ -74,7 +74,7 @@ export default function Transferindo({ navigation, route }) {
           </View>
           <TouchableOpacity onPress={increaseCount}>
             <Image
-              style={[styles.icone2, { opacity: count === 300 ? 0.5 : 1 }]}
+              style={[styles.icone2, { opacity: count === player.coin ? 0.5 : 1 }]}
               source={setaDireita}
             />
           </TouchableOpacity>
