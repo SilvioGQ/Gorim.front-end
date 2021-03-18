@@ -21,6 +21,7 @@ export default function Lobby({ navigation, route }) {
     });
     setPlayer(p[0]);
   }
+
   const deletePlayer = () => {
     setIsMounted(false);
     setModalText(!modalVisible);
@@ -59,13 +60,6 @@ export default function Lobby({ navigation, route }) {
   // useEffect(() => {
   //   PlayerService.getPlayers(player.room).then(setPlayers);
   // });
-
-  // const updateData = () => {
-  //   setTimeout(() => {
-  //     PlayerService.getPlayers(player.room).then(setPlayers);
-  //     if(!isMounted) break;
-  //   }, 1000 * 5);
-  // }
 
   useEffect(() => {
     if (players.length && players[0].inGame) {

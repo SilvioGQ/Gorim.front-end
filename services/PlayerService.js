@@ -1,5 +1,4 @@
-import { db } from '../firebase/index';
-import { v4 } from 'uuid';
+import { db } from '../firebase';
 
 const PlayerService = {
     getPlayers(room) {
@@ -9,29 +8,25 @@ const PlayerService = {
             .then(snapshot => {
                 let _players = [];
                 snapshot.forEach(function (doc) {
-                    _players.push(doc.data());
+                    _players.push(Object.assign(doc.data(), { id: doc.id }));
                 });
                 return _players;
             });
         return players;
     },
     getPlayer(id) {
-        const player = db.collection('players').where('id', "==", id)
+        const player = db.collection('players').doc(id)
             .get()
-            .then(snapshot => snapshot.docs[0].data());
+            .then(snapshot => Object.assign(snapshot.data(), { id: snapshot.id }));
         return player;
     },
     addPlayer(name, room, host = false) {
-        let id = v4();
-        db.collection('players').add({
+        return db.collection('players').add({
             name: name,
             room: room,
-            id: id,
             host: host,
             inGame: false
-        });
-
-        return id;
+        }).then(docRef => docRef.id);
     },
     setHost(room) {
         db.collection('players').where('room', '==', room)
@@ -47,12 +42,10 @@ const PlayerService = {
     },
 
     deletePlayer(id) {
-        db.collection('players').where('id', '==', id)
+        db.collection('players').doc(id)
             .get()
             .then(function (snapshot) {
-                snapshot.forEach(function (doc) {
-                    doc.ref.delete();
-                });
+                snapshot.ref.delete();
             });
     },
     startGame(room) {

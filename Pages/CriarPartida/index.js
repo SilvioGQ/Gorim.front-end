@@ -19,18 +19,19 @@ export default function CriarPartida({ navigation }) {
     Batata().then(data => {
       if (name !== '') {
       let room = data.data;
-      setRoom(room);
+      // setRoom(room);
 
-      let id = PlayerService.addPlayer(name, room, true);
-      navigation.reset({
-        routes: [{
-          name: 'Lobby',
-          params: {
-            name: name,
-            room: room,
-            id: id,
-            host: true}
-        }]
+      PlayerService.addPlayer(name, room, true).then(id => {
+        navigation.reset({
+          routes: [{
+            name: 'Lobby',
+            params: {
+              name: name,
+              room: room,
+              id: id,
+              host: true}
+          }]
+        });
       });
     } else{
       setModalText('Você precisa adicionar um nome')
@@ -61,17 +62,18 @@ export default function CriarPartida({ navigation }) {
         if (resp.length < 10) {
           if (!resp[0].inGame) {
             if (name !== '') {
-              let id = PlayerService.addPlayer(name, room);
-              navigation.reset({
-                routes: [{
-                  name: 'Lobby',
-                  params: {
-                    name: name,
-                    room: room,
-                    id: id,
-                    host: false
-                  }
-                }]
+              PlayerService.addPlayer(name, room).then(id => {
+
+                navigation.reset({
+                  routes: [{
+                    name: 'Lobby',
+                    params: {
+                      name: name,
+                      room: room,
+                      id: id,
+                      host: false}
+                  }]
+                });
               });
             } else {
               setModalText('Você precisa adicionar um nome')

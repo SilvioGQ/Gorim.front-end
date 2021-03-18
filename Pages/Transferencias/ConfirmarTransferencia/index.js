@@ -2,16 +2,20 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import Button from '../../../Components/Button';
-import COLORS from '../../../styles/Colors'
+import COLORS from '../../../styles/Colors';
 import Trans from '../../../assets/moedas/trans.png';
+import FunctionalityService from '../../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation, route }) {
   const { count } = route.params;
   const { player } = route.params;
+  const { idDest } = route.params;
 
   const makeTransfer = () => {
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player } }] })
+    FunctionalityService.makeTransfer(player.id, idDest, count);
+    player.coin -= count;
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player } }] });
   }
 
   return (

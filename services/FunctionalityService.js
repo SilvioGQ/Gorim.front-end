@@ -1,17 +1,19 @@
-import { db } from '../firebase/index';
+import firebase from 'firebase/app';
+import "firebase/firestore";
+
+import { db } from '../firebase';
 
 const FunctionalityService = {
-    makeTransfer(idSender, idDestiny) {
-        return db.runTransaction(transaction => {
-            // This code may get re-run multiple times if there are conflicts.
-            return transaction.get('players').then(snapshot => {
-                console.log(snapshot.data());
-            });
-        }).then(() => {
-            console.log("Transaction successfully committed!");
-        }).catch((error) => {
-            console.log("Transaction failed: ", error);
-        });
+    makeTransfer(idSender, idDestiny, value) {
+        let batch = db.batch();
+
+        let senderRef = db.collection('players').doc(idSender);
+        batch.update(senderRef, { coin: firebase.firestore.FieldValue.increment(-value) });
+
+        let destinyRef = db.collection('players').doc(idDestiny);
+        batch.update(destinyRef, { coin: firebase.firestore.FieldValue.increment(value) });
+
+        batch.commit();
     }
 }
 
