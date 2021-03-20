@@ -4,6 +4,30 @@ import "firebase/firestore";
 import { db } from '../firebase';
 
 const FunctionalityService = {
+    generateUID() {
+        let firstPart = (Math.random() * 46656) | 0;
+        let secondPart = (Math.random() * 46656) | 0;
+        firstPart = ("000" + firstPart.toString(36)).slice(-3);
+        secondPart = ("000" + secondPart.toString(36)).slice(-3);
+        return firstPart + secondPart;
+    },
+    createRoom() {
+        let id = this.generateUID().toUpperCase();
+        return db.collection('rooms').doc(id).set({
+            inGame: false,
+            players: 1
+        }).then(() => id);
+    },
+    getRoom(id) {
+        return db.collection('rooms').doc(id)
+            .get()
+            .then(snapshot => snapshot.data());
+    },
+    startGame(id) {
+        db.collection('rooms').doc(id).update({
+            inGame: true
+        });
+    },
     makeTransfer(idSender, idDestiny, value) {
         let batch = db.batch();
 

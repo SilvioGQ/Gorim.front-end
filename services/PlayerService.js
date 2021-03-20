@@ -24,13 +24,12 @@ const PlayerService = {
         return db.collection('players').add({
             name: name,
             room: room,
-            host: host,
-            inGame: false
+            host: host
         }).then(docRef => docRef.id);
     },
     setHost(room) {
         db.collection('players').where('room', '==', room)
-            .limit(2)
+            .limit(1)
             .get()
             .then(function (snapshot) {
                 snapshot.forEach(function (doc) {
@@ -46,17 +45,6 @@ const PlayerService = {
             .get()
             .then(function (snapshot) {
                 snapshot.ref.delete();
-            });
-    },
-    startGame(room) {
-        db.collection('players').where('room', '==', room)
-            .get()
-            .then(function (snapshot) {
-                snapshot.forEach(function (doc) {
-                    doc.ref.update({
-                        inGame: true
-                    });
-                });
             });
     },
     typesRaffle(room) {
