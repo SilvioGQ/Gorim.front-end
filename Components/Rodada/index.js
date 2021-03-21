@@ -10,7 +10,7 @@ export default function Rodada({ navigationG, route, id }) {
   const deletePlayer = () => {
     PlayerService.deletePlayer(id);
     navigationG();
-    setModalText(!modalVisible);
+    setModalText(false);
   }
 
   const [modalVisible, setModalVisible] = useState(false)

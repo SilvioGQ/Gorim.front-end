@@ -103,7 +103,6 @@ export default function Routes() {
         },
         headerStyle: {
           backgroundColor: '#EBFFFD',
-
           height: 77
         },
       }} />

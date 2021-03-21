@@ -1,7 +1,8 @@
-import React, { useState,useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions, FlatList} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
+import Modal from '../../../Components/Modal/ModalFrame2'
 import Quantidades from '../../../Components/Quantidades';
 import COLORS from '../../../styles/Colors'
 import Selo from '../../../assets/moedas/Selo.png';
@@ -11,15 +12,28 @@ import Baixo from '../../../assets/moedas/baixo.png';
 import Normal from '../../../assets/moedas/normal.png';
 import Alto from '../../../assets/moedas/alto.png';
 import PlayerService from '../../../services/PlayerService';
+import { FlatList } from 'react-native-gesture-handler';
 const Tela = Dimensions.get('screen').width;
 export default function Vendas({ navigation, route }) {
   const { name } = route.params;
+  const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [Selected, setSelected] = useState(-1);
   const { player } = route.params;
+  const [id, setId] = useState();
   useEffect(() => {
-    PlayerService.getPlayers(player.idJogo).then(setPlayers);
+    PlayerService.getPlayers(player.room).then(resp => {
+      resp = resp.filter(item => {
+        if (item.id !== player.id) return item;
+      });
+      setPlayers(resp);
+    });
   }, []);
+  const confirmTransfer = () => {
+    if (!id) {
+      setModalText('Selecione o destino!');
+    }
+  }
   return (
     <View style={styles.container}>
       <View style={styles.end}>
@@ -41,16 +55,19 @@ export default function Vendas({ navigation, route }) {
         />
         <Text style={styles.header}> Venda de {'\n'} {JSON.stringify(name)} </Text>
       </View>
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30}}> Clientes: </Text>
-      <View style={{marginHorizontal:15}}>
-      <FlatList
+      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Clientes: </Text>
+      <View style={{ marginHorizontal: 15 }}>
+        <FlatList
           numColumns={3}
           data={players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Quadrados player={item} />}
+          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} />}
         />
-        </View>
-      <Text style={{fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30 }}> Valor: </Text>
+      </View>
+      {modalText !== '' && (
+        <Modal onClick={() => setModalText('')} text={modalText} />
+      )}
+      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Valor: </Text>
       <View style={styles.row}>
         <TouchableOpacity onPress={() => setSelected(0)}>
           <View style={[styles.colunm, { backgroundColor: Selected == 0 ? "#8ACF3A" : '#fff' }]}>
@@ -82,9 +99,7 @@ export default function Vendas({ navigation, route }) {
       </View>
       <Quantidades />
       <Button
-        onClick={() => {
-          navigation.navigate('Tranferenciaconfirmada');
-        }}
+        onClick={confirmTransfer}
         name='VENDER' />
     </View>
   );
@@ -105,7 +120,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal:15,
+    marginHorizontal: 15,
     width: Tela,
     flexWrap: 'wrap'
   },

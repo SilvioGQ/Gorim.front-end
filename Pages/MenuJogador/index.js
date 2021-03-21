@@ -15,7 +15,6 @@ const Height = Dimensions.get('screen').height;
 export default function Agricultor1({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
   const [player, setPlayer] = useState({});
-
   useEffect(() => {
     if(route.params.player) {
       setPlayer(route.params.player);
@@ -109,7 +108,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    padding: '2%',
     width: Tela,
   },
   row: {
@@ -145,13 +143,13 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-    elevation: 9,
+    elevation: 3,
   },
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
-    backgroundColor: COLORS.bgColorSecondary,
+    backgroundColor: COLORS.textWhite,
     width: 96,
     height: 84,
     borderRadius: 20,
