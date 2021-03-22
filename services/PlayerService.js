@@ -39,7 +39,6 @@ const PlayerService = {
                 });
             });
     },
-
     deletePlayer(id) {
         db.collection('players').doc(id)
             .get()

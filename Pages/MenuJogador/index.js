@@ -26,7 +26,7 @@ export default function Agricultor1({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Rodada id={player.id} navigationG={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
+      <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
       {player.type === 'Agricultor' && (
         <>
           <Header

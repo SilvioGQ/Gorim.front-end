@@ -3,7 +3,7 @@ import { Text, View, Modal, TouchableOpacity } from 'react-native';
 import COLORS from '../../styles/Colors';
 
 
-export default function ModalHeader({ text, onClick, DeletePlayer }) {
+export default function ModalHeader({ deletePlayer, text, onClick }) {
   return (
     <View>
         <Modal
@@ -22,7 +22,7 @@ export default function ModalHeader({ text, onClick, DeletePlayer }) {
             </TouchableOpacity>
             <TouchableOpacity
               style={{borderRadius: 20,padding: 15,elevation: 5, backgroundColor: COLORS.warningButton, alignItems:'center'}}
-              onPress={DeletePlayer}
+              onPress={deletePlayer}
             >
               <Text style={{textAlign:'center', fontFamily:'Rubik_400Regular', fontSize:18, color:COLORS.textWhite}}>Sair</Text>
             </TouchableOpacity>

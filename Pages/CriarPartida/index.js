@@ -16,62 +16,52 @@ export default function CriarPartida({ navigation }) {
   const [room, setRoom] = useState('');
 
   const createRoom = () => {
-    if (name !== '') {
-      FunctionalityService.createRoom().then(room => {
-        PlayerService.addPlayer(name, room, true).then(id => {
-          navigation.reset({
-            routes: [{
-              name: 'Lobby',
-              params: {
-                name: name,
-                room: room,
-                id: id,
-                host: true
-              }
-            }]
-          });
+    if (name === '') return setModalText('Você precisa adicionar um nome');
+
+    FunctionalityService.createRoom().then(room => {
+      PlayerService.addPlayer(name, room, true).then(id => {
+        navigation.reset({
+          routes: [{
+            name: 'Lobby',
+            params: {
+              name: name,
+              room: room,
+              id: id,
+              host: true
+            }
+          }]
         });
-      }).catch(() => {
-        setModalText('Erro ao criar partida!', error);
       });
-    } else {
-      setModalText('Você precisa adicionar um nome')
-    }
+    }).catch(() => {
+      setModalText('Erro ao criar partida!');
+    });
   }
 
   const selectRoom = () => {
-    PlayerService.getPlayers(room).then(resp => {
+    if (name === '') return setModalText('Você precisa adicionar um nome');
+    if (room === '') return setModalText('Você precisa adicionar o código da sala');
 
-      if (resp.length >= 1) {
-        if (resp.length < 10) {
-          if (!resp[0].inGame) {
-            if (name !== '') {
-              PlayerService.addPlayer(name, room).then(id => {
+    FunctionalityService.getRoom(room).then(rm => {
+      if (rm.players >= 10) return setModalText('Sala atingiu número máximo de jogadores!');
+      if (rm.inGame) return setModalText('Sala está em partida!');
 
-                navigation.reset({
-                  routes: [{
-                    name: 'Lobby',
-                    params: {
-                      name: name,
-                      room: room,
-                      id: id,
-                      host: false
-                    }
-                  }]
-                });
-              });
-            } else {
-              setModalText('Você precisa adicionar um nome')
+      FunctionalityService.addPlayer(room);
+      PlayerService.addPlayer(name, room).then(id => {
+        navigation.reset({
+          routes: [{
+            name: 'Lobby',
+            params: {
+              name: name,
+              room: room,
+              id: id,
+              host: false
             }
-          } else {
-            setModalText('Sala está em partida!')
-          }
-        } else {
-          setModalText('Sala atingiu número máximo de jogadores!')
-        }
-      } else {
-        setModalText('Sala não encontrada!')
-      }
+          }]
+        });
+      });
+    }).catch((e) => {
+      console.log(e)
+      setModalText('Sala não encontrada!');
     });
   }
 
