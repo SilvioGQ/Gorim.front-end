@@ -33,9 +33,11 @@ const styles = StyleSheet.create({
   row3: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    justifyContent: 'space-around',
-    margin: '3%',
-    width: Tela
+    justifyContent: 'space-between',
+    marginHorizontal:10,
+    marginVertical:10,
+    marginLeft:20,
+    width: '90%'
   },
   header: {
     fontFamily: 'Rubik_400Regular',
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
   person: {
     width: 46,
     height: 50,
-    marginRight: '5%'
+    marginRight: 10
   }
 })
 //alt shift f

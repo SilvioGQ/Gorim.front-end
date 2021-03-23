@@ -5,17 +5,19 @@ import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
 import ModalHeader from '../../Components/Modal/ModalHeader';
+import FunctionalityService from '../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
   const [isMounted, setIsMounted] = useState(true);
   const [players, setPlayers] = useState([]);
   const [player, setPlayer] = useState(route.params);
+  const [Game, setGame] = useState({});
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
-  const [modalVisible, setModalText] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const updateData = () => {
+  const updateHost = () => {
     let p = players.filter(item => {
       if (item.id === player.id) return item;
     });
@@ -24,7 +26,7 @@ export default function Lobby({ navigation, route }) {
 
   const deletePlayer = () => {
     setIsMounted(false);
-    setModalText(!modalVisible);
+    setModalVisible(!modalVisible);
 
     PlayerService.setHost(player.room);
     PlayerService.deletePlayer(player.id);
@@ -62,18 +64,21 @@ export default function Lobby({ navigation, route }) {
   // });
 
   useEffect(() => {
-    if (players.length && players[0].inGame) {
+    if(Game.inGame){
       navigation.reset({
         routes: [{ name: 'SorteioJogador', params: { player } }]
       });
-
+  
       return () => setIsMounted(false);
     }
 
     if (isMounted) {
       setTimeout(() => {
+        FunctionalityService.getRoom(player.room).then(setGame);
+        
+        // if(Game.players != players.length) {
         PlayerService.getPlayers(player.room).then(setPlayers);
-        if (players.length > 0) updateData();
+        if (players.length > 0) updateHost();
       }, 1000 * 1);
     } else {
       navigation.reset({ routes: [{ name: 'CriarPartida' }] });
@@ -82,11 +87,11 @@ export default function Lobby({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalText(!modalVisible)}>
+      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
         <Image style={{ width: 25, height: 27, marginRight: 20, marginTop: -10, marginVertical: 10 }} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
       {modalVisible === true && (
-        <ModalHeader DeletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalText(!modalVisible)} />
+        <ModalHeader DeletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
       )}
       <Text style={styles.texto}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
@@ -100,7 +105,7 @@ export default function Lobby({ navigation, route }) {
         />
       }
       {player.host ?
-        <Button name='começar' onClick={() => PlayerService.startGame(player.room)} /> :
+        <Button name='começar' onClick={() => FunctionalityService.startGame(player.room)} /> :
         <Text style={[styles.texto3, { marginBottom: 35 }]}>AGUARDANDO NOVOS JOGADORES</Text>}
     </View>
   );

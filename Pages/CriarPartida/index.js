@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput 
 
 import COLORS from '../../styles/Colors';
 import PlayerService from '../../services/PlayerService';
-import { Batata } from '../Api';
+import FunctionalityService from '../../services/FunctionalityService';
 import Modal from '../../Components/Modal/ModalFrame2';
 import Group28 from '../../assets/Group28.png';
 import Group29 from '../../assets/Group29.png';
@@ -16,43 +16,27 @@ export default function CriarPartida({ navigation }) {
   const [room, setRoom] = useState('');
 
   const createRoom = () => {
-    Batata().then(data => {
-      if (name !== '') {
-      let room = data.data;
-      // setRoom(room);
-
-      PlayerService.addPlayer(name, room, true).then(id => {
-        navigation.reset({
-          routes: [{
-            name: 'Lobby',
-            params: {
-              name: name,
-              room: room,
-              id: id,
-              host: true}
-          }]
+    if (name !== '') {
+      FunctionalityService.createRoom().then(room => {
+        PlayerService.addPlayer(name, room, true).then(id => {
+          navigation.reset({
+            routes: [{
+              name: 'Lobby',
+              params: {
+                name: name,
+                room: room,
+                id: id,
+                host: true
+              }
+            }]
+          });
         });
+      }).catch(() => {
+        setModalText('Erro ao criar partida!', error);
       });
-    } else{
+    } else {
       setModalText('Você precisa adicionar um nome')
     }
-    }).catch(() => {
-      setModalText('Erro ao criar partida!');
-    })
-    // Batata().then(data => { 
-    //   setRoom(data.data);
-      
-    //   let id = PlayerService.addPlayer(name, room, true);
-    //   setIdUser(id);
-    //   navigation.navigate('Lobby', {
-    //     name: name,
-    //     room: room,
-    //     id: id,
-    //     host: true
-    //   });
-    // }).catch(() => {
-    //   setModalText('Erro ao criar partida!');
-    // });
   }
 
   const selectRoom = () => {
@@ -71,7 +55,8 @@ export default function CriarPartida({ navigation }) {
                       name: name,
                       room: room,
                       id: id,
-                      host: false}
+                      host: false
+                    }
                   }]
                 });
               });
@@ -126,10 +111,9 @@ export default function CriarPartida({ navigation }) {
         <TextInput
           maxLength={6}
           style={[styles.button2, styles.text2]}
-          onChangeText={room => setRoom(parseInt(room))}
+          onChangeText={room => setRoom(room.toUpperCase())}
           placeholder='ESCREVER CÓDIGO'
-          value={room.toString()}
-          keyboardType='numeric'
+          value={room}
         >
         </TextInput>
         <TouchableOpacity
@@ -212,6 +196,7 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   text2: {
+    textTransform: 'uppercase',
     fontSize: 18,
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',

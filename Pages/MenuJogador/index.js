@@ -60,27 +60,27 @@ export default function Agricultor1({ navigation, route }) {
           />
           <View style={styles.row}>
             {player.speciality === 'Fertilizante' && (
-              <>
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Comum' })} icone={require('../../assets/agricultorIcones/fertilizanteComum.png')} texto='Vender Fertilizante Comum' />
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Premium' })} icone={require('../../assets/agricultorIcones/fertilizantePremium.png')} texto='Vender Fertilizante Premium' />
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Super Premium' })} icone={require('../../assets/agricultorIcones/fertilizanteSuperPremium.png')} texto='Vender Fertilizante Super Premium' />
-              </> 
+              <View style={{width:'90%', flexDirection:'row', justifyContent:'space-between',  alignItems: 'center' }}>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Comum' })} icone={require('../../assets/agricultorIcones/fertilizanteComum.png')} texto='Vender Fertilizante Comum' backgroundColor='#fff'/>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Premium' })} icone={require('../../assets/agricultorIcones/fertilizantePremium.png')} texto='Vender Fertilizante Premium' backgroundColor='#fff' />
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Fertilizante Super Premium' })} icone={require('../../assets/agricultorIcones/fertilizanteSuperPremium.png')} texto='Vender Fertilizante Super Premium' backgroundColor='#fff'/>
+              </View> 
             )}
             {player.speciality === 'Agrotoxico' && (
-              <>
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Comum' })} icone={require('../../assets/agricultorIcones/agrotoxicoComum.png')} texto='Vender Agrotoxico Comum' />
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoPremium.png')} texto='Vender Agrotoxico Premium' />
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Super Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoSuperPremium.png')} texto='Vender Agrotoxico Super Premium' />
-              </> 
+              <View style={{width:'90%', flexDirection:'row', justifyContent:'space-between',  alignItems: 'center' }}>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Comum' })} icone={require('../../assets/agricultorIcones/agrotoxicoComum.png')} texto='Vender Agrotoxico Comum' backgroundColor='#fff'/>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoPremium.png')} texto='Vender Agrotoxico Premium' backgroundColor='#fff'/>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Agrotoxico Super Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoSuperPremium.png')} texto='Vender Agrotoxico Super Premium' backgroundColor='#fff'/>
+              </View> 
             )}
             {player.speciality === 'Semente' && (
-              <>
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Soja' })} icone={require('../../assets/agricultorIcones/arroz.png')} texto='Vender Soja' />
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Arroz' })} icone={require('../../assets/agricultorIcones/rice.png')} texto='Vender Arroz' />
-              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Hortaliças' })} icone={require('../../assets/agricultorIcones/hortaliças.png')} texto='Vender Hortaliças' />
-              </> 
+              <View style={{width:'90%', flexDirection:'row', justifyContent:'space-between',  alignItems: 'center' }}>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Soja' })} icone={require('../../assets/agricultorIcones/arroz.png')} texto='Vender Soja' backgroundColor='#fff'/>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Arroz' })} icone={require('../../assets/agricultorIcones/rice.png')} texto='Vender Arroz' backgroundColor='#fff'/>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Hortaliças' })} icone={require('../../assets/agricultorIcones/hortaliças.png')} texto='Vender Hortaliças' backgroundColor='#fff'/>
+              </View> 
             )}
-            <Item onClick={() => navigation.navigate('FazerTransferencia', { player })} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer Transferencia' />
+            <Item onClick={() => navigation.navigate('FazerTransferencia', { player })} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer Transferencia' backgroundColor='#fff'/>
           </View>
         </>
       )}
@@ -115,17 +115,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     alignSelf: 'flex-start',
     justifyContent: 'flex-start',
-    margin: '5%',
-    marginTop: '1%',
+    marginHorizontal: 20,
     width: Tela,
     flexWrap: 'wrap'
-  },
-  row3: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    justifyContent: 'space-around',
-    margin: '3%',
-    width: Tela
   },
   row2: {
     flexDirection: 'row',
@@ -143,60 +135,15 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-    elevation: 3,
-  },
-  colunm: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
-    backgroundColor: COLORS.textWhite,
-    width: 96,
-    height: 84,
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-
-    elevation: 9
-  },
-  header: {
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 20,
+    elevation: 6,
   },
   textos: {
     fontFamily: 'Rubik_300Light',
     fontSize: 20,
     alignSelf: 'center'
   },
-  textinhos: {
-    fontFamily: 'Rubik_300Light',
-    fontSize: 14,
-  },
-  logo: {
-    width: 20,
-    height: 23
-  },
-  person: {
-    width: 46,
-    height: 50,
-    marginRight: '5%'
-  },
   icone: {
     width: 40,
     height: 40,
   },
-  vermelho: {
-    backgroundColor: '#FF7F7E'
-  },
-  modal: {
-    flex: 1,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#000000aa',
-    width: Tela,
-  }
 });

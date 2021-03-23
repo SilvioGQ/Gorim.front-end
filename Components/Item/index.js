@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import COLORS from '../../styles/Colors';
-import HandShake from '../../assets/agricultorIcones/handshake.png'
 export default function Item(props) {
   return (
     <TouchableOpacity onPress={props.onClick}>
@@ -19,11 +18,11 @@ export default function Item(props) {
 const styles = StyleSheet.create({
   colunm: {
     alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
-    backgroundColor: COLORS.bgColorSecondary,
+    marginRight:10,
+    marginVertical:10,
+    backgroundColor: COLORS.textWhite,
     width: 96,
-    height: 84,
+    height: 92,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -38,11 +37,13 @@ const styles = StyleSheet.create({
   icone: {
     width: 40,
     height: 40,
+    marginVertical:5
   },
   textinhos: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 12,
-    textAlign:'center'
+    fontSize: 11,
+    textAlign:'center',
+    marginHorizontal:5
   },
 })
 //alt shift f
