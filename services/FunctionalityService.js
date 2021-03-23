@@ -21,7 +21,17 @@ const FunctionalityService = {
     getRoom(id) {
         return db.collection('rooms').doc(id)
             .get()
-            .then(snapshot => snapshot.data());
+            .then(snapshot => Object.assign(snapshot.data(), { id: snapshot.id }));
+    },
+    addPlayer(id) {
+        db.collection('rooms').doc(id).update({
+            players: firebase.firestore.FieldValue.increment(1)
+        });
+    },
+    deletePlayer(id) {
+        db.collection('rooms').doc(id).update({
+            players: firebase.firestore.FieldValue.increment(-1)
+        });
     },
     startGame(id) {
         db.collection('rooms').doc(id).update({
