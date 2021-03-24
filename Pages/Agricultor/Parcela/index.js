@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity,ScrollView } from 'react-native';
-import Button from '../../../../Components/Button';
-import COLORS from '../../../../styles/Colors';
-import DropDown from '../../../../Components/DropDown';
-import Interrogacao from '../../../../assets/interrogacao.png';
-import Pacote from '../../../../assets/agricultorIcones/pacote.png';
-import Parcela from '../../../../assets/agricultorIcones/Parcela.png';
-import Rice from '../../../../assets/agricultorIcones/rice.png'
+import Button from '../../../Components/Button';
+import COLORS from '../../../styles/Colors';
+import DropDown from '../../../Components/DropDown';
+import Interrogacao from '../../../assets/interrogacao.png';
+import Pacote from '../../../assets/agricultorIcones/pacote.png';
+import Parcela from '../../../assets/agricultorIcones/Parcela.png';
+import Rice from '../../../assets/agricultorIcones/rice.png';
 const Tela = Dimensions.get('screen').width;
 const Tela2 = Dimensions.get('screen').height;
 export default function Aparcela({ navigation }) {
@@ -42,7 +42,7 @@ export default function Aparcela({ navigation }) {
             </View>
             <View style={{justifyContent:'center', alignItems:'center', position:'relative', top:-40, left:60}}>
             {dropDown && (
-            <DropDown onClick={SelecteItem} nome='arroz' image={require('../../../../assets/agricultorIcones/rice.png')}/>
+            <DropDown onClick={SelecteItem} nome='arroz' image={Rice}/>
             )}
             </View>
           </TouchableOpacity>
@@ -60,7 +60,7 @@ export default function Aparcela({ navigation }) {
           </TouchableOpacity>
           <View style={{justifyContent:'center', alignItems:'center', position:'relative', top:-40, left:60}}>
             {dropDown2 && (
-            <DropDown onClick={()=>setDropDown2(false)} nome={'Fertilizante\ncomum'} image={require('../../../../assets/agricultorIcones/fertilizanteComum.png')}/>
+            <DropDown onClick={()=>setDropDown2(false)} nome={'Fertilizante\ncomum'} image={require('../../../assets/agricultorIcones/fertilizanteComum.png')}/>
             )}
             </View>
           <TouchableOpacity onPress={()=> setDropDown(true)}>

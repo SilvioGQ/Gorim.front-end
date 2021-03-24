@@ -12,7 +12,7 @@ import Rodada from '../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
-export default function Agricultor1({ navigation, route }) {
+export default function MenuJogador({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
   const [player, setPlayer] = useState({});
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Agricultor1({ navigation, route }) {
             image={require('../../assets/perfils/agricultor/Agricultor.png')}
           />
           <View>
-            <TouchableOpacity onPress={() => navigation.navigate('Parcela')}>
+            <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })}>
               <View style={styles.row2}>
                 <Image
                   style={styles.icone}

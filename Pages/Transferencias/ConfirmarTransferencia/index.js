@@ -7,7 +7,7 @@ import Trans from '../../../assets/moedas/trans.png';
 import FunctionalityService from '../../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
-export default function FazerTransferencia({ navigation, route }) {
+export default function ConfirmarTransferencia({ navigation, route }) {
   const { count } = route.params;
   const { player } = route.params;
   const { idDest } = route.params;

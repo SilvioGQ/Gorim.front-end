@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../../styles/Colors'
 import Confirmacao from '../../../assets/Logo/confirmacao.png';
 
-export default function Tranferenciaconfirmada({ navigation, route }) {
+export default function Confirmada({ navigation, route }) {
   const { player } = route.params;
 
   useEffect(() => {

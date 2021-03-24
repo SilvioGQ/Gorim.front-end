@@ -13,7 +13,7 @@ import PlayerService from '../../../services/PlayerService';
 import { FlatList } from 'react-native-gesture-handler';
 
 const Tela = Dimensions.get('screen').width;
-export default function Transferindo({ navigation, route }) {
+export default function FazerTransferencia({ navigation, route }) {
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [count, setCount] = useState(0);

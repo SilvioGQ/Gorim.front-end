@@ -47,7 +47,8 @@ const PlayerService = {
             });
     },
     typesRaffle(room) {
-        let emp = 4;
+        let emp = 0;
+        // let emp = 4;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
 
         db.collection('players').where('room', '==', room)
@@ -67,6 +68,14 @@ const PlayerService = {
                         doc.ref.update({
                             type: 'Agricultor',
                             coin: 300,
+                            parcelLand: [
+                                { purchased: true },
+                                { purchased: true },
+                                { purchased: true },
+                                { purchased: true },
+                                { purchased: true },
+                                { purchased: true }
+                            ],
                             stamp: false
                         });
                     }

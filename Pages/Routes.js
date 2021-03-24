@@ -9,7 +9,6 @@ import Frame6 from './InicioJogo/Votaçao';
 import Frame7 from './InicioJogo/Eleitos';
 import Espera from './Tela de Espera';
 import Insumo from './Transferencias/Insumo';
-import Parcela from './Agricultor/Parcelaterra';
 import Agrotoxicos from './TELAS NÃO UTILIZADAS/Agrotoxicos';
 import Vendas from './Empresario/Vender';
 import FazerTransferencia from './Transferencias/FazerTransferencia';
@@ -19,7 +18,8 @@ import Cenario from './Cenario';
 import Fiscal from './Fiscal/Fiscal1';
 import Selo from './Fiscal/Selo';
 import Multa from './Fiscal/Multa';
-import Aparcela from './Agricultor/Parcelaterra/aparcela';
+import ControleParcelas from './Agricultor/ControleParcelas';
+import Parcela from './Agricultor/Parcela';
 import Pacotes from '../Components/TelaDaSeta';
 import Proposta from './Agricultor/Propostas';
 import Analizar from './Analisar';
@@ -124,7 +124,7 @@ export default function Routes() {
           height: 100
         },
       }} />
-      <Stack.Screen name="Parcela" component={Parcela} options={{
+      <Stack.Screen name="ControleParcelas" component={ControleParcelas} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />
@@ -156,7 +156,7 @@ export default function Routes() {
         headerTransparent: true,
         headerTitle: '',
       }} />
-      <Stack.Screen name="Aparcela" component={Aparcela} options={{
+      <Stack.Screen name="Parcela" component={Parcela} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />
