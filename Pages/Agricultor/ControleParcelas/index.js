@@ -10,71 +10,18 @@ export default function ControleParcelas({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={{
-        fontFamily: 'Rubik_300Light',
-        fontSize: 24,
-        lineHeight: 120,
-        alignSelf: 'center',
-      }}>Parcelas de terra</Text>
+      <Text style={styles.mainText}>Parcelas de terra</Text>
       <FlatList
         numColumns={2}
         data={player.parcelLand}
-        keyExtractor={(item, index) => index}
-        renderItem={({ item, index })  =>
-          <TouchableOpacity onPress={() => navigation.navigate('Parcela', { item })} style={{marginVertical:35, marginLeft:30, marginRight:20}}>
-            <Image style={styles.logo} source={Parcela} />
-            <Text style={styles.text}>P{index+1}</Text>
+        keyExtractor={item => item.id}
+        renderItem={({ item })  =>
+          <TouchableOpacity onPress={() => navigation.navigate('Parcela', { item })} style={styles.item}>
+            <Image style={styles.image} source={Parcela} />
+            <Text style={styles.text}>P{item.id+1}</Text>
           </TouchableOpacity>
         }
       />
-      {/* <View style={styles.row}>
-        <TouchableOpacity onPress={() => navigation.navigate('Aparcela')}>
-          <Image
-            style={styles.logo}
-            source={Parcela}
-          />
-          <Text style={{ position: "absolute", left: 42, top: 40, color: '#fff', fontSize: 20 }}>P1</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Aparcela')}>
-          <Image
-            style={styles.logo}
-            source={Parcela}
-          />
-          <Text style={{ position: "absolute", left: 42, top: 40, color: '#fff', fontSize: 20 }}>P2</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
-        <TouchableOpacity onPress={() => navigation.navigate('Aparcela')}>
-          <Image
-            style={styles.logo}
-            source={Parcela}
-          />
-          <Text style={{ position: "absolute", left: 42, top: 40, color: '#fff', fontSize: 20 }}>P3</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Aparcela')}>
-          <Image
-            style={styles.logo}
-            source={Parcela}
-          />
-          <Text style={{ position: "absolute", left: 42, top: 40, color: '#fff', fontSize: 20 }}>P4</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
-        <TouchableOpacity onPress={() => navigation.navigate('Aparcela')}>
-          <Image
-            style={styles.logo}
-            source={Parcela}
-          />
-          <Text style={{ position: "absolute", left: 42, top: 40, color: '#fff', fontSize: 20 }}>P5</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Aparcela')}>
-          <Image
-            style={styles.logo}
-            source={Parcela}
-          />
-          <Text style={{ position: "absolute", left: 42, top: 40, color: '#fff', fontSize: 20 }}>P6</Text>
-        </TouchableOpacity>
-      </View> */}
     </View>
   );
 }
@@ -91,11 +38,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: '100%'
   },
-  logo: {
+  image: {
     height: 105,
     width: 105,
     alignItems: 'center',
 
+  },
+  item: { 
+    marginVertical: 35,
+    marginLeft: 20,
+    marginRight: 20
+  },
+  mainText: {
+    fontFamily: 'Rubik_300Light',
+    fontSize: 24,
+    lineHeight: 120,
+    alignSelf: 'center',
   },
   text: {
     position: "absolute",

@@ -29,7 +29,7 @@ export default function Fertilizantes({ navigation }) {
       <View style={styles.row}>
         <TouchableOpacity>
           <View style={styles.colunm}>
-            <Image style={styles.icone} source={require('../../../assets/agricultorIcones/fertilizanteComum.png')} />
+            <Image style={styles.icone} source={require('../../../assets/fertilizers/fertilizerBasic.png')} />
             <Text style={styles.textinhos}> Comprar {'\n'} fertilizante  {'\n'} comumn</Text>
           </View>
         </TouchableOpacity>
