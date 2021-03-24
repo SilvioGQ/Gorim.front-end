@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Image, Text} from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import Frame1 from './InicioJogo/Frame1';
 import SorteioJogador from './SorteioJogador';
