@@ -33,7 +33,7 @@ const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="Gorim">
+    <Stack.Navigator initialRouteName="Parcela">
 
       <Stack.Screen name="Gorim" component={Frame1} options={{
         headerTransparent: true,
@@ -103,7 +103,7 @@ export default function Routes() {
         },
         headerStyle: {
           backgroundColor: '#EBFFFD',
-          height: 77
+          height: 100
         },
       }} />
       <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada} options={{
@@ -121,7 +121,7 @@ export default function Routes() {
         headerStyle: {
           backgroundColor: '#EBFFFD',
 
-          height: 677
+          height: 100
         },
       }} />
       <Stack.Screen name="Parcela" component={Parcela} options={{

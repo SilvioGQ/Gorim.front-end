@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: 10,
-    paddingTop:35
+    paddingTop:45
   },
   header: {
     fontFamily: 'Rubik_400Regular',

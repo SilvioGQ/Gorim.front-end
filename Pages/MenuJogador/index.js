@@ -80,6 +80,14 @@ export default function Agricultor1({ navigation, route }) {
               <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Hortaliças' })} icone={require('../../assets/agricultorIcones/hortaliças.png')} texto='Vender Hortaliças' backgroundColor='#fff'/>
               </View> 
             )}
+                        {player.speciality === 'Maquina' && (
+              <View style={{width:'90%', flexDirection:'row', justifyContent:'space-between',  alignItems: 'center', flexWrap:'wrap' }}>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Semeadora' })} icone={require('../../assets/agricultorIcones/pacote.png')} texto='Semeadora' backgroundColor='#fff'/>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Semeadora Colheitadera' })} icone={require('../../assets/agricultorIcones/pacote.png')} texto='Semeadora Colheitadera' backgroundColor='#fff'/>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Semeadroa Colheitadero Drone' })} icone={require('../../assets/agricultorIcones/pacote.png')} texto='Semeadroa Colheitadero Drone' backgroundColor='#fff'/>
+              <Item onClick={() => navigation.navigate('Vendas', {player, name: 'Pulverizador' })} icone={require('../../assets/agricultorIcones/pulverizador.png')} texto='Pulverizador' backgroundColor='#fff'/>              
+              </View> 
+            )}
             <Item onClick={() => navigation.navigate('FazerTransferencia', { player })} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer Transferencia' backgroundColor='#fff'/>
           </View>
         </>

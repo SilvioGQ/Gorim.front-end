@@ -89,7 +89,9 @@ export default function Lobby({ navigation, route }) {
       navigation.reset({ routes: [{ name: 'CriarPartida' }] });
     }
   }, [Game]);
-
+  console.ignoredYellowBox = [
+    'Setting a timer'
+]
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
