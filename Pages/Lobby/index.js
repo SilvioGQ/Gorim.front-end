@@ -9,6 +9,7 @@ import FunctionalityService from '../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
+
   const [isMounted, setIsMounted] = useState(true);
   const [players, setPlayers] = useState([]);
   const [player, setPlayer] = useState(route.params);
@@ -72,7 +73,9 @@ export default function Lobby({ navigation, route }) {
   
       return () => setIsMounted(false);
     }
-
+    console.ignoredYellowBox = [
+      'Setting a timer'
+  ]
     if (isMounted) {
       setTimeout(() => {
         FunctionalityService.getRoom(player.room).then(setGame);
@@ -89,9 +92,7 @@ export default function Lobby({ navigation, route }) {
       navigation.reset({ routes: [{ name: 'CriarPartida' }] });
     }
   }, [Game]);
-  console.ignoredYellowBox = [
-    'Setting a timer'
-]
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
