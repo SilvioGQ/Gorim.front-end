@@ -4,12 +4,12 @@ import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView
 import Button from '../../../Components/Button';
 import COLORS from '../../../styles/Colors';
 import DropDown from '../../../Components/DropDown';
-import Unknown from '../../../assets/Unknown.png';
+import Unknown from '../../../assets/unknown.png';
 import Pacote from '../../../assets/agricultorIcones/pacote.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import Rice from '../../../assets/seeds/rice.png';
 
-const translateName = { 
+const translateName = {
   "rice": 'Arroz',
   "soy": 'Soja',
   "greenery": 'Hortiça',
@@ -20,13 +20,16 @@ const translateName = {
   "pesticideMedium": 'Agrotóxico Premium',
   "pesticideStandard": 'Agrotóxico Super Premium'
 };
+
 const Tela = Dimensions.get('screen').width;
 const Tela2 = Dimensions.get('screen').height;
 export default function Parcela({ navigation, route }) {
   const [item, setItem] = useState(route.params.item);
+  const [player, setPlayer] = useState(route.params.player);
   const [icone, seticone] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
+  const [dropDown3, setDropDown3] = useState(false);
   const SelecteItem = () => {
     seticone(true)
     setDropDown(false)
@@ -52,7 +55,7 @@ export default function Parcela({ navigation, route }) {
             </View>
             <View style={{ justifyContent: 'center', alignItems: 'center', position: 'relative', top: -40, left: 60 }}>
               {dropDown && (
-                <DropDown onClick={SelecteItem} nome='arroz' image={Rice} />
+                <DropDown items={player.inventory} type={'seed'} onClick={SelecteItem} />
               )}
             </View>
           </TouchableOpacity>
@@ -69,7 +72,7 @@ export default function Parcela({ navigation, route }) {
           </TouchableOpacity>
           <View style={{ justifyContent: 'center', alignItems: 'center', position: 'relative', top: -40, left: 60 }}>
             {dropDown2 && (
-              <DropDown onClick={() => setDropDown2(false)} nome={'Fertilizante\ncomum'} image={require('../../../assets/fertilizers/fertilizerBasic.png')} />
+              <DropDown items={player.inventory} type={'fertilizer'} onClick={SelecteItem} />
             )}
           </View>
           <TouchableOpacity onPress={() => setDropDown(true)}>
@@ -96,7 +99,7 @@ export default function Parcela({ navigation, route }) {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setDropDown(true)}>
+          <TouchableOpacity onPress={() => setDropDown3(!dropDown3)}>
             <View style={styles.row}>
               <Image
                 style={styles.image}
@@ -105,6 +108,11 @@ export default function Parcela({ navigation, route }) {
                 <Text style={styles.superior}>Agrotóxicos</Text>
                 <Text style={styles.inferior}>{item.pesticide ? translateName[item.pesticide] : '-'}</Text>
               </View>
+            </View>
+            <View style={{ justifyContent: 'center', alignItems: 'center', position: 'relative', top: -40, left: 60 }}>
+              {dropDown3 && (
+                <DropDown items={player.inventory} type={'pesticide'} onClick={SelecteItem} />
+              )}
             </View>
           </TouchableOpacity>
         </View>
