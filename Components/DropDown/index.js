@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   icone: {
     width: 30,
     height: 30,
-    marginRight: 15
+    marginRight: 15,
   },
   text: {
     fontFamily: 'Rubik_300Light',

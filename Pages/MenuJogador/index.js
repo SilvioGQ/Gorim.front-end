@@ -43,8 +43,8 @@ export default function MenuJogador({ navigation, route }) {
             </TouchableOpacity>
           <View style={styles.row}>
             <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
-              <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' backgroundColor='#fff' />
-              <Item onClick={() => navigation.navigate('Transferindo')} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer transferencia' backgroundColor='#fff' />
+              <Item onClick={() => navigation.navigate('Proposta')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' backgroundColor='#fff' />
+              <Item onClick={() => navigation.navigate('FazerTransferencia', { player })} icone={require('../../assets/agricultorIcones/money2.png')} texto='Fazer transferencia' backgroundColor='#fff' />
               <Item onClick={() => navigation.navigate('Analizar')} icone={require('../../assets/agricultorIcones/lupa.png')} texto='Analisar propostas' backgroundColor='#fff' />
               <Item onClick={() => setisVisible(true)} icone={require('../../assets/agricultorIcones/seloG.png')} texto='Pedir selo verde' backgroundColor='#FF7F7E' />
             </View>
