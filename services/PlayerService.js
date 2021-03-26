@@ -67,6 +67,17 @@ const PlayerService = {
                         doc.ref.update({
                             type: 'Agricultor',
                             coin: 300,
+                            inventory: [ 
+                                { type: 'seed', name: 'rice', amount: 3 },
+                                { type: 'seed', name: 'soy', amount: 2 },
+                                { type: 'seed', name: 'greenery', amount: 0 },
+                                { type: 'fertilizer', name: 'fertilizerBasic', amount: 2 },
+                                { type: 'fertilizer', name: 'fertilizerMedium', amount: 0 },
+                                { type: 'fertilizer', name: 'fertilizerStandard', amount: 0 },
+                                { type: 'pesticide', name: 'pesticideBasic', amount: 1 },
+                                { type: 'pesticide', name: 'pesticideMedium', amount: 1 },
+                                { type: 'pesticide', name: 'pesticideStandard', amount: 1 }
+                            ],
                             parcelLand: [
                                 { id: 0, purchased: true, seed: null, fertilizer: null, pesticide: null },
                                 { id: 1, purchased: true, seed: 'rice', fertilizer: null, pesticide: null },

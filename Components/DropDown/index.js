@@ -1,29 +1,41 @@
-import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
-import COLORS from '../../styles/Colors';
+import React, { useEffect, useState }  from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
-const Tela = Dimensions.get('screen').width;
-export default function DropDown({ nome, nome2, nome3, image, image2, image3, onClick }) {
+const translateName = {
+  "rice": 'Arroz',
+  "soy": 'Soja',
+  "greenery": 'Hortiça',
+  "fertilizerBasic": 'Fertilizante Normal',
+  "fertilizerMedium": 'Fertilizante Premium',
+  "fertilizerStandard": 'Fertilizante Super Premium',
+  "pesticideBasic": 'Agrotóxico Normal',
+  "pesticideMedium": 'Agrotóxico Premium',
+  "pesticideStandard": 'Agrotóxico Super Premium'
+};
+
+export default function DropDown({ items, type, onClick }) {
+  const [inventory, setInventory] = useState({});
+
+  useEffect(() => {
+    setInventory(items.filter(item => {
+      return item.type === type && item.amount > 0;
+    }));
+  }, []);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onClick}
-        style={[styles.Item, { backgroundColor: '#4E7E4D' }]}
-      >
-        <Image style={styles.icone} source={image} />
-        <Text style={styles.text}>{nome}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onClick}
-        style={styles.Item}
-      >
-        <Image style={styles.icone} source={image2} />
-        <Text style={styles.text}>{nome2}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onClick}
-        style={styles.Item}
-      >
-        <Image style={styles.icone} source={image3} />
-        <Text style={styles.text}>{nome3}</Text>
-      </TouchableOpacity>
+      <FlatList
+        numColumns={1}
+        data={inventory}
+        keyExtractor={item => item.name}
+        renderItem={({ item }) =>
+          <TouchableOpacity onPress={onClick} style={[styles.Item, { backgroundColor: '#4E7E4D' }]}>
+            <Image style={styles.icone} source={require(`../../assets/${item.type}s/${item.name}.png`)} />
+            <Text style={styles.text}>{translateName[item.name]}</Text>
+          </TouchableOpacity>
+        }
+      />
     </View>
   );
 }

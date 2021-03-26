@@ -16,7 +16,7 @@ export default function ControleParcelas({ navigation, route }) {
         data={player.parcelLand}
         keyExtractor={item => item.id}
         renderItem={({ item })  =>
-          <TouchableOpacity onPress={() => navigation.navigate('Parcela', { item })} style={styles.item}>
+          <TouchableOpacity onPress={() => navigation.navigate('Parcela', { item, player })} style={styles.item}>
             <Image style={styles.image} source={Parcela} />
             <Text style={styles.text}>P{item.id+1}</Text>
           </TouchableOpacity>
