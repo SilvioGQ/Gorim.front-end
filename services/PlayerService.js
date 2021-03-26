@@ -48,7 +48,7 @@ const PlayerService = {
     },
     typesRaffle(room) {
          let emp = 0;
-        let speciality = ['Fertizante', 'Agrotoxico', 'Maquina', 'Semente'];
+        let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
 
         db.collection('players').where('room', '==', room)
             .get()
@@ -68,12 +68,12 @@ const PlayerService = {
                             type: 'Agricultor',
                             coin: 300,
                             parcelLand: [
-                                { purchased: true },
-                                { purchased: true },
-                                { purchased: true },
-                                { purchased: true },
-                                { purchased: true },
-                                { purchased: true }
+                                { id: 0, purchased: true, seed: null, fertilizer: null, pesticide: null },
+                                { id: 1, purchased: true, seed: 'rice', fertilizer: null, pesticide: null },
+                                { id: 2, purchased: true, seed: null, fertilizer: null, pesticide: null },
+                                { id: 3, purchased: true, seed: null, fertilizer: 'fertilizerBasic', pesticide: null },
+                                { id: 4, purchased: true, seed: null, fertilizer: null, pesticide: 'pesticideBasic' },
+                                { id: 5, purchased: true, seed: null, fertilizer: null, pesticide: null }
                             ],
                             stamp: false
                         });

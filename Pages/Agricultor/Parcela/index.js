@@ -1,69 +1,79 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity,ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+
 import Button from '../../../Components/Button';
 import COLORS from '../../../styles/Colors';
 import DropDown from '../../../Components/DropDown';
-import Interrogacao from '../../../assets/interrogacao.png';
+import Unknown from '../../../assets/unknown.png';
 import Pacote from '../../../assets/agricultorIcones/pacote.png';
-import Parcela from '../../../assets/agricultorIcones/Parcela.png';
-import Rice from '../../../assets/agricultorIcones/rice.png';
+import Parcel from '../../../assets/agricultorIcones/Parcela.png';
+import Rice from '../../../assets/seeds/rice.png';
+
+const translateName = {
+  "rice": 'Arroz',
+  "soy": 'Soja',
+  "greenery": 'Hortiça',
+  "fertilizerBasic": 'Fertilizante Normal',
+  "fertilizerMedium": 'Fertilizante Premium',
+  "fertilizerStandard": 'Fertilizante Super Premium',
+  "pesticideBasic": 'Agrotóxico Normal',
+  "pesticideMedium": 'Agrotóxico Premium',
+  "pesticideStandard": 'Agrotóxico Super Premium'
+};
 const Tela = Dimensions.get('screen').width;
 const Tela2 = Dimensions.get('screen').height;
-export default function Aparcela({ navigation }) {
+
+export default function Parcela({ navigation, route }) {
+  const [item, setItem] = useState(route.params.item);
   const [icone, seticone] = useState(false);
   const [dropDown, setDropDown] = useState(false);
-  const SelecteItem = ()=>{
+  const [dropDown2, setDropDown2] = useState(false);
+  const SelecteItem = () => {
     seticone(true)
     setDropDown(false)
   }
-  const [dropDown2, setDropDown2] = useState(false);
+  const [fertilizer, setFetilizar]= useState(`../../../assets/fertilizers/${item.fertilizer}.png`)
   return (
     <View style={styles.container}>
-      <ScrollView shows onPress={()=> setDropDown(true)}VerticalScrollIndicator={false}>
+      <ScrollView shows onPress={() => setDropDown(true)} VerticalScrollIndicator={false}>
         <View style={styles.espaco}>
-          <Image
-            style={{ width: 66, height: 66, margin: '7%' }}
-            source={Parcela}
-          />
+          <Image style={styles.parcel} source={Parcel} />
           <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
         </View>
-        <Text style={{ fontSize: 18, marginTop: 15, fontFamily: 'Rubik_300Light', alignSelf:'flex-start', marginLeft:60}}>Nesta parcela:</Text>
+        <Text style={{ fontSize: 18, marginTop: 15, fontFamily: 'Rubik_300Light', alignSelf: 'flex-start', marginLeft: 60 }}>Nesta parcela:</Text>
         <View style={styles.coluna}>
-          <TouchableOpacity onPress={()=> setDropDown(!dropDown)}>
+          <TouchableOpacity onPress={() => setDropDown(!dropDown)}>
             <View style={styles.row}>
-              <Image
-                style={styles.image}
-                source={icone ? Rice : Interrogacao}
-              />
+              <Image style={[styles.image, { width: item.seed ? 35 : 25, height: item.seed ? 35 : 45 }]}
+                source={item.seed ? fertilizer : Unknown} />
               <View>
                 <Text style={styles.superior}>Sementes</Text>
-                <Text style={styles.inferior}>-</Text>
+                <Text style={styles.inferior}>{item.seed ? translateName[item.seed] : '-'}</Text>
               </View>
             </View>
-            <View style={{justifyContent:'center', alignItems:'center', position:'relative', top:-40, left:60}}>
-            {dropDown && (
-            <DropDown onClick={SelecteItem} nome='arroz' image={Rice}/>
-            )}
+            <View style={{ justifyContent: 'center', alignItems: 'center', position: 'relative', top: -40, left: 60 }}>
+              {dropDown && (
+                <DropDown onClick={SelecteItem} nome='arroz' image={Rice} />
+              )}
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=> setDropDown2(!dropDown2)}>
+          <TouchableOpacity onPress={() => setDropDown2(!dropDown2)}>
             <View style={styles.row}>
               <Image
-                style={styles.image}
-                source={Interrogacao}
-              />
+                style={[styles.image, { width: item.fertilizer ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
+                source={item.fertilizer ? fertilizer : Unknown} />
               <View>
                 <Text style={styles.superior}>Fertilizantes</Text>
-                <Text style={styles.inferior}>-</Text>
+                <Text style={styles.inferior}>{item.fertilizer ? translateName[item.fertilizer] : '-'}</Text>
               </View>
             </View>
           </TouchableOpacity>
-          <View style={{justifyContent:'center', alignItems:'center', position:'relative', top:-40, left:60}}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', position: 'relative', top: -40, left: 60 }}>
             {dropDown2 && (
-            <DropDown onClick={()=>setDropDown2(false)} nome={'Fertilizante\ncomum'} image={require('../../../assets/agricultorIcones/fertilizanteComum.png')}/>
+              <DropDown onClick={() => setDropDown2(false)} nome={'Fertilizante\ncomum'} image={require('../../../assets/fertilizers/fertilizerBasic.png')} />
             )}
-            </View>
-          <TouchableOpacity onPress={()=> setDropDown(true)}>
+          </View>
+          <TouchableOpacity onPress={() => setDropDown(true)}>
             <View style={styles.row}>
               <Image
                 style={[styles.image, { width: 45, height: 48 }]}
@@ -75,11 +85,11 @@ export default function Aparcela({ navigation }) {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=> setDropDown(true)}>
+          <TouchableOpacity onPress={() => setDropDown(true)}>
             <View style={styles.row}>
               <Image
-                style={styles.image}
-                source={Interrogacao}
+                style={[styles.image, { width: item.seed ? 35 : 25, height: item.seed ? 35 : 45 }]}
+                source={Unknown}
               />
               <View>
                 <Text style={styles.superior}>Pulverizador</Text>
@@ -87,15 +97,14 @@ export default function Aparcela({ navigation }) {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=> setDropDown(true)}>
+          <TouchableOpacity onPress={() => setDropDown(true)}>
             <View style={styles.row}>
               <Image
-                style={styles.image}
-                source={Interrogacao}
-              />
+                style={[styles.image, { width: item.seed ? 35 : 25, height: item.seed ? 35 : 45 }]}
+                source={item.pesticide ? fertilizer : Unknown} />
               <View>
                 <Text style={styles.superior}>Agrotóxicos</Text>
-                <Text style={styles.inferior}>-</Text>
+                <Text style={styles.inferior}>{item.pesticide ? translateName[item.pesticide] : '-'}</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -106,20 +115,23 @@ export default function Aparcela({ navigation }) {
         />
       </ScrollView>
     </View>
-
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height:Tela2,
+    height: Tela2,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop:35,
+    paddingTop: 35,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela
+  },
+  parcel: {
+    width: 66,
+    height: 66,
+    margin: '7%'
   },
   row: {
     flexDirection: 'row',
@@ -150,8 +162,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   image: {
-    width: 25,
-    height: 45,
     marginRight: '15%'
   }
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import COLORS from '../../styles/Colors'
 // import Empresario from '../../assets/perfils/empresariox1/Empresario.png';
-import Rice from '../../assets/agricultorIcones/rice.png';
+import Rice from '../../assets/seeds/rice.png';
 import Normal from '../../assets/moedas/normal.png';
 
 const Tela = Dimensions.get('screen').width

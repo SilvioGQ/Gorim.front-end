@@ -32,8 +32,7 @@ export default function MenuJogador({ navigation, route }) {
             player={player}
             image={require('../../assets/perfils/agricultor/Agricultor.png')}
           />
-          <View>
-            <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })}>
+            <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })} style={{width:'100%'}}>
               <View style={styles.row2}>
                 <Image
                   style={styles.icone}
@@ -42,7 +41,6 @@ export default function MenuJogador({ navigation, route }) {
                 <Text style={styles.textos}>Parcelas de terra</Text>
               </View>
             </TouchableOpacity>
-          </View>
           <View style={styles.row}>
             <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
               <Item onClick={() => navigation.navigate('Propostas')} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' backgroundColor='#fff' />
@@ -63,23 +61,23 @@ export default function MenuJogador({ navigation, route }) {
           <View style={styles.row}>
             {player.speciality === 'Fertilizante' && (
               <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Comum' })} icone={require('../../assets/agricultorIcones/fertilizanteComum.png')} texto='Vender Fertilizante Comum' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Premium' })} icone={require('../../assets/agricultorIcones/fertilizantePremium.png')} texto='Vender Fertilizante Premium' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Super Premium' })} icone={require('../../assets/agricultorIcones/fertilizanteSuperPremium.png')} texto='Vender Fertilizante Super Premium' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Comum' })} icone={require('../../assets/fertilizers/fertilizerBasic.png')} texto='Vender Fertilizante Comum' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Premium' })} icone={require('../../assets/fertilizers/fertilizerMedium.png')} texto='Vender Fertilizante Premium' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Super Premium' })} icone={require('../../assets/fertilizers/fertilizerStandard.png')} texto='Vender Fertilizante Super Premium' backgroundColor='#fff' />
               </View>
             )}
             {player.speciality === 'Agrotoxico' && (
               <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Comum' })} icone={require('../../assets/agricultorIcones/agrotoxicoComum.png')} texto='Vender Agrotoxico Comum' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoPremium.png')} texto='Vender Agrotoxico Premium' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Super Premium' })} icone={require('../../assets/agricultorIcones/agrotoxicoSuperPremium.png')} texto='Vender Agrotoxico Super Premium' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Comum' })} icone={require('../../assets/pesticides/pesticideBasic.png')} texto='Vender Agrotoxico Comum' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Premium' })} icone={require('../../assets/pesticides/pesticideMedium.png')} texto='Vender Agrotoxico Premium' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Super Premium' })} icone={require('../../assets/pesticides/pesticideStandard.png')} texto='Vender Agrotoxico Super Premium' backgroundColor='#fff' />
               </View>
             )}
             {player.speciality === 'Semente' && (
               <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Soja' })} icone={require('../../assets/agricultorIcones/arroz.png')} texto='Vender Soja' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Arroz' })} icone={require('../../assets/agricultorIcones/rice.png')} texto='Vender Arroz' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Hortaliças' })} icone={require('../../assets/agricultorIcones/hortaliças.png')} texto='Vender Hortaliças' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Soja' })} icone={require('../../assets/seeds/soy.png')} texto='Vender Soja' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Arroz' })} icone={require('../../assets/seeds/rice.png')} texto='Vender Arroz' backgroundColor='#fff' />
+                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Hortaliças' })} icone={require('../../assets/seeds/greenery.png')} texto='Vender Hortaliças' backgroundColor='#fff' />
               </View>
             )}
             {player.speciality === 'Maquina' && (
@@ -100,11 +98,11 @@ export default function MenuJogador({ navigation, route }) {
       )}
       {Height >= 750 && (
         <>
-          <View style={{ flex: 0.6, width: '90%', borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
+          <View style={{ height:80, width: '89%', borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
             <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>200</Text>
             <Text style={styles.candidato, { color: 'white' }}>Produtividade atual</Text>
           </View>
-          <View style={{ flex: 0.6, width: '90%', borderRadius: 20, alignItems: 'center', backgroundColor: '#BF0000', marginTop: 20 }}>
+          <View style={{ height:80, width: '89%', borderRadius: 20, alignItems: 'center', backgroundColor: '#BF0000', marginTop: 20 }}>
             <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>100</Text>
             <Text style={styles.candidato, { color: 'white' }}>Poluição atual</Text>
           </View>
@@ -119,7 +117,6 @@ export default function MenuJogador({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     width: Tela,
@@ -135,11 +132,12 @@ const styles = StyleSheet.create({
   },
   row2: {
     flexDirection: 'row',
+    marginHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: '6%',
     backgroundColor: COLORS.bgColorSecondary,
-    width: 330,
+    width: '88%',
     height: 50,
     borderRadius: 20,
     shadowColor: "#000",

@@ -35,7 +35,7 @@ export default function Sements({ navigation }) {
     </TouchableOpacity>
     <TouchableOpacity> 
     <View style={styles.colunm}>
-       <Image  style={styles.icone} source={require('../../../assets/agricultorIcones/rice.png')}/>
+       <Image  style={styles.icone} source={require('../../../assets/seeds/rice.png')}/>
        <Text style= {styles.textinhos}> Comprar arroz </Text>
     </View>
      </TouchableOpacity>

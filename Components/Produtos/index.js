@@ -1,15 +1,15 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 
-import FertilizanteComum from '../../assets/agricultorIcones/fertilizanteComum.png';
-import FertilizantePremium from '../../assets/agricultorIcones/fertilizantePremium.png';
-import FertilizanteSuperPremium from '../../assets/agricultorIcones/fertilizanteSuperPremium.png';
-import AgrotoxicoComum from '../../assets/agricultorIcones/agrotoxicoComum.png';
-import AgrotoxicoPremium from '../../assets/agricultorIcones/agrotoxicoSuperPremium.png';
-import AgrotoxicoSuperPremium from '../../assets/agricultorIcones/rice.png';
-import Hortalicas from '../../assets/agricultorIcones/hortaliças.png';
-import Arroz from '../../assets/agricultorIcones/arroz.png';
-import Rice from '../../assets/agricultorIcones/rice.png';
+import FertilizanteComum from '../../assets/fertilizers/fertilizerBasic.png';
+// import FertilizantePremium from '../../assets/agricultorIcones/fertilizantePremium.png';
+// import FertilizanteSuperPremium from '../../assets/agricultorIcones/fertilizanteSuperPremium.png';
+// import AgrotoxicoPremium from '../../assets/agricultorIcones/agrotoxicoSuperPremium.png';
+import AgrotoxicoComum from '../../assets/pesticides/pesticideBasic.png';
+import AgrotoxicoSuperPremium from '../../assets/seeds/rice.png';
+// import Hortalicas from '../../assets/agricultorIcones/hortaliças.png';
+// import Arroz from '../../assets/agricultorIcones/arroz.png';
+import Rice from '../../assets/seeds/rice.png';
 import COLORS from '../../styles/Colors'
 const Tela = Dimensions.get('screen').width;
 export default function Produtos() {
