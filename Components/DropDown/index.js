@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -36,7 +36,15 @@ export default function DropDown({ items, type, onClick }) {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={{
+      position: 'absolute',
+      top: 20,
+      zIndex: 100,
+      elevation: 100,
+      borderWidth: 2,
+      borderColor: "#20232a",
+      borderRadius: 5
+    }}>
       <FlatList
         numColumns={1}
         data={inventory}
@@ -53,11 +61,6 @@ export default function DropDown({ items, type, onClick }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    borderWidth: 1,
-    borderRadius: 5,
-  },
   Item: {
     padding: 20,
     maxWidth: 180,
