@@ -42,27 +42,23 @@ export default function DropDown({ items, type, onClick }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     borderWidth: 1,
-    alignItems: 'center',
     borderRadius: 5,
-    width: '50%'
   },
   Item: {
-    height: 69,
+    padding: 20,
+    maxWidth: 180,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#61CA65',
-    width: '100%',
   },
   icone: {
     width: 30,
     height: 30,
-    marginRight: 15
+    marginRight: 30
   },
   text: {
     fontFamily: 'Rubik_300Light',
     fontSize: 15,
-    marginRight: 15
   }
-})
+});
