@@ -3,15 +3,27 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 const translateName = {
-  "rice": 'Arroz',
-  "soy": 'Soja',
-  "greenery": 'Hortiça',
-  "fertilizerBasic": 'Fertilizante Normal',
-  "fertilizerMedium": 'Fertilizante Premium',
-  "fertilizerStandard": 'Fertilizante Super Premium',
-  "pesticideBasic": 'Agrotóxico Normal',
-  "pesticideMedium": 'Agrotóxico Premium',
-  "pesticideStandard": 'Agrotóxico Super Premium'
+  'rice': 'Arroz',
+  'soy': 'Soja',
+  'greenery': 'Hortiça',
+  'fertilizerBasic': 'Fertilizante Normal',
+  'fertilizerMedium': 'Fertilizante Premium',
+  'fertilizerStandard': 'Fertilizante Super Premium',
+  'pesticideBasic': 'Agrotóxico Normal',
+  'pesticideMedium': 'Agrotóxico Premium',
+  'pesticideStandard': 'Agrotóxico Super Premium'
+};
+
+const images = {
+  'soy': require('../../assets/seeds/soy.png'),
+  'rice': require('../../assets/seeds/rice.png'),
+  'greenery': require('../../assets/seeds/greenery.png'),
+  'pesticideBasic': require('../../assets/pesticides/pesticideBasic.png'),
+  'pesticideMedium': require('../../assets/pesticides/pesticideMedium.png'),
+  'pesticideStandard': require('../../assets/pesticides/pesticideStandard.png'),
+  'fertilizerBasic': require('../../assets/fertilizers/fertilizerBasic.png'),
+  'fertilizerMedium': require('../../assets/fertilizers/fertilizerMedium.png'),
+  'fertilizerStandard': require('../../assets/fertilizers/fertilizerStandard.png'),
 };
 
 export default function DropDown({ items, type, onClick }) {
@@ -31,7 +43,7 @@ export default function DropDown({ items, type, onClick }) {
         keyExtractor={item => item.name}
         renderItem={({ item }) =>
           <TouchableOpacity onPress={onClick} style={[styles.Item, { backgroundColor: '#4E7E4D' }]}>
-            <Image style={styles.icone} source={require(`../../assets/${item.type}s/${item.name}.png`)} />
+            <Image style={styles.icone} source={images[item.name]} />
             <Text style={styles.text}>{translateName[item.name]}</Text>
           </TouchableOpacity>
         }

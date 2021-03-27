@@ -9,7 +9,6 @@ export default function Analizar() {
 
   return (
     <View style={styles.container}>
-      <Money />
       <Text style={styles.header}>Produtos</Text>
       <Produtos />
     </View>

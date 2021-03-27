@@ -7,7 +7,6 @@ import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
 import Pacote from '../../../assets/agricultorIcones/pacote.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
-import Rice from '../../../assets/seeds/rice.png';
 
 const translateName = {
   "rice": 'Arroz',
@@ -21,8 +20,21 @@ const translateName = {
   "pesticideStandard": 'Agrotóxico Super Premium'
 };
 
+const images = {
+  'soy': require('../../../assets/seeds/soy.png'),
+  'rice': require('../../../assets/seeds/rice.png'),
+  'greenery': require('../../../assets/seeds/greenery.png'),
+  'pesticideBasic': require('../../../assets/pesticides/pesticideBasic.png'),
+  'pesticideMedium': require('../../../assets/pesticides/pesticideMedium.png'),
+  'pesticideStandard': require('../../../assets/pesticides/pesticideStandard.png'),
+  'fertilizerBasic': require('../../../assets/fertilizers/fertilizerBasic.png'),
+  'fertilizerMedium': require('../../../assets/fertilizers/fertilizerMedium.png'),
+  'fertilizerStandard': require('../../../assets/fertilizers/fertilizerStandard.png'),
+};
+
 const Tela = Dimensions.get('screen').width;
 const Tela2 = Dimensions.get('screen').height;
+
 export default function Parcela({ navigation, route }) {
   const [item, setItem] = useState(route.params.item);
   const [player, setPlayer] = useState(route.params.player);
@@ -34,7 +46,7 @@ export default function Parcela({ navigation, route }) {
     seticone(true)
     setDropDown(false)
   }
-
+  const [fertilizer, setFetilizar]= useState(images[item.fertilizer]);
   return (
     <View style={styles.container}>
       <ScrollView shows onPress={() => setDropDown(true)} VerticalScrollIndicator={false}>
@@ -46,8 +58,8 @@ export default function Parcela({ navigation, route }) {
         <View style={styles.coluna}>
           <TouchableOpacity onPress={() => setDropDown(!dropDown)}>
             <View style={styles.row}>
-              <Image style={styles.image}
-                source={item.seed ? require(`../../../assets/seeds/${item.seed}.png`) : Unknown} />
+              <Image style={[styles.image, { width: item.seed ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
+                source={item.seed ? fertilizer : Unknown} />
               <View>
                 <Text style={styles.superior}>Sementes</Text>
                 <Text style={styles.inferior}>{item.seed ? translateName[item.seed] : '-'}</Text>
@@ -62,8 +74,8 @@ export default function Parcela({ navigation, route }) {
           <TouchableOpacity onPress={() => setDropDown2(!dropDown2)}>
             <View style={styles.row}>
               <Image
-                style={styles.image}
-                source={item.fertilizer ? require(`../../../assets/fertilizers/${item.fertilizer}.png`) : Unknown} />
+                style={[styles.image, { width: item.fertilizer ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
+                source={item.fertilizer ? fertilizer : Unknown} />
               <View>
                 <Text style={styles.superior}>Fertilizantes</Text>
                 <Text style={styles.inferior}>{item.fertilizer ? translateName[item.fertilizer] : '-'}</Text>
@@ -87,10 +99,10 @@ export default function Parcela({ navigation, route }) {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setDropDown(true)}>
+          {/* <TouchableOpacity onPress={() => setDropDown(true)}>
             <View style={styles.row}>
               <Image
-                style={styles.image}
+                style={[styles.image, { width: item.seed ? 35 : 25, height: item.seed ? 35 : 45 }]}
                 source={Unknown}
               />
               <View>
@@ -98,12 +110,12 @@ export default function Parcela({ navigation, route }) {
                 <Text style={styles.inferior}>-</Text>
               </View>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity onPress={() => setDropDown3(!dropDown3)}>
             <View style={styles.row}>
               <Image
-                style={styles.image}
-                source={item.pesticide ? require(`../../../assets/pesticides/${item.pesticide}.png`) : Unknown} />
+                style={[styles.image, { width: item.pesticide ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
+                source={item.pesticide ? fertilizer : Unknown} />
               <View>
                 <Text style={styles.superior}>Agrotóxicos</Text>
                 <Text style={styles.inferior}>{item.pesticide ? translateName[item.pesticide] : '-'}</Text>
@@ -169,8 +181,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   image: {
-    width: 25,
-    height: 45,
     marginRight: '15%'
   }
 });
