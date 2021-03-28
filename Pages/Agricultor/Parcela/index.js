@@ -42,8 +42,8 @@ export default function Parcela({ navigation, route }) {
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
+  const [dropDown4, setDropDown4] = useState(false);
   const SelecteItem = () => {
-    seticone(true)
     setDropDown(false)
   }
   const [fertilizer, setFetilizar] = useState(images[item.fertilizer]);
@@ -54,7 +54,7 @@ export default function Parcela({ navigation, route }) {
         <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
       </View>
       <Text style={{ fontSize: 18, marginTop: 15, fontFamily: 'Rubik_300Light', alignSelf: 'flex-start', marginLeft: 60 }}>Nesta parcela:</Text>
-      <View style={styles.coluna}>
+      <View style={{ height: '60%' }}>
         <TouchableOpacity onPress={() => setDropDown(!dropDown)}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: item.seed ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
@@ -63,11 +63,9 @@ export default function Parcela({ navigation, route }) {
               <Text style={styles.superior}>Sementes</Text>
               <Text style={styles.inferior}>{item.seed ? translateName[item.seed] : '-'}</Text>
             </View>
-            <View style={{ position: 'relative', opacity: dropDown ? 1 : 0 }}>
-              <DropDown items={player.inventory} type={'seed'} onClick={SelecteItem} />
-            </View>
           </View>
         </TouchableOpacity>
+          <DropDown items={player.inventory} type={'seed'} onClick={SelecteItem} display={dropDown ? 'flex' : 'none'} />
         <TouchableOpacity onPress={() => setDropDown2(!dropDown2)}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: item.fertilizer ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
@@ -76,11 +74,9 @@ export default function Parcela({ navigation, route }) {
               <Text style={styles.superior}>Fertilizantes</Text>
               <Text style={styles.inferior}>{item.fertilizer ? translateName[item.fertilizer] : '-'}</Text>
             </View>
-            <View style={{ position: 'relative', opacity: dropDown2 ? 1 : 0 }}>
-              <DropDown items={player.inventory} type={'fertilizer'} onClick={SelecteItem} />
-            </View>
           </View>
         </TouchableOpacity>
+          <DropDown items={player.inventory} type={'fertilizer'} onClick={SelecteItem} display={dropDown2 ? 'flex' : 'none'} />
         {/* <TouchableOpacity onPress={() => setDropDown(true)}>
           <View style={styles.row}>
             <Image
@@ -89,7 +85,7 @@ export default function Parcela({ navigation, route }) {
             />
             <View>
               <Text style={styles.superior}>Máquina</Text>
-              <Text style={styles.inferior}>Pacote 1</Text>
+              <Text style={styles.inferior}>Pacote </Text>
             </View>
           </View>
         </TouchableOpacity> */}
@@ -114,11 +110,21 @@ export default function Parcela({ navigation, route }) {
               <Text style={styles.superior}>Agrotóxicos</Text>
               <Text style={styles.inferior}>{item.pesticide ? translateName[item.pesticide] : '-'}</Text>
             </View>
-            <View style={{ position: 'relative', opacity: dropDown3 ? 1 : 0 }}>
-              <DropDown items={player.inventory} type={'pesticide'} onClick={SelecteItem} />
+          </View>
+        </TouchableOpacity>
+          <DropDown items={player.inventory} type={'pesticide'} onClick={SelecteItem} display={dropDown3 ? 'flex' : 'none'} />
+        <TouchableOpacity onPress={() => setDropDown4(!dropDown4)}>
+          <View style={styles.row}>
+            <Image
+              style={[styles.image, { width: item.pesticide ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
+              source={item.pesticide ? fertilizer : Unknown} />
+            <View>
+              <Text style={styles.superior}>Maquina</Text>
+              <Text style={styles.inferior}>{item.pesticide ? translateName[item.pesticide] : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>
+          <DropDown items={player.inventory} type={'pesticide'} onClick={SelecteItem} display={dropDown4 ? 'flex' : 'none'} />
       </View>
       <Button
         onClick={() => navigation.navigate('Agricultor1')}
@@ -131,26 +137,23 @@ export default function Parcela({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: Tela2,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 35,
+    paddingTop: 25,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela
   },
   parcel: {
     width: 66,
     height: 66,
-    margin: '7%'
+    margin: '5%'
   },
   row: {
+
     flexDirection: 'row',
-    // alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 30,
     justifyContent: 'center',
-    marginTop: 20,
-    left: '-10%'
-    // marginVertical: '5%',
+    left: '-20%',
     // width: Tela,
   },
   espaco: {
@@ -163,9 +166,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     fontSize: 23,
   },
-  // coluna: {
-  //   alignSelf: 'center',
-  // },
   // inferior: {
   //   fontSize: 20,
   // }

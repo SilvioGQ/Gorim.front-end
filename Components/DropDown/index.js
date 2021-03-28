@@ -26,7 +26,7 @@ const images = {
   'fertilizerStandard': require('../../assets/fertilizers/fertilizerStandard.png'),
 };
 
-export default function DropDown({ items, type, onClick }) {
+export default function DropDown({ items, type, onClick, display }) {
   const [inventory, setInventory] = useState({});
 
   useEffect(() => {
@@ -37,13 +37,14 @@ export default function DropDown({ items, type, onClick }) {
 
   return (
     <View style={{
-      position: 'absolute',
-      top: 20,
-      zIndex: 100,
-      elevation: 100,
+      display:display,
+      left: 40,
+      zIndex: 2,
+      elevation: 4,
       borderWidth: 2,
       borderColor: "#20232a",
-      borderRadius: 5
+      borderRadius: 5,
+      maxHeight:230,
     }}>
       <FlatList
         numColumns={1}
@@ -62,18 +63,21 @@ export default function DropDown({ items, type, onClick }) {
 
 const styles = StyleSheet.create({
   Item: {
+    flex:1,
     padding: 20,
-    maxWidth: 180,
+    maxWidth:190,
     flexDirection: 'row',
     backgroundColor: '#61CA65',
+    maxHeight:90,
   },
   icone: {
     width: 30,
     height: 30,
-    marginRight: 30
+
   },
   text: {
     fontFamily: 'Rubik_300Light',
     fontSize: 15,
+    marginRight: 30
   }
 });
