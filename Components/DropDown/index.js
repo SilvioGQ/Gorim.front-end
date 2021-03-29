@@ -37,6 +37,7 @@ export default function DropDown({ items, type, onClick, display }) {
 
   return (
     <View style={{
+      flex:1,
       display:display,
       left: 40,
       zIndex: 2,
@@ -44,7 +45,6 @@ export default function DropDown({ items, type, onClick, display }) {
       borderWidth: 2,
       borderColor: "#20232a",
       borderRadius: 5,
-      maxHeight:230,
     }}>
       <FlatList
         numColumns={1}
@@ -63,17 +63,14 @@ export default function DropDown({ items, type, onClick, display }) {
 
 const styles = StyleSheet.create({
   Item: {
-    flex:1,
     padding: 20,
-    maxWidth:190,
+    maxWidth:160,
     flexDirection: 'row',
     backgroundColor: '#61CA65',
-    maxHeight:90,
   },
   icone: {
     width: 30,
     height: 30,
-
   },
   text: {
     fontFamily: 'Rubik_300Light',

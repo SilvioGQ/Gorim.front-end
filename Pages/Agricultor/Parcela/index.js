@@ -54,7 +54,6 @@ export default function Parcela({ navigation, route }) {
         <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
       </View>
       <Text style={{ fontSize: 18, marginTop: 15, fontFamily: 'Rubik_300Light', alignSelf: 'flex-start', marginLeft: 60 }}>Nesta parcela:</Text>
-      <View style={{ height: '60%' }}>
         <TouchableOpacity onPress={() => setDropDown(!dropDown)}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: item.seed ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
@@ -125,7 +124,6 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
           <DropDown items={player.inventory} type={'pesticide'} onClick={SelecteItem} display={dropDown4 ? 'flex' : 'none'} />
-      </View>
       <Button
         onClick={() => navigation.navigate('Agricultor1')}
         name='INICIAR PLANTIO'
@@ -149,7 +147,6 @@ const styles = StyleSheet.create({
     margin: '5%'
   },
   row: {
-
     flexDirection: 'row',
     paddingVertical: 30,
     justifyContent: 'center',
