@@ -66,28 +66,28 @@ export default function Lobby({ navigation, route }) {
   // });
 
   useEffect(() => {
-    if(Game.inGame){
+    if (Game.inGame) {
       navigation.reset({
         routes: [{ name: 'SorteioJogador', params: { player } }]
       });
-  
+
       return () => setIsMounted(false);
     }
     console.ignoredYellowBox = [
       'Setting a timer'
-  ]
+    ]
     if (isMounted) {
-      setTimeout(() => {
-        FunctionalityService.getRoom(player.room).then(setGame);
-        
-        if(Game.players != players.length) {
+      // setTimeout(() => {
+      FunctionalityService.getRoom(player.room).then(setGame);
 
-          PlayerService.getPlayers(player.room).then(resp => {
-            if (players.length > 0) updateHost(resp);
-            setPlayers(resp);
-          });
-        }
-      }, 1000 * 1);
+      if (Game.players != players.length) {
+
+        PlayerService.getPlayers(player.room).then(resp => {
+          if (players.length > 0) updateHost(resp);
+          setPlayers(resp);
+        });
+      }
+      // }, 1000 * 1);
     } else {
       navigation.reset({ routes: [{ name: 'CriarPartida' }] });
     }

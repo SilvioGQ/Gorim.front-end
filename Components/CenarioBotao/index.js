@@ -8,30 +8,28 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenarios({ onClick }) {
   const [isSelected3, setSelection3] = useState(false);
   return (
-      <View style={{flex:1, justifyContent: 'space-around', alignItems: 'center', padding: 10, width: Tela, flexDirection:'row', backgroundColor: COLORS.bgColorPrimary, marginHorizontal:15}}>
-        <TouchableOpacity onPress={onClick}>
-          <View style={[styles.resumo,{justifyContent: 'space-between'}]}>
-            <Image
-              style={styles.logo}
-              source={Papel}
-            />
-            <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 12, textAlign: 'center', paddingHorizontal:25 }}> Resumo de cenário </Text>
-          </View>
-        </TouchableOpacity>
-        <View style={styles.resumo}>
-          <Text style={styles.candidato}>Finalizar etapa</Text>
+    <View style={{ flex: 1, justifyContent: 'space-around', padding: 10, width: Tela, flexDirection: 'row', backgroundColor: COLORS.bgColorPrimary, marginHorizontal: 15 }}>
+      <TouchableOpacity onPress={onClick}>
+        <View style={[styles.resumo, { justifyContent: 'space-between' }]}>
+          <Image
+            style={styles.logo}
+            source={Papel}
+          />
+          <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 12 }}> Resumo de cenário </Text>
         </View>
+      </TouchableOpacity>
+      <View style={styles.resumo}>
+        <Text style={styles.candidato}>Finalizar etapa</Text>
       </View>
-
+    </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   resumo: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     margin: '1%',
     backgroundColor: COLORS.textWhite,
     height: 50,
@@ -48,12 +46,12 @@ const styles = StyleSheet.create({
   candidato: {
     fontFamily: 'Rubik_300Light',
     fontSize: 12,
-    paddingHorizontal:25
+    paddingHorizontal: 25
 
   },
   logo: {
     width: 30,
     height: 30,
-    marginLeft:15
+    marginLeft: 15
   }
 });
