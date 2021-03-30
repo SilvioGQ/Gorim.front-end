@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import COLORS from '../../styles/Colors';
 
-const Tela = Dimensions.get('screen').width
+const Tela = Dimensions.get('screen').width;
 export default function Button({ name, onClick, disabled = false }) {
   return (
     <View style={styles.container}>
@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 4.46,
-
-    elevation: 50,
+    elevation: 2,
   },
   text: {
     // alignSelf: 'center',

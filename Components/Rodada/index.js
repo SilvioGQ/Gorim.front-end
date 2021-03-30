@@ -19,9 +19,9 @@ export default function Rodada({ onClick, player }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textLarge}>Rodada </Text>
-      <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-        <Image style={{ width: 25, height: 27, marginTop: 40, marginRight: 15 }} source={require('../../assets/Logo/Fechar.png')} />
+      <Text style={styles.textLarge}>Rodada</Text>
+      <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{flexDirection:'row', alignSelf:'center', position:'absolute', left:'85%' }}>
+        <Image style={{ width: 25, height: 27, marginTop: 25, marginRight: 15 }} source={require('../../assets/Logo/Fechar.png')} />
       </TouchableOpacity>
       {modalVisible && (
         <ModalHeader deletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: COLORS.headerColor,
-    justifyContent: 'space-between',
     height: 85,
     width: Tela,
   },
@@ -42,10 +41,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 15,
     fontFamily: 'Rubik_300Light',
-    justifyContent: 'flex-start',
-    textAlign: 'left',
     marginTop: 45,
-    alignItems: 'flex-start',
     marginLeft: 15
   },
 

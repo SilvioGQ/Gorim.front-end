@@ -8,7 +8,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenarios({ onClick }) {
   const [isSelected3, setSelection3] = useState(false);
   return (
-    <View style={{ flex: 1, justifyContent: 'space-around', padding: 10, width: Tela, flexDirection: 'row', backgroundColor: COLORS.bgColorPrimary, marginHorizontal: 15 }}>
+    <View style={{ height: 60, justifyContent: 'space-between', padding: 10, width: Tela, flexDirection: 'row', backgroundColor: COLORS.bgColorPrimary }}>
       <TouchableOpacity onPress={onClick}>
         <View style={[styles.resumo, { justifyContent: 'space-between' }]}>
           <Image
@@ -27,12 +27,11 @@ export default function Cenarios({ onClick }) {
 
 const styles = StyleSheet.create({
   resumo: {
+    height: 60,
     flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    margin: '1%',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: COLORS.textWhite,
-    height: 50,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -41,7 +40,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-    elevation: 9,
+    elevation: 5,
+    marginHorizontal: 15,
   },
   candidato: {
     fontFamily: 'Rubik_300Light',

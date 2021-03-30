@@ -36,18 +36,6 @@ export default function Vendas({ navigation, route }) {
   }
   return (
     <View style={styles.container}>
-      <View style={styles.end}>
-        <Image
-          style={styles.logo}
-          source={Selo}
-        />
-        <Text> 123 </Text>
-        <Image
-          style={styles.logo}
-          source={Moeda}
-        />
-        <Text> 000 </Text>
-      </View>
       <View style={styles.center}>
         <Image
           style={styles.person}
