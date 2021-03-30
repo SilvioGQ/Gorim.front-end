@@ -51,6 +51,8 @@ export default function Parcela({ navigation, route }) {
   }
   const SelecteItem = () => {
     setDropDown(false)
+    seticone('rice')
+    item.seed = icone
   }
   const [fertilizer, setFetilizar] = useState(images[item.fertilizer]);
   return (
@@ -65,7 +67,7 @@ export default function Parcela({ navigation, route }) {
         <Text style={styles.title}>Nesta parcela:</Text>
         <TouchableOpacity onPress={() => setDropDown(!dropDown)}>
           <View style={styles.row}>
-            <Image style={[styles.image, { width: item.seed ? 35 : 25, height: item.fertilizer ? 35 : 45 }]}
+            <Image style={[styles.image, { width: item.seed ? 35 : 25, height: item.seed ? 35 : 45 }]}
               source={item.seed ? fertilizer : Unknown} />
             <View>
               <Text>Sementes</Text>

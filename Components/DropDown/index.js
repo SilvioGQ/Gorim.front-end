@@ -82,7 +82,7 @@ export default function DropDown({ items, type, onClick, display }) {
     container: {
       // flex:1,
       // left: 200,
-      width: 200,
+      width: 230,
       margin: 'auto',
       // maxWidth: 200,
       // zIndex: 2,
@@ -91,6 +91,7 @@ export default function DropDown({ items, type, onClick, display }) {
       borderWidth: 1,
       borderColor: "#20232a",
       borderRadius: 5,
+      left:120
     },
     item: {
       padding: 20,
@@ -98,8 +99,8 @@ export default function DropDown({ items, type, onClick, display }) {
       // maxWidth: 200,
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'left',
       backgroundColor: '#4E7E4D',
+
     },
     icone: {
       width: 30,
