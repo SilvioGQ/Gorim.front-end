@@ -4,7 +4,7 @@ import Button from '../../../Components/Button';
 
 import Selo from '../../../assets/moedas/Selo.png';
 import Moeda from '../../../assets/moedas/Moeda.png';
-import Tractor from '../../../assets/agricultorIcones/tractor.png';
+import Tractor from '../../../assets/machines/tractor.png';
 import Back1 from '../../../assets/back1.png';
 import Person from '../../../assets//perfils/empresariox1/person.png';
 import Pacote from '../../../assets/agricultorIcones/pacote.png';

@@ -47,7 +47,7 @@ const PlayerService = {
             });
     },
     typesRaffle(room) {
-         let emp = 0;
+        let emp = 0;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
 
         db.collection('players').where('room', '==', room)
@@ -76,15 +76,16 @@ const PlayerService = {
                                 { type: 'fertilizer', name: 'fertilizerStandard', amount: 0 },
                                 { type: 'pesticide', name: 'pesticideBasic', amount: 1 },
                                 { type: 'pesticide', name: 'pesticideMedium', amount: 1 },
-                                { type: 'pesticide', name: 'pesticideStandard', amount: 1 }
+                                { type: 'pesticide', name: 'pesticideStandard', amount: 1 },
+                                { type: 'machine', name: 'tractor', amount: 1 }
                             ],
                             parcelLand: [
-                                { id: 0, purchased: true, seed: null, fertilizer: null, pesticide: null },
-                                { id: 1, purchased: true, seed: 'rice', fertilizer: null, pesticide: null },
-                                { id: 2, purchased: true, seed: null, fertilizer: null, pesticide: null },
-                                { id: 3, purchased: true, seed: null, fertilizer: 'fertilizerBasic', pesticide: null },
-                                { id: 4, purchased: true, seed: null, fertilizer: null, pesticide: 'pesticideBasic' },
-                                { id: 5, purchased: true, seed: null, fertilizer: null, pesticide: null }
+                                { id: 0, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null },
+                                { id: 1, purchased: true, seed: 'rice', fertilizer: null, pesticide: null, machine: null },
+                                { id: 2, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null },
+                                { id: 3, purchased: true, seed: null, fertilizer: 'fertilizerBasic', pesticide: null, machine: null },
+                                { id: 4, purchased: true, seed: null, fertilizer: null, pesticide: 'pesticideBasic', machine: null },
+                                { id: 5, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null }
                             ],
                             stamp: false
                         });

@@ -7,6 +7,7 @@ import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import { ScrollView } from 'react-native-gesture-handler';
+import FunctionalityService from '../../../services/FunctionalityService';
 
 const translateName = {
   "soy": 'Soja',
@@ -17,7 +18,8 @@ const translateName = {
   "fertilizerStandard": 'Fertilizante Super Premium',
   "pesticideBasic": 'Agrotóxico Normal',
   "pesticideMedium": 'Agrotóxico Premium',
-  "pesticideStandard": 'Agrotóxico Super Premium'
+  "pesticideStandard": 'Agrotóxico Super Premium',
+  "tractor": 'Trator'
 };
 
 const images = {
@@ -30,6 +32,7 @@ const images = {
   'fertilizerBasic': require('../../../assets/fertilizers/fertilizerBasic.png'),
   'fertilizerMedium': require('../../../assets/fertilizers/fertilizerMedium.png'),
   'fertilizerStandard': require('../../../assets/fertilizers/fertilizerStandard.png'),
+  "tractor": require('../../../assets/machines/tractor.png')
 };
 
 const Tela = Dimensions.get('screen').width;
@@ -48,6 +51,7 @@ export default function Parcela({ navigation, route }) {
       if (type == 'seed') parcelLand.seed = name;
       if (type == 'fertilizer') parcelLand.fertilizer = name;
       if (type == 'pesticide') parcelLand.pesticide = name;
+      if (type == 'machine') parcelLand.machine = name;
     }
 
     setDropDown(false);
@@ -97,19 +101,25 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'pesticide'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
-        {/* <TouchableOpacity onPress={() => setDropDown4(!dropDown4)}>
+        <TouchableOpacity onPress={() => setDropDown4(!dropDown4)}>
           <View style={styles.row}>
-            <Image style={[styles.image, { width: parcelLand.fertilizer ? 35 : 25, height: parcelLand.fertilizer ? 35 : 45 }]}
-              source={parcelLand.fertilizer ? fertilizer : Unknown} />
+            <Image style={[styles.image, { width: parcelLand.machine ? 35 : 25, height: parcelLand.machine ? 35 : 45 }]}
+              source={parcelLand.machine ? images[parcelLand.machine] : Unknown} />
             <View>
               <Text>Máquinas</Text>
-              <Text>{parcelLand.fertilizer ? translateName[parcelLand.fertilizer] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.machine ? translateName[parcelLand.machine] : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>
-        <DropDown={player.inventory} type={'pesticide'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} /> */}
+        <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
         <Button
-          onClick={() => navigation.navigate('Agricultor1')}
+          onClick={() => {
+            player.parcelLand.forEach(e => {
+              if(e.id == parcelLand.id) e = parcelLand;
+            });
+            FunctionalityService.toPlant(player);
+            navigation.navigate('ControleParcelas');
+          }}
           name='INICIAR PLANTIO'
         />
       </ScrollView>

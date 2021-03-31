@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 
 const translateName = {
-  'rice': 'Arroz',
-  'soy': 'Soja',
-  'greenery': 'Hortiça',
-  'fertilizerBasic': 'Fertilizante Normal',
-  'fertilizerMedium': 'Fertilizante Premium',
-  'fertilizerStandard': 'Fertilizante Super Premium',
-  'pesticideBasic': 'Agrotóxico Normal',
-  'pesticideMedium': 'Agrotóxico Premium',
-  'pesticideStandard': 'Agrotóxico Super Premium'
+  "soy": 'Soja',
+  "rice": 'Arroz',
+  "greenery": 'Hortiça',
+  "fertilizerBasic": 'Fertilizante Normal',
+  "fertilizerMedium": 'Fertilizante Premium',
+  "fertilizerStandard": 'Fertilizante Super Premium',
+  "pesticideBasic": 'Agrotóxico Normal',
+  "pesticideMedium": 'Agrotóxico Premium',
+  "pesticideStandard": 'Agrotóxico Super Premium',
+  "tractor": 'Trator'
 };
 
 const images = {
@@ -23,6 +24,7 @@ const images = {
   'fertilizerBasic': require('../../assets/fertilizers/fertilizerBasic.png'),
   'fertilizerMedium': require('../../assets/fertilizers/fertilizerMedium.png'),
   'fertilizerStandard': require('../../assets/fertilizers/fertilizerStandard.png'),
+  "tractor": require('../../assets/machines/tractor.png')
 };
 
 const Tela = Dimensions.get('screen').width;
@@ -39,44 +41,49 @@ export default function DropDown({ items, type, onClick, display }) {
   return (
     <View style={[styles.container, { display: display }]}>
       { inventory.map((item, index) => {
-        return(
+        return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}>
             <Image style={styles.icone} source={images[item.name]} />
             <Text style={styles.text}>{translateName[item.name]}</Text>
           </TouchableOpacity>
         );
       })}
+      { inventory.length === 0 && (
+        <TouchableOpacity style={styles.item}>
+          <Text style={styles.text}>Sem itens</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    // flex:1,
+    // left: 200,
+    width: 230,
+    margin: 'auto',
+    elevation: 4,
+    borderWidth: 1,
+    marginLeft: Tela * 0.05 + '%',
+    borderColor: "#20232a",
+    borderRadius: 5,
+  },
+  item: {
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#4E7E4D',
+
+  },
+  icone: {
+    width: 30,
+    height: 30,
+  },
+  text: {
+    fontFamily: 'Rubik_300Light',
+    fontSize: 15,
+    marginLeft: 15
   }
-
-  const styles = StyleSheet.create({
-    container: {
-      // flex:1,
-      // left: 200,
-      width: 230,
-      margin: 'auto',
-      elevation: 4,
-      borderWidth: 1,
-      marginLeft: Tela * 0.05 + '%',
-      borderColor: "#20232a",
-      borderRadius: 5,
-    },
-    item: {
-      padding: 20,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#4E7E4D',
-
-    },
-    icone: {
-      width: 30,
-      height: 30,
-    },
-    text: {
-      fontFamily: 'Rubik_300Light',
-      fontSize: 15,
-      marginLeft: 15
-    }
-  });
+});

@@ -48,6 +48,9 @@ const FunctionalityService = {
         batch.update(destinyRef, { coin: firebase.firestore.FieldValue.increment(value) });
 
         batch.commit();
+    },
+    toPlant(player) {
+        db.collection('players').doc(player.id).update(player);
     }
 }
 

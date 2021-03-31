@@ -7,7 +7,7 @@ import Quantidades from '../../../Components/Quantidades';
 import COLORS from '../../../styles/Colors'
 import Selo from '../../../assets/moedas/Selo.png';
 import Moeda from '../../../assets/moedas/Moeda.png';
-import Tractor from '../../../assets/agricultorIcones/tractor.png';
+import Tractor from '../../../assets/machines/tractor.png';
 import Baixo from '../../../assets/moedas/baixo.png';
 import Normal from '../../../assets/moedas/normal.png';
 import Alto from '../../../assets/moedas/alto.png';
