@@ -13,6 +13,7 @@ import Rice from '../../assets/seeds/rice.png';
 import COLORS from '../../styles/Colors'
 const Tela = Dimensions.get('screen').width;
 export default function Produtos({nomes,logo, Preco1,Preco2,Preco3,Poluicao}) {
+  console.log(Preco2)
   return (
       <View style={styles.container}>
         <View style={styles.colunm}>
