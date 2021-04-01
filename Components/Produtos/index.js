@@ -1,105 +1,83 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
-
-import FertilizanteComum from '../../assets/fertilizers/fertilizerBasic.png';
-import FertilizantePremium from '../../assets/fertilizers/fertilizerMedium.png';
-import FertilizanteSuperPremium from '../../assets/fertilizers/fertilizerStandard.png';
-import AgrotoxicoPremium from '../../assets/pesticides/pesticideMedium.png';
-import AgrotoxicoComum from '../../assets/pesticides/pesticideBasic.png';
-import AgrotoxicoSuperPremium from '../../assets/seeds/rice.png';
-import Hortalicas from '../../assets/seeds/greenery.png';
-import Arroz from '../../assets/seeds/soy.png';
-import Rice from '../../assets/seeds/rice.png';
+import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import COLORS from '../../styles/Colors'
 const Tela = Dimensions.get('screen').width;
-export default function Produtos({nomes,logo, Preco1,Preco2,Preco3,Poluicao}) {
-  console.log(Preco2)
+export default function Produtos({ item }) {
   return (
-      <View style={styles.container}>
-        <View style={styles.colunm}>
-          <View style={styles.row3}>
-            <View style={styles.centro}>
-              <Image
-                style={styles.logo}
-                source={logo}
-              />
-              <Text style={styles.textos}>{nomes}</Text>
-            </View>
-            <View>
-              <Text style={styles.textinhos}>Preços:</Text>
-              <View>
-                <Text style={styles.numeros}>{Preco1}</Text>
-                <Text style={styles.numeros}>{Preco2}</Text>
-                  <Text style={styles.numeros}>{Preco3}</Text>
-              </View>
-            </View>
-            <View style={styles.poluicao}>
-              <Text style={styles.textinhos}>Poluição</Text>
-              <Text style={styles.numeros}>{Poluicao}</Text>
-            </View>
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <Image
+          style={styles.logo}
+          source={item.icone}
+        />
+        <Text style={styles.textos}>{item.name}</Text>
+      </View>
+      <View style={{justifyContent:'space-between', width:'85%', flexDirection:'row'}}>
+        <View style={styles.row2}>
+        <Text style={styles.textinhos}>Preços:</Text>
+          <Text style={styles.numeros}>{item.cheap}$</Text>
+          <Text style={styles.numeros}>{item.medium}$</Text>
+          <Text style={styles.numeros}>{item.expensive}$</Text>
+        </View>
+          <View style={styles.poluicao}>
+            <Text style={styles.poluicao}>{item.pollution}</Text>
           </View>
         </View>
-      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    width: Tela,
-  },
-  row3: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    width: Tela - 20,
-    justifyContent: 'space-around',
-    margin: 5,
-    marginTop: 5
-  },
-  colunm: {
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 15,
-    backgroundColor: COLORS.bgColorPrimary,
-    width: Tela - 25,
+    backgroundColor: COLORS.textWhite,
+    width: '90%',
     height: 115,
-    borderRadius: 20,
+    borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
-      width: 0,
-      height: 4,
+      width: 2,
+      height: 2,
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-    elevation: 2
+    elevation: 2,
+    marginHorizontal:10
+  },
+  row:{
+    flexDirection:'row',
+    marginVertical:10
+  },
+  row2:{
+    flexDirection:'row',
+    marginVertical:10,
   },
   textos: {
     fontFamily: 'Rubik_700Bold',
-    fontSize: 12,
+    fontSize: 16,
     alignSelf: 'center',
-    textAlign: 'center',
-    marginTop: 5
   },
   textinhos: {
     fontFamily: 'Rubik_700Bold',
-    alignItems: 'center',
-    textAlign: 'center',
     fontSize: 18,
+    marginLeft: 15
   },
   logo: {
     width: 35,
-    height: 36
+    height: 36,
+    marginRight:15
   },
   numeros: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 16,
-    alignItems: 'center',
-    textAlign: 'center',
-    marginVertical: 5
+    fontSize: 18,
+    marginVertical: 1,
+    marginLeft:10
   },
-  centro: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
+  poluicao:{
+    fontSize:36,
+    fontFamily:'Rubik_400Regular',
+    color:'#FF0000'
+  }
 });
