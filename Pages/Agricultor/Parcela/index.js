@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 
 import Button from '../../../Components/Button';
+import Modal from '../../../Components/Modal/ModalFrame2';
 import COLORS from '../../../styles/Colors';
 import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
@@ -40,6 +41,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Parcela({ navigation, route }) {
   const [player, setPlayer] = useState(route.params.player);
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
+  const [modalText, setModalText] = useState('');
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
@@ -58,6 +60,25 @@ export default function Parcela({ navigation, route }) {
     setDropDown2(false);
     setDropDown3(false);
     setDropDown4(false);
+  }
+
+  const toPlant = () => {
+    if (!parcelLand.seed) return setModalText('Selecione uma semente!');
+    if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
+    if (!parcelLand.pesticide) return setModalText('Selecione um agrotóxico!');
+    if (!parcelLand.machine) return setModalText('Selecione uma máquina!');
+
+    player.parcelLand.forEach(e => {
+      if (e.id == parcelLand.id) e = parcelLand;
+    });
+    player.inventory.forEach(e => {
+      if (e.name == parcelLand.seed) e.amount = e.amount - 1;
+      if (e.name == parcelLand.fertilizer) e.amount = e.amount - 1;
+      if (e.name == parcelLand.pesticide) e.amount = e.amount - 1;
+      if (e.name == parcelLand.machine) e.amount = e.amount - 1;
+    });
+    FunctionalityService.toPlant(player);
+    navigation.navigate('ControleParcelas');
   }
 
   return (
@@ -112,16 +133,10 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
-        <Button
-          onClick={() => {
-            player.parcelLand.forEach(e => {
-              if(e.id == parcelLand.id) e = parcelLand;
-            });
-            FunctionalityService.toPlant(player);
-            navigation.navigate('ControleParcelas');
-          }}
-          name='INICIAR PLANTIO'
-        />
+        <Button onClick={toPlant} name='INICIAR PLANTIO' />
+        {modalText !== '' && (
+          <Modal onClick={() => setModalText('')} text={modalText} />
+        )}
       </ScrollView>
     </View>
   );
@@ -163,9 +178,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     alignSelf: 'flex-start',
     marginLeft: 60
-  }, 
-  bold:{
-    fontSize:14,
-    fontFamily:'Rubik_700Bold'
+  },
+  bold: {
+    fontSize: 14,
+    fontFamily: 'Rubik_700Bold'
   }
 });
