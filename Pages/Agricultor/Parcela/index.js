@@ -10,6 +10,8 @@ import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import { ScrollView } from 'react-native-gesture-handler';
 import FunctionalityService from '../../../services/FunctionalityService';
 
+// import Img from '../../../data/Images';
+
 const translateName = {
   "soy": 'Soja',
   "rice": 'Arroz',
@@ -92,7 +94,7 @@ export default function Parcela({ navigation, route }) {
         <TouchableOpacity onPress={() => setDropDown(!dropDown)}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.seed ? 35 : 25, height: parcelLand.seed ? 35 : 45 }]}
-              source={parcelLand.seed ? images[parcelLand.seed] : Unknown} />
+              source={parcelLand.seed ? Img[parcelLand.seed] : Unknown} />
             <View>
               <Text>Sementes</Text>
               <Text style={styles.bold}>{parcelLand.seed ? translateName[parcelLand.seed] : '-'}</Text>
