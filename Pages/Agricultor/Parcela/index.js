@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 
 import Button from '../../../Components/Button';
@@ -9,8 +9,6 @@ import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import { ScrollView } from 'react-native-gesture-handler';
 import FunctionalityService from '../../../services/FunctionalityService';
-
-// import Img from '../../../data/Images';
 
 const translateName = {
   "soy": 'Soja',
@@ -44,6 +42,7 @@ export default function Parcela({ navigation, route }) {
   const [player, setPlayer] = useState(route.params.player);
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
+  const [plant, setPlant] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
@@ -70,18 +69,20 @@ export default function Parcela({ navigation, route }) {
     if (!parcelLand.pesticide) return setModalText('Selecione um agrotóxico!');
     if (!parcelLand.machine) return setModalText('Selecione uma máquina!');
 
-    player.parcelLand.forEach(e => {
-      if (e.id == parcelLand.id) e = parcelLand;
-    });
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;
       if (e.name == parcelLand.fertilizer) e.amount = e.amount - 1;
       if (e.name == parcelLand.pesticide) e.amount = e.amount - 1;
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
+    setPlant(true);
     FunctionalityService.toPlant(player);
-    navigation.navigate('ControleParcelas');
+    navigation.navigate('ControleParcelas', { message: 'Seu plantio foi iniciado' });
   }
+
+  useEffect(() => {
+    setPlant(parcelLand.seed || parcelLand.fertilizer || parcelLand.pesticide || parcelLand.machine);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -94,7 +95,7 @@ export default function Parcela({ navigation, route }) {
         <TouchableOpacity onPress={() => setDropDown(!dropDown)}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.seed ? 35 : 25, height: parcelLand.seed ? 35 : 45 }]}
-              source={parcelLand.seed ? Img[parcelLand.seed] : Unknown} />
+              source={parcelLand.seed ? images[parcelLand.seed] : Unknown} />
             <View>
               <Text>Sementes</Text>
               <Text style={styles.bold}>{parcelLand.seed ? translateName[parcelLand.seed] : '-'}</Text>
@@ -135,7 +136,12 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
-        <Button onClick={toPlant} name='INICIAR PLANTIO' />
+        {!plant && (
+          <Button onClick={toPlant} name='INICIAR PLANTIO' />
+        )}
+        {plant && (
+          <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>
+        )}
         {modalText !== '' && (
           <Modal onClick={() => setModalText('')} text={modalText} />
         )}

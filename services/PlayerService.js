@@ -69,6 +69,12 @@ const PlayerService = {
                             coin: 300,
                             inventory: [ 
                                 { type: 'seed', name: 'rice', amount: 3 },
+                                { type: 'seed', name: 'soy', amount: 2 },
+                                { type: 'fertilizer', name: 'fertilizerBasic', amount: 2 },
+                                { type: 'pesticide', name: 'pesticideBasic', amount: 1 },
+                                { type: 'pesticide', name: 'pesticideMedium', amount: 1 },
+                                { type: 'pesticide', name: 'pesticideStandard', amount: 1 },
+                                { type: 'machine', name: 'tractor', amount: 1 },
                             ],
                             parcelLand: [
                                 { id: 0, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null },
