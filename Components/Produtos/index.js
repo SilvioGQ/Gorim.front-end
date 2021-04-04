@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import COLORS from '../../styles/Colors'
-const Tela = Dimensions.get('screen').width;
 export default function Produtos({ item }) {
   return (
     <View style={styles.container}>
@@ -13,7 +12,7 @@ export default function Produtos({ item }) {
         <Text style={styles.textos}>{item.name}</Text>
       </View>
       <View style={{justifyContent:'space-between', width:'85%', flexDirection:'row'}}>
-        <View style={styles.row2}>
+        <View style={styles.row}>
         <Text style={styles.textinhos}>Preços:</Text>
           <Text style={styles.numeros}>{item.cheap}$</Text>
           <Text style={styles.numeros}>{item.medium}$</Text>
@@ -38,21 +37,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
-      width: 2,
-      height: 2,
+      width: 0,
+      height: 4,
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
     elevation: 2,
-    marginHorizontal:10
+    marginHorizontal:20
   },
   row:{
     flexDirection:'row',
     marginVertical:10
-  },
-  row2:{
-    flexDirection:'row',
-    marginVertical:10,
   },
   textos: {
     fontFamily: 'Rubik_700Bold',

@@ -5,12 +5,13 @@ import Oferta from '../../../Components/Ofertas'
 import COLORS from '../../../styles/Colors';
 
 const Tela = Dimensions.get('screen').width
-export default function Proposta() {
+export default function Proposta({route}) {
+  const { player } = route.params;
   return (
     <View style={styles.container}>
-      <Money />
+      <Money coin={player.coin}/>
       <Text style={styles.header}> Ofertas</Text>
-      <Oferta vendedor='Agricultor' preço='80$' produto='Soja' />
+      <Oferta vendedor='Silvio' preço='80$' produto='Soja' />
     </View>
 
   );

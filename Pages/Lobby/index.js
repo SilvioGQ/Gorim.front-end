@@ -73,26 +73,26 @@ export default function Lobby({ navigation, route }) {
 
       return () => setIsMounted(false);
     }
-    console.ignoredYellowBox = [
-      'Setting a timer'
-    ]
     if (isMounted) {
-      // setTimeout(() => {
-      FunctionalityService.getRoom(player.room).then(setGame);
-
-      if (Game.players != players.length) {
-
-        PlayerService.getPlayers(player.room).then(resp => {
-          if (players.length > 0) updateHost(resp);
-          setPlayers(resp);
-        });
-      }
-      // }, 1000 * 1);
+      setTimeout(() => {
+        FunctionalityService.getRoom(player.room).then(setGame);
+        
+        if (Game.players != players.length) {
+          
+          PlayerService.getPlayers(player.room).then(resp => {
+            if (players.length > 0) updateHost(resp);
+            setPlayers(resp);
+          });
+        }
+      }, 4000);
     } else {
       navigation.reset({ routes: [{ name: 'CriarPartida' }] });
     }
   }, [Game]);
-
+  
+  console.ignoredYellowBox = [
+    'Setting a timer'
+  ]
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>

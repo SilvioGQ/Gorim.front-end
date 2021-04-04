@@ -11,7 +11,9 @@ const translateName = {
   "pesticideBasic": 'Agrotóxico Normal',
   "pesticideMedium": 'Agrotóxico Premium',
   "pesticideStandard": 'Agrotóxico Super Premium',
-  "tractor": 'Trator'
+  "package 1": 'Pacote 1',
+  "package 2": 'Pacote 2',
+  "package 3": 'Pacote 3'
 };
 
 const images = {
@@ -24,7 +26,9 @@ const images = {
   'fertilizerBasic': require('../../assets/fertilizers/fertilizerBasic.png'),
   'fertilizerMedium': require('../../assets/fertilizers/fertilizerMedium.png'),
   'fertilizerStandard': require('../../assets/fertilizers/fertilizerStandard.png'),
-  "tractor": require('../../assets/machines/tractor.png')
+  "package 1": require('../../assets/agricultorIcones/pacote.png'),
+  "package 2": require('../../assets/agricultorIcones/pacote.png'),
+  "package 3": require('../../assets/agricultorIcones/pacote.png')
 };
 
 const Tela = Dimensions.get('screen').width;

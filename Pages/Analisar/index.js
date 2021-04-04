@@ -142,13 +142,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    alignItems: 'center',
     width: Tela,
     paddingTop: 40
   },
   header: {
     fontFamily: 'Rubik_400Regular',
     fontSize: 24,
-    paddingVertical:10
+    paddingVertical:10,
+    textAlign: 'center',
   },
 });

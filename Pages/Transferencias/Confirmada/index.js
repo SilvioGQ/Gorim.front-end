@@ -21,7 +21,7 @@ export default function Confirmada({ navigation, route }) {
         style={styles.logo}
         source={Confirmacao}
       />
-      <Text style={styles.texto}>Transação confirmada!</Text>
+      <Text style={styles.texto}>Sua transferencia será concluída na próxima rodada!</Text>
     </View>
   );
 }
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   texto: {
     marginTop: 40,
     fontFamily: 'Rubik_300Light',
-
     fontWeight: 'normal',
     fontSize: 22,
     textAlign: 'center'

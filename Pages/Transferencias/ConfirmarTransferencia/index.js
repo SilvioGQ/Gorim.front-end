@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 import Button from '../../../Components/Button';
 import COLORS from '../../../styles/Colors';
@@ -20,19 +20,22 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   return (
     <View style={styles.container}>
+      <ScrollView 
+      showsVerticalScrollIndicator={false}>
       <Text style={styles.texto}>Fazer transferência</Text>
       <Image
         style={styles.logo}
         source={Trans}
       />
-      <Text style={styles.texto2}> Deseja confirmar a transação?  </Text>
+      <Text style={styles.texto2}> Deseja confirmar a transação?</Text>
       <Text style={styles.texto3}>{JSON.stringify(count)}$ </Text>
+      <View style={{ marginVertical:10 }}>
       <Button onClick={makeTransfer} name='CONTINUAR' />
-      <View style={{ width: Tela }}>
         <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador', params: {id: player.id} }] })} style={styles.button}>
           <Text style={styles.textobuton}>CANCELAR</Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
     </View>
   );
 }
@@ -44,20 +47,19 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     width: Tela,
-    paddingTop: 75
+    paddingTop: 45
   },
   logo: {
     height: 180,
     width: 180,
+    alignItems: 'center',
   },
   texto: {
-    margin: 50,
     fontFamily: 'Rubik_400Regular',
     fontSize: 25,
     textAlign: 'center'
   },
   texto2: {
-    margin: 33,
     fontFamily: 'Rubik_300Light',
     fontSize: 22,
     textAlign: 'center'
@@ -73,15 +75,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_400Regular',
     textAlign: 'center',
     alignItems: 'center',
-    marginTop: 15
+    marginTop:15
   },
   button: {
     height: 45,
+    margin: '2%',
+    alignItems: 'center',
     backgroundColor: COLORS.warningButton,
     borderRadius: 25,
-    marginTop: -105,
     width: '80%',
-    alignSelf: 'center',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -89,7 +91,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 4.46,
-
-    elevation: 6,
+    elevation: 2,
   }
 });

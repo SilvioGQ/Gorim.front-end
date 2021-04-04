@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CheckBox } from 'react-native';
 import { Text, View, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 import COLORS from '../../styles/Colors'
 import Papel from '../../assets/agricultorIcones/papel.png';
@@ -8,14 +7,14 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenarios({ onClick }) {
   const [isSelected3, setSelection3] = useState(false);
   return (
-    <View style={{ height: 60, justifyContent: 'space-between', padding: 10, width: Tela, flexDirection: 'row', backgroundColor: COLORS.bgColorPrimary }}>
+    <View style={{ height: 60, justifyContent: 'space-between', paddingVertical: 25, width: '95%', flexDirection: 'row', backgroundColor: COLORS.bgColorPrimary }}>
       <TouchableOpacity onPress={onClick}>
-        <View style={[styles.resumo, { justifyContent: 'space-between' }]}>
+        <View style={[styles.resumo]}>
           <Image
             style={styles.logo}
             source={Papel}
           />
-          <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 12 }}> Resumo de cenário </Text>
+          <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 12, paddingHorizontal: 5 }}> Resumo de cenário </Text>
         </View>
       </TouchableOpacity>
       <View style={styles.resumo}>
@@ -40,14 +39,13 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-    elevation: 5,
+    elevation: 3,
     marginHorizontal: 15,
   },
   candidato: {
     fontFamily: 'Rubik_300Light',
     fontSize: 12,
-    paddingHorizontal: 25
-
+    paddingHorizontal: 20
   },
   logo: {
     width: 30,

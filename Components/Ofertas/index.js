@@ -10,7 +10,7 @@ export default function Oferta({ vendedor, produto, preço }) {
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
-        <View>
+        <View style={styles.agricultor}>
           <Image
             style={styles.person}
             source={Empresario}
@@ -22,7 +22,7 @@ export default function Oferta({ vendedor, produto, preço }) {
           <Text style={styles.textBold}>{produto}</Text>
         </View>
         <Image
-          style={[styles.icone, { marginTop: -12 }]}
+          style={[styles.icone, { marginTop: -30}]}
           source={Rice}
         />
         <View>
@@ -30,11 +30,11 @@ export default function Oferta({ vendedor, produto, preço }) {
           <Text style={styles.textBold}>{preço}</Text>
         </View>
         <Image
-          style={[styles.icone, { marginTop: -12 }]}
+          style={[styles.icone, { marginTop: -30 }]}
           source={Normal}
         />
       </View>
-        <Text style={[styles.text, { marginTop: -15 }]}> Quantidade: 4</Text>
+        <Text style={styles.text}> Quantidade: 4</Text>
       <View style={styles.row3}>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
@@ -49,13 +49,10 @@ export default function Oferta({ vendedor, produto, preço }) {
 
 const styles = StyleSheet.create({
   colunm: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 7,
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius:20,
     width: Tela,
-    height: 125,
+    height: 160,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -64,32 +61,26 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
   
-    elevation: 6
+    elevation: 6,
+    marginVertical:15
   },
   button: {
     width: 140,
     height: 30,
     borderRadius: 15,
     backgroundColor: COLORS.warningButton,
-    padding:5
+    padding:10
   },
   textbutton: {
     color: COLORS.textWhite,
     fontSize: 9,
     textAlign: 'center',
-    marginTop: 6,
     fontFamily: 'Rubik_400Regular'
-  },
-  row: {
-    flexDirection: 'row',
-    margin: '5%',
-    width: Tela,
   },
   row3: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    margin: 5,
-    width: Tela
+    marginVertical: 5,
   },
   icone: {
     width: 36,
@@ -103,11 +94,15 @@ const styles = StyleSheet.create({
   },
   textBold: {
     fontSize: 15,
-    fontFamily: 'Rubik_700bold'
+    fontFamily: 'Rubik_400Regular',
+    fontWeight:'bold'
   },
   text:{ 
     textAlign: 'center',
     fontSize:15,
     alignItems:'center',
+},
+agricultor:{
+  marginTop:10
 }
 });
