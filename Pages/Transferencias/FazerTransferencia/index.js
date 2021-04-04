@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: 'Rubik_300Light',
-
     fontSize: 20,
   },
   icone: {

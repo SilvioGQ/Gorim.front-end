@@ -19,6 +19,7 @@ import Pulverizador from '../../assets/agricultorIcones/pulverizador.png'
 export default function Analizar() {
   const Info = [
     {
+      id:1,
       name: 'Fertilizante Comum',
       icone: FertilizanteComum,
       cheap: 25,
@@ -27,6 +28,7 @@ export default function Analizar() {
       pollution: 9
     },
     {
+      id:2,
       name: 'Fertilizante Premium',
       icone: FertilizantePremium,
       cheap: 55,
@@ -35,6 +37,7 @@ export default function Analizar() {
       pollution: 6
     },
     {
+      id:3,
       name: 'Fertilizante Super Premium',
       icone: FertilizanteSuperPremium,
       cheap: 85,
@@ -43,6 +46,7 @@ export default function Analizar() {
       pollution: 3
     },
     {
+      id:4,
       name: 'Agrotoxico Comum',
       icone: AgrotoxicoComum,
       cheap: 5,
@@ -51,6 +55,7 @@ export default function Analizar() {
       pollution: 3
     },
     {
+      id:5,
       name: 'Agrotoxico Premium',
       icone: AgrotoxicoPremium,
       cheap: 15,
@@ -59,6 +64,7 @@ export default function Analizar() {
       pollution: 2
     },
     {
+      id:6,
       name: 'Agrotoxico Super Premium',
       icone: AgrotoxicoSuperPremium,
       cheap: 25,
@@ -67,6 +73,7 @@ export default function Analizar() {
       pollution: 1
     },
     {
+      id:7,
       name: 'Hortalicas',
       icone: Hortalicas,
       cheap: 5,
@@ -75,6 +82,7 @@ export default function Analizar() {
       pollution: 3
     },
     {
+      id:8,
       name: 'Soja',
       icone: Soja,
       cheap: 15,
@@ -83,6 +91,7 @@ export default function Analizar() {
       pollution: 2
     },
     {
+      id:9,
       name: 'Arroz',
       icone: Arroz,
       cheap: 25,
@@ -91,6 +100,7 @@ export default function Analizar() {
       pollution: 1
     },
     {
+      id:10,
       name: 'Pacote 1',
       icone: Pacote,
       cheap: 25,
@@ -99,6 +109,7 @@ export default function Analizar() {
       pollution: 3
     },
     {
+      id:11,
       name: 'Pacote 2',
       icone: Pacote,
       cheap: 55,
@@ -107,6 +118,7 @@ export default function Analizar() {
       pollution: 6
     },
     {
+      id:12,
       name: 'Pacote 3',
       icone: Pacote,
       cheap: 85,
@@ -115,6 +127,7 @@ export default function Analizar() {
       pollution: 9
     },
     {
+      id:13,
       name: 'Pulverizador',
       icone: Pulverizador,
       cheap: 295,
@@ -130,7 +143,7 @@ export default function Analizar() {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={Info}
-        keyExtractor={(index) => index.toString()}
+        keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <Produtos item={item} />
         }
       />

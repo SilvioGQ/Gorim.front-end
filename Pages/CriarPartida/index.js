@@ -8,8 +8,10 @@ import Modal from '../../Components/Modal/ModalFrame2';
 import Group28 from '../../assets/Group28.png';
 import Group29 from '../../assets/Group29.png';
 import rightArrow from '../../assets/right-arrow.png';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Tela = Dimensions.get('screen').width;
+const Height = Dimensions.get('screen').height;
 export default function CriarPartida({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [name, setName] = useState('');
@@ -67,54 +69,68 @@ export default function CriarPartida({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input}
-        maxLength={15}
-        onChangeText={name => setName(name)}
-        placeholder="Digite seu nome"
-        value={name}
-      >
-      </TextInput>
-      <Text style={styles.header}>HOST</Text>
-      <View style={styles.line} />
-      <View style={styles.row}>
-        <Image
-          style={styles.logo2}
-          source={Group28}
-        />
-        <TouchableOpacity
-          style={styles.button2}
-          onPress={createRoom}
-        >
-          <Text style={styles.text}>CRIAR JOGO</Text>
-        </TouchableOpacity>
-      </View>
-      {modalText !== '' && (
-        <Modal onClick={() => setModalText('')} text={modalText} />
-      )}
-      <Text style={[styles.header]}>ENTRAR</Text>
-      <View style={styles.line} />
-      <View style={styles.row}>
-        <Image
-          style={styles.logo2}
-          source={Group29}
-        />
-        <TextInput
-          maxLength={6}
-          style={[styles.button2, styles.text2]}
-          onChangeText={room => setRoom(room.toUpperCase())}
-          placeholder='ESCREVER CÓDIGO'
-          value={room}
-        >
-        </TextInput>
-        <TouchableOpacity
-          onPress={selectRoom}
-        >
-          <Image
-            style={styles.arrow}
-            source={rightArrow}
-          />
-        </TouchableOpacity>
-      </View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}>
+        <View style={{ flex: 1, height: Height - 100, alignItems: 'center', width: Tela }}>
+          <TextInput style={styles.input}
+            maxLength={15}
+            onChangeText={name => setName(name)}
+            placeholder="Digite seu nome"
+            value={name}
+          >
+          </TextInput>
+          <View style={{ alignItems: 'center', width: Tela, marginBottom: 50 }}>
+            <Text style={styles.header}>HOST</Text>
+            <View style={styles.line} />
+            <View style={styles.row}>
+              <Image
+                style={styles.logo2}
+                source={Group28}
+              />
+              <TouchableOpacity
+                style={styles.button2}
+                onPress={createRoom}
+              >
+                <Text style={styles.text}>CRIAR JOGO</Text>
+              </TouchableOpacity>
+              <Image
+                  style={[styles.arrow, {opacity:0}]}
+                  source={rightArrow}
+                />
+            </View>
+            
+          </View>
+          {modalText !== '' && (
+            <Modal onClick={() => setModalText('')} text={modalText} />
+          )}
+          <View style={{ alignItems: 'center', width: Tela, marginVertical: 40 }}>
+            <Text style={[styles.header]}>ENTRAR</Text>
+            <View style={styles.line} />
+            <View style={styles.row}>
+              <Image
+                style={styles.logo2}
+                source={Group29}
+              />
+              <TextInput
+                maxLength={6}
+                style={[styles.button2, styles.text2]}
+                onChangeText={room => setRoom(room.toUpperCase())}
+                placeholder='ESCREVER CÓDIGO'
+                value={room}
+              >
+              </TextInput>
+              <TouchableOpacity
+                onPress={selectRoom}
+              >
+                <Image
+                  style={styles.arrow}
+                  source={rightArrow}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -122,10 +138,10 @@ export default function CriarPartida({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    paddingTop: 60,
+    paddingTop: 45,
+    marginLeft: 5,
     width: Tela
   },
   input: {
@@ -137,7 +153,6 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   row: {
-    flex: 1,
     flexDirection: 'row',
     // alignSelf: 'space-between',
     // alignItems: 'space-between',
@@ -147,13 +162,13 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: 'Rubik_300Light',
     fontSize: 24,
-    lineHeight: 40,
     // alignSelf: 'center',
-    marginTop: 40
+    marginVertical: 10,
+    marginTop: 30
   },
   logo2: {
-    width: 85,
-    height: 80,
+    width: 101,
+    height: 95,
     margin: 12
   },
   simbolo: {
@@ -175,14 +190,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 4.46,
 
-    elevation: 6,
+    elevation: 3,
+    backgroundColor: '#fff',
     marginTop: 30
   },
   text: {
     fontSize: 24,
     fontFamily: 'Rubik_300Light',
-    textAlign: 'center',
-    // alignItems: 'center',
     marginTop: 5
   },
   text2: {
@@ -190,12 +204,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
-    // alignItems: 'center',
   },
   arrow: {
     width: 25,
     height: 25,
-    marginTop: 32,
+    marginTop: 35,
     marginLeft: 10
   },
   line: { width: '80%', borderWidth: 1 }

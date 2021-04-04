@@ -45,29 +45,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
-    alignItems: 'center',
     width: Tela,
-    paddingTop: 45
+    paddingTop: 40
   },
   logo: {
     height: 180,
     width: 180,
-    alignItems: 'center',
+    alignSelf: 'center',
+    marginVertical:50
   },
   texto: {
     fontFamily: 'Rubik_400Regular',
-    fontSize: 25,
-    textAlign: 'center'
+    fontSize: 24,
+    textAlign: 'center',
+    marginVertical:10,
   },
   texto2: {
     fontFamily: 'Rubik_300Light',
     fontSize: 22,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginVertical:20
   },
   texto3: {
     fontFamily: 'Rubik_300Light',
     fontSize: 48,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginVertical:20
   },
   textobuton: {
     color: COLORS.textWhite,
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
   button: {
     height: 45,
     margin: '2%',
-    alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: COLORS.warningButton,
     borderRadius: 25,
     width: '80%',

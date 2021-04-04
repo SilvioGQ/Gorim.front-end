@@ -44,49 +44,29 @@ export default function Routes() {
       }} />
       <Stack.Screen name="frame4" component={Frame4} options={{
         headerTransparent: true,
-        headerTitle: '',
-        headerTitleStyle: {
-          fontSize: 41,
-          marginLeft: '25%',
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-          backgroundColor: '#EBFFFD',
-
-          height: 77
-        },
+        headerTitle: ''
       }} />
       <Stack.Screen name="frame5" component={Frame5} options={{
         headerTransparent: true,
         headerTitle: '',
-             }} />
+      }} />
       <Stack.Screen name="frame6" component={Frame6} options={{
         headerTransparent: true,
         headerTitle: '',
 
-              }} />
+      }} />
       <Stack.Screen name="frame7" component={Frame7} options={{
         headerTransparent: true,
         headerTitle: '',
 
-              }} />
+      }} />
       <Stack.Screen name="MenuJogador" component={MenuJogador} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />
       <Stack.Screen name="Espera" component={Espera} options={{
         headerTransparent: true,
-        headerTitle: 'Gorim',
-        headerTitleStyle: {
-          fontSize: 41,
-          marginLeft: '25%',
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-
-          backgroundColor: '#EBFFFD',
-          height: 77
-        },
+        headerTitle: ''
       }} />
       <Stack.Screen name="FazerTransferencia" component={FazerTransferencia} options={{
         headerTransparent: true,
@@ -94,16 +74,7 @@ export default function Routes() {
       }} />
       <Stack.Screen name="ConfirmarTransferencia" component={ConfirmarTransferencia} options={{
         headerTransparent: true,
-        headerTitle: 'Gorim',
-        headerTitleStyle: {
-          fontSize: 41,
-          marginLeft: '25%',
-          fontFamily: 'Rubik_300Light',
-        },
-        headerStyle: {
-          backgroundColor: '#EBFFFD',
-          height: 100
-        },
+        headerTitle: ''
       }} />
       <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada} options={{
         headerTransparent: true,
@@ -111,17 +82,7 @@ export default function Routes() {
       }} />
       <Stack.Screen name="insumo" component={Insumo} options={{
         headerTransparent: true,
-        headerTitle: 'Gorim',
-        headerTitleStyle: {
-          fontSize: 41,
-          fontFamily: 'Rubik_300Light',
-          marginLeft: '25%',
-        },
-        headerStyle: {
-          backgroundColor: '#EBFFFD',
-
-          height: 100
-        },
+        headerTitle: ''
       }} />
       <Stack.Screen name="ControleParcelas" component={ControleParcelas} options={{
         headerTransparent: true,

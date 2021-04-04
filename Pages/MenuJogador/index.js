@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 
 import Parcela from '../../assets/agricultorIcones/ParcelaPequena.png';
 import COLORS from '../../styles/Colors';
@@ -9,6 +9,7 @@ import PlayerService from '../../services/PlayerService';
 import Conf from '../../Components/Selo-Verde-Confirmacao';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
+
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
@@ -25,6 +26,7 @@ export default function MenuJogador({ navigation, route }) {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
       {player.type === 'Agricultor' && (
         <>
@@ -93,7 +95,7 @@ export default function MenuJogador({ navigation, route }) {
           </View>
         </>
       )}
-      {Height >= 750 && (
+      {Height >= 800 && (
         <>
           <View style={{ height:80, width: '89%', borderRadius: 20, alignItems: 'center', backgroundColor: '#66BF00', marginTop: 20 }}>
             <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 36, color: 'white' }}>200</Text>
