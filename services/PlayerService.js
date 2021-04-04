@@ -70,10 +70,7 @@ const PlayerService = {
                             inventory: [ 
                                 { type: 'seed', name: 'rice', amount: 3 },
                                 { type: 'seed', name: 'soy', amount: 2 },
-                                { type: 'seed', name: 'greenery', amount: 0 },
                                 { type: 'fertilizer', name: 'fertilizerBasic', amount: 2 },
-                                { type: 'fertilizer', name: 'fertilizerMedium', amount: 0 },
-                                { type: 'fertilizer', name: 'fertilizerStandard', amount: 0 },
                                 { type: 'pesticide', name: 'pesticideBasic', amount: 1 },
                                 { type: 'pesticide', name: 'pesticideMedium', amount: 1 },
                                 { type: 'pesticide', name: 'pesticideStandard', amount: 1 },
