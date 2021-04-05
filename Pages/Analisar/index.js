@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions, FlatList } from 'react-native';
-import Money from '../../Components/Dinheiro';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 import Produtos from '../../Components/Produtos';
 import COLORS from '../../styles/Colors';
-
+import Modal from '../../Components/Modal/ModalFrame2'
 const Tela = Dimensions.get('screen').width
 import FertilizanteComum from '../../assets/fertilizers/fertilizerBasic.png';
 import FertilizantePremium from '../../assets/fertilizers/fertilizerMedium.png';
@@ -17,6 +16,7 @@ import Arroz from '../../assets/seeds/rice.png';
 import Pacote from '../../assets/agricultorIcones/pacote.png'
 import Pulverizador from '../../assets/agricultorIcones/pulverizador.png'
 export default function Analizar() {
+  const [modalText, setModalText] = useState('');
   const Info = [
     {
       id:1,
@@ -139,7 +139,15 @@ export default function Analizar() {
 
   return (
     <View style={styles.container}>
+      <View style={{flexDirection:'row', justifyContent:'center'}}>
       <Text style={styles.header}>Produtos</Text>
+      <TouchableOpacity onPress={()=>setModalText('Informações em tela: \nIcones e nomes de todos produtos que pode ser utilizados nas parcelas de terras. \nPreços possíveis para serem nagociados, começando com o baixo até o alto. \nE em vermelho o quanto de poluição que o produto irá causar.')}>
+      <Image source={require('../../assets/agricultorIcones/information.png')} style={{width:20, height:20, marginVertical:5, marginLeft:10}}/>
+      </TouchableOpacity>
+      </View>
+      {modalText !== '' && (
+            <Modal onClick={() => setModalText('')} text={modalText} />
+          )}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={Info}
@@ -161,7 +169,7 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: 'Rubik_400Regular',
     fontSize: 24,
-    paddingVertical:10,
     textAlign: 'center',
+    marginLeft:20
   },
 });
