@@ -75,7 +75,6 @@ const PlayerService = {
                                 { type: 'pesticide', name: 'pesticideMedium', amount: 1 },
                                 { type: 'pesticide', name: 'pesticideStandard', amount: 1 },
                                 { type: 'machine', name: 'package 1', amount: 3 },
-                                { type: 'machine', name: 'package 2', amount: 0 },
                                 { type: 'machine', name: 'package 3', amount: 1 },
                             ],
                             parcelLand: [

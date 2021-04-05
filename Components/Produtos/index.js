@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../styles/Colors'
 export default function Produtos({ item }) {
   return (

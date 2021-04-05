@@ -96,7 +96,7 @@ export default function Parcela({ navigation, route }) {
           <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
         </View>
         <Text style={styles.title}>Nesta parcela:</Text>
-        <TouchableOpacity onPress={() => setDropDown(!dropDown)}>
+        <TouchableOpacity onPress={() => { if(!plant) setDropDown(!dropDown) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.seed ? 35 : 25, height: parcelLand.seed ? 35 : 45 }]}
               source={parcelLand.seed ? images[parcelLand.seed] : Unknown} />
@@ -107,7 +107,7 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'seed'} onClick={selectItem} display={dropDown ? 'flex' : 'none'} />
-        <TouchableOpacity onPress={() => setDropDown2(!dropDown2)}>
+        <TouchableOpacity onPress={() => { if(!plant) setDropDown2(!dropDown2) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.fertilizer ? 35 : 25, height: parcelLand.fertilizer ? 35 : 45 }]}
               source={parcelLand.fertilizer ? images[parcelLand.fertilizer] : Unknown} />
@@ -118,7 +118,7 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'fertilizer'} onClick={selectItem} display={dropDown2 ? 'flex' : 'none'} />
-        <TouchableOpacity onPress={() => setDropDown3(!dropDown3)}>
+        <TouchableOpacity onPress={() => { if(!plant) setDropDown3(!dropDown3) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.pesticide ? 35 : 25, height: parcelLand.pesticide ? 35 : 45 }]}
               source={parcelLand.pesticide ? images[parcelLand.pesticide] : Unknown} />
@@ -129,7 +129,7 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'pesticide'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
-        <TouchableOpacity onPress={() => setDropDown4(!dropDown4)}>
+        <TouchableOpacity onPress={() => { if(!plant) setDropDown4(!dropDown4) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.machine ? 35 : 25, height: parcelLand.machine ? 35 : 45 }]}
               source={parcelLand.machine ? images[parcelLand.machine] : Unknown} />
