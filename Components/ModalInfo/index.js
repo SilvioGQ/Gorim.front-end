@@ -2,8 +2,7 @@ import React from 'react';
 import { Text, View, Modal, TouchableOpacity } from 'react-native';
 import COLORS from '../../styles/Colors';
 
-
-export default function ModalFrame2({ text, onClick, navigation }) {
+export default function ModalInfo({ text, onClick }) {
   return (
     <View>
         <Modal

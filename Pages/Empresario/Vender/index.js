@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
-import Modal from '../../../Components/Modal/ModalFrame2'
+import Modal from '../../../Components/ModalInfo'
 import Quantidades from '../../../Components/Quantidades';
 import COLORS from '../../../styles/Colors'
 import Selo from '../../../assets/moedas/Selo.png';
@@ -53,7 +53,7 @@ export default function Vendas({ navigation, route }) {
         />
       </View>
       {modalText !== '' && (
-        <Modal onClick={() => setModalText('')} text={modalText} />
+        <ModalInfo onClick={() => setModalText('')} text={modalText} />
       )}
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Valor: </Text>
       <View style={styles.row}>

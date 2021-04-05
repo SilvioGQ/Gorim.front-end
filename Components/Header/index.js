@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 
-import Money from '../Dinheiro';
+import Coin from '../Coin';
 import Stamp from '../../assets/moedas/Selo.png';
 
-const Tela = Dimensions.get('screen').width;
 export default function Header({ player, image }) {
 
   return (
@@ -19,12 +18,9 @@ export default function Header({ player, image }) {
         )}
       </View>
       <View>
-        <Money coin={player.coin} />
+        <Coin coin={player.coin} />
       </View>
-      <Image
-        style={styles.person}
-        source={image}
-      />
+      <Image style={styles.person} source={image} />
     </View>
   )
 }

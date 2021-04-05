@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, CheckBox, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+
 import Cenarios from '../../../Components/CenarioBotao';
-import Money from '../../../Components/Dinheiro';
+import Coin from '../../../Components/Coin';
 
 import Selo from '../../../assets/moedas/Selo.png';
 import Agricultor2 from '../../../assets/perfils/agricultor/Agricultor2.png';
 import MenoSelo from '../../../assets/selos/menoSelo.png';
 import Multa from '../../../assets/selos/multa.png';
-import Money2 from '../../../assets/agricultorIcones/money2.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function Fiscal({ navigation }) {
   const [value, onChangeText] = React.useState('Adicione uma informação');
   const [isSelected3, setSelection3] = useState(false);
+  
   return (
     <View style={styles.container}>
       <View style={styles.row3}>
         <Text style={styles.header}> Fiscal 1 {'\n'} em Atlantis</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image
-            style={styles.logo}
-            source={Selo}
-          />
+          <Image style={styles.logo} source={Selo} />
           <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular' }}> 123 </Text>
         </View>
         <View>
-          <Money />
+          <Coin />
         </View>
         <Image
           style={styles.person}
@@ -64,7 +62,7 @@ export default function Fiscal({ navigation }) {
           <View style={styles.colunm}>
             <Image
               style={styles.icone}
-              source={Money2}
+              source={require('../../../assets/agricultorIcones/coin.png')}
             />
             <Text style={styles.textinhos}> Fazer {'\n'} tranferência </Text>
           </View>

@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView
 
 import Button from '../../../Components/Button';
 import COLORS from '../../../styles/Colors';
-import Trans from '../../../assets/moedas/trans.png';
+import logoTransfer from '../../../assets/moedas/logoTransfer.png';
 import FunctionalityService from '../../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
@@ -20,21 +20,17 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <ScrollView 
-      showsVerticalScrollIndicator={false}>
-      <Text style={styles.texto}>Fazer transferência</Text>
-      <Image
-        style={styles.logo}
-        source={Trans}
-      />
-      <Text style={styles.texto2}> Deseja confirmar a transação?</Text>
-      <Text style={styles.texto3}>{JSON.stringify(count)}$ </Text>
-      <View style={{ marginVertical:10 }}>
-      <Button onClick={makeTransfer} name='CONTINUAR' />
-        <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador', params: {id: player.id} }] })} style={styles.button}>
-          <Text style={styles.textobuton}>CANCELAR</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.text}>Fazer transferência</Text>
+        <Image style={styles.logo} source={logoTransfer} />
+        <Text style={styles.text}> Deseja confirmar a transação?</Text>
+        <Text style={styles.text2}>{JSON.stringify(count)}$ </Text>
+        <View style={{ marginVertical: 10 }}>
+          <Button onClick={makeTransfer} name='CONTINUAR' />
+          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador', params: { id: player.id } }] })} style={styles.button}>
+            <Text style={styles.textButton}>CANCELAR</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   );
@@ -52,33 +48,27 @@ const styles = StyleSheet.create({
     height: 180,
     width: 180,
     alignSelf: 'center',
-    marginVertical:50
+    marginVertical: 50
   },
-  texto: {
+  text: {
     fontFamily: 'Rubik_400Regular',
     fontSize: 24,
     textAlign: 'center',
-    marginVertical:10,
+    marginVertical: 10,
   },
-  texto2: {
-    fontFamily: 'Rubik_300Light',
-    fontSize: 22,
-    textAlign: 'center',
-    marginVertical:20
-  },
-  texto3: {
+  text2: {
     fontFamily: 'Rubik_300Light',
     fontSize: 48,
     textAlign: 'center',
-    marginVertical:20
+    marginVertical: 20
   },
-  textobuton: {
+  textButton: {
     color: COLORS.textWhite,
     fontSize: 15,
     fontFamily: 'Rubik_400Regular',
     textAlign: 'center',
     alignItems: 'center',
-    marginTop:15
+    marginTop: 15
   },
   button: {
     height: 45,

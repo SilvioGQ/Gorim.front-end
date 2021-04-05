@@ -17,11 +17,8 @@ export default function Confirmada({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={Confirmacao}
-      />
-      <Text style={styles.texto}>Sua transferencia será concluída na próxima rodada!</Text>
+      <Image style={styles.logo} source={Confirmacao} />
+      <Text style={styles.text}>Sua transferencia será concluída na próxima rodada!</Text>
     </View>
   );
 }
@@ -37,7 +34,7 @@ const styles = StyleSheet.create({
     height: 180,
     width: 180,
   },
-  texto: {
+  text: {
     marginTop: 40,
     fontFamily: 'Rubik_300Light',
     fontWeight: 'normal',

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Cenarios from '../../../Components/CenarioBotao';
-import Money from '../../../Components/Dinheiro';
+import Coin from '../../../Components/Coin';
 
 import Agricultor2 from '../../../assets/perfils/agricultor/Agricultor2.png';
 import Agua from '../../../assets/simbolos/agua.png';
 import Imposto from '../../../assets/simbolos/imposto.png';
-import Money2 from '../../../assets/agricultorIcones/money2.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function Prefeitura({ navigation }) {
@@ -16,7 +15,7 @@ export default function Prefeitura({ navigation }) {
       <View style={styles.row3}>
         <Text style={styles.header}> Prefeito {'\n'} em Atlantis</Text>
         <View>
-          <Money />
+          <Coin />
         </View>
         <Image
           style={styles.person}
@@ -46,7 +45,7 @@ export default function Prefeitura({ navigation }) {
           <View style={styles.colunm}>
             <Image
               style={styles.icone}
-              source={Money2}
+              source={require('../../../assets/agricultorIcones/coin.png')}
             />
             <Text style={styles.textinhos}> Fazer {'\n'} tranferência </Text>
           </View>

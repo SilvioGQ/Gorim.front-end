@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 
 import Button from '../../../Components/Button';
-import Modal from '../../../Components/Modal/ModalFrame2';
+import ModalInfo from '../../../Components/ModalInfo';
 import COLORS from '../../../styles/Colors';
 import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
@@ -147,7 +147,7 @@ export default function Parcela({ navigation, route }) {
           <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>
         )}
         {modalText !== '' && (
-          <Modal onClick={() => setModalText('')} text={modalText} />
+          <ModalInfo onClick={() => setModalText('')} text={modalText} />
         )}
       </ScrollView>
     </View>

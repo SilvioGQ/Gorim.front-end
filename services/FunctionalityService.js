@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import "firebase/firestore";
 
-import { db } from '../firebase';
+import { db } from './config';
 
 const FunctionalityService = {
     generateUID() {

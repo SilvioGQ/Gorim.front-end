@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, YellowBox } from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, View, StyleSheet, Image } from 'react-native';
 
 import COLORS from '../../styles/Colors';
-import Dados from '../../assets/Logo/Dados.png';
 import PlayerService from '../../services/PlayerService';
 
 export default function SorteioJogador({ navigation, route }) {
@@ -19,19 +18,13 @@ export default function SorteioJogador({ navigation, route }) {
         }]
       })
     }, 1000 * 2);
-
-    YellowBox.ignoreWarnings(['Setting a timer']);
-
   }, [])
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Gorim</Text>
       <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={Dados}
-        />
+        <Image style={styles.logo} source={require('../../assets/Logo/Dados.png')}  />
         <Text style={styles.loading}>Sorteando Personagens...</Text>
       </View>
     </View>
@@ -49,7 +42,6 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: 'Rubik_400Regular',
-
     fontWeight: 'normal',
     fontSize: 41.1111,
     lineHeight: 49,

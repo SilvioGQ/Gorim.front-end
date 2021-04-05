@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, FlatList }
 
 import Produtos from '../../Components/Produtos';
 import COLORS from '../../styles/Colors';
-import Modal from '../../Components/Modal/ModalFrame2'
+import ModalInfo from '../../Components/ModalInfo'
 const Tela = Dimensions.get('screen').width
 import FertilizanteComum from '../../assets/fertilizers/fertilizerBasic.png';
 import FertilizantePremium from '../../assets/fertilizers/fertilizerMedium.png';
@@ -134,7 +134,7 @@ export default function Analizar() {
         </TouchableOpacity>
       </View>
       {modalText !== '' && (
-        <Modal onClick={() => setModalText('')} text={modalText} />
+        <ModalInfo onClick={() => setModalText('')} text={modalText} />
       )}
       <FlatList
         showsVerticalScrollIndicator={false}

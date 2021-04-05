@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
-import Money from '../../../Components/Dinheiro'
-import Oferta from '../../../Components/Ofertas'
+
+import Coin from '../../../Components/Coin';
+import Oferta from '../../../Components/Ofertas';
 import COLORS from '../../../styles/Colors';
 
 const Tela = Dimensions.get('screen').width
@@ -9,14 +10,12 @@ export default function Proposta({route}) {
   const { player } = route.params;
   return (
     <View style={styles.container}>
-      <Money coin={player.coin}/>
+      <Coin coin={player.coin}/>
       <Text style={styles.header}> Ofertas</Text>
       <Oferta vendedor='Silvio' preço='80$' produto='Soja' />
     </View>
-
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

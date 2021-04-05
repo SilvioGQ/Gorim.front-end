@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, AppState, YellowBox, TouchableOpacity, Image } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList, AppState, TouchableOpacity, Image, YellowBox } from 'react-native';
 
 import COLORS from '../../styles/Colors'
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
-import ModalHeader from '../../Components/Modal/ModalHeader';
+import ModalConfirmExit from '../../Components/ModalConfirmExit';
 import FunctionalityService from '../../services/FunctionalityService';
+
+YellowBox.ignoreWarnings(['Setting a timer for a long period of time']);
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
@@ -76,45 +78,42 @@ export default function Lobby({ navigation, route }) {
     if (isMounted) {
       setTimeout(() => {
         FunctionalityService.getRoom(player.room).then(setGame);
-        
+
         if (Game.players != players.length) {
-          
+
           PlayerService.getPlayers(player.room).then(resp => {
             if (players.length > 0) updateHost(resp);
             setPlayers(resp);
           });
         }
-      }, 4000);
+      }, 3000);
     } else {
       navigation.reset({ routes: [{ name: 'CriarPartida' }] });
     }
   }, [Game]);
-  
-  console.ignoredYellowBox = [
-    'Setting a timer'
-  ]
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
-        <Image style={{ width: 25, height: 27, marginRight: 20, marginTop: -10, marginVertical: 10 }} source={require('../../assets/Logo/FecharPreto.png')} />
+        <Image style={styles.image} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
       {modalVisible && (
-        <ModalHeader deletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
+        <ModalConfirmExit deletePlayer={deletePlayer} onClick={() => setModalVisible(!modalVisible)} />
       )}
-      <Text style={styles.texto}>CÓDIGO DA SALA</Text>
+      <Text style={styles.text}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
-      <Text style={styles.texto2}>{player.room}</Text>
+      <Text style={[styles.text, { marginBottom: 25 }]}>{player.room}</Text>
       {players.length === 0 ?
-        <Text style={styles.texto}>Aguardando jogadores</Text> :
+        <Text style={styles.text}>Aguardando jogadores</Text> :
         <FlatList
           data={players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <View style={styles.linha}><Text style={styles.texto3}>{item.name}</Text></View>}
+          renderItem={({ item }) => <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}
         />
       }
       {player.host ?
         <Button name='começar' onClick={() => FunctionalityService.startGame(player.room)} /> :
-        <Text style={[styles.texto3, { marginBottom: 35 }]}>AGUARDANDO NOVOS JOGADORES</Text>}
+        <Text style={[styles.listText, { marginBottom: 35 }]}>AGUARDANDO NOVOS JOGADORES</Text>}
     </View>
   );
 }
@@ -129,12 +128,19 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     width: Tela
   },
-  linha: {
+  image: {
+    width: 25,
+    height: 27,
+    marginRight: 20,
+    marginTop: -10,
+    marginVertical: 10
+  },
+  line: {
     paddingVertical: 10,
     borderWidth: 1,
     width: Tela - 75,
   },
-  texto: {
+  text: {
     fontSize: 32,
     fontFamily: 'Rubik_300Light',
     marginTop: 5,
@@ -142,15 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     lineHeight: 32
   },
-  texto2: {
-    fontSize: 35,
-    fontFamily: 'Rubik_300Light',
-    textAlign: 'center',
-    alignItems: 'center',
-    lineHeight: 38,
-    marginBottom: 35
-  },
-  texto3: {
+  listText: {
     fontSize: 22,
     fontFamily: 'Rubik_300Light',
   },

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
-import ModalHeader from '../Modal/ModalHeader';
+import ModalConfirmExit from '../ModalConfirmExit';
 import PlayerService from '../../services/PlayerService';
 import FunctionalityService from '../../services/FunctionalityService';
 import COLORS from '../../styles/Colors';
@@ -24,7 +24,7 @@ export default function Rodada({ onClick, player }) {
         <Image style={{ width: 25, height: 27, marginTop: 25, marginRight: 15 }} source={require('../../assets/Logo/Fechar.png')} />
       </TouchableOpacity>
       {modalVisible && (
-        <ModalHeader deletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
+        <ModalConfirmExit deletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
       )}
     </View>
   );

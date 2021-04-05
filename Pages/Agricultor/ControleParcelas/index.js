@@ -3,8 +3,6 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import COLORS from '../../../styles/Colors';
 
-import Parcela from '../../../assets/agricultorIcones/Parcela.png';
-
 export default function ControleParcelas({ navigation, route }) {
   const [player, setPlayer] = useState(route.params.player);
 
@@ -15,10 +13,10 @@ export default function ControleParcelas({ navigation, route }) {
         numColumns={2}
         data={player.parcelLand}
         keyExtractor={item => item.id}
-        renderItem={({ item })  =>
+        renderItem={({ item }) =>
           <TouchableOpacity onPress={() => navigation.navigate('Parcela', { parcelLand: item, player })} style={styles.item}>
-            <Image style={styles.image} source={Parcela} />
-            <Text style={styles.text}>P{item.id+1}</Text>
+            <Image style={styles.image} source={require('../../../assets/agricultorIcones/Parcela.png')} />
+            <Text style={styles.text}>P{item.id + 1}</Text>
           </TouchableOpacity>
         }
       />
@@ -42,9 +40,8 @@ const styles = StyleSheet.create({
     height: 105,
     width: 105,
     alignItems: 'center',
-
   },
-  item: { 
+  item: {
     marginVertical: 35,
     marginLeft: 20,
     marginRight: 20
