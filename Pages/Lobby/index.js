@@ -86,7 +86,7 @@ export default function Lobby({ navigation, route }) {
             setPlayers(resp);
           });
         }
-      }, 3000);
+      }, 1500);
     } else {
       navigation.reset({ routes: [{ name: 'CriarPartida' }] });
     }

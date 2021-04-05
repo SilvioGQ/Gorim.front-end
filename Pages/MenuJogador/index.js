@@ -88,7 +88,7 @@ export default function MenuJogador({ navigation, route }) {
           </View>
         </>
       )}
-      {Height >= 800 && (
+      {Height >= 780 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00' }]}>
             <Text style={styles.textBar}>200</Text>

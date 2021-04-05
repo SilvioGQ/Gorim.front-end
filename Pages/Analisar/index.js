@@ -129,7 +129,7 @@ export default function Analizar() {
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
         <Text style={styles.header}>Produtos</Text>
-        <TouchableOpacity onPress={() => setModalText('Informações em tela: \nIcones e nomes de todos produtos que pode ser utilizados nas parcelas de terras. \nPreços possíveis para serem nagociados, começando com o baixo até o alto. \nE em vermelho o quanto de poluição que o produto irá causar.')}>
+        <TouchableOpacity onPress={() => setModalText('Informações em tela: \nIcones e nomes de todos produtos que podem ser utilizados em parcelas de terras. \nPreços possíveis para serem negociados, que vai do baixo até o alto. \nE em vermelho o quanto de poluição que este produto irá causar.')}>
           <Image source={require('../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
         </TouchableOpacity>
       </View>
