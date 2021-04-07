@@ -51,6 +51,19 @@ const FunctionalityService = {
     },
     toPlant(player) {
         db.collection('players').doc(player.id).update(player);
+    },
+    getProducts() {
+        const products = db
+            .collection('products')
+            .get()
+            .then(snapshot => {
+                let _products = [];
+                snapshot.forEach(function (doc) {
+                    _products.push(Object.assign(doc.data(), { id: doc.id }));
+                });
+                return _products;
+            });
+        return products;
     }
 }
 
