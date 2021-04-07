@@ -78,12 +78,12 @@ const PlayerService = {
                                 { type: 'machine', name: 'package 3', amount: 1 },
                             ],
                             parcelLand: [
-                                { id: 0, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 1, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 2, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 3, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 4, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 5, purchased: true, seed: null, fertilizer: null, pesticide: null, machine: null }
+                                { id: 0, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
+                                { id: 1, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
+                                { id: 2, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
+                                { id: 3, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
+                                { id: 4, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
+                                { id: 5, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null }
                             ],
                             stamp: false
                         });
