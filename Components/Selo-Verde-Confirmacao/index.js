@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Modal, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
-import COLORS from '../../styles/Colors'
+import COLORS from '../../resources/Colors';
 export default function Conf({ Conf, isVisible }) {
   return (
     <Modal

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import COLORS from '../../styles/Colors'
+import COLORS from '../../resources/Colors';
 import Clock from '../../assets/Logo/clock.png';
 
 export default function Espera({ navigation }) {

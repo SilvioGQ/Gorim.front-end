@@ -1,35 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 
-const translateName = {
-  "soy": 'Soja',
-  "rice": 'Arroz',
-  "greenery": 'Hortiça',
-  "fertilizerBasic": 'Fertilizante Normal',
-  "fertilizerMedium": 'Fertilizante Premium',
-  "fertilizerStandard": 'Fertilizante Super Premium',
-  "pesticideBasic": 'Agrotóxico Normal',
-  "pesticideMedium": 'Agrotóxico Premium',
-  "pesticideStandard": 'Agrotóxico Super Premium',
-  "package 1": 'Pacote 1',
-  "package 2": 'Pacote 2',
-  "package 3": 'Pacote 3'
-};
-
-const images = {
-  'soy': require('../../assets/seeds/soy.png'),
-  'rice': require('../../assets/seeds/rice.png'),
-  'greenery': require('../../assets/seeds/greenery.png'),
-  'pesticideBasic': require('../../assets/pesticides/pesticideBasic.png'),
-  'pesticideMedium': require('../../assets/pesticides/pesticideMedium.png'),
-  'pesticideStandard': require('../../assets/pesticides/pesticideStandard.png'),
-  'fertilizerBasic': require('../../assets/fertilizers/fertilizerBasic.png'),
-  'fertilizerMedium': require('../../assets/fertilizers/fertilizerMedium.png'),
-  'fertilizerStandard': require('../../assets/fertilizers/fertilizerStandard.png'),
-  "package 1": require('../../assets/agricultorIcones/pacote.png'),
-  "package 2": require('../../assets/agricultorIcones/pacote.png'),
-  "package 3": require('../../assets/agricultorIcones/pacote.png')
-};
+import TRANSLATE from '../../resources/translate/pt-BR';
+import IMAGES from '../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
 
@@ -47,8 +20,8 @@ export default function DropDown({ items, type, onClick, display }) {
       { inventory.map((item, index) => {
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}>
-            <Image style={styles.icone} source={images[item.name]} />
-            <Text style={styles.text}>{translateName[item.name]}</Text>
+            <Image style={styles.icone} source={IMAGES[item.name]} />
+            <Text style={styles.text}>{TRANSLATE[item.name]}</Text>
           </TouchableOpacity>
         );
       })}

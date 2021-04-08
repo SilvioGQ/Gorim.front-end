@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, FlatList } from 'react-native';
+import COLORS from '../../resources/Colors';
 
 import Produtos from '../../Components/Produtos';
-import COLORS from '../../styles/Colors';
 import ModalInfo from '../../Components/ModalInfo';
 
 import FunctionaliryService from  '../../services/FunctionalityService';

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Modal, TouchableOpacity, StyleSheet } from 'react-native';
-import COLORS from '../../styles/Colors';
+
+import COLORS from '../../resources/Colors';
 
 export default function ModalConfirmExit({ deletePlayer, onClick }) {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import COLORS from '../../styles/Colors'
- import Empresario from '../../assets/perfils/empresariox1/Fertilizante.png';
+import COLORS from '../../resources/Colors';
+import Empresario from '../../assets/perfils/empresariox1/Fertilizante.png';
 import Rice from '../../assets/seeds/rice.png';
 import Normal from '../../assets/moedas/normal.png';
 
@@ -22,7 +22,7 @@ export default function Oferta({ vendedor, produto, preço }) {
           <Text style={styles.textBold}>{produto}</Text>
         </View>
         <Image
-          style={[styles.icone, { marginTop: -30}]}
+          style={[styles.icone, { marginTop: -30 }]}
           source={Rice}
         />
         <View>
@@ -34,7 +34,7 @@ export default function Oferta({ vendedor, produto, preço }) {
           source={Normal}
         />
       </View>
-        <Text style={styles.text}> Quantidade: 4</Text>
+      <Text style={styles.text}> Quantidade: 4</Text>
       <View style={styles.row3}>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
@@ -50,7 +50,7 @@ export default function Oferta({ vendedor, produto, preço }) {
 const styles = StyleSheet.create({
   colunm: {
     backgroundColor: COLORS.bgColorPrimary,
-    borderRadius:20,
+    borderRadius: 20,
     width: Tela,
     height: 160,
     shadowColor: "#000",
@@ -60,16 +60,16 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-  
+
     elevation: 6,
-    marginVertical:15
+    marginVertical: 15
   },
   button: {
     width: 140,
     height: 30,
     borderRadius: 15,
     backgroundColor: COLORS.warningButton,
-    padding:10
+    padding: 10
   },
   textbutton: {
     color: COLORS.textWhite,
@@ -95,14 +95,14 @@ const styles = StyleSheet.create({
   textBold: {
     fontSize: 15,
     fontFamily: 'Rubik_400Regular',
-    fontWeight:'bold'
+    fontWeight: 'bold'
   },
-  text:{ 
+  text: {
     textAlign: 'center',
-    fontSize:15,
-    alignItems:'center',
-},
-agricultor:{
-  marginTop:10
-}
+    fontSize: 15,
+    alignItems: 'center',
+  },
+  agricultor: {
+    marginTop: 10
+  }
 });

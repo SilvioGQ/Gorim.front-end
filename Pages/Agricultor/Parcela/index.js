@@ -3,42 +3,15 @@ import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'rea
 
 import Button from '../../../Components/Button';
 import ModalInfo from '../../../Components/ModalInfo';
-import COLORS from '../../../styles/Colors';
+import COLORS from '../../../resources/Colors';
 import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import { ScrollView } from 'react-native-gesture-handler';
 import FunctionalityService from '../../../services/FunctionalityService';
 
-const translateName = {
-  "soy": 'Soja',
-  "rice": 'Arroz',
-  "greenery": 'Hortiça',
-  "fertilizerBasic": 'Fertilizante Normal',
-  "fertilizerMedium": 'Fertilizante Premium',
-  "fertilizerStandard": 'Fertilizante Super Premium',
-  "pesticideBasic": 'Agrotóxico Normal',
-  "pesticideMedium": 'Agrotóxico Premium',
-  "pesticideStandard": 'Agrotóxico Super Premium',
-  "package 1": 'Pacote 1',
-  "package 2": 'Pacote 2',
-  "package 3": 'Pacote 3'
-};
-
-const images = {
-  'soy': require('../../../assets/seeds/soy.png'),
-  'rice': require('../../../assets/seeds/rice.png'),
-  'greenery': require('../../../assets/seeds/greenery.png'),
-  'pesticideBasic': require('../../../assets/pesticides/pesticideBasic.png'),
-  'pesticideMedium': require('../../../assets/pesticides/pesticideMedium.png'),
-  'pesticideStandard': require('../../../assets/pesticides/pesticideStandard.png'),
-  'fertilizerBasic': require('../../../assets/fertilizers/fertilizerBasic.png'),
-  'fertilizerMedium': require('../../../assets/fertilizers/fertilizerMedium.png'),
-  'fertilizerStandard': require('../../../assets/fertilizers/fertilizerStandard.png'),
-  "package 1": require('../../../assets/agricultorIcones/pacote.png'),
-  "package 2": require('../../../assets/agricultorIcones/pacote.png'),
-  "package 3": require('../../../assets/agricultorIcones/pacote.png')
-};
+import TRANSLATE from '../../../resources/translate/pt-BR';
+import IMAGES from '../../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
 
@@ -67,7 +40,7 @@ export default function Parcela({ navigation, route }) {
 
   const toPlant = () => {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
-    if (!parcelLand.machine) return setModalText('Selecione uma máquina!');
+    if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
     parcelLand.planted = true;
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;
@@ -75,10 +48,11 @@ export default function Parcela({ navigation, route }) {
       if (e.name == parcelLand.pesticide) e.amount = e.amount - 1;
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
+
     FunctionalityService.toPlant(player);
     navigation.navigate('ControleParcelas', { message: 'Seu plantio foi iniciado' });
   }
-  console.log(parcelLand.planted)
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -90,10 +64,10 @@ export default function Parcela({ navigation, route }) {
         <TouchableOpacity onPress={() => { if(!parcelLand.planted) setDropDown(!dropDown) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.seed ? 35 : 25, height: parcelLand.seed ? 35 : 45 }]}
-              source={parcelLand.seed ? images[parcelLand.seed] : Unknown} />
+              source={parcelLand.seed ? IMAGES[parcelLand.seed] : Unknown} />
             <View>
               <Text>Sementes</Text>
-              <Text style={styles.bold}>{parcelLand.seed ? translateName[parcelLand.seed] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.seed ? TRANSLATE[parcelLand.seed] : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -101,10 +75,10 @@ export default function Parcela({ navigation, route }) {
         <TouchableOpacity onPress={() => { if(!parcelLand.planted) setDropDown2(!dropDown2) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.fertilizer ? 35 : 25, height: parcelLand.fertilizer ? 35 : 45 }]}
-              source={parcelLand.fertilizer ? images[parcelLand.fertilizer] : Unknown} />
+              source={parcelLand.fertilizer ? IMAGES[parcelLand.fertilizer] : Unknown} />
             <View>
               <Text>Fertilizantes</Text>
-              <Text style={styles.bold}>{parcelLand.fertilizer ? translateName[parcelLand.fertilizer] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.fertilizer ? TRANSLATE[parcelLand.fertilizer] : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -112,10 +86,10 @@ export default function Parcela({ navigation, route }) {
         <TouchableOpacity onPress={() => { if(!parcelLand.planted) setDropDown3(!dropDown3) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.pesticide ? 35 : 25, height: parcelLand.pesticide ? 35 : 45 }]}
-              source={parcelLand.pesticide ? images[parcelLand.pesticide] : Unknown} />
+              source={parcelLand.pesticide ? IMAGES[parcelLand.pesticide] : Unknown} />
             <View>
               <Text>Agrotóxicos</Text>
-              <Text style={styles.bold}>{parcelLand.pesticide ? translateName[parcelLand.pesticide] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.pesticide ? TRANSLATE[parcelLand.pesticide] : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -123,10 +97,10 @@ export default function Parcela({ navigation, route }) {
         <TouchableOpacity onPress={() => { if(!parcelLand.planted) setDropDown4(!dropDown4) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.machine ? 35 : 25, height: parcelLand.machine ? 35 : 45 }]}
-              source={parcelLand.machine ? images[parcelLand.machine] : Unknown} />
+              source={parcelLand.machine ? IMAGES[parcelLand.machine] : Unknown} />
             <View>
               <Text>Máquinas</Text>
-              <Text style={styles.bold}>{parcelLand.machine ? translateName[parcelLand.machine] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.machine ? TRANSLATE[parcelLand.machine] : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>

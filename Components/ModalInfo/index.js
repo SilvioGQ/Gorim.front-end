@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Modal, TouchableOpacity } from 'react-native';
-import COLORS from '../../styles/Colors';
+import COLORS from '../../resources/colors';
 
 export default function ModalInfo({ text, onClick }) {
   return (

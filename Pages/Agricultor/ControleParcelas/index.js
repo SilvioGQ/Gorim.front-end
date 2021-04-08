@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import COLORS from '../../../styles/Colors';
+import COLORS from '../../../resources/Colors';
 
 export default function ControleParcelas({ navigation, route }) {
   const [player, setPlayer] = useState(route.params.player);
-  const [parcelPlant, setParcelPlant] = useState('none');
 
-  console.log(player.parcelLand)
   return (
     <View style={styles.container}>
       <Text style={styles.mainText}>Parcelas de terra</Text>
@@ -18,9 +16,9 @@ export default function ControleParcelas({ navigation, route }) {
         renderItem={({ item }) =>
           <TouchableOpacity onPress={() => navigation.navigate('Parcela', { parcelLand: item, player })} style={styles.item}>
             <Image style={styles.image} source={require('../../../assets/agricultorIcones/Parcela.png')} />
-            <View style={{flexDirection:'row', display:parcelPlant}}>
-            <Image style={{position:'absolute', width:46, height:77, bottom:5, left:5}} source={require('../../../assets/agricultorIcones/Planted.png')} />
-            <Image style={{position:'absolute', width:46, height:77, bottom:5, right:7}} source={require('../../../assets/agricultorIcones/Planted.png')} />
+            <View style={{ flexDirection: 'row', display: item.planted ? 'flex' : 'none' }}>
+              <Image style={{ position: 'absolute', width: 46, height: 77, bottom: 5, left: 5 }} source={require('../../../assets/agricultorIcones/Planted.png')} />
+              <Image style={{ position: 'absolute', width: 46, height: 77, bottom: 5, right: 7 }} source={require('../../../assets/agricultorIcones/Planted.png')} />
             </View>
           </TouchableOpacity>
         }

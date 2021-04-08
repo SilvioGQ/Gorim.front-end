@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import COLORS from '../../styles/Colors';
+
+import COLORS from '../../resources/Colors';
+
 export default function Item(props) {
   return (
     <TouchableOpacity onPress={props.onClick}>

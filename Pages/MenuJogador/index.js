@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import COLORS from '../../resources/Colors';
 
-import COLORS from '../../styles/Colors';
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import PlayerService from '../../services/PlayerService';

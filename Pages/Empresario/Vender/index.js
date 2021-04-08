@@ -4,7 +4,7 @@ import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Modal from '../../../Components/ModalInfo'
 import Quantidades from '../../../Components/Quantidades';
-import COLORS from '../../../styles/Colors'
+import COLORS from '../../../resources/Colors';
 import Selo from '../../../assets/moedas/Selo.png';
 import Moeda from '../../../assets/moedas/Moeda.png';
 import Tractor from '../../../assets/machines/tractor.png';
