@@ -2,15 +2,42 @@ import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../styles/Colors';
 
+const translateName = {
+  "soy": 'Soja',
+  "rice": 'Arroz',
+  "greenery": 'Hortiça',
+  "fertilizerBasic": 'Fertilizante Normal',
+  "fertilizerMedium": 'Fertilizante Premium',
+  "fertilizerStandard": 'Fertilizante Super Premium',
+  "pesticideBasic": 'Agrotóxico Normal',
+  "pesticideMedium": 'Agrotóxico Premium',
+  "pesticideStandard": 'Agrotóxico Super Premium',
+  "package 1": 'Pacote 1',
+  "package 2": 'Pacote 2',
+  "package 3": 'Pacote 3'
+};
+
+const images = {
+  'soy': require('../../assets/seeds/soy.png'),
+  'rice': require('../../assets/seeds/rice.png'),
+  'greenery': require('../../assets/seeds/greenery.png'),
+  'pesticideBasic': require('../../assets/pesticides/pesticideBasic.png'),
+  'pesticideMedium': require('../../assets/pesticides/pesticideMedium.png'),
+  'pesticideStandard': require('../../assets/pesticides/pesticideStandard.png'),
+  'fertilizerBasic': require('../../assets/fertilizers/fertilizerBasic.png'),
+  'fertilizerMedium': require('../../assets/fertilizers/fertilizerMedium.png'),
+  'fertilizerStandard': require('../../assets/fertilizers/fertilizerStandard.png'),
+  "package 1": require('../../assets/agricultorIcones/pacote.png'),
+  "package 2": require('../../assets/agricultorIcones/pacote.png'),
+  "package 3": require('../../assets/agricultorIcones/pacote.png')
+};
+
 export default function Produtos({ item }) {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Image
-          style={styles.logo}
-          source={item.icone}
-        />
-        <Text style={styles.textos}>{item.name}</Text>
+        <Image style={styles.logo} source={images[item.name]} />
+        <Text style={styles.textos}>{translateName[item.name]}</Text>
       </View>
       <View style={{justifyContent:'space-between', width:'85%', flexDirection:'row'}}>
         <View style={styles.row}>
