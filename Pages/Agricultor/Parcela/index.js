@@ -70,8 +70,8 @@ export default function Parcela({ navigation, route }) {
   const toPlant = () => {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
-    if (!parcelLand.pesticide) return setModalText('Selecione um agrotóxico!');
-    if (!parcelLand.machine) return setModalText('Selecione uma máquina!');
+  //  if (!parcelLand.pesticide) return setModalText('Selecione um agrotóxico!');
+  //  if (!parcelLand.machine) return setModalText('Selecione uma máquina!');
 
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;

@@ -8,7 +8,6 @@ import Frame6 from './InicioJogo/Votaçao';
 import Frame7 from './InicioJogo/Eleitos';
 import Espera from './Tela de Espera';
 import Insumo from './Transferencias/Insumo';
-import Agrotoxicos from './TELAS NÃO UTILIZADAS/Agrotoxicos';
 import Vendas from './Empresario/Vender';
 import FazerTransferencia from './Transferencias/FazerTransferencia';
 import ConfirmarTransferencia from './Transferencias/ConfirmarTransferencia';
@@ -85,10 +84,6 @@ export default function Routes() {
         headerTitle: ''
       }} />
       <Stack.Screen name="ControleParcelas" component={ControleParcelas} options={{
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="Agrotoxicos" component={Agrotoxicos} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />
