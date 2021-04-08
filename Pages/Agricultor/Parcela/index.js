@@ -50,7 +50,6 @@ export default function Parcela({ navigation, route }) {
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
   const [dropDown4, setDropDown4] = useState(false);
-
   const selectItem = (name, type) => {
     for (let i = 0; i < 3; i++) {
 
@@ -70,7 +69,6 @@ export default function Parcela({ navigation, route }) {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.machine) return setModalText('Selecione uma máquina!');
     parcelLand.planted = true;
-
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;
       if (e.name == parcelLand.fertilizer) e.amount = e.amount - 1;
@@ -80,7 +78,7 @@ export default function Parcela({ navigation, route }) {
     FunctionalityService.toPlant(player);
     navigation.navigate('ControleParcelas', { message: 'Seu plantio foi iniciado' });
   }
-
+  console.log(parcelLand.planted)
   return (
     <View style={styles.container}>
       <ScrollView>
