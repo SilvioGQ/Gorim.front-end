@@ -19,11 +19,11 @@ export default function Produtos({ item }) {
           <Text style={styles.numeros}>{item.medium}$</Text>
           <Text style={styles.numeros}>{item.expensive}$</Text>
         </View>
+      </View>
           <View style={styles.poluicaoView}>
             <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 22, height: 22, marginLeft: 5 }} />
             <Text style={styles.poluicao}>{item.pollution}</Text>
           </View>
-      </View>
     </View>
   );
 }
@@ -79,6 +79,8 @@ const styles = StyleSheet.create({
   },
   poluicaoView: {
     flexDirection: 'row',
-    marginLeft:20
+    position:'absolute',
+    right:30,
+    bottom:20
   }
 });
