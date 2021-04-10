@@ -12,17 +12,17 @@ export default function Produtos({ item }) {
         <Image style={styles.logo} source={IMAGES[item.name]} />
         <Text style={styles.textos}>{TRANSLATE[item.name]}</Text>
       </View>
-      <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row' }}>
+      <View style={{ width: '85%', flexDirection: 'row' }}>
         <View style={styles.row}>
           <Text style={styles.textinhos}>Preços:</Text>
           <Text style={styles.numeros}>{item.cheap}$</Text>
           <Text style={styles.numeros}>{item.medium}$</Text>
           <Text style={styles.numeros}>{item.expensive}$</Text>
+        </View>
           <View style={styles.poluicaoView}>
             <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 22, height: 22, marginLeft: 5 }} />
             <Text style={styles.poluicao}>{item.pollution}</Text>
           </View>
-        </View>
       </View>
     </View>
   );
@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
   },
   poluicaoView: {
     flexDirection: 'row',
-    position:'absolute',
+    marginLeft:20
   }
 });
