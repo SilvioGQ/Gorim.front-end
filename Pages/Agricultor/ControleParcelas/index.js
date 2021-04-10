@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 
 export default function ControleParcelas({ navigation, route }) {
   const [player, setPlayer] = useState(route.params.player);

@@ -9,7 +9,7 @@ import Preocupado from '../../assets/emojis/preocupado.png';
 import Tenso from '../../assets/emojis/tenso.png';
 import Corona from '../../assets/emojis/corona.png';
 import Papel from '../../assets/agricultorIcones/papel.png';
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 
 const Tela = Dimensions.get('screen').width
 export default function Cenario() {

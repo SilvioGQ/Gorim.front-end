@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Dimensions } from 'react-native';
 
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Ofertas';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 
 const Tela = Dimensions.get('screen').width
 export default function Proposta({route}) {

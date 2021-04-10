@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'rea
 
 import Button from '../../../Components/Button';
 import ModalInfo from '../../../Components/ModalInfo';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';

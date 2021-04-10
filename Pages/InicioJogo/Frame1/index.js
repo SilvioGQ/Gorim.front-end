@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 import Button from '../../../Components/Button';
 
 import Trator from '../../../assets/Logo/Trator.png';

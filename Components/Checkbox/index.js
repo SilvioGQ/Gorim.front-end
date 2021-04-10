@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, CheckBox, TouchableOpacity } from 'react-native';
 
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 
 export default function Candidato() {
   const [isSelected, setSelection] = useState(false);

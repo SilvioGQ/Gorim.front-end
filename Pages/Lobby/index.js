@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, AppState, TouchableOpacity, Image, YellowBox } from 'react-native';
 
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
 import ModalConfirmExit from '../../Components/ModalConfirmExit';
