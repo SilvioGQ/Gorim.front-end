@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'rea
 import ModalConfirmExit from '../ModalConfirmExit';
 import PlayerService from '../../services/PlayerService';
 import FunctionalityService from '../../services/FunctionalityService';
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 
 const Tela = Dimensions.get('screen').width;
 export default function Rodada({ onClick, player }) {

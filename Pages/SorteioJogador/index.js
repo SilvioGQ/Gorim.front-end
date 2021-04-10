@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 import PlayerService from '../../services/PlayerService';
 
 export default function SorteioJogador({ navigation, route }) {

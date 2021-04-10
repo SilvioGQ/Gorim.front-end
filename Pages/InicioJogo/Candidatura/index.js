@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Candidato from '../../../Components/Checkbox';
 import Button from '../../../Components/Button';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 
 import Voto from '../../../assets/Logo/vote.png';
 

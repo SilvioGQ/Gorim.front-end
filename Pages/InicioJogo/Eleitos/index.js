@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 
 import Voto from '../../../assets/Logo/vote.png';
 // import Man from '../../../assets/perfils/empresariox2/man1x2.png';

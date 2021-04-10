@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 import Empresario from '../../assets/perfils/empresariox1/Fertilizante.png';
 import Rice from '../../assets/seeds/rice.png';
 import Normal from '../../assets/moedas/normal.png';

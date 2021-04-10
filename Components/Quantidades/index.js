@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 const Tela = Dimensions.get('screen').width;
 export default function Quantidade() {
   const [Selected, setSelected] = useState(-1)

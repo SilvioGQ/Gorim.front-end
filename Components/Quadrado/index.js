@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 import Agricultor2 from '../../assets/perfils/agricultor/Agricultor2.png';
 
 export default function Quadrados({ player, onClick, backgroundColor }) {

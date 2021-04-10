@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 import Papel from '../../assets/agricultorIcones/papel.png';
 
 const Tela = Dimensions.get('screen').width;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 import IMAGES from '../../resources/imagesProducts';
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 import TRANSLATE from '../../resources/translate/pt-BR';
 
 export default function Produtos({ item }) {
@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
   },
   poluicaoView: {
     flexDirection: 'row',
-    marginLeft: 15
+    position:'absolute',
   }
 });

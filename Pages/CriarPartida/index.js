@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 import PlayerService from '../../services/PlayerService';
 import FunctionalityService from '../../services/FunctionalityService';
 import ModalInfo from '../../Components/ModalInfo';

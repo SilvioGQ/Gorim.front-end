@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import Button from '../../../Components/Button';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 
 import agricultorFundo from '../../../assets/perfils/agricultor/agricultorFundo.png';
 import bag from '../../../assets/simbolos/bag.png';

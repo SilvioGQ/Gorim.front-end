@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 
 import Voto from '../../../assets/Logo/vote.png';
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, FlatList } from 'react-native';
-import COLORS from '../../resources/Colors';
+import COLORS from '../../resources/colors';
 
 import Produtos from '../../Components/Produtos';
 import ModalInfo from '../../Components/ModalInfo';
@@ -14,7 +14,7 @@ export default function Analizar() {
   const textInfo = 'Informações em tela: \nIcones e nomes de todos produtos que podem ser utilizados em parcelas de terras. \nPreços possíveis para serem negociados, que vai do baixo até o alto. \nE em vermelho o quanto de poluição que este produto irá causar.';
 
   useEffect(() => {
-    FunctionaliryService.getProducts().then(setProducts);
+    FunctionaliryService.getProducts().then(resp => setProducts(resp.sort()));
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 import Button from '../../../Components/Button';
-import COLORS from '../../../resources/Colors';
+import COLORS from '../../../resources/colors';
 import logoTransfer from '../../../assets/moedas/logoTransfer.png';
 import FunctionalityService from '../../../services/FunctionalityService';
 
