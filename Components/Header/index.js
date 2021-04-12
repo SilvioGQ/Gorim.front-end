@@ -7,7 +7,7 @@ import Stamp from '../../assets/moedas/Selo.png';
 export default function Header({ player, image }) {
 
   return (
-    <View style={styles.row3}>
+    <View style={styles.row}>
       <Text style={styles.header}>{player.name}{'\n'}em Atlantis</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {player.stamp && (
@@ -26,7 +26,7 @@ export default function Header({ player, image }) {
 }
 
 const styles = StyleSheet.create({
-  row3: {
+  row: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
     justifyContent: 'space-between',

@@ -18,7 +18,6 @@ import Selo from './Fiscal/Selo';
 import Multa from './Fiscal/Multa';
 import ControleParcelas from './Agricultor/ControleParcelas';
 import Parcela from './Agricultor/Parcela';
-import Pacotes from '../Components/TelaDaSeta';
 import Proposta from './Agricultor/Propostas';
 import Analizar from './Analisar';
 import Prevençao from './Prefeitura/Prevencao';
@@ -112,10 +111,6 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="Parcela" component={Parcela} options={{
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="Pacotes" component={Pacotes} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 
 import Button from '../../../Components/Button';
@@ -23,9 +23,14 @@ export default function Parcela({ navigation, route }) {
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
   const [dropDown4, setDropDown4] = useState(false);
+  const [pp, setpp] = useState(false)
+  if(pp){
+    parcelLand.seed = null
+  }
   const selectItem = (name, type) => {
+    setpp(false)
     for (let i = 0; i < 3; i++) {
-
+      
       if (type == 'seed') parcelLand.seed = name;
       if (type == 'fertilizer') parcelLand.fertilizer = name;
       if (type == 'pesticide') parcelLand.pesticide = name;
@@ -36,7 +41,7 @@ export default function Parcela({ navigation, route }) {
     setDropDown3(false);
     setDropDown4(false);
   }
-
+  
   const toPlant = () => {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
@@ -47,13 +52,11 @@ export default function Parcela({ navigation, route }) {
       if (e.name == parcelLand.pesticide) e.amount = e.amount - 1;
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
-
+    
     FunctionalityService.toPlant(player);
     navigation.navigate('ControleParcelas', { message: 'Seu plantio foi iniciado' });
   }
-  useEffect(() => {
-
-  })
+  
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -72,7 +75,7 @@ export default function Parcela({ navigation, route }) {
                 <Text style={styles.bold}>{parcelLand.seed ? TRANSLATE[parcelLand.seed] : '-'}</Text>
               </View>
             </View>
-            <TouchableOpacity style={{ display: parcelLand.seed ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => parcelLand.seed = null}>
+            <TouchableOpacity style={{ display: parcelLand.seed ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => setpp(true)}>
               <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
             </TouchableOpacity>
           </View>

@@ -22,7 +22,7 @@ export default function Oferta({ vendedor, produto, preço }) {
           <Text style={styles.textBold}>{produto}</Text>
         </View>
         <Image
-          style={[styles.icone, { marginTop: -30 }]}
+          style={styles.icone}
           source={Rice}
         />
         <View>
@@ -30,7 +30,7 @@ export default function Oferta({ vendedor, produto, preço }) {
           <Text style={styles.textBold}>{preço}</Text>
         </View>
         <Image
-          style={[styles.icone, { marginTop: -30 }]}
+          style={styles.icone}
           source={Normal}
         />
       </View>
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     alignSelf: 'center',
+    marginTop: -30
   },
   person: {
     width: 56,

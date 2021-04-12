@@ -12,7 +12,7 @@ export default function Conf({ Conf, isVisible }) {
       <View style={styles.modal}>
         <View style={styles.container}>
           <Text style={styles.header}> Gorim </Text>
-          <Text style={styles.loading}> Tem certeza de que deseja solicitar o selo {'\n'} verde ao fiscal? </Text>
+          <Text style={styles.loading}> Tem certeza de que deseja solicitar o selo {'\n'}verde ao fiscal? </Text>
           <TouchableOpacity style={styles.button} onPress={Conf}>
             <Text style={styles.buttontext}> CONFIRMAR </Text>
           </TouchableOpacity>
