@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 
-import TRANSLATE from '../../resources/translate/pt-BR';
 import IMAGES from '../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
@@ -21,7 +20,7 @@ export default function DropDown({ items, type, onClick, display }) {
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}>
             <Image style={styles.icone} source={IMAGES[item.name]} />
-            <Text style={styles.text}>{TRANSLATE[item.name]}</Text>
+            <Text style={styles.text}>{item.name}</Text>
           </TouchableOpacity>
         );
       })}

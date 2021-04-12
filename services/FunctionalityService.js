@@ -54,7 +54,7 @@ const FunctionalityService = {
     },
     getProducts() {
         const products = db
-            .collection('products')
+            .collection('products').orderBy('type')
             .get()
             .then(snapshot => {
                 let _products = [];

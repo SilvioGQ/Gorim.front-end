@@ -10,7 +10,6 @@ import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import { ScrollView } from 'react-native-gesture-handler';
 import FunctionalityService from '../../../services/FunctionalityService';
 
-import TRANSLATE from '../../../resources/translate/pt-BR';
 import IMAGES from '../../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
@@ -67,7 +66,7 @@ export default function Parcela({ navigation, route }) {
               source={parcelLand.seed ? IMAGES[parcelLand.seed] : Unknown} />
             <View>
               <Text>Sementes</Text>
-              <Text style={styles.bold}>{parcelLand.seed ? TRANSLATE[parcelLand.seed] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.seed ? parcelLand.seed : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -78,7 +77,7 @@ export default function Parcela({ navigation, route }) {
               source={parcelLand.fertilizer ? IMAGES[parcelLand.fertilizer] : Unknown} />
             <View>
               <Text>Fertilizantes</Text>
-              <Text style={styles.bold}>{parcelLand.fertilizer ? TRANSLATE[parcelLand.fertilizer] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -89,7 +88,7 @@ export default function Parcela({ navigation, route }) {
               source={parcelLand.pesticide ? IMAGES[parcelLand.pesticide] : Unknown} />
             <View>
               <Text>Agrotóxicos</Text>
-              <Text style={styles.bold}>{parcelLand.pesticide ? TRANSLATE[parcelLand.pesticide] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -100,7 +99,7 @@ export default function Parcela({ navigation, route }) {
               source={parcelLand.machine ? IMAGES[parcelLand.machine] : Unknown} />
             <View>
               <Text>Máquinas</Text>
-              <Text style={styles.bold}>{parcelLand.machine ? TRANSLATE[parcelLand.machine] : '-'}</Text>
+              <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
             </View>
           </View>
         </TouchableOpacity>

@@ -3,14 +3,13 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 
 import IMAGES from '../../resources/imagesProducts';
 import COLORS from '../../resources/colors';
-import TRANSLATE from '../../resources/translate/pt-BR';
 
 export default function Produtos({ item }) {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <Image style={styles.logo} source={IMAGES[item.name]} />
-        <Text style={styles.textos}>{TRANSLATE[item.name]}</Text>
+        <Text style={styles.textos}>{item.name}</Text>
       </View>
       <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row' }}>
         <View style={styles.row}>
