@@ -13,7 +13,6 @@ import FunctionalityService from '../../../services/FunctionalityService';
 import IMAGES from '../../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
-
 export default function Parcela({ navigation, route }) {
   const [player, setPlayer] = useState(route.params.player);
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
@@ -22,14 +21,12 @@ export default function Parcela({ navigation, route }) {
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
   const [dropDown4, setDropDown4] = useState(false);
-  const [pp, setpp] = useState(false)
-  if(pp){
-    parcelLand.seed = null
-  }
+  const [updateStatus, setUpdateStatus] = useState(false);
+
   const selectItem = (name, type) => {
-    setpp(false)
+    setUpdateStatus(false);
     for (let i = 0; i < 3; i++) {
-      
+
       if (type == 'seed') parcelLand.seed = name;
       if (type == 'fertilizer') parcelLand.fertilizer = name;
       if (type == 'pesticide') parcelLand.pesticide = name;
@@ -40,7 +37,7 @@ export default function Parcela({ navigation, route }) {
     setDropDown3(false);
     setDropDown4(false);
   }
-  
+
   const toPlant = () => {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
@@ -51,11 +48,11 @@ export default function Parcela({ navigation, route }) {
       if (e.name == parcelLand.pesticide) e.amount = e.amount - 1;
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
-    
+
     FunctionalityService.toPlant(player);
     navigation.navigate('ControleParcelas', { message: 'Seu plantio foi iniciado' });
   }
-  
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -72,9 +69,12 @@ export default function Parcela({ navigation, route }) {
               <Text>Sementes</Text>
               <Text style={styles.bold}>{parcelLand.seed ? parcelLand.seed : '-'}</Text>
             </View>
-            <TouchableOpacity style={{ display: parcelLand.seed ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => setpp(true)}>
-              <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
-            </TouchableOpacity>
+            {/* onPress={() => setpp(true)} */}
+            {parcelLand.seed && (
+              <TouchableOpacity style={{ position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.seed = null }}>
+                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
+              </TouchableOpacity>
+            )}
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'seed'} onClick={selectItem} display={dropDown ? 'flex' : 'none'} />
@@ -86,9 +86,11 @@ export default function Parcela({ navigation, route }) {
               <Text>Fertilizantes</Text>
               <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer : '-'}</Text>
             </View>
-            <TouchableOpacity style={{ display: parcelLand.fertilizer ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => parcelLand.fertilizer = null}>
-              <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
-            </TouchableOpacity>
+            {parcelLand.fertilizer && (
+              <TouchableOpacity style={{ display: parcelLand.fertilizer ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.fertilizer = null }}>
+                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
+              </TouchableOpacity>
+            )}
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'fertilizer'} onClick={selectItem} display={dropDown2 ? 'flex' : 'none'} />
@@ -100,9 +102,11 @@ export default function Parcela({ navigation, route }) {
               <Text>Agrotóxicos</Text>
               <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide : '-'}</Text>
             </View>
-            <TouchableOpacity style={{ display: parcelLand.pesticide ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => parcelLand.pesticide = null}>
-              <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
-            </TouchableOpacity>
+            {parcelLand.pesticide && (
+              <TouchableOpacity style={{ display: parcelLand.pesticide ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.pesticide = null }}>
+                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
+              </TouchableOpacity>
+            )}
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'pesticide'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
@@ -114,9 +118,11 @@ export default function Parcela({ navigation, route }) {
               <Text>Máquinas</Text>
               <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
             </View>
-            <TouchableOpacity style={{ display: parcelLand.machine ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => parcelLand.machine = null}>
-              <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
-            </TouchableOpacity>
+            {parcelLand.machine && (
+              <TouchableOpacity style={{ display: parcelLand.machine ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.machine = null }}>
+                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
+              </TouchableOpacity>
+            )}
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
