@@ -52,6 +52,19 @@ const FunctionalityService = {
     toPlant(player) {
         db.collection('players').doc(player.id).update(player);
     },
+    getProduct(name) {
+        const products = db
+            .collection('products').where('name', '==', name)
+            .get()
+            .then(snapshot => {
+                let _products = [];
+                snapshot.forEach(function (doc) {
+                    _products.push(Object.assign(doc.data(), { id: doc.id }));
+                });
+                return _products;
+            });
+        return products;
+    },
     getProducts() {
         const products = db
             .collection('products').orderBy('type')
@@ -64,6 +77,19 @@ const FunctionalityService = {
                 return _products;
             });
         return products;
+    },
+    getOffers(room) {
+        const offers = db
+            .collection('offers').where('room', '==', room)
+            .get()
+            .then(snapshot => {
+                let _offers = [];
+                snapshot.forEach(function (doc) {
+                    _offers.push(Object.assign(doc.data(), { id: doc.id }));
+                });
+                return _offers;
+            });
+        return offers;
     }
 }
 
