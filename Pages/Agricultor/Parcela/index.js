@@ -10,6 +10,7 @@ import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import { ScrollView } from 'react-native-gesture-handler';
 import FunctionalityService from '../../../services/FunctionalityService';
 
+import TRANSLATE from '../../../resources/translate/pt-BR';
 import IMAGES from '../../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
@@ -68,9 +69,11 @@ export default function Parcela({ navigation, route }) {
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.seed ? 35 : 25, height: parcelLand.seed ? 35 : 45 }]}
               source={parcelLand.seed ? IMAGES[parcelLand.seed] : Unknown} />
-            <View>
-              <Text>Sementes</Text>
-              <Text style={styles.bold}>{parcelLand.seed ? parcelLand.seed : '-'}</Text>
+            <View style={styles.rowX}>
+              <View>
+                <Text>Sementes</Text>
+                <Text style={styles.bold}>{parcelLand.seed ? TRANSLATE[parcelLand.seed] : '-'}</Text>
+              </View>
             </View>
             <TouchableOpacity style={{ display: parcelLand.seed ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => setpp(true)}>
               <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
@@ -82,9 +85,11 @@ export default function Parcela({ navigation, route }) {
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.fertilizer ? 35 : 25, height: parcelLand.fertilizer ? 35 : 45 }]}
               source={parcelLand.fertilizer ? IMAGES[parcelLand.fertilizer] : Unknown} />
-            <View>
-              <Text>Fertilizantes</Text>
-              <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer : '-'}</Text>
+            <View style={styles.rowX}>
+              <View>
+                <Text>Fertilizantes</Text>
+                <Text style={styles.bold}>{parcelLand.fertilizer ? TRANSLATE[parcelLand.fertilizer] : '-'}</Text>
+              </View>
             </View>
             <TouchableOpacity style={{ display: parcelLand.fertilizer ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => parcelLand.fertilizer = null}>
               <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
@@ -96,9 +101,11 @@ export default function Parcela({ navigation, route }) {
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.pesticide ? 35 : 25, height: parcelLand.pesticide ? 35 : 45 }]}
               source={parcelLand.pesticide ? IMAGES[parcelLand.pesticide] : Unknown} />
-            <View>
-              <Text>Agrotóxicos</Text>
-              <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide : '-'}</Text>
+            <View style={styles.rowX}>
+              <View>
+                <Text>Agrotóxicos</Text>
+                <Text style={styles.bold}>{parcelLand.pesticide ? TRANSLATE[parcelLand.pesticide] : '-'}</Text>
+              </View>
             </View>
             <TouchableOpacity style={{ display: parcelLand.pesticide ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => parcelLand.pesticide = null}>
               <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
@@ -110,9 +117,11 @@ export default function Parcela({ navigation, route }) {
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.machine ? 35 : 25, height: parcelLand.machine ? 35 : 45 }]}
               source={parcelLand.machine ? IMAGES[parcelLand.machine] : Unknown} />
-            <View>
-              <Text>Máquinas</Text>
-              <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
+            <View style={styles.rowX}>
+              <View>
+                <Text>Máquinas</Text>
+                <Text style={styles.bold}>{parcelLand.machine ? TRANSLATE[parcelLand.machine] : '-'}</Text>
+              </View>
             </View>
             <TouchableOpacity style={{ display: parcelLand.machine ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => parcelLand.machine = null}>
               <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20}} />
