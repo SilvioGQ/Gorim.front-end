@@ -1,40 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+
 import COLORS from '../../resources/colors';
 import Empresario from '../../assets/perfils/empresariox1/Fertilizante.png';
-import Rice from '../../assets/seeds/rice.png';
-import Normal from '../../assets/moedas/normal.png';
+import imagesProducts from '../../resources/imagesProducts';
+import imagesCoins from '../../resources/imagesCoins';
 
-const Tela = Dimensions.get('screen').width
-export default function Oferta({ vendedor, produto, preço }) {
+import PlayerService from '../../services/PlayerService';
+import FunctionalityService from '../../services/FunctionalityService';
+
+const Tela = Dimensions.get('screen').width;
+export default function Oferta({ item }) {
+  const [nameSeller, setNameSeller] = useState('');
+  const [coin, setCoin] = useState('');
+
+  useEffect(() => {
+    PlayerService.getPlayer(item.idSeller).then(resp => setNameSeller(resp.name));
+    FunctionalityService.getProduct(item.product).then(resp => {
+      if(item.price == resp[0].cheap) setCoin('Barato');
+      if(item.price == resp[0].medium) setCoin('Médio');
+      if(item.price == resp[0].expensive) setCoin('Caro');
+    })
+  },[]);
+
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
-        <View style={styles.agricultor}>
+        <View style={{ marginTop: 10 }}>
           <Image
             style={styles.person}
             source={Empresario}
           />
-          <Text style={styles.text}>{vendedor}</Text>
+          <Text style={styles.text}>{nameSeller}</Text>
         </View>
         <View>
           <Text style={styles.text}>Produto:</Text>
-          <Text style={styles.textBold}>{produto}</Text>
+          <Text style={styles.textBold}>{item.product}</Text>
         </View>
         <Image
           style={styles.icone}
-          source={Rice}
+          source={imagesProducts[item.product]}
         />
         <View>
           <Text style={styles.text}>Preço:</Text>
-          <Text style={styles.textBold}>{preço}</Text>
+          <Text style={styles.textBold}>{item.price}</Text>
         </View>
         <Image
           style={styles.icone}
-          source={Normal}
+          source={imagesCoins[coin]}
         />
       </View>
-      <Text style={styles.text}> Quantidade: 4</Text>
+      <Text style={styles.text}> Quantidade: {item.amount}</Text>
       <View style={styles.row3}>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
@@ -102,8 +118,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     alignItems: 'center',
-  },
-  agricultor: {
-    marginTop: 10
   }
 });

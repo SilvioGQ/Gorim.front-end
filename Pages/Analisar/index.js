@@ -32,8 +32,7 @@ export default function Analizar() {
         showsVerticalScrollIndicator={false}
         data={products}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Produtos item={item} />
-        }
+        renderItem={({ item }) => <Produtos item={item} />}
       />
     </View>
   );
