@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-
-import COLORS from '../../resources/colors';
 const Tela = Dimensions.get('screen').width;
 export default function Quantidade() {
   const [Selected, setSelected] = useState(-1)
 
   return (
-    <View style={styles.container}>
-      <Text style={{fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30, alignSelf:'flex-start'}}>Quantidade:</Text>
       <View style={styles.view}>
         <TouchableOpacity style={[styles.numeros, { backgroundColor: Selected >= 0 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelected(0)}>
           <Text style={styles.numeros2}>1</Text>
@@ -29,22 +25,15 @@ export default function Quantidade() {
           <Text style={styles.numeros2}>6</Text>
         </TouchableOpacity>
       </View>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: COLORS.bgColorPrimary,
-    alignItems: 'center',
-    width: Tela,
-  },
   numeros: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    padding: 2,
-    margin: '3%',
+    width: 45,
+    height: 45,
+    borderRadius: 23,
+    paddingVertical: 4,
     alignItems: 'center',
     shadowColor: "#000",
     shadowOffset: {
@@ -54,16 +43,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
 
-    elevation: 9
+    elevation: 6
   },
   numeros2: {
     fontFamily: 'Rubik_400Regular',
-    fontSize: 25,
-    marginTop: '4%',
+    fontSize: 30,
   },
   view: {
     flexDirection: 'row',
-    marginLeft: '5%',
-    alignSelf: 'flex-start'
+    width:'90%',
+    marginHorizontal:20,
+    justifyContent:'space-around',
+    marginVertical:15,
   },
 });

@@ -44,7 +44,7 @@ export default function Vendas({ navigation, route }) {
         <Text style={styles.header}> Venda de {'\n'} {JSON.stringify(name)} </Text>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Clientes: </Text>
-      <View style={{ marginHorizontal: 15 }}>
+      <View style={{ marginHorizontal: 10 }}>
         <FlatList
           numColumns={3}
           data={players}
@@ -64,6 +64,7 @@ export default function Vendas({ navigation, route }) {
               source={Baixo}
             />
             <Text style={styles.valor}> Baixo </Text>
+            <Text style={styles.valor}> $25 </Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelected(1)}>
@@ -73,6 +74,7 @@ export default function Vendas({ navigation, route }) {
               source={Normal}
             />
             <Text style={styles.valor}> Normal </Text>
+            <Text style={styles.valor}> $30 </Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelected(2)}>
@@ -82,9 +84,11 @@ export default function Vendas({ navigation, route }) {
               source={Alto}
             />
             <Text style={styles.valor}> Alto </Text>
+            <Text style={styles.valor}> $35 </Text>
           </View>
         </TouchableOpacity>
       </View>
+      <Text style={{fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30}}>Quantidade:</Text>
       <Quantidades />
       <Button
         onClick={confirmTransfer}
@@ -97,52 +101,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    paddingTop: 35,
-    padding: 6,
+    paddingTop: 25,
   },
   valor: {
     fontFamily: 'Rubik_300Light',
     fontSize: 12,
-    margin: '7%'
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginHorizontal: 15,
-    width: Tela,
-    flexWrap: 'wrap'
+    marginHorizontal: 10,
+    width:'95%',
+    marginVertical:15,
+    justifyContent:'space-around'
   },
   center: {
     flexDirection: 'row',
     justifyContent: 'center',
-    margin: 15,
-  },
-  end: {
-    flexDirection: 'row',
-    alignSelf: 'flex-end',
-  },
-  row2: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 7,
-    backgroundColor: '#FFFFFF',
-    width: 280,
-    height: 50,
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-    elevation: 9,
   },
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 10,
     backgroundColor: COLORS.textWhite,
     width: 96,
     height: 84,
@@ -155,7 +133,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
 
-    elevation: 9
+    elevation: 6
   },
   header: {
     fontFamily: 'Rubik_300Light',
@@ -164,25 +142,17 @@ const styles = StyleSheet.create({
   },
   textos: {
     fontFamily: 'Rubik_300Light',
-
+    marginHorizontal:15,
     fontSize: 20,
     alignSelf: 'center'
   },
-  textinhos: {
-    fontFamily: 'Rubik_300Light',
-    fontSize: 14,
-    marginTop: '7%'
-  },
-  logo: {
-    width: 20,
-    height: 23
-  },
   person: {
-    width: 64,
-    height: 60
+    width: 59,
+    height: 58
   },
   icone: {
     width: 40,
     height: 40,
+    marginTop:5
   }
 });

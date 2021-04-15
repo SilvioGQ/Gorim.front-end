@@ -26,7 +26,7 @@ export default function Oferta({ item }) {
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
-        <View style={{ marginTop: 10 }}>
+        <View>
           <Image
             style={styles.person}
             source={Empresario}
@@ -65,10 +65,11 @@ export default function Oferta({ item }) {
 
 const styles = StyleSheet.create({
   colunm: {
+    marginLeft:15,
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
-    width: Tela,
-    height: 160,
+    width: Tela-30,
+    height: 180,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -76,20 +77,18 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-
     elevation: 6,
     marginVertical: 15
   },
   button: {
-    width: 140,
-    height: 30,
-    borderRadius: 15,
+    width: 160,
+    borderRadius: 20,
     backgroundColor: COLORS.warningButton,
-    padding: 10
+    padding: 15
   },
   textbutton: {
     color: COLORS.textWhite,
-    fontSize: 9,
+    fontSize: 12,
     textAlign: 'center',
     fontFamily: 'Rubik_400Regular'
   },
@@ -107,7 +106,6 @@ const styles = StyleSheet.create({
   person: {
     width: 56,
     height: 58,
-    alignSelf: 'center',
   },
   textBold: {
     fontSize: 15,
@@ -117,6 +115,6 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 15,
-    alignItems: 'center',
+    marginBottom:2
   }
 });

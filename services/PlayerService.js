@@ -47,7 +47,7 @@ const PlayerService = {
             });
     },
     typesRaffle(room) {
-        let emp = 0;
+        let emp = 4;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
 
         db.collection('players').where('room', '==', room)

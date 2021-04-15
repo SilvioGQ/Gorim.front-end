@@ -10,7 +10,6 @@ import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import { ScrollView } from 'react-native-gesture-handler';
 import FunctionalityService from '../../../services/FunctionalityService';
 
-import TRANSLATE from '../../../resources/translate/pt-BR';
 import IMAGES from '../../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
@@ -69,7 +68,7 @@ export default function Parcela({ navigation, route }) {
             <View style={styles.rowX}>
               <View>
                 <Text>Sementes</Text>
-                <Text style={styles.bold}>{parcelLand.seed ? TRANSLATE[parcelLand.seed] : '-'}</Text>
+                <Text style={styles.bold}>{parcelLand.seed ? parcelLand.seed : '-'}</Text>
               </View>
             </View>
             {/* onPress={() => setpp(true)} */}
@@ -88,7 +87,7 @@ export default function Parcela({ navigation, route }) {
             <View style={styles.rowX}>
               <View>
                 <Text>Fertilizantes</Text>
-                <Text style={styles.bold}>{parcelLand.fertilizer ? TRANSLATE[parcelLand.fertilizer] : '-'}</Text>
+                <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer : '-'}</Text>
               </View>
             </View>
             {parcelLand.fertilizer && (
@@ -106,7 +105,7 @@ export default function Parcela({ navigation, route }) {
             <View style={styles.rowX}>
               <View>
                 <Text>Agrotóxicos</Text>
-                <Text style={styles.bold}>{parcelLand.pesticide ? TRANSLATE[parcelLand.pesticide] : '-'}</Text>
+                <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide : '-'}</Text>
               </View>
             </View>
             {parcelLand.pesticide && (
@@ -124,7 +123,7 @@ export default function Parcela({ navigation, route }) {
             <View style={styles.rowX}>
               <View>
                 <Text>Máquinas</Text>
-                <Text style={styles.bold}>{parcelLand.machine ? TRANSLATE[parcelLand.machine] : '-'}</Text>
+                <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
               </View>
             </View>
             {parcelLand.machine && (

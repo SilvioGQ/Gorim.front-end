@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
 
-    elevation: 9
+    elevation: 6
   },
   icone: {
     width: 40,

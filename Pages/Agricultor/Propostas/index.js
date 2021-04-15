@@ -35,15 +35,13 @@ export default function Proposta({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
     backgroundColor: COLORS.bgColorPrimary,
-    alignItems: 'center',
-    padding: '2%',
     width: Tela,
     paddingTop: 25
   },
   header: {
     fontFamily: 'Rubik_400Regular',
+        textAlign: 'center',
     fontSize: 24,
     paddingTop: 10
   },
