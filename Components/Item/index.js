@@ -2,16 +2,17 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import COLORS from '../../resources/colors';
-
-export default function Item(props) {
+import IMAGES from '../../resources/imagesProducts';
+import IMAGES2 from '../../resources/imagesMenu';
+export default function Item({onClick, backgroundColor='#fff', name, type}) {
   return (
-    <TouchableOpacity onPress={props.onClick}>
-      <View style={[styles.colunm, {backgroundColor:props.backgroundColor}]}>
+    <TouchableOpacity onPress={onClick}>
+      <View style={[styles.colunm, {backgroundColor:backgroundColor}]}>
         <Image
           style={styles.icone}
-          source={props.icone}
+          source={type == 'Produtos' ?  IMAGES[name] : IMAGES2[name]}
         />
-        <Text style={styles.textinhos}>{props.texto}</Text>
+        <Text style={styles.textinhos}>{name}</Text>
       </View>
     </TouchableOpacity>
   )

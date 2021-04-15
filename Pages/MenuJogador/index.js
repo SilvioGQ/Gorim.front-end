@@ -38,10 +38,10 @@ export default function MenuJogador({ navigation, route }) {
           </TouchableOpacity>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item onClick={() => navigation.navigate('Proposta', { player })} icone={require('../../assets/agricultorIcones/handshake.png')} texto='Checar propostas' backgroundColor='#fff' />
-              <Item onClick={() => navigation.navigate('FazerTransferencia', { player })} icone={require('../../assets/agricultorIcones/coin.png')} texto='Fazer transferencia' backgroundColor='#fff' />
-              <Item onClick={() => navigation.navigate('Analizar')} icone={require('../../assets/agricultorIcones/lupa.png')} texto='Analisar produtos' backgroundColor='#fff' />
-              <Item onClick={() => setisVisible(true)} icone={require('../../assets/agricultorIcones/seloG.png')} texto='Pedir selo verde' backgroundColor='#FF7F7E' />
+              <Item type='Menu' onClick={() => navigation.navigate('Proposta', { player })} name='Checar propostas' />
+              <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
+              <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos' />
+              <Item type='Menu' onClick={() => setisVisible(true)} name='Pedir selo verde' backgroundColor='#FF7F7E' />
             </View>
             <Conf isVisible={isVisible} Conf={() => setisVisible(false)} />
           </View>
@@ -53,38 +53,38 @@ export default function MenuJogador({ navigation, route }) {
           <View style={styles.row}>
             {player.speciality === 'Fertilizante' && (
               <View style={styles.items}>
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Comum' })} icone={require('../../assets/fertilizers/fertilizerBasic.png')} texto='Vender Fertilizante Comum' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Premium' })} icone={require('../../assets/fertilizers/fertilizerMedium.png')} texto='Vender Fertilizante Premium' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Super Premium' })} icone={require('../../assets/fertilizers/fertilizerStandard.png')} texto='Vender Fertilizante Super Premium' backgroundColor='#fff' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Comum' })} name='Fertilizante Comum' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Premium' })} name='Fertilizante Premium' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
               </View>
             )}
             {player.speciality === 'Agrotoxico' && (
               <View style={styles.items}>
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Comum' })} icone={require('../../assets/pesticides/pesticideBasic.png')} texto='Vender Agrotoxico Comum' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Premium' })} icone={require('../../assets/pesticides/pesticideMedium.png')} texto='Vender Agrotoxico Premium' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotoxico Super Premium' })} icone={require('../../assets/pesticides/pesticideStandard.png')} texto='Vender Agrotoxico Super Premium' backgroundColor='#fff' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Agrotóxico Super Premium' })} name='Agrotóxico Super Premium' />
               </View>
             )}
             {player.speciality === 'Semente' && (
               <View style={styles.items}>
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Soja' })} icone={require('../../assets/seeds/soy.png')} texto='Vender Soja' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Arroz' })} icone={require('../../assets/seeds/rice.png')} texto='Vender Arroz' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Hortaliças' })} icone={require('../../assets/seeds/greenery.png')} texto='Vender Hortaliças' backgroundColor='#fff' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Soja' })} name='Soja' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Arroz' })} name='Arroz' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Hortaliças' })} name='Hortaliças' />
               </View>
             )}
             {player.speciality === 'Maquina' && (
               <View style={styles.items}>
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Semeadora' })} icone={require('../../assets/agricultorIcones/pacote.png')} texto='Semeadora' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Semeadora Colheitadera' })} icone={require('../../assets/agricultorIcones/pacote.png')} texto='Semeadora Colheitadera' backgroundColor='#fff' />
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Semeadroa Colheitadero Drone' })} icone={require('../../assets/agricultorIcones/pacote.png')} texto='Semeadroa Colheitadero Drone' backgroundColor='#fff' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Pacote 1' })} name='Pacote 1' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Pacote 2' })} name='Pacote 2' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Pacote 3' })} name='Pacote 3' />
               </View>
             )}
             {player.speciality === 'Maquina' && (
               <>
-                <Item onClick={() => navigation.navigate('Vendas', { player, name: 'Pulverizador' })} icone={require('../../assets/agricultorIcones/pulverizador.png')} texto='Pulverizador' backgroundColor='#fff' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Pulverizador' })} name='Pulverizador' />
               </>
             )}
-            <Item onClick={() => navigation.navigate('FazerTransferencia', { player })} icone={require('../../assets/agricultorIcones/coin.png')} texto='Fazer Transferencia' backgroundColor='#fff' />
+            <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
           </View>
         </>
       )}

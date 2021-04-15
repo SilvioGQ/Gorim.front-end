@@ -5,22 +5,23 @@ import Quadrados from '../../../Components/Quadrado';
 import Modal from '../../../Components/ModalInfo'
 import Quantidades from '../../../Components/Quantidades';
 import COLORS from '../../../resources/colors';
-import Selo from '../../../assets/moedas/Selo.png';
-import Moeda from '../../../assets/moedas/Moeda.png';
-import Tractor from '../../../assets/machines/tractor.png';
+import Coin from '../../../Components/Coin'
 import Baixo from '../../../assets/moedas/cheap.png';
 import Normal from '../../../assets/moedas/medium.png';
 import Alto from '../../../assets/moedas/expensive.png';
 import PlayerService from '../../../services/PlayerService';
 import { FlatList } from 'react-native-gesture-handler';
-const Tela = Dimensions.get('screen').width;
+import IMAGES from '../../../resources/imagesProducts';
+import FunctionalityService from '../../../services/FunctionalityService';
 export default function Vendas({ navigation, route }) {
   const { name } = route.params;
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
-  const [Selected, setSelected] = useState(-1);
+  const [selectPrice, setSelectPrice] = useState(-1);
   const { player } = route.params;
-  const [id, setId] = useState();
+  const [selectClient, setSelectClient] = useState();
+  const [selectAmount, setSelectAmount] = useState(-1);
+  const [product, setProduct] = useState([]);
   useEffect(() => {
     PlayerService.getPlayers(player.room).then(resp => {
       resp = resp.filter(item => {
@@ -28,20 +29,22 @@ export default function Vendas({ navigation, route }) {
       });
       setPlayers(resp);
     });
+    FunctionalityService.getProduct(name).then(setProduct)
   }, []);
   const confirmTransfer = () => {
-    if (!id) {
-      setModalText('Selecione o destino!');
-    }
+    if (!selectClient) return setModalText('Selecione um Cliente!');
+    if (selectPrice == -1) return setModalText('Selecione o Preço!');
+    if (selectAmount == -1) return setModalText('Selecione a quantidade!');
   }
   return (
     <View style={styles.container}>
+      <Coin coin={player.coin} />
       <View style={styles.center}>
         <Image
           style={styles.person}
-          source={Tractor}
+          source={IMAGES[name]}
         />
-        <Text style={styles.header}> Venda de {'\n'} {JSON.stringify(name)} </Text>
+        <Text style={styles.header}> Venda de {'\n'} {name} </Text>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Clientes: </Text>
       <View style={{ marginHorizontal: 10 }}>
@@ -49,47 +52,47 @@ export default function Vendas({ navigation, route }) {
           numColumns={3}
           data={players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} />}
+          renderItem={({ item }) => <Quadrados player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />}
         />
       </View>
       {modalText !== '' && (
-        <ModalInfo onClick={() => setModalText('')} text={modalText} />
+        <Modal onClick={() => setModalText('')} text={modalText} />
       )}
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Valor: </Text>
       <View style={styles.row}>
-        <TouchableOpacity onPress={() => setSelected(0)}>
-          <View style={[styles.colunm, { backgroundColor: Selected == 0 ? "#8ACF3A" : '#fff' }]}>
+        <TouchableOpacity onPress={() => setSelectPrice(0)}>
+          <View style={[styles.colunm, { backgroundColor: selectPrice == 0 ? "#8ACF3A" : '#fff' }]}>
             <Image
               style={styles.icone}
               source={Baixo}
             />
             <Text style={styles.valor}> Baixo </Text>
-            <Text style={styles.valor}> $25 </Text>
+            <Text style={styles.valor}> {console.log(product[0])} </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelected(1)}>
-          <View style={[styles.colunm, { backgroundColor: Selected == 1 ? "#8ACF3A" : '#fff' }]}>
+        <TouchableOpacity onPress={() => setSelectPrice(1)}>
+          <View style={[styles.colunm, { backgroundColor: selectPrice == 1 ? "#8ACF3A" : '#fff' }]}>
             <Image
               style={styles.icone}
               source={Normal}
             />
             <Text style={styles.valor}> Normal </Text>
-            <Text style={styles.valor}> $30 </Text>
+            <Text style={styles.valor}> {product[0].medium} </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelected(2)}>
-          <View style={[styles.colunm, { backgroundColor: Selected == 2 ? "#8ACF3A" : '#fff' }]}>
+        <TouchableOpacity onPress={() => setSelectPrice(2)}>
+          <View style={[styles.colunm, { backgroundColor: selectPrice == 2 ? "#8ACF3A" : '#fff' }]}>
             <Image
               style={styles.icone}
               source={Alto}
             />
             <Text style={styles.valor}> Alto </Text>
-            <Text style={styles.valor}> $35 </Text>
+            <Text style={styles.valor}> {product[0].expensive} </Text>
           </View>
         </TouchableOpacity>
       </View>
-      <Text style={{fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal:15, marginTop:30}}>Quantidade:</Text>
-      <Quantidades />
+      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
+      <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />
       <Button
         onClick={confirmTransfer}
         name='VENDER' />
@@ -110,9 +113,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     marginHorizontal: 10,
-    width:'95%',
-    marginVertical:15,
-    justifyContent:'space-around'
+    width: '95%',
+    marginVertical: 15,
+    justifyContent: 'space-around'
   },
   center: {
     flexDirection: 'row',
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
   },
   textos: {
     fontFamily: 'Rubik_300Light',
-    marginHorizontal:15,
+    marginHorizontal: 15,
     fontSize: 20,
     alignSelf: 'center'
   },
@@ -153,6 +156,6 @@ const styles = StyleSheet.create({
   icone: {
     width: 40,
     height: 40,
-    marginTop:5
+    marginTop: 5
   }
 });

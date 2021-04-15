@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
-export default function Quantidade() {
-  const [Selected, setSelected] = useState(-1)
-
+export default function Quantidade({selectAmount, setSelectAmount}) {
   return (
       <View style={styles.view}>
-        <TouchableOpacity style={[styles.numeros, { backgroundColor: Selected >= 0 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelected(0)}>
+        <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 0 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(0)}>
           <Text style={styles.numeros2}>1</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.numeros, { backgroundColor: Selected >= 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelected(1)}>
+        <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(1)}>
           <Text style={styles.numeros2}>2</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.numeros, { backgroundColor: Selected >= 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelected(2)}>
+        <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(2)}>
           <Text style={styles.numeros2}>3</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.numeros, { backgroundColor: Selected >= 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelected(3)}>
+        <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(3)}>
           <Text style={styles.numeros2}>4</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.numeros, { backgroundColor: Selected >= 4 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelected(4)}>
+        <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 4 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(4)}>
           <Text style={styles.numeros2}>5</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.numeros, { backgroundColor: Selected >= 5 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelected(5)}>
+        <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 5 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(5)}>
           <Text style={styles.numeros2}>6</Text>
         </TouchableOpacity>
       </View>
