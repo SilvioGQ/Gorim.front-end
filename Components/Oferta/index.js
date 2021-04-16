@@ -17,9 +17,9 @@ export default function Oferta({ item }) {
   useEffect(() => {
     PlayerService.getPlayer(item.idSeller).then(resp => setNameSeller(resp.name));
     FunctionalityService.getProduct(item.product).then(resp => {
-      if(item.price == resp[0].cheap) setCoin('Barato');
-      if(item.price == resp[0].medium) setCoin('Médio');
-      if(item.price == resp[0].expensive) setCoin('Caro');
+      if(item.price == resp.cheap) setCoin('Barato');
+      if(item.price == resp.medium) setCoin('Médio');
+      if(item.price == resp.expensive) setCoin('Caro');
     })
   },[]);
 
@@ -43,7 +43,7 @@ export default function Oferta({ item }) {
         />
         <View>
           <Text style={styles.text}>Preço:</Text>
-          <Text style={styles.textBold}>{item.price}</Text>
+          <Text style={styles.textBold}>${item.price}</Text>
         </View>
         <Image
           style={styles.icone}
@@ -51,7 +51,7 @@ export default function Oferta({ item }) {
         />
       </View>
       <Text style={styles.text}> Quantidade: {item.amount}</Text>
-      <View style={styles.row3}>
+      <View style={styles.row}>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
         </TouchableOpacity>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
     width: Tela-30,
-    height: 180,
+    height: 185,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -92,10 +92,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Rubik_400Regular'
   },
-  row3: {
+  row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: 5,
+  },
+  row3: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 15,
+    marginBottom:5
   },
   icone: {
     width: 36,
@@ -108,9 +114,9 @@ const styles = StyleSheet.create({
     height: 58,
   },
   textBold: {
-    fontSize: 15,
+    fontSize: 13,
     fontFamily: 'Rubik_400Regular',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   text: {
     textAlign: 'center',

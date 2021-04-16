@@ -12,22 +12,22 @@ export default function Proposta({ route }) {
   const { player } = route.params;
 
   useEffect(() => {
-    FunctionalityService.getOffers(player.room).then(setOffers);
+    FunctionalityService.getOffers(player.id).then(setOffers);
   }, []);
 
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
       <Text style={styles.header}>Propostas</Text>
+      {offers.length === 0 && (
+        <Text style={{flex:1, textAlign:'center',  fontFamily:'Rubik_700Bold', fontSize:26, marginVertical:50}}>Você não tem nada!</Text>
+      )}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offers}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <Oferta item={item} />}
       />
-      {offers.length === 0 && (
-        <Text>Você não tem nada!</Text>
-      )}
     </View>
   );
 }
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     paddingTop: 25
   },
   header: {
-    fontFamily: 'Rubik_400Regular',
+    fontFamily: 'Rubik_300Light',
         textAlign: 'center',
     fontSize: 24,
     paddingTop: 10

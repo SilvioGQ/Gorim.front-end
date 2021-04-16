@@ -6,7 +6,7 @@ import Confirmacao from '../../../assets/Logo/confirmacao.png';
 
 export default function Confirmada({ navigation, route }) {
   const { player } = route.params;
-
+  const { text } = route.params;
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.reset({ routes: [{ name: 'MenuJogador', params: { player } }] })
@@ -18,7 +18,7 @@ export default function Confirmada({ navigation, route }) {
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={Confirmacao} />
-      <Text style={styles.text}>Sua transferencia será concluída na próxima rodada!</Text>
+      <Text style={styles.text}>{text}</Text>
     </View>
   );
 }

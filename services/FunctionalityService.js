@@ -5,11 +5,11 @@ import { db } from './config';
 
 const FunctionalityService = {
     generateUID() {
-        let firstPart = (Math.random() * 46656) | 0;
-        let secondPart = (Math.random() * 46656) | 0;
-        firstPart = ("000" + firstPart.toString(36)).slice(-3);
-        secondPart = ("000" + secondPart.toString(36)).slice(-3);
-        return firstPart + secondPart;
+        let firstPart = (Math.random() * 46656) | 'A';
+        //let secondPart = (Math.random() * 46656) | 0;
+        firstPart = ("0000" + firstPart.toString(36)).slice(-3);
+        //secondPart = ("000" + secondPart.toString(36)).slice(-3);
+        return firstPart + 'FQF' ;
     },
     createRoom() {
         let id = this.generateUID().toUpperCase();
@@ -46,7 +46,7 @@ const FunctionalityService = {
 
         let destinyRef = db.collection('players').doc(idDestiny);
         batch.update(destinyRef, { coin: firebase.firestore.FieldValue.increment(value) });
-
+        
         batch.commit();
     },
     toPlant(player) {
@@ -54,19 +54,19 @@ const FunctionalityService = {
     },
     getProduct(name) {
         const products = db
-            .collection('products').where('name', '==', name)
-            .get()
-            .then(snapshot => {
-                let _products = [];
-                snapshot.forEach(function (doc) {
-                    _products.push(Object.assign(doc.data(), { id: doc.id }));
+        .collection('products').where('name', '==', name)
+        .get()
+        .then(snapshot => {
+            let _products = [];
+            snapshot.forEach(function (doc) {
+                _products.push(Object.assign(doc.data(), { id: doc.id }));
                 });
-                return _products;
+                return _products[0];
             });
-        return products;
-    },
-    getProducts() {
-        const products = db
+            return products;
+        },
+        getProducts() {
+            const products = db
             .collection('products').orderBy('type')
             .get()
             .then(snapshot => {
@@ -76,24 +76,11 @@ const FunctionalityService = {
                 });
                 return _products;
             });
-        return products;
-    },
-    setOffer(room) {
-        const offers = db
-            .collection('player').where('room', '==', room)
-            .get()
-            .then(snapshot => {
-                let offers = [];
-                snapshot.forEach(function (doc) {
-                    offers.push(Object.assign(doc.data(), { id: doc.id }));
-                });
-                return offers;
-            });
-        return offers;
-    },
-    getOffers(room) {
-        const offers = db
-            .collection('offers').where('room', '==', room)
+            return products;
+        },
+        getOffers(idBuyer) {
+            const offers = db
+            .collection('offers').where('idBuyer', '==', idBuyer)
             .get()
             .then(snapshot => {
                 let _offers = [];
@@ -102,8 +89,17 @@ const FunctionalityService = {
                 });
                 return _offers;
             });
-        return offers;
+            return offers;
+        },
+        addOffer(seller, idBuyer, price, amount, product) {
+            return db.collection('offers').add({
+                idSeller: seller.id,
+                amount,
+                product,
+                price,
+                idBuyer
+            })
+        }
     }
-}
-
-export default FunctionalityService;
+    
+    export default FunctionalityService;
