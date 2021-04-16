@@ -35,6 +35,9 @@ export default function Vendas({ navigation, route }) {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
     if (selectAmount == -1) return setModalText('Selecione a quantidade!');
+    FunctionalityService.setOffer(room).then(resp =>{
+      resp = selectClient
+    })
   }
   return (
     <View style={styles.container}>
@@ -66,8 +69,8 @@ export default function Vendas({ navigation, route }) {
               style={styles.icone}
               source={Baixo}
             />
-            <Text style={styles.valor}> Baixo </Text>
-            <Text style={styles.valor}> {console.log(product[0])} </Text>
+            <Text style={styles.categoryprice}>Baixo</Text>
+            <Text style={styles.price}>${product[0]?.cheap}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelectPrice(1)}>
@@ -76,8 +79,8 @@ export default function Vendas({ navigation, route }) {
               style={styles.icone}
               source={Normal}
             />
-            <Text style={styles.valor}> Normal </Text>
-            <Text style={styles.valor}> {product[0].medium} </Text>
+            <Text style={styles.categoryprice}>Normal</Text>
+            <Text style={styles.price}>${product[0]?.medium}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelectPrice(2)}>
@@ -86,8 +89,8 @@ export default function Vendas({ navigation, route }) {
               style={styles.icone}
               source={Alto}
             />
-            <Text style={styles.valor}> Alto </Text>
-            <Text style={styles.valor}> {product[0].expensive} </Text>
+            <Text style={styles.categoryprice}>Alto</Text>
+            <Text style={styles.price}>${product[0]?.expensive}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -106,7 +109,12 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     paddingTop: 25,
   },
-  valor: {
+  categoryprice: {
+    fontFamily: 'Rubik_300Light',
+    fontSize: 12,
+    marginTop:5
+  },
+  price:{
     fontFamily: 'Rubik_300Light',
     fontSize: 12,
   },
@@ -154,8 +162,7 @@ const styles = StyleSheet.create({
     height: 58
   },
   icone: {
-    width: 40,
-    height: 40,
-    marginTop: 5
+    width: 35,
+    height: 35,
   }
 });

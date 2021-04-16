@@ -78,6 +78,19 @@ const FunctionalityService = {
             });
         return products;
     },
+    setOffer(room) {
+        const offers = db
+            .collection('player').where('room', '==', room)
+            .get()
+            .then(snapshot => {
+                let offers = [];
+                snapshot.forEach(function (doc) {
+                    offers.push(Object.assign(doc.data(), { id: doc.id }));
+                });
+                return offers;
+            });
+        return offers;
+    },
     getOffers(room) {
         const offers = db
             .collection('offers').where('room', '==', room)
