@@ -33,7 +33,7 @@ export default function Lobby({ navigation, route }) {
 
     PlayerService.setHost(player.room);
     PlayerService.deletePlayer(player.id);
-    FunctionalityService.deletePlayer(Game.id);
+    FunctionalityService.deletePlayerFromRoom(Game.id);
   }
 
   // useEffect(() => {

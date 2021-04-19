@@ -23,12 +23,12 @@ const FunctionalityService = {
             .get()
             .then(snapshot => Object.assign(snapshot.data(), { id: snapshot.id }));
     },
-    addPlayer(id) {
+    addPlayerToRoom(id) {
         db.collection('rooms').doc(id).update({
             players: firebase.firestore.FieldValue.increment(1)
         });
     },
-    deletePlayer(id) {
+    deletePlayerFromRoom(id) {
         db.collection('rooms').doc(id).update({
             players: firebase.firestore.FieldValue.increment(-1)
         });
@@ -91,14 +91,23 @@ const FunctionalityService = {
             });
             return offers;
         },
-        addOffer(seller, idBuyer, price, amount, product) {
-            return db.collection('offers').add({
+        addOffer(seller, idBuyer, price, amount, product, type) {
+            db.collection('offers').add({
                 idSeller: seller.id,
                 amount,
                 product,
                 price,
-                idBuyer
-            })
+                idBuyer,
+                type
+            });
+        },
+        confirmOffer(item) {
+            db.collection('offers').doc(item.id)
+                .get()
+                .then(function (snapshot) {
+                    snapshot.ref.delete();
+                }
+            );
         }
     }
     

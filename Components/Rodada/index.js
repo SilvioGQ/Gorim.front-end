@@ -12,7 +12,7 @@ export default function Rodada({ onClick, player }) {
   
   const deletePlayer = () => {
     PlayerService.deletePlayer(player.id);
-    FunctionalityService.deletePlayer(player.room);
+    FunctionalityService.deletePlayerFromRoom(player.room);
     setModalVisible(!modalVisible);
     onClick();
   }

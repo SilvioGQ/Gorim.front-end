@@ -44,7 +44,7 @@ export default function CriarPartida({ navigation }) {
       if (rm.players >= 10) return setModalText('Sala atingiu número máximo de jogadores!');
       if (rm.inGame) return setModalText('Sala está em partida!');
 
-      FunctionalityService.addPlayer(room);
+      FunctionalityService.addPlayerToRoom(room);
       PlayerService.addPlayer(name, room).then(id => {
         navigation.reset({
           routes: [{

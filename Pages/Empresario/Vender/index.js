@@ -15,6 +15,7 @@ import IMAGES from '../../../resources/imagesProducts';
 import FunctionalityService from '../../../services/FunctionalityService';
 export default function Vendas({ navigation, route }) {
   const { name } = route.params;
+  const { type } = route.params;
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [selectPrice, setSelectPrice] = useState(-1);
@@ -35,7 +36,7 @@ export default function Vendas({ navigation, route }) {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
     if (selectAmount == -1) return setModalText('Selecione a quantidade!');
-    FunctionalityService.addOffer(player, selectClient, selectPrice, selectAmount, name)
+    FunctionalityService.addOffer(player, selectClient, selectPrice, selectAmount, name, type)
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text: 'Sua proposta foi enviada com sucesso' } }] });
   }
   return (
