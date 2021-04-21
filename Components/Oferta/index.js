@@ -10,7 +10,7 @@ import PlayerService from '../../services/PlayerService';
 import FunctionalityService from '../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
-export default function Oferta({ item, confirmOffer }) {
+export default function Oferta({ item, confirmOffer, rejectOffer }) {
   const [nameSeller, setNameSeller] = useState('');
   const [coin, setCoin] = useState('');
 
@@ -55,7 +55,7 @@ export default function Oferta({ item, confirmOffer }) {
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item)}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#BF0000' }]}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#BF0000' }]} onPress={() => rejectOffer(item)}>
           <Text style={styles.textbutton}>REJEITAR</Text>
         </TouchableOpacity>
       </View>

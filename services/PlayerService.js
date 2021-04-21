@@ -47,7 +47,7 @@ const PlayerService = {
             });
     },
     typesRaffle(room) {
-        let emp = 1;
+        let emp = 0;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
 
         db.collection('players').where('room', '==', room)
@@ -70,8 +70,8 @@ const PlayerService = {
                             inventory: [ 
                                 { type: 'seed', name: 'Arroz', amount: 3 },
                                 { type: 'seed', name: 'Soja', amount: 2 },
-                                { type: 'fertilizer', name: 'Fertilizante Normal', amount: 2 },
-                                { type: 'pesticide', name: 'Agrotóxico Normal', amount: 1 },
+                                { type: 'fertilizer', name: 'Fertilizante Comum', amount: 2 },
+                                { type: 'pesticide', name: 'Agrotóxico Comum', amount: 1 },
                                 { type: 'pesticide', name: 'Agrotóxico Premium', amount: 1 },
                                 { type: 'pesticide', name: 'Agrotóxico Super Premium', amount: 1 },
                                 { type: 'machine', name: 'Pacote 1', amount: 3 },

@@ -10,36 +10,36 @@ import Tenso from '../../assets/emojis/tenso.png';
 import Corona from '../../assets/emojis/corona.png';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
-
+const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width
 export default function Cenario() {
     let poluicao = 25
     let value = require('../../assets/emojis/feliz.png')
-let value2 = require('../../assets/emojis/meio.png')
-let value3 = require('../../assets/emojis/preocupado.png')
-let value4 = require('../../assets/emojis/tenso.png')
-let value5 = require('../../assets/emojis/corona.png')
-const [Image1, setImage] = useState(value)
-useEffect(() => {
-    function SelectImage() {
-        if (poluicao > 20) {
-            setImage(value2)
+    let value2 = require('../../assets/emojis/meio.png')
+    let value3 = require('../../assets/emojis/preocupado.png')
+    let value4 = require('../../assets/emojis/tenso.png')
+    let value5 = require('../../assets/emojis/corona.png')
+    const [Image1, setImage] = useState(value)
+    useEffect(() => {
+        function SelectImage() {
+            if (poluicao > 20) {
+                setImage(value2)
+            }
+            if (poluicao > 40) {
+                setImage(value3)
+            }
+            if (poluicao > 60) {
+                setImage(value4)
+            }
+            if (poluicao > 80) {
+                setImage(value5)
+            }
         }
-        if (poluicao > 40) {
-            setImage(value3)
-        }
-        if (poluicao > 60) {
-            setImage(value4)
-        }
-        if (poluicao > 80) {
-            setImage(value5)
-        }
-    }
-    SelectImage()
-})
+        SelectImage()
+    })
     return (
-        <ScrollView 
-        showsVerticalScrollIndicator={false}>
+        <ScrollView
+            showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 <View style={styles.row}>
                     <Image
@@ -49,8 +49,8 @@ useEffect(() => {
                     <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
                 </View>
                 <Text style={styles.texto}>Nível de poluição:</Text>
-                <View style={[styles.row, {backgroundColor: '#FFFFFF', marginTop:20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000",shadowOffset: {width: 0,height: 4},shadowOpacity: 0.32,shadowRadius: 5.46,elevation: 9}]}>
-                    <Text style={{fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop:20}}>{poluicao}%</Text>
+                <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
+                    <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>{poluicao}%</Text>
                     <Image style={styles.emoji} source={Image1} />
                 </View>
                 <Text style={styles.texto}>Saldos:</Text>
@@ -72,18 +72,23 @@ useEffect(() => {
                         <Text style={styles.inferior}>atual</Text>
                     </View>
                 </View>
-                <Text style={styles.texto}>Resultado da sua última plantação:</Text>
-                <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
-                <View style={{ flexDirection: 'row', margin: '5%' }}>
-                    <View style={styles.coloridos}>
-                        <Text style={styles.numero2}>400</Text>
-                        <Text style={styles.inferior2}>Produtividade</Text>
-                    </View>
-                    <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
-                        <Text style={styles.numero2}>200</Text>
-                        <Text style={styles.inferior2}>Poluição</Text>
-                    </View>
-                </View>
+                {Height <= 780 && (
+                    <>
+                        <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
+                        <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
+                        <View style={{ flexDirection: 'row', margin: '5%' }}>
+                            <View style={styles.coloridos}>
+                                <Text style={styles.numero2}>400</Text>
+                                <Text style={styles.inferior2}>Produtividade</Text>
+                            </View>
+                            <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
+                                <Text style={styles.numero2}>200</Text>
+                                <Text style={styles.inferior2}>Poluição</Text>
+                            </View>
+                        </View>
+                    </>
+                )}
+
                 <Text style={styles.texto}>Histórico:</Text>
                 <Text style={styles.italiano}>X rodada: </Text>
                 <Text style={[styles.italiano, { fontStyle: 'normal' }]}>
@@ -112,14 +117,14 @@ const styles = StyleSheet.create({
         width: Tela,
         paddingTop: 45
     },
-    title:{
+    title: {
         fontSize: 20,
         fontFamily: 'Rubik_300Light',
-        marginTop:10
+        marginTop: 10
     },
     row: {
         flexDirection: 'row',
-        marginVertical:10
+        marginVertical: 10
     },
     image: {
         width: 62,
@@ -144,7 +149,7 @@ const styles = StyleSheet.create({
         height: 70,
         alignItems: 'center',
         marginLeft: 20,
-        marginTop:10
+        marginTop: 10
     },
     bloquinho: {
         backgroundColor: COLORS.bgColorSecondary,

@@ -9,7 +9,6 @@ import Conf from '../../Components/Selo-Verde-Confirmacao';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
 
-const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
@@ -32,8 +31,8 @@ export default function MenuJogador({ navigation, route }) {
           <Header player={player} image={require('../../assets/perfils/agricultor/Agricultor.png')} />
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })} style={{ width: '100%' }}>
             <View style={styles.row2}>
-              <Image style={{ width: 40, height: 40 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
-              <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, alignSelf: 'center' }}>Parcelas de terra</Text>
+              <Image style={{ width: 35, height: 35 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
+              <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, alignSelf: 'center', marginLeft:10 }}>Parcelas de terra</Text>
             </View>
           </TouchableOpacity>
           <View style={styles.row}>
@@ -100,33 +99,29 @@ export default function MenuJogador({ navigation, route }) {
           </View>
         </>
       )}
-      <Cenarios onClick={() => navigation.navigate('Cenario')} />
+      <Cenarios onClick={() => navigation.navigate('Cenario', { player })} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    width: Tela,
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
     alignSelf: 'flex-start',
-    justifyContent: 'flex-start',
     marginHorizontal: 20,
-    width: Tela,
-    flexWrap: 'wrap'
+    width: '100%',
   },
   row2: {
     flexDirection: 'row',
     marginHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: '6%',
+    marginVertical: 20,
     backgroundColor: COLORS.bgColorSecondary,
     width: '88%',
     height: 50,
@@ -144,7 +139,6 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     flexWrap: 'wrap'
   },
   bar: {
@@ -152,11 +146,11 @@ const styles = StyleSheet.create({
     width: '89%',
     borderRadius: 20,
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 15
   },
   textBar: {
     fontFamily: 'Rubik_400Regular',
     fontSize: 36,
-    color: 'white'
+    color: '#fff'
   }
 });

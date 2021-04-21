@@ -101,7 +101,7 @@ const FunctionalityService = {
                 type
             });
         },
-        confirmOffer(item) {
+        deleteOffer(item) {
             db.collection('offers').doc(item.id)
                 .get()
                 .then(function (snapshot) {
