@@ -1,58 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 
 import COLORS from '../../resources/colors';
 import Quadrados from '../../Components/Quadrado'
 import PlayerService from '../../services/PlayerService';
 import FunctionalityService from '../../services/FunctionalityService';
 import ModalInfo from '../../Components/ModalInfo';
-import { FlatList } from 'react-native-gesture-handler';
 import Button from '../../Components/Button';
-const Tela = Dimensions.get('screen').width;
-const Height = Dimensions.get('screen').height;
+import { StatusBar } from 'react-native';
+import IMAGES from '../../resources/imagesIcons'
 export default function SelecaoIcone({ navigation, route }) {
     const [modalText, setModalText] = useState('');
-    const [icon, seticone] = useState('');
+    const [icon, seticon] = useState('');
     const [player, setPlayer] = useState({});
 
     const [selectIcon, setselectIcon] = useState();
-    const IconsAgr = [
-        {
-            id: 1,
-            icon: require('../../assets/perfils/agricultor/Agricultor.png')
-        },
-        {
-            id: 2,
-            icon: require('../../assets/perfils/agricultor/Agricultor2.png')
-        },
-        {
-            id: 3,
-            icon: require('../../assets/perfils/agricultor/people1.png')
-        },
-        {
-            id: 4,
-            icon: require('../../assets/perfils/empresariox1/Fertilizante.png')
-        },
-    ]
-    const IconsEmp = [
-        {
-            id: 1,
-            icon: require('../../assets/perfils/empresariox1/Agrotoxico.png')
-        },
-        {
-            id: 2,
-            icon: require('../../assets/perfils/empresariox1/Maquina.png')
-        },
-        {
-            id: 3,
-            icon: require('../../assets/perfils/empresariox1/Semente.png')
-        },
-        {
-            id: 4,
-            icon: require('../../assets/perfils/empresariox1/EmpRuivo.png')
-        },
-    ]
-
     const startGame = () => {
         if (!selectIcon) {
             setModalText('Selecione uma imagem!');
@@ -70,35 +32,36 @@ export default function SelecaoIcone({ navigation, route }) {
     return (
         <View style={styles.container}>
             <ScrollView>
-            <Text style={styles.title}>Bem vindo ao Gorim!</Text>
-            {player.type === 'Agricultor' && (
-                <View style={{ marginHorizontal: 15 }}>
-                    <Text style={styles.subtitle}>Selecionamos para você o personagem agrucultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição.</Text>
-                    <Text style={styles.text}>Selecione um personagem</Text>
-                    <FlatList
-                        numColumns={3}
-                        data={IconsAgr}
-                        keyExtractor={item => item.id.toString()}
-                        renderItem={({ item }) => <Quadrados player={''} onClick={() => setselectIcon(item.id)} backgroundColor={selectIcon == item.id ? '#8ACF3A' : '#fff'} icon={item.icon} />}
-                    />
-                </View>
-            )}
-            {player.type === 'Empresário' && (
-                <View style={{ marginHorizontal: 15 }}>
-                    <Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por neogociar as vendas dos seus produtos para os agricultores, onde você tem que tomar muito cuidado para não causar muita poluição.</Text>
-                    <Text style={styles.text}>Selecione um personagem</Text>
-                    <FlatList
-                        numColumns={3}
-                        data={IconsEmp}
-                        keyExtractor={item => item.id.toString()}
-                        renderItem={({ item }) => <Quadrados player={''} onClick={() => setselectIcon(item.id) && seticone(item.icon)} backgroundColor={selectIcon == item.id ? '#8ACF3A' : '#fff'} icon={item.icon} />}
-                    />
-                </View>
-            )}
+                <Text style={styles.title}>Bem vindo ao Gorim!</Text>
+                {player.type === 'Agricultor' && (
+                    <View style={{ marginHorizontal: 15, marginVertical: 20 }}>
+                        <Text style={styles.subtitle}>Selecionamos para você o personagem agrucultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição.</Text>
+                        <Text style={styles.text}>Selecione um personagem</Text>
+                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                            <Quadrados player={''} onClick={() => { seticon('Agricultor1'); setselectIcon(1) }} backgroundColor={selectIcon == 1 ? '#8ACF3A' : '#fff'} icon={IMAGES['Agricultor1']} />
+                            <Quadrados player={''} onClick={() => { seticon('Agricultor2'); setselectIcon(2) }} backgroundColor={selectIcon == 2 ? '#8ACF3A' : '#fff'} icon={IMAGES['Agricultor2']} />
+                            <Quadrados player={''} onClick={() => { seticon('Agricultor3'); setselectIcon(3) }} backgroundColor={selectIcon == 3 ? '#8ACF3A' : '#fff'} icon={IMAGES['Agricultor3']} />
+                            <Quadrados player={''} onClick={() => { seticon('Agricultor4'); setselectIcon(4) }} backgroundColor={selectIcon == 4 ? '#8ACF3A' : '#fff'} icon={IMAGES['Agricultor4']} />
+                        </ScrollView>
+                    </View>
+                )}
+                {player.type === 'Empresário' && (
+                    <View style={{ marginHorizontal: 15, marginVertical: 20 }}>
+                        <Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por neogociar as vendas dos seus produtos para os agricultores, onde você tem que tomar muito cuidado para não causar muita poluição.</Text>
+                        <Text style={styles.text}>Selecione um personagem</Text>
+                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                            <Quadrados player={''} onClick={() => { seticon('Empresário1'); setselectIcon(1) }} backgroundColor={selectIcon == 1 ? '#8ACF3A' : '#fff'} icon={IMAGES['Empresário1']} />
+                            <Quadrados player={''} onClick={() => { seticon('Empresário2'); setselectIcon(2) }} backgroundColor={selectIcon == 2 ? '#8ACF3A' : '#fff'} icon={IMAGES['Empresário2']} />
+                            <Quadrados player={''} onClick={() => { seticon('Empresário3'); setselectIcon(3) }} backgroundColor={selectIcon == 3 ? '#8ACF3A' : '#fff'} icon={IMAGES['Empresário3']} />
+                            <Quadrados player={''} onClick={() => { seticon('Empresário4'); setselectIcon(4) }} backgroundColor={selectIcon == 4 ? '#8ACF3A' : '#fff'} icon={IMAGES['Empresário4']} />
+                        </ScrollView>
+                    </View>
+
+                )}
                 <Button
                     onClick={startGame}
                     name='começar' />
-                    </ScrollView>
+            </ScrollView>
             {modalText !== '' && (
                 <ModalInfo onClick={() => setModalText('')} text={modalText} />
             )}
@@ -111,10 +74,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.bgColorPrimary,
         alignItems: 'center',
-        paddingTop: 45,
+        paddingTop: StatusBar.currentHeight,
         marginLeft: 5,
         width: '100%',
-        marginHorizontal: 15
     },
     title: {
         fontSize: 24,
@@ -133,5 +95,10 @@ const styles = StyleSheet.create({
         marginVertical: 25,
         textAlign: 'center',
         fontFamily: 'Rubik_300Light'
-    }
+    },
+    items: {
+        width: '100%',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
 });

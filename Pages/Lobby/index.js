@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: '1%',
-    paddingTop: StatusBar.currentHeight,
+    paddingTop: 50,
     width: Tela
   },
   image: {
