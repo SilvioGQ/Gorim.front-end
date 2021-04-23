@@ -27,6 +27,7 @@ const PlayerService = {
             host: host
         }).then(docRef => docRef.id);
     },
+
     setHost(room) {
         db.collection('players').where('room', '==', room)
             .limit(1)
@@ -47,7 +48,7 @@ const PlayerService = {
             });
     },
     typesRaffle(room) {
-        let emp = 0;
+        let emp = 1;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
 
         db.collection('players').where('room', '==', room)
@@ -67,7 +68,7 @@ const PlayerService = {
                         doc.ref.update({
                             type: 'Agricultor',
                             coin: 300,
-                            inventory: [ 
+                            inventory: [
                                 { type: 'seed', name: 'Arroz', amount: 3 },
                                 { type: 'seed', name: 'Soja', amount: 2 },
                                 { type: 'fertilizer', name: 'Fertilizante Comum', amount: 2 },

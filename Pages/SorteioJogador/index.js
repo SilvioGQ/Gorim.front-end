@@ -13,7 +13,7 @@ export default function SorteioJogador({ navigation, route }) {
     setTimeout(() => {
       navigation.reset({
         routes: [{
-          name: 'MenuJogador',
+          name: 'SelecaoIcone',
           params: { id: player.id }
         }]
       })

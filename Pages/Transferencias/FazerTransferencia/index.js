@@ -8,6 +8,7 @@ import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
 import PlayerService from '../../../services/PlayerService';
+import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation, route }) {
@@ -37,7 +38,6 @@ export default function FazerTransferencia({ navigation, route }) {
       navigation.navigate('ConfirmarTransferencia', { player, idDest: id, count });
     }
   }
-
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     padding: 6,
     width: Tela,
-    paddingTop: 25,
+    paddingTop: StatusBar.currentHeight,
   },
   arrows: {
     flexDirection: 'row',

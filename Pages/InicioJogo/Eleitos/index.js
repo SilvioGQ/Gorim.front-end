@@ -4,6 +4,7 @@ import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
 
 import Voto from '../../../assets/Logo/vote.png';
+import { StatusBar } from 'react-native';
 // import Man from '../../../assets/perfils/empresariox2/man1x2.png';
 
 const Tela = Dimensions.get('screen').width
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    padding: '4%',
+    paddingTop:StatusBar.currentHeight,
     width: Tela
   },
   row: {

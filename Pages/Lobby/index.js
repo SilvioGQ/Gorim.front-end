@@ -6,6 +6,7 @@ import Button from '../../Components/Button';
 import PlayerService from '../../services/PlayerService';
 import ModalConfirmExit from '../../Components/ModalConfirmExit';
 import FunctionalityService from '../../services/FunctionalityService';
+import { StatusBar } from 'react-native';
 
 YellowBox.ignoreWarnings(['Setting a timer for a long period of time']);
 
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: '1%',
-    paddingTop: 40,
+    paddingTop: StatusBar.currentHeight,
     width: Tela
   },
   image: {

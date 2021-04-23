@@ -10,6 +10,7 @@ import Tenso from '../../assets/emojis/tenso.png';
 import Corona from '../../assets/emojis/corona.png';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
+import { StatusBar } from 'react-native';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width
 export default function Cenario() {
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.bgColorPrimary,
         width: Tela,
-        paddingTop: 45
+        paddingTop: StatusBar.currentHeight
     },
     title: {
         fontSize: 20,

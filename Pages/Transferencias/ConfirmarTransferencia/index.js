@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
 
 import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: 40
+    paddingTop: StatusBar.currentHeight
   },
   logo: {
     height: 180,

@@ -6,6 +6,7 @@ import Oferta from '../../../Components/Oferta';
 import COLORS from '../../../resources/colors';
 import FunctionalityService from '../../../services/FunctionalityService';
 import Modal from '../../../Components/ModalInfo'
+import { StatusBar } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 export default function Proposta({ route }) {
   const [offers, setOffers] = useState([]);
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: 25
+    paddingTop: StatusBar.currentHeight
   },
   header: {
     fontFamily: 'Rubik_300Light',

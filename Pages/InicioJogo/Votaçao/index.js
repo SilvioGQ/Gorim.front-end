@@ -5,6 +5,7 @@ import Quadrados from '../../../Components/Quadrado';
 import COLORS from '../../../resources/colors';
 
 import Voto from '../../../assets/Logo/vote.png';
+import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width
 export default function Frame6({ navigation }) {
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: 5,
-    paddingTop: 20,
+    paddingTop: StatusBar.currentHeight,
     width: Tela
   },
   self: {

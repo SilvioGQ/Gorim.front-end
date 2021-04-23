@@ -4,12 +4,12 @@ import { TextInput } from 'react-native-paper';
 import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
 
-import agricultorFundo from '../../../assets/perfils/agricultor/agricultorFundo.png';
 import bag from '../../../assets/simbolos/bag.png';
 import mapsAndLocation from '../../../assets/simbolos/maps-and-location.png';
 import name from '../../../assets/simbolos/name.png';
 import dislike from '../../../assets/simbolos/dislike.png';
 import letter from '../../../assets/simbolos/letter.png';
+import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width
 export default function Frame4({ navigation }) {
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    paddingTop: 45
+    paddingTop: StatusBar.currentHeight
   },
   branco: {
     backgroundColor: COLORS.bgColorPrimary,

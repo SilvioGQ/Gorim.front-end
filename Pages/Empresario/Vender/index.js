@@ -13,6 +13,7 @@ import PlayerService from '../../../services/PlayerService';
 import { FlatList } from 'react-native-gesture-handler';
 import IMAGES from '../../../resources/imagesProducts';
 import FunctionalityService from '../../../services/FunctionalityService';
+import { StatusBar } from 'react-native';
 export default function Vendas({ navigation, route }) {
   const { name } = route.params;
   const { type } = route.params;
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    paddingTop: 25,
+    paddingTop: StatusBar.currentHeight,
   },
   categoryprice: {
     fontFamily: 'Rubik_300Light',

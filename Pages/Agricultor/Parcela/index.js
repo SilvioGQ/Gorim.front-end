@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, StatusBar } from 'react-native';
 
 import Button from '../../../Components/Button';
 import ModalInfo from '../../../Components/ModalInfo';
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingTop: 25,
+    paddingTop: StatusBar.currentHeight,
     backgroundColor: COLORS.bgColorPrimary,
   },
   parcel: {

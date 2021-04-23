@@ -25,6 +25,7 @@ import Prefeitura from './Prefeitura/Prefeitura';
 import Imposto from './Prefeitura/Imposto';
 import CriarPartida from './CriarPartida';
 import Lobby from './Lobby';
+import SelecaoIcone from './SelecaoIcone';
 import MenuJogador from './MenuJogador'
 const Stack = createStackNavigator();
 
@@ -136,6 +137,10 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="Lobby" component={Lobby} options={{
+        headerTransparent: true,
+        headerTitle: '',
+      }} />
+            <Stack.Screen name="SelecaoIcone" component={SelecaoIcone} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />

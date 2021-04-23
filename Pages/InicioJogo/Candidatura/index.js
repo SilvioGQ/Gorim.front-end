@@ -5,6 +5,7 @@ import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
 
 import Voto from '../../../assets/Logo/vote.png';
+import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width
 export default function Frame5({ navigation }) {
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: StatusBar.currentHeight,
     width: Tela
   },
   row: {

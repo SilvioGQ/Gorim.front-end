@@ -12,16 +12,7 @@ import Rodada from '../../Components/Rodada';
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
-  const [player, setPlayer] = useState({});
-
-  useEffect(() => {
-    if (route.params.player) {
-      setPlayer(route.params.player);
-    } else {
-      PlayerService.getPlayer(route.params.id).then(setPlayer);
-    }
-  }, []);
-
+  const { player } = route.params;
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
@@ -115,6 +106,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginHorizontal: 20,
     width: '100%',
+    flexWrap: 'wrap'
   },
   row2: {
     flexDirection: 'row',

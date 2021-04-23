@@ -6,6 +6,7 @@ import Produtos from '../../Components/Produtos';
 import ModalInfo from '../../Components/ModalInfo';
 
 import FunctionaliryService from '../../services/FunctionalityService';
+import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width;
 export default function Analizar() {
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: 40
+    paddingTop: StatusBar.currentHeight
   },
   header: {
     fontFamily: 'Rubik_400Regular',
