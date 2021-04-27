@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import COLORS from '../../resources/colors';
-
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import PlayerService from '../../services/PlayerService';
@@ -17,9 +16,9 @@ export default function MenuJogador({ navigation, route }) {
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
+      <Header player={player} />
       {player.type === 'Agricultor' && (
         <>
-          <Header player={player} image={require('../../assets/perfils/agricultor/Agricultor.png')} />
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })} style={{ width: '100%' }}>
             <View style={styles.row2}>
               <Image style={{ width: 35, height: 35 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
@@ -39,7 +38,7 @@ export default function MenuJogador({ navigation, route }) {
       )}
       {player.type === 'Empresário' && (
         <>
-          <Header player={player} image={require('../../assets/perfils/empresariox1/Semente.png')} />
+
           <View style={styles.row}>
             {player.speciality === 'Fertilizante' && (
               <View style={styles.items}>

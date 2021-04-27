@@ -91,7 +91,12 @@ const PlayerService = {
                     }
                 });
             });
-    }
+    },
+    setAvatar(image, id) {
+        db.collection('players').doc(id).update({
+            avatar: image
+        });
+    },
 }
 
 export default PlayerService;

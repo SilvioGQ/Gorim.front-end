@@ -1,11 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-
+import IMAGES from '../../resources/imagesIcons'
 import Coin from '../Coin';
 import Stamp from '../../assets/moedas/Selo.png';
 
-export default function Header({ player, image }) {
-
+export default function Header({ player }) {
   return (
     <View style={styles.row}>
       <Text style={styles.header}>{player.name}{'\n'}em Atlantis</Text>
@@ -20,7 +19,7 @@ export default function Header({ player, image }) {
       <View>
         <Coin coin={player.coin} />
       </View>
-      <Image style={styles.person} source={image} />
+      <Image style={styles.person} source={IMAGES[player.avatar]} />
     </View>
   )
 }
@@ -58,4 +57,3 @@ const styles = StyleSheet.create({
     marginRight: 10
   }
 })
-//alt shift f

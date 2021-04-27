@@ -51,7 +51,7 @@ export default function FazerTransferencia({ navigation, route }) {
           numColumns={3}
           data={players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} />}
+          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
         />
       </View>
       <Text style={styles.text}>Valor:</Text>
