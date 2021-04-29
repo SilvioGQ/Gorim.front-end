@@ -4,10 +4,10 @@ import IMAGES from '../../resources/imagesIcons'
 import Coin from '../Coin';
 import Stamp from '../../assets/moedas/Selo.png';
 
-export default function Header({ player }) {
+export default function Header({ player, playerCoin }) {
   return (
     <View style={styles.row}>
-      <Text style={styles.header}>{player.name}{'\n'}em Atlantis</Text>
+      <Text style={styles.header}>{player.name}{'\n'}em Atlantis {playerCoin}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {player.stamp && (
           <Image

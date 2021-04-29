@@ -15,22 +15,21 @@ export default function Proposta({ route }) {
   useEffect(() => {
     FunctionalityService.getOffers(player.id).then(setOffers);
   }, [offers]);
-
+  
   const confirmOffer = item => {
     let count = 0;
     if (player.coin >= item.price * item.amount) {
       player.inventory.filter(i => {
-
+        
         if (item.product == i.name) {
           i.amount++;
         } else { count++; }
       });
-
+      
       if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.product, amount: 1 });
-
+      
       FunctionalityService.deleteOffer(item);
       player.coin -= item.price * item.amount
-    
     } else {
       setModalText('Você não possui dinheiro suficiente para esta compra.')
     }

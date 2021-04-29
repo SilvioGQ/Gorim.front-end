@@ -11,12 +11,16 @@ import Rodada from '../../Components/Rodada';
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
-  const { player } = route.params;
+  const [player, setPlayer ] = useState(route.params.player);
+  const [playerCoin, setPlayerCoin] = useState(player.coin)
+  useEffect( ()=> {
+    setPlayerCoin(player.coin)
+  },[player])
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
-      <Header player={player} />
+      <Header player={player} playerCoin={playerCoin}/>
       {player.type === 'Agricultor' && (
         <>
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })} style={{ width: '100%' }}>
@@ -27,7 +31,7 @@ export default function MenuJogador({ navigation, route }) {
           </TouchableOpacity>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item type='Menu' onClick={() => navigation.navigate('Proposta', { player })} name='Checar propostas' />
+              <Item type='Menu' onClick={() => navigation.navigate('Proposta', { player, playerCoin })} name='Checar propostas' />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos' />
               <Item type='Menu' onClick={() => setisVisible(true)} name='Pedir selo verde' backgroundColor='#FF7F7E' />
