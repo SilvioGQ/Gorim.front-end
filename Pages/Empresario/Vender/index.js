@@ -17,6 +17,7 @@ import { StatusBar } from 'react-native';
 export default function Vendas({ navigation, route }) {
   const { name } = route.params;
   const { type } = route.params;
+  const { transferTrue } = route.params
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [selectPrice, setSelectPrice] = useState(-1);

@@ -92,6 +92,26 @@ const PlayerService = {
                 });
             });
     },
+    citiesRaffle(room) {
+        let cidadela = 1;
+
+        db.collection('players').where('room', '==', room)
+            .get()
+            .then(function (snapshot) {
+                snapshot.forEach(function (doc) {
+                    if (cidadela >= 1) {
+                        doc.ref.update({
+                            city: 'Cidadela',
+                        });
+                        cidadela--;
+                    } else {
+                        doc.ref.update({
+                            city: 'Atlantis',
+                        });
+                    }
+                });
+            });
+    },
     setAvatar(image, id) {
         db.collection('players').doc(id).update({
             avatar: image

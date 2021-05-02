@@ -8,7 +8,10 @@ export default function SorteioJogador({ navigation, route }) {
   const { player } = route.params;
 
   useEffect(() => {
-    if (player.host) PlayerService.typesRaffle(player.room);
+    if (player.host) {
+      PlayerService.typesRaffle(player.room);
+      PlayerService.citiesRaffle(player.room);
+    }
 
     setTimeout(() => {
       navigation.reset({
@@ -24,7 +27,7 @@ export default function SorteioJogador({ navigation, route }) {
     <View style={styles.container}>
       <Text style={styles.header}>Gorim</Text>
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('../../assets/Logo/Dados.png')}  />
+        <Image style={styles.logo} source={require('../../assets/Logo/Dados.png')} />
         <Text style={styles.loading}>Sorteando Personagens...</Text>
       </View>
     </View>
@@ -38,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: 10,
-    paddingTop:45
+    paddingTop: 45
   },
   header: {
     fontFamily: 'Rubik_400Regular',

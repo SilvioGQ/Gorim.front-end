@@ -15,7 +15,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
   const makeTransfer = () => {
     FunctionalityService.makeTransfer(player.id, idDest, count);
     player.coin -= count;
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text:'Sua transferencia será concluída na próxima rodada!' } }] });
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text:'Sua transferencia foi concluída com sucesso!' } }] });
   }
 
   return (
