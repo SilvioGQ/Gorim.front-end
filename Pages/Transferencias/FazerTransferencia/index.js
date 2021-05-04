@@ -46,7 +46,7 @@ export default function FazerTransferencia({ navigation, route }) {
         <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20 }}>Fazer {'\n'}transferência</Text>
       </View>
       <Text style={styles.text}>Destinatário:</Text>
-      <View style={{ marginHorizontal: 15 }}>
+      <View style={{ marginHorizontal: 10 }}>
         <FlatList
           numColumns={3}
           data={players}
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    padding: 6,
     width: Tela,
     paddingTop: StatusBar.currentHeight,
   },

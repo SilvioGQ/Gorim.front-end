@@ -13,7 +13,8 @@ import COLORS from '../../resources/colors';
 import { StatusBar } from 'react-native';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width
-export default function Cenario() {
+export default function Cenario({route}) {
+    const { player } = route.params;
     let poluicao = 25
     let value = require('../../assets/emojis/feliz.png')
     let value2 = require('../../assets/emojis/meio.png')
@@ -69,7 +70,7 @@ export default function Cenario() {
                         <Text style={styles.inferior}>transferido</Text>
                     </View>
                     <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>200</Text>
+                        <Text style={styles.numero}>{player.coin}</Text>
                         <Text style={styles.inferior}>atual</Text>
                     </View>
                 </View>
@@ -93,17 +94,7 @@ export default function Cenario() {
                 <Text style={styles.texto}>Histórico:</Text>
                 <Text style={styles.italiano}>X rodada: </Text>
                 <Text style={[styles.italiano, { fontStyle: 'normal' }]}>
-                    Você alugou uma semeadeira por preço alto da Empresária 1; {'\n'}
-
-                    Você comprou soja por preço médio do Empresário  2;{'\n'}
-
-                    Você comprou Fertilizante Premium por preço normal do Empresário 3;{'\n'}
-
-                    Você comprou Agrotóxico Premium por preço alto do Empresário 4;{'\n'}
-
-                    Você pediu selo verde ao o Fiscal 1 de Atlantis. {'\n'}
-
-                    Fiscal 1 de Atlantis negou seu pedido de selo verde.
+                    Fazer
                 </Text>
             </View>
         </ScrollView>

@@ -17,7 +17,6 @@ import { StatusBar } from 'react-native';
 export default function Vendas({ navigation, route }) {
   const { name } = route.params;
   const { type } = route.params;
-  const { transferTrue } = route.params
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [selectPrice, setSelectPrice] = useState(-1);
@@ -28,7 +27,8 @@ export default function Vendas({ navigation, route }) {
   useEffect(() => {
     PlayerService.getPlayers(player.room).then(resp => {
       resp = resp.filter(item => {
-        if (item.id !== player.id) return item;
+
+        if (item.id !== player.id && item.type == 'Agricultor') return item;
       });
       setPlayers(resp);
     });
@@ -114,9 +114,9 @@ const styles = StyleSheet.create({
   categoryprice: {
     fontFamily: 'Rubik_300Light',
     fontSize: 12,
-    marginTop:5
+    marginTop: 5
   },
-  price:{
+  price: {
     fontFamily: 'Rubik_300Light',
     fontSize: 12,
   },

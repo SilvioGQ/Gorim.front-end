@@ -47,20 +47,33 @@ const PlayerService = {
                 snapshot.ref.delete();
             });
     },
-    typesRaffle(room) {
-        let emp = 1;
+    typesRaffle(room, players) {
+        let emp = 2;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
-
+        let jogadores = players.length
+        let cidadela = Math.floor(jogadores / 2)
+        let Atlantis = Math.ceil(jogadores / 2)
+        let random ;
         db.collection('players').where('room', '==', room)
             .get()
             .then(function (snapshot) {
                 snapshot.forEach(function (doc) {
+                    random = Math.floor(Math.random()*2)
+                    if(cidadela<=0){
+                        random = 0
+                    }
+                    if(Atlantis<=0){
+                        random = 1
+                    }
+                    if(random==0) Atlantis--;
+                    if(random==1) cidadela--;
                     if (emp >= 1) {
                         doc.ref.update({
                             type: 'Empresário',
                             speciality: speciality[0],
                             coin: 300,
-                            stamp: false
+                            stamp: false,
+                            city: random == 0 ? 'Atlantis' : 'Cidadela'
                         });
                         emp--;
                         speciality.splice(0, 1);
@@ -68,6 +81,7 @@ const PlayerService = {
                         doc.ref.update({
                             type: 'Agricultor',
                             coin: 300,
+                            city: random == 0 ? 'Atlantis' : 'Cidadela',
                             inventory: [
                                 { type: 'seed', name: 'Arroz', amount: 3 },
                                 { type: 'seed', name: 'Soja', amount: 2 },
@@ -87,26 +101,6 @@ const PlayerService = {
                                 { id: 5, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null }
                             ],
                             stamp: false
-                        });
-                    }
-                });
-            });
-    },
-    citiesRaffle(room) {
-        let cidadela = 1;
-
-        db.collection('players').where('room', '==', room)
-            .get()
-            .then(function (snapshot) {
-                snapshot.forEach(function (doc) {
-                    if (cidadela >= 1) {
-                        doc.ref.update({
-                            city: 'Cidadela',
-                        });
-                        cidadela--;
-                    } else {
-                        doc.ref.update({
-                            city: 'Atlantis',
                         });
                     }
                 });

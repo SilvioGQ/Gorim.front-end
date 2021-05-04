@@ -108,7 +108,19 @@ const FunctionalityService = {
                     snapshot.ref.delete();
                 }
             );
-        }
+        },
+        addLog(transferReceived, transferSend, ) {
+            db.collection('logs').add({
+                transferReceived,
+                transferSend
+            });
+        },
+        updateLog(transferReceived, transferSend,) {
+            db.collection('logs').doc(id).update({
+                transferReceived,
+                transferSend
+            });
+        },
     }
     
     export default FunctionalityService;

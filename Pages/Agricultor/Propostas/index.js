@@ -9,7 +9,6 @@ import Modal from '../../../Components/ModalInfo'
 const Tela = Dimensions.get('screen').width;
 export default function Proposta({ route }) {
   const [offers, setOffers] = useState([]);
-  const { transferTrue } = route.params
   const { player } = route.params;
   const [modalText, setModalText] = useState('');
 

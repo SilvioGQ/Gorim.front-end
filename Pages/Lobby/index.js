@@ -71,7 +71,7 @@ export default function Lobby({ navigation, route }) {
   useEffect(() => {
     if (Game.inGame) {
       navigation.reset({
-        routes: [{ name: 'SorteioJogador', params: { player } }]
+        routes: [{ name: 'SorteioJogador', params: { player, players } }]
       });
 
       return () => setIsMounted(false);

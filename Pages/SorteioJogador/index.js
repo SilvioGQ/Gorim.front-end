@@ -6,11 +6,10 @@ import PlayerService from '../../services/PlayerService';
 
 export default function SorteioJogador({ navigation, route }) {
   const { player } = route.params;
-
+  const { players } = route.params;
   useEffect(() => {
     if (player.host) {
-      PlayerService.typesRaffle(player.room);
-      PlayerService.citiesRaffle(player.room);
+      PlayerService.typesRaffle(player.room,players);
     }
 
     setTimeout(() => {
