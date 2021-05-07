@@ -11,10 +11,12 @@ import { StatusBar } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 export default function Analizar() {
   const [modalText, setModalText] = useState('');
+  const [modalImage, setModalImage] = useState(false);
   const [products, setProducts] = useState([]);
-  const textInfo = 'Informações em tela: \nIcones e nomes de todos produtos que podem ser utilizados em parcelas de terras. \nPreços possíveis para serem negociados, que vai do baixo até o alto. \nE em vermelho o quanto de poluição que este produto irá causar.';
+  const textInfo = 'Informações em tela: \nIcones e nomes dos produtos que podem ser usados nas parcelas de terra';
 
   useEffect(() => {
+    setModalImage(true)
     FunctionaliryService.getProducts().then(setProducts);
   }, []);
 
@@ -27,7 +29,7 @@ export default function Analizar() {
         </TouchableOpacity>
       </View>
       {modalText !== '' && (
-        <ModalInfo onClick={() => setModalText('')} text={modalText} />
+        <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage ={modalImage}/>
       )}
       <FlatList
         showsVerticalScrollIndicator={false}

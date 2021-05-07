@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     marginVertical:5,
-    marginTop:15,
+    marginTop:12,
   },
   textinhos: {
     fontFamily: 'Rubik_300Light',

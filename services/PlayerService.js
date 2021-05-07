@@ -24,10 +24,10 @@ const PlayerService = {
         return db.collection('players').add({
             name: name,
             room: room,
-            host: host
+            host: host,
+            log: []
         }).then(docRef => docRef.id);
     },
-
     setHost(room) {
         db.collection('players').where('room', '==', room)
             .limit(1)
@@ -48,7 +48,7 @@ const PlayerService = {
             });
     },
     typesRaffle(room, players) {
-        let emp = 2;
+        let emp = 1;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
         let jogadores = players.length
         let cidadela = Math.floor(jogadores / 2)
@@ -111,6 +111,18 @@ const PlayerService = {
             avatar: image
         });
     },
+    addLog(text, player) {
+        player.log.push(text)
+        db.collection('players').doc(player.id).update({
+            log: player.log,
+        });
+    },
+    addinvetory(text, player) {
+        player.inventory.push()
+        db.collection('players').doc(player.id).update({
+            inventory: player.inventory,
+        });
+    }
 }
 
 export default PlayerService;

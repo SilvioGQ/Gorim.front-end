@@ -13,7 +13,8 @@ import COLORS from '../../resources/colors';
 import { StatusBar } from 'react-native';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width
-export default function Cenario({route}) {
+
+export default function Cenario({ route }) {
     const { player } = route.params;
     let poluicao = 25
     let value = require('../../assets/emojis/feliz.png')
@@ -21,6 +22,7 @@ export default function Cenario({route}) {
     let value3 = require('../../assets/emojis/preocupado.png')
     let value4 = require('../../assets/emojis/tenso.png')
     let value5 = require('../../assets/emojis/corona.png')
+    
     const [Image1, setImage] = useState(value)
     useEffect(() => {
         function SelectImage() {
@@ -92,10 +94,7 @@ export default function Cenario({route}) {
                 )}
 
                 <Text style={styles.texto}>Histórico:</Text>
-                <Text style={styles.italiano}>X rodada: </Text>
-                <Text style={[styles.italiano, { fontStyle: 'normal' }]}>
-                    Fazer
-                </Text>
+                {player.log.map( (log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}> {log} </Text>)}
             </View>
         </ScrollView>
     )
@@ -205,69 +204,7 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         alignSelf: 'flex-start',
         marginLeft: '7%',
-        margin: '1%',
+        fontFamily: 'Rubik_300Light'
     }
 }
 )
-/*
-let value = require('../../assets/linhas/linha20.png')
-let value2 = require('../../assets/linhas/linha40.png')
-let value3 = require('../../assets/linhas/linha60.png')
-let value4 = require('../../assets/linhas/linha80.png')
-let value5 = require('../../assets/linhas/linha100.png')
-const [Image1, setImage] = useState(value)
-useEffect(() => {
-    function SelectImage() {
-        if (poluicao > 20) {
-            setImage(value2)
-        }
-        if (poluicao > 40) {
-            setImage(value3)
-        }
-        if (poluicao > 60) {
-            setImage(value4)
-        }
-        if (poluicao > 80) {
-            setImage(value5)
-        }
-        let imagens = ['../../assets/linhas/linha20.png', '../../assets/linhas/linha40.png', '../../assets/linhas/linha60.png', '../../assets/linhas/linha80.png', '../../assets/linhas/linha100.png']
-    }
-    SelectImage()
-})
-// let value= require(image)
-                <View style={styles.numeros}>
-                <Text>20%</Text>
-                <Text>40%</Text>
-                <Text>60%</Text>
-                <Text>80%</Text>
-                <Text>100%</Text>
-            </View>
-            <View style={styles.linha}>
-                <Image
-                    style={styles.linha}
-                    source={Image1}
-                />
-            </View>
-            <View style={styles.numeros}>
-                <Image style={styles.emoji} source={Feliz} />
-                <Image style={styles.emoji} source={Meio} />
-                <Image style={styles.emoji} source={Preocupado} />
-                <Image style={styles.emoji} source={Tenso} />
-                <Image style={styles.emoji} source={Corona} />
-            </View>
-                linha: {
-    width: '90%',
-    margin: '2%',
-    marginLeft: 9.5,
-    height: 14,
-},numeros: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: '3%',
-    width: "90%"
-},
-emoji: {
-    width: 35,
-    height: 35
-},
-*/

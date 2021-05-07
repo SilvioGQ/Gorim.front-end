@@ -38,7 +38,7 @@ export default function SelecaoIcone({ navigation, route }) {
                         <Text style={styles.subtitle}>Selecionamos para você o personagem agrucultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição.</Text>
                         <Text style={styles.text}>Selecione um personagem</Text>
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <View style={{marginHorizontal:5}}>
+                            <View style={{marginHorizontal:5, flexDirection:'row'}}>
                             <Quadrados onClick={() => { seticon('Agricultor1'); setselectIcon(1) }} backgroundColor={selectIcon == 1 ? '#8ACF3A' : '#fff'} icon='Agricultor1' />
                             <Quadrados onClick={() => { seticon('Agricultor2'); setselectIcon(2) }} backgroundColor={selectIcon == 2 ? '#8ACF3A' : '#fff'} icon='Agricultor2' />
                             <Quadrados onClick={() => { seticon('Agricultor3'); setselectIcon(3) }} backgroundColor={selectIcon == 3 ? '#8ACF3A' : '#fff'} icon='Agricultor3' />

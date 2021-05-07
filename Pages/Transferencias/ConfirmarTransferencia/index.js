@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
 
 import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
 import logoTransfer from '../../../assets/moedas/logoTransfer.png';
 import FunctionalityService from '../../../services/FunctionalityService';
-
+import PlayerService from '../../../services/PlayerService'
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
   const { count } = route.params;
   const { player } = route.params;
   const { idDest } = route.params;
-
   const makeTransfer = () => {
+    PlayerService.getPlayer(idDest).then(resp=> {
+      let text = 'Você transferiu ' + count + '$ para o ' + resp.name
+      PlayerService.addLog(text,player)
+      let text2 = 'Você recebeu ' + count + '$ do jogador ' + player.name
+      PlayerService.addLog(text2,resp)
+    });
     FunctionalityService.makeTransfer(player.id, idDest, count);
     player.coin -= count;
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text:'Sua transferencia foi concluída com sucesso!' } }] });

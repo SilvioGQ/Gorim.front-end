@@ -12,7 +12,6 @@ const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
   const [player, setPlayer ] = useState(route.params.player);
-  const [playerCoin, setPlayerCoin] = useState(player.coin)
   useEffect( ()=> {
     PlayerService.getPlayer(player.id).then(setPlayer);
   },[player])
