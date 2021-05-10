@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Modal from '../../../Components/ModalInfo'
@@ -13,16 +14,16 @@ import PlayerService from '../../../services/PlayerService';
 import { FlatList } from 'react-native-gesture-handler';
 import IMAGES from '../../../resources/imagesProducts';
 import FunctionalityService from '../../../services/FunctionalityService';
+
 export default function Vendas({ navigation, route }) {
-  const { name } = route.params;
-  const { type } = route.params;
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [selectPrice, setSelectPrice] = useState(-1);
-  const { player } = route.params;
   const [selectClient, setSelectClient] = useState();
   const [selectAmount, setSelectAmount] = useState(-1);
   const [product, setProduct] = useState([]);
+  const { player, name, type } = route.params;
+
   useEffect(() => {
     PlayerService.getPlayers(player.room).then(resp => {
       resp = resp.filter(item => {
@@ -32,13 +33,16 @@ export default function Vendas({ navigation, route }) {
     });
     FunctionalityService.getProduct(name).then(setProduct)
   }, []);
+
   const confirmTransfer = () => {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
     if (selectAmount == -1) return setModalText('Selecione a quantidade!');
+
     FunctionalityService.addOffer(player, selectClient, selectPrice, selectAmount, name, type)
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text: 'Sua proposta foi enviada com sucesso' } }] });
   }
+
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
@@ -112,9 +116,9 @@ const styles = StyleSheet.create({
   categoryprice: {
     fontFamily: 'Rubik_300Light',
     fontSize: 12,
-    marginTop:5
+    marginTop: 5
   },
-  price:{
+  price: {
     fontFamily: 'Rubik_300Light',
     fontSize: 12,
   },

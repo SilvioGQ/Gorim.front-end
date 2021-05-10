@@ -20,7 +20,7 @@ export default function DropDown({ items, type, onClick, display }) {
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}>
             <Image style={styles.icone} source={IMAGES[item.name]} />
-            <Text style={styles.text}>{item.name}</Text>
+            <Text style={styles.text}>{item.name.replace("Fertilizante", '')}</Text>
           </TouchableOpacity>
         );
       })}

@@ -1,119 +1,63 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, AppState, TouchableOpacity, Image, YellowBox } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
+import { SocketContext } from "../../services/socket";
 
 import COLORS from '../../resources/colors';
 import Button from '../../Components/Button';
-import PlayerService from '../../services/PlayerService';
 import ModalConfirmExit from '../../Components/ModalConfirmExit';
-import FunctionalityService from '../../services/FunctionalityService';
-
-YellowBox.ignoreWarnings(['Setting a timer for a long period of time']);
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation, route }) {
 
-  const [isMounted, setIsMounted] = useState(true);
-  const [players, setPlayers] = useState([]);
-  const [player, setPlayer] = useState(route.params);
-  const [Game, setGame] = useState({});
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const updateHost = (players) => {
-    let p = players.filter(item => {
-      if (item.id === player.id) return item;
-    });
-    setPlayer(p[0]);
-  }
-
-  const deletePlayer = () => {
-    setIsMounted(false);
-    setModalVisible(!modalVisible);
-
-    PlayerService.setHost(player.room);
-    PlayerService.deletePlayer(player.id);
-    FunctionalityService.deletePlayerFromRoom(Game.id);
-  }
-
-  // useEffect(() => {
-  //   AppState.addEventListener('change', _handleAppStateChange);
-
-  //   return () => {
-  //     AppState.removeEventListener('change', _handleAppStateChange);
-  //   };
-  //   YellowBox.ignoreWarnings(['Setting a timer']);
-  // }, []);
-
-  // const _handleAppStateChange = (nextAppState) => {
-  //   if (
-  //     appState.current.match(/active/)
-  //   ) {
-  //     console.log('dsifj')
-  //   }
-  //   if (
-  //     appState.current.match(/inactive|background/) &&
-  //     nextAppState === 'active'
-  //   ) {
-  //     console.log('Aplicativo aberto novamente');
-  //   }
-
-  //   appState.current = nextAppState;
-  //   setAppStateVisible(appState.current);
-  //   console.log('AppState', appState.current);
-  // };
-
-  // useEffect(() => {
-  //   PlayerService.getPlayers(player.room).then(setPlayers);
-  // });
+  const [ isLoading, setIsLoading ] = useState('FECTH_DATA');
+  const [ modalVisible, setModalVisible ] = useState(false);
+  const [ room, setRoom ] = useState({});
+  const [ player, setPlayer ] = useState(route.params.player);
+  const socket = useContext(SocketContext);
 
   useEffect(() => {
-    if (Game.inGame) {
-      navigation.reset({
-        routes: [{ name: 'SorteioJogador', params: { player } }]
+    if (isLoading === 'FECTH_DATA') socket.emit('getPlayers', players => setRoom(players));
+    if (isLoading === 'BACK_PAGE') navigation.reset({ routes: [{ name: 'CriarPartida' }] });
+    if (isLoading === 'NEXT_PAGE') navigation.reset({ routes: [{ name: 'SorteioJogador', params: { player } }] });
+    if (room.inGame) setIsLoading('NEXT_PAGE');
+
+    if (room.hasOwnProperty('sockets')) {
+
+      room.sockets.filter(p => {
+        if (player.id === p.id) setPlayer(p);
       });
-
-      return () => setIsMounted(false);
     }
-    if (isMounted) {
-      setTimeout(() => {
-        FunctionalityService.getRoom(player.room).then(setGame);
 
-        if (Game.players != players.length) {
+  }, [room]);
 
-          PlayerService.getPlayers(player.room).then(resp => {
-            if (players.length > 0) updateHost(resp);
-            setPlayers(resp);
-          });
-        }
-      }, 1000);
-    } else {
-      navigation.reset({ routes: [{ name: 'CriarPartida' }] });
-    }
-  }, [Game]);
+  const deletePlayer = () => {
+    setModalVisible(!modalVisible);
+    socket.emit('removeFromRoom', () => setIsLoading('BACK_PAGE'));
+  }
+
+  const startGame = () => {
+    socket.emit('startGame');
+  }
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
         <Image style={styles.image} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
-      {modalVisible && (
-        <ModalConfirmExit deletePlayer={deletePlayer} onClick={() => setModalVisible(!modalVisible)} />
-      )}
       <Text style={styles.text}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
       <Text style={[styles.text, { marginBottom: 25 }]}>{player.room}</Text>
-      {players.length === 0 ?
+
+      {!room.hasOwnProperty('sockets') ?
         <Text style={styles.text}>Aguardando jogadores</Text> :
         <FlatList
-          data={players}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}
+          data={room ? room.sockets : []}
+          keyExtractor={(item, index) => item ? item.id.toString() : index.toString()}
+          renderItem={({ item }) => {if(item) return <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}}
         />
       }
-      {player.host ?
-        <Button name='começar' onClick={() => FunctionalityService.startGame(player.room)} /> :
-        <Text style={[styles.listText, { marginBottom: 35 }]}>AGUARDANDO NOVOS JOGADORES</Text>}
+      { player.host && <Button name='começar' onClick={startGame} /> }
+      { modalVisible && <ModalConfirmExit deletePlayer={deletePlayer} onClick={() => setModalVisible(!modalVisible)} /> }
     </View>
   );
 }

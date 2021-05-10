@@ -1,38 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+// import io from 'socket.io-client';
+import { SocketContext } from "../../services/socket";
 
 import COLORS from '../../resources/colors';
-import PlayerService from '../../services/PlayerService';
-import FunctionalityService from '../../services/FunctionalityService';
 import ModalInfo from '../../Components/ModalInfo';
 import { ScrollView } from 'react-native-gesture-handler';
+
+// const socket = io('https://gorim-backend.herokuapp.com/');
+// const socket = io('http://localhost:3000/');
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function CriarPartida({ navigation }) {
+
   const [modalText, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
+  const socket = useContext(SocketContext);
 
   const createRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
 
-    FunctionalityService.createRoom().then(room => {
-      PlayerService.addPlayer(name, room, true).then(id => {
-        navigation.reset({
-          routes: [{
-            name: 'Lobby',
-            params: {
-              name: name,
-              room: room,
-              id: id,
-              host: true
-            }
-          }]
-        });
-      });
-    }).catch(() => {
-      setModalText('Erro ao criar partida!');
+    socket.emit('addToRoom', name, resp => {
+      console.log(resp)
+      navigation.reset({ routes: [{ name: 'Lobby', params: { player: resp } }] });
     });
   }
 
@@ -40,27 +32,10 @@ export default function CriarPartida({ navigation }) {
     if (name === '') return setModalText('Você precisa adicionar um nome');
     if (room === '') return setModalText('Você precisa adicionar o código da sala');
 
-    FunctionalityService.getRoom(room).then(rm => {
-      if (rm.players >= 10) return setModalText('Sala atingiu número máximo de jogadores!');
-      if (rm.inGame) return setModalText('Sala está em partida!');
-
-      FunctionalityService.addPlayerToRoom(room);
-      PlayerService.addPlayer(name, room).then(id => {
-        navigation.reset({
-          routes: [{
-            name: 'Lobby',
-            params: {
-              name: name,
-              room: room,
-              id: id,
-              host: false
-            }
-          }]
-        });
-      });
-    }).catch((e) => {
-      console.log(e)
-      setModalText('Sala não encontrada!');
+    socket.emit('joinToRoom', name, room, resp => {
+      if (typeof resp !== 'object') return setModalText(resp);
+      
+      navigation.reset({ routes: [{ name: 'Lobby', params: { player: resp } }] });
     });
   }
 
@@ -86,9 +61,6 @@ export default function CriarPartida({ navigation }) {
               <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../assets/right-arrow.png')} />
             </View>
           </View>
-          {modalText !== '' && (
-            <ModalInfo onClick={() => setModalText('')} text={modalText} />
-          )}
           <View style={{ alignItems: 'center', width: Tela, marginVertical: 40 }}>
             <Text style={[styles.header]}>ENTRAR</Text>
             <View style={styles.line} />
@@ -109,6 +81,7 @@ export default function CriarPartida({ navigation }) {
           </View>
         </View>
       </ScrollView>
+      { modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
     </View>
   );
 }

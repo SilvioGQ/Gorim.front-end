@@ -8,8 +8,8 @@ import SeloGrande from '../../../assets/selos/selogrande.png';
 
 const Tela = Dimensions.get('screen').width;
 export default function Selo({ navigation, route }) {
-
   const { title } = route.params;
+
   return (
     <View style={styles.container}>
       <View style={styles.row3}>

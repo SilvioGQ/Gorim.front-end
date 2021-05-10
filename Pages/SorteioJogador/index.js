@@ -1,24 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 import COLORS from '../../resources/colors';
-import PlayerService from '../../services/PlayerService';
 
 export default function SorteioJogador({ navigation, route }) {
   const { player } = route.params;
-
+  const [ timer, setTimer ] = useState(true);
+  
   useEffect(() => {
-    if (player.host) PlayerService.typesRaffle(player.room);
 
-    setTimeout(() => {
-      navigation.reset({
-        routes: [{
-          name: 'MenuJogador',
-          params: { id: player.id }
-        }]
-      })
-    }, 1000 * 2);
-  }, [])
+    if(timer) { 
+      setTimeout(() => setTimer(false), 2000);
+    } else {
+      navigation.reset({ routes: [{ name: 'MenuJogador', params: { player } }] });
+    }
+  }, [timer]);
 
   return (
     <View style={styles.container}>

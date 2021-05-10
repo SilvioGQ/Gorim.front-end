@@ -8,9 +8,7 @@ import FunctionalityService from '../../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
-  const { count } = route.params;
-  const { player } = route.params;
-  const { idDest } = route.params;
+  const { player, count, idDest } = route.params;
 
   const makeTransfer = () => {
     FunctionalityService.makeTransfer(player.id, idDest, count);

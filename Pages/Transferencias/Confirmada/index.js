@@ -5,8 +5,8 @@ import COLORS from '../../../resources/colors';
 import Confirmacao from '../../../assets/Logo/confirmacao.png';
 
 export default function Confirmada({ navigation, route }) {
-  const { player } = route.params;
-  const { text } = route.params;
+  const { player, text } = route.params;
+
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.reset({ routes: [{ name: 'MenuJogador', params: { player } }] })
