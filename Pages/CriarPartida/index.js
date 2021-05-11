@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 // import io from 'socket.io-client';
-import { SocketContext } from "../../services/socket";
+import { socketContext } from "../../context/socket";
+import { playerContext } from "../../context/player";
 
 import COLORS from '../../resources/colors';
 import ModalInfo from '../../Components/ModalInfo';
@@ -17,14 +18,20 @@ export default function CriarPartida({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
-  const socket = useContext(SocketContext);
+  const socket = useContext(socketContext);
+  const player = useContext(playerContext);
 
   const createRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
 
     socket.emit('addToRoom', name, resp => {
+      player.setId(resp.id);
+      player.setHost();
+      player.setName(resp.name);
+      player.setRoom(resp.room);
+
       console.log(resp)
-      navigation.reset({ routes: [{ name: 'Lobby', params: { player: resp } }] });
+      navigation.reset({ routes: [{ name: 'Lobby' }] });
     });
   }
 
@@ -34,8 +41,11 @@ export default function CriarPartida({ navigation }) {
 
     socket.emit('joinToRoom', name, room, resp => {
       if (typeof resp !== 'object') return setModalText(resp);
+      player.setId(resp.id);
+      player.setName(resp.name);
+      player.setRoom(resp.room);
       
-      navigation.reset({ routes: [{ name: 'Lobby', params: { player: resp } }] });
+      navigation.reset({ routes: { name: 'Lobby' } });
     });
   }
 

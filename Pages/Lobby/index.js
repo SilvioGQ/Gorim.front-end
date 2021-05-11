@@ -1,30 +1,31 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
-import { SocketContext } from "../../services/socket";
+import { socketContext } from "../../context/socket";
+import { playerContext } from "../../context/player";
 
 import COLORS from '../../resources/colors';
 import Button from '../../Components/Button';
 import ModalConfirmExit from '../../Components/ModalConfirmExit';
 
 const Tela = Dimensions.get('screen').width;
-export default function Lobby({ navigation, route }) {
+export default function Lobby({ navigation }) {
 
   const [ isLoading, setIsLoading ] = useState('FECTH_DATA');
   const [ modalVisible, setModalVisible ] = useState(false);
   const [ room, setRoom ] = useState({});
-  const [ player, setPlayer ] = useState(route.params.player);
-  const socket = useContext(SocketContext);
+  const player = useContext(playerContext);
+  const socket = useContext(socketContext);
 
   useEffect(() => {
-    if (isLoading === 'FECTH_DATA') socket.emit('getPlayers', players => setRoom(players));
+    if (isLoading === 'FECTH_DATA') socket.emit('getPlayers', r => setRoom(r));
     if (isLoading === 'BACK_PAGE') navigation.reset({ routes: [{ name: 'CriarPartida' }] });
-    if (isLoading === 'NEXT_PAGE') navigation.reset({ routes: [{ name: 'SorteioJogador', params: { player } }] });
+    if (isLoading === 'NEXT_PAGE') navigation.reset({ routes: [{ name: 'SorteioJogador' }] });
     if (room.inGame) setIsLoading('NEXT_PAGE');
 
     if (room.hasOwnProperty('sockets')) {
 
       room.sockets.filter(p => {
-        if (player.id === p.id) setPlayer(p);
+        if (player.getId() === p.id && player.getHost() != p.host) player.setHost();
       });
     }
 
@@ -46,7 +47,7 @@ export default function Lobby({ navigation, route }) {
       </TouchableOpacity>
       <Text style={styles.text}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
-      <Text style={[styles.text, { marginBottom: 25 }]}>{player.room}</Text>
+      <Text style={[styles.text, { marginBottom: 25 }]}>{player.getRoom()}</Text>
 
       {!room.hasOwnProperty('sockets') ?
         <Text style={styles.text}>Aguardando jogadores</Text> :
@@ -56,7 +57,7 @@ export default function Lobby({ navigation, route }) {
           renderItem={({ item }) => {if(item) return <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}}
         />
       }
-      { player.host && <Button name='começar' onClick={startGame} /> }
+      { player.getHost() && <Button name='começar' onClick={startGame} /> }
       { modalVisible && <ModalConfirmExit deletePlayer={deletePlayer} onClick={() => setModalVisible(!modalVisible)} /> }
     </View>
   );
