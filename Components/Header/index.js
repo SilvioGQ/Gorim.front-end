@@ -2,20 +2,11 @@ import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import IMAGES from '../../resources/imagesIcons'
 import Coin from '../Coin';
-import Stamp from '../../assets/moedas/Selo.png';
 
 export default function Header({ player }) {
   return (
     <View style={styles.row}>
-      <Text style={styles.header}>{player.name}{'\n'}em {player.city}</Text>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        {player.stamp && (
-          <Image
-            style={styles.logo}
-            source={Stamp}
-          />
-        )}
-      </View>
+      <Text style={styles.header}>{player.type.slice(0,3)}/{player.name}{'\n'}em {player.city}</Text>
       <View>
         <Coin coin={player.coin} />
       </View>

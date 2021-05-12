@@ -42,8 +42,6 @@ export default function Cenario({ route }) {
         SelectImage()
     })
     return (
-        <ScrollView
-            showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 <View style={styles.row}>
                     <Image
@@ -56,25 +54,6 @@ export default function Cenario({ route }) {
                 <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
                     <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>{poluicao}%</Text>
                     <Image style={styles.emoji} source={Image1} />
-                </View>
-                <Text style={styles.texto}>Saldos:</Text>
-                <View style={styles.numeros}>
-                    <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>300</Text>
-                        <Text style={styles.inferior}>anterior</Text>
-                    </View>
-                    <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>0,0</Text>
-                        <Text style={styles.inferior}>recebido</Text>
-                    </View>
-                    <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>10,5</Text>
-                        <Text style={styles.inferior}>transferido</Text>
-                    </View>
-                    <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>{player.coin}</Text>
-                        <Text style={styles.inferior}>atual</Text>
-                    </View>
                 </View>
                 {Height <= 780 && (
                     <>
@@ -93,10 +72,9 @@ export default function Cenario({ route }) {
                     </>
                 )}
 
-                <Text style={styles.texto}>Histórico:</Text>
+                <Text style={styles.texto}>Histórico de plantações:</Text>
                 {player.log.map( (log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}> {log} </Text>)}
             </View>
-        </ScrollView>
     )
 }
 
@@ -208,3 +186,22 @@ const styles = StyleSheet.create({
     }
 }
 )
+{/* <Text style={styles.texto}>Saldos:</Text>
+<View style={styles.numeros}>
+    <View style={styles.bloquinho}>
+        <Text style={styles.numero}>300</Text>
+        <Text style={styles.inferior}>anterior</Text>
+    </View>
+    <View style={styles.bloquinho}>
+        <Text style={styles.numero}>0,0</Text>
+        <Text style={styles.inferior}>recebido</Text>
+    </View>
+    <View style={styles.bloquinho}>
+        <Text style={styles.numero}>10,5</Text>
+        <Text style={styles.inferior}>transferido</Text>
+    </View>
+    <View style={styles.bloquinho}>
+        <Text style={styles.numero}>{player.coin}</Text>
+        <Text style={styles.inferior}>atual</Text>
+    </View>
+</View> */}

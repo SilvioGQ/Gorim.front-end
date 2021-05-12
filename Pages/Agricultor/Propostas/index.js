@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-n
 
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
+import OfertaGeral from '../../../Components/OfertaGeral';
 import COLORS from '../../../resources/colors';
 import FunctionalityService from '../../../services/FunctionalityService';
 import PlayerService from '../../../services/PlayerService';
@@ -30,6 +31,7 @@ export default function Proposta({ route }) {
       if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.product, amount: 1 });
       FunctionalityService.deleteOffer(item);
       let price=item.price * item.amount
+      PlayerService.addInvetory(player)
       FunctionalityService.makeTransfer(player.id, item.idSeller, price);
       player.coin -= item.price * item.amount
       PlayerService.getPlayer(item.idSeller).then(resp=> {
@@ -61,6 +63,7 @@ export default function Proposta({ route }) {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
       />
+      <OfertaGeral/>
     </View>
   );
 }

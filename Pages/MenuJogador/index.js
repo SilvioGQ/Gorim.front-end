@@ -32,8 +32,7 @@ export default function MenuJogador({ navigation, route }) {
             <View style={styles.items}>
               <Item type='Menu' onClick={() => navigation.navigate('Proposta', { player })} name='Checar propostas' />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
-              <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos' />
-              <Item type='Menu' onClick={() => setisVisible(true)} name='Pedir selo verde' backgroundColor='#FF7F7E' />
+              <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos'/>
             </View>
             <Conf isVisible={isVisible} Conf={() => setisVisible(false)} />
           </View>

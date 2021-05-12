@@ -48,7 +48,7 @@ const PlayerService = {
             });
     },
     typesRaffle(room, players) {
-        let emp = 1;
+        let emp = 0;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
         let jogadores = players.length
         let cidadela = Math.floor(jogadores / 2)
@@ -72,7 +72,6 @@ const PlayerService = {
                             type: 'Empresário',
                             speciality: speciality[0],
                             coin: 300,
-                            stamp: false,
                             city: random == 0 ? 'Atlantis' : 'Cidadela'
                         });
                         emp--;
@@ -83,24 +82,19 @@ const PlayerService = {
                             coin: 300,
                             city: random == 0 ? 'Atlantis' : 'Cidadela',
                             inventory: [
-                                { type: 'seed', name: 'Arroz', amount: 3 },
-                                { type: 'seed', name: 'Soja', amount: 2 },
-                                { type: 'fertilizer', name: 'Fertilizante Comum', amount: 2 },
+                                { type: 'seed', name: 'Arroz', amount: 1 },
+                                { type: 'fertilizer', name: 'Fertilizante Comum', amount: 1 },
                                 { type: 'pesticide', name: 'Agrotóxico Comum', amount: 1 },
-                                { type: 'pesticide', name: 'Agrotóxico Premium', amount: 1 },
-                                { type: 'pesticide', name: 'Agrotóxico Super Premium', amount: 1 },
-                                { type: 'machine', name: 'Pacote 1', amount: 3 },
-                                { type: 'machine', name: 'Pacote 3', amount: 1 },
+                                { type: 'machine', name: 'Pacote 1', amount: 1 },
                             ],
                             parcelLand: [
-                                { id: 0, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 1, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 2, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 3, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 4, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null },
-                                { id: 5, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null }
+                                { id: 0, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null, stamp: false },
+                                { id: 1, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null, stamp: false },
+                                { id: 2, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null, stamp: false },
+                                { id: 3, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null, stamp: false },
+                                { id: 4, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null, stamp: false },
+                                { id: 5, planted: false, seed: null, fertilizer: null, pesticide: null, machine: null, stamp: false }
                             ],
-                            stamp: false
                         });
                     }
                 });
@@ -114,13 +108,12 @@ const PlayerService = {
     addLog(text, player) {
         player.log.push(text)
         db.collection('players').doc(player.id).update({
-            log: player.log,
+            log: player.log
         });
     },
-    addinvetory(text, player) {
-        player.inventory.push()
+    addInvetory(player) {
         db.collection('players').doc(player.id).update({
-            inventory: player.inventory,
+            inventory: player.inventory
         });
     }
 }

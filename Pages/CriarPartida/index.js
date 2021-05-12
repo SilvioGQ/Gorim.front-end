@@ -69,7 +69,7 @@ export default function CriarPartida({ navigation }) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, height: Height - 100, alignItems: 'center', width: Tela }}>
           <TextInput style={styles.input}
-            maxLength={15}
+            maxLength={10}
             onChangeText={name => setName(name)}
             placeholder="Digite seu nome"
             value={name}
