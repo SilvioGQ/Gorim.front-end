@@ -24,6 +24,7 @@ export default function Vendas({ navigation, route }) {
   const [selectClient, setSelectClient] = useState();
   const [selectAmount, setSelectAmount] = useState(-1);
   const [product, setProduct] = useState([]);
+  
   useEffect(() => {
     let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
 
@@ -37,14 +38,17 @@ export default function Vendas({ navigation, route }) {
     });
     FunctionalityService.getProduct(name).then(setProduct)
   }, []);
+
   const confirmTransfer = () => {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
-    if (selectClient == -1) return setSelectAmount(-1);
+    if (selectClient == -1) setSelectAmount(-1);
     if (selectAmount == -1 && selectClient !== -1) return setModalText('Selecione a quantidade!');
+
     FunctionalityService.addOffer(player, selectClient, selectPrice, selectAmount, name, type)
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text: 'Sua proposta foi enviada com sucesso' } }] });
   }
+
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />

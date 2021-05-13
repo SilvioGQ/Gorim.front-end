@@ -157,8 +157,7 @@ export default function Parcela({ navigation, route }) {
         <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
         <TouchableOpacity
           style={styles.button}
-          onPress={toPulverize}
-        >
+          onPress={toPulverize}>
           <Text style={styles.buttonText}>PULVERIZAR</Text>
           <Image source={require('../../../assets/agricultorIcones/Pulverize.png')} style={styles.pulverize} />
         </TouchableOpacity>
@@ -169,7 +168,7 @@ export default function Parcela({ navigation, route }) {
           <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>
         )}
         {modalText !== '' && (
-          <Conf confirm={() => setModalText('')} text={modalText} denied = {()=> setModalText('')}/>
+          <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />
         )}
       </ScrollView>
     </View>
@@ -247,7 +246,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'Rubik_400Regular',
     marginLeft: 15,
-    textAlign:'center'
+    textAlign: 'center'
   },
   pulverize: {
     marginLeft: 15,
@@ -259,7 +258,7 @@ const styles = StyleSheet.create({
     height: 45,
     margin: '2%',
     alignSelf: 'center',
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.successButton,
     borderRadius: 25,

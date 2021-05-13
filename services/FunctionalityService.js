@@ -9,7 +9,7 @@ const FunctionalityService = {
         //let secondPart = (Math.random() * 46656) | 0;
         firstPart = ("0000" + firstPart.toString(36)).slice(-3);
         //secondPart = ("000" + secondPart.toString(36)).slice(-3);
-        return firstPart + 'FQF' ;
+        return firstPart + 'FQF';
     },
     createRoom() {
         let id = this.generateUID().toUpperCase();
@@ -46,7 +46,7 @@ const FunctionalityService = {
 
         let destinyRef = db.collection('players').doc(idDestiny);
         batch.update(destinyRef, { coin: firebase.firestore.FieldValue.increment(value) });
-        
+
         batch.commit();
     },
     toPlant(player) {
@@ -54,19 +54,19 @@ const FunctionalityService = {
     },
     getProduct(name) {
         const products = db
-        .collection('products').where('name', '==', name)
-        .get()
-        .then(snapshot => {
-            let _products = [];
-            snapshot.forEach(function (doc) {
-                _products.push(Object.assign(doc.data(), { id: doc.id }));
+            .collection('products').where('name', '==', name)
+            .get()
+            .then(snapshot => {
+                let _products = [];
+                snapshot.forEach(function (doc) {
+                    _products.push(Object.assign(doc.data(), { id: doc.id }));
                 });
                 return _products[0];
             });
-            return products;
-        },
-        getProducts() {
-            const products = db
+        return products;
+    },
+    getProducts() {
+        const products = db
             .collection('products').orderBy('type')
             .get()
             .then(snapshot => {
@@ -76,11 +76,11 @@ const FunctionalityService = {
                 });
                 return _products;
             });
-            return products;
-        },
-        getOffers(idBuyer) {
-            const offers = db
-            .collection('offers').where('idBuyer', '==', idBuyer)
+        return products;
+    },
+    getOffers(idBuyer, room) {
+        const offers = db
+            .collection('offers').where('idBuyer', '==', idBuyer).where("room", "==", room)
             .get()
             .then(snapshot => {
                 let _offers = [];
@@ -89,40 +89,39 @@ const FunctionalityService = {
                 });
                 return _offers;
             });
-            return offers;
-        },
-        addOffer(seller, idBuyer, price, amount, product, type) {
-            amount= amount==-1? null : amount
-            idBuyer= idBuyer==-1? null : idBuyer
-            db.collection('offers').add({
-                idSeller: seller.id,
-                amount,
-                product,
-                price,
-                idBuyer,
-                type
-            });
-        },
-        deleteOffer(item) {
-            db.collection('offers').doc(item.id)
-                .get()
-                .then(function (snapshot) {
-                    snapshot.ref.delete();
-                }
+        return offers;
+    },
+    addOffer(seller, idBuyer, price, amount, product, type) {
+        db.collection('offers').add({
+            idSeller: seller.id,
+            room: seller.room,
+            amount,
+            product,
+            price,
+            idBuyer,
+            type
+        });
+    },
+    deleteOffer(item) {
+        db.collection('offers').doc(item.id)
+            .get()
+            .then(function (snapshot) {
+                snapshot.ref.delete();
+            }
             );
-        },
-        addLog(transferReceived, transferSend, ) {
-            db.collection('logs').add({
-                transferReceived,
-                transferSend
-            });
-        },
-        updateLog(transferReceived, transferSend,) {
-            db.collection('logs').doc(id).update({
-                transferReceived,
-                transferSend
-            });
-        },
-    }
-    
-    export default FunctionalityService;
+    },
+    addLog(transferReceived, transferSend,) {
+        db.collection('logs').add({
+            transferReceived,
+            transferSend
+        });
+    },
+    updateLog(transferReceived, transferSend,) {
+        db.collection('logs').doc(id).update({
+            transferReceived,
+            transferSend
+        });
+    },
+}
+
+export default FunctionalityService;

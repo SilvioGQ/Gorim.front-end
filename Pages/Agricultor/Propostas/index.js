@@ -11,59 +11,70 @@ import PlayerService from '../../../services/PlayerService';
 import Modal from '../../../Components/ModalInfo'
 const Tela = Dimensions.get('screen').width;
 export default function Proposta({ route }) {
-  const [offers, setOffers] = useState([]);
+  const [offersIndividual, setOffersIndividual] = useState([]);
+  const [offersAll, setOffersAll] = useState([]);
   const { player } = route.params;
   const [modalText, setModalText] = useState('');
 
   useEffect(() => {
-    FunctionalityService.getOffers(player.id).then(setOffers);
-  }, [offers]);
-  
-  const confirmOffer = item => {
+    FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
+    FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
+  }, [offersIndividual, offersAll]);
+
+  const confirmOffer = (item, amount = null) => {
     let count = 0;
     if (player.coin >= item.price * item.amount) {
       player.inventory.filter(i => {
-        
+
         if (item.product == i.name) {
           i.amount++;
         } else { count++; }
       });
-      
+
       if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.product, amount: 1 });
-      FunctionalityService.deleteOffer(item);
-      let price=item.price * item.amount
+      if (item.idBuyer != -1) FunctionalityService.deleteOffer(item);
+      if(item.amount == -1) item.amount = amount;
+      let price = item.price * item.amount;
       PlayerService.addInvetory(player)
       FunctionalityService.makeTransfer(player.id, item.idSeller, price);
       player.coin -= item.price * item.amount
-      PlayerService.getPlayer(item.idSeller).then(resp=> {
+      PlayerService.getPlayer(item.idSeller).then(resp => {
         <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
         let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
-        PlayerService.addLog(text,player)
+        PlayerService.addLog(text, player)
         let text2 = 'Você vendeu ' + item.amount + ' unidade(s) de ' + item.product + ' para o ' + player.name + ' por ' + price + '$'
-        PlayerService.addLog(text2,resp)
+        PlayerService.addLog(text2, resp)
       });
     } else {
       setModalText('Você não possui dinheiro suficiente para esta compra.')
     }
   }
-  const rejectOffer = item =>{
+  const rejectOffer = item => {
     FunctionalityService.deleteOffer(item);
   }
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
       <Text style={styles.header}>Propostas</Text>
-      {offers.length === 0 && (
+      {offersIndividual.length === 0 && offersAll.length === 0 && (
         <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 26, marginVertical: 50 }}>Você não tem nada!</Text>
       )}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
+      <Text>Geralzao</Text>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={offers}
+        data={offersAll}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
+        renderItem={({ item }) => <OfertaGeral item={item} confirmOffer={confirmOffer}/> }
+      />
+      <Text>Individual</Text>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={offersIndividual}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer} />}
       />
       {/* tem que fazer funcionar <OfertaGeral/> */}
     </View>

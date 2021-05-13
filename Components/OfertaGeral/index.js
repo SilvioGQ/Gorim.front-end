@@ -12,31 +12,31 @@ const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer }) {
     const [player, setPlayer] = useState({});
     const [coin, setCoin] = useState('');
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(1);
 
-    // useEffect(() => {
-    //     PlayerService.getPlayer(item.idSeller).then(setPlayer);
-    //     FunctionalityService.getProduct(item.product).then(resp => {
-    //         if (item.price == resp.cheap) setCoin('Barato');
-    //         if (item.price == resp.medium) setCoin('Médio');
-    //         if (item.price == resp.expensive) setCoin('Caro');
-    //     })
-    // }, []);
-    const increaseCount = () => setCount(count < 6 ? count + 1 : count);
-    const decreaseCount = () => setCount(count > 0 ? count - 1 : count);
+    useEffect(() => {
+        PlayerService.getPlayer(item.idSeller).then(setPlayer);
+        FunctionalityService.getProduct(item.product).then(resp => {
+            if (item.price == resp.cheap) setCoin('Barato');
+            if (item.price == resp.medium) setCoin('Médio');
+            if (item.price == resp.expensive) setCoin('Caro');
+        });
+    }, []);
+    const increaseCount = () => {setCount(count < 6 ? count + 1 : count);}
+    const decreaseCount = () => {setCount(count > 1 ? count - 1 : count);}
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
-                {/* <View>
+                <View>
                     <Image
                         style={styles.person}
                         source={IMAGES[player.avatar]}
                     />
                     <Text style={styles.text}>{player.name}</Text>
-                </View> */}
+                </View>
                 <View>
                     <Text style={styles.text}>Produto:</Text>
-                    <Text style={styles.textBold}>Fertilizante</Text>
+                    <Text style={styles.textBold}>{item.product}</Text>
                 </View>
                 <Image
                     style={styles.icone}
@@ -44,15 +44,15 @@ export default function Oferta({ item, confirmOffer }) {
                 />
                 <View>
                     <Text style={styles.text}>Preço:</Text>
-                    <Text style={styles.textBold}>$50</Text>
+                    <Text style={styles.textBold}>${item.price}</Text>
                 </View>
-                {/* <Image
+                <Image
                     style={styles.icone}
                     source={imagesCoins[coin]}
-                /> */}
+                />
             </View>
             <View style={styles.row}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer()}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item, count)}>
                     <Text style={styles.textbutton}>COMPRAR</Text>
                 </TouchableOpacity>
                     <Text style={styles.text}> Quantidade:</Text>

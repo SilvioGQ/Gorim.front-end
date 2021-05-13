@@ -48,7 +48,7 @@ const PlayerService = {
             });
     },
     typesRaffle(room, players) {
-        let emp = 0;
+        let emp = 1;
         let speciality = ['Fertilizante', 'Agrotoxico', 'Maquina', 'Semente'];
         let jogadores = players.length
         let cidadela = Math.floor(jogadores / 2)
