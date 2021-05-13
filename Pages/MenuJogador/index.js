@@ -4,7 +4,6 @@ import COLORS from '../../resources/colors';
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import PlayerService from '../../services/PlayerService';
-import Conf from '../../Components/Selo-Verde-Confirmacao';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
 
@@ -34,7 +33,6 @@ export default function MenuJogador({ navigation, route }) {
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos'/>
             </View>
-            <Conf isVisible={isVisible} Conf={() => setisVisible(false)} />
           </View>
         </>
       )}

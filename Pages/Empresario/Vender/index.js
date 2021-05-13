@@ -18,18 +18,21 @@ export default function Vendas({ navigation, route }) {
   const { name } = route.params;
   const { type } = route.params;
   const [modalText, setModalText] = useState('');
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState();
   const [selectPrice, setSelectPrice] = useState(-1);
   const { player } = route.params;
   const [selectClient, setSelectClient] = useState();
   const [selectAmount, setSelectAmount] = useState(-1);
   const [product, setProduct] = useState([]);
   useEffect(() => {
+    let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
+
     PlayerService.getPlayers(player.room).then(resp => {
       resp = resp.filter(item => {
 
         if (item.id !== player.id && item.type == 'Agricultor') return item;
       });
+      resp.unshift(todos)
       setPlayers(resp);
     });
     FunctionalityService.getProduct(name).then(setProduct)
@@ -37,7 +40,8 @@ export default function Vendas({ navigation, route }) {
   const confirmTransfer = () => {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
-    if (selectAmount == -1) return setModalText('Selecione a quantidade!');
+    if (selectClient == -1) return setSelectAmount(-1);
+    if (selectAmount == -1 && selectClient !== -1) return setModalText('Selecione a quantidade!');
     FunctionalityService.addOffer(player, selectClient, selectPrice, selectAmount, name, type)
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text: 'Sua proposta foi enviada com sucesso' } }] });
   }
@@ -52,7 +56,7 @@ export default function Vendas({ navigation, route }) {
         <Text style={styles.header}> Venda de {'\n'} {name} </Text>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Clientes: </Text>
-      <View style={{ marginHorizontal: 10 }}>
+      <View style={{ marginHorizontal: 10, flexDirection: 'row' }}>
         <FlatList
           numColumns={3}
           data={players}
@@ -97,7 +101,8 @@ export default function Vendas({ navigation, route }) {
         </TouchableOpacity>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
-      <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />
+      {selectClient == -1 && <Text style={{ fontSize: 32, fontFamily: 'Rubik_700Bold', marginVertical: 15, textAlign: 'center', alignItems: 'center' }}>ILIMITADO</Text>}
+      {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
       <Button
         onClick={confirmTransfer}
         name='VENDER' />

@@ -4,6 +4,7 @@ import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-n
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
 import OfertaGeral from '../../../Components/OfertaGeral';
+import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
 import FunctionalityService from '../../../services/FunctionalityService';
 import PlayerService from '../../../services/PlayerService';
@@ -35,6 +36,7 @@ export default function Proposta({ route }) {
       FunctionalityService.makeTransfer(player.id, item.idSeller, price);
       player.coin -= item.price * item.amount
       PlayerService.getPlayer(item.idSeller).then(resp=> {
+        <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
         let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
         PlayerService.addLog(text,player)
         let text2 = 'Você vendeu ' + item.amount + ' unidade(s) de ' + item.product + ' para o ' + player.name + ' por ' + price + '$'
@@ -63,7 +65,7 @@ export default function Proposta({ route }) {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
       />
-      <OfertaGeral/>
+      {/* tem que fazer funcionar <OfertaGeral/> */}
     </View>
   );
 }

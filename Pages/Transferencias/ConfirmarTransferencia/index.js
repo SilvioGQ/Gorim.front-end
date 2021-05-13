@@ -13,6 +13,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
   const { idDest } = route.params;
   const makeTransfer = () => {
     PlayerService.getPlayer(idDest).then(resp=> {
+      <HistoricosDinheiro player={player} count={count} dest={idDest} />
       let text = 'Você transferiu ' + count + '$ para o ' + resp.name
       PlayerService.addLog(text,player)
       let text2 = 'Você recebeu ' + count + '$ do jogador ' + player.name

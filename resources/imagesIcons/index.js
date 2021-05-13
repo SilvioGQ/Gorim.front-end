@@ -7,5 +7,6 @@ const IMAGES = {
     'Empresário2': require('../../assets/perfils/empresariox1/Maquina.png'),
     'Empresário3': require('../../assets/perfils/empresariox1/Semente.png'),
     'Empresário4': require('../../assets/perfils/empresariox1/EmpRuivo.png'),
+    'Todos' : require('../../assets/Logo/Grupo.png')
 };
 export default IMAGES;

@@ -92,6 +92,8 @@ const FunctionalityService = {
             return offers;
         },
         addOffer(seller, idBuyer, price, amount, product, type) {
+            amount= amount==-1? null : amount
+            idBuyer= idBuyer==-1? null : idBuyer
             db.collection('offers').add({
                 idSeller: seller.id,
                 amount,
