@@ -40,7 +40,7 @@ export default function Oferta({ item, confirmOffer }) {
                 </View>
                 <Image
                     style={styles.icone}
-                    source={require('../../assets/fertilizers/fertilizerMedium.png')}
+                    source={imagesProducts[item.product]}
                 />
                 <View>
                     <Text style={styles.text}>Preço:</Text>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.bgColorPrimary,
         borderRadius: 20,
         width: Tela - 30,
-        height: 185,
+        height: 155,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     text: {
         textAlign: 'center',
         fontSize: 15,
+        marginTop:5
     },
     arrows: {
         flexDirection: 'row',

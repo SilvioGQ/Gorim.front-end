@@ -41,6 +41,7 @@ export default function Cenario({ route }) {
         }
         SelectImage()
     })
+    console.log(player.log)
     return (
             <View style={styles.container}>
                 <View style={styles.row}>
@@ -73,7 +74,6 @@ export default function Cenario({ route }) {
                 )}
 
                 <Text style={styles.texto}>Histórico de plantações:</Text>
-                {player.log.map( (log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}> {log} </Text>)}
             </View>
     )
 }

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
 
 import Button from '../../../Components/Button';
+import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
 import logoTransfer from '../../../assets/moedas/logoTransfer.png';
 import FunctionalityService from '../../../services/FunctionalityService';
@@ -12,13 +13,13 @@ export default function ConfirmarTransferencia({ navigation, route }) {
   const { player } = route.params;
   const { idDest } = route.params;
   const makeTransfer = () => {
-    PlayerService.getPlayer(idDest).then(resp=> {
-      // <HistoricosDinheiro player={player} count={count} dest={idDest} />
-      let text = 'Você transferiu ' + count + '$ para o ' + resp.name
-      PlayerService.addLog(text,player)
-      let text2 = 'Você recebeu ' + count + '$ do jogador ' + player.name
-      PlayerService.addLog(text2,resp)
-    });
+    // PlayerService.getPlayer(idDest).then(resp => {
+    //   text = <HistoricosDinheiro player={player} count={count} dest={resp.name} />
+    //   // let text = 'Você transferiu ' + count + '$ para o ' + resp.name
+    //    PlayerService.addBuy(text,player)
+    //   // let text2 = 'Você recebeu ' + count + '$ do jogador ' + player.name
+    //   // PlayerService.addLog(text2,resp)
+    // });
     FunctionalityService.makeTransfer(player.id, idDest, count);
     player.coin -= count;
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text:'Sua transferencia foi concluída com sucesso!' } }] });

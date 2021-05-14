@@ -25,7 +25,7 @@ const PlayerService = {
             name: name,
             room: room,
             host: host,
-            log: []
+            log: {transferencia:[], compras:[], plantacao:[]}
         }).then(docRef => docRef.id);
     },
     setHost(room) {
@@ -105,10 +105,10 @@ const PlayerService = {
             avatar: image
         });
     },
-    addLog(text, player) {
-        player.log.push(text)
+    addBuy(text, player) {
+        player.log.transferencia.push(text)
         db.collection('players').doc(player.id).update({
-            log: player.log
+            log: player.log.transferencia
         });
     },
     addInvetory(player) {

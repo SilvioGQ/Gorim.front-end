@@ -34,10 +34,10 @@ export default function HistoricosDinheiro({ count = null, player, dest = null, 
                 )}
                 {dest && (
                     <View>
-                        <Image
+                        {/* <Image
                             style={styles.icone}
                             source={IMAGES[dest.avatar]}
-                        />
+                        /> */}
                         <Text style={styles.text}>{dest.name}</Text>
                     </View>
                 )}

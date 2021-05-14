@@ -38,13 +38,13 @@ export default function Proposta({ route }) {
       PlayerService.addInvetory(player)
       FunctionalityService.makeTransfer(player.id, item.idSeller, price);
       player.coin -= item.price * item.amount
-      PlayerService.getPlayer(item.idSeller).then(resp => {
-        <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
-        let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
-        PlayerService.addLog(text, player)
-        let text2 = 'Você vendeu ' + item.amount + ' unidade(s) de ' + item.product + ' para o ' + player.name + ' por ' + price + '$'
-        PlayerService.addLog(text2, resp)
-      });
+      // PlayerService.getPlayer(item.idSeller).then(resp => {
+      //   <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
+      //   let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
+      //   PlayerService.addLog(text, player)
+      //   let text2 = 'Você vendeu ' + item.amount + ' unidade(s) de ' + item.product + ' para o ' + player.name + ' por ' + price + '$'
+      //   PlayerService.addLog(text2, resp)
+      // });
     } else {
       setModalText('Você não possui dinheiro suficiente para esta compra.')
     }
@@ -56,20 +56,23 @@ export default function Proposta({ route }) {
     <View style={styles.container}>
       <Coin coin={player.coin} />
       <Text style={styles.header}>Propostas</Text>
-      {offersIndividual.length === 0 && offersAll.length === 0 && (
-        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 26, marginVertical: 50 }}>Você não tem nada!</Text>
-      )}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
-      )}
-      <Text>Geralzao</Text>
+        )}
+      <Text style={styles.text}>Oferta para todos</Text>
+        {offersAll.length === 0 && (
+          <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+        )}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersAll}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <OfertaGeral item={item} confirmOffer={confirmOffer}/> }
       />
-      <Text>Individual</Text>
+      <Text style={styles.text}>Negociação exclusiva</Text>
+      {offersIndividual.length === 0 && (
+          <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+        )}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersIndividual}
@@ -91,7 +94,13 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
-    fontSize: 24,
-    paddingTop: 10
+    fontSize: 32,
+    marginBottom:35
   },
+  text: {
+    fontFamily: 'Rubik_300Light',
+    textAlign: 'center',
+    fontSize: 22,
+    paddingTop: 10
+  }
 });
