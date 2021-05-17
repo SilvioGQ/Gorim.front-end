@@ -19,7 +19,7 @@ export default function Lobby({ navigation }) {
   useEffect(() => {
     if (isLoading === 'FECTH_DATA') socket.emit('getPlayers', r => setRoom(r));
     if (isLoading === 'BACK_PAGE') navigation.reset({ routes: [{ name: 'CriarPartida' }] });
-    if (isLoading === 'NEXT_PAGE') navigation.reset({ routes: [{ name: 'SorteioJogador' }] });
+    if (isLoading === 'NEXT_PAGE') navigation.reset({ routes: [{ name: 'SelecaoIcone' }] });
     if (room.inGame) setIsLoading('NEXT_PAGE');
 
     if (room.hasOwnProperty('sockets')) {

@@ -7,6 +7,7 @@ import Frame5 from './InicioJogo/Candidatura';
 import Frame6 from './InicioJogo/Votaçao';
 import Frame7 from './InicioJogo/Eleitos';
 import Espera from './Tela de Espera';
+import SelecaoIcone from './SelecaoIcone';
 import Insumo from './Transferencias/Insumo';
 import Vendas from './Empresario/Vender';
 import FazerTransferencia from './Transferencias/FazerTransferencia';
@@ -136,6 +137,10 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="Lobby" component={Lobby} options={{
+        headerTransparent: true,
+        headerTitle: '',
+      }} />
+      <Stack.Screen name="SelecaoIcone" component={SelecaoIcone} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />
