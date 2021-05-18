@@ -8,6 +8,7 @@ import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
 import PlayerService from '../../../services/PlayerService';
+import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation, route }) {
@@ -37,7 +38,6 @@ export default function FazerTransferencia({ navigation, route }) {
       navigation.navigate('ConfirmarTransferencia', { player, idDest: id, count });
     }
   }
-
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
@@ -46,12 +46,12 @@ export default function FazerTransferencia({ navigation, route }) {
         <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20 }}>Fazer {'\n'}transferência</Text>
       </View>
       <Text style={styles.text}>Destinatário:</Text>
-      <View style={{ marginHorizontal: 15 }}>
+      <View style={{ marginHorizontal: 10 }}>
         <FlatList
           numColumns={3}
           data={players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} />}
+          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
         />
       </View>
       <Text style={styles.text}>Valor:</Text>
@@ -80,9 +80,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    padding: 6,
     width: Tela,
-    paddingTop: 25,
+    paddingTop: StatusBar.currentHeight,
   },
   arrows: {
     flexDirection: 'row',

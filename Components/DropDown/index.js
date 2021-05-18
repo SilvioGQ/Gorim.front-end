@@ -13,14 +13,13 @@ export default function DropDown({ items, type, onClick, display }) {
       return item.type === type && item.amount > 0;
     }));
   }, []);
-
   return (
     <View style={[styles.container, { display: display }]}>
       { inventory.map((item, index) => {
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}>
             <Image style={styles.icone} source={IMAGES[item.name]} />
-            <Text style={styles.text}>{item.name.replace("Fertilizante", '')}</Text>
+            <Text style={styles.text}>{item.name.replace(/Fertilizante|Agrotóxico/,'')}</Text>
           </TouchableOpacity>
         );
       })}

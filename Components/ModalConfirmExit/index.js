@@ -1,54 +1,73 @@
 import React from 'react';
-import { Text, View, Modal, TouchableOpacity, StyleSheet } from 'react-native';
-
+import { Text, View, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+const Tela = Dimensions.get('screen').width;
 import COLORS from '../../resources/colors';
 
 export default function ModalConfirmExit({ deletePlayer, onClick }) {
   return (
-    <View>
       <Modal animationType="fade" transparent={true} >
-        <View style={styles.header}>
-          <View style={{ margin: 20, backgroundColor: "#fff", borderRadius: 20, padding: 35, alignItems: "center", shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 4, elevation: 5 }}>
+        <View style={styles.modal}>
+          <View style={styles.container}>
             <Text style={styles.text}>Tem certeza que deseja sair da partida?</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
               <TouchableOpacity style={[styles.button, { marginRight: 20 }]} onPress={onClick} >
                 <Text style={styles.textButton}>Continuar</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.button, {backgroundColor:COLORS.warningButton}]} onPress={deletePlayer} >
                 <Text style={styles.textButton}>Sair</Text>
               </TouchableOpacity>
-            </View>
           </View>
         </View>
       </Modal>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
+  modal: {
     flex: 1,
-    justifyContent: "center",
-    marginTop: 22,
-    backgroundColor: '#000000aa'
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000000aa',
+    width: Tela,
+  },
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.bgColorSecondary,
+    padding: 25,
+    borderRadius: 30,
+    shadowColor: "#000", 
+    shadowOffset: {width: 0,height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    margin: 20
   },
   text: {
-    marginBottom: 15,
-    textAlign: "center",
     fontFamily: 'Rubik_300Light',
-    fontSize: 18
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom:15,
   },
   button: {
-    borderRadius: 20,
-    padding: 15,
-    elevation: 5,
+    alignItems: 'center',
+    width: 250,
+    padding:10,
     backgroundColor: COLORS.successButton,
-    alignItems: 'center'
+    borderRadius: 20,
+    margin: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 4.16,
+    elevation: 4,
   },
   textButton: {
     textAlign: 'center',
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 18,
-    color: COLORS.textWhite
+    fontSize: 15,
+    fontFamily: 'Rubik_300Light',
+    color: '#fff',
   }, 
 });

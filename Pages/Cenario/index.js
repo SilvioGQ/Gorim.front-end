@@ -10,36 +10,40 @@ import Tenso from '../../assets/emojis/tenso.png';
 import Corona from '../../assets/emojis/corona.png';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
-
+import { StatusBar } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width
-export default function Cenario() {
+
+export default function Cenario({ route }) {
+    const { player } = route.params;
     let poluicao = 25
     let value = require('../../assets/emojis/feliz.png')
-let value2 = require('../../assets/emojis/meio.png')
-let value3 = require('../../assets/emojis/preocupado.png')
-let value4 = require('../../assets/emojis/tenso.png')
-let value5 = require('../../assets/emojis/corona.png')
-const [Image1, setImage] = useState(value)
-useEffect(() => {
-    function SelectImage() {
-        if (poluicao > 20) {
-            setImage(value2)
+    let value2 = require('../../assets/emojis/meio.png')
+    let value3 = require('../../assets/emojis/preocupado.png')
+    let value4 = require('../../assets/emojis/tenso.png')
+    let value5 = require('../../assets/emojis/corona.png')
+    
+    const [Image1, setImage] = useState(value)
+    useEffect(() => {
+        function SelectImage() {
+            if (poluicao > 20) {
+                setImage(value2)
+            }
+            if (poluicao > 40) {
+                setImage(value3)
+            }
+            if (poluicao > 60) {
+                setImage(value4)
+            }
+            if (poluicao > 80) {
+                setImage(value5)
+            }
         }
-        if (poluicao > 40) {
-            setImage(value3)
-        }
-        if (poluicao > 60) {
-            setImage(value4)
-        }
-        if (poluicao > 80) {
-            setImage(value5)
-        }
-    }
-    SelectImage()
-})
+        SelectImage()
+    })
+    console.log(player.log)
     return (
-        <ScrollView 
-        showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 <View style={styles.row}>
                     <Image
@@ -49,58 +53,36 @@ useEffect(() => {
                     <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
                 </View>
                 <Text style={styles.texto}>Nível de poluição:</Text>
-                <View style={[styles.row, {backgroundColor: '#FFFFFF', marginTop:20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000",shadowOffset: {width: 0,height: 4},shadowOpacity: 0.32,shadowRadius: 5.46,elevation: 9}]}>
-                    <Text style={{fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop:20}}>{poluicao}%</Text>
+                <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
+                    <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>{poluicao}%</Text>
                     <Image style={styles.emoji} source={Image1} />
                 </View>
-                <Text style={styles.texto}>Saldos:</Text>
-                <View style={styles.numeros}>
-                    <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>300</Text>
-                        <Text style={styles.inferior}>anterior</Text>
-                    </View>
-                    <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>0,0</Text>
-                        <Text style={styles.inferior}>recebido</Text>
-                    </View>
-                    <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>10,5</Text>
-                        <Text style={styles.inferior}>transferido</Text>
-                    </View>
-                    <View style={styles.bloquinho}>
-                        <Text style={styles.numero}>200</Text>
-                        <Text style={styles.inferior}>atual</Text>
-                    </View>
-                </View>
-                <Text style={styles.texto}>Resultado da sua última plantação:</Text>
-                <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
-                <View style={{ flexDirection: 'row', margin: '5%' }}>
-                    <View style={styles.coloridos}>
-                        <Text style={styles.numero2}>400</Text>
-                        <Text style={styles.inferior2}>Produtividade</Text>
-                    </View>
-                    <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
-                        <Text style={styles.numero2}>200</Text>
-                        <Text style={styles.inferior2}>Poluição</Text>
-                    </View>
-                </View>
-                <Text style={styles.texto}>Histórico:</Text>
-                <Text style={styles.italiano}>X rodada: </Text>
-                <Text style={[styles.italiano, { fontStyle: 'normal' }]}>
-                    Você alugou uma semeadeira por preço alto da Empresária 1; {'\n'}
+                {Height <= 780 && (
+                    <>
+                        <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
+                        <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
+                        <View style={{ flexDirection: 'row', margin: '5%' }}>
+                            <View style={styles.coloridos}>
+                                <Text style={styles.numero2}>400</Text>
+                                <Text style={styles.inferior2}>Produtividade</Text>
+                            </View>
+                            <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
+                                <Text style={styles.numero2}>200</Text>
+                                <Text style={styles.inferior2}>Poluição</Text>
+                            </View>
+                        </View>
+                    </>
+                )}
 
-                    Você comprou soja por preço médio do Empresário  2;{'\n'}
+            <Text style={styles.texto}>Histórico de transferencia:</Text>
+            {player.log['transferencia'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)}
 
-                    Você comprou Fertilizante Premium por preço normal do Empresário 3;{'\n'}
+            <Text style={styles.texto}>Histórico de compras:</Text>
+            {player.log['compras'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)}
 
-                    Você comprou Agrotóxico Premium por preço alto do Empresário 4;{'\n'}
-
-                    Você pediu selo verde ao o Fiscal 1 de Atlantis. {'\n'}
-
-                    Fiscal 1 de Atlantis negou seu pedido de selo verde.
-                </Text>
+            <Text style={styles.texto}>Histórico de plantação:</Text>
+            {player.log['plantacao'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)}
             </View>
-        </ScrollView>
     )
 }
 
@@ -110,16 +92,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.bgColorPrimary,
         width: Tela,
-        paddingTop: 45
+        paddingTop: StatusBar.currentHeight
     },
-    title:{
+    title: {
         fontSize: 20,
         fontFamily: 'Rubik_300Light',
-        marginTop:10
+        marginTop: 10
     },
     row: {
         flexDirection: 'row',
-        marginVertical:10
+        marginVertical: 10
     },
     image: {
         width: 62,
@@ -144,7 +126,7 @@ const styles = StyleSheet.create({
         height: 70,
         alignItems: 'center',
         marginLeft: 20,
-        marginTop:10
+        marginTop: 10
     },
     bloquinho: {
         backgroundColor: COLORS.bgColorSecondary,
@@ -208,69 +190,26 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         alignSelf: 'flex-start',
         marginLeft: '7%',
-        margin: '1%',
+        fontFamily: 'Rubik_300Light'
     }
 }
 )
-/*
-let value = require('../../assets/linhas/linha20.png')
-let value2 = require('../../assets/linhas/linha40.png')
-let value3 = require('../../assets/linhas/linha60.png')
-let value4 = require('../../assets/linhas/linha80.png')
-let value5 = require('../../assets/linhas/linha100.png')
-const [Image1, setImage] = useState(value)
-useEffect(() => {
-    function SelectImage() {
-        if (poluicao > 20) {
-            setImage(value2)
-        }
-        if (poluicao > 40) {
-            setImage(value3)
-        }
-        if (poluicao > 60) {
-            setImage(value4)
-        }
-        if (poluicao > 80) {
-            setImage(value5)
-        }
-        let imagens = ['../../assets/linhas/linha20.png', '../../assets/linhas/linha40.png', '../../assets/linhas/linha60.png', '../../assets/linhas/linha80.png', '../../assets/linhas/linha100.png']
-    }
-    SelectImage()
-})
-// let value= require(image)
-                <View style={styles.numeros}>
-                <Text>20%</Text>
-                <Text>40%</Text>
-                <Text>60%</Text>
-                <Text>80%</Text>
-                <Text>100%</Text>
-            </View>
-            <View style={styles.linha}>
-                <Image
-                    style={styles.linha}
-                    source={Image1}
-                />
-            </View>
-            <View style={styles.numeros}>
-                <Image style={styles.emoji} source={Feliz} />
-                <Image style={styles.emoji} source={Meio} />
-                <Image style={styles.emoji} source={Preocupado} />
-                <Image style={styles.emoji} source={Tenso} />
-                <Image style={styles.emoji} source={Corona} />
-            </View>
-                linha: {
-    width: '90%',
-    margin: '2%',
-    marginLeft: 9.5,
-    height: 14,
-},numeros: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: '3%',
-    width: "90%"
-},
-emoji: {
-    width: 35,
-    height: 35
-},
-*/
+{/* <Text style={styles.texto}>Saldos:</Text>
+<View style={styles.numeros}>
+    <View style={styles.bloquinho}>
+        <Text style={styles.numero}>300</Text>
+        <Text style={styles.inferior}>anterior</Text>
+    </View>
+    <View style={styles.bloquinho}>
+        <Text style={styles.numero}>0,0</Text>
+        <Text style={styles.inferior}>recebido</Text>
+    </View>
+    <View style={styles.bloquinho}>
+        <Text style={styles.numero}>10,5</Text>
+        <Text style={styles.inferior}>transferido</Text>
+    </View>
+    <View style={styles.bloquinho}>
+        <Text style={styles.numero}>{player.coin}</Text>
+        <Text style={styles.inferior}>atual</Text>
+    </View>
+</View> */}

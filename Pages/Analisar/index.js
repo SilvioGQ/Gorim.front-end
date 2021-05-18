@@ -6,14 +6,17 @@ import Produtos from '../../Components/Produtos';
 import ModalInfo from '../../Components/ModalInfo';
 
 import FunctionaliryService from '../../services/FunctionalityService';
+import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width;
 export default function Analizar() {
   const [modalText, setModalText] = useState('');
+  const [modalImage, setModalImage] = useState(false);
   const [products, setProducts] = useState([]);
-  const textInfo = 'Informações em tela: \nIcones e nomes de todos produtos que podem ser utilizados em parcelas de terras. \nPreços possíveis para serem negociados, que vai do baixo até o alto. \nE em vermelho o quanto de poluição que este produto irá causar.';
+  const textInfo = 'Informações em tela: \nIcones e nomes dos produtos que podem ser usados nas parcelas de terra';
 
   useEffect(() => {
+    setModalImage(true)
     FunctionaliryService.getProducts().then(setProducts);
   }, []);
 
@@ -26,7 +29,7 @@ export default function Analizar() {
         </TouchableOpacity>
       </View>
       {modalText !== '' && (
-        <ModalInfo onClick={() => setModalText('')} text={modalText} />
+        <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage ={modalImage}/>
       )}
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: 40
+    paddingTop: StatusBar.currentHeight
   },
   header: {
     fontFamily: 'Rubik_400Regular',

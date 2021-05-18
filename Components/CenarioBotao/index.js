@@ -8,8 +8,8 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenarios({ onClick }) {
   const [isSelected3, setSelection3] = useState(false);
   return (
-    <View style={{ height: 60, justifyContent: 'space-between', paddingVertical: 25, width: '95%', flexDirection: 'row', backgroundColor: COLORS.bgColorPrimary }}>
-      <TouchableOpacity onPress={onClick}>
+    <View style={{ height: 60, justifyContent: 'space-between', width: '95%', flexDirection: 'row', backgroundColor: COLORS.bgColorPrimary }}>
+      <TouchableOpacity onPress={onClick} style={{paddingVertical: 25}}>
         <View style={[styles.resumo]}>
           <Image
             style={styles.logo}
@@ -18,9 +18,11 @@ export default function Cenarios({ onClick }) {
           <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 12, paddingHorizontal: 5 }}> Resumo de cenário </Text>
         </View>
       </TouchableOpacity>
+      <TouchableOpacity onPress={onClick} style={{paddingVertical: 25}}>
       <View style={styles.resumo}>
         <Text style={styles.candidato}>Finalizar etapa</Text>
       </View>
+      </TouchableOpacity>
     </View>
   );
 }

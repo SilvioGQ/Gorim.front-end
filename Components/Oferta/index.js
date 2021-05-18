@@ -2,20 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import COLORS from '../../resources/colors';
-import Empresario from '../../assets/perfils/Fertilizante.png';
 import imagesProducts from '../../resources/imagesProducts';
 import imagesCoins from '../../resources/imagesCoins';
-
+import IMAGES from '../../resources/imagesIcons'
 import PlayerService from '../../services/PlayerService';
 import FunctionalityService from '../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
-export default function Oferta({ item, confirmOffer }) {
-  const [nameSeller, setNameSeller] = useState('');
+export default function Oferta({ item, confirmOffer, rejectOffer }) {
+  const [player, setPlayer] = useState({});
   const [coin, setCoin] = useState('');
 
   useEffect(() => {
-    PlayerService.getPlayer(item.idSeller).then(resp => setNameSeller(resp.name));
+    PlayerService.getPlayer(item.idSeller).then(setPlayer);
     FunctionalityService.getProduct(item.product).then(resp => {
       if(item.price == resp.cheap) setCoin('Barato');
       if(item.price == resp.medium) setCoin('Médio');
@@ -29,9 +28,9 @@ export default function Oferta({ item, confirmOffer }) {
         <View>
           <Image
             style={styles.person}
-            source={Empresario}
+            source={IMAGES[player.avatar]}
           />
-          <Text style={styles.text}>{nameSeller}</Text>
+          <Text style={styles.text}>{player.name}</Text>
         </View>
         <View>
           <Text style={styles.text}>Produto:</Text>
@@ -55,7 +54,7 @@ export default function Oferta({ item, confirmOffer }) {
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item)}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#BF0000' }]}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#BF0000' }]} onPress={() => rejectOffer(item)}>
           <Text style={styles.textbutton}>REJEITAR</Text>
         </TouchableOpacity>
       </View>

@@ -58,16 +58,16 @@ export default function SelecaoIcone({ navigation }) {
                     <Text style={styles.text}>Selecione um personagem</Text>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         <View style={{ marginHorizontal: 5, flexDirection: 'row' }}>
-                            <Quadrados onClick={() => selectAvatar('Agricultor1')} backgroundColor={bgQuadrados('Agricultor1')} icon='Agricultor1' />
-                            <Quadrados onClick={() => selectAvatar('Agricultor2')} backgroundColor={bgQuadrados('Agricultor2')} icon='Agricultor2' />
-                            <Quadrados onClick={() => selectAvatar('Agricultor3')} backgroundColor={bgQuadrados('Agricultor3')} icon='Agricultor3' />
-                            <Quadrados onClick={() => selectAvatar('Agricultor4')} backgroundColor={bgQuadrados('Agricultor4')} icon='Agricultor4' />
-                            <Quadrados onClick={() => selectAvatar('Empresário1')} backgroundColor={bgQuadrados('Empresário1')} icon='Empresário1' />
-                            <Quadrados onClick={() => selectAvatar('Empresário2')} backgroundColor={bgQuadrados('Empresário2')} icon='Empresário2' />
-                            <Quadrados onClick={() => selectAvatar('Empresário3')} backgroundColor={bgQuadrados('Empresário3')} icon='Empresário3' />
-                            <Quadrados onClick={() => selectAvatar('Empresário4')} backgroundColor={bgQuadrados('Empresário4')} icon='Empresário4' />
-                            <Quadrados onClick={() => selectAvatar('Empresário5')} backgroundColor={bgQuadrados('Empresário5')} icon='Empresário5' />
-                            <Quadrados onClick={() => selectAvatar('Empresário6')} backgroundColor={bgQuadrados('Empresário6')} icon='Empresário6' />
+                            <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />
+                            <Quadrados onClick={() => selectAvatar('Icon2')} backgroundColor={bgQuadrados('Icon2')} icon='Icon2' />
+                            <Quadrados onClick={() => selectAvatar('Icon3')} backgroundColor={bgQuadrados('Icon3')} icon='Icon3' />
+                            <Quadrados onClick={() => selectAvatar('Icon4')} backgroundColor={bgQuadrados('Icon4')} icon='Icon4' />
+                            <Quadrados onClick={() => selectAvatar('Icon5')} backgroundColor={bgQuadrados('Icon5')} icon='Icon5' />
+                            <Quadrados onClick={() => selectAvatar('Icon6')} backgroundColor={bgQuadrados('Icon6')} icon='Icon6' />
+                            <Quadrados onClick={() => selectAvatar('Icon7')} backgroundColor={bgQuadrados('Icon7')} icon='Icon7' />
+                            <Quadrados onClick={() => selectAvatar('Icon8')} backgroundColor={bgQuadrados('Icon8')} icon='Icon8' />
+                            <Quadrados onClick={() => selectAvatar('Icon9')} backgroundColor={bgQuadrados('Icon9')} icon='Icon9' />
+                            <Quadrados onClick={() => selectAvatar('Icon10')} backgroundColor={bgQuadrados('Icon10')} icon='Icon10' />
                         </View>
                     </ScrollView>
                 </View>

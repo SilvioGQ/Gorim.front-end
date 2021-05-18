@@ -1,30 +1,34 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 
 import Button from '../../../Components/Button';
-import ModalInfo from '../../../Components/ModalInfo';
 import COLORS from '../../../resources/colors';
 import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
-import { ScrollView } from 'react-native-gesture-handler';
 import FunctionalityService from '../../../services/FunctionalityService';
-
+import Conf from '../../../Components/Selo-Verde-Confirmacao';
 import IMAGES from '../../../resources/imagesProducts';
-
+import PlayerService from '../../../services/PlayerService'
 const Tela = Dimensions.get('screen').width;
 export default function Parcela({ navigation, route }) {
   const [player, setPlayer] = useState(route.params.player);
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
+  const [modalText2, setModalText2] = useState('');
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
   const [dropDown4, setDropDown4] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
-
+  const [updateStatus2, setUpdateStatus2] = useState(false);
+  const [updateStatus3, setUpdateStatus3] = useState(false);
+  const [updateStatus4, setUpdateStatus4] = useState(false);
   const selectItem = (name, type) => {
     setUpdateStatus(false);
+    setUpdateStatus2(false);
+    setUpdateStatus3(false);
+    setUpdateStatus4(false);
     for (let i = 0; i < 3; i++) {
 
       if (type == 'seed') parcelLand.seed = name;
@@ -41,18 +45,26 @@ export default function Parcela({ navigation, route }) {
   const toPlant = () => {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
+    if (!parcelLand.pesticide) parcelLand.pesticide='';
+    if (!parcelLand.machine) parcelLand.machine = '';
     parcelLand.planted = true;
     player.inventory.forEach(e => {
-      if (e.name == parcelLand.seed) e.amount = e.amount - 1;
+      if (e.name == parcelLand.seed) e.amount = e.amount - 1;;
       if (e.name == parcelLand.fertilizer) e.amount = e.amount - 1;
       if (e.name == parcelLand.pesticide) e.amount = e.amount - 1;
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
-
     FunctionalityService.toPlant(player);
+    let text = 'Na parcela ' + (parcelLand.id+1) + ' foi plantado ' + parcelLand.seed + ' e foi utilizado ' + parcelLand.fertilizer + ' ' + parcelLand.pesticide + ' ' + parcelLand.machine
+    PlayerService.addPlantation(text, player)
     navigation.navigate('ControleParcelas', { message: 'Seu plantio foi iniciado' });
   }
-
+  const toPulverize = () => {
+    setModalText('Tem certeza que deseja gastar 400$ para compra do Pulverizador?');
+  }
+  const stamp = () => {
+    setModalText('Tem certeza de que deseja solicitar o selo verde ao fiscal?');
+  }
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -60,6 +72,18 @@ export default function Parcela({ navigation, route }) {
           <Image style={styles.parcel} source={Parcel} />
           <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
         </View>
+        {modalText2 !== '' && (
+          <Conf text={modalText2} confirm={() => setModalText2('')} denied={() => setModalText2('')} />
+        )}
+        {parcelLand.planted && (
+          <TouchableOpacity
+            style={styles.button2}
+            onPress={stamp}
+          >
+            <Text style={styles.buttonText}>PEDIR SELO VERDE</Text>
+            <Image source={require('../../../assets/selos/selo.png')} style={styles.pulverize} />
+          </TouchableOpacity>
+        )}
         <Text style={styles.title}>Nesta parcela:</Text>
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown(!dropDown) }}>
           <View style={styles.row}>
@@ -72,7 +96,7 @@ export default function Parcela({ navigation, route }) {
               </View>
             </View>
             {/* onPress={() => setpp(true)} */}
-            {parcelLand.seed && (
+            {(parcelLand.seed && !parcelLand.planted) && (
               <TouchableOpacity style={{ position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.seed = null }}>
                 <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
@@ -87,11 +111,11 @@ export default function Parcela({ navigation, route }) {
             <View style={styles.rowX}>
               <View>
                 <Text>Fertilizantes</Text>
-                <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer : '-'}</Text>
+                <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer.replace(/Fertilizante /, '') : '-'}</Text>
               </View>
             </View>
-            {parcelLand.fertilizer && (
-              <TouchableOpacity style={{ display: parcelLand.fertilizer ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.fertilizer = null }}>
+            {(parcelLand.fertilizer && !parcelLand.planted) && (
+              <TouchableOpacity style={{ display: parcelLand.fertilizer ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus2(true); parcelLand.fertilizer = null }}>
                 <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
             )}
@@ -105,11 +129,11 @@ export default function Parcela({ navigation, route }) {
             <View style={styles.rowX}>
               <View>
                 <Text>Agrotóxicos</Text>
-                <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide : '-'}</Text>
+                <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide.replace(/Agrotóxico /, '') : '-'}</Text>
               </View>
             </View>
-            {parcelLand.pesticide && (
-              <TouchableOpacity style={{ display: parcelLand.pesticide ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.pesticide = null }}>
+            {(parcelLand.pesticide && !parcelLand.planted) && (
+              <TouchableOpacity style={{ display: parcelLand.pesticide ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus3(true); parcelLand.pesticide = null }}>
                 <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
             )}
@@ -126,14 +150,20 @@ export default function Parcela({ navigation, route }) {
                 <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
               </View>
             </View>
-            {parcelLand.machine && (
-              <TouchableOpacity style={{ display: parcelLand.machine ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.machine = null }}>
+            {(parcelLand.machine && !parcelLand.planted) && (
+              <TouchableOpacity style={{ display: parcelLand.machine ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus4(true); parcelLand.machine = null }}>
                 <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
             )}
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={toPulverize}>
+          <Text style={styles.buttonText}>PULVERIZAR</Text>
+          <Image source={require('../../../assets/agricultorIcones/Pulverize.png')} style={styles.pulverize} />
+        </TouchableOpacity>
         {!parcelLand.planted && (
           <Button onClick={toPlant} name='INICIAR PLANTIO' />
         )}
@@ -141,7 +171,7 @@ export default function Parcela({ navigation, route }) {
           <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>
         )}
         {modalText !== '' && (
-          <ModalInfo onClick={() => setModalText('')} text={modalText} />
+          <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />
         )}
       </ScrollView>
     </View>
@@ -152,7 +182,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingTop: 25,
+    paddingTop: StatusBar.currentHeight,
     backgroundColor: COLORS.bgColorPrimary,
   },
   parcel: {
@@ -192,5 +222,57 @@ const styles = StyleSheet.create({
   bold: {
     fontSize: 14,
     fontFamily: 'Rubik_700Bold',
-  }
+  },
+  button: {
+    flexDirection: 'row',
+    height: 45,
+    margin: '2%',
+    marginLeft: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.warningButton,
+    borderRadius: 25,
+    width: '80%',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 4.46,
+    elevation: 2,
+  },
+
+  buttonText: {
+    textTransform: 'uppercase',
+    color: COLORS.textWhite,
+    fontSize: 15,
+    fontFamily: 'Rubik_400Regular',
+    marginLeft: 15,
+    textAlign: 'center'
+  },
+  pulverize: {
+    marginLeft: 15,
+    width: 30,
+    height: 30
+  },
+  button2: {
+    flexDirection: 'row',
+    height: 45,
+    margin: '2%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.successButton,
+    borderRadius: 25,
+    width: '65%',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 4.46,
+    elevation: 2,
+  },
 });

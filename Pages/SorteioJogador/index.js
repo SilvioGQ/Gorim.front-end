@@ -1,26 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 import COLORS from '../../resources/colors';
+import PlayerService from '../../services/PlayerService';
 
 export default function SorteioJogador({ navigation, route }) {
   const { player } = route.params;
-  const [ timer, setTimer ] = useState(true);
-  
+  const { players } = route.params;
   useEffect(() => {
-
-    if(timer) { 
-      setTimeout(() => setTimer(false), 2000);
-    } else {
-      navigation.reset({ routes: [{ name: 'MenuJogador', params: { player } }] });
+    if (player.host) {
+      PlayerService.typesRaffle(player.room,players);
     }
-  }, [timer]);
+
+    setTimeout(() => {
+      navigation.reset({
+        routes: [{
+          name: 'SelecaoIcone',
+          params: { id: player.id }
+        }]
+      })
+    }, 1000 * 2);
+  }, [])
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Gorim</Text>
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('../../assets/Logo/Dados.png')}  />
+        <Image style={styles.logo} source={require('../../assets/Logo/Dados.png')} />
         <Text style={styles.loading}>Sorteando Personagens...</Text>
       </View>
     </View>
@@ -34,7 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: 10,
-    paddingTop:45
+    paddingTop: 45
   },
   header: {
     fontFamily: 'Rubik_400Regular',

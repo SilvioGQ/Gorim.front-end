@@ -1,10 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-
 import COLORS from '../../resources/colors';
-import IMAGES from '../../resources/imagesIcons';
-
-export default function Quadrados({ player, onClick, backgroundColor, icon }) {
+import IMAGES from '../../resources/imagesIcons'
+export default function Quadrados({ player = null, onClick, backgroundColor, icon=null }) {
   return (
     <TouchableOpacity onPress={onClick}>
       <View style={[styles.colunm, { backgroundColor: backgroundColor }]} >

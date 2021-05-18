@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { StatusBar } from 'react-native';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import COLORS from '../../../resources/colors';
@@ -31,7 +32,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop:StatusBar.currentHeight
   },
   imageParcel: {
     height: 105,

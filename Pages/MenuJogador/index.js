@@ -1,39 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import COLORS from '../../resources/colors';
-
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import PlayerService from '../../services/PlayerService';
-import Conf from '../../Components/Selo-Verde-Confirmacao';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
 
-const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
-  const [player, setPlayer] = useState({});
-
+  const [player, setPlayer] = useState(route.params.player);
   useEffect(() => {
-    if (route.params.player) {
-      setPlayer(route.params.player);
-    } else {
-      PlayerService.getPlayer(route.params.id).then(setPlayer);
-    }
-  }, []);
-
+    PlayerService.getPlayer(player.id).then(setPlayer);
+  }, [player])
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
+      <Header player={player} />
       {player.type === 'Agricultor' && (
         <>
-          <Header player={player} image={require('../../assets/perfils/Agricultor.png')} />
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })} style={{ width: '100%' }}>
             <View style={styles.row2}>
-              <Image style={{ width: 40, height: 40 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
-              <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, alignSelf: 'center' }}>Parcelas de terra</Text>
+              <Image style={{ width: 35, height: 35 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
+              <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, alignSelf: 'center', marginLeft: 10 }}>Parcelas de terra</Text>
             </View>
           </TouchableOpacity>
           <View style={styles.row}>
@@ -41,15 +32,13 @@ export default function MenuJogador({ navigation, route }) {
               <Item type='Menu' onClick={() => navigation.navigate('Proposta', { player })} name='Checar propostas' />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos' />
-              <Item type='Menu' onClick={() => setisVisible(true)} name='Pedir selo verde' backgroundColor='#FF7F7E' />
             </View>
-            <Conf isVisible={isVisible} Conf={() => setisVisible(false)} />
           </View>
         </>
       )}
       {player.type === 'Empresário' && (
         <>
-          <Header player={player} image={require('../../assets/perfils/Semente.png')} />
+
           <View style={styles.row}>
             {player.speciality === 'Fertilizante' && (
               <View style={styles.items}>
@@ -69,7 +58,7 @@ export default function MenuJogador({ navigation, route }) {
               <View style={styles.items}>
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'seed', name: 'Soja' })} name='Soja' />
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'seed', name: 'Arroz' })} name='Arroz' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'seed', name: 'Hortaliças' })} name='Hortaliças' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'seed', name: 'Hortaliça' })} name='Hortaliça' />
               </View>
             )}
             {player.speciality === 'Maquina' && (
@@ -79,11 +68,11 @@ export default function MenuJogador({ navigation, route }) {
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'machine', name: 'Pacote 3' })} name='Pacote 3' />
               </View>
             )}
-            {player.speciality === 'Maquina' && (
+            {/* {player.speciality === 'Maquina' && (
               <>
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Pulverizador' })} name='Pulverizador' />
               </>
-            )}
+            )} */}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
           </View>
         </>
@@ -100,7 +89,7 @@ export default function MenuJogador({ navigation, route }) {
           </View>
         </>
       )}
-      <Cenarios onClick={() => navigation.navigate('Cenario')} />
+      <Cenarios onClick={() => navigation.navigate('Cenario', { player })} />
     </View>
   );
 }
@@ -110,15 +99,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    width: Tela,
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
     alignSelf: 'flex-start',
-    justifyContent: 'flex-start',
     marginHorizontal: 20,
-    width: Tela,
+    width: '100%',
     flexWrap: 'wrap'
   },
   row2: {
@@ -126,7 +112,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: '6%',
+    marginVertical: 20,
     backgroundColor: COLORS.bgColorSecondary,
     width: '88%',
     height: 50,
@@ -144,7 +130,6 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     flexWrap: 'wrap'
   },
   bar: {
@@ -152,11 +137,11 @@ const styles = StyleSheet.create({
     width: '89%',
     borderRadius: 20,
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 15
   },
   textBar: {
     fontFamily: 'Rubik_400Regular',
     fontSize: 36,
-    color: 'white'
+    color: '#fff'
   }
 });

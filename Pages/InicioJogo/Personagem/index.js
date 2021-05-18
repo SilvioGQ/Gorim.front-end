@@ -4,7 +4,6 @@ import { TextInput } from 'react-native-paper';
 import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
 
-import agricultorFundo from '../../../assets/perfils/Agricultor.png';
 import bag from '../../../assets/simbolos/bag.png';
 import mapsAndLocation from '../../../assets/simbolos/maps-and-location.png';
 import name from '../../../assets/simbolos/name.png';
@@ -22,7 +21,7 @@ export default function Frame4({ navigation }) {
           <Text style={styles.subheader}>Sobre você</Text>
           <Image
             style={styles.logo2}
-            source={agricultorFundo}
+            source={dislike}
           />
         </View>
         <View style={styles.row}>

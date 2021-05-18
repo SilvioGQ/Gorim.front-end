@@ -4,8 +4,8 @@ import COLORS from '../../../resources/colors';
 import Handshake from '../../../assets/Logo/handshake.png';
 
 export default function Insumo({ route, navigation }) {
-  const { texto } = route.params;
 
+  const { texto } = route.params;
   return (
     <View style={styles.container}>
       <Text style={styles.texto}> {JSON.stringify(texto)} </Text>
