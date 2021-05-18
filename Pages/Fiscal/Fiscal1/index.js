@@ -5,7 +5,7 @@ import Cenarios from '../../../Components/CenarioBotao';
 import Coin from '../../../Components/Coin';
 
 import Selo from '../../../assets/moedas/Selo.png';
-import Agricultor2 from '../../../assets/perfils/agricultor/Agricultor2.png';
+import Agricultor2 from '../../../assets/perfils/Agricultor2.png';
 import MenoSelo from '../../../assets/selos/menoSelo.png';
 import Multa from '../../../assets/selos/multa.png';
 

@@ -29,7 +29,7 @@ export default function MenuJogador({ navigation, route }) {
       <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
       {player.type === 'Agricultor' && (
         <>
-          <Header player={player} image={require('../../assets/perfils/agricultor/Agricultor.png')} />
+          <Header player={player} image={require('../../assets/perfils/Agricultor.png')} />
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })} style={{ width: '100%' }}>
             <View style={styles.row2}>
               <Image style={{ width: 40, height: 40 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
@@ -49,7 +49,7 @@ export default function MenuJogador({ navigation, route }) {
       )}
       {player.type === 'Empresário' && (
         <>
-          <Header player={player} image={require('../../assets/perfils/empresariox1/Semente.png')} />
+          <Header player={player} image={require('../../assets/perfils/Semente.png')} />
           <View style={styles.row}>
             {player.speciality === 'Fertilizante' && (
               <View style={styles.items}>

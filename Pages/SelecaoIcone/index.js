@@ -1,77 +1,81 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { socketContext } from "../../context/socket";
 import { playerContext } from "../../context/player";
 
 import COLORS from '../../resources/colors';
 import Quadrados from '../../Components/Quadrado'
-import PlayerService from '../../services/PlayerService';
-import ModalInfo from '../../Components/ModalInfo';
+// import ModalInfo from '../../Components/ModalInfo';
 import Button from '../../Components/Button';
-import { StatusBar } from 'react-native';
 
 export default function SelecaoIcone({ navigation }) {
 
-    const [modalText, setModalText] = useState('');
-    const [icon, seticon] = useState('');
+    // const [modalText, setModalText] = useState('');
+    const [selectIcon, setSelectIcon] = useState();
+    const [avatars, setAvatars] = useState([]);
     const socket = useContext(socketContext);
     const player = useContext(playerContext);
 
-    const [selectIcon, setselectIcon] = useState();
     const startGame = () => {
-        if (!selectIcon) {
-            setModalText('Selecione uma imagem!');
-        } else {
-            PlayerService.setAvatar(icon, player.id)
-            player.avatar=icon
-            navigation.reset({ routes: [{ name: 'MenuJogador', params: { player } }] })
-        }
+        // if (!selectIcon) {
+        //     setModalText('Selecione uma imagem!');
+        // } else {
+        // PlayerService.setAvatar(icon, player.id)
+        // player.avatar=icon
+        navigation.reset({ routes: [{ name: 'MenuJogador' }] })
+        // }
+    }
+
+    const selectAvatar = index => {
+        socket.emit('selectAvatar', index, avatars => {
+            setAvatars(avatars);
+            setSelectIcon(index);
+            player.setAvatar(index);
+        });
+    }
+
+    const bgQuadrados = index => {
+        let color = '#fff';
+
+        if (avatars.indexOf(index) != -1) color = 'red';
+        if (selectIcon == index) color = '#8ACF3A';
+
+        return color;
     }
     // useEffect(() => {
-        // if (route.params.player) {
-        //     setPlayer(route.params.player);
-        // } else {
-        // }
+    // if (route.params.player) {
+    //     setPlayer(route.params.player);
+    // } else {
+    // }
     //     PlayerService.getPlayer(route.params.id).then(setPlayer);
     // }, []);
     return (
         <View style={styles.container}>
             <ScrollView>
                 <Text style={styles.title}>Bem vindo ao Gorim!</Text>
-                {player.type === 'Agricultor' && (
-                    <View style={{ marginHorizontal: 15, marginVertical: 20 }}>
-                        <Text style={styles.subtitle}>Selecionamos para você o personagem agrucultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição.</Text>
-                        <Text style={styles.text}>Selecione um personagem</Text>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <View style={{marginHorizontal:5, flexDirection:'row'}}>
-                            <Quadrados onClick={() => { seticon('Agricultor1'); setselectIcon(1) }} backgroundColor={selectIcon == 1 ? '#8ACF3A' : '#fff'} icon='Agricultor1' />
-                            <Quadrados onClick={() => { seticon('Agricultor2'); setselectIcon(2) }} backgroundColor={selectIcon == 2 ? '#8ACF3A' : '#fff'} icon='Agricultor2' />
-                            <Quadrados onClick={() => { seticon('Agricultor3'); setselectIcon(3) }} backgroundColor={selectIcon == 3 ? '#8ACF3A' : '#fff'} icon='Agricultor3' />
-                            <Quadrados onClick={() => { seticon('Agricultor4'); setselectIcon(4) }} backgroundColor={selectIcon == 4 ? '#8ACF3A' : '#fff'} icon='Agricultor4' />
-                            </View>
-                        </ScrollView>
-                    </View>
-                )}
-                {player.type === 'Empresário' && (
-                    <View style={{ marginHorizontal: 15, marginVertical: 20 }}>
-                        <Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por neogociar as vendas dos seus produtos para os agricultores, onde você tem que tomar muito cuidado para não causar muita poluição.</Text>
-                        <Text style={styles.text}>Selecione um personagem</Text>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <Quadrados onClick={() => { seticon('Empresário1'); setselectIcon(1) }} backgroundColor={selectIcon == 1 ? '#8ACF3A' : '#fff'} icon='Empresário1' />
-                            <Quadrados onClick={() => { seticon('Empresário2'); setselectIcon(2) }} backgroundColor={selectIcon == 2 ? '#8ACF3A' : '#fff'} icon='Empresário2' />
-                            <Quadrados onClick={() => { seticon('Empresário3'); setselectIcon(3) }} backgroundColor={selectIcon == 3 ? '#8ACF3A' : '#fff'} icon='Empresário3' />
-                            <Quadrados onClick={() => { seticon('Empresário4'); setselectIcon(4) }} backgroundColor={selectIcon == 4 ? '#8ACF3A' : '#fff'} icon='Empresário4' />
-                        </ScrollView>
-                    </View>
-
-                )}
-                <Button
-                    onClick={startGame}
-                    name='começar' />
+                <View style={{ marginHorizontal: 15, marginVertical: 20 }}>
+                    <Text style={styles.subtitle}>Selecionamos para você o personagem agrucultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição.</Text>
+                    <Text style={styles.text}>Selecione um personagem</Text>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        <View style={{ marginHorizontal: 5, flexDirection: 'row' }}>
+                            <Quadrados onClick={() => selectAvatar('Agricultor1')} backgroundColor={bgQuadrados('Agricultor1')} icon='Agricultor1' />
+                            <Quadrados onClick={() => selectAvatar('Agricultor2')} backgroundColor={bgQuadrados('Agricultor2')} icon='Agricultor2' />
+                            <Quadrados onClick={() => selectAvatar('Agricultor3')} backgroundColor={bgQuadrados('Agricultor3')} icon='Agricultor3' />
+                            <Quadrados onClick={() => selectAvatar('Agricultor4')} backgroundColor={bgQuadrados('Agricultor4')} icon='Agricultor4' />
+                            <Quadrados onClick={() => selectAvatar('Empresário1')} backgroundColor={bgQuadrados('Empresário1')} icon='Empresário1' />
+                            <Quadrados onClick={() => selectAvatar('Empresário2')} backgroundColor={bgQuadrados('Empresário2')} icon='Empresário2' />
+                            <Quadrados onClick={() => selectAvatar('Empresário3')} backgroundColor={bgQuadrados('Empresário3')} icon='Empresário3' />
+                            <Quadrados onClick={() => selectAvatar('Empresário4')} backgroundColor={bgQuadrados('Empresário4')} icon='Empresário4' />
+                            <Quadrados onClick={() => selectAvatar('Empresário5')} backgroundColor={bgQuadrados('Empresário5')} icon='Empresário5' />
+                            <Quadrados onClick={() => selectAvatar('Empresário6')} backgroundColor={bgQuadrados('Empresário6')} icon='Empresário6' />
+                        </View>
+                    </ScrollView>
+                </View>
+                <Button onClick={startGame} name='começar' />
             </ScrollView>
-            {modalText !== '' && (
+            {/* {modalText !== '' && (
                 <ModalInfo onClick={() => setModalText('')} text={modalText} />
-            )}
+            )} */}
         </View>
     );
 }

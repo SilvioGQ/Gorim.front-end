@@ -4,7 +4,7 @@ import { TextInput } from 'react-native-paper';
 import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
 
-import agricultorFundo from '../../../assets/perfils/agricultor/agricultorFundo.png';
+import agricultorFundo from '../../../assets/perfils/Agricultor.png';
 import bag from '../../../assets/simbolos/bag.png';
 import mapsAndLocation from '../../../assets/simbolos/maps-and-location.png';
 import name from '../../../assets/simbolos/name.png';

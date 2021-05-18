@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import COLORS from '../../resources/colors';
-import Empresario from '../../assets/perfils/empresariox1/Fertilizante.png';
+import Empresario from '../../assets/perfils/Fertilizante.png';
 import imagesProducts from '../../resources/imagesProducts';
 import imagesCoins from '../../resources/imagesCoins';
 

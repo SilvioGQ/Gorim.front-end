@@ -1,15 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
-// import io from 'socket.io-client';
 import { socketContext } from "../../context/socket";
 import { playerContext } from "../../context/player";
 
 import COLORS from '../../resources/colors';
 import ModalInfo from '../../Components/ModalInfo';
 import { ScrollView } from 'react-native-gesture-handler';
-
-// const socket = io('https://gorim-backend.herokuapp.com/');
-// const socket = io('http://localhost:3000/');
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
@@ -45,7 +41,7 @@ export default function CriarPartida({ navigation }) {
       player.setName(resp.name);
       player.setRoom(resp.room);
       
-      navigation.reset({ routes: { name: 'Lobby' } });
+      navigation.reset({ routes: [{ name: 'Lobby' }] });
     });
   }
 

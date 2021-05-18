@@ -2,14 +2,14 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import COLORS from '../../resources/colors';
-import Agricultor2 from '../../assets/perfils/agricultor/Agricultor2.png';
+import IMAGES from '../../resources/imagesIcons';
 
-export default function Quadrados({ player, onClick, backgroundColor }) {
+export default function Quadrados({ player, onClick, backgroundColor, icon }) {
   return (
     <TouchableOpacity onPress={onClick}>
       <View style={[styles.colunm, { backgroundColor: backgroundColor }]} >
-        <Image style={styles.icone} source={Agricultor2} />
-        <Text style={styles.textinhos}>{player.name}</Text>
+        <Image style={styles.icone} source={player ? IMAGES[player.avatar] : IMAGES[icon]} />
+        <Text style={styles.textinhos}>{player ? player.name : ''}</Text>
       </View>
     </TouchableOpacity>
   );
