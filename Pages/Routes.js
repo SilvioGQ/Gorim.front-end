@@ -137,6 +137,7 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="Lobby" component={Lobby} options={{
+        headerLeft: () => null,
         headerTransparent: true,
         headerTitle: '',
       }} />

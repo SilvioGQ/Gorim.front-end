@@ -27,7 +27,7 @@ export default function CriarPartida({ navigation }) {
       player.setRoom(resp.room);
 
       console.log(resp)
-      navigation.reset({ routes: [{ name: 'Lobby' }] });
+      navigation.navigate('Lobby');
     });
   }
 
@@ -41,7 +41,7 @@ export default function CriarPartida({ navigation }) {
       player.setName(resp.name);
       player.setRoom(resp.room);
       
-      navigation.reset({ routes: [{ name: 'Lobby' }] });
+      navigation.navigate('Lobby');
     });
   }
 
