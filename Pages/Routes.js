@@ -142,6 +142,7 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="SelecaoIcone" component={SelecaoIcone} options={{
+        headerLeft: () => null,
         headerTransparent: true,
         headerTitle: '',
       }} />

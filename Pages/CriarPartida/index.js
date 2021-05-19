@@ -111,15 +111,10 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    // alignSelf: 'space-between',
-    // alignItems: 'space-between',
-    // justifyContent: 'space-between',
-    // margin: '4%',
   },
   header: {
     fontFamily: 'Rubik_300Light',
     fontSize: 24,
-    // alignSelf: 'center',
     marginVertical: 10,
     marginTop: 30
   },
@@ -135,7 +130,6 @@ const styles = StyleSheet.create({
   button2: {
     height: 45,
     borderRadius: 20,
-    // margin: '2%',
     alignItems: 'center',
     width: 175,
     borderWidth: 1,

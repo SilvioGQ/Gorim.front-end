@@ -5,50 +5,35 @@ import { playerContext } from "../../context/player";
 
 import COLORS from '../../resources/colors';
 import Quadrados from '../../Components/Quadrado'
-// import ModalInfo from '../../Components/ModalInfo';
 import Button from '../../Components/Button';
 
 export default function SelecaoIcone({ navigation }) {
 
-    // const [modalText, setModalText] = useState('');
-    const [selectIcon, setSelectIcon] = useState();
+    const [isLoading, setIsLoading] = useState('FETCH_DATA');
     const [avatars, setAvatars] = useState([]);
     const socket = useContext(socketContext);
     const player = useContext(playerContext);
 
-    const startGame = () => {
-        // if (!selectIcon) {
-        //     setModalText('Selecione uma imagem!');
-        // } else {
-        // PlayerService.setAvatar(icon, player.id)
-        // player.avatar=icon
-        navigation.reset({ routes: [{ name: 'MenuJogador' }] })
-        // }
-    }
-
     const selectAvatar = index => {
-        socket.emit('selectAvatar', index, avatars => {
-            setAvatars(avatars);
-            setSelectIcon(index);
-            player.setAvatar(index);
-        });
+        socket.emit('selectAvatar', index, () => player.setAvatar(index));
     }
 
     const bgQuadrados = index => {
         let color = '#fff';
 
-        if (avatars.indexOf(index) != -1) color = 'red';
-        if (selectIcon == index) color = '#8ACF3A';
+        avatars.filter(a => {
+            if (a == index && player.getAvatar() != index) color = 'red';
+        });
+        if (player.getAvatar() == index) color = '#8ACF3A';
 
         return color;
     }
-    // useEffect(() => {
-    // if (route.params.player) {
-    //     setPlayer(route.params.player);
-    // } else {
-    // }
-    //     PlayerService.getPlayer(route.params.id).then(setPlayer);
-    // }, []);
+
+    useEffect(() => {
+        if (isLoading == 'FETCH_DATA') socket.emit('getAvatars', a => setAvatars(a));
+        if (isLoading == 'NEXT_PAGE') navigation.navigate('MenuJogador');
+    }, [avatars]);
+    
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -71,11 +56,8 @@ export default function SelecaoIcone({ navigation }) {
                         </View>
                     </ScrollView>
                 </View>
-                <Button onClick={startGame} name='começar' />
+                { player.getHost() && <Button onClick={() => setIsLoading('NEXT_PAGE')} name='começar' /> }
             </ScrollView>
-            {/* {modalText !== '' && (
-                <ModalInfo onClick={() => setModalText('')} text={modalText} />
-            )} */}
         </View>
     );
 }

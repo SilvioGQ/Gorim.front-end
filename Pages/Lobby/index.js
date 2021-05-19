@@ -19,7 +19,7 @@ export default function Lobby({ navigation }) {
   useEffect(() => {
     if (isLoading === 'FECTH_DATA') socket.emit('getPlayers', r => setRoom(r));
     if (isLoading === 'BACK_PAGE') navigation.goBack();
-    if (isLoading === 'NEXT_PAGE') navigation.reset({ routes: [{ name: 'SelecaoIcone' }] });
+    if (isLoading === 'NEXT_PAGE') navigation.navigate('SelecaoIcone');
     if (room.inGame) setIsLoading('NEXT_PAGE');
 
     if (room.hasOwnProperty('sockets')) {
@@ -31,7 +31,7 @@ export default function Lobby({ navigation }) {
 
   }, [room]);
 
-  const deletePlayer = () => {
+  const removeFromRoom = () => {
     setModalVisible(!modalVisible);
     socket.emit('removeFromRoom', () => setIsLoading('BACK_PAGE'));
   }
@@ -58,7 +58,7 @@ export default function Lobby({ navigation }) {
         />
       }
       { player.getHost() && <Button name='começar' onClick={startGame} /> }
-      { modalVisible && <ModalConfirmExit deletePlayer={deletePlayer} onClick={() => setModalVisible(!modalVisible)} /> }
+      { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} /> }
     </View>
   );
 }
