@@ -5,7 +5,7 @@ class Player {
     
     setId(id) { this.id = id; }
     setName(name) { this.name = name; }
-    setHost() { this.host = !this.host; }
+    setHost(host = false) { this.host = host; }
     setRoom(room) { this.room = room; }
     setAvatar(avatar) { this.avatar = avatar; }
 

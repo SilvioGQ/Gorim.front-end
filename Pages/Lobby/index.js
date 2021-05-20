@@ -10,35 +10,42 @@ import ModalConfirmExit from '../../Components/ModalConfirmExit';
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation }) {
 
-  const [ isLoading, setIsLoading ] = useState('FECTH_DATA');
-  const [ modalVisible, setModalVisible ] = useState(false);
-  const [ room, setRoom ] = useState({});
+  const [modalVisible, setModalVisible] = useState(false);
+  const [room, setRoom] = useState({});
   const player = useContext(playerContext);
   const socket = useContext(socketContext);
 
-  useEffect(() => {
-    if (isLoading === 'FECTH_DATA') socket.emit('getPlayers', r => setRoom(r));
-    if (isLoading === 'BACK_PAGE') navigation.goBack();
-    if (isLoading === 'NEXT_PAGE') navigation.navigate('SelecaoIcone');
-    if (room.inGame) setIsLoading('NEXT_PAGE');
+  socket.on('PlayersFromRoom', r => {
+    setRoom(r);
 
     if (room.hasOwnProperty('sockets')) {
 
       room.sockets.filter(p => {
-        if (player.getId() === p.id && player.getHost() != p.host) player.setHost();
+        if (player.getId() === p.id && player.getHost() != p.host) player.setHost(p.host);
       });
     }
+  });
 
-  }, [room]);
+  socket.on('onReady', () => navigation.navigate('SelecaoIcone'));
+
+  useEffect(() => {
+    let obj = {
+      sockets: [
+        {
+          id: player.getId(),
+          name: player.getName()
+        }
+      ]
+    };
+    setRoom(obj);
+  }, []);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
-    socket.emit('removeFromRoom', () => setIsLoading('BACK_PAGE'));
+    socket.emit('removeFromRoom', () => navigation.goBack());
   }
 
-  const startGame = () => {
-    socket.emit('startGame');
-  }
+  const startGame = () => socket.emit('startGame');
 
   return (
     <View style={styles.container}>
@@ -54,11 +61,11 @@ export default function Lobby({ navigation }) {
         <FlatList
           data={room ? room.sockets : []}
           keyExtractor={(item, index) => item ? item.id.toString() : index.toString()}
-          renderItem={({ item }) => {if(item) return <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}}
+          renderItem={({ item }) => { if (item) return <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View> }}
         />
       }
-      { player.getHost() && <Button name='começar' onClick={startGame} /> }
-      { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} /> }
+      { player.getHost() && <Button name='começar' onClick={startGame} />}
+      { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
     </View>
   );
 }

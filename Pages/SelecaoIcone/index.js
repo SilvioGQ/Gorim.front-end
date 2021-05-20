@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { socketContext } from "../../context/socket";
 import { playerContext } from "../../context/player";
@@ -9,10 +9,11 @@ import Button from '../../Components/Button';
 
 export default function SelecaoIcone({ navigation }) {
 
-    const [isLoading, setIsLoading] = useState('FETCH_DATA');
     const [avatars, setAvatars] = useState([]);
     const socket = useContext(socketContext);
     const player = useContext(playerContext);
+
+    socket.on('newSelection', a => setAvatars(a));
 
     const selectAvatar = index => {
         socket.emit('selectAvatar', index, () => player.setAvatar(index));
@@ -28,11 +29,6 @@ export default function SelecaoIcone({ navigation }) {
 
         return color;
     }
-
-    useEffect(() => {
-        if (isLoading == 'FETCH_DATA') socket.emit('getAvatars', a => setAvatars(a));
-        if (isLoading == 'NEXT_PAGE') navigation.navigate('MenuJogador');
-    }, [avatars]);
     
     return (
         <View style={styles.container}>
@@ -56,7 +52,7 @@ export default function SelecaoIcone({ navigation }) {
                         </View>
                     </ScrollView>
                 </View>
-                { player.getHost() && <Button onClick={() => setIsLoading('NEXT_PAGE')} name='começar' /> }
+                { player.getHost() && <Button onClick={() => navigation.navigate('MenuJogador')} name='começar' /> }
             </ScrollView>
         </View>
     );

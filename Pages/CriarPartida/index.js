@@ -22,7 +22,7 @@ export default function CriarPartida({ navigation }) {
 
     socket.emit('addToRoom', name, resp => {
       player.setId(resp.id);
-      player.setHost();
+      player.setHost(true);
       player.setName(resp.name);
       player.setRoom(resp.room);
 
@@ -38,6 +38,7 @@ export default function CriarPartida({ navigation }) {
     socket.emit('joinToRoom', name, room, resp => {
       if (typeof resp !== 'object') return setModalText(resp);
       player.setId(resp.id);
+      player.setHost();
       player.setName(resp.name);
       player.setRoom(resp.room);
       
