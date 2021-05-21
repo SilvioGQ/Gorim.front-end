@@ -15,15 +15,9 @@ export default function Lobby({ navigation }) {
   const player = useContext(playerContext);
   const socket = useContext(socketContext);
 
-  socket.on('PlayersFromRoom', r => {
-    setRoom(r);
-
-    if (room.hasOwnProperty('sockets')) {
-
-      room.sockets.filter(p => {
-        if (player.getId() === p.id && player.getHost() != p.host) player.setHost(p.host); console.log(player.getHost(), p.host);
-      });
-    }
+  socket.on('PlayersFromRoom', r => setRoom(r));
+  socket.on('changeHost', id => {
+    if (id == player.getId()) player.setHost(true);
   });
 
   socket.on('onReady', p => {
