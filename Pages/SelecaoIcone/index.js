@@ -35,7 +35,7 @@ export default function SelecaoIcone({ navigation }) {
             <ScrollView>
                 <Text style={styles.title}>Bem vindo ao Gorim!</Text>
                 <View style={{ marginHorizontal: 15, marginVertical: 20 }}>
-                    <Text style={styles.subtitle}>Selecionamos para você o personagem agrucultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição.</Text>
+                    <Text style={styles.subtitle}>{player.getType()}Selecionamos para você o personagem agrucultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição.</Text>
                     <Text style={styles.text}>Selecione um personagem</Text>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         <View style={{ marginHorizontal: 5, flexDirection: 'row' }}>
@@ -52,6 +52,7 @@ export default function SelecaoIcone({ navigation }) {
                         </View>
                     </ScrollView>
                 </View>
+                <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/</Text>
                 { player.getHost() && <Button onClick={() => navigation.navigate('MenuJogador')} name='começar' /> }
             </ScrollView>
         </View>
