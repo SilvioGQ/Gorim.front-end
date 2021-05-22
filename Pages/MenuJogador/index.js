@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { socketContext } from "../../context/socket";
 import { playerContext } from "../../context/player";
@@ -6,26 +6,22 @@ import { playerContext } from "../../context/player";
 import COLORS from '../../resources/colors';
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
-// import PlayerService from '../../services/PlayerService';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
 
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation, route }) {
+
   const [isVisible, setisVisible] = useState(false);
-  // const [player, setPlayer] = useState(route.params.player);
   const player = useContext(playerContext);
   const socket = useContext(socketContext);
 
-  // useEffect(() => {
-  //   PlayerService.getPlayer(player.id).then(setPlayer);
-  // }, [player])
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
       <Header player={player} />
-      {player.type === 'Agricultor' && (
+      {player.getType() === 'Agricultor' && (
         <>
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })} style={{ width: '100%' }}>
             <View style={styles.row2}>
@@ -42,7 +38,7 @@ export default function MenuJogador({ navigation, route }) {
           </View>
         </>
       )}
-      {player.type === 'Empresário' && (
+      {player.getType() === 'Empresário' && (
         <>
 
           <View style={styles.row}>

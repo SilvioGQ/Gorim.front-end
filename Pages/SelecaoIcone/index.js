@@ -10,10 +10,14 @@ import Button from '../../Components/Button';
 export default function SelecaoIcone({ navigation }) {
 
     const [avatars, setAvatars] = useState([]);
+    const [players, setPlayers] = useState(1);
     const socket = useContext(socketContext);
     const player = useContext(playerContext);
 
-    socket.on('newSelection', a => setAvatars(a));
+    socket.on('newSelection', (a, all) => {
+        setAvatars(a);
+        setPlayers(all);
+    });
 
     const selectAvatar = index => {
         socket.emit('selectAvatar', index, () => player.setAvatar(index));
@@ -53,14 +57,10 @@ export default function SelecaoIcone({ navigation }) {
                         </View>
                     </ScrollView>
                 </View>
-                <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/</Text>
-                {player.getHost() && <Button onClick={() => navigation.reset({
-                    routes: [{
-                        name: 'MenuJogador',
-                        params: {player }
-                    }]
-                })
-                } name='começar' /> }
+                <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/{players}</Text>
+                <View style={{alignItems:'center', marginVertical:15}}>
+                    {player.getHost() && <Button onClick={() => navigation.reset({ routes: [{ name: 'MenuJogador' }] })} name='começar' /> }
+                </View>
             </ScrollView>
         </View>
     );

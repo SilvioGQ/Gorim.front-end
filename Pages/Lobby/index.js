@@ -20,15 +20,20 @@ export default function Lobby({ navigation }) {
     if (id == player.getId()) player.setHost(true);
   });
 
-  socket.on('onReady', p => {
-    player.setCoin(p.coin);
-    player.setCity(p.city);
-    player.setType(p.type);
-    if (p.speciality) player.setSpeciality(p.speciality);
-    if (p.inventory) {
-      player.setInventory(p.inventory);
-      player.setParcelLand(p.parcelLand);
-    }
+  socket.on('onReady', players => {
+    players.filter(p => {
+      if (p.id == player.getId()) {
+
+        player.setCoin(p.coin);
+        player.setCity(p.city);
+        player.setType(p.type);
+        if (p.speciality) player.setSpeciality(p.speciality);
+        if (p.inventory) {
+          player.setInventory(p.inventory);
+          player.setParcelLand(p.parcelLand);
+        }
+      }
+    });
     navigation.navigate('SelecaoIcone');
   });
 
