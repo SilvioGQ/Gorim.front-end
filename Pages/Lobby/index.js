@@ -60,6 +60,7 @@ export default function Lobby({ navigation }) {
       <View style={{ borderWidth: 1, width: '70%' }} />
       <Text style={[styles.text, { marginBottom: 25 }]}>{player.getRoom()}</Text>
 
+      { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {!room.hasOwnProperty('sockets') ?
         <Text style={styles.text}>Aguardando jogadores</Text> :
         <FlatList
@@ -69,7 +70,6 @@ export default function Lobby({ navigation }) {
         />
       }
       { player.getHost() && <Button name='começar' onClick={startGame} />}
-      { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
     </View>
   );
 }
