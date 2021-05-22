@@ -68,6 +68,7 @@ export default function CriarPartida({ navigation }) {
               <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../assets/right-arrow.png')} />
             </View>
           </View>
+      { modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
           <View style={{ alignItems: 'center', width: Tela, marginVertical: 40 }}>
             <Text style={[styles.header]}>ENTRAR</Text>
             <View style={styles.line} />
@@ -88,7 +89,6 @@ export default function CriarPartida({ navigation }) {
           </View>
         </View>
       </ScrollView>
-      { modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
     </View>
   );
 }
