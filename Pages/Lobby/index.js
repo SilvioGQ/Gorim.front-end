@@ -21,12 +21,22 @@ export default function Lobby({ navigation }) {
     if (room.hasOwnProperty('sockets')) {
 
       room.sockets.filter(p => {
-        if (player.getId() === p.id && player.getHost() != p.host) player.setHost(p.host);
+        if (player.getId() === p.id && player.getHost() != p.host) player.setHost(p.host); console.log(player.getHost(), p.host);
       });
     }
   });
 
-  socket.on('onReady', () => navigation.navigate('SelecaoIcone'));
+  socket.on('onReady', p => {
+    player.setCoin(p.coin);
+    player.setCity(p.city);
+    player.setType(p.type);
+    if (p.speciality) player.setSpeciality(p.speciality);
+    if (p.inventory) {
+      player.setInventory(p.inventory);
+      player.setParcelLand(p.parcelLand);
+    }
+    navigation.navigate('SelecaoIcone');
+  });
 
   useEffect(() => {
     let obj = {
