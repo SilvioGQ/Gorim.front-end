@@ -16,42 +16,20 @@ export default function Lobby({ navigation }) {
   const socket = useContext(socketContext);
 
   socket.on('PlayersFromRoom', r => setRoom(r));
-  socket.on('changeHost', id => {
-    if (id == player.getId()) player.setHost(true);
-  });
-
-  socket.on('onReady', players => {
-    players.filter(p => {
-      if (p.id == player.getId()) {
-
-        player.setCoin(p.coin);
-        player.setCity(p.city);
-        player.setType(p.type);
-        if (p.speciality) player.setSpeciality(p.speciality);
-        if (p.inventory) {
-          player.setInventory(p.inventory);
-          player.setParcelLand(p.parcelLand);
-        }
-      }
-    });
-    navigation.navigate('SorteioJogador');
-  });
+  socket.on('changeHost' + player.getId(), () => player.setHost(true));
+  socket.on('startGame', () => navigation.navigate('SorteioJogador'));
 
   useEffect(() => {
     let obj = {
-      sockets: [
-        {
-          id: player.getId(),
-          name: player.getName()
-        }
-      ]
+      sockets: [{ id: player.getId(), name: player.getName() }]
     };
     setRoom(obj);
   }, []);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
-    socket.emit('removeFromRoom', () => navigation.goBack());
+    socket.emit('removeFromRoom');
+    navigation.goBack();
   }
 
   const startGame = () => socket.emit('startGame');

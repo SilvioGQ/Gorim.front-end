@@ -1,18 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
+import { socketContext } from "../../context/socket";
+import { playerContext } from "../../context/player";
 
 import COLORS from '../../resources/colors';
 
 export default function SorteioJogador({ navigation }) {
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.reset({
-        routes: [{
-          name: 'SelecaoIcone',
-        }]
-      })
-    }, 1000 * 2);
-  }, [])
+
+  const socket = useContext(socketContext);
+  const player = useContext(playerContext);
+
+  socket.on('onReady', players => {
+    players.filter(p => {
+      if (p.id == player.getId()) {
+
+        player.setCoin(p.coin);
+        player.setCity(p.city);
+        player.setType(p.type);
+        if (p.speciality) player.setSpeciality(p.speciality);
+        if (p.inventory) {
+          player.setInventory(p.inventory);
+          player.setParcelLand(p.parcelLand);
+        }
+      }
+    });
+    navigation.navigate('SelecaoIcone');
+  });
+
+  socket.emit('onReady');
 
   return (
     <View style={styles.container}>
