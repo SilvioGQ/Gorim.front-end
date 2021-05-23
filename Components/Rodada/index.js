@@ -24,10 +24,10 @@ export default function Rodada({ onClick, player }) {
       <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{width: 60, height: 64, marginTop:-15}}>
         <Image style={{ width: 28, height: 30, alignSelf:'center',marginTop:20 }} source={require('../../assets/Logo/Fechar.png')} />
       </TouchableOpacity>
-      </View>
       {modalVisible && (
         <ModalConfirmExit deletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
       )}
+      </View>
     </View>
   );
 }

@@ -39,8 +39,8 @@ export default function SelecaoIcone({ navigation }) {
             <ScrollView>
                 <Text style={styles.title}>Bem vindo ao Gorim!</Text>
                 <View style={{ marginHorizontal: 15, marginVertical: 20 }}>
-                    {player.type === 'Agricultor' && (<Text style={styles.subtitle}>Selecionamos para você o personagem agricultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
-                    {player.type === 'Empresário' && (<Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
+                    {player.getType() === 'Agricultor' && (<Text style={styles.subtitle}>Selecionamos para você o personagem agricultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
+                    {player.getType() === 'Empresário' && (<Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
                     <Text style={styles.text}>Selecione um personagem</Text>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         <View style={{ marginHorizontal: 5, flexDirection: 'row' }}>

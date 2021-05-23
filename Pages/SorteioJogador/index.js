@@ -2,21 +2,13 @@ import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 import COLORS from '../../resources/colors';
-import PlayerService from '../../services/PlayerService';
 
-export default function SorteioJogador({ navigation, route }) {
-  const { player } = route.params;
-  const { players } = route.params;
+export default function SorteioJogador({ navigation }) {
   useEffect(() => {
-    if (player.host) {
-      PlayerService.typesRaffle(player.room,players);
-    }
-
     setTimeout(() => {
       navigation.reset({
         routes: [{
           name: 'SelecaoIcone',
-          params: { id: player.id }
         }]
       })
     }, 1000 * 2);

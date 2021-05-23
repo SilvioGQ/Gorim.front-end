@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
@@ -14,13 +14,16 @@ import { FlatList } from 'react-native-gesture-handler';
 import IMAGES from '../../../resources/imagesProducts';
 import FunctionalityService from '../../../services/FunctionalityService';
 import { StatusBar } from 'react-native';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 export default function Vendas({ navigation, route }) {
   const { name } = route.params;
   const { type } = route.params;
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState();
   const [selectPrice, setSelectPrice] = useState(-1);
-  const { player } = route.params;
+  const player = useContext(playerContext);
+  const socket = useContext(socketContext);
   const [selectClient, setSelectClient] = useState();
   const [selectAmount, setSelectAmount] = useState(-1);
   const [product, setProduct] = useState([]);
@@ -105,7 +108,7 @@ export default function Vendas({ navigation, route }) {
         </TouchableOpacity>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
-      {selectClient == -1 && <Text style={{ fontSize: 32, fontFamily: 'Rubik_700Bold', marginVertical: 15, textAlign: 'center', alignItems: 'center' }}>ILIMITADO</Text>}
+      {selectClient == -1 && <Text style={{ fontSize: 32, fontFamily: 'Rubik_700Bold', marginVertical: 15, textAlign: 'center', alignItems: 'center' }}>PROPAGANDA</Text>}
       {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
       <Button
         onClick={confirmTransfer}

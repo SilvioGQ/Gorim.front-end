@@ -14,9 +14,9 @@ export default function Produtos({ item }) {
       <View style={{ width: '85%', flexDirection: 'row' }}>
         <View style={styles.row}>
           <Text style={styles.textinhos}>Preços:</Text>
-          <Text style={styles.numeros}>{item.cheap}$</Text>
+          {/* <Text style={styles.numeros}>{item.cheap}$</Text> */}
           <Text style={styles.numeros}>{item.medium}$</Text>
-          <Text style={styles.numeros}>{item.expensive}$</Text>
+          {/* <Text style={styles.numeros}>{item.expensive}$</Text> */}
         </View>
       </View>
           <View style={styles.poluicaoView}>

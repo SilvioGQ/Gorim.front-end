@@ -10,7 +10,8 @@ const IMAGES = {
     "Agrotóxico Super Premium": require('../../assets/pesticides/pesticideStandard.png'),
     "Pacote 1": require('../../assets/agricultorIcones/pacote.png'),
     "Pacote 2": require('../../assets/agricultorIcones/pacote.png'),
-    "Pacote 3": require('../../assets/agricultorIcones/pacote.png')
+    "Pacote 3": require('../../assets/agricultorIcones/pacote.png'),
+    "Pulverizador" : require('../../assets/agricultorIcones/Pulverizador.png')
 };
 
 export default IMAGES;

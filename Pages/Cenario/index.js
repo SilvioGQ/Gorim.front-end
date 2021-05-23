@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 //<View style= {{zIndex: 1, marginTop: -5, marginLeft: 4}}>
 //<Image style={{width: 18, height: 25}} source= {require('../../assets/emojis/feliz.png')}/>
@@ -12,18 +12,21 @@ import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
 import { StatusBar } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { socketContext } from "../../context/socket";
+import { playerContext } from "../../context/player";
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width
 
 export default function Cenario({ route }) {
-    const { player } = route.params;
+    const player = useContext(playerContext);
+    const socket = useContext(socketContext);
     let poluicao = 25
     let value = require('../../assets/emojis/feliz.png')
     let value2 = require('../../assets/emojis/meio.png')
     let value3 = require('../../assets/emojis/preocupado.png')
     let value4 = require('../../assets/emojis/tenso.png')
     let value5 = require('../../assets/emojis/corona.png')
-    
+
     const [Image1, setImage] = useState(value)
     useEffect(() => {
         function SelectImage() {
@@ -44,35 +47,35 @@ export default function Cenario({ route }) {
     })
     console.log(player.log)
     return (
-            <View style={styles.container}>
-                <View style={styles.row}>
-                    <Image
-                        style={styles.image}
-                        source={Papel}
-                    />
-                    <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
-                </View>
-                <Text style={styles.texto}>Nível de poluição:</Text>
-                <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
-                    <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>{poluicao}%</Text>
-                    <Image style={styles.emoji} source={Image1} />
-                </View>
-                {Height <= 780 && (
-                    <>
-                        <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
-                        <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
-                        <View style={{ flexDirection: 'row', margin: '5%' }}>
-                            <View style={styles.coloridos}>
-                                <Text style={styles.numero2}>400</Text>
-                                <Text style={styles.inferior2}>Produtividade</Text>
-                            </View>
-                            <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
-                                <Text style={styles.numero2}>200</Text>
-                                <Text style={styles.inferior2}>Poluição</Text>
-                            </View>
+        <View style={styles.container}>
+            <View style={styles.row}>
+                <Image
+                    style={styles.image}
+                    source={Papel}
+                />
+                <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
+            </View>
+            <Text style={styles.texto}>Nível de poluição:</Text>
+            <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
+                <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>{poluicao}%</Text>
+                <Image style={styles.emoji} source={Image1} />
+            </View>
+            {Height <= 780 && (
+                <>
+                    <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
+                    <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
+                    <View style={{ flexDirection: 'row', margin: '5%' }}>
+                        <View style={styles.coloridos}>
+                            <Text style={styles.numero2}>400</Text>
+                            <Text style={styles.inferior2}>Produtividade</Text>
                         </View>
-                    </>
-                )}
+                        <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
+                            <Text style={styles.numero2}>200</Text>
+                            <Text style={styles.inferior2}>Poluição</Text>
+                        </View>
+                    </View>
+                </>
+            )}
 
             <Text style={styles.texto}>Histórico de transferencia:</Text>
             {player.log['transferencia'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)}
@@ -82,7 +85,7 @@ export default function Cenario({ route }) {
 
             <Text style={styles.texto}>Histórico de plantação:</Text>
             {player.log['plantacao'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)}
-            </View>
+        </View>
     )
 }
 

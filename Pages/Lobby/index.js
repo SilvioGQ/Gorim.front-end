@@ -34,7 +34,7 @@ export default function Lobby({ navigation }) {
         }
       }
     });
-    navigation.navigate('SelecaoIcone');
+    navigation.navigate('SorteioJogador');
   });
 
   useEffect(() => {

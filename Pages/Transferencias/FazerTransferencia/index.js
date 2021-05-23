@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -9,14 +9,16 @@ import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
 import PlayerService from '../../../services/PlayerService';
 import { StatusBar } from 'react-native';
-
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation, route }) {
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [count, setCount] = useState(0);
   const [id, setId] = useState();
-  const { player } = route.params;
+  const socket = useContext(socketContext);
+  const player = useContext(playerContext);
 
   useEffect(() => {
     PlayerService.getPlayers(player.room).then(resp => {

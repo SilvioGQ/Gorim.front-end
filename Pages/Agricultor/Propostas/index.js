@@ -10,7 +10,7 @@ import FunctionalityService from '../../../services/FunctionalityService';
 import PlayerService from '../../../services/PlayerService';
 import Modal from '../../../Components/ModalInfo'
 const Tela = Dimensions.get('screen').width;
-export default function Proposta({ route }) {
+export default function Proposta({ route, navigation }) {
   const [offersIndividual, setOffersIndividual] = useState([]);
   const [offersAll, setOffersAll] = useState([]);
   const { player } = route.params;
@@ -71,7 +71,7 @@ export default function Proposta({ route }) {
         showsVerticalScrollIndicator={false}
         data={offersAll}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <OfertaGeral item={item} confirmOffer={confirmOffer} />}
+        renderItem={({ item }) => <OfertaGeral item={item} confirmOffer={navigation.navigate('MenuJogador')} />}
       />
       <Text style={styles.text}>Negociação individual</Text>
       {offersIndividual.length === 0 && (

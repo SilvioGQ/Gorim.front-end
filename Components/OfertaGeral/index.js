@@ -12,7 +12,6 @@ const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer }) {
     const [player, setPlayer] = useState({});
     const [coin, setCoin] = useState('');
-    const [count, setCount] = useState(1);
 
     useEffect(() => {
         PlayerService.getPlayer(item.idSeller).then(setPlayer);
@@ -22,8 +21,6 @@ export default function Oferta({ item, confirmOffer }) {
             if (item.price == resp.expensive) setCoin('Caro');
         });
     }, []);
-    const increaseCount = () => {setCount(count < 6 ? count + 1 : count);}
-    const decreaseCount = () => {setCount(count > 1 ? count - 1 : count);}
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
@@ -52,21 +49,9 @@ export default function Oferta({ item, confirmOffer }) {
                 />
             </View>
             <View style={styles.row}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item, count)}>
-                    <Text style={styles.textbutton}>COMPRAR</Text>
+                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={confirmOffer}>
+                    <Text style={styles.textbutton}>EU QUERO</Text>
                 </TouchableOpacity>
-                    <Text style={styles.text}> Quantidade:</Text>
-                    <View style={styles.arrows}>
-                        <TouchableOpacity onPress={decreaseCount}>
-                            <Text style={styles.textDecrease}>-</Text>
-                        </TouchableOpacity>
-                        <View style={styles.buttonAmount}>
-                            <Text style={styles.textAmount}>{count}</Text>
-                        </View>
-                        <TouchableOpacity onPress={increaseCount}>
-                        <Text style={styles.textIncrease}>+</Text>
-                        </TouchableOpacity>
-                    </View>
             </View>
         </View>
     );
@@ -90,10 +75,11 @@ const styles = StyleSheet.create({
         marginVertical: 15
     },
     button: {
-        width: 110,
+        width: '60%',
         borderRadius: 20,
         backgroundColor: COLORS.warningButton,
-        padding: 12
+        padding: 12,
+        alignSelf:'center'
     },
     textbutton: {
         color: COLORS.textWhite,
