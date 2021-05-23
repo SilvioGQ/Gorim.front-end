@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-native';
 
 import Coin from '../../../Components/Coin';
@@ -9,11 +9,14 @@ import COLORS from '../../../resources/colors';
 import FunctionalityService from '../../../services/FunctionalityService';
 import PlayerService from '../../../services/PlayerService';
 import Modal from '../../../Components/ModalInfo'
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 const Tela = Dimensions.get('screen').width;
 export default function Proposta({ route, navigation }) {
   const [offersIndividual, setOffersIndividual] = useState([]);
   const [offersAll, setOffersAll] = useState([]);
-  const { player } = route.params;
+  const player = useContext(playerContext);
+  const socket = useContext(socketContext);
   const [modalText, setModalText] = useState('');
 
   useEffect(() => {

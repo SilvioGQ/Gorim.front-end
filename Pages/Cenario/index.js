@@ -78,13 +78,13 @@ export default function Cenario({ route }) {
             )}
 
             <Text style={styles.texto}>Histórico de transferencia:</Text>
-            {player.log['transferencia'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)}
+            {/* {player.log['transferencia'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)} */}
 
             <Text style={styles.texto}>Histórico de compras:</Text>
-            {player.log['compras'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)}
+            {/* {player.log['compras'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)} */}
 
             <Text style={styles.texto}>Histórico de plantação:</Text>
-            {player.log['plantacao'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)}
+            {/* {player.log['plantacao'].map((log, index) => <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log}</Text>)} */}
         </View>
     )
 }

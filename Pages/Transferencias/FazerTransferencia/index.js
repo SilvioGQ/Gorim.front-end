@@ -7,7 +7,6 @@ import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
-import PlayerService from '../../../services/PlayerService';
 import { StatusBar } from 'react-native';
 import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";

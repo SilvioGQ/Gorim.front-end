@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 
 import Button from '../../../Components/Button';
@@ -6,13 +6,14 @@ import COLORS from '../../../resources/colors';
 import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
-import FunctionalityService from '../../../services/FunctionalityService';
 import Conf from '../../../Components/Selo-Verde-Confirmacao';
 import IMAGES from '../../../resources/imagesProducts';
-import PlayerService from '../../../services/PlayerService'
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 const Tela = Dimensions.get('screen').width;
 export default function Parcela({ navigation, route }) {
-  const [player, setPlayer] = useState(route.params.player);
+  const player = useContext(playerContext);
+  const socket = useContext(socketContext);
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
   const [modalText2, setModalText2] = useState('');

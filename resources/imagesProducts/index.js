@@ -11,7 +11,7 @@ const IMAGES = {
     "Pacote 1": require('../../assets/agricultorIcones/pacote.png'),
     "Pacote 2": require('../../assets/agricultorIcones/pacote.png'),
     "Pacote 3": require('../../assets/agricultorIcones/pacote.png'),
-    "Pulverizador" : require('../../assets/agricultorIcones/Pulverizador.png')
+    "Pulverizador" : require('../../assets/agricultorIcones/pulverizador.png')
 };
 
 export default IMAGES;

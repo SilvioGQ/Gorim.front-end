@@ -6,9 +6,9 @@ import { playerContext } from "../../context/player";
 import COLORS from '../../resources/colors';
 import Quadrados from '../../Components/Quadrado'
 import Button from '../../Components/Button';
-
+import ModalInfo from '../../Components/ModalInfo';
 export default function SelecaoIcone({ navigation }) {
-
+    const [modalText, setModalText] = useState('');
     const [avatars, setAvatars] = useState([]);
     const [players, setPlayers] = useState(1);
     const socket = useContext(socketContext);
@@ -18,7 +18,7 @@ export default function SelecaoIcone({ navigation }) {
         setAvatars(a);
         setPlayers(all);
     });
-    socket.on('startGame', () => navigation.navigate('MenuJogador'));
+    socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
 
     const selectAvatar = index => {
         socket.emit('selectAvatar', index, () => player.setAvatar(index));
@@ -35,7 +35,10 @@ export default function SelecaoIcone({ navigation }) {
         return color;
     }
 
-    const startGame = () => socket.emit('startGame');
+    const startGame = () => {
+        if(avatars.length < players) return setModalText('Aguarde outros jogadores escolher um avatar')
+        socket.emit('startGame');
+    }
     
     return (
         <View style={styles.container}>
@@ -45,6 +48,9 @@ export default function SelecaoIcone({ navigation }) {
                     {player.getType() === 'Agricultor' && (<Text style={styles.subtitle}>Selecionamos para você o personagem agricultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
                     {player.getType() === 'Empresário' && (<Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
                     <Text style={styles.text}>Selecione um personagem</Text>
+                    {modalText !== '' && (
+                        <ModalInfo onClick={() => setModalText('')} text={modalText} />
+                    )}
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         <View style={{ marginHorizontal: 5, flexDirection: 'row' }}>
                             <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />

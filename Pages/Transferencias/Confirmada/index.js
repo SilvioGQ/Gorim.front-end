@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 import COLORS from '../../../resources/colors';
 import Confirmacao from '../../../assets/Logo/confirmacao.png';
-
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 export default function Confirmada({ navigation, route }) {
-  const { player } = route.params;
+  const player = useContext(playerContext);
   const { text } = route.params;
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.reset({ routes: [{ name: 'MenuJogador', params: { player } }] })
+      navigation.reset({ routes: [{ name: 'MenuJogador'}] })
     }, 3500);
 
     return () => clearTimeout(timer);
