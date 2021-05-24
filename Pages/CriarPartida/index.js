@@ -20,30 +20,26 @@ export default function CriarPartida({ navigation }) {
   const createRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
 
-    socket.emit('addToRoom', name, resp => {
-      player.setId(resp.id);
-      player.setHost(true);
-      player.setName(resp.name);
-      player.setRoom(resp.room);
-
-      console.log(resp)
-      navigation.navigate('Lobby');
-    });
+    socket.emit('addToRoom', name, handlePlayer);
   }
 
   const selectRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
     if (room === '') return setModalText('Você precisa adicionar o código da sala');
 
-    socket.emit('joinToRoom', name, room, resp => {
-      if (typeof resp !== 'object') return setModalText(resp);
-      player.setId(resp.id);
-      player.setHost(false);
-      player.setName(resp.name);
-      player.setRoom(resp.room);
-      
-      navigation.navigate('Lobby');
-    });
+    socket.emit('joinToRoom', name, room, handlePlayer);
+  }
+
+  const handlePlayer = obj => {
+    if (typeof obj !== 'object') return setModalText(obj);
+
+    player.setId(obj.id);
+    player.setHost(obj.host);
+    player.setName(obj.name);
+    player.setRoom(obj.room);
+
+    console.log(obj);
+    navigation.navigate('Lobby');
   }
 
   return (
@@ -68,7 +64,7 @@ export default function CriarPartida({ navigation }) {
               <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../assets/right-arrow.png')} />
             </View>
           </View>
-      { modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
+          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
           <View style={{ alignItems: 'center', width: Tela, marginVertical: 40 }}>
             <Text style={[styles.header]}>ENTRAR</Text>
             <View style={styles.line} />

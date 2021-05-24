@@ -7,7 +7,9 @@ import COLORS from '../../resources/colors';
 import Quadrados from '../../Components/Quadrado'
 import Button from '../../Components/Button';
 import ModalInfo from '../../Components/ModalInfo';
+
 export default function SelecaoIcone({ navigation }) {
+
     const [modalText, setModalText] = useState('');
     const [avatars, setAvatars] = useState([]);
     const [players, setPlayers] = useState(1);
@@ -19,6 +21,7 @@ export default function SelecaoIcone({ navigation }) {
         setPlayers(all);
     });
     socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
+    socket.emit('getPlayers', p => setPlayers(p));
 
     const selectAvatar = index => {
         socket.emit('selectAvatar', index, () => player.setAvatar(index));
@@ -36,10 +39,10 @@ export default function SelecaoIcone({ navigation }) {
     }
 
     const startGame = () => {
-        if(avatars.length < players) return setModalText('Aguarde outros jogadores escolher um avatar')
+        if (avatars.length < players) return setModalText('Aguarde outros jogadores escolher um avatar');
         socket.emit('startGame');
     }
-    
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -67,9 +70,11 @@ export default function SelecaoIcone({ navigation }) {
                     </ScrollView>
                 </View>
                 <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/{players}</Text>
-                <View style={{alignItems:'center', marginVertical:15}}>
-                    {player.getHost() && <Button onClick={startGame} name='começar' /> }
-                </View>
+                {player.getHost() && (
+                    <View style={{ alignItems: 'center', marginVertical: 15 }}>
+                        <Button onClick={startGame} name='começar' />
+                    </View>
+                )}
             </ScrollView>
         </View>
     );

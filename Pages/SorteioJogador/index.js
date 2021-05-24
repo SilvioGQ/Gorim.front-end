@@ -10,7 +10,7 @@ export default function SorteioJogador({ navigation }) {
   const socket = useContext(socketContext);
   const player = useContext(playerContext);
 
-  socket.on('onReady', players => {
+  socket.on('makeRaffle', players => {
     players.filter(p => {
       if (p.id == player.getId()) {
 
@@ -27,7 +27,7 @@ export default function SorteioJogador({ navigation }) {
     navigation.navigate('SelecaoIcone');
   });
 
-  socket.emit('onReady');
+  socket.emit('makeRaffle');
 
   return (
     <View style={styles.container}>

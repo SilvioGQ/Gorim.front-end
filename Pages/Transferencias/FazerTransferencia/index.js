@@ -1,17 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 
 import ModalInfo from '../../../Components/ModalInfo';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
-import { StatusBar } from 'react-native';
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation, route }) {
+
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [count, setCount] = useState(0);
@@ -19,14 +20,14 @@ export default function FazerTransferencia({ navigation, route }) {
   const socket = useContext(socketContext);
   const player = useContext(playerContext);
 
-  useEffect(() => {
-    PlayerService.getPlayers(player.room).then(resp => {
-      resp = resp.filter(item => {
-        if (item.id !== player.id) return item;
-      });
-      setPlayers(resp);
-    });
-  }, []);
+  // useEffect(() => {
+  //   PlayerService.getPlayers(player.room).then(resp => {
+  //     resp = resp.filter(item => {
+  //       if (item.id !== player.id) return item;
+  //     });
+  //     setPlayers(resp);
+  //   });
+  // }, []);
 
   const increaseCount = () => setCount(count < player.coin ? count + 5 : count);
   const decreaseCount = () => setCount(count > 0 ? count - 5 : count);
