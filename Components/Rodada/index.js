@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import ModalConfirmExit from '../ModalConfirmExit';
 import PlayerService from '../../services/PlayerService';
 import FunctionalityService from '../../services/FunctionalityService';
 import COLORS from '../../resources/colors';
-
+import { socketContext } from "../../context/socket";
 const Tela = Dimensions.get('screen').width;
-export default function Rodada({ onClick, player }) {
+export default function Rodada({onclick}) {
+  const socket = useContext(socketContext);
   const [modalVisible, setModalVisible] = useState(false);
   
-  const deletePlayer = () => {
-    PlayerService.deletePlayer(player.id);
-    FunctionalityService.deletePlayerFromRoom(player.room);
+  const removeFromRoom = () => {
     setModalVisible(!modalVisible);
-    onClick();
+    socket.emit('removeFromRoom');
+    onclick()
   }
 
   return (
@@ -25,7 +25,7 @@ export default function Rodada({ onClick, player }) {
         <Image style={{ width: 28, height: 30, alignSelf:'center',marginTop:20 }} source={require('../../assets/Logo/Fechar.png')} />
       </TouchableOpacity>
       {modalVisible && (
-        <ModalConfirmExit deletePlayer={deletePlayer} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
+        <ModalConfirmExit deletePlayer={removeFromRoom} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
       )}
       </View>
     </View>

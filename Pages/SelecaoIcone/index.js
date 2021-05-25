@@ -21,7 +21,7 @@ export default function SelecaoIcone({ navigation }) {
         setPlayers(all);
     });
     socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
-    socket.emit('getPlayers', p => setPlayers(p));
+    socket.emit('getPlayers', p => setPlayers(p.length));
 
     const selectAvatar = index => {
         socket.emit('selectAvatar', index, () => player.setAvatar(index));
@@ -76,17 +76,11 @@ export default function SelecaoIcone({ navigation }) {
                     </View>
                 </View>
                 <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/{players}</Text>
-<<<<<<< HEAD
                 {player.getHost() && (
                     <View style={{ alignItems: 'center', marginVertical: 15 }}>
                         <Button onClick={startGame} name='começar' />
                     </View>
                 )}
-=======
-                <View style={{ alignItems: 'center', marginVertical: 15 }}>
-                    {player.getHost() && <Button onClick={startGame} name='começar' />}
-                </View>
->>>>>>> 05192b9a9c8737b0529ac20f5e76829ac38808e9
             </ScrollView>
         </View>
     );

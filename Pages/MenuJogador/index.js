@@ -8,6 +8,7 @@ import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
+import { useEffect } from 'react';
 
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation, route }) {
@@ -15,12 +16,16 @@ export default function MenuJogador({ navigation, route }) {
   const [isVisible, setisVisible] = useState(false);
   const player = useContext(playerContext);
   const socket = useContext(socketContext);
-
+  useEffect(() => {
+    socket.on('makeTransfers' + player.getId(), p => {
+      player.setCoin(p.coin)
+    })
+  }, [player])
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
-      <Header player={player} />
+      <Rodada onclick= {() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
+      <Header/>
       {player.getType() === 'Agricultor' && (
         <>
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }}>
@@ -43,35 +48,35 @@ export default function MenuJogador({ navigation, route }) {
           <View style={styles.row}>
             {player.speciality === 'Fertilizante' && (
               <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'fertilizer', name: 'Fertilizante Comum' })} name='Fertilizante Comum' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'fertilizer', name: 'Fertilizante Premium' })} name='Fertilizante Premium' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'fertilizer', name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'fertilizer', name: 'Fertilizante Comum' })} name='Fertilizante Comum' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'fertilizer', name: 'Fertilizante Premium' })} name='Fertilizante Premium' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'fertilizer', name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
               </View>
             )}
             {player.speciality === 'Agrotoxico' && (
               <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'pesticide', name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'pesticide', name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'pesticide', name: 'Agrotóxico Super Premium' })} name='Agrotóxico Super Premium' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'pesticide', name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'pesticide', name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'pesticide', name: 'Agrotóxico Super Premium' })} name='Agrotóxico Super Premium' />
               </View>
             )}
             {player.speciality === 'Semente' && (
               <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'seed', name: 'Soja' })} name='Soja' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'seed', name: 'Arroz' })} name='Arroz' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'seed', name: 'Hortaliça' })} name='Hortaliça' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'seed', name: 'Soja' })} name='Soja' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'seed', name: 'Arroz' })} name='Arroz' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'seed', name: 'Hortaliça' })} name='Hortaliça' />
               </View>
             )}
             {player.speciality === 'Maquina' && (
               <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'machine', name: 'Pacote 1' })} name='Pacote 1' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'machine', name: 'Pacote 2' })} name='Pacote 2' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', {type: 'machine', name: 'Pacote 3' })} name='Pacote 3' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pacote 1' })} name='Pacote 1' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pacote 2' })} name='Pacote 2' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pacote 3' })} name='Pacote 3' />
               </View>
             )}
             {player.speciality === 'Maquina' && (
               <>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine',name: 'Pulverizador' })} name='Pulverizador' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pulverizador' })} name='Pulverizador' />
               </>
             )}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />

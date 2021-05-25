@@ -10,21 +10,20 @@ import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
-  const { count } = route.params;
+  const { count, idDest } = route.params;
   const player = useContext(playerContext);
   const socket = useContext(socketContext);
-  const { idDest } = route.params;
   const makeTransfer = () => {
-    PlayerService.getPlayer(idDest).then(resp => {
-      // text = <HistoricosDinheiro player={player} count={count} dest={resp.name} />
-      let text = 'Você transferiu ' + count + '$ para o ' + resp.name
-       PlayerService.addTransfers(text,player)
-      let text2 = 'Você recebeu ' + count + '$ do jogador ' + player.name
-      PlayerService.addTransfers(text2,resp)
-    });
-    FunctionalityService.makeTransfer(player.id, idDest, count);
-    player.coin -= count;
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text:'Sua transferencia foi concluída com sucesso!' } }] });
+    // PlayerService.getPlayer(idDest).then(resp => {
+    //   // text = <HistoricosDinheiro player={player} count={count} dest={resp.name} />
+    //   let text = 'Você transferiu ' + count + '$ para o ' + resp.name
+    //    PlayerService.addTransfers(text,player)
+    //   let text2 = 'Você recebeu ' + count + '$ do jogador ' + player.name
+    //   PlayerService.addTransfers(text2,resp)
+    // });
+
+    socket.emit('makeTransfers', count, idDest);
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text:'Sua transferencia foi concluída com sucesso!' } }] });
   }
 
   return (

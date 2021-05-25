@@ -28,16 +28,14 @@ export default function Vendas({ navigation, route }) {
   const [selectAmount, setSelectAmount] = useState(-1);
   const [product, setProduct] = useState([]);
   
+
+
   useEffect(() => {
     let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
-
-    PlayerService.getPlayers(player.room).then(resp => {
-      resp = resp.filter(item => {
-
-        if (item.id !== player.id && item.type == 'Agricultor') return item;
-      });
-      resp.unshift(todos)
-      setPlayers(resp);
+    socket.emit('getPlayers', p => {
+      p = p.filter(i => i.id !== player.getId() && i.type == 'Agricultor');
+      p.unshift(todos);
+      setPlayers(p);
     });
     FunctionalityService.getProduct(name).then(setProduct)
   }, []);

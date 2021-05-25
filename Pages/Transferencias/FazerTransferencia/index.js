@@ -20,14 +20,12 @@ export default function FazerTransferencia({ navigation, route }) {
   const socket = useContext(socketContext);
   const player = useContext(playerContext);
 
-  // useEffect(() => {
-  //   PlayerService.getPlayers(player.room).then(resp => {
-  //     resp = resp.filter(item => {
-  //       if (item.id !== player.id) return item;
-  //     });
-  //     setPlayers(resp);
-  //   });
-  // }, []);
+  useEffect(() => {
+    socket.emit('getPlayers', p => {
+      p = p.filter(i => i.id !== player.getId());
+      setPlayers(p);
+    });
+  }, []);
 
   const increaseCount = () => setCount(count < player.coin ? count + 5 : count);
   const decreaseCount = () => setCount(count > 0 ? count - 5 : count);
@@ -53,7 +51,7 @@ export default function FazerTransferencia({ navigation, route }) {
           numColumns={3}
           data={players}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
+          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} />}
         />
       </View>
       <Text style={styles.text}>Valor:</Text>
