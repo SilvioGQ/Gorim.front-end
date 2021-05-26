@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
 
 import Button from '../../../Components/Button';
@@ -8,11 +8,14 @@ import logoTransfer from '../../../assets/moedas/logoTransfer.png';
 
 import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";
+
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
+
   const { count, idDest } = route.params;
   const player = useContext(playerContext);
   const socket = useContext(socketContext);
+
   const makeTransfer = () => {
     // PlayerService.getPlayer(idDest).then(resp => {
     //   // text = <HistoricosDinheiro player={player} count={count} dest={resp.name} />
@@ -23,7 +26,11 @@ export default function ConfirmarTransferencia({ navigation, route }) {
     // });
 
     socket.emit('makeTransfers', count, idDest);
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text:'Sua transferencia foi concluída com sucesso!' } }] });
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferencia foi concluída com sucesso!' } }] });
+  }
+
+  const cancelTransfer = () => {
+    navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }
 
   return (
@@ -35,7 +42,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text2}>{JSON.stringify(count)}$ </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={makeTransfer} name='CONTINUAR' />
-          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador', params: { id: player.id } }] })} style={styles.button}>
+          <TouchableOpacity onPress={cancelTransfer} style={styles.button}>
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
         </View>

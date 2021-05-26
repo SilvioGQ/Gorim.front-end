@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { socketContext } from "../../context/socket";
 import { playerContext } from "../../context/player";
@@ -8,24 +8,22 @@ import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
-import { useEffect } from 'react';
 
 const Height = Dimensions.get('screen').height;
-export default function MenuJogador({ navigation, route }) {
+export default function MenuJogador({ navigation }) {
 
-  const [isVisible, setisVisible] = useState(false);
   const player = useContext(playerContext);
   const socket = useContext(socketContext);
+
   useEffect(() => {
-    socket.on('makeTransfers' + player.getId(), p => {
-      player.setCoin(p.coin)
-    })
-  }, [player])
+    socket.on('makeTransfers' + player.getId(), p => player.setCoin(p.coin));
+  }, []);
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada onclick= {() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
-      <Header/>
+      <Rodada onclick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
+      <Header p2={player}/>
       {player.getType() === 'Agricultor' && (
         <>
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }}>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { socketContext } from "../../context/socket";
 import { playerContext } from "../../context/player";
@@ -16,12 +16,15 @@ export default function SelecaoIcone({ navigation }) {
     const socket = useContext(socketContext);
     const player = useContext(playerContext);
 
-    socket.on('newSelection', (a, all) => {
-        setAvatars(a);
-        setPlayers(all);
-    });
-    socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
-    socket.emit('getPlayers', p => setPlayers(p.length));
+    useEffect(() => {
+        socket.on('newSelection', (a, all) => {
+            setAvatars(a);
+            setPlayers(all);
+        });
+        socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
+        
+        socket.emit('getPlayers', p => setPlayers(p.length));
+    }, []);
 
     const selectAvatar = index => {
         socket.emit('selectAvatar', index, () => player.setAvatar(index));
@@ -51,9 +54,7 @@ export default function SelecaoIcone({ navigation }) {
                     {player.getType() === 'Agricultor' && (<Text style={styles.subtitle}>Selecionamos para você o personagem agricultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
                     {player.getType() === 'Empresário' && (<Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
                     <Text style={styles.text}>Selecione um personagem</Text>
-                    {modalText !== '' && (
-                        <ModalInfo onClick={() => setModalText('')} text={modalText} />
-                    )}
+                    {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
                     <View>
                         <View style={{ marginHorizontal: 15, flexDirection: 'row' }}>
                             <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />
@@ -70,8 +71,8 @@ export default function SelecaoIcone({ navigation }) {
                             <Quadrados onClick={() => selectAvatar('Icon8')} backgroundColor={bgQuadrados('Icon8')} icon='Icon8' />
                             <Quadrados onClick={() => selectAvatar('Icon9')} backgroundColor={bgQuadrados('Icon9')} icon='Icon9' />
                         </View>
-                        <View style={{ alignSelf:'center'}}>
-                        <Quadrados onClick={() => selectAvatar('Icon10')} backgroundColor={bgQuadrados('Icon10')} icon='Icon10' />
+                        <View style={{ alignSelf: 'center' }}>
+                            <Quadrados onClick={() => selectAvatar('Icon10')} backgroundColor={bgQuadrados('Icon10')} icon='Icon10' />
                         </View>
                     </View>
                 </View>

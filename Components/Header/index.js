@@ -1,10 +1,13 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import IMAGES from '../../resources/imagesIcons'
 import Coin from '../Coin';
 import { playerContext } from "../../context/player";
+
 export default function Header() {
+
   const player = useContext(playerContext);
+
   return (
     <View style={styles.row}>
       <Text style={styles.header}>{player.type.slice(0,3)}/{player.name}{'\n'}em {player.city}</Text>

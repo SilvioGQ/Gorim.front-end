@@ -11,7 +11,7 @@ import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function FazerTransferencia({ navigation, route }) {
+export default function FazerTransferencia({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
@@ -30,14 +30,12 @@ export default function FazerTransferencia({ navigation, route }) {
   const increaseCount = () => setCount(count < player.coin ? count + 5 : count);
   const decreaseCount = () => setCount(count > 0 ? count - 5 : count);
   const confirmTransfer = () => {
-    if (!id) {
-      setModalText('Selecione o destino!');
-    } else if (count === 0) {
-      setModalText('Adicione um valor!');
-    } else {
-      navigation.navigate('ConfirmarTransferencia', { player, idDest: id, count });
-    }
+    if (!id) return setModalText('Selecione o destino!');
+    if (count === 0) return setModalText('Adicione um valor!');
+
+    navigation.navigate('ConfirmarTransferencia', { idDest: id, count });
   }
+
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />

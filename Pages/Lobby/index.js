@@ -15,11 +15,11 @@ export default function Lobby({ navigation }) {
   const player = useContext(playerContext);
   const socket = useContext(socketContext);
 
-  socket.on('PlayersFromRoom', r => setRoom(r));
-  socket.on('changeHost' + player.getId(), () => player.setHost(true));
-  socket.on('startGame', () => navigation.navigate('SorteioJogador'));
-
   useEffect(() => {
+    socket.on('PlayersFromRoom', r => setRoom(r));
+    socket.on('changeHost' + player.getId(), () => player.setHost(true));
+    socket.on('startGame', () => navigation.navigate('SorteioJogador'));
+
     let obj = {
       sockets: [{ id: player.getId(), name: player.getName() }]
     };
