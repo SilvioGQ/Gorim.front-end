@@ -13,6 +13,7 @@ export default function DropDown({ items, type, onClick, display }) {
       return item.type === type && item.amount > 0;
     }));
   }, []);
+  
   return (
     <View style={[styles.container, { display: display }]}>
       { inventory.map((item, index) => {

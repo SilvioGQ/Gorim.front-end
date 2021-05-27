@@ -6,7 +6,7 @@ import COLORS from '../../../resources/colors';
 import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";
 export default function ControleParcelas({ navigation }) {
-  const player = useContext(playerContext);
+  const [player, setPlayer] = useContext(playerContext);
   const socket = useContext(socketContext);
   return (
     <View style={styles.container}>

@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
+
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Modal from '../../../Components/ModalInfo'
@@ -9,31 +12,27 @@ import Coin from '../../../Components/Coin'
 import Baixo from '../../../assets/moedas/cheap.png';
 import Normal from '../../../assets/moedas/medium.png';
 import Alto from '../../../assets/moedas/expensive.png';
-import PlayerService from '../../../services/PlayerService';
 import { FlatList } from 'react-native-gesture-handler';
 import IMAGES from '../../../resources/imagesProducts';
 import FunctionalityService from '../../../services/FunctionalityService';
 import { StatusBar } from 'react-native';
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+
 export default function Vendas({ navigation, route }) {
-  const { name } = route.params;
-  const { type } = route.params;
+
+  const { name, type } = route.params;
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState();
   const [selectPrice, setSelectPrice] = useState(-1);
-  const player = useContext(playerContext);
-  const socket = useContext(socketContext);
   const [selectClient, setSelectClient] = useState();
   const [selectAmount, setSelectAmount] = useState(-1);
   const [product, setProduct] = useState([]);
+  const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
   
-
-
   useEffect(() => {
-    let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
     socket.emit('getPlayers', p => {
-      p = p.filter(i => i.id !== player.getId() && i.type == 'Agricultor');
+      let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
+      p = p.filter(i => i.id !== player.id && i.type == 'Agricultor');
       p.unshift(todos);
       setPlayers(p);
     });

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Frame1 from './InicioJogo/Frame1';
 import SorteioJogador from './SorteioJogador';
@@ -60,6 +60,7 @@ export default function Routes() {
 
       }} />
       <Stack.Screen name="MenuJogador" component={MenuJogador} options={{
+        headerLeft: () => null,
         headerTransparent: true,
         headerTitle: '',
       }} />

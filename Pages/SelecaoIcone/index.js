@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, StatusBar } from 'react-native';
-import { socketContext } from "../../context/socket";
-import { playerContext } from "../../context/player";
+import { socketContext } from '../../context/socket';
+import { playerContext } from '../../context/player';
 
 import COLORS from '../../resources/colors';
 import Quadrados from '../../Components/Quadrado'
@@ -14,29 +14,30 @@ export default function SelecaoIcone({ navigation }) {
     const [avatars, setAvatars] = useState([]);
     const [players, setPlayers] = useState(1);
     const socket = useContext(socketContext);
-    const player = useContext(playerContext);
+    const [player, setPlayer] = useContext(playerContext);
 
     useEffect(() => {
         socket.on('newSelection', (a, all) => {
             setAvatars(a);
             setPlayers(all);
         });
-        socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
+        socket.on('startGame', () => navigation.navigate('MenuJogador'));
+        // socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
         
         socket.emit('getPlayers', p => setPlayers(p.length));
     }, []);
 
     const selectAvatar = index => {
-        socket.emit('selectAvatar', index, () => player.setAvatar(index));
+        socket.emit('selectAvatar', index, () => setPlayer(player => ({ ...player, avatar: index})));
     }
 
     const bgQuadrados = index => {
         let color = '#fff';
 
         avatars.filter(a => {
-            if (a == index && player.getAvatar() != index) color = '#CBCBCB';
+            if (a == index && player.avatar != index) color = '#CBCBCB';
         });
-        if (player.getAvatar() == index) color = '#8ACF3A';
+        if (player.avatar == index) color = '#8ACF3A';
 
         return color;
     }
@@ -51,8 +52,8 @@ export default function SelecaoIcone({ navigation }) {
             <ScrollView>
                 <Text style={styles.title}>Bem vindo ao Gorim!</Text>
                 <View style={{ marginVertical: 20 }}>
-                    {player.getType() === 'Agricultor' && (<Text style={styles.subtitle}>Selecionamos para você o personagem agricultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
-                    {player.getType() === 'Empresário' && (<Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
+                    {player.type === 'Agricultor' && (<Text style={styles.subtitle}>Selecionamos para você o personagem agricultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
+                    {player.type === 'Empresário' && (<Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
                     <Text style={styles.text}>Selecione um personagem</Text>
                     {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
                     <View>
@@ -77,7 +78,7 @@ export default function SelecaoIcone({ navigation }) {
                     </View>
                 </View>
                 <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/{players}</Text>
-                {player.getHost() && (
+                {player.host && (
                     <View style={{ alignItems: 'center', marginVertical: 15 }}>
                         <Button onClick={startGame} name='começar' />
                     </View>

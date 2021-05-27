@@ -18,11 +18,11 @@ export default function FazerTransferencia({ navigation }) {
   const [count, setCount] = useState(0);
   const [id, setId] = useState();
   const socket = useContext(socketContext);
-  const player = useContext(playerContext);
+  const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
     socket.emit('getPlayers', p => {
-      p = p.filter(i => i.id !== player.getId());
+      p = p.filter(i => i.id !== player.id);
       setPlayers(p);
     });
   }, []);
@@ -67,9 +67,7 @@ export default function FazerTransferencia({ navigation }) {
         </View>
       </View>
       <Button onClick={confirmTransfer} name='CONTINUAR' />
-      {modalText !== '' && (
-        <ModalInfo onClick={() => setModalText('')} text={modalText} />
-      )}
+      {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
     </View>
   );
 }

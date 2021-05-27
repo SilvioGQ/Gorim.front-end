@@ -1,28 +1,24 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { socketContext } from "../../context/socket";
-import { playerContext } from "../../context/player";
+import { socketContext } from '../../context/socket';
+import { playerContext } from '../../context/player';
 
 import COLORS from '../../resources/colors';
 
 export default function SorteioJogador({ navigation }) {
 
   const socket = useContext(socketContext);
-  const player = useContext(playerContext);
+  const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
     socket.on('makeRaffle', players => {
       players.filter(p => {
-        if (p.id == player.getId()) {
-  
-          player.setCoin(p.coin);
-          player.setCity(p.city);
-          player.setType(p.type);
-          if (p.speciality) player.setSpeciality(p.speciality);
-          if (p.inventory) {
-            player.setInventory(p.inventory);
-            player.setParcelLand(p.parcelLand);
-          }
+        if (p.id == player.id) {
+          setPlayer(() => ({ ...p }));  
+          // setPlayer(player => ({ ...player, coin: p.coin, city: p.city, type: p.type }));
+          
+          // if (p.speciality) setPlayer(player => ({ ...player, speciality: p.speciality }));
+          // if (p.inventory) setPlayer(player => ({ ...player, inventory: p.inventory, parcelLand: p.parcelLand }));
         }
       });
       navigation.navigate('SelecaoIcone');

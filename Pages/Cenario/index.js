@@ -12,13 +12,13 @@ import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
 import { StatusBar } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { socketContext } from "../../context/socket";
-import { playerContext } from "../../context/player";
+import { socketContext } from '../../context/socket';
+import { playerContext } from '../../context/player';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width
 
 export default function Cenario({ route }) {
-    const player = useContext(playerContext);
+    const [player, setPlayer] = useContext(playerContext);
     const socket = useContext(socketContext);
     let poluicao = 25
     let value = require('../../assets/emojis/feliz.png')

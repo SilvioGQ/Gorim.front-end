@@ -1,20 +1,19 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 
 import Button from '../../../Components/Button';
 import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
 import logoTransfer from '../../../assets/moedas/logoTransfer.png';
 
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
-
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest } = route.params;
-  const player = useContext(playerContext);
   const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
 
   const makeTransfer = () => {
     // PlayerService.getPlayer(idDest).then(resp => {

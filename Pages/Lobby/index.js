@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
-import { socketContext } from "../../context/socket";
-import { playerContext } from "../../context/player";
+import { socketContext } from '../../context/socket';
+import { playerContext } from '../../context/player';
 
 import COLORS from '../../resources/colors';
 import Button from '../../Components/Button';
@@ -12,23 +12,21 @@ export default function Lobby({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [room, setRoom] = useState({});
-  const player = useContext(playerContext);
   const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
     socket.on('PlayersFromRoom', r => setRoom(r));
-    socket.on('changeHost' + player.getId(), () => player.setHost(true));
+    socket.on('changeHost' + player.id, () => setPlayer(player => ({ ...player, host: true })));
     socket.on('startGame', () => navigation.navigate('SorteioJogador'));
 
-    let obj = {
-      sockets: [{ id: player.getId(), name: player.getName() }]
-    };
-    setRoom(obj);
+    setRoom({ sockets: [player] });
   }, []);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
     socket.emit('removeFromRoom');
+    setPlayer(player => ({ id: player.id, name: player.name }));
     navigation.goBack();
   }
 
@@ -41,7 +39,7 @@ export default function Lobby({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.text}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
-      <Text style={[styles.text, { marginBottom: 25 }]}>{player.getRoom()}</Text>
+      <Text style={[styles.text, { marginBottom: 25 }]}>{player.room}</Text>
 
       { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {!room.hasOwnProperty('sockets') ?
@@ -52,7 +50,7 @@ export default function Lobby({ navigation }) {
           renderItem={({ item }) => { if (item) return <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View> }}
         />
       }
-      { player.getHost() && <Button name='começar' onClick={startGame} />}
+      { player.host && <Button name='começar' onClick={startGame} />}
     </View>
   );
 }

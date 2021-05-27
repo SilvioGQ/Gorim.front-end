@@ -15,7 +15,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Proposta({ route, navigation }) {
   const [offersIndividual, setOffersIndividual] = useState([]);
   const [offersAll, setOffersAll] = useState([]);
-  const player = useContext(playerContext);
+  const [player, setPlayer] = useContext(playerContext);
   const socket = useContext(socketContext);
   const [modalText, setModalText] = useState('');
 

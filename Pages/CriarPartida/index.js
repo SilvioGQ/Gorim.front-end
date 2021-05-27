@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
-import { socketContext } from "../../context/socket";
-import { playerContext } from "../../context/player";
+import { ScrollView } from 'react-native-gesture-handler';
+import { socketContext } from '../../context/socket';
+import { playerContext } from '../../context/player';
 
 import COLORS from '../../resources/colors';
 import ModalInfo from '../../Components/ModalInfo';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
@@ -15,7 +15,7 @@ export default function CriarPartida({ navigation }) {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const socket = useContext(socketContext);
-  const player = useContext(playerContext);
+  const [player, setPlayer] = useContext(playerContext);
 
   const createRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
@@ -33,12 +33,7 @@ export default function CriarPartida({ navigation }) {
   const handlePlayer = obj => {
     if (typeof obj !== 'object') return setModalText(obj);
 
-    player.setId(obj.id);
-    player.setHost(obj.host);
-    player.setName(obj.name);
-    player.setRoom(obj.room);
-
-    console.log(obj);
+    setPlayer(obj);
     navigation.navigate('Lobby');
   }
 

@@ -12,7 +12,7 @@ import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";
 const Tela = Dimensions.get('screen').width;
 export default function Parcela({ navigation, route }) {
-  const player = useContext(playerContext);
+  const [player, setPlayer] = useContext(playerContext);
   const socket = useContext(socketContext);
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');

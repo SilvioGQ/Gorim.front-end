@@ -1,8 +1,9 @@
 import React from 'react';
-import 'react-native-gesture-handler';
+// import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import Routes from './Pages/Routes';
+import { PlayerProvider } from './context/player';
 import { useFonts, Rubik_300Light, Rubik_400Regular, Rubik_700Bold } from '@expo-google-fonts/rubik';
 
 export default function App() {
@@ -16,8 +17,10 @@ export default function App() {
     return <AppLoading />
   }
   return (
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+    <PlayerProvider>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+    </PlayerProvider>
   );
 }
