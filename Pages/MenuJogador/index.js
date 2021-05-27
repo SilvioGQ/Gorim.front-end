@@ -81,12 +81,12 @@ export default function MenuJogador({ navigation }) {
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pacote 3' })} name='Pacote 3' />
               </View>
             )}
-            {player.speciality === 'Maquina' && (
-              <>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pulverizador' })} name='Pulverizador' />
-              </>
-            )}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
+            {player.speciality === 'Maquina' && (
+              <View style={{ marginLeft: 27 }}>
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pulverizador' })} name='Pulverizador' />
+              </View>
+            )}
           </View>
         </>
       )}
@@ -99,7 +99,7 @@ export default function MenuJogador({ navigation }) {
           </View>
           <View style={[styles.bar, { backgroundColor: '#BF0000' }]}>
             <Text style={styles.textBar}>100</Text>
-            <Text style={{ color: 'white' }}>Poluição atual</Text>
+            <Text style={{ color: 'white' }}>Poluição Global</Text>
           </View>
         </>
       )}
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   bar: {
-    height: 80,
+    padding:8,
     width: '89%',
     borderRadius: 20,
     alignItems: 'center',
@@ -156,6 +156,6 @@ const styles = StyleSheet.create({
   textBar: {
     fontFamily: 'Rubik_400Regular',
     fontSize: 36,
-    color: '#fff'
+    color: '#fff',
   }
 });

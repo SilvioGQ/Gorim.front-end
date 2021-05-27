@@ -23,12 +23,12 @@ export default function SelecaoIcone({ navigation }) {
         });
         socket.on('startGame', () => navigation.navigate('MenuJogador'));
         // socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
-        
+
         socket.emit('getPlayers', p => setPlayers(p.length));
     }, []);
 
     const selectAvatar = index => {
-        socket.emit('selectAvatar', index, () => setPlayer(player => ({ ...player, avatar: index})));
+        socket.emit('selectAvatar', index, () => setPlayer(player => ({ ...player, avatar: index })));
     }
 
     const bgQuadrados = index => {
@@ -51,12 +51,14 @@ export default function SelecaoIcone({ navigation }) {
         <View style={styles.container}>
             <ScrollView>
                 <Text style={styles.title}>Bem vindo ao Gorim!</Text>
-                <View style={{ marginVertical: 20 }}>
-                    {player.type === 'Agricultor' && (<Text style={styles.subtitle}>Selecionamos para você o personagem agricultor, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
-                    {player.type === 'Empresário' && (<Text style={styles.subtitle}>Selecionamos para você o personagem empresário, logo você será responsável por fazer as plantações, negociar o melhor preço possivel para os produtos com os empresários e evitar a poluição. </Text>)}
+                <View>
+                    <View style={{ marginHorizontal: 15, width: '90%' }}>
+                        {player.type === 'Agricultor' && (<Text style={styles.subtitle}>Foi selecionado para você o personagem agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
+                        {player.type === 'Empresário' && (<Text style={styles.subtitle}>Foi selecionado para você o personagem empresário, logo você será responsável por anunciar os preços dos seus produtos, interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
+                    </View>
                     <Text style={styles.text}>Selecione um personagem</Text>
                     {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
-                    <View>
+                    <View style={{ alignSelf: 'center' }}>
                         <View style={{ marginHorizontal: 15, flexDirection: 'row' }}>
                             <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />
                             <Quadrados onClick={() => selectAvatar('Icon2')} backgroundColor={bgQuadrados('Icon2')} icon='Icon2' />
@@ -104,15 +106,14 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_300Light'
     },
     subtitle: {
-        fontSize: 18,
+        fontSize: 16,
         marginVertical: 15,
         textAlign: 'center',
         fontFamily: 'Rubik_300Light',
-        marginHorizontal: 15,
     },
     text: {
         fontSize: 16,
-        marginVertical: 25,
+        marginVertical: 20,
         textAlign: 'center',
         fontFamily: 'Rubik_300Light'
     },

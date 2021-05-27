@@ -12,6 +12,13 @@ export default function Header() {
   return (
     <View style={styles.row}>
       <Text style={styles.header}>{player.type}/{player.name}{'\n'}em {player.city}</Text>
+      <View style={{ flexDirection: 'row', paddingTop: 15 }}>
+        <Image
+          style={styles.pollution}
+          source={require('../../assets/agricultorIcones/Barril.png')}
+        />
+        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft:3 }}>10</Text>
+      </View>
       <View>
         <Coin coin={player.coin} />
       </View>
@@ -46,6 +53,11 @@ const styles = StyleSheet.create({
   logo: {
     width: 20,
     height: 23
+  },
+  pollution: {
+    width: 18,
+    height: 18,
+    marginTop:2
   },
   person: {
     width: 46,
