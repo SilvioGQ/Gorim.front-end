@@ -27,10 +27,10 @@ export default function Parcela({ navigation, route }) {
   const selectItem = (name, type) => {
     for (let i = 0; i < 3; i++) {
 
-      if (type == 'seed') parcelLand.seed = name;
-      if (type == 'fertilizer') parcelLand.fertilizer = name;
-      if (type == 'pesticide') parcelLand.pesticide = name;
-      if (type == 'machine') parcelLand.machine = name;
+      if (type == 'seed') setParcelLand({ ...parcelLand, seed: name});
+      if (type == 'fertilizer') setParcelLand({ ...parcelLand, fertilizer: name});
+      if (type == 'pesticide') setParcelLand({ ...parcelLand, pesticide: name});
+      if (type == 'machine') setParcelLand({ ...parcelLand, machine: name});
     }
     setDropDown(false);
     setDropDown2(false);
@@ -43,6 +43,8 @@ export default function Parcela({ navigation, route }) {
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
 
     parcelLand.planted = true;
+    let p = player.parcelLand;
+    p[parcelLand.id] = parcelLand;
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;;
       if (e.name == parcelLand.fertilizer) e.amount = e.amount - 1;
@@ -50,8 +52,8 @@ export default function Parcela({ navigation, route }) {
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
 
-    socket.emit('Planted', parcelLand);
-    navigation.navigate('ControleParcelas', { message: 'Seu plantio foi iniciado' });
+    setPlayer(player => ({ ...player, ...p}));
+    socket.emit('toPlant', p, player.inventory);
   }
 
   const toPulverize = () => {
@@ -61,6 +63,7 @@ export default function Parcela({ navigation, route }) {
   const stamp = () => {
     setModalText('Tem certeza de que deseja solicitar o selo verde ao fiscal?');
   }
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -72,15 +75,13 @@ export default function Parcela({ navigation, route }) {
           <Conf text={modalText2} confirm={() => setModalText2('')} denied={() => setModalText2('')} />
         )} */}
         {parcelLand.planted && (
-          <TouchableOpacity
-            style={styles.button2}
-            onPress={stamp}
-          >
+          <TouchableOpacity style={styles.button2} onPress={stamp} >
             <Text style={styles.buttonText}>PEDIR SELO VERDE</Text>
             <Image source={require('../../../assets/selos/selo.png')} style={styles.pulverize} />
           </TouchableOpacity>
         )}
         <Text style={styles.title}>Nesta parcela:</Text>
+
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown(!dropDown) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.seed ? 35 : 25, height: parcelLand.seed ? 35 : 45 }]}
@@ -97,6 +98,7 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'seed'} onClick={selectItem} display={dropDown ? 'flex' : 'none'} />
+
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown2(!dropDown2) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.fertilizer ? 35 : 25, height: parcelLand.fertilizer ? 35 : 45 }]}
@@ -113,6 +115,7 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'fertilizer'} onClick={selectItem} display={dropDown2 ? 'flex' : 'none'} />
+
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown3(!dropDown3) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.pesticide ? 35 : 25, height: parcelLand.pesticide ? 35 : 45 }]}
@@ -129,6 +132,7 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'pesticide'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
+
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown4(!dropDown4) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.machine ? 35 : 25, height: parcelLand.machine ? 35 : 45 }]}
@@ -145,21 +149,15 @@ export default function Parcela({ navigation, route }) {
           </View>
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={toPulverize}>
+
+        <TouchableOpacity style={styles.button} onPress={toPulverize}>
           <Text style={styles.buttonText}>PULVERIZAR</Text>
           <Image source={require('../../../assets/agricultorIcones/Pulverize.png')} style={styles.pulverize} />
         </TouchableOpacity>
-        {!parcelLand.planted && (
-          <Button onClick={toPlant} name='INICIAR PLANTIO' />
-        )}
-        {parcelLand.planted && (
-          <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>
-        )}
-        {modalText !== '' && (
-          <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />
-        )}
+
+        {!parcelLand.planted && <Button onClick={toPlant} name='INICIAR PLANTIO' />}
+        {parcelLand.planted && <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>}
+        {modalText !== '' && <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />}
       </ScrollView>
     </View>
   );

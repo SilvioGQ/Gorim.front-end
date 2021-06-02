@@ -1,13 +1,14 @@
-import React, { useState, useContext } from 'react';
-import { StatusBar } from 'react-native';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useContext } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import COLORS from '../../../resources/colors';
-import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";
+
+import COLORS from '../../../resources/colors';
+
 export default function ControleParcelas({ navigation }) {
+
   const [player, setPlayer] = useContext(playerContext);
-  const socket = useContext(socketContext);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.mainText}>Parcelas de terra</Text>

@@ -33,6 +33,7 @@ export default function CriarPartida({ navigation }) {
   const handlePlayer = obj => {
     if (typeof obj !== 'object') return setModalText(obj);
 
+    console.log(obj);
     setPlayer(obj);
     navigation.navigate('Lobby');
   }
