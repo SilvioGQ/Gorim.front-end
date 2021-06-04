@@ -6,7 +6,6 @@ import COLORS from '../../resources/colors';
 import Produtos from '../../Components/Produtos';
 import ModalInfo from '../../Components/ModalInfo';
 
-// import FunctionaliryService from '../../services/FunctionalityService';
 import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width;
@@ -19,7 +18,6 @@ export default function Analizar() {
 
   useEffect(() => {
     // setModalImage(true);
-    // FunctionaliryService.getProducts().then(setProducts);
     socket.emit('getProducts', resp => setProducts(resp));
   }, []);
 
