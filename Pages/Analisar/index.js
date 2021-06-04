@@ -11,26 +11,25 @@ import { StatusBar } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 export default function Analizar() {
   const [modalText, setModalText] = useState('');
-  const [modalImage, setModalImage] = useState(false);
+  const [modalImage, setModalImage] = useState(true);
   const [products, setProducts] = useState([]);
   const textInfo = 'Informações em tela: \nIcones e nomes dos produtos que podem ser usados nas parcelas de terra';
 
   useEffect(() => {
-    setModalImage(true)
+    // setModalImage(true);
     FunctionaliryService.getProducts().then(setProducts);
+    socket.emit('getProducts', resp => setProducts(resp));
   }, []);
 
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%'}}>
         <Text style={styles.header}>Produtos</Text>
         <TouchableOpacity onPress={() => setModalText(textInfo)}>
           <Image source={require('../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
         </TouchableOpacity>
       </View>
-      {modalText !== '' && (
-        <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage ={modalImage}/>
-      )}
+      {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage ={modalImage}/>}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={products}
