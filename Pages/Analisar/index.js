@@ -18,7 +18,7 @@ export default function Analizar() {
 
   useEffect(() => {
     // setModalImage(true);
-    socket.emit('getProducts', resp => setProducts(resp));
+    socket.emit('getProducts', null, resp => setProducts(resp));
   }, []);
 
   return (

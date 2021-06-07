@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";
 
@@ -12,10 +13,7 @@ import Coin from '../../../Components/Coin'
 import Baixo from '../../../assets/moedas/cheap.png';
 import Normal from '../../../assets/moedas/medium.png';
 import Alto from '../../../assets/moedas/expensive.png';
-import { FlatList } from 'react-native-gesture-handler';
 import IMAGES from '../../../resources/imagesProducts';
-import FunctionalityService from '../../../services/FunctionalityService';
-import { StatusBar } from 'react-native';
 
 export default function Vendas({ navigation, route }) {
 
@@ -36,7 +34,7 @@ export default function Vendas({ navigation, route }) {
       p.unshift(todos);
       setPlayers(p);
     });
-    FunctionalityService.getProduct(name).then(setProduct)
+    socket.emit('getProducts', name, resp => setProduct(resp));
   }, []);
 
   const confirmTransfer = () => {
@@ -45,18 +43,15 @@ export default function Vendas({ navigation, route }) {
     if (selectClient == -1) setSelectAmount(-1);
     if (selectAmount == -1 && selectClient !== -1) return setModalText('Selecione a quantidade!');
 
-    FunctionalityService.addOffer(player, selectClient, selectPrice, selectAmount, name, type)
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text: 'Sua proposta foi enviada com sucesso' } }] });
+    socket.emit('addOffer', name, type, selectPrice, selectClient, selectAmount);
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
 
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
       <View style={styles.center}>
-        <Image
-          style={styles.person}
-          source={IMAGES[name]}
-        />
+        <Image style={styles.person} source={IMAGES[name]} />
         <Text style={styles.header}> Venda de {'\n'} {name} </Text>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Clientes: </Text>
@@ -75,30 +70,21 @@ export default function Vendas({ navigation, route }) {
       <View style={styles.row}>
         <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}>
           <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
-            <Image
-              style={styles.icone}
-              source={Baixo}
-            />
+            <Image style={styles.icone} source={Baixo} />
             <Text style={styles.categoryprice}>Baixo</Text>
             <Text style={styles.price}>${product?.cheap}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelectPrice(product?.medium)}>
           <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
-            <Image
-              style={styles.icone}
-              source={Normal}
-            />
+            <Image style={styles.icone} source={Normal} />
             <Text style={styles.categoryprice}>Normal</Text>
             <Text style={styles.price}>${product?.medium}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)}>
           <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
-            <Image
-              style={styles.icone}
-              source={Alto}
-            />
+            <Image style={styles.icone} source={Alto} />
             <Text style={styles.categoryprice}>Alto</Text>
             <Text style={styles.price}>${product?.expensive}</Text>
           </View>
@@ -107,9 +93,7 @@ export default function Vendas({ navigation, route }) {
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
       {selectClient == -1 && <Text style={{ fontSize: 32, fontFamily: 'Rubik_700Bold', marginVertical: 15, textAlign: 'center', alignItems: 'center' }}>PROPAGANDA</Text>}
       {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
-      <Button
-        onClick={confirmTransfer}
-        name='VENDER' />
+      <Button onClick={confirmTransfer} name='VENDER' />
     </View>
   );
 }

@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-native';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
 import OfertaGeral from '../../../Components/OfertaGeral';
 import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
-import FunctionalityService from '../../../services/FunctionalityService';
+// import FunctionalityService from '../../../services/FunctionalityService';
 import PlayerService from '../../../services/PlayerService';
 import Modal from '../../../Components/ModalInfo'
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+
 const Tela = Dimensions.get('screen').width;
-export default function Proposta({ route, navigation }) {
+export default function Proposta({ navigation }) {
+
   const [offersIndividual, setOffersIndividual] = useState([]);
   const [offersAll, setOffersAll] = useState([]);
   const [player, setPlayer] = useContext(playerContext);
@@ -20,11 +22,13 @@ export default function Proposta({ route, navigation }) {
   const [modalText, setModalText] = useState('');
 
   useEffect(() => {
+    socket.emit('getOffers', resp => setOffersAll(resp));
     // setTimeout(() => {
-    FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
-    FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
+    // FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
+    // FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
     // }, 100)
   }, []);
+
   const confirmOffer = (item, amount = null) => {
     let count = 0;
     if (player.coin >= item.price * item.amount) {
@@ -36,14 +40,14 @@ export default function Proposta({ route, navigation }) {
       });
 
       if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.product, amount: 1 });
-      if (item.idBuyer != -1) FunctionalityService.deleteOffer(item);
+      // if (item.idBuyer != -1) FunctionalityService.deleteOffer(item);
       if (item.amount == -1) item.amount = amount;
       let price = item.price * item.amount;
       PlayerService.addInvetory(player)
-      FunctionalityService.makeTransfer(player.id, item.idSeller, price);
+      // FunctionalityService.makeTransfer(player.id, item.idSeller, price);
       player.coin -= item.price * item.amount
-      FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
-      FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
+      // FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
+      // FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
       PlayerService.getPlayer(item.idSeller).then(resp => {
         // <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
         let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
@@ -56,27 +60,28 @@ export default function Proposta({ route, navigation }) {
     }
   }
   const rejectOffer = item => {
-    FunctionalityService.deleteOffer(item);
-    FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
+    console.log('rejeitou')
+    // FunctionalityService.deleteOffer(item);
+    // FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
   }
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
       <Text style={styles.header}>Propostas</Text>
-      {modalText !== '' && (
+      {/* {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
       <Text style={styles.text}>Oferta para todos</Text>
       {offersAll.length === 0 && (
         <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-      )}
+      )} */}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersAll}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <OfertaGeral item={item} confirmOffer={navigation.navigate('MenuJogador')} />}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => <Text>{item.name}</Text>}
       />
-      <Text style={styles.text}>Negociação individual</Text>
+      {/* <Text style={styles.text}>Negociação individual</Text>
       {offersIndividual.length === 0 && (
         <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
       )}
@@ -85,7 +90,7 @@ export default function Proposta({ route, navigation }) {
         data={offersIndividual}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer} />}
-      />
+      /> */}
       {/* tem que fazer funcionar <OfertaGeral/> */}
     </View>
   );
