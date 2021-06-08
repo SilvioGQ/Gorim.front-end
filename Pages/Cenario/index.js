@@ -45,7 +45,6 @@ export default function Cenario({ route }) {
         }
         SelectImage()
     })
-    console.log(player.log)
     return (
         <View style={styles.container}>
             <View style={styles.row}>

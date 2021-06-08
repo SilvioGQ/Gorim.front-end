@@ -10,6 +10,7 @@ import Espera from './Tela de Espera';
 import SelecaoIcone from './SelecaoIcone';
 import Insumo from './Transferencias/Insumo';
 import Vendas from './Empresario/Vender';
+import ChecarAnuncio from './Empresario/ChecarAnuncio';
 import FazerTransferencia from './Transferencias/FazerTransferencia';
 import ConfirmarTransferencia from './Transferencias/ConfirmarTransferencia';
 import TransferenciaConfirmada from './Transferencias/Confirmada';
@@ -144,6 +145,10 @@ export default function Routes() {
       }} />
       <Stack.Screen name="SelecaoIcone" component={SelecaoIcone} options={{
         headerLeft: () => null,
+        headerTransparent: true,
+        headerTitle: '',
+      }} />
+      <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio} options={{
         headerTransparent: true,
         headerTitle: '',
       }} />

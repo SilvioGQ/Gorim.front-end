@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { playerContext } from '../../context/player';
-
 import IMAGES from '../../resources/imagesIcons'
 import Coin from '../Coin';
+import { playerContext } from "../../context/player";
 
 export default function Header() {
 
@@ -17,7 +16,7 @@ export default function Header() {
           style={styles.pollution}
           source={require('../../assets/agricultorIcones/Barril.png')}
         />
-        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft:3 }}>10</Text>
+        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>10</Text>
       </View>
       <View>
         <Coin coin={player.coin} />
@@ -32,9 +31,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start',
     justifyContent: 'space-between',
-    marginHorizontal:10,
-    marginVertical:15,
-    marginLeft:20,
+    marginHorizontal: 10,
+    marginVertical: 15,
+    marginLeft: 20,
     width: '90%'
   },
   header: {
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
   pollution: {
     width: 18,
     height: 18,
-    marginTop:2
+    marginTop: 2
   },
   person: {
     width: 46,

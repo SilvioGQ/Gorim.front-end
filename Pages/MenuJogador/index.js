@@ -82,6 +82,7 @@ export default function MenuJogador({ navigation }) {
               </View>
             )}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
+            <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
             {player.speciality === 'Maquina' && (
               <View style={{ marginLeft: 27 }}>
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pulverizador' })} name='Pulverizador' />
@@ -94,11 +95,11 @@ export default function MenuJogador({ navigation }) {
       {Height >= 780 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00' }]}>
-            <Text style={styles.textBar}>200</Text>
-            <Text style={{ color: 'white' }}>Produtividade atual</Text>
+            <Text style={styles.textBar}>100</Text>
+            <Text style={{ color: 'white' }}>Produtividade individual</Text>
           </View>
           <View style={[styles.bar, { backgroundColor: '#BF0000' }]}>
-            <Text style={styles.textBar}>100</Text>
+            <Text style={styles.textBar}>100%</Text>
             <Text style={{ color: 'white' }}>Poluição Global</Text>
           </View>
         </>
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start',
     marginHorizontal: 20,
+    marginVertical:20,
     width: '100%',
     flexWrap: 'wrap'
   },
