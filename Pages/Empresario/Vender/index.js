@@ -14,6 +14,7 @@ import Baixo from '../../../assets/moedas/cheap.png';
 import Normal from '../../../assets/moedas/medium.png';
 import Alto from '../../../assets/moedas/expensive.png';
 import IMAGES from '../../../resources/imagesProducts';
+import CaixaDeValor from '../../../Components/CaixaDeValor';
 
 export default function Vendas({ navigation, route }) {
 
@@ -22,7 +23,7 @@ export default function Vendas({ navigation, route }) {
   const [players, setPlayers] = useState();
   const [selectPrice, setSelectPrice] = useState(-1);
   const [selectClient, setSelectClient] = useState();
-  const [selectAmount, setSelectAmount] = useState(-1);
+  const [selectAmount, setSelectAmount] = useState(0);
   const [product, setProduct] = useState([]);
   const socket = useContext(socketContext);
   const [player, setPlayer] = useContext(playerContext);
@@ -91,7 +92,7 @@ export default function Vendas({ navigation, route }) {
         </TouchableOpacity>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
-      {selectClient == -1 && <Text style={{ fontSize: 32, fontFamily: 'Rubik_700Bold', marginVertical: 15, textAlign: 'center', alignItems: 'center' }}>PROPAGANDA</Text>}
+      {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={5} />}
       {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
       <Button onClick={confirmTransfer} name='VENDER' />
     </View>
