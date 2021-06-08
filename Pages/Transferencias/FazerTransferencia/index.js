@@ -9,6 +9,7 @@ import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
+import CaixaDeValor from '../../../Components/CaixaDeValor';
 
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation }) {
@@ -27,8 +28,6 @@ export default function FazerTransferencia({ navigation }) {
     });
   }, []);
 
-  const increaseCount = () => setCount(count < player.coin ? count + 5 : count);
-  const decreaseCount = () => setCount(count > 0 ? count - 5 : count);
   const confirmTransfer = () => {
     if (!id) return setModalText('Selecione o destino!');
     if (count === 0) return setModalText('Adicione um valor!');
@@ -53,19 +52,7 @@ export default function FazerTransferencia({ navigation }) {
         />
       </View>
       <Text style={styles.text}>Valor:</Text>
-      <View style={{ flex: 1, marginTop: 35 }}>
-        <View style={styles.arrows}>
-          <TouchableOpacity onPress={decreaseCount}>
-            <Image style={[styles.icon, { opacity: count === 0 ? 0.5 : 1 }]} source={require('../../../assets/agricultorIcones/setaesquerda.png')} />
-          </TouchableOpacity>
-          <View style={styles.buttonAmount}>
-            <Text style={styles.textAmount}>{count}</Text>
-          </View>
-          <TouchableOpacity onPress={increaseCount}>
-            <Image style={[styles.icon, { opacity: count === player.coin ? 0.5 : 1 }]} source={require('../../../assets/agricultorIcones/setadireita.png')} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <CaixaDeValor value={count} setValue={setCount} increment={5} maxValue={player.coin} />
       <Button onClick={confirmTransfer} name='CONTINUAR' />
       {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
     </View>
@@ -79,12 +66,6 @@ const styles = StyleSheet.create({
     width: Tela,
     paddingTop: StatusBar.currentHeight,
   },
-  arrows: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    marginEnd: 5
-  },
   header: {
     flexDirection: 'row',
     alignSelf: 'center',
@@ -92,28 +73,10 @@ const styles = StyleSheet.create({
     margin: 15,
     width: Tela
   },
-  icon: {
-    width: 46,
-    height: 48
-  },
   text: {
     fontSize: 18,
     marginTop: 30,
     fontFamily: 'Rubik_300Light',
     marginHorizontal: 15
-  },
-  buttonAmount: {
-    backgroundColor: COLORS.textWhite,
-    borderWidth: 1,
-    borderRadius: 20,
-    height: 51,
-    width: 180
-  },
-  textAmount: {
-    alignSelf: 'center',
-    textAlign: 'center',
-    marginTop: 10,
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 25
   }
 });
