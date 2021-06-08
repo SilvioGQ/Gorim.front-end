@@ -13,15 +13,12 @@ export default function SorteioJogador({ navigation }) {
   useEffect(() => {
     socket.on('makeRaffle', players => {
       players.filter(p => {
-        if (p.id == player.id) {
-          setPlayer(() => ({ ...p }));  
-          // setPlayer(player => ({ ...player, coin: p.coin, city: p.city, type: p.type }));
-          
-          // if (p.speciality) setPlayer(player => ({ ...player, speciality: p.speciality }));
-          // if (p.inventory) setPlayer(player => ({ ...player, inventory: p.inventory, parcelLand: p.parcelLand }));
-        }
+        if (p.id == player.id) setPlayer(() => ({ ...p }));
       });
-      navigation.navigate('SelecaoIcone');
+      
+      setTimeout(() => {
+        navigation.navigate('SelecaoIcone');
+      }, 2000);
     });
   
     socket.emit('makeRaffle');

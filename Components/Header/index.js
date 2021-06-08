@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <View style={styles.row}>
-      <Text style={styles.header}>{player.type}/{player.name}{'\n'}em {player.city}</Text>
+      <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}/{player.name}{'\n'}em {player.city}</Text>
       <View style={{ flexDirection: 'row', paddingTop: 15 }}>
         <Image
           style={styles.pollution}
