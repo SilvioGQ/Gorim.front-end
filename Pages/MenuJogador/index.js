@@ -18,14 +18,14 @@ export default function MenuJogador({ navigation }) {
   const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
-    socket.on('makeTransfers' + player.id, p => setPlayer(player => ({ ...player, ...p})));
+    socket.on('makeTransfers' + player.id, p => setPlayer(player => ({ ...player, ...p })));
   }, []);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
     socket.emit('removeFromRoom');
     setPlayer(player => ({ id: player.id, name: player.name }));
-    navigation.reset({ routes: [{ name: 'Gorim' }]});
+    navigation.reset({ routes: [{ name: 'Gorim' }] });
   }
 
   return (
@@ -51,44 +51,47 @@ export default function MenuJogador({ navigation }) {
         </>
       )}
       {player.type === 'Empresário' && (
-        <>
-          <View style={styles.row}>
-            {player.speciality === 'Fertilizante' && (
+        <View style={styles.row}>
+          {player.speciality === 'Fertilizante' && (
+            <View style={styles.items}>
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Comum' })} name='Fertilizante Comum' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Premium' })} name='Fertilizante Premium' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
+            </View>
+          )}
+          {player.speciality === 'Agrotoxico' && (
+            <View style={styles.items}>
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Super Premium' })} name='Agrotóxico Super Premium' />
+            </View>
+          )}
+          {player.speciality === 'Semente' && (
+            <View style={styles.items}>
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Soja' })} name='Soja' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Arroz' })} name='Arroz' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Hortaliça' })} name='Hortaliça' />
+            </View>
+          )}
+          {player.speciality === 'Maquina' && (
+            <>
               <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'fertilizer', name: 'Fertilizante Comum' })} name='Fertilizante Comum' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'fertilizer', name: 'Fertilizante Premium' })} name='Fertilizante Premium' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'fertilizer', name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 1' })} name='Pacote 1' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 2' })} name='Pacote 2' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 3' })} name='Pacote 3' />
               </View>
-            )}
-            {player.speciality === 'Agrotoxico' && (
-              <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'pesticide', name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'pesticide', name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'pesticide', name: 'Agrotóxico Super Premium' })} name='Agrotóxico Super Premium' />
-              </View>
-            )}
-            {player.speciality === 'Semente' && (
-              <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'seed', name: 'Soja' })} name='Soja' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'seed', name: 'Arroz' })} name='Arroz' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'seed', name: 'Hortaliça' })} name='Hortaliça' />
-              </View>
-            )}
-            {player.speciality === 'Maquina' && (
-              <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pacote 1' })} name='Pacote 1' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pacote 2' })} name='Pacote 2' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pacote 3' })} name='Pacote 3' />
-              </View>
-            )}
-            <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-            {player.speciality === 'Maquina' && (
               <View style={{ marginLeft: 27 }}>
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pulverizador' })} name='Pulverizador' />
               </View>
-            )}
-          </View>
-        </>
+            </>
+          )}
+          <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
+          {/* {player.speciality === 'Maquina' && (
+              <View style={{ marginLeft: 27 }}>
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pulverizador' })} name='Pulverizador' />
+              </View>
+            )} */}
+        </View>
       )}
       { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {Height >= 780 && (
@@ -147,7 +150,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   bar: {
-    padding:8,
+    padding: 8,
     width: '89%',
     borderRadius: 20,
     alignItems: 'center',
