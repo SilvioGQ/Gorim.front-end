@@ -8,9 +8,8 @@ import Oferta from '../../../Components/Oferta';
 import OfertaGeral from '../../../Components/OfertaGeral';
 import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
-// import FunctionalityService from '../../../services/FunctionalityService';
 import PlayerService from '../../../services/PlayerService';
-import Modal from '../../../Components/ModalInfo'
+import Modal from '../../../Components/ModalInfo';
 
 const Tela = Dimensions.get('screen').width;
 export default function Proposta({ navigation }) {
@@ -22,11 +21,8 @@ export default function Proposta({ navigation }) {
   const [modalText, setModalText] = useState('');
 
   useEffect(() => {
-    socket.emit('getOffers', resp => setOffersAll(resp));
-    // setTimeout(() => {
-    // FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
-    // FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
-    // }, 100)
+    socket.emit('getOffers', -1, resp => setOffersAll(resp));
+    socket.emit('getOffers', player.id, resp => setOffersIndividual(resp));
   }, []);
 
   const confirmOffer = (item, amount = null) => {
@@ -78,6 +74,12 @@ export default function Proposta({ navigation }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersAll}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => <Text>{item.name}</Text>}
+      />
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={offersIndividual}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => <Text>{item.name}</Text>}
       />

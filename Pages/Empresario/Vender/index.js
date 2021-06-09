@@ -18,7 +18,7 @@ import CaixaDeValor from '../../../Components/CaixaDeValor';
 
 export default function Vendas({ navigation, route }) {
 
-  const { name, type } = route.params;
+  const { name } = route.params;
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState();
   const [selectPrice, setSelectPrice] = useState(-1);
@@ -41,10 +41,9 @@ export default function Vendas({ navigation, route }) {
   const confirmTransfer = () => {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
-    if (selectClient == -1) setSelectAmount(-1);
-    if (selectAmount == -1 && selectClient !== -1) return setModalText('Selecione a quantidade!');
+    if (selectAmount == -1) return setModalText('Selecione a quantidade!');
 
-    socket.emit('addOffer', name, type, selectPrice, selectClient, selectAmount);
+    socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
 
