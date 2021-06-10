@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
-import { TextInput } from 'react-native-paper';
 import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
 
@@ -71,13 +70,6 @@ export default function Frame4({ navigation }) {
           />
           <View style={{ paddingHorizontal: '15%', paddingRight: '5%' }}>
             <Text style={styles.superior}>Mais sobre você</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={text => onChangeText(text)}
-              value={value.sobre}
-              backgroundColor='#EBFFFD'
-              placeholder='Fale sobre você'
-            />
           </View>
         </View>
         <Button

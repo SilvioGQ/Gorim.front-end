@@ -5,8 +5,7 @@ import COLORS from '../../resources/colors';
 import Papel from '../../assets/agricultorIcones/papel.png';
 
 const Tela = Dimensions.get('screen').width;
-export default function Cenarios({ onClick }) {
-  const [isSelected3, setSelection3] = useState(false);
+export default function Cenarios({ onClick, notification }) {
   return (
     <View style={{ height: 60, justifyContent: 'space-between', width: '95%', flexDirection: 'row', backgroundColor: COLORS.bgColorPrimary }}>
       <TouchableOpacity onPress={onClick} style={{paddingVertical: 25}}>
@@ -16,6 +15,8 @@ export default function Cenarios({ onClick }) {
             source={Papel}
           />
           <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 12, paddingHorizontal: 5 }}> Resumo de cenário </Text>
+          {notification && <View style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: '#F19F00', marginTop: -40,  shadowColor: "#000", shadowOffset: { width: 0, height: 2, }, shadowOpacity: 0.25, shadowRadius: 3.94, elevation: 6, }} />}
+
         </View>
       </TouchableOpacity>
       <TouchableOpacity onPress={onClick} style={{paddingVertical: 25}}>
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.textWhite,
-    borderRadius: 20,
+    borderRadius: 25,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

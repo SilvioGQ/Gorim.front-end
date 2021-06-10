@@ -44,13 +44,13 @@ export default function Proposta({ navigation }) {
       player.coin -= item.price * item.amount
       // FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
       // FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
-      PlayerService.getPlayer(item.idSeller).then(resp => {
-        // <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
-        let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
-        PlayerService.addNegociation(text, player)
-        let text2 = 'Você vendeu ' + item.amount + ' unidade(s) de ' + item.product + ' para o ' + player.name + ' por ' + price + '$'
-        PlayerService.addNegociation(text2, resp)
-      });
+      // PlayerService.getPlayer(item.idSeller).then(resp => {
+      //   // <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
+      //   let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
+      //   PlayerService.addNegociation(text, player)
+      //   let text2 = 'Você vendeu ' + item.amount + ' unidade(s) de ' + item.product + ' para o ' + player.name + ' por ' + price + '$'
+      //   PlayerService.addNegociation(text2, resp)
+      // });
     } else {
       setModalText('Você não possui dinheiro suficiente para esta compra.')
     }
@@ -75,13 +75,13 @@ export default function Proposta({ navigation }) {
         showsVerticalScrollIndicator={false}
         data={offersAll}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
+        renderItem={({ item }) => <OfertaGeral item={item} confirmOffer={confirmOffer} />}
       />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersIndividual}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
+        renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
       />
       {/* <Text style={styles.text}>Negociação individual</Text>
       {offersIndividual.length === 0 && (

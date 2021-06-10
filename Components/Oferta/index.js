@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import COLORS from '../../resources/colors';
@@ -6,19 +6,26 @@ import imagesProducts from '../../resources/imagesProducts';
 import imagesCoins from '../../resources/imagesCoins';
 import IMAGES from '../../resources/imagesIcons'
 import PlayerService from '../../services/PlayerService';
-import FunctionalityService from '../../services/FunctionalityService';
-
+import { socketContext } from "../../context/socket";
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer, rejectOffer }) {
-  const [player, setPlayer] = useState({});
+  const [player, setPlayer] = useState();
+  const socket = useContext(socketContext);
   const [coin, setCoin] = useState('');
 
   useEffect(() => {
-    PlayerService.getPlayer(item.idSeller).then(setPlayer);
-    FunctionalityService.getProduct(item.product).then(resp => {
-      if(item.price == resp.cheap) setCoin('Barato');
-      if(item.price == resp.medium) setCoin('Médio');
-      if(item.price == resp.expensive) setCoin('Caro');
+    console.log(item)
+    console.log(player)
+    socket.emit('getPlayers', p => {
+      p = p.filter(i => i.id === item.idSeller );
+      setPlayer(p);
+    });
+    // PlayerService.getPlayer(item.idSeller).then(setPlayer);
+       setPlayer('Icon3');
+    socket.emit('getProducts', item.name, p => {
+      if(item.price == p.cheap) setCoin('Barato');
+      if(item.price == p.medium) setCoin('Médio');
+      if(item.price == p.expensive) setCoin('Caro');
     })
   },[]);
 
@@ -28,17 +35,17 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
         <View>
           <Image
             style={styles.person}
-            source={IMAGES[player.avatar]}
+            source={IMAGES[player]}
           />
-          <Text style={styles.text}>{player.name}</Text>
+          <Text style={styles.text}>Silvio</Text>
         </View>
         <View>
           <Text style={styles.text}>Produto:</Text>
-          <Text style={styles.textBold}>{item.product}</Text>
+          <Text style={styles.textBold}>{item.name}</Text>
         </View>
         <Image
           style={styles.icone}
-          source={imagesProducts[item.product]}
+          source={imagesProducts[item.name]}
         />
         <View>
           <Text style={styles.text}>Preço:</Text>

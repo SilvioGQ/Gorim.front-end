@@ -91,7 +91,7 @@ export default function Vendas({ navigation, route }) {
         </TouchableOpacity>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
-      {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={5} />}
+      {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
       {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
       <Button onClick={confirmTransfer} name='VENDER' />
     </View>

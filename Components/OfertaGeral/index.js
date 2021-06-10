@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import COLORS from '../../resources/colors';
@@ -7,24 +7,29 @@ import imagesCoins from '../../resources/imagesCoins';
 import IMAGES from '../../resources/imagesIcons'
 import PlayerService from '../../services/PlayerService';
 import FunctionalityService from '../../services/FunctionalityService';
-
+import { socketContext } from "../../context/socket";
+import { playerContext } from "../../context/player";
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer }) {
-  const [player, setPlayer] = useState({});
+  const [player, setPlayer] = useContext(playerContext);
+  const socket = useContext(socketContext);
   const [coin, setCoin] = useState('');
+  const [count, setCount] = useState(1);
 
-  // useEffect(() => {
-  //     PlayerService.getPlayer(item.idSeller).then(setPlayer);
-  //     FunctionalityService.getProduct(item.product).then(resp => {
-  //         if (item.price == resp.cheap) setCoin('Barato');
-  //         if (item.price == resp.medium) setCoin('Médio');
-  //         if (item.price == resp.expensive) setCoin('Caro');
-  //     });
-  // }, []);
+  useEffect(() => {
+    PlayerService.getPlayer(item.idSeller).then(setPlayer);
+    FunctionalityService.getProduct(item.product).then(resp => {
+      if (item.price == resp.cheap) setCoin('Barato');
+      if (item.price == resp.medium) setCoin('Médio');
+      if (item.price == resp.expensive) setCoin('Caro');
+    });
+  }, []);
+  const increaseCount = () => { setCount(count < 6 ? count + 1 : count); }
+  const decreaseCount = () => { setCount(count > 1 ? count - 1 : count); }
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
-        {/* <View>
+        <View>
           <Image
             style={styles.person}
             source={IMAGES[player.avatar]}
@@ -46,12 +51,24 @@ export default function Oferta({ item, confirmOffer }) {
         <Image
           style={styles.icone}
           source={imagesCoins[coin]}
-        />*/}
+        />
       </View>
       <View style={styles.row}>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={confirmOffer}>
-          <Text style={styles.textbutton}>EU QUERO</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item, count)}>
+          <Text style={styles.textbutton}>COMPRAR</Text>
         </TouchableOpacity>
+        <Text style={styles.text}> Quantidade:</Text>
+        <View style={styles.arrows}>
+          <TouchableOpacity onPress={decreaseCount}>
+            <Text style={styles.textDecrease}>-</Text>
+          </TouchableOpacity>
+          <View style={styles.buttonAmount}>
+            <Text style={styles.textAmount}>{count}</Text>
+          </View>
+          <TouchableOpacity onPress={increaseCount}>
+            <Text style={styles.textIncrease}>+</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -75,11 +92,10 @@ const styles = StyleSheet.create({
     marginVertical: 15
   },
   button: {
-    width: '60%',
+    width: 110,
     borderRadius: 20,
     backgroundColor: COLORS.warningButton,
-    padding: 12,
-    alignSelf: 'center'
+    padding: 12
   },
   textbutton: {
     color: COLORS.textWhite,
