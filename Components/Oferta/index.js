@@ -1,32 +1,31 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { socketContext } from "../../context/socket";
 
 import COLORS from '../../resources/colors';
 import imagesProducts from '../../resources/imagesProducts';
 import imagesCoins from '../../resources/imagesCoins';
-import IMAGES from '../../resources/imagesIcons'
-import PlayerService from '../../services/PlayerService';
-import { socketContext } from "../../context/socket";
+import IMAGES from '../../resources/imagesIcons';
+
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer, rejectOffer }) {
+
   const [player, setPlayer] = useState();
-  const socket = useContext(socketContext);
   const [coin, setCoin] = useState('');
+  const socket = useContext(socketContext);
 
   useEffect(() => {
     console.log(item)
-    console.log(player)
-    socket.emit('getPlayers', p => {
-      p = p.filter(i => i.id === item.idSeller );
-      setPlayer(p);
-    });
+    // socket.emit('getPlayers', p => {
+    //   p = p.filter(i => i.id === item.idSeller );
+    //   setPlayer(p);
+    // });
     // PlayerService.getPlayer(item.idSeller).then(setPlayer);
-       setPlayer('Icon3');
     socket.emit('getProducts', item.name, p => {
       if(item.price == p.cheap) setCoin('Barato');
       if(item.price == p.medium) setCoin('Médio');
       if(item.price == p.expensive) setCoin('Caro');
-    })
+    });
   },[]);
 
   return (
@@ -35,9 +34,9 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
         <View>
           <Image
             style={styles.person}
-            source={IMAGES[player]}
+            source={IMAGES[item.idSeller.avatar]}
           />
-          <Text style={styles.text}>Silvio</Text>
+          <Text style={styles.text}>{item.idSeller.name}</Text>
         </View>
         <View>
           <Text style={styles.text}>Produto:</Text>

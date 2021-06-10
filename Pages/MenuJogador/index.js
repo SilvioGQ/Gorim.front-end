@@ -16,9 +16,11 @@ export default function MenuJogador({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const socket = useContext(socketContext);
   const [player, setPlayer] = useContext(playerContext);
-  const [notificationScene, setNotificationScene] = useState('flex');
-  const [notificationNegociation, setNotificationNegociation] = useState('flex');
+  const [notificationScene, setNotificationScene] = useState(false);
+  const [notificationNegociation, setNotificationNegociation] = useState(false);
+
   useEffect(() => {
+    socket.on('notify' + player.id, message => message === 'newOffer' ? setNotificationNegociation(true) : setNotificationScene(true));
     socket.on('makeTransfers' + player.id, p => setPlayer(player => ({ ...player, ...p })));
   }, []);
 
@@ -44,7 +46,7 @@ export default function MenuJogador({ navigation }) {
           </TouchableOpacity>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item type='Menu' onClick={() => navigation.navigate('Proposta')} name='Checar propostas' notification={notificationNegociation} />
+              <Item type='Menu' onClick={() => { navigation.navigate('Proposta'); setNotificationNegociation(false);}} name='Checar propostas' notification={notificationNegociation} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos' />
             </View>
@@ -108,7 +110,7 @@ export default function MenuJogador({ navigation }) {
           </View>
         </>
       )}
-      <Cenarios onClick={() => navigation.navigate('Cenario')} notification={notificationScene}/>
+      <Cenarios onClick={() => {navigation.navigate('Cenario'); setNotificationScene(false);}} notification={notificationScene}/>
     </View>
   );
 }
