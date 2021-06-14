@@ -35,31 +35,18 @@ export default function Proposta({ navigation }) {
         } else { count++; }
       });
 
-      if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.product, amount: 1 });
-      // if (item.idBuyer != -1) FunctionalityService.deleteOffer(item);
+      if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.name, amount: item.amount });
       if (item.amount == -1) item.amount = amount;
       let price = item.price * item.amount;
-      PlayerService.addInvetory(player)
-      // FunctionalityService.makeTransfer(player.id, item.idSeller, price);
-      player.coin -= item.price * item.amount
-      // FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
-      // FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
-      // PlayerService.getPlayer(item.idSeller).then(resp => {
-      //   // <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
-      //   let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
-      //   PlayerService.addNegociation(text, player)
-      //   let text2 = 'Você vendeu ' + item.amount + ' unidade(s) de ' + item.product + ' para o ' + player.name + ' por ' + price + '$'
-      //   PlayerService.addNegociation(text2, resp)
-      // });
+      player.coin -= item.price * item.amount;
     } else {
       setModalText('Você não possui dinheiro suficiente para esta compra.')
     }
   }
   const rejectOffer = item => {
-    console.log('rejeitou')
-    // FunctionalityService.deleteOffer(item);
-    // FunctionalityService.getOffers(player.id, player.room).then(setOffersIndividual);
+    socket.emit('respOffer', false, item, resp => setOffersIndividual(resp));
   }
+
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
@@ -77,16 +64,17 @@ export default function Proposta({ navigation }) {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => <OfertaGeral item={item} confirmOffer={confirmOffer} />}
       />
+      <Text style={styles.text}>Negociação individual</Text>
+      {offersIndividual.length === 0 && (
+        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+      )}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersIndividual}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
       />
-      {/* <Text style={styles.text}>Negociação individual</Text>
-      {offersIndividual.length === 0 && (
-        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-      )}
+      {/*
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersIndividual}
