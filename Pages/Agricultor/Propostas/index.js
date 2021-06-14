@@ -71,7 +71,7 @@ export default function Proposta({ navigation }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersIndividual}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(index) => index.toString()}
         renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
       />
       {/*
