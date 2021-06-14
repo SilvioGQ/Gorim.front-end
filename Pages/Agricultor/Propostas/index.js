@@ -80,20 +80,14 @@ export default function Proposta({ navigation }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersIndividual}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(index) => index.toString()}
         renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
       />
       {/* <Text style={styles.text}>Negociação individual</Text>
       {offersIndividual.length === 0 && (
         <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-      )}
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={offersIndividual}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer} />}
-      /> */}
-      {/* tem que fazer funcionar <OfertaGeral/> */}
+      )} 
+      */}
     </View>
   );
 }

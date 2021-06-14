@@ -5,25 +5,22 @@ import COLORS from '../../resources/colors';
 import imagesProducts from '../../resources/imagesProducts';
 import imagesCoins from '../../resources/imagesCoins';
 import IMAGES from '../../resources/imagesIcons'
-import PlayerService from '../../services/PlayerService';
-import FunctionalityService from '../../services/FunctionalityService';
 import { socketContext } from "../../context/socket";
 import { playerContext } from "../../context/player";
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer }) {
-  const [player, setPlayer] = useContext(playerContext);
   const socket = useContext(socketContext);
   const [coin, setCoin] = useState('');
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    PlayerService.getPlayer(item.idSeller).then(setPlayer);
-    FunctionalityService.getProduct(item.product).then(resp => {
-      if (item.price == resp.cheap) setCoin('Barato');
-      if (item.price == resp.medium) setCoin('Médio');
-      if (item.price == resp.expensive) setCoin('Caro');
+    console.log(item)
+    socket.emit('getProducts', item.name, p => {
+      if(item.price == p.cheap) setCoin('Barato');
+      if(item.price == p.medium) setCoin('Médio');
+      if(item.price == p.expensive) setCoin('Caro');
     });
-  }, []);
+  },[]);
   const increaseCount = () => { setCount(count < 6 ? count + 1 : count); }
   const decreaseCount = () => { setCount(count > 1 ? count - 1 : count); }
   return (
@@ -32,9 +29,9 @@ export default function Oferta({ item, confirmOffer }) {
         <View>
           <Image
             style={styles.person}
-            source={IMAGES[player.avatar]}
+            source={IMAGES[item.idSeller.avatar]}
           />
-          <Text style={styles.text}>{player.name}</Text>
+          <Text style={styles.text}>{item.idSeller.name}</Text>
         </View>
         <View>
           <Text style={styles.text}>Produto:</Text>
