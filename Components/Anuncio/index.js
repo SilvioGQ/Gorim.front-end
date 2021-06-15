@@ -8,7 +8,7 @@ import imagesCoins from '../../resources/imagesCoins';
 import IMAGES from '../../resources/imagesIcons';
 
 const Tela = Dimensions.get('screen').width;
-export default function Oferta({ item, Historico, reject }) {
+export default function Oferta({ item, Historico, deleteAdvert }) {
 
   const [player, setPlayer] = useState();
   const [coin, setCoin] = useState('');
@@ -22,11 +22,11 @@ export default function Oferta({ item, Historico, reject }) {
     // });
     // PlayerService.getPlayer(item.idSeller).then(setPlayer);
     socket.emit('getProducts', item.name, p => {
-      if(item.price == p.cheap) setCoin('Baixo');
-      if(item.price == p.medium) setCoin('Normal');
-      if(item.price == p.expensive) setCoin('Alto');
+      if (item.price == p.cheap) setCoin('Baixo');
+      if (item.price == p.medium) setCoin('Normal');
+      if (item.price == p.expensive) setCoin('Alto');
     });
-  },[]);
+  }, []);
 
   return (
     <View style={styles.colunm}>
@@ -41,16 +41,15 @@ export default function Oferta({ item, Historico, reject }) {
         </View>
         <View>
           <Text style={styles.text}>Valor:</Text>
-          <Text style={styles.textBold}>{Coin}</Text>
+          <Text style={styles.textBold}>{coin}</Text>
         </View>
-          <Text style={styles.textNormal}>{item.price}$</Text>
-          <TouchableOpacity onPress={reject}>
+        <Text style={styles.textNormal}>{item.price}$</Text>
+        <TouchableOpacity onPress={() => deleteAdvert(item.id)}>
           <Image source={require('../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
-          </TouchableOpacity>
+        </TouchableOpacity>
       </View>
       <View style={styles.row}>
-      <Text style={styles.text}> Comprador por: {item.amount} agricultor(es):</Text>
-
+        <Text style={styles.text}> Comprador por: {item.amount} agricultor(es):</Text>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={Historico}>
           <Text style={styles.textbutton}>HISTÓRICO</Text>
         </TouchableOpacity>
@@ -61,10 +60,10 @@ export default function Oferta({ item, Historico, reject }) {
 
 const styles = StyleSheet.create({
   colunm: {
-    marginLeft:15,
+    marginLeft: 15,
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
-    width: Tela-30,
+    width: Tela - 30,
     height: 185,
     shadowColor: "#000",
     shadowOffset: {
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 15,
-    marginBottom:5
+    marginBottom: 5
   },
   icone: {
     width: 50,
@@ -121,6 +120,6 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 15,
-    marginBottom:2
+    marginBottom: 2
   }
 });

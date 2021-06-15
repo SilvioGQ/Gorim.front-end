@@ -19,10 +19,12 @@ export default function ChecarAnuncio({ navigation }) {
   const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
-    socket.emit('getOffers', -1, resp => setOffers(resp));
-    //   FunctionalityService.getOffers(player.id, player.room).then(setOffers);
-    //   FunctionalityService.getOffers(-1, player.room).then(setOffersAll);
+    socket.emit('getAdverts', resp => setOffers(resp));
   }, []);
+
+  const deleteAdvert = id => {
+    socket.emit('deleteAdvert', id, resp => setOffers(resp));
+  }
 
   return (
     <View style={styles.container}>
@@ -31,15 +33,11 @@ export default function ChecarAnuncio({ navigation }) {
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
-      <Text style={styles.text}>Oferta para todos</Text>
-      {offersAll.length === 0 && (
-        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-      )}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offers}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <Anuncio item={item} Historico={() => navigation.navigate('Cenario')} />}
+        renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={deleteAdvert} />}
       />
     </View>
   );

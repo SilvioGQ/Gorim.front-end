@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { socketContext } from "../../context/socket";
+import { playerContext } from "../../context/player";
 
 import COLORS from '../../resources/colors';
 import imagesProducts from '../../resources/imagesProducts';
 import imagesCoins from '../../resources/imagesCoins';
 import IMAGES from '../../resources/imagesIcons'
-import { socketContext } from "../../context/socket";
-import { playerContext } from "../../context/player";
+
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer }) {
+
   const socket = useContext(socketContext);
   const [coin, setCoin] = useState('');
   const [count, setCount] = useState(1);
@@ -21,8 +23,10 @@ export default function Oferta({ item, confirmOffer }) {
       if(item.price == p.expensive) setCoin('Caro');
     });
   },[]);
-  const increaseCount = () => { setCount(count < 6 ? count + 1 : count); }
+
+  const increaseCount = () => { setCount(count <= item.amount ? count + 1 : count); }
   const decreaseCount = () => { setCount(count > 1 ? count - 1 : count); }
+
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
@@ -35,11 +39,11 @@ export default function Oferta({ item, confirmOffer }) {
         </View>
         <View>
           <Text style={styles.text}>Produto:</Text>
-          <Text style={styles.textBold}>{item.product}</Text>
+          <Text style={styles.textBold}>{item.name}</Text>
         </View>
         <Image
           style={styles.icone}
-          source={imagesProducts[item.product]}
+          source={imagesProducts[item.name]}
         />
         <View>
           <Text style={styles.text}>Preço:</Text>

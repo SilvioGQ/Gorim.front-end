@@ -6,7 +6,7 @@ import COLORS from '../../resources/colors';
 export default function CaixaDeValor({ value, setValue, increment, minValue = 0, maxValue = value + 1 }) {
 
   const increaseValue = () => setValue(value < maxValue ? value + increment : value);
-  const decreaseValue = () => setValue(value > 0 ? value - increment : value);
+  const decreaseValue = () => setValue(value > minValue ? value - increment : value);
 
   return (
     <View style={styles.container}>

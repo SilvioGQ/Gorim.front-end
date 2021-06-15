@@ -32,6 +32,15 @@ export default function Proposta({ navigation }) {
       setModalText('Você não possui dinheiro suficiente para esta compra.')
     }
   }
+
+  const confirmOfferAll = (item, count) => {
+    if (player.coin >= item.price * item.amount) {
+      socket.emit('respOfferAll', item, count, resp => setOffersAll(resp));
+    } else {
+      setModalText('Você não possui dinheiro suficiente para esta compra.')
+    }
+  }
+
   const rejectOffer = item => {
     socket.emit('respOffer', false, item, resp => setOffersIndividual(resp));
   }
@@ -51,7 +60,7 @@ export default function Proposta({ navigation }) {
         showsVerticalScrollIndicator={false}
         data={offersAll}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <OfertaGeral item={item} confirmOffer={confirmOffer} />}
+        renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmOfferAll} />}
       />
       <Text style={styles.text}>Negociação individual</Text>
       {offersIndividual.length === 0 && (
