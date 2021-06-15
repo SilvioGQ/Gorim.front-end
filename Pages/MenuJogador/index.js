@@ -84,7 +84,7 @@ export default function MenuJogador({ navigation }) {
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 3' })} name='Pacote 3' />
               </View>
               <View style={{ marginLeft: 27 }}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pulverizador' })} name='Pulverizador' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Maquina', name: 'Pulverizador' })} name='Pulverizador' />
               </View>
             </>
           )}

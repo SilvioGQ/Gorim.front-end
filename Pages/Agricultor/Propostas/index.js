@@ -25,20 +25,9 @@ export default function Proposta({ navigation }) {
     socket.emit('getOffers', player.id, resp => setOffersIndividual(resp));
   }, []);
 
-  const confirmOffer = (item, amount = null) => {
-    let count = 0;
+  const confirmOffer = item => {
     if (player.coin >= item.price * item.amount) {
-      player.inventory.filter(i => {
-
-        if (item.product == i.name) {
-          i.amount++;
-        } else { count++; }
-      });
-
-      if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.name, amount: item.amount });
-      if (item.amount == -1) item.amount = amount;
-      let price = item.price * item.amount;
-      player.coin -= item.price * item.amount;
+      socket.emit('respOffer', true, item, resp => setOffersIndividual(resp));
     } else {
       setModalText('Você não possui dinheiro suficiente para esta compra.')
     }
@@ -71,8 +60,8 @@ export default function Proposta({ navigation }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={offersIndividual}
-        keyExtractor={(index) => index.toString()}
-        renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
       />
       {/*
       <FlatList

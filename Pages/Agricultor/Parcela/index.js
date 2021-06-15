@@ -27,10 +27,10 @@ export default function Parcela({ navigation, route }) {
   const selectItem = (name, type) => {
     for (let i = 0; i < 3; i++) {
 
-      if (type == 'seed') setParcelLand({ ...parcelLand, seed: name});
-      if (type == 'fertilizer') setParcelLand({ ...parcelLand, fertilizer: name});
-      if (type == 'pesticide') setParcelLand({ ...parcelLand, pesticide: name});
-      if (type == 'machine') setParcelLand({ ...parcelLand, machine: name});
+      if (type == 'Semente') setParcelLand({ ...parcelLand, seed: name});
+      if (type == 'Fertilizante') setParcelLand({ ...parcelLand, fertilizer: name});
+      if (type == 'Agrotoxico') setParcelLand({ ...parcelLand, pesticide: name});
+      if (type == 'Maquina') setParcelLand({ ...parcelLand, machine: name});
     }
     setDropDown(false);
     setDropDown2(false);
@@ -44,16 +44,16 @@ export default function Parcela({ navigation, route }) {
 
     parcelLand.planted = true;
     let p = player.parcelLand;
-    p[parcelLand.id] = parcelLand;
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;;
       if (e.name == parcelLand.fertilizer) e.amount = e.amount - 1;
       if (e.name == parcelLand.pesticide) e.amount = e.amount - 1;
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
+    p[parcelLand.id] = parcelLand;
 
     setPlayer(player => ({ ...player, ...p}));
-    socket.emit('toPlant', p, player.inventory);
+    socket.emit('toPlant', parcelLand, player.inventory);
   }
 
   const toPulverize = () => {
@@ -97,7 +97,7 @@ export default function Parcela({ navigation, route }) {
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'seed'} onClick={selectItem} display={dropDown ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Semente'} onClick={selectItem} display={dropDown ? 'flex' : 'none'} />
 
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown2(!dropDown2) }}>
           <View style={styles.row}>
@@ -114,7 +114,7 @@ export default function Parcela({ navigation, route }) {
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'fertilizer'} onClick={selectItem} display={dropDown2 ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Fertilizante'} onClick={selectItem} display={dropDown2 ? 'flex' : 'none'} />
 
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown3(!dropDown3) }}>
           <View style={styles.row}>
@@ -131,7 +131,7 @@ export default function Parcela({ navigation, route }) {
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'pesticide'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Agrotoxico'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
 
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown4(!dropDown4) }}>
           <View style={styles.row}>
@@ -148,7 +148,7 @@ export default function Parcela({ navigation, route }) {
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Maquina'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
 
         <TouchableOpacity style={styles.button} onPress={toPulverize}>
           <Text style={styles.buttonText}>PULVERIZAR</Text>
