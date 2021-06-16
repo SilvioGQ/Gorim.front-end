@@ -24,7 +24,29 @@ export default function Proposta({ navigation }) {
     socket.emit('getOffers', -1, resp => setOffersAll(resp));
     socket.emit('getOffers', player.id, resp => setOffersIndividual(resp));
   }, []);
-  // const lista1 = offersAll.filter(i => i.type !== 'Semente');   tipo isso aqui
+  // let lista1 = offersAll.filter(i => i.type == 'Semente');
+  let novaLista= offersAll
+  if(type==4){
+  novaLista = offersAll.filter(function (x) {
+    return x.type == 'Semente'
+  });
+}
+  if(type==3){
+  novaLista = offersAll.filter(function (x) {
+    return x.type == 'Agrotoxico'
+  });
+}
+if(type==2){
+  novaLista = offersAll.filter(function (x) {
+    return x.type == 'Fertilizante'
+  });
+
+}
+if(type==1){
+  novaLista = offersAll.filter(function (x) {
+    return x.type == 'Maquina'
+  });
+}
   const confirmOffer = item => {
     if (player.coin >= item.price * item.amount) {
       socket.emit('respOffer', true, item, resp => setOffersIndividual(resp));
@@ -76,7 +98,7 @@ export default function Proposta({ navigation }) {
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={offersAll}
+        data={novaLista}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmOfferAll} />}
       />

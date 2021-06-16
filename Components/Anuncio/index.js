@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
     width: Tela - 30,
-    height: 185,
+    height: 160,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
     marginVertical: 15
   },
   button: {
-    width: 160,
+    width: 100,
     borderRadius: 20,
     backgroundColor: COLORS.warningButton,
-    padding: 15
+    padding: 12
   },
   textbutton: {
     color: COLORS.textWhite,
@@ -102,11 +102,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     alignSelf: 'center',
-    marginTop: -30
-  },
-  person: {
-    width: 56,
-    height: 58,
+    marginTop: -5
   },
   textBold: {
     fontSize: 13,
