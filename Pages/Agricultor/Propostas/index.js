@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity } from 'react-native';
 import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";
 
@@ -19,12 +19,34 @@ export default function Proposta({ navigation }) {
   const [player, setPlayer] = useContext(playerContext);
   const socket = useContext(socketContext);
   const [modalText, setModalText] = useState('');
-
+  const [type, setType] = useState(0)
   useEffect(() => {
     socket.emit('getOffers', -1, resp => setOffersAll(resp));
     socket.emit('getOffers', player.id, resp => setOffersIndividual(resp));
   }, []);
+  // let lista1 = offersAll.filter(i => i.type == 'Semente');
+  let novaLista= offersAll
+  if(type==4){
+  novaLista = offersAll.filter(function (x) {
+    return x.type == 'Semente'
+  });
+}
+  if(type==3){
+  novaLista = offersAll.filter(function (x) {
+    return x.type == 'Agrotoxico'
+  });
+}
+if(type==2){
+  novaLista = offersAll.filter(function (x) {
+    return x.type == 'Fertilizante'
+  });
 
+}
+if(type==1){
+  novaLista = offersAll.filter(function (x) {
+    return x.type == 'Maquina'
+  });
+}
   const confirmOffer = item => {
     if (player.coin >= item.price * item.amount) {
       socket.emit('respOffer', true, item, resp => setOffersIndividual(resp));
@@ -44,6 +66,9 @@ export default function Proposta({ navigation }) {
   const rejectOffer = item => {
     socket.emit('respOffer', false, item, resp => setOffersIndividual(resp));
   }
+  // const selectType = () => {
+
+  // }
 
   return (
     <View style={styles.container}>
@@ -56,9 +81,24 @@ export default function Proposta({ navigation }) {
       {offersAll.length === 0 && (
         <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
       )} */}
+      <Text style={styles.text}>Anúncios</Text>
+      <View style={{ flexDirection: 'row', marginHorizontal: 15, width: '90%', justifyContent: 'space-between', marginVertical: 10 }}>
+        <TouchableOpacity style={[styles.button, {backgroundColor: type == 1 ? "#8ACF3A" : '#fff'}]} onPress={() =>{ setType(1)}}>
+          <Text style={[styles.textSmall, {color: type == 1 ? '#fff' : '#000'}]}>Máquina</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, {backgroundColor: type == 2 ? "#8ACF3A" : '#fff'}]} onPress={() =>{ setType(2)}}>
+          <Text style={[styles.textSmall, {color: type == 2 ? '#fff' : '#000'}]}>Fertilizante</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, {backgroundColor: type == 3 ? "#8ACF3A" : '#fff'}]} onPress={() =>{ setType(3)}}>
+          <Text style={[styles.textSmall, {color: type == 3 ? '#fff' : '#000'}]}>Agrotóxico</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, {backgroundColor: type == 4 ? "#8ACF3A" : '#fff'}]} onPress={() =>{ setType(4)}}>
+          <Text style={[styles.textSmall, {color: type == 4 ? '#fff' : '#000'}]}>Semente</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={offersAll}
+        data={novaLista}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmOfferAll} />}
       />
@@ -70,7 +110,7 @@ export default function Proposta({ navigation }) {
         showsVerticalScrollIndicator={false}
         data={offersIndividual}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmOffer} rejectOffer={rejectOffer}/>}
+        renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmOffer} rejectOffer={rejectOffer} />}
       />
       {/*
       <FlatList
@@ -95,12 +135,24 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
     fontSize: 32,
-    marginBottom: 35
+    marginBottom: 10
   },
   text: {
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
     fontSize: 22,
-    paddingTop: 10
+    marginVertical: 10
+  },
+  textSmall: {
+    textAlign: 'center',
+    fontSize: 13,
+    fontFamily: 'Rubik_300Light',
+    marginTop: 9
+  },
+  button: {
+    width: '22%',
+    height: 40,
+    borderRadius: '42%',
+    borderWidth: 1
   }
 });

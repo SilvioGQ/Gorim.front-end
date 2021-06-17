@@ -26,8 +26,10 @@ export default function Oferta({ item, confirmOffer }) {
 
   const increaseCount = () => { setCount(count < item.amount ? count + 1 : count); }
   const decreaseCount = () => { setCount(count > 1 ? count - 1 : count); }
-
+  
   return (
+    <View>
+    <Text style={styles.text1}>Ainda restam {item.amount} produtos</Text>
     <View style={styles.colunm}>
       <View style={styles.row3}>
         <View>
@@ -49,7 +51,7 @@ export default function Oferta({ item, confirmOffer }) {
           <Text style={styles.text}>Preço:</Text>
           <Text style={styles.textBold}>${item.price}</Text>
         </View>
-        <Image
+         <Image
           style={styles.icone}
           source={imagesCoins[coin]}
         />
@@ -71,6 +73,7 @@ export default function Oferta({ item, confirmOffer }) {
           </TouchableOpacity>
         </View>
       </View>
+    </View>
     </View>
   );
 }
@@ -109,6 +112,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginVertical: 5,
   },
+  row2: {
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
   row3: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -134,6 +141,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     marginTop: 5
+  },
+  text1: {
+    fontSize: 13,
+    marginTop: 2,
+    marginLeft:15
   },
   arrows: {
     flexDirection: 'row',
