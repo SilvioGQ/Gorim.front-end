@@ -19,34 +19,13 @@ export default function Proposta({ navigation }) {
   const [player, setPlayer] = useContext(playerContext);
   const socket = useContext(socketContext);
   const [modalText, setModalText] = useState('');
-  const [type, setType] = useState(0)
+  const [type, setType] = useState('')
   useEffect(() => {
-    socket.emit('getOffers', -1, resp => setOffersAll(resp));
+    socket.emit('getOffers', -1, resp => { setOffersAll(resp) });
     socket.emit('getOffers', player.id, resp => setOffersIndividual(resp));
+    socket.on('newOffers', resp => setOffersAll(resp));
   }, []);
-  // let lista1 = offersAll.filter(i => i.type == 'Semente');
-  let novaLista= offersAll
-  if(type==4){
-  novaLista = offersAll.filter(function (x) {
-    return x.type == 'Semente'
-  });
-}
-  if(type==3){
-  novaLista = offersAll.filter(function (x) {
-    return x.type == 'Agrotoxico'
-  });
-}
-if(type==2){
-  novaLista = offersAll.filter(function (x) {
-    return x.type == 'Fertilizante'
-  });
 
-}
-if(type==1){
-  novaLista = offersAll.filter(function (x) {
-    return x.type == 'Maquina'
-  });
-}
   const confirmOffer = item => {
     if (player.coin >= item.price * item.amount) {
       socket.emit('respOffer', true, item, resp => setOffersIndividual(resp));
@@ -56,49 +35,52 @@ if(type==1){
   }
 
   const confirmOfferAll = (item, count) => {
-    if (player.coin >= item.price * item.amount) {
+    if (player.coin >= item.price * count) {
       socket.emit('respOfferAll', item, count, resp => setOffersAll(resp));
     } else {
-      setModalText('Você não possui dinheiro suficiente para esta compra.')
+      setModalText('Você não possui dinheiro suficiente para esta compra.');
     }
   }
 
   const rejectOffer = item => {
     socket.emit('respOffer', false, item, resp => setOffersIndividual(resp));
   }
-  // const selectType = () => {
-
-  // }
+  const selectType = () => {
+    if (type !== '') {
+      return offersAll.filter(i => i.type == type);
+    } else {
+      return offersAll;
+    }
+  }
 
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
       <Text style={styles.header}>Propostas</Text>
-      {/* {modalText !== '' && (
+      {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
-      <Text style={styles.text}>Oferta para todos</Text>
-      {offersAll.length === 0 && (
-        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-      )} */}
       <Text style={styles.text}>Anúncios</Text>
       <View style={{ flexDirection: 'row', marginHorizontal: 15, width: '90%', justifyContent: 'space-between', marginVertical: 10 }}>
-        <TouchableOpacity style={[styles.button, {backgroundColor: type == 1 ? "#8ACF3A" : '#fff'}]} onPress={() =>{ setType(1)}}>
-          <Text style={[styles.textSmall, {color: type == 1 ? '#fff' : '#000'}]}>Máquina</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Maquina' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Maquina') }}>
+          <Text style={[styles.textSmall, { color: type == 'Maquina' ? '#fff' : '#000' }]}>Máquina</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, {backgroundColor: type == 2 ? "#8ACF3A" : '#fff'}]} onPress={() =>{ setType(2)}}>
-          <Text style={[styles.textSmall, {color: type == 2 ? '#fff' : '#000'}]}>Fertilizante</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Fertilizante' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Fertilizante') }}>
+          <Text style={[styles.textSmall, { color: type == 'Fertilizante' ? '#fff' : '#000' }]}>Fertilizante</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, {backgroundColor: type == 3 ? "#8ACF3A" : '#fff'}]} onPress={() =>{ setType(3)}}>
-          <Text style={[styles.textSmall, {color: type == 3 ? '#fff' : '#000'}]}>Agrotóxico</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Agrotoxico' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Agrotoxico') }}>
+          <Text style={[styles.textSmall, { color: type == 'Agrotoxico' ? '#fff' : '#000' }]}>Agrotóxico</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, {backgroundColor: type == 4 ? "#8ACF3A" : '#fff'}]} onPress={() =>{ setType(4)}}>
-          <Text style={[styles.textSmall, {color: type == 4 ? '#fff' : '#000'}]}>Semente</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Semente' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Semente') }}>
+          <Text style={[styles.textSmall, { color: type == 'Semente' ? '#fff' : '#000' }]}>Semente</Text>
         </TouchableOpacity>
       </View>
+      {offersAll.length === 0 && (
+        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+      )}
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={novaLista}
+        data={selectType()}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmOfferAll} />}
       />
@@ -112,14 +94,6 @@ if(type==1){
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmOffer} rejectOffer={rejectOffer} />}
       />
-      {/*
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={offersIndividual}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Oferta item={item} confirmOffer={confirmOffer} rejectOffer={rejectOffer} />}
-      /> */}
-      {/* tem que fazer funcionar <OfertaGeral/> */}
     </View>
   );
 }
