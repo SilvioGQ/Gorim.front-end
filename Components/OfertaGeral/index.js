@@ -16,7 +16,6 @@ export default function Oferta({ item, confirmOffer }) {
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    console.log(item)
     socket.emit('getProducts', item.name, p => {
       if(item.price == p.cheap) setCoin('Barato');
       if(item.price == p.medium) setCoin('Médio');
@@ -57,7 +56,7 @@ export default function Oferta({ item, confirmOffer }) {
         />
       </View>
       <View style={styles.row}>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item, count)}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => {confirmOffer(item, count);setCount(1);}}>
           <Text style={styles.textbutton}>COMPRAR</Text>
         </TouchableOpacity>
         <Text style={styles.text}> Quantidade:</Text>
