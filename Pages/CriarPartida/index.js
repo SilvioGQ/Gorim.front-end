@@ -69,6 +69,7 @@ export default function CriarPartida({ navigation }) {
               <TextInput
                 maxLength={6}
                 style={[styles.button2, styles.text2]}
+                autoCompleteType='off'
                 onChangeText={room => setRoom(room.toUpperCase())}
                 placeholder='ESCREVER CÓDIGO'
                 value={room}

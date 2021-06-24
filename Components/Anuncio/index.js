@@ -8,19 +8,13 @@ import imagesCoins from '../../resources/imagesCoins';
 import IMAGES from '../../resources/imagesIcons';
 
 const Tela = Dimensions.get('screen').width;
-export default function Oferta({ item, Historico, deleteAdvert }) {
+export default function Anuncio({ item, Historico, deleteAdvert }) {
 
   const [player, setPlayer] = useState();
   const [coin, setCoin] = useState('');
   const socket = useContext(socketContext);
 
   useEffect(() => {
-    console.log(item)
-    // socket.emit('getPlayers', p => {
-    //   p = p.filter(i => i.id === item.idSeller );
-    //   setPlayer(p);
-    // });
-    // PlayerService.getPlayer(item.idSeller).then(setPlayer);
     socket.emit('getProducts', item.name, p => {
       if (item.price == p.cheap) setCoin('Baixo');
       if (item.price == p.medium) setCoin('Normal');

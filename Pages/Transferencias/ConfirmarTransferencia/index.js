@@ -16,13 +16,6 @@ export default function ConfirmarTransferencia({ navigation, route }) {
   const [player, setPlayer] = useContext(playerContext);
 
   const makeTransfer = () => {
-    // PlayerService.getPlayer(idDest).then(resp => {
-    //   // text = <HistoricosDinheiro player={player} count={count} dest={resp.name} />
-    //   let text = 'Você transferiu ' + count + '$ para o ' + resp.name
-    //    PlayerService.addTransfers(text,player)
-    //   let text2 = 'Você recebeu ' + count + '$ do jogador ' + player.name
-    //   PlayerService.addTransfers(text2,resp)
-    // });
 
     socket.emit('makeTransfers', count, idDest);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferencia foi concluída com sucesso!' } }] });

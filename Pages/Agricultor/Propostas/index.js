@@ -8,11 +8,10 @@ import Oferta from '../../../Components/Oferta';
 import OfertaGeral from '../../../Components/OfertaGeral';
 import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
-import PlayerService from '../../../services/PlayerService';
 import Modal from '../../../Components/ModalInfo';
 
 const Tela = Dimensions.get('screen').width;
-export default function Proposta({ navigation }) {
+export default function Propostas() {
 
   const [offersIndividual, setOffersIndividual] = useState([]);
   const [offersAll, setOffersAll] = useState([]);

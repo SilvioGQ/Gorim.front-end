@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
+
 import COLORS from '../../resources/colors';
 import Clock from '../../assets/Logo/clock.png';
 
-export default function Espera({ navigation }) {
+export default function AguardarJogadores() {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={Clock}
-      />
+      <Image style={styles.logo} source={Clock} />
       <Text style={styles.texto}> Aguardando resposta {'\n'} dos outros personagens..</Text>
     </View>
   );

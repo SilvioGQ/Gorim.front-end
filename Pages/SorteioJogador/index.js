@@ -17,7 +17,7 @@ export default function SorteioJogador({ navigation }) {
       });
       
       setTimeout(() => {
-        navigation.navigate('SelecaoIcone');
+        navigation.navigate('SelecaoPersonagem');
       }, 2000);
     });
   
