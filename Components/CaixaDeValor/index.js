@@ -14,7 +14,7 @@ export default function CaixaDeValor({ value, setValue, increment, minValue = 0,
         <Image style={[styles.arrow, { opacity: value === minValue ? 0.5 : 1 }]} source={require('../../assets/agricultorIcones/setaesquerda.png')} />
       </TouchableOpacity>
       <View style={styles.buttonAmount}>
-        {coin ===true && (<Image style={{ width: 24, height: 27, marginRight:5,alignSelf:'center', marginTop:3 }} source={require('../../assets/moedas/Moeda.png')} />)} 
+        {coin ===true && (<Image style={{ width: 24, height: 27, marginRight:5, alignSelf:'center', marginTop:5 }} source={require('../../assets/moedas/Moeda.png')} />)} 
         <Text style={styles.textAmount}>{value}</Text>
       </View>
       <TouchableOpacity onPress={increaseValue}>
@@ -27,10 +27,10 @@ export default function CaixaDeValor({ value, setValue, increment, minValue = 0,
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 35,
+    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems:'center',
+
   },
   arrow: {
     width: 46,

@@ -34,7 +34,14 @@ export default function MenuJogador({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} />
+      <View style={styles.container2}>
+      <Text style={styles.textLarge}>1º Rodada</Text>
+      <View style={{ marginTop: 10, position: 'absolute', left: '82%' }}>
+        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ width: 60, height: 64, marginTop: -15 }}>
+          <Image style={{ width: 28, height: 30, alignSelf: 'center', marginTop: 20 }} source={require('../../assets/Logo/Fechar.png')} />
+        </TouchableOpacity>
+      </View>
+    </View>
       <Header />
       {player.type === 'Agricultor' && (
         <>
@@ -46,7 +53,7 @@ export default function MenuJogador({ navigation }) {
           </TouchableOpacity>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item type='Menu' onClick={() => { navigation.navigate('Propostas'); setNotificationNegociation(false);}} name='Checar propostas' notification={notificationNegociation} />
+              <Item type='Menu' onClick={() => { navigation.navigate('Propostas'); setNotificationNegociation(false); }} name='Checar propostas' notification={notificationNegociation} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('AnalisarProdutos')} name='Analisar produtos' />
             </View>
@@ -102,7 +109,7 @@ export default function MenuJogador({ navigation }) {
             <Text style={{ color: 'white' }}>Produtividade individual</Text>
           </View>
           <View style={[styles.bar, { backgroundColor: '#BF0000' }]}>
-            <Text style={styles.textBar}>100%</Text>
+            <Text style={styles.textBar}>0</Text>
             <Text style={{ color: 'white' }}>Poluição individual</Text>
           </View>
         </>
@@ -117,6 +124,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
+  },
+  container2: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.headerColor,
+    height: 65,
+    width: '100%',
+  },
+  textLarge: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontFamily: 'Rubik_300Light',
+    marginTop: 20,
+    marginLeft: 15
   },
   row: {
     flexDirection: 'row',
