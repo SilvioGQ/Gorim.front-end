@@ -46,13 +46,15 @@ export default function Vendas({ navigation, route }) {
     socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
-
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
       <View style={styles.center}>
         <Image style={styles.person} source={IMAGES[name]} />
-        <Text style={styles.header}> Venda de {'\n'} {name} </Text>
+        <Text style={styles.header}> Anunciar {'\n'} {name.replace(/Fertilizante|Agrotóxico/,'')} </Text>
+        <TouchableOpacity onPress={() => setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:')}>
+          <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf:'center', marginLeft: 10, marginTop:20 }} />
+        </TouchableOpacity>
       </View>
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Clientes: </Text>
       <View style={{ marginHorizontal: 10, flexDirection: 'row' }}>
@@ -95,7 +97,7 @@ export default function Vendas({ navigation, route }) {
       <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
       {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
       {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
-      <Button onClick={confirmTransfer} name='VENDER' />
+      <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
     </View>
   );
 }
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
   center: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop:20,
   },
   colunm: {
     alignItems: 'center',

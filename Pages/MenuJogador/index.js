@@ -46,7 +46,7 @@ export default function MenuJogador({ navigation }) {
           </TouchableOpacity>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item type='Menu' onClick={() => { navigation.navigate('Proposta'); setNotificationNegociation(false);}} name='Checar propostas' notification={notificationNegociation} />
+              <Item type='Menu' onClick={() => { navigation.navigate('Proposta'); setNotificationNegociation(false); }} name='Checar propostas' notification={notificationNegociation} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos' />
             </View>
@@ -83,21 +83,18 @@ export default function MenuJogador({ navigation }) {
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 2' })} name='Pacote 2' />
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 3' })} name='Pacote 3' />
               </View>
-              <View style={{ marginLeft: 27 }}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Maquina', name: 'Pulverizador' })} name='Pulverizador' />
-              </View>
+
             </>
           )}
-          <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-          <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
-          {/* {player.speciality === 'Maquina' && (
-              <View style={{ marginLeft: 27 }}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'machine', name: 'Pulverizador' })} name='Pulverizador' />
-              </View>
-            )} */}
+          <View style={styles.items}>
+            {player.speciality === 'Maquina' && (<Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Maquina', name: 'Pulverizador' })} name='Pulverizador' />)}
+            <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
+            <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
+            {player.speciality !== 'Maquina' && (<View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />)}
+          </View>
         </View>
       )}
-      { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
+      {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {Height >= 780 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00' }]}>
@@ -110,7 +107,7 @@ export default function MenuJogador({ navigation }) {
           </View>
         </>
       )}
-      <Cenarios onClick={() => {navigation.navigate('Cenario'); setNotificationScene(false);}} notification={notificationScene}/>
+      <Cenarios onClick={() => { navigation.navigate('Cenario'); setNotificationScene(false); }} notification={notificationScene} />
     </View>
   );
 }
@@ -125,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start',
     marginHorizontal: 20,
-    marginVertical:20,
+    marginVertical: 20,
     width: '100%',
     flexWrap: 'wrap'
   },
@@ -152,7 +149,6 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    flexWrap: 'wrap'
   },
   bar: {
     padding: 8,

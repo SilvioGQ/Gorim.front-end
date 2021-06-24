@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   button: {
     width: '22%',
     height: 40,
-    borderRadius: '42%',
+    borderRadius: 50,
     borderWidth: 1
   }
 });

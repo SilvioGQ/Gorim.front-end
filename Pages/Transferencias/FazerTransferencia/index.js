@@ -52,7 +52,7 @@ export default function FazerTransferencia({ navigation }) {
         />
       </View>
       <Text style={styles.text}>Valor:</Text>
-      <CaixaDeValor value={count} setValue={setCount} increment={5} maxValue={player.coin} />
+      <CaixaDeValor value={count} setValue={setCount} increment={5} maxValue={player.coin} coin ={true} />
       <Button onClick={confirmTransfer} name='CONTINUAR' />
       {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
     </View>
