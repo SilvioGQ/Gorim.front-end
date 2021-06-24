@@ -7,7 +7,6 @@ import Coin from '../../../Components/Coin';
 
 import Anuncio from '../../../Components/Anuncio';
 import COLORS from '../../../resources/colors';
-import FunctionalityService from '../../../services/FunctionalityService';
 import Modal from '../../../Components/ModalInfo';
 
 const Tela = Dimensions.get('screen').width;

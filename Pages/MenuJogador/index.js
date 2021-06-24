@@ -46,9 +46,9 @@ export default function MenuJogador({ navigation }) {
           </TouchableOpacity>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item type='Menu' onClick={() => { navigation.navigate('Proposta'); setNotificationNegociation(false);}} name='Checar propostas' notification={notificationNegociation} />
+              <Item type='Menu' onClick={() => { navigation.navigate('Propostas'); setNotificationNegociation(false);}} name='Checar propostas' notification={notificationNegociation} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-              <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos' />
+              <Item type='Menu' onClick={() => navigation.navigate('AnalisarProdutos')} name='Analisar produtos' />
             </View>
           </View>
         </>
