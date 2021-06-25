@@ -107,7 +107,11 @@ export default function MenuJogador({ navigation }) {
           </View>
         </>
       )}
-      <Cenarios onClick={() => { navigation.navigate('Cenario'); setNotificationScene(false); }} notification={notificationScene} />
+      <Cenarios 
+        seeScenery={() => { navigation.navigate('Cenario'); setNotificationScene(false); }}
+        stepFinish={() => { socket.emit('stepFinish', () => setPlayer(p => ({ ...player, state: p}))); navigation.reset({ routes: [{ name: 'AguardarJogadores' }] }); }}
+        notification={notificationScene}
+      />
     </View>
   );
 }

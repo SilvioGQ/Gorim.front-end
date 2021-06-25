@@ -22,7 +22,6 @@ export default function SelecaoPersonagem({ navigation }) {
       setPlayers(all);
     });
     socket.on('startGame', () => navigation.navigate('MenuJogador'));
-    // socket.on('startGame', () => navigation.reset({ routes: [{ name: 'MenuJogador' }] }));
 
     socket.emit('getPlayers', p => setPlayers(p.length));
   }, []);
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
   },
   text: {
-    fontSize: 16,
+    fontSize: 13,
     marginVertical: 20,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light'
