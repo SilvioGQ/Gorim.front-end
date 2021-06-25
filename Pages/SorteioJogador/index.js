@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
 import { socketContext } from '../../context/socket';
 import { playerContext } from '../../context/player';
 
@@ -26,6 +26,7 @@ export default function SorteioJogador({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Text style={styles.header}>Gorim</Text>
       <View style={styles.container}>
         <Image style={styles.logo} source={require('../../assets/Logo/Dados.png')} />
@@ -41,8 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    padding: 10,
-    paddingTop: 45
+    paddingTop: StatusBar.currentHeight
   },
   header: {
     fontFamily: 'Rubik_400Regular',
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   logo: {
-    width: 200,
-    height: 200
+    width: 180,
+    height: 180
   },
   loading: {
     fontFamily: 'Rubik_400Regular',

@@ -51,7 +51,7 @@ export default function FazerTransferencia({ navigation }) {
           renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} />}
         />
       </View>
-      <Text style={styles.text}>Valor:</Text>
+      <Text style={[styles.text, {marginBottom: 15}]}>Valor:</Text>
       <CaixaDeValor value={count} setValue={setCount} increment={5} maxValue={player.coin} coin ={true} />
       <Button onClick={confirmTransfer} name='CONTINUAR' />
       {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
@@ -77,6 +77,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 30,
     fontFamily: 'Rubik_300Light',
-    marginHorizontal: 15
+    marginHorizontal: 15,
   }
 });

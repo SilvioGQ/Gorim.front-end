@@ -16,7 +16,7 @@ export default function Header() {
           style={styles.pollution}
           source={require('../../assets/agricultorIcones/Barril.png')}
         />
-        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>10</Text>
+        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3, color:'#BF0000' }}>0%</Text>
       </View>
       <View>
         <Coin coin={player.coin} />

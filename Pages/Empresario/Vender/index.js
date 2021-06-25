@@ -51,12 +51,12 @@ export default function Vendas({ navigation, route }) {
       <Coin coin={player.coin} />
       <View style={styles.center}>
         <Image style={styles.person} source={IMAGES[name]} />
-        <Text style={styles.header}> Anunciar {'\n'} {name.replace(/Fertilizante|Agrotóxico/,'')} </Text>
+        <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /,'')} </Text>
         <TouchableOpacity onPress={() => setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:')}>
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf:'center', marginLeft: 10, marginTop:20 }} />
         </TouchableOpacity>
       </View>
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Clientes: </Text>
+      <Text style={styles.textos}> Clientes: </Text>
       <View style={{ marginHorizontal: 10, flexDirection: 'row' }}>
         <FlatList
           numColumns={3}
@@ -68,7 +68,7 @@ export default function Vendas({ navigation, route }) {
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Valor: </Text>
+      <Text style={styles.textos}> Valor: </Text>
       {product && (
         <View style={styles.row}>
           <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}>
@@ -94,7 +94,7 @@ export default function Vendas({ navigation, route }) {
           </TouchableOpacity>
         </View>
       )}
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
+      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom:15 }}>Quantidade:</Text>
       {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
       {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
       <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
@@ -150,12 +150,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     fontWeight: 'bold',
     fontSize: 20,
+    marginLeft:10
   },
   textos: {
+    fontSize: 18, 
     fontFamily: 'Rubik_300Light',
     marginHorizontal: 15,
-    fontSize: 20,
-    alignSelf: 'center'
+    marginTop: 30
   },
   person: {
     width: 59,

@@ -55,7 +55,7 @@ export default function Cenario() {
         </>
       )}
 
-      <Text style={styles.texto}>Histórico de transferencia:</Text>
+      <Text style={styles.texto}>Histórico de transferência:</Text>
       {logs.map((log, index) => {
         if(log.type == 'transfer') {
           return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>

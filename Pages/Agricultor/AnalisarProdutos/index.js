@@ -29,7 +29,7 @@ export default function AnalisarProdutos() {
       </View>
       {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage={modalImage}/>}
       <FlatList
-        showsVerticalScrollIndicator={false}
+        //showsVerticalScrollIndicator={false}
         data={products}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <Produtos item={item} />}

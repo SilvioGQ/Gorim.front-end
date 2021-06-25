@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    fontSize: 24,
-    marginVertical: 15,
+    fontSize: 20,
+    marginVertical: 10,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light'
   },
   subtitle: {
-    fontSize: 16,
-    marginVertical: 15,
+    fontSize: 13,
+    marginVertical: 10,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light',
   },
@@ -115,10 +115,5 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light'
-  },
-  items: {
-    width: '100%',
-    flexDirection: 'row',
-    flexWrap: 'wrap'
   },
 });
