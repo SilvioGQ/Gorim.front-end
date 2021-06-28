@@ -1,42 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useEffect, useState, useContext } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 
 import ModalInfo from '../../../Components/ModalInfo';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
-import PlayerService from '../../../services/PlayerService';
-import { StatusBar } from 'react-native';
+import CaixaDeValor from '../../../Components/CaixaDeValor';
 
 const Tela = Dimensions.get('screen').width;
-export default function FazerTransferencia({ navigation, route }) {
+export default function FazerTransferencia({ navigation }) {
+
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState([]);
   const [count, setCount] = useState(0);
   const [id, setId] = useState();
-  const { player } = route.params;
+  const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
-    PlayerService.getPlayers(player.room).then(resp => {
-      resp = resp.filter(item => {
-        if (item.id !== player.id) return item;
-      });
-      setPlayers(resp);
+    socket.emit('getPlayers', p => {
+      p = p.filter(i => i.id !== player.id);
+      setPlayers(p);
     });
   }, []);
 
-  const increaseCount = () => setCount(count < player.coin ? count + 5 : count);
-  const decreaseCount = () => setCount(count > 0 ? count - 5 : count);
   const confirmTransfer = () => {
-    if (!id) {
-      setModalText('Selecione o destino!');
-    } else if (count === 0) {
-      setModalText('Adicione um valor!');
-    } else {
-      navigation.navigate('ConfirmarTransferencia', { player, idDest: id, count });
-    }
+    if (!id) return setModalText('Selecione o destino!');
+    if (count === 0) return setModalText('Adicione um valor!');
+
+    navigation.navigate('ConfirmarTransferencia', { idDest: id, count });
   }
   return (
     <View style={styles.container}>
@@ -54,24 +50,10 @@ export default function FazerTransferencia({ navigation, route }) {
           renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
         />
       </View>
-      <Text style={styles.text}>Valor:</Text>
-      <View style={{ flex: 1, marginTop: 35 }}>
-        <View style={styles.arrows}>
-          <TouchableOpacity onPress={decreaseCount}>
-            <Image style={[styles.icon, { opacity: count === 0 ? 0.5 : 1 }]} source={require('../../../assets/agricultorIcones/setaesquerda.png')} />
-          </TouchableOpacity>
-          <View style={styles.buttonAmount}>
-            <Text style={styles.textAmount}>{count}</Text>
-          </View>
-          <TouchableOpacity onPress={increaseCount}>
-            <Image style={[styles.icon, { opacity: count === player.coin ? 0.5 : 1 }]} source={require('../../../assets/agricultorIcones/setadireita.png')} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Text style={[styles.text, {marginBottom: 15}]}>Valor:</Text>
+      <CaixaDeValor value={count} setValue={setCount} increment={5} maxValue={player.coin} coin ={true} />
       <Button onClick={confirmTransfer} name='CONTINUAR' />
-      {modalText !== '' && (
-        <ModalInfo onClick={() => setModalText('')} text={modalText} />
-      )}
+      {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} /> }
     </View>
   );
 }
@@ -83,12 +65,6 @@ const styles = StyleSheet.create({
     width: Tela,
     paddingTop: StatusBar.currentHeight,
   },
-  arrows: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    marginEnd: 5
-  },
   header: {
     flexDirection: 'row',
     alignSelf: 'center',
@@ -96,28 +72,10 @@ const styles = StyleSheet.create({
     margin: 15,
     width: Tela
   },
-  icon: {
-    width: 46,
-    height: 48
-  },
   text: {
     fontSize: 18,
     marginTop: 30,
     fontFamily: 'Rubik_300Light',
-    marginHorizontal: 15
-  },
-  buttonAmount: {
-    backgroundColor: COLORS.textWhite,
-    borderWidth: 1,
-    borderRadius: 20,
-    height: 51,
-    width: 180
-  },
-  textAmount: {
-    alignSelf: 'center',
-    textAlign: 'center',
-    marginTop: 10,
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 25
+    marginHorizontal: 15,
   }
 });

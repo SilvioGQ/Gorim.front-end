@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'rea
 import Cenarios from '../../../Components/CenarioBotao';
 import Coin from '../../../Components/Coin';
 
-import Agricultor2 from '../../../assets/perfils/agricultor/Agricultor2.png';
+
 import Agua from '../../../assets/simbolos/agua.png';
 import Imposto from '../../../assets/simbolos/imposto.png';
 
@@ -19,7 +19,7 @@ export default function Prefeitura({ navigation }) {
         </View>
         <Image
           style={styles.person}
-          source={Agricultor2}
+          source={Imposto}
         />
       </View>
       <View style={styles.row}>

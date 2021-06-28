@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Modal, Dimensions } from 'react-native';
+
 const Tela = Dimensions.get('screen').width;
 import COLORS from '../../resources/colors';
 export default function Conf({ text, confirm, denied }) {

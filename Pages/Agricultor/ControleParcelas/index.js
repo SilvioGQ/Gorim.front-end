@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { StatusBar } from 'react-native';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useContext } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { playerContext } from "../../../context/player";
+
 import COLORS from '../../../resources/colors';
 
-export default function ControleParcelas({ navigation, route }) {
-  const [player, setPlayer] = useState(route.params.player);
+export default function ControleParcelas({ navigation }) {
 
+  const [player, setPlayer] = useContext(playerContext);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.mainText}>Parcelas de terra</Text>
@@ -15,7 +17,7 @@ export default function ControleParcelas({ navigation, route }) {
         data={player.parcelLand}
         keyExtractor={item => item.id}
         renderItem={({ item }) =>
-          <TouchableOpacity onPress={() => navigation.navigate('Parcela', { parcelLand: item, player })} style={styles.item}>
+          <TouchableOpacity onPress={() => navigation.navigate('Parcela', { parcelLand: item })} style={styles.item}>
             <Image style={styles.imageParcel} source={require('../../../assets/agricultorIcones/Parcela.png')} />
             <View style={{ flexDirection: 'row', display: item.planted ? 'flex' : 'none' }}>
               <Image style={{ position: 'absolute', width: 46, height: 77, bottom: 5, left: 5 }} source={require('../../../assets/agricultorIcones/Planted.png')} />

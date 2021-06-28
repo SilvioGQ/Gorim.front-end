@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions, Animated, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 
@@ -10,53 +10,6 @@ const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
   const [activated, setActivated] = useState(false)
   const [activated2, setActivated2] = useState(false)
-  const [upperAnimation, setUpperAnimation] = useState(new Animated.Value(0))
-  const [lowerAnimation, setLowerAnimation] = useState(new Animated.Value(0))
-  const [centerAnimation, setCenterAnimation] = useState(new Animated.Value(125))
-  const startAnimation = () => {
-    Animated.timing(upperAnimation, {
-      toValue: -125,
-      duration: 800
-    }).start()
-  }
-  const startAnimation2 = () => {
-
-    Animated.timing(lowerAnimation, {
-      toValue: 125,
-      duration: 800
-    }).start()
-  }
-  const startAnimation3 = () => {
-
-    Animated.timing(centerAnimation, {
-      toValue: 0,
-      duration: 800
-    }).start()
-  }
-
-  const animatedStyles = {
-    lower: {
-      transform: [
-        {
-          translateX: lowerAnimation
-        }
-      ]
-    },
-    upper: {
-      transform: [
-        {
-          translateX: upperAnimation
-        }
-      ]
-    },
-    center: {
-      transform: [
-        {
-          translateX: centerAnimation
-        }
-      ]
-    },
-  }
 
   return (
     <View style={styles.container}>
@@ -79,12 +32,6 @@ export default function Multa({ navigation }) {
       <Text style={styles.font}> Gravidade:</Text>
       <View style={styles.linha}>
         <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
-          <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
-            <TouchableOpacity style={styles.traco} onPress={startAnimation} />
-            <TouchableOpacity style={styles.traco} onPress={startAnimation3} />
-            <TouchableOpacity style={styles.traco} onPress={startAnimation2} />
-          </View>
-          <Animated.Image style={[{ width: 10, height: 19, marginTop: -15, marginLeft: '46%' }, animatedStyles.upper, animatedStyles.center, animatedStyles.lower]} source={require('../../../assets/Rectangle.png')} />
         </View>
       </View>
       <View style={styles.nivel}>

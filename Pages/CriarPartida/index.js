@@ -1,67 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { socketContext } from '../../context/socket';
+import { playerContext } from '../../context/player';
 
 import COLORS from '../../resources/colors';
-import PlayerService from '../../services/PlayerService';
-import FunctionalityService from '../../services/FunctionalityService';
 import ModalInfo from '../../Components/ModalInfo';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function CriarPartida({ navigation }) {
+
   const [modalText, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
+  const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
 
   const createRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
 
-    FunctionalityService.createRoom().then(room => {
-      PlayerService.addPlayer(name, room, true).then(id => {
-        navigation.reset({
-          routes: [{
-            name: 'Lobby',
-            params: {
-              name: name,
-              room: room,
-              id: id,
-              host: true
-            }
-          }]
-        });
-      });
-    }).catch(() => {
-      setModalText('Erro ao criar partida!');
-    });
+    socket.emit('addToRoom', name, handlePlayer);
   }
 
   const selectRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
     if (room === '') return setModalText('Você precisa adicionar o código da sala');
 
-    FunctionalityService.getRoom(room).then(rm => {
-      if (rm.players >= 10) return setModalText('Sala atingiu número máximo de jogadores!');
-      if (rm.inGame) return setModalText('Sala está em partida!');
+    socket.emit('joinToRoom', name, room, handlePlayer);
+  }
 
-      FunctionalityService.addPlayerToRoom(room);
-      PlayerService.addPlayer(name, room).then(id => {
-        navigation.reset({
-          routes: [{
-            name: 'Lobby',
-            params: {
-              name: name,
-              room: room,
-              id: id,
-              host: false
-            }
-          }]
-        });
-      });
-    }).catch((e) => {
-      console.log(e)
-      setModalText('Sala não encontrada!');
-    });
+  const handlePlayer = obj => {
+    if (typeof obj !== 'object') return setModalText(obj);
+
+    console.log(obj);
+    setPlayer(obj);
+    navigation.navigate('Lobby');
   }
 
   return (
@@ -86,9 +60,7 @@ export default function CriarPartida({ navigation }) {
               <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../assets/right-arrow.png')} />
             </View>
           </View>
-          {modalText !== '' && (
-            <ModalInfo onClick={() => setModalText('')} text={modalText} />
-          )}
+          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
           <View style={{ alignItems: 'center', width: Tela, marginVertical: 40 }}>
             <Text style={[styles.header]}>ENTRAR</Text>
             <View style={styles.line} />
@@ -97,6 +69,7 @@ export default function CriarPartida({ navigation }) {
               <TextInput
                 maxLength={6}
                 style={[styles.button2, styles.text2]}
+                autoCompleteType='off'
                 onChangeText={room => setRoom(room.toUpperCase())}
                 placeholder='ESCREVER CÓDIGO'
                 value={room}
@@ -132,15 +105,10 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    // alignSelf: 'space-between',
-    // alignItems: 'space-between',
-    // justifyContent: 'space-between',
-    // margin: '4%',
   },
   header: {
     fontFamily: 'Rubik_300Light',
     fontSize: 24,
-    // alignSelf: 'center',
     marginVertical: 10,
     marginTop: 30
   },
@@ -156,7 +124,6 @@ const styles = StyleSheet.create({
   button2: {
     height: 45,
     borderRadius: 20,
-    // margin: '2%',
     alignItems: 'center',
     width: 175,
     borderWidth: 1,

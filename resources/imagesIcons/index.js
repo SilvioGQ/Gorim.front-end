@@ -1,12 +1,14 @@
 const IMAGES = {
-    'Agricultor1': require('../../assets/perfils/agricultor/Agricultor.png'),
-    'Agricultor2': require('../../assets/perfils/agricultor/Agricultor2.png'),
-    'Agricultor3': require('../../assets/perfils/agricultor/people1.png'),
-    'Agricultor4': require('../../assets/perfils/empresariox1/Fertilizante.png'),
-    'Empresário1': require('../../assets/perfils/empresariox1/Agrotoxico.png'),
-    'Empresário2': require('../../assets/perfils/empresariox1/Maquina.png'),
-    'Empresário3': require('../../assets/perfils/empresariox1/Semente.png'),
-    'Empresário4': require('../../assets/perfils/empresariox1/EmpRuivo.png'),
-    'Todos' : require('../../assets/Logo/Grupo.png')
+  'Icon1': require('../../assets/perfils/Icon1.png'),
+  'Icon2': require('../../assets/perfils/Icon2.png'),
+  'Icon3': require('../../assets/perfils/Icon3.png'),
+  'Icon4': require('../../assets/perfils/Icon4.png'),
+  'Icon5': require('../../assets/perfils/Icon5.png'),
+  'Icon6': require('../../assets/perfils/Icon6.png'),
+  'Icon7': require('../../assets/perfils/Icon7.png'),
+  'Icon8': require('../../assets/perfils/Icon8.png'),
+  'Icon9': require('../../assets/perfils/Icon9.png'),
+  'Icon10': require('../../assets/perfils/Icon10.png'),
+  'Todos': require('../../assets/Logo/Grupo.png')
 };
 export default IMAGES;

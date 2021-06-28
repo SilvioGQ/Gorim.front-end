@@ -5,8 +5,6 @@ import COLORS from '../../resources/colors';
 import imagesProducts from '../../resources/imagesProducts';
 import imagesCoins from '../../resources/imagesCoins';
 import IMAGES from '../../resources/imagesIcons'
-import PlayerService from '../../services/PlayerService';
-import FunctionalityService from '../../services/FunctionalityService';
 
 const Tela = Dimensions.get('screen').width;
 export default function HistoricosDinheiro({ count = null, player, dest = null, amount = null, price = null, product = null }) {

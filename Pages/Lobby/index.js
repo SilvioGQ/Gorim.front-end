@@ -1,120 +1,56 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, AppState, TouchableOpacity, Image, YellowBox } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
+import { socketContext } from '../../context/socket';
+import { playerContext } from '../../context/player';
 
 import COLORS from '../../resources/colors';
 import Button from '../../Components/Button';
-import PlayerService from '../../services/PlayerService';
 import ModalConfirmExit from '../../Components/ModalConfirmExit';
-import FunctionalityService from '../../services/FunctionalityService';
-import { StatusBar } from 'react-native';
-
-YellowBox.ignoreWarnings(['Setting a timer for a long period of time']);
 
 const Tela = Dimensions.get('screen').width;
-export default function Lobby({ navigation, route }) {
+export default function Lobby({ navigation }) {
 
-  const [isMounted, setIsMounted] = useState(true);
-  const [players, setPlayers] = useState([]);
-  const [player, setPlayer] = useState(route.params);
-  const [Game, setGame] = useState({});
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const [modalVisible, setModalVisible] = useState(false);
-
-  const updateHost = (players) => {
-    let p = players.filter(item => {
-      if (item.id === player.id) return item;
-    });
-    setPlayer(p[0]);
-  }
-
-  const deletePlayer = () => {
-    setIsMounted(false);
-    setModalVisible(!modalVisible);
-
-    PlayerService.setHost(player.room);
-    PlayerService.deletePlayer(player.id);
-    FunctionalityService.deletePlayerFromRoom(Game.id);
-  }
-
-  // useEffect(() => {
-  //   AppState.addEventListener('change', _handleAppStateChange);
-
-  //   return () => {
-  //     AppState.removeEventListener('change', _handleAppStateChange);
-  //   };
-  //   YellowBox.ignoreWarnings(['Setting a timer']);
-  // }, []);
-
-  // const _handleAppStateChange = (nextAppState) => {
-  //   if (
-  //     appState.current.match(/active/)
-  //   ) {
-  //     console.log('dsifj')
-  //   }
-  //   if (
-  //     appState.current.match(/inactive|background/) &&
-  //     nextAppState === 'active'
-  //   ) {
-  //     console.log('Aplicativo aberto novamente');
-  //   }
-
-  //   appState.current = nextAppState;
-  //   setAppStateVisible(appState.current);
-  //   console.log('AppState', appState.current);
-  // };
-
-  // useEffect(() => {
-  //   PlayerService.getPlayers(player.room).then(setPlayers);
-  // });
+  const [room, setRoom] = useState({});
+  const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
-    if (Game.inGame) {
-      navigation.reset({
-        routes: [{ name: 'SorteioJogador', params: { player, players } }]
-      });
+    socket.on('PlayersFromRoom', r => setRoom(r));
+    socket.on('changeHost' + player.id, () => setPlayer(player => ({ ...player, host: true })));
+    socket.on('startGame', () => navigation.navigate('SorteioJogador'));
 
-      return () => setIsMounted(false);
-    }
-    if (isMounted) {
-      setTimeout(() => {
-        FunctionalityService.getRoom(player.room).then(setGame);
+    setRoom({ sockets: [player] });
+  }, []);
 
-        if (Game.players != players.length) {
+  const removeFromRoom = () => {
+    setModalVisible(!modalVisible);
+    socket.emit('removeFromRoom');
+    setPlayer(player => ({ id: player.id, name: player.name }));
+    navigation.goBack();
+  }
 
-          PlayerService.getPlayers(player.room).then(resp => {
-            if (players.length > 0) updateHost(resp);
-            setPlayers(resp);
-          });
-        }
-      }, 1000);
-    } else {
-      navigation.reset({ routes: [{ name: 'CriarPartida' }] });
-    }
-  }, [Game]);
+  const startGame = () => socket.emit('startGame');
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
         <Image style={styles.image} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
-      {modalVisible && (
-        <ModalConfirmExit deletePlayer={deletePlayer} onClick={() => setModalVisible(!modalVisible)} />
-      )}
       <Text style={styles.text}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%' }} />
       <Text style={[styles.text, { marginBottom: 25 }]}>{player.room}</Text>
-      {players.length === 0 ?
+
+      { modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
+      {!room.hasOwnProperty('sockets') ?
         <Text style={styles.text}>Aguardando jogadores</Text> :
         <FlatList
-          data={players}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}
+          data={room ? room.sockets : []}
+          keyExtractor={(item, index) => item ? item.id.toString() : index.toString()}
+          renderItem={({ item }) => { if (item) return <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View> }}
         />
       }
-      {player.host ?
-        <Button name='começar' onClick={() => FunctionalityService.startGame(player.room)} /> :
-        <Text style={[styles.listText, { marginBottom: 35 }]}>AGUARDANDO NOVOS JOGADORES</Text>}
+      { player.host && <Button name='começar' onClick={startGame} />}
     </View>
   );
 }

@@ -14,13 +14,13 @@ export default function Produtos({ item }) {
       <View style={{ width: '85%', flexDirection: 'row' }}>
         <View style={styles.row}>
           <Text style={styles.textinhos}>Preços:</Text>
-          <Text style={styles.numeros}>{item.cheap}$</Text>
+          {/* <Text style={styles.numeros}>{item.cheap}$</Text> */}
           <Text style={styles.numeros}>{item.medium}$</Text>
-          <Text style={styles.numeros}>{item.expensive}$</Text>
+          {/* <Text style={styles.numeros}>{item.expensive}$</Text> */}
         </View>
       </View>
           <View style={styles.poluicaoView}>
-            <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 22, height: 22, marginLeft: 5 }} />
+            <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 32, height: 32, marginLeft: 1 }} />
             <Text style={styles.poluicao}>{item.pollution}</Text>
           </View>
     </View>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   poluicao: {
-    fontSize: 22,
+    fontSize: 28,
     fontFamily: 'Rubik_400Regular',
     color: '#FF0000'
   },

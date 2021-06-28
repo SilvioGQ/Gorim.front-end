@@ -1,41 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 
 import Button from '../../../Components/Button';
-import ModalInfo from '../../../Components/ModalInfo';
 import COLORS from '../../../resources/colors';
 import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
-import FunctionalityService from '../../../services/FunctionalityService';
 import Conf from '../../../Components/Selo-Verde-Confirmacao';
 import IMAGES from '../../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
 export default function Parcela({ navigation, route }) {
-  const [player, setPlayer] = useState(route.params.player);
+
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
-  const [modalText2, setModalText2] = useState('');
+  // const [modalText2, setModalText2] = useState('');
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
   const [dropDown4, setDropDown4] = useState(false);
-  const [updateStatus, setUpdateStatus] = useState(false);
-  const [updateStatus2, setUpdateStatus2] = useState(false);
-  const [updateStatus3, setUpdateStatus3] = useState(false);
-  const [updateStatus4, setUpdateStatus4] = useState(false);
+  const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
+
   const selectItem = (name, type) => {
-    setUpdateStatus(false);
-    setUpdateStatus2(false);
-    setUpdateStatus3(false);
-    setUpdateStatus4(false);
     for (let i = 0; i < 3; i++) {
 
-      if (type == 'seed') parcelLand.seed = name;
-      if (type == 'fertilizer') parcelLand.fertilizer = name;
-      if (type == 'pesticide') parcelLand.pesticide = name;
-      if (type == 'machine') parcelLand.machine = name;
+      if (type == 'Semente') setParcelLand({ ...parcelLand, seed: name});
+      if (type == 'Fertilizante') setParcelLand({ ...parcelLand, fertilizer: name});
+      if (type == 'Agrotoxico') setParcelLand({ ...parcelLand, pesticide: name});
+      if (type == 'Maquina') setParcelLand({ ...parcelLand, machine: name});
     }
     setDropDown(false);
     setDropDown2(false);
@@ -46,16 +41,21 @@ export default function Parcela({ navigation, route }) {
   const toPlant = () => {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
+
     parcelLand.planted = true;
+    let p = player.parcelLand;
     player.inventory.forEach(e => {
-      if (e.name == parcelLand.seed) e.amount = e.amount - 1;
+      if (e.name == parcelLand.seed) e.amount = e.amount - 1;;
       if (e.name == parcelLand.fertilizer) e.amount = e.amount - 1;
       if (e.name == parcelLand.pesticide) e.amount = e.amount - 1;
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
-    FunctionalityService.toPlant(player);
-    navigation.navigate('ControleParcelas', { message: 'Seu plantio foi iniciado' });
+    p[parcelLand.id] = parcelLand;
+
+    setPlayer(player => ({ ...player, ...p}));
+    socket.emit('toPlant', parcelLand, player.inventory);
   }
+
   const toPulverize = () => {
     setModalText('Tem certeza que deseja gastar 400$ para compra do Pulverizador?');
   }
@@ -69,107 +69,93 @@ export default function Parcela({ navigation, route }) {
           <Image style={styles.parcel} source={Parcel} />
           <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
         </View>
-        {modalText2 !== '' && (
+        {/* {modalText2 !== '' && (
           <Conf text={modalText2} confirm={() => setModalText2('')} denied={() => setModalText2('')} />
-        )}
+        )} */}
         {parcelLand.planted && (
-          <TouchableOpacity
-            style={styles.button2}
-            onPress={stamp}
-          >
+          <TouchableOpacity style={styles.button2} onPress={stamp} >
             <Text style={styles.buttonText}>PEDIR SELO VERDE</Text>
             <Image source={require('../../../assets/selos/selo.png')} style={styles.pulverize} />
           </TouchableOpacity>
         )}
         <Text style={styles.title}>Nesta parcela:</Text>
+
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown(!dropDown) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.seed ? 35 : 25, height: parcelLand.seed ? 35 : 45 }]}
               source={parcelLand.seed ? IMAGES[parcelLand.seed] : Unknown} />
-            <View style={styles.rowX}>
-              <View>
-                <Text>Sementes</Text>
-                <Text style={styles.bold}>{parcelLand.seed ? parcelLand.seed : '-'}</Text>
-              </View>
+            <View>
+              <Text>Sementes</Text>
+              <Text style={styles.bold}>{parcelLand.seed ? parcelLand.seed : '-'}</Text>
             </View>
-            {/* onPress={() => setpp(true)} */}
-            {(parcelLand.seed && !parcelLand.planted) && (
-              <TouchableOpacity style={{ position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus(true); parcelLand.seed = null }}>
+            {parcelLand.seed && !parcelLand.planted && (
+              <TouchableOpacity style={{ position: 'absolute', right: 25, bottom: 40 }} onPress={() => setParcelLand({ ...parcelLand, seed: null })}>
                 <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'seed'} onClick={selectItem} display={dropDown ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Semente'} onClick={selectItem} display={dropDown ? 'flex' : 'none'} />
+
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown2(!dropDown2) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.fertilizer ? 35 : 25, height: parcelLand.fertilizer ? 35 : 45 }]}
               source={parcelLand.fertilizer ? IMAGES[parcelLand.fertilizer] : Unknown} />
-            <View style={styles.rowX}>
-              <View>
-                <Text>Fertilizantes</Text>
-                <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer.replace(/Fertilizante /, '') : '-'}</Text>
-              </View>
+            <View>
+              <Text>Fertilizantes</Text>
+              <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer.replace(/Fertilizante /, '') : '-'}</Text>
             </View>
-            {(parcelLand.fertilizer && !parcelLand.planted) && (
-              <TouchableOpacity style={{ display: parcelLand.fertilizer ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus2(true); parcelLand.fertilizer = null }}>
+            {parcelLand.fertilizer && !parcelLand.planted && (
+              <TouchableOpacity style={{ position: 'absolute', right: 25, bottom: 40 }} onPress={() => setParcelLand({ ...parcelLand, fertilizer: null })}>
                 <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'fertilizer'} onClick={selectItem} display={dropDown2 ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Fertilizante'} onClick={selectItem} display={dropDown2 ? 'flex' : 'none'} />
+
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown3(!dropDown3) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.pesticide ? 35 : 25, height: parcelLand.pesticide ? 35 : 45 }]}
               source={parcelLand.pesticide ? IMAGES[parcelLand.pesticide] : Unknown} />
-            <View style={styles.rowX}>
-              <View>
-                <Text>Agrotóxicos</Text>
-                <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide.replace(/Agrotóxico /, '') : '-'}</Text>
-              </View>
+            <View>
+              <Text>Agrotóxicos</Text>
+              <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide.replace(/Agrotóxico /, '') : '-'}</Text>
             </View>
-            {(parcelLand.pesticide && !parcelLand.planted) && (
-              <TouchableOpacity style={{ display: parcelLand.pesticide ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus3(true); parcelLand.pesticide = null }}>
+            {parcelLand.pesticide && !parcelLand.planted && (
+              <TouchableOpacity style={{ position: 'absolute', right: 25, bottom: 40 }} onPress={() => setParcelLand({ ...parcelLand, pesticide: null })}>
                 <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'pesticide'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Agrotoxico'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
+
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown4(!dropDown4) }}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.machine ? 35 : 25, height: parcelLand.machine ? 35 : 45 }]}
               source={parcelLand.machine ? IMAGES[parcelLand.machine] : Unknown} />
-            <View style={styles.rowX}>
-              <View>
-                <Text>Máquinas</Text>
-                <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
-              </View>
+            <View>
+              <Text>Máquinas</Text>
+              <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
             </View>
-            {(parcelLand.machine && !parcelLand.planted) && (
-              <TouchableOpacity style={{ display: parcelLand.machine ? 'flex' : 'none', position: 'absolute', right: 25, bottom: 40 }} onPress={() => { setUpdateStatus4(true); parcelLand.machine = null }}>
+            {parcelLand.machine && !parcelLand.planted && (
+              <TouchableOpacity style={{ position: 'absolute', right: 25, bottom: 40 }} onPress={() => setParcelLand({ ...parcelLand, machine: null })}>
                 <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
               </TouchableOpacity>
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'machine'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={toPulverize}>
+        <DropDown items={player.inventory} type={'Maquina'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
+
+        <TouchableOpacity style={styles.button} onPress={toPulverize}>
           <Text style={styles.buttonText}>PULVERIZAR</Text>
           <Image source={require('../../../assets/agricultorIcones/Pulverize.png')} style={styles.pulverize} />
         </TouchableOpacity>
-        {!parcelLand.planted && (
-          <Button onClick={toPlant} name='INICIAR PLANTIO' />
-        )}
-        {parcelLand.planted && (
-          <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>
-        )}
-        {modalText !== '' && (
-          <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />
-        )}
+
+        {!parcelLand.planted && <Button onClick={toPlant} name='INICIAR PLANTIO' />}
+        {parcelLand.planted && <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>}
+        {modalText !== '' && <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />}
       </ScrollView>
     </View>
   );

@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import IMAGES from '../../resources/imagesIcons'
 import Coin from '../Coin';
+import { playerContext } from "../../context/player";
 
-export default function Header({ player }) {
+export default function Header() {
+
+  const [player, setPlayer] = useContext(playerContext);
+
   return (
     <View style={styles.row}>
-      <Text style={styles.header}>{player.type.slice(0,3)}/{player.name}{'\n'}em {player.city}</Text>
+      <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}/{player.name}{'\n'}em {player.city}</Text>
+      <View style={{ flexDirection: 'row', paddingTop: 15 }}>
+        <Image
+          style={styles.pollution}
+          source={require('../../assets/agricultorIcones/Barril.png')}
+        />
+        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3, color:'#BF0000' }}>0%</Text>
+      </View>
       <View>
         <Coin coin={player.coin} />
       </View>
@@ -20,9 +31,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start',
     justifyContent: 'space-between',
-    marginHorizontal:10,
-    marginVertical:15,
-    marginLeft:20,
+    marginHorizontal: 10,
+    marginVertical: 15,
+    marginLeft: 20,
     width: '90%'
   },
   header: {
@@ -41,6 +52,11 @@ const styles = StyleSheet.create({
   logo: {
     width: 20,
     height: 23
+  },
+  pollution: {
+    width: 18,
+    height: 18,
+    marginTop: 2
   },
   person: {
     width: 46,

@@ -1,28 +1,28 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
 
 import Button from '../../../Components/Button';
 import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
 import logoTransfer from '../../../assets/moedas/logoTransfer.png';
-import FunctionalityService from '../../../services/FunctionalityService';
-import PlayerService from '../../../services/PlayerService'
+
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
-  const { count } = route.params;
-  const { player } = route.params;
-  const { idDest } = route.params;
+
+  const { count, idDest } = route.params;
+  const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
+
   const makeTransfer = () => {
-    // PlayerService.getPlayer(idDest).then(resp => {
-    //   text = <HistoricosDinheiro player={player} count={count} dest={resp.name} />
-    //   // let text = 'Você transferiu ' + count + '$ para o ' + resp.name
-    //    PlayerService.addBuy(text,player)
-    //   // let text2 = 'Você recebeu ' + count + '$ do jogador ' + player.name
-    //   // PlayerService.addLog(text2,resp)
-    // });
-    FunctionalityService.makeTransfer(player.id, idDest, count);
-    player.coin -= count;
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text:'Sua transferencia foi concluída com sucesso!' } }] });
+
+    socket.emit('makeTransfers', count, idDest);
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferencia foi concluída com sucesso!' } }] });
+  }
+
+  const cancelTransfer = () => {
+    navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }
 
   return (
@@ -34,7 +34,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text2}>{JSON.stringify(count)}$ </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={makeTransfer} name='CONTINUAR' />
-          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador', params: { id: player.id } }] })} style={styles.button}>
+          <TouchableOpacity onPress={cancelTransfer} style={styles.button}>
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
         </View>

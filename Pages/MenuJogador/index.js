@@ -1,95 +1,124 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { socketContext } from '../../context/socket';
+import { playerContext } from '../../context/player';
+
 import COLORS from '../../resources/colors';
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
-import PlayerService from '../../services/PlayerService';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
+import ModalConfirmExit from '../../Components/ModalConfirmExit';
 
 const Height = Dimensions.get('screen').height;
-export default function MenuJogador({ navigation, route }) {
-  const [isVisible, setisVisible] = useState(false);
-  const [player, setPlayer ] = useState(route.params.player);
-  useEffect( ()=> {
-    PlayerService.getPlayer(player.id).then(setPlayer);
-  },[player])
+export default function MenuJogador({ navigation }) {
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
+  const [notificationScene, setNotificationScene] = useState(false);
+  const [notificationNegociation, setNotificationNegociation] = useState(false);
+
+  useEffect(() => {
+    socket.on('notify' + player.id, message => message === 'newOffer' ? setNotificationNegociation(true) : setNotificationScene(true));
+    socket.on('makeTransfers' + player.id, p => setPlayer(player => ({ ...player, ...p })));
+  }, []);
+
+  const removeFromRoom = () => {
+    setModalVisible(!modalVisible);
+    socket.emit('removeFromRoom');
+    setPlayer(player => ({ id: player.id, name: player.name }));
+    navigation.reset({ routes: [{ name: 'Gorim' }] });
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada player={player} onClick={() => navigation.reset({ routes: [{ name: 'Gorim' }] })} />
-      <Header player={player} />
+      <View style={styles.container2}>
+      <Text style={styles.textLarge}>1º Rodada</Text>
+      <View style={{ marginTop: 10, position: 'absolute', left: '82%' }}>
+        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ width: 60, height: 64, marginTop: -15 }}>
+          <Image style={{ width: 28, height: 30, alignSelf: 'center', marginTop: 20 }} source={require('../../assets/Logo/Fechar.png')} />
+        </TouchableOpacity>
+      </View>
+    </View>
+      <Header />
       {player.type === 'Agricultor' && (
         <>
-          <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas', { player })} style={{ width: '100%' }}>
+          <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }}>
             <View style={styles.row2}>
               <Image style={{ width: 35, height: 35 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
-              <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, alignSelf: 'center', marginLeft:10 }}>Parcelas de terra</Text>
+              <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, alignSelf: 'center', marginLeft: 10 }}>Parcelas de terra</Text>
             </View>
           </TouchableOpacity>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item type='Menu' onClick={() => navigation.navigate('Proposta', { player })} name='Checar propostas' />
-              <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
-              <Item type='Menu' onClick={() => navigation.navigate('Analizar')} name='Analisar produtos'/>
+              <Item type='Menu' onClick={() => { navigation.navigate('Propostas'); setNotificationNegociation(false); }} name='Checar propostas' notification={notificationNegociation} />
+              <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
+              <Item type='Menu' onClick={() => navigation.navigate('AnalisarProdutos')} name='Analisar produtos' />
             </View>
           </View>
         </>
       )}
       {player.type === 'Empresário' && (
-        <>
+        <View style={styles.row}>
+          {player.speciality === 'Fertilizante' && (
+            <View style={styles.items}>
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Comum' })} name='Fertilizante Comum' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Premium' })} name='Fertilizante Premium' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
+            </View>
+          )}
+          {player.speciality === 'Agrotoxico' && (
+            <View style={styles.items}>
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Super Premium' })} name='Agrotóxico Super Premium' />
+            </View>
+          )}
+          {player.speciality === 'Semente' && (
+            <View style={styles.items}>
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Soja' })} name='Soja' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Arroz' })} name='Arroz' />
+              <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Hortaliça' })} name='Hortaliça' />
+            </View>
+          )}
+          {player.speciality === 'Maquina' && (
+            <>
+              <View style={styles.items}>
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 1' })} name='Pacote 1' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 2' })} name='Pacote 2' />
+                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 3' })} name='Pacote 3' />
+              </View>
 
-          <View style={styles.row}>
-            {player.speciality === 'Fertilizante' && (
-              <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'fertilizer', name: 'Fertilizante Comum' })} name='Fertilizante Comum' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'fertilizer', name: 'Fertilizante Premium' })} name='Fertilizante Premium' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'fertilizer', name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
-              </View>
-            )}
-            {player.speciality === 'Agrotoxico' && (
-              <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'pesticide', name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'pesticide', name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'pesticide', name: 'Agrotóxico Super Premium' })} name='Agrotóxico Super Premium' />
-              </View>
-            )}
-            {player.speciality === 'Semente' && (
-              <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'seed', name: 'Soja' })} name='Soja' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'seed', name: 'Arroz' })} name='Arroz' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'seed', name: 'Hortaliça' })} name='Hortaliça' />
-              </View>
-            )}
-            {player.speciality === 'Maquina' && (
-              <View style={styles.items}>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'machine', name: 'Pacote 1' })} name='Pacote 1' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'machine', name: 'Pacote 2' })} name='Pacote 2' />
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, type: 'machine', name: 'Pacote 3' })} name='Pacote 3' />
-              </View>
-            )}
-            {/* {player.speciality === 'Maquina' && (
-              <>
-                <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { player, name: 'Pulverizador' })} name='Pulverizador' />
-              </>
-            )} */}
-            <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia', { player })} name='Fazer Transferência' />
+            </>
+          )}
+          <View style={styles.items}>
+            {player.speciality === 'Maquina' && (<Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Maquina', name: 'Pulverizador' })} name='Pulverizador' />)}
+            <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
+            <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
+            {player.speciality !== 'Maquina' && (<View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />)}
           </View>
-        </>
+        </View>
       )}
+      {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {Height >= 780 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00' }]}>
-            <Text style={styles.textBar}>200</Text>
-            <Text style={{ color: 'white' }}>Produtividade atual</Text>
+            <Text style={styles.textBar}>100</Text>
+            <Text style={{ color: 'white' }}>Produtividade individual</Text>
           </View>
           <View style={[styles.bar, { backgroundColor: '#BF0000' }]}>
-            <Text style={styles.textBar}>100</Text>
-            <Text style={{ color: 'white' }}>Poluição atual</Text>
+            <Text style={styles.textBar}>0</Text>
+            <Text style={{ color: 'white' }}>Poluição individual</Text>
           </View>
         </>
       )}
-      <Cenarios onClick={() => navigation.navigate('Cenario', { player })} />
+      <Cenarios 
+        seeScenery={() => { navigation.navigate('Cenario'); setNotificationScene(false); }}
+        stepFinish={() => { socket.emit('stepFinish', () => setPlayer(p => ({ ...player, state: p}))); navigation.reset({ routes: [{ name: 'AguardarJogadores' }] }); }}
+        notification={notificationScene}
+      />
     </View>
   );
 }
@@ -100,10 +129,24 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
   },
+  container2: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.headerColor,
+    height: 65,
+    width: '100%',
+  },
+  textLarge: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontFamily: 'Rubik_300Light',
+    marginTop: 20,
+    marginLeft: 15
+  },
   row: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
     marginHorizontal: 20,
+    marginVertical: 20,
     width: '100%',
     flexWrap: 'wrap'
   },
@@ -130,10 +173,9 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    flexWrap: 'wrap'
   },
   bar: {
-    height: 80,
+    padding: 8,
     width: '89%',
     borderRadius: 20,
     alignItems: 'center',
@@ -142,6 +184,6 @@ const styles = StyleSheet.create({
   textBar: {
     fontFamily: 'Rubik_400Regular',
     fontSize: 36,
-    color: '#fff'
+    color: '#fff',
   }
 });

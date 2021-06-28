@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Animated } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 
 import Imposto2 from '../../../assets/simbolos/imposto.png';
@@ -24,10 +24,6 @@ export default function Imposto() {
             <TouchableOpacity style={styles.traco} />
             <TouchableOpacity style={styles.traco} />
           </View>
-          <Animated.Image
-            style={{ width: 10, height: 19, marginTop: -15, marginLeft: '46%' }}
-            source={Rectangle}
-          />
         </View>
       </View>
       <View style={styles.nivel}>
@@ -43,10 +39,6 @@ export default function Imposto() {
             <TouchableOpacity style={styles.traco} />
             <TouchableOpacity style={styles.traco} />
           </View>
-          <Animated.Image
-            style={{ width: 10, height: 19, marginTop: -15, marginLeft: '46%' }}
-            source={Rectangle}
-          />
         </View>
       </View>
       <View style={styles.nivel}>
@@ -62,10 +54,6 @@ export default function Imposto() {
             <TouchableOpacity style={styles.traco} />
             <TouchableOpacity style={styles.traco} />
           </View>
-          <Animated.Image
-            style={{ width: 10, height: 19, marginTop: -15, marginLeft: '46%' }}
-            source={Rectangle}
-          />
         </View>
       </View>
       <View style={styles.nivel}>

@@ -9,14 +9,12 @@ export default function ModalConfirmExit({ deletePlayer, onClick }) {
         <View style={styles.modal}>
           <View style={styles.container}>
             <Text style={styles.text}>Tem certeza que deseja sair da partida?</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
               <TouchableOpacity style={[styles.button, { marginRight: 20 }]} onPress={onClick} >
                 <Text style={styles.textButton}>Continuar</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.button, {backgroundColor:COLORS.warningButton}]} onPress={deletePlayer} >
                 <Text style={styles.textButton}>Sair</Text>
               </TouchableOpacity>
-            </View>
           </View>
         </View>
       </Modal>
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    width: 150,
+    width: 250,
     padding:10,
     backgroundColor: COLORS.successButton,
     borderRadius: 20,

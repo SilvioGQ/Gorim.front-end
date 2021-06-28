@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+import { socketContext } from "../../../context/socket";
+import { playerContext } from "../../../context/player";
+
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Modal from '../../../Components/ModalInfo'
@@ -9,57 +13,51 @@ import Coin from '../../../Components/Coin'
 import Baixo from '../../../assets/moedas/cheap.png';
 import Normal from '../../../assets/moedas/medium.png';
 import Alto from '../../../assets/moedas/expensive.png';
-import PlayerService from '../../../services/PlayerService';
-import { FlatList } from 'react-native-gesture-handler';
 import IMAGES from '../../../resources/imagesProducts';
-import FunctionalityService from '../../../services/FunctionalityService';
-import { StatusBar } from 'react-native';
+import CaixaDeValor from '../../../Components/CaixaDeValor';
+
 export default function Vendas({ navigation, route }) {
+
   const { name } = route.params;
-  const { type } = route.params;
   const [modalText, setModalText] = useState('');
   const [players, setPlayers] = useState();
   const [selectPrice, setSelectPrice] = useState(-1);
-  const { player } = route.params;
   const [selectClient, setSelectClient] = useState();
-  const [selectAmount, setSelectAmount] = useState(-1);
+  const [selectAmount, setSelectAmount] = useState(0);
   const [product, setProduct] = useState([]);
-  
+  const socket = useContext(socketContext);
+  const [player, setPlayer] = useContext(playerContext);
+
   useEffect(() => {
-    let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
-
-    PlayerService.getPlayers(player.room).then(resp => {
-      resp = resp.filter(item => {
-
-        if (item.id !== player.id && item.type == 'Agricultor') return item;
-      });
-      resp.unshift(todos)
-      setPlayers(resp);
+    socket.emit('getPlayers', p => {
+      let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
+      p = p.filter(i => i.id !== player.id && i.type == 'Agricultor');
+      p.unshift(todos);
+      setPlayers(p);
     });
-    FunctionalityService.getProduct(name).then(setProduct)
+    socket.emit('getProducts', name, resp => setProduct(resp));
   }, []);
 
   const confirmTransfer = () => {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
-    if (selectClient == -1) setSelectAmount(-1);
-    if (selectAmount == -1 && selectClient !== -1) return setModalText('Selecione a quantidade!');
+    if (selectAmount == -1 || selectAmount == 0) return setModalText('Selecione a quantidade!');
 
-    FunctionalityService.addOffer(player, selectClient, selectPrice, selectAmount, name, type)
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { player, text: 'Sua proposta foi enviada com sucesso' } }] });
+    socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
 
   return (
     <View style={styles.container}>
       <Coin coin={player.coin} />
       <View style={styles.center}>
-        <Image
-          style={styles.person}
-          source={IMAGES[name]}
-        />
-        <Text style={styles.header}> Venda de {'\n'} {name} </Text>
+        <Image style={styles.person} source={IMAGES[name]} />
+        <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /,'')} </Text>
+        <TouchableOpacity onPress={() => setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:')}>
+          <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf:'center', marginLeft: 10, marginTop:20 }} />
+        </TouchableOpacity>
       </View>
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Clientes: </Text>
+      <Text style={styles.textos}> Clientes: </Text>
       <View style={{ marginHorizontal: 10, flexDirection: 'row' }}>
         <FlatList
           numColumns={3}
@@ -71,45 +69,36 @@ export default function Vendas({ navigation, route }) {
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}> Valor: </Text>
-      <View style={styles.row}>
-        <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}>
-          <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
-            <Image
-              style={styles.icone}
-              source={Baixo}
-            />
-            <Text style={styles.categoryprice}>Baixo</Text>
-            <Text style={styles.price}>${product?.cheap}</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelectPrice(product?.medium)}>
-          <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
-            <Image
-              style={styles.icone}
-              source={Normal}
-            />
-            <Text style={styles.categoryprice}>Normal</Text>
-            <Text style={styles.price}>${product?.medium}</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)}>
-          <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
-            <Image
-              style={styles.icone}
-              source={Alto}
-            />
-            <Text style={styles.categoryprice}>Alto</Text>
-            <Text style={styles.price}>${product?.expensive}</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30 }}>Quantidade:</Text>
-      {selectClient == -1 && <Text style={{ fontSize: 32, fontFamily: 'Rubik_700Bold', marginVertical: 15, textAlign: 'center', alignItems: 'center' }}>ILIMITADO</Text>}
+      <Text style={styles.textos}> Valor: </Text>
+      {product && (
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}>
+            <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
+              <Image style={styles.icone} source={Baixo} />
+              <Text style={styles.categoryprice}>Baixo</Text>
+              <Text style={styles.price}>${product?.cheap}</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectPrice(product?.medium)}>
+            <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
+              <Image style={styles.icone} source={Normal} />
+              <Text style={styles.categoryprice}>Normal</Text>
+              <Text style={styles.price}>${product?.medium}</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)}>
+            <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
+              <Image style={styles.icone} source={Alto} />
+              <Text style={styles.categoryprice}>Alto</Text>
+              <Text style={styles.price}>${product?.expensive}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )}
+      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom:15 }}>Quantidade:</Text>
+      {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
       {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
-      <Button
-        onClick={confirmTransfer}
-        name='VENDER' />
+      <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
     </View>
   );
 }
@@ -139,6 +128,7 @@ const styles = StyleSheet.create({
   center: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop:20,
   },
   colunm: {
     alignItems: 'center',
@@ -161,12 +151,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     fontWeight: 'bold',
     fontSize: 20,
+    marginLeft:10
   },
   textos: {
+    fontSize: 18, 
     fontFamily: 'Rubik_300Light',
     marginHorizontal: 15,
-    fontSize: 20,
-    alignSelf: 'center'
+    marginTop: 30
   },
   person: {
     width: 59,
