@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.bgColorPrimary,
-        paddingTop: StatusBar.currentHeight
     },
     imageParcel: {
         height: 60,

@@ -5,17 +5,22 @@ import ModalConfirmExit from '../ModalConfirmExit';
 import COLORS from '../../resources/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function Rodada({ removeFromRoom }) {
+export default function Rodada({ removeFromRoom = null, close = null, name}) {
 
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textLarge}>Rodada</Text>
-      <View style={{ marginTop: 10, position: 'absolute', left: '82%' }}>
-        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ width: 60, height: 64, marginTop: -15 }}>
-          <Image style={{ width: 28, height: 30, alignSelf: 'center', marginTop: 20 }} source={require('../../assets/Logo/Fechar.png')} />
-        </TouchableOpacity>
+      <Text style={styles.textLarge}>{name}</Text>
+      <View style={{ position: 'absolute', left: '82%' }}>
+        {close && (
+          <>
+            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ width: 47, height: 40, marginTop: -5 }}>
+              {/* <Image style={{ width: 23, height: 25, alignSelf: 'center', marginTop: 10 }} source={require('../../assets/Logo/Fechar.png')} /> */}
+              <Text style={styles.textExit}>Sair</Text>
+            </TouchableOpacity>
+          </>
+        )}
         {modalVisible && (
           <ModalConfirmExit deletePlayer={removeFromRoom} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
         )}
@@ -28,15 +33,24 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: COLORS.headerColor,
-    height: 65,
+    height: 50,
     width: Tela,
+    justifyContent: 'center'
   },
   textLarge: {
     color: '#ffffff',
-    fontSize: 15,
+    fontSize: 20,
     fontFamily: 'Rubik_300Light',
-    marginTop: 20,
-    marginLeft: 15
+    marginTop: 5,
+    textAlign: 'center',
+    alignSelf: 'center'
   },
-
+  textExit: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontFamily: 'Rubik_700Bold',
+    marginTop: 21,
+    textAlign: 'center',
+    alignSelf: 'center'
+  }
 });

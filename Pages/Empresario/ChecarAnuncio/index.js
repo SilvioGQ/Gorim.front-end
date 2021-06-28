@@ -8,7 +8,7 @@ import Coin from '../../../Components/Coin';
 import Anuncio from '../../../Components/Anuncio';
 import COLORS from '../../../resources/colors';
 import Modal from '../../../Components/ModalInfo';
-
+import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
 
@@ -27,6 +27,7 @@ export default function ChecarAnuncio({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Rodada name={'Checar anúncios'}/>
       <Coin coin={player.coin} />
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && (
@@ -47,7 +48,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: StatusBar.currentHeight
   },
   header: {
     fontFamily: 'Rubik_300Light',

@@ -15,7 +15,7 @@ import Normal from '../../../assets/moedas/medium.png';
 import Alto from '../../../assets/moedas/expensive.png';
 import IMAGES from '../../../resources/imagesProducts';
 import CaixaDeValor from '../../../Components/CaixaDeValor';
-
+import Rodada from '../../../Components/Rodada';
 export default function Vendas({ navigation, route }) {
 
   const { name } = route.params;
@@ -46,14 +46,27 @@ export default function Vendas({ navigation, route }) {
     socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
+  const information = () =>{
+    if (name == 'Pacote 1') {
+      return setModalText('Neste pacote contem semeadora.\nProdutividade: \nPoluição:')
+    }
+    if (name == 'Pacote 2') {
+      return setModalText('Neste pacote contem semeadora, e colheitadeira.\nProdutividade: \nPoluição:')
+    }
+    if (name == 'Pacote 3') {
+      return setModalText('Neste pacote contem semeadora, colheitadeira e drone.\nProdutividade: \nPoluição:')
+    }
+    setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:')
+  }
   return (
     <View style={styles.container}>
+      <Rodada name={'Criar Anúncio'} />
       <Coin coin={player.coin} />
       <View style={styles.center}>
         <Image style={styles.person} source={IMAGES[name]} />
-        <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /,'')} </Text>
-        <TouchableOpacity onPress={() => setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:')}>
-          <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf:'center', marginLeft: 10, marginTop:20 }} />
+        <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /, '')} </Text>
+        <TouchableOpacity onPress={information}>
+          <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 20 }} />
         </TouchableOpacity>
       </View>
       <Text style={styles.textos}> Clientes: </Text>
@@ -94,7 +107,7 @@ export default function Vendas({ navigation, route }) {
           </TouchableOpacity>
         </View>
       )}
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom:15 }}>Quantidade:</Text>
+      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom: 15 }}>Quantidade:</Text>
       {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
       {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
       <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
@@ -106,7 +119,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    paddingTop: StatusBar.currentHeight,
   },
   categoryprice: {
     fontFamily: 'Rubik_300Light',
@@ -127,7 +139,7 @@ const styles = StyleSheet.create({
   center: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop:20,
+    marginTop: 20,
   },
   colunm: {
     alignItems: 'center',
@@ -150,10 +162,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     fontWeight: 'bold',
     fontSize: 20,
-    marginLeft:10
+    marginLeft: 10
   },
   textos: {
-    fontSize: 18, 
+    fontSize: 18,
     fontFamily: 'Rubik_300Light',
     marginHorizontal: 15,
     marginTop: 30

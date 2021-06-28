@@ -56,10 +56,12 @@ export default function Routes() {
       <Stack.Screen name="FazerTransferencia" component={FazerTransferencia} options={{
         headerTransparent: true,
         headerTitle: '',
+        headerTintColor: 'white',
       }} />
       <Stack.Screen name="ConfirmarTransferencia" component={ConfirmarTransferencia} options={{
         headerTransparent: true,
-        headerTitle: ''
+        headerTitle: '',
+        headerTintColor: 'white',
       }} />
       <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada} options={{
         headerTransparent: true,
@@ -72,14 +74,17 @@ export default function Routes() {
       <Stack.Screen name="ControleParcelas" component={ControleParcelas} options={{
         headerTransparent: true,
         headerTitle: '',
+        headerTintColor: 'white',
       }} />
       <Stack.Screen name="Vendas" component={Vendas} options={{
         headerTransparent: true,
         headerTitle: '',
+        headerTintColor: 'white',
       }} />
       <Stack.Screen name="Cenario" component={Cenario} options={{
         headerTransparent: true,
         headerTitle: '',
+        headerTintColor: 'white',
       }} />
       <Stack.Screen name="Parcela" component={Parcela} options={{
         headerTransparent: true,
@@ -88,10 +93,12 @@ export default function Routes() {
       <Stack.Screen name="Propostas" component={Propostas} options={{
         headerTransparent: true,
         headerTitle: '',
+        headerTintColor: 'white',
       }} />
       <Stack.Screen name="AnalisarProdutos" component={AnalisarProdutos} options={{
         headerTransparent: true,
         headerTitle: '',
+        headerTintColor: 'white',
       }} />
       <Stack.Screen name="CriarPartida" component={CriarPartida} options={{
         headerTransparent: true,
@@ -103,13 +110,14 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="SelecaoPersonagem" component={SelecaoPersonagem} options={{
-        headerLeft: () => null,
+        headerTintColor: 'white',
         headerTransparent: true,
         headerTitle: '',
       }} />
       <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio} options={{
         headerTransparent: true,
         headerTitle: '',
+        headerTintColor: 'white',
       }} />
     </Stack.Navigator>
   )
