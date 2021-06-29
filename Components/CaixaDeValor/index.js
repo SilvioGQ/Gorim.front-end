@@ -33,16 +33,16 @@ const styles = StyleSheet.create({
 
   },
   arrow: {
-    width: 46,
-    height: 48
+    width: 38,
+    height: 38
   },
   buttonAmount: {
     flexDirection:'row',
     backgroundColor: COLORS.textWhite,
     borderWidth: 1,
     borderRadius: 20,
-    height: 50,
-    width: 180,
+    height: 42,
+    width: 170,
     justifyContent:'center'
   },
   textAmount: {

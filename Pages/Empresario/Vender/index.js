@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar, } from 'react-native';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { socketContext } from "../../../context/socket";
 import { playerContext } from "../../../context/player";
 
@@ -46,7 +46,7 @@ export default function Vendas({ navigation, route }) {
     socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
-  const information = () =>{
+  const information = () => {
     if (name == 'Pacote 1') {
       return setModalText('Neste pacote contém semeadora.\nProdutividade: \nPoluição:')
     }
@@ -61,56 +61,64 @@ export default function Vendas({ navigation, route }) {
   return (
     <View style={styles.container}>
       <Rodada name={'Criar Anúncio'} />
-      <Coin coin={player.coin} />
-      <View style={styles.center}>
-        <Image style={styles.person} source={IMAGES[name]} />
-        <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /, '')} </Text>
-        <TouchableOpacity onPress={information}>
-          <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 20 }} />
-        </TouchableOpacity>
-      </View>
-      <Text style={styles.textos}> Clientes: </Text>
-      <View style={{ marginHorizontal: 10, flexDirection: 'row' }}>
-        <FlatList
-          numColumns={3}
-          data={players}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Quadrados player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />}
-        />
-      </View>
-      {modalText !== '' && (
-        <Modal onClick={() => setModalText('')} text={modalText} />
-      )}
-      <Text style={styles.textos}> Valor: </Text>
-      {product && (
-        <View style={styles.row}>
-          <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}>
-            <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
-              <Image style={styles.icone} source={Baixo} />
-              <Text style={styles.categoryprice}>Baixo</Text>
-              <Text style={styles.price}>${product?.cheap}</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setSelectPrice(product?.medium)}>
-            <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
-              <Image style={styles.icone} source={Normal} />
-              <Text style={styles.categoryprice}>Normal</Text>
-              <Text style={styles.price}>${product?.medium}</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)}>
-            <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
-              <Image style={styles.icone} source={Alto} />
-              <Text style={styles.categoryprice}>Alto</Text>
-              <Text style={styles.price}>${product?.expensive}</Text>
-            </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Coin coin={player.coin} />
+        <View style={styles.center}>
+          <Image style={styles.person} source={IMAGES[name]} />
+          <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /, '')} </Text>
+          <TouchableOpacity onPress={information}>
+            <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 20 }} />
           </TouchableOpacity>
         </View>
-      )}
-      <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom: 15 }}>Quantidade:</Text>
-      {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
-      {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
-      <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
+        <Text style={styles.textos}> Clientes: </Text>
+        <View style={{ marginHorizontal: 10, flexDirection: 'row' }}>
+          <FlatList
+            numColumns={3}
+            data={players}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => <Quadrados player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />}
+          />
+
+          {/* {players.map((item, index) => {
+            if (players !== '') {
+              return <Quadrados key={index} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />
+            }
+          })} */}
+        </View>
+        {modalText !== '' && (
+          <Modal onClick={() => setModalText('')} text={modalText} />
+        )}
+        <Text style={styles.textos}> Valor: </Text>
+        {product && (
+          <View style={styles.row}>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}>
+              <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
+                <Image style={styles.icone} source={Baixo} />
+                <Text style={styles.categoryprice}>Baixo</Text>
+                <Text style={styles.price}>${product?.cheap}</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.medium)}>
+              <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
+                <Image style={styles.icone} source={Normal} />
+                <Text style={styles.categoryprice}>Normal</Text>
+                <Text style={styles.price}>${product?.medium}</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)}>
+              <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
+                <Image style={styles.icone} source={Alto} />
+                <Text style={styles.categoryprice}>Alto</Text>
+                <Text style={styles.price}>${product?.expensive}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
+        <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom: 15 }}>Quantidade:</Text>
+        {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
+        {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
+        <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
+      </ScrollView>
     </View>
   );
 }
@@ -139,7 +147,7 @@ const styles = StyleSheet.create({
   center: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 5,
   },
   colunm: {
     alignItems: 'center',

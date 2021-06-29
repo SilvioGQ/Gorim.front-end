@@ -51,24 +51,24 @@ export default function SelecaoPersonagem({ navigation }) {
       <ScrollView>
         <Text style={styles.title}>Bem vindo ao Gorim!</Text>
         <View>
-          <View style={{ marginHorizontal: 15, width: '90%' }}>
+          <View style={{ marginHorizontal:20, }}>
             {player.type === 'Agricultor' && (<Text style={styles.subtitle}>Foi selecionado para você o personagem agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
             {player.type === 'Empresário' && (<Text style={styles.subtitle}>Foi selecionado para você o personagem empresário, logo você será responsável por anunciar os preços dos seus produtos, interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
           </View>
           <Text style={styles.text}>Selecione um personagem</Text>
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
           <View style={{ alignSelf: 'center' }}>
-            <View style={{ marginHorizontal: 15, flexDirection: 'row' }}>
+            <View style={{  flexDirection: 'row' }}>
               <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />
               <Quadrados onClick={() => selectAvatar('Icon2')} backgroundColor={bgQuadrados('Icon2')} icon='Icon2' />
               <Quadrados onClick={() => selectAvatar('Icon3')} backgroundColor={bgQuadrados('Icon3')} icon='Icon3' />
             </View>
-            <View style={{ marginHorizontal: 15, flexDirection: 'row' }}>
+            <View style={{  flexDirection: 'row' }}>
               <Quadrados onClick={() => selectAvatar('Icon4')} backgroundColor={bgQuadrados('Icon4')} icon='Icon4' />
               <Quadrados onClick={() => selectAvatar('Icon5')} backgroundColor={bgQuadrados('Icon5')} icon='Icon5' />
               <Quadrados onClick={() => selectAvatar('Icon6')} backgroundColor={bgQuadrados('Icon6')} icon='Icon6' />
             </View>
-            <View style={{ marginHorizontal: 15, flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' }}>
               <Quadrados onClick={() => selectAvatar('Icon7')} backgroundColor={bgQuadrados('Icon7')} icon='Icon7' />
               <Quadrados onClick={() => selectAvatar('Icon8')} backgroundColor={bgQuadrados('Icon8')} icon='Icon8' />
               <Quadrados onClick={() => selectAvatar('Icon9')} backgroundColor={bgQuadrados('Icon9')} icon='Icon9' />
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     paddingTop: StatusBar.currentHeight,
-    marginLeft: 5,
     width: '100%',
   },
   title: {
