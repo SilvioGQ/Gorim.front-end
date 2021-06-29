@@ -12,7 +12,7 @@ export default function ControleParcelas({ navigation }) {
   return (
     <View style={styles.container}>
       <Rodada name={'Controle de Parcelas'}/>
-      <Text style={styles.mainText}>Parcelas de terra</Text>
+      <Text style={styles.mainText}>Faça suas plantações!</Text>
       <FlatList
         numColumns={2}
         data={player.parcelLand}

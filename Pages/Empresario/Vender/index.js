@@ -46,6 +46,18 @@ export default function Vendas({ navigation, route }) {
     socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
+  const information = () =>{
+    if (name == 'Pacote 1') {
+      return setModalText('Neste pacote contém semeadora.\nProdutividade: \nPoluição:')
+    }
+    if (name == 'Pacote 2') {
+      return setModalText('Neste pacote contêm semeadora, e colheitadeira.\nProdutividade: \nPoluição:')
+    }
+    if (name == 'Pacote 3') {
+      return setModalText('Neste pacote contêm semeadora, colheitadeira e drone.\nProdutividade: \nPoluição:')
+    }
+    setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:')
+  }
   return (
     <View style={styles.container}>
       <Rodada name={'Criar Anúncio'} />
@@ -53,7 +65,7 @@ export default function Vendas({ navigation, route }) {
       <View style={styles.center}>
         <Image style={styles.person} source={IMAGES[name]} />
         <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /, '')} </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={information}>
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 20 }} />
         </TouchableOpacity>
       </View>

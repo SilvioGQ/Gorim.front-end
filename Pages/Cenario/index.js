@@ -4,6 +4,7 @@ import { socketContext } from '../../context/socket';
 import { playerContext } from '../../context/player';
 
 import Feliz from '../../assets/emojis/feliz.png';
+import Coin from '../../Components/Coin';
 import Meio from '../../assets/emojis/meio.png';
 import Preocupado from '../../assets/emojis/preocupado.png';
 import Tenso from '../../assets/emojis/tenso.png';
@@ -27,6 +28,7 @@ export default function Cenario() {
   return (
     <View style={styles.container}>
       <Rodada name={'Cenário'}/>
+      <Coin coin={player.coin} />
       <View style={styles.row}>
         <Image
           style={styles.image}

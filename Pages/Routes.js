@@ -20,7 +20,7 @@ import ChecarAnuncio from './Empresario/ChecarAnuncio';
 import FazerTransferencia from './Transferencias/FazerTransferencia';
 import ConfirmarTransferencia from './Transferencias/ConfirmarTransferencia';
 import TransferenciaConfirmada from './Transferencias/Confirmada';
-import Insumo from './Transferencias/Insumo';
+//import Insumo from './Transferencias/Insumo';
 import Cenario from './Cenario';
 import ControleParcelas from './Agricultor/ControleParcelas';
 import Parcela from './Agricultor/Parcela';
@@ -66,10 +66,6 @@ export default function Routes() {
       <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada} options={{
         headerTransparent: true,
         headerTitle: '',
-      }} />
-      <Stack.Screen name="Insumo" component={Insumo} options={{
-        headerTransparent: true,
-        headerTitle: ''
       }} />
       <Stack.Screen name="ControleParcelas" component={ControleParcelas} options={{
         headerTransparent: true,
