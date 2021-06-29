@@ -53,7 +53,7 @@ export default function Vendas({ navigation, route }) {
       <View style={styles.center}>
         <Image style={styles.person} source={IMAGES[name]} />
         <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /, '')} </Text>
-        <TouchableOpacity onPress={information}>
+        <TouchableOpacity>
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 20 }} />
         </TouchableOpacity>
       </View>
