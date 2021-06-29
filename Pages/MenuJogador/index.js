@@ -107,7 +107,7 @@ export default function MenuJogador({ navigation }) {
           </View>
         </>
       )}
-      <Cenarios seeScenery={() => { navigation.navigate('Cenario'); setNotificationScene(false); }} notification={notificationScene} />
+      <Cenarios seeScenery={() => { navigation.navigate('Cenario'); setNotificationScene(false); }} stepFinish={() => navigation.navigate('AguardarJogadores')} notification={notificationScene} />
     </View>
   );
 }

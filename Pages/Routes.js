@@ -50,6 +50,7 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="AguardarJogadores" component={AguardarJogadores} options={{
+        headerLeft: () => null,
         headerTransparent: true,
         headerTitle: ''
       }} />
