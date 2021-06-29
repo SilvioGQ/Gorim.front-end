@@ -11,7 +11,7 @@ import Corona from '../../assets/emojis/corona.png';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
 import { FlatList } from 'react-native-gesture-handler';
-
+import Rodada from '../../Components/Rodada';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
@@ -26,6 +26,7 @@ export default function Cenario() {
 
   return (
     <View style={styles.container}>
+      <Rodada name={'Cenário'}/>
       <View style={styles.row}>
         <Image
           style={styles.image}
@@ -57,21 +58,21 @@ export default function Cenario() {
 
       <Text style={styles.texto}>Histórico de transferência:</Text>
       {logs.map((log, index) => {
-        if(log.type == 'transfer') {
+        if (log.type == 'transfer') {
           return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
         }
       })}
 
       <Text style={styles.texto}>Histórico de compras:</Text>
       {logs.map((log, index) => {
-        if(log.type == 'buy') {
+        if (log.type == 'buy') {
           return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
         }
       })}
 
       <Text style={styles.texto}>Histórico de plantação:</Text>
       {logs.map((log, index) => {
-        if(log.type == 'plantation') {
+        if (log.type == 'plantation') {
           return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
         }
       })}
@@ -85,7 +86,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: StatusBar.currentHeight
   },
   title: {
     fontSize: 20,

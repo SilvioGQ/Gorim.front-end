@@ -7,7 +7,7 @@ import Button from '../../../Components/Button';
 import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
 import logoTransfer from '../../../assets/moedas/logoTransfer.png';
-
+import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
@@ -27,6 +27,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   return (
     <View style={styles.container}>
+      <Rodada name={'Fazer transferência'}/>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.text}>Fazer transferência</Text>
         <Image style={styles.logo} source={logoTransfer} />
@@ -49,7 +50,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: StatusBar.currentHeight
   },
   logo: {
     height: 180,

@@ -6,10 +6,10 @@ import { playerContext } from "../../../context/player";
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
 import OfertaGeral from '../../../Components/OfertaGeral';
-import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
+import FilterType from '../../../Components/FilterType';
 import COLORS from '../../../resources/colors';
 import Modal from '../../../Components/ModalInfo';
-
+import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function Propostas() {
 
@@ -75,26 +75,13 @@ export default function Propostas() {
   // }
   return (
     <View style={styles.container}>
+      <Rodada name={'Propostas'}/>
       <Coin coin={player.coin} />
-      <Text style={styles.header}>Propostas</Text>
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
       <Text style={styles.text}>Anúncios</Text>
-      <View style={{ flexDirection: 'row', marginHorizontal: 15, width: '90%', justifyContent: 'space-between', marginVertical: 10 }}>
-        <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Maquina' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Maquina') }}>
-          <Text style={[styles.textSmall, { color: type == 'Maquina' ? '#fff' : '#000' }]}>Máquina</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Fertilizante' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Fertilizante') }}>
-          <Text style={[styles.textSmall, { color: type == 'Fertilizante' ? '#fff' : '#000' }]}>Fertilizante</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Agrotoxico' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Agrotoxico') }}>
-          <Text style={[styles.textSmall, { color: type == 'Agrotoxico' ? '#fff' : '#000' }]}>Agrotóxico</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Semente' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Semente') }}>
-          <Text style={[styles.textSmall, { color: type == 'Semente' ? '#fff' : '#000' }]}>Semente</Text>
-        </TouchableOpacity>
-      </View>
+      <FilterType type={type} setType={setType}/>
       {offersAll.length === 0 && (
         <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
       )}
@@ -124,7 +111,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: StatusBar.currentHeight
   },
   header: {
     fontFamily: 'Rubik_300Light',

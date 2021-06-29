@@ -4,13 +4,14 @@ import { FlatList } from 'react-native-gesture-handler';
 import { playerContext } from "../../../context/player";
 
 import COLORS from '../../../resources/colors';
-
+import Rodada from '../../../Components/Rodada';
 export default function ControleParcelas({ navigation }) {
 
   const [player, setPlayer] = useContext(playerContext);
-  
+
   return (
     <View style={styles.container}>
+      <Rodada name={'Controle de Parcelas'}/>
       <Text style={styles.mainText}>Parcelas de terra</Text>
       <FlatList
         numColumns={2}
@@ -34,8 +35,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
-    alignItems: 'center',
-    paddingTop:StatusBar.currentHeight
+    alignItems: 'center'
   },
   imageParcel: {
     height: 105,

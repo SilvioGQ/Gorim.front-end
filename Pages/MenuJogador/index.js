@@ -34,14 +34,7 @@ export default function MenuJogador({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <View style={styles.container2}>
-      <Text style={styles.textLarge}>1º Rodada</Text>
-      <View style={{ marginTop: 10, position: 'absolute', left: '82%' }}>
-        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ width: 60, height: 64, marginTop: -15 }}>
-          <Image style={{ width: 28, height: 30, alignSelf: 'center', marginTop: 20 }} source={require('../../assets/Logo/Fechar.png')} />
-        </TouchableOpacity>
-      </View>
-    </View>
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Rodada'}/>
       <Header />
       {player.type === 'Agricultor' && (
         <>
@@ -114,11 +107,7 @@ export default function MenuJogador({ navigation }) {
           </View>
         </>
       )}
-      <Cenarios 
-        seeScenery={() => { navigation.navigate('Cenario'); setNotificationScene(false); }}
-        stepFinish={() => { socket.emit('stepFinish', () => setPlayer(p => ({ ...player, state: p}))); navigation.reset({ routes: [{ name: 'AguardarJogadores' }] }); }}
-        notification={notificationScene}
-      />
+      <Cenarios seeScenery={() => { navigation.navigate('Cenario'); setNotificationScene(false); }} notification={notificationScene} />
     </View>
   );
 }

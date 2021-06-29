@@ -10,7 +10,7 @@ import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
 import CaixaDeValor from '../../../Components/CaixaDeValor';
-
+import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation }) {
 
@@ -36,6 +36,7 @@ export default function FazerTransferencia({ navigation }) {
   }
   return (
     <View style={styles.container}>
+      <Rodada name={'Fazer transferência'}/>
       <Coin coin={player.coin} />
       <View style={styles.header}>
         <Image style={{ width: 63, height: 61 }} source={require('../../../assets/agricultorIcones/coin.png')} />
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    paddingTop: StatusBar.currentHeight,
+
   },
   header: {
     flexDirection: 'row',
