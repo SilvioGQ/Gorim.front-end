@@ -52,13 +52,13 @@ export default function Propostas() {
     }
   }
 
-      if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.product, amount: 1 });
-      if (item.idBuyer != -1) FunctionalityService.deleteOffer(item);
-      if(item.amount == -1) item.amount = amount;
-      let price = item.price * item.amount;
-      PlayerService.addInvetory(player)
-      FunctionalityService.makeTransfer(player.id, item.idSeller, price);
-      player.coin -= item.price * item.amount
+      // if (count == player.inventory.length) player.inventory.push({ type: item.type, name: item.product, amount: 1 });
+      // if (item.idBuyer != -1) FunctionalityService.deleteOffer(item);
+      // if(item.amount == -1) item.amount = amount;
+      // let price = item.price * item.amount;
+      // PlayerService.addInvetory(player)
+      // FunctionalityService.makeTransfer(player.id, item.idSeller, price);
+      // player.coin -= item.price * item.amount
       // PlayerService.getPlayer(item.idSeller).then(resp => {
       //   <HistoricosDinheiro player={player} amount={item.amount} price={item.price} product={item.product} />
       //   let text = 'Você Comprou ' + item.amount + ' unidade(s) de ' + item.product + ' do ' + resp.name + ' por ' + price + '$'
