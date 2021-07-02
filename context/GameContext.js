@@ -41,22 +41,27 @@ const reducer = (state, action) => {
         ...state,
         player: {},
         players: [],
-        stage: 'REMOVEDTOROOM'
+        stage: action.payload
       };
     case 'MAXPLAYERSTOROOM':
       return {
         ...state,
-        stage: 'MAXPLAYERSTOROOM'
+        stage: action.payload
       };
     case 'INGAMING':
       return {
         ...state,
-        stage: 'INGAMING'
+        stage: action.payload
       };
     case 'SELECTEDAVATARS':
       return {
         ...state,
-        stage: 'SELECTEDAVATARS'
+        stage: action.payload
+      };
+    case 'GETPRODUCT':
+      return {
+        ...state,
+        product: action.payload
       };
     case 'DISCONNECTED':
       return {
@@ -84,29 +89,35 @@ const GameProvider = (props) => {
       dispatch({ type: 'CONNECTED', payload: true });
       console.log('Connected!');
     });
-    socket.on('refreshPlayers', players => {
+    socket.on('refreshPlayers', (players) => {
       dispatch({ type: 'REFRESHPLAYERS', payload: players });
     });
-    socket.on('updatePlayer', player => {
+    socket.on('updatePlayer', (player) => {
       dispatch({ type: 'UPDATEPLAYER', payload: player});
     });
     socket.on('startGame', () => {
       dispatch({ type: 'STARTGAME', payload: true});
     });
-    socket.on('addedToRoom', player => {
+    socket.on('addedToRoom', (player) => {
       dispatch({ type: 'ADDEDTOROOM', payload: player });
     });
     socket.on('removedToRoom', () => {
-      dispatch({ type: 'REMOVEDTOROOM' });
+      dispatch({ type: 'REMOVEDTOROOM', payload: 'REMOVEDTOROOM' });
     });
     socket.on('maxPlayersToRoom', () => {
-      dispatch({ type: 'MAXPLAYERSTOROOM' });
+      dispatch({ type: 'MAXPLAYERSTOROOM', payload: 'MAXPLAYERSTOROOM' });
     });
     socket.on('inGaming', () => {
-      dispatch({ type: 'INGAMING' });
+      dispatch({ type: 'INGAMING', payload: 'INGAMING' });
     });
     socket.on('selectedAvatars', () => {
-      dispatch({ type: 'SELECTEDAVATARS' });
+      dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
+    });
+    socket.on('raffled', () => {
+      dispatch({ type: 'RAFFLED', payload: 'RAFFLED' });
+    });
+    socket.on('getProducts', (product) => {
+      dispatch({ type: 'GETPRODUCT', payload: product });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
@@ -143,7 +154,7 @@ const makeRaffle = () => {
   socket.emit('makeRaffle');
 }
 
-const selectAvatar = avatar => {
+const selectAvatar = (avatar) => {
   socket.emit('selectAvatar', avatar);
 }
 
@@ -159,6 +170,14 @@ const makeTransfer = (count, idDest) => {
   socket.emit('makeTransfer', count, idDest);
 }
 
+const getProduct = (name) => {
+  socket.emit('getProducts', name);
+}
+
+const addOffer = (name, speciality, price, client, amount) => {
+  socket.emit('addOffer', name, speciality, price, client, amount);
+}
+
 export { 
   GameContext, 
   GameProvider, 
@@ -170,5 +189,7 @@ export {
   selectAvatar,
   selectedAvatars,
   toPlant,
-  makeTransfer
+  makeTransfer,
+  getProduct,
+  addOffer
 };

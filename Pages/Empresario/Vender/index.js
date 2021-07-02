@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar, } from 'react-native';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+// import { socketContext } from "../../../context/socket";
+import { GameContext, getProduct, addOffer } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
@@ -20,30 +20,32 @@ export default function Vendas({ navigation, route }) {
 
   const { name } = route.params;
   const [modalText, setModalText] = useState('');
-  const [players, setPlayers] = useState();
+  // const [players, setPlayers] = useState();
   const [selectPrice, setSelectPrice] = useState(-1);
   const [selectClient, setSelectClient] = useState();
   const [selectAmount, setSelectAmount] = useState(0);
-  const [product, setProduct] = useState([]);
-  const socket = useContext(socketContext);
-  const [player, setPlayer] = useContext(playerContext);
+  // const [product, setProduct] = useState([]);
+  // const socket = useContext(socketContext);
+  const { players, player, product, stage } = useContext(GameContext);
 
   useEffect(() => {
-    socket.emit('getPlayers', p => {
-      let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
-      p = p.filter(i => i.id !== player.id && i.type == 'Agricultor');
-      p.unshift(todos);
-      setPlayers(p);
-    });
-    socket.emit('getProducts', name, resp => setProduct(resp));
+    // socket.emit('getPlayers', p => {
+    //   let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
+    //   p = p.filter(i => i.id !== player.id && i.type == 'Agricultor');
+    //   p.unshift(todos);
+    //   setPlayers(p);
+    // });
+    getProduct(name);
+    // socket.emit('getProducts', name, resp => setProduct(resp));
   }, []);
-
+  
   const confirmTransfer = () => {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
     if (selectAmount == -1 || selectAmount == 0) return setModalText('Selecione a quantidade!');
 
-    socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
+    // socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
+    addOffer(name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
   const information = () => {

@@ -9,7 +9,7 @@ export default function Confirmada({ navigation, route }) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.reset({ routes: [{ name: 'MenuJogador'}] })
+      navigation.reset({ routes: [{ name: 'MenuJogador'}] });
     }, 3500);
 
     return () => clearTimeout(timer);

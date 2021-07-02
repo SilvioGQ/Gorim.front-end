@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-native';
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+// import { socketContext } from "../../../context/socket";
+import { GameContext } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
 
@@ -14,12 +14,12 @@ export default function ChecarAnuncio({ navigation }) {
 
   const [offers, setOffers] = useState([]);
   const [modalText, setModalText] = useState('');
-  const socket = useContext(socketContext);
-  const [player, setPlayer] = useContext(playerContext);
+  // const socket = useContext(socketContext);
+  const { player } = useContext(GameContext);
 
-  useEffect(() => {
-    socket.emit('getAdverts', resp => setOffers(resp));
-  }, []);
+  // useEffect(() => {
+  //   socket.emit('getAdverts', resp => setOffers(resp));
+  // }, []);
 
   const deleteAdvert = id => {
     socket.emit('deleteAdvert', id, resp => setOffers(resp));
