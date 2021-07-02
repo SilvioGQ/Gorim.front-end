@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 // import { socketContext } from '../../context/socket';
 // import { playerContext } from '../../context/player';
-import { addToRoom, joinToRoom } from '../../context/GameContext';
+import { GameContext, addToRoom, joinToRoom } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import ModalInfo from '../../Components/ModalInfo';
@@ -16,12 +16,17 @@ export default function CriarPartida({ navigation }) {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   // const socket = useContext(socketContext);
-  // const [player, setPlayer] = useContext(playerContext);
+  const { stage } = useContext(GameContext);
+
+  useEffect(() => {
+    if(stage === 'ADDEDTOROOM') navigation.navigate('Lobby');
+    if(stage === 'MAXPLAYERSTOROOM') return setModalText('Sala atingiu número máximo de jogadores!');
+    if(stage === 'INGAMING') return setModalText('Sala em partida!');
+  }, [stage]);
 
   const createRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
     addToRoom(name);
-    navigation.navigate('Lobby');
     // socket.emit('addToRoom', name, handlePlayer);
   }
 
@@ -29,7 +34,6 @@ export default function CriarPartida({ navigation }) {
     if (name === '') return setModalText('Você precisa adicionar um nome');
     if (room === '') return setModalText('Você precisa adicionar o código da sala');
     joinToRoom(name, room);
-    navigation.navigate('Lobby');
     // socket.emit('joinToRoom', name, room, handlePlayer);
   }
 

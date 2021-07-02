@@ -12,7 +12,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const { players, player, inGame } = useContext(GameContext);
+  const { players, player, inGame, stage } = useContext(GameContext);
   // const [room, setRoom] = useState({});
   // const socket = useContext(socketContext);
   // const [player, setPlayer] = useContext(playerContext);
@@ -27,14 +27,14 @@ export default function Lobby({ navigation }) {
   console.log(player.room);
   useEffect(() => {
     if (inGame) navigation.navigate('SorteioJogador');
-  }, [inGame]);
+    if (stage === 'REMOVEDTOROOM') navigation.goBack();
+  }, [inGame, stage]);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
     removeToRoom();
     // socket.emit('removeFromRoom');
     // setPlayer(player => ({ id: player.id, name: player.name }));
-    navigation.goBack();
   }
 
   // const startGame = () => socket.emit('startGame');

@@ -1,8 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
-import { API_URL } from '@env';
+import { API_URL_LOCAL } from '@env';
 
-const socket = io(API_URL, {
+const socket = io(API_URL_LOCAL, {
   autoConnect: false
 });
 
@@ -29,6 +29,29 @@ const reducer = (state, action) => {
       return {
         ...state,
         inGame: action.payload
+      };
+    case 'ADDEDTOROOM':
+      return {
+        ...state,
+        player: action.payload,
+        stage: 'ADDEDTOROOM'
+      };
+    case 'REMOVEDTOROOM':
+      return {
+        ...state,
+        player: {},
+        players: [],
+        stage: 'REMOVEDTOROOM'
+      };
+    case 'MAXPLAYERSTOROOM':
+      return {
+        ...state,
+        stage: 'MAXPLAYERSTOROOM'
+      };
+    case 'INGAMING':
+      return {
+        ...state,
+        stage: 'INGAMING'
       };
     case 'SELECTEDAVATARS':
       return {
@@ -69,6 +92,18 @@ const GameProvider = (props) => {
     });
     socket.on('startGame', () => {
       dispatch({ type: 'STARTGAME', payload: true});
+    });
+    socket.on('addedToRoom', player => {
+      dispatch({ type: 'ADDEDTOROOM', payload: player });
+    });
+    socket.on('removedToRoom', () => {
+      dispatch({ type: 'REMOVEDTOROOM' });
+    });
+    socket.on('maxPlayersToRoom', () => {
+      dispatch({ type: 'MAXPLAYERSTOROOM' });
+    });
+    socket.on('inGaming', () => {
+      dispatch({ type: 'INGAMING' });
     });
     socket.on('selectedAvatars', () => {
       dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
