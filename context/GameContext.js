@@ -56,7 +56,7 @@ const reducer = (state, action) => {
     case 'SELECTEDAVATARS':
       return {
         ...state,
-        stage: action.payload
+        stage: 'SELECTEDAVATARS'
       };
     case 'DISCONNECTED':
       return {
@@ -106,7 +106,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'INGAMING' });
     });
     socket.on('selectedAvatars', () => {
-      dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
+      dispatch({ type: 'SELECTEDAVATARS' });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });

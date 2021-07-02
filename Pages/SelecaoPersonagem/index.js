@@ -24,7 +24,7 @@ export default function SelecaoPersonagem({ navigation }) {
 
     setAvatars(v);
 
-    if (stage) navigation.navigate('MenuJogador');
+    if (stage === 'SELECTEDAVATARS') navigation.navigate('MenuJogador');
   }, [players, stage]);
 
   // useEffect(() => {

@@ -16,7 +16,7 @@ export default function MenuJogador({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
   // const socket = useContext(socketContext);
-  const { player } = useContext(GameContext);
+  const { player, stage } = useContext(GameContext);
   const [notificationScene, setNotificationScene] = useState(false);
   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
@@ -25,12 +25,15 @@ export default function MenuJogador({ navigation }) {
   //   socket.on('makeTransfers' + player.id, p => setPlayer(player => ({ ...player, ...p })));
   // }, []);
 
+  useEffect(() => {
+    if (stage === 'REMOVEDTOROOM') navigation.reset({ routes: [{ name: 'Gorim' }] });
+  }, [stage]);
+
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
     // socket.emit('removeFromRoom');
     // setPlayer(player => ({ id: player.id, name: player.name }));
     removeToRoom();
-    navigation.reset({ routes: [{ name: 'Gorim' }] });
   }
 
   return (
