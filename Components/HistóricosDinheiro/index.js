@@ -10,57 +10,56 @@ const Tela = Dimensions.get('screen').width;
 export default function HistoricosDinheiro({ count = null, player, dest = null, amount = null, price = null, product = null }) {
     return (
         <View style={styles.colunm}>
-            <View style={styles.row3}>
+        <View style={styles.row3}>
+            <View>
+                <Image
+                    style={styles.person}
+                    source={IMAGES[player.avatar]}
+                />
+                <Text style={styles.text}>{player.name}</Text>
+            </View>
+            {price && (
+                <View>
+                    <Text style={styles.text}>{amount} por {price}$ á unidade</Text>
+                    <Text style={styles.textBold}>{player.type == 'Agricultor' ? 'Comprou' : 'Vendeu para'}</Text>
+                </View>
+            )}
+            {count && (
+                <View>
+                    <Text style={styles.text}>{count}$</Text>
+                    <Text style={styles.textBold}>transferiu</Text>
+                </View>
+            )}
+            {dest && (
+                <View>
+                    {/* <Image
+                        style={styles.icone}
+                        source={IMAGES[dest.avatar]}
+                    /> */}
+                    <Text style={styles.text}>{dest.name}</Text>
+                </View>
+            )}
+            {product && (
                 <View>
                     <Image
-                        style={styles.person}
-                        source={IMAGES[player.avatar]}
+                        style={styles.icone}
+                        source={imagesProducts[product]}
                     />
-                    <Text style={styles.text}>{player.name}</Text>
+                    <Text style={styles.text}>{product.replace(/Fertilizante |Agrotóxico /,'')}</Text>
                 </View>
-                {price && (
-                    <View>
-                        <Text style={styles.text}>{amount} por {price}$ á unidade</Text>
-                        <Text style={styles.textBold}>{player.type == 'Agricultor' ? 'Comprou' : 'Vendeu para'}</Text>
-                    </View>
-                )}
-                {count && (
-                    <View>
-                        <Text style={styles.text}>{count}$</Text>
-                        <Text style={styles.textBold}>transferiu</Text>
-                    </View>
-                )}
-                {dest && (
-                    <View>
-                        {/* <Image
-                            style={styles.icone}
-                            source={IMAGES[dest.avatar]}
-                        /> */}
-                        <Text style={styles.text}>{dest.name}</Text>
-                    </View>
-                )}
-                {product && (
-                    <View>
-                        <Image
-                            style={styles.icone}
-                            source={imagesProducts[product]}
-                        />
-                        <Text style={styles.text}>{product.replace(/Fertilizante |Agrotóxico /,'')}</Text>
-                    </View>
-                )}
+            )}
 
-            </View>
         </View>
-    );
+    </View>
+);
 }
 
 const styles = StyleSheet.create({
     colunm: {
-        marginLeft: 15,
         backgroundColor: COLORS.bgColorPrimary,
         borderRadius: 20,
-        width: Tela - 30,
-        height: 205,
+        width: '60%',
+        height: 80,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -75,17 +74,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginTop: 15,
-        marginBottom: 5
+        marginBottom: 5,
+        width:'90%'
     },
     icone: {
-        width: 33,
-        height: 33,
+        width: 35,
+        height: 35,
         alignSelf: 'center',
-        marginTop: -10
     },
     person: {
-        width: 40,
-        height: 40,
+        width: 35,
+        height: 35,
+        alignSelf: 'center',
     },
     text: {
         textAlign: 'center',
