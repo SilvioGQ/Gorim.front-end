@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+// import { socketContext } from "../../../context/socket";
+import { GameContext } from "../../../context/GameContext";
 
 import ModalInfo from '../../../Components/ModalInfo';
 import Button from '../../../Components/Button';
@@ -11,22 +11,23 @@ import Coin from '../../../Components/Coin';
 import COLORS from '../../../resources/colors';
 import CaixaDeValor from '../../../Components/CaixaDeValor';
 import Rodada from '../../../Components/Rodada';
+
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation }) {
 
   const [modalText, setModalText] = useState('');
-  const [players, setPlayers] = useState([]);
+  // const [players, setPlayers] = useState([]);
   const [count, setCount] = useState(0);
   const [id, setId] = useState();
-  const socket = useContext(socketContext);
-  const [player, setPlayer] = useContext(playerContext);
+  // const socket = useContext(socketContext);
+  const { players, player } = useContext(GameContext);
 
-  useEffect(() => {
-    socket.emit('getPlayers', p => {
-      p = p.filter(i => i.id !== player.id);
-      setPlayers(p);
-    });
-  }, []);
+  // useEffect(() => {
+  //   socket.emit('getPlayers', p => {
+  //     p = p.filter(i => i.id !== player.id);
+  //     setPlayers(p);
+  //   });
+  // }, []);
 
   const confirmTransfer = () => {
     if (!id) return setModalText('Selecione o destino!');
@@ -46,7 +47,7 @@ export default function FazerTransferencia({ navigation }) {
       <View style={{ marginHorizontal: 10 }}>
         <FlatList
           numColumns={3}
-          data={players}
+          data={players.filter(i => i.id !== player.id)}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
         />

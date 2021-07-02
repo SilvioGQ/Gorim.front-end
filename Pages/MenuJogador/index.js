@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
-import { socketContext } from '../../context/socket';
-import { playerContext } from '../../context/player';
+// import { socketContext } from '../../context/socket';
+// import { playerContext } from '../../context/player';
+import { GameContext, removeToRoom } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import Header from '../../Components/Header';
@@ -14,20 +15,21 @@ const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const socket = useContext(socketContext);
-  const [player, setPlayer] = useContext(playerContext);
+  // const socket = useContext(socketContext);
+  const { player } = useContext(GameContext);
   const [notificationScene, setNotificationScene] = useState(false);
   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
-  useEffect(() => {
-    socket.on('notify' + player.id, message => message === 'newOffer' ? setNotificationNegociation(true) : setNotificationScene(true));
-    socket.on('makeTransfers' + player.id, p => setPlayer(player => ({ ...player, ...p })));
-  }, []);
+  // useEffect(() => {
+  //   socket.on('notify' + player.id, message => message === 'newOffer' ? setNotificationNegociation(true) : setNotificationScene(true));
+  //   socket.on('makeTransfers' + player.id, p => setPlayer(player => ({ ...player, ...p })));
+  // }, []);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
-    socket.emit('removeFromRoom');
-    setPlayer(player => ({ id: player.id, name: player.name }));
+    // socket.emit('removeFromRoom');
+    // setPlayer(player => ({ id: player.id, name: player.name }));
+    removeToRoom();
     navigation.reset({ routes: [{ name: 'Gorim' }] });
   }
 

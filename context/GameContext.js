@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
+import { API_URL } from '@env';
 
-const socket = io('http://localhost:3000', {
+const socket = io(API_URL, {
   autoConnect: false
 });
 
@@ -19,10 +20,20 @@ const reducer = (state, action) => {
         ...state,
         players: action.payload
       };
-    case 'ADDEDROOM':
+    case 'UPDATEPLAYER':
       return {
         ...state,
         player: action.payload
+      };
+    case 'STARTGAME':
+      return {
+        ...state,
+        inGame: action.payload
+      };
+    case 'SELECTEDAVATARS':
+      return {
+        ...state,
+        stage: action.payload
       };
     case 'DISCONNECTED':
       return {
@@ -36,6 +47,8 @@ const reducer = (state, action) => {
 
 const initialState = {
   isConnected: false,
+  inGame: false,
+  stage: null,
   players: [],
   player: {}
 }
@@ -51,8 +64,14 @@ const GameProvider = (props) => {
     socket.on('refreshPlayers', players => {
       dispatch({ type: 'REFRESHPLAYERS', payload: players });
     });
-    socket.on('addedRoom', player => {
-      dispatch({ type: 'ADDEDROOM', payload: player});
+    socket.on('updatePlayer', player => {
+      dispatch({ type: 'UPDATEPLAYER', payload: player});
+    });
+    socket.on('startGame', () => {
+      dispatch({ type: 'STARTGAME', payload: true});
+    });
+    socket.on('selectedAvatars', () => {
+      dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
@@ -69,12 +88,52 @@ const GameProvider = (props) => {
   );
 }
 
-const addToRoom = (name, roomId) => {
-  socket.emit('addToRoom', name, roomId);
+const addToRoom = (name) => {
+  socket.emit('addToRoom', name);
+}
+
+const joinToRoom = (name, roomId) => {
+  socket.emit('joinToRoom', name, roomId);
+}
+
+const removeToRoom = () => {
+  socket.emit('removeFromRoom');
+}
+
+const startGame = () => {
+  socket.emit('startGame');
+}
+
+const makeRaffle = () => {
+  socket.emit('makeRaffle');
+}
+
+const selectAvatar = avatar => {
+  socket.emit('selectAvatar', avatar);
+}
+
+const selectedAvatars = () => {
+  socket.emit('selectedAvatars');
+}
+
+const toPlant = (parcelLand, inventory) => {
+  socket.emit('toPlant', parcelLand, inventory);
+}
+
+const makeTransfer = (count, idDest) => {
+  socket.emit('makeTransfer', count, idDest);
 }
 
 export { 
   GameContext, 
   GameProvider, 
-  addToRoom
+  addToRoom,
+  joinToRoom,
+  removeToRoom,
+  startGame,
+  makeRaffle,
+  selectAvatar,
+  selectedAvatars,
+  toPlant,
+  makeTransfer
 };

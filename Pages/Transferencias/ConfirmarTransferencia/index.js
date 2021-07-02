@@ -1,30 +1,26 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+// import { socketContext } from "../../../context/socket";
+import { GameContext, makeTransfer } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
 import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
 import logoTransfer from '../../../assets/moedas/logoTransfer.png';
 import Rodada from '../../../Components/Rodada';
+
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest } = route.params;
-  const socket = useContext(socketContext);
-  const [player, setPlayer] = useContext(playerContext);
+  // const socket = useContext(socketContext);
+  const { player } = useContext(GameContext);
 
-  const makeTransfer = () => {
-
-    socket.emit('makeTransfers', count, idDest);
+  const make = () => {
+    makeTransfer(count, idDest);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferencia foi concluída com sucesso!' } }] });
   }
-
-  const cancelTransfer = () => {
-    navigation.reset({ routes: [{ name: 'MenuJogador' }] });
-  }
-
+  
   return (
     <View style={styles.container}>
       <Rodada name={'Fazer transferência'}/>
@@ -34,8 +30,8 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text}> Deseja confirmar a transação?</Text>
         <Text style={styles.text2}>{JSON.stringify(count)}$ </Text>
         <View style={{ marginVertical: 10 }}>
-          <Button onClick={makeTransfer} name='CONTINUAR' />
-          <TouchableOpacity onPress={cancelTransfer} style={styles.button}>
+          <Button onClick={make} name='CONTINUAR' />
+          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador' }] })} style={styles.button}>
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
         </View>

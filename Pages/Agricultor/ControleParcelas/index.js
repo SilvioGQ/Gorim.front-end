@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { playerContext } from "../../../context/player";
+import { GameContext } from "../../../context/GameContext";
 
 import COLORS from '../../../resources/colors';
 import Rodada from '../../../Components/Rodada';
 export default function ControleParcelas({ navigation }) {
 
-  const [player, setPlayer] = useContext(playerContext);
+  const { player } = useContext(GameContext);
 
   return (
     <View style={styles.container}>

@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import IMAGES from '../../resources/imagesIcons'
 import Coin from '../Coin';
-import { playerContext } from "../../context/player";
+import { GameContext } from "../../context/GameContext";
 
 export default function Header() {
 
-  const [player, setPlayer] = useContext(playerContext);
+  const { player } = useContext(GameContext);
 
   return (
     <View style={styles.row}>

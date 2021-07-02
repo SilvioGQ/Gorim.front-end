@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import Routes from './Pages/Routes';
-import { PlayerProvider } from './context/player';
+import { GameProvider } from './context/GameContext';
 import { useFonts, Rubik_300Light, Rubik_400Regular, Rubik_700Bold } from '@expo-google-fonts/rubik';
 
 export default function App() {
@@ -17,10 +17,10 @@ export default function App() {
     return <AppLoading />
   }
   return (
-    <PlayerProvider>
+    <GameProvider>
       <NavigationContainer>
         <Routes />
       </NavigationContainer>
-    </PlayerProvider>
+    </GameProvider>
   );
 }

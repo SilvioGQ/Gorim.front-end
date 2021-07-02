@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { socketContext } from '../../context/socket';
-import { playerContext } from '../../context/player';
+// import { socketContext } from '../../context/socket';
+// import { playerContext } from '../../context/player';
+import { addToRoom, joinToRoom } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import ModalInfo from '../../Components/ModalInfo';
@@ -14,29 +15,31 @@ export default function CriarPartida({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
-  const socket = useContext(socketContext);
-  const [player, setPlayer] = useContext(playerContext);
+  // const socket = useContext(socketContext);
+  // const [player, setPlayer] = useContext(playerContext);
 
   const createRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
-
-    socket.emit('addToRoom', name, handlePlayer);
+    addToRoom(name);
+    navigation.navigate('Lobby');
+    // socket.emit('addToRoom', name, handlePlayer);
   }
 
   const selectRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
     if (room === '') return setModalText('Você precisa adicionar o código da sala');
-
-    socket.emit('joinToRoom', name, room, handlePlayer);
-  }
-
-  const handlePlayer = obj => {
-    if (typeof obj !== 'object') return setModalText(obj);
-
-    console.log(obj);
-    setPlayer(obj);
+    joinToRoom(name, room);
     navigation.navigate('Lobby');
+    // socket.emit('joinToRoom', name, room, handlePlayer);
   }
+
+  // const handlePlayer = obj => {
+  //   if (typeof obj !== 'object') return setModalText(obj);
+
+  //   console.log(obj);
+  //   setPlayer(obj);
+  //   navigation.navigate('Lobby');
+  // }
 
   return (
     <View style={styles.container}>

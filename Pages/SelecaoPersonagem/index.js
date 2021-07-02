@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, StatusBar } from 'react-native';
-import { socketContext } from '../../context/socket';
-import { playerContext } from '../../context/player';
+// import { socketContext } from '../../context/socket';
+// import { playerContext } from '../../context/player';
+import { GameContext, selectAvatar, selectedAvatars } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import Quadrados from '../../Components/Quadrado'
@@ -12,23 +13,33 @@ export default function SelecaoPersonagem({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const [avatars, setAvatars] = useState([]);
-  const [players, setPlayers] = useState(1);
-  const socket = useContext(socketContext);
-  const [player, setPlayer] = useContext(playerContext);
+  const { players, player, stage } = useContext(GameContext);
+  // const [players, setPlayers] = useState(1);
+  // const socket = useContext(socketContext);
+  // const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
-    socket.on('newSelection', (a, all) => {
-      setAvatars(a);
-      setPlayers(all);
-    });
-    socket.on('startGame', () => navigation.navigate('MenuJogador'));
+    let v = [];
+    players.forEach(p => { if(p.avatar) v.push(p.avatar) });
 
-    socket.emit('getPlayers', p => setPlayers(p.length));
-  }, []);
+    setAvatars(v);
 
-  const selectAvatar = index => {
-    socket.emit('selectAvatar', index, () => setPlayer(player => ({ ...player, avatar: index })));
-  }
+    if (stage) navigation.navigate('MenuJogador');
+  }, [players, stage]);
+
+  // useEffect(() => {
+    // socket.on('newSelection', (a, all) => {
+    //   setAvatars(a);
+    //   setPlayers(all);
+    // });
+    // socket.on('startGame', () => navigation.navigate('MenuJogador'));
+
+    // socket.emit('getPlayers', p => setPlayers(p.length));
+  // }, []);
+
+  // const selectAvatar = index => {
+  //   socket.emit('selectAvatar', index, () => setPlayer(player => ({ ...player, avatar: index })));
+  // }
 
   const bgQuadrados = index => {
     let color = '#fff';
@@ -43,7 +54,7 @@ export default function SelecaoPersonagem({ navigation }) {
 
   const startGame = () => {
     if (avatars.length < players) return setModalText('Aguarde outros jogadores escolher um avatar');
-    socket.emit('startGame');
+    selectedAvatars();
   }
 
   return (
@@ -78,7 +89,7 @@ export default function SelecaoPersonagem({ navigation }) {
             </View>
           </View>
         </View>
-        <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/{players}</Text>
+        <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/{players.length}</Text>
         {player.host && (
           <View style={{ alignItems: 'center', marginVertical: 15 }}>
             <Button onClick={startGame} name='começar' />

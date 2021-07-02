@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
-import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+// import { socketContext } from "../../../context/socket";
+import { GameContext, toPlant } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
@@ -21,8 +21,8 @@ export default function Parcela({ navigation, route }) {
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
   const [dropDown4, setDropDown4] = useState(false);
-  const socket = useContext(socketContext);
-  const [player, setPlayer] = useContext(playerContext);
+  // const socket = useContext(socketContext);
+  const { player } = useContext(GameContext);
 
   const selectItem = (name, type) => {
     for (let i = 0; i < 3; i++) {
@@ -38,11 +38,12 @@ export default function Parcela({ navigation, route }) {
     setDropDown4(false);
   }
 
-  const toPlant = () => {
+  const selectItems = () => {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
 
-    parcelLand.planted = true;
+    // parcelLand.planted = true;
+    setParcelLand({ ...parcelLand, planted: true});
     let p = player.parcelLand;
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;;
@@ -52,8 +53,9 @@ export default function Parcela({ navigation, route }) {
     });
     p[parcelLand.id] = parcelLand;
 
-    setPlayer(player => ({ ...player, ...p}));
-    socket.emit('toPlant', parcelLand, player.inventory);
+    // setPlayer(player => ({ ...player, ...p}));
+    // socket.emit('toPlant', parcelLand, player.inventory);
+    toPlant(parcelLand, player.inventory);
   }
 
   const toPulverize = () => {
@@ -153,7 +155,7 @@ export default function Parcela({ navigation, route }) {
           <Image source={require('../../../assets/agricultorIcones/Pulverize.png')} style={styles.pulverize} />
         </TouchableOpacity>
 
-        {!parcelLand.planted && <Button onClick={toPlant} name='INICIAR PLANTIO' />}
+        {!parcelLand.planted && <Button onClick={selectItems} name='INICIAR PLANTIO' />}
         {parcelLand.planted && <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>}
         {modalText !== '' && <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />}
       </ScrollView>
