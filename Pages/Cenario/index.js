@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, StatusBar } from 'react-native';
-import { socketContext } from '../../context/socket';
-import { playerContext } from '../../context/player';
+import { Text, View, StyleSheet, Image, Dimensions, FlatList } from 'react-native';
+// import { socketContext } from '../../context/socket';
+import { GameContext, getLogs } from '../../context/GameContext';
 
 import Feliz from '../../assets/emojis/feliz.png';
 import Coin from '../../Components/Coin';
@@ -11,18 +11,19 @@ import Tenso from '../../assets/emojis/tenso.png';
 import Corona from '../../assets/emojis/corona.png';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
-import { FlatList } from 'react-native-gesture-handler';
 import Rodada from '../../Components/Rodada';
+
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
 
-  const [logs, setLogs] = useState([]);
-  const [player, setPlayer] = useContext(playerContext);
-  const socket = useContext(socketContext);
+  // const [logs, setLogs] = useState([]);
+  const { player, data: logs} = useContext(GameContext);
+  // const socket = useContext(socketContext);
 
   useEffect(() => {
-    socket.emit('getLogs', logs => setLogs(logs));
+    getLogs();
+    // socket.emit('getLogs', logs => setLogs(logs));
   }, []);
 
   return (

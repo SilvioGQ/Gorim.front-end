@@ -123,6 +123,9 @@ const GameProvider = (props) => {
     socket.on('getAdverts', (adverts) => {
       dispatch({ type: 'CHANGEDATA', payload: adverts });
     });
+    socket.on('getLogs', (logs) => {
+      dispatch({ type: 'CHANGEDATA', payload: logs });
+    });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
       console.log('Disconnected!');
@@ -190,6 +193,10 @@ const deleteAdvert = (id) => {
   socket.emit('deleteAdvert', id);
 }
 
+const getLogs = () => {
+  socket.emit('getLogs');
+}
+
 export {
   GameContext,
   GameProvider,
@@ -205,5 +212,6 @@ export {
   getProduct,
   addOffer,
   getAdverts,
-  deleteAdvert
+  deleteAdvert,
+  getLogs
 };
