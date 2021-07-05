@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-native';
 // import { socketContext } from "../../../context/socket";
-import { GameContext } from "../../../context/GameContext";
+import { GameContext, getAdverts, deleteAdvert } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
 
@@ -12,22 +12,24 @@ import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
 
-  const [offers, setOffers] = useState([]);
+  // const [offers, setOffers] = useState([]);
   const [modalText, setModalText] = useState('');
   // const socket = useContext(socketContext);
-  const { player } = useContext(GameContext);
+  const { player, data: offers } = useContext(GameContext);
 
-  // useEffect(() => {
-  //   socket.emit('getAdverts', resp => setOffers(resp));
-  // }, []);
+  useEffect(() => {
+    getAdverts();
+    // socket.emit('getAdverts', resp => setOffers(resp));
+  }, []);
 
-  const deleteAdvert = id => {
-    socket.emit('deleteAdvert', id, resp => setOffers(resp));
+  const deleteAd = id => {
+    deleteAdvert(id);
+    // socket.emit('deleteAdvert', id, resp => setOffers(resp));
   }
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Checar anúncios'}/>
+      <Rodada name={'Checar anúncios'} />
       <Coin coin={player.coin} />
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && (
@@ -37,7 +39,7 @@ export default function ChecarAnuncio({ navigation }) {
         showsVerticalScrollIndicator={false}
         data={offers}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={deleteAdvert} />}
+        renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={deleteAd} />}
       />
     </View>
   );

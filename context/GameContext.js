@@ -58,10 +58,10 @@ const reducer = (state, action) => {
         ...state,
         stage: action.payload
       };
-    case 'GETPRODUCT':
+    case 'CHANGEDATA':
       return {
         ...state,
-        product: action.payload
+        data: action.payload
       };
     case 'DISCONNECTED':
       return {
@@ -78,7 +78,8 @@ const initialState = {
   inGame: false,
   stage: null,
   players: [],
-  player: {}
+  player: {},
+  data: null
 }
 
 const GameProvider = (props) => {
@@ -93,10 +94,10 @@ const GameProvider = (props) => {
       dispatch({ type: 'REFRESHPLAYERS', payload: players });
     });
     socket.on('updatePlayer', (player) => {
-      dispatch({ type: 'UPDATEPLAYER', payload: player});
+      dispatch({ type: 'UPDATEPLAYER', payload: player });
     });
     socket.on('startGame', () => {
-      dispatch({ type: 'STARTGAME', payload: true});
+      dispatch({ type: 'STARTGAME', payload: true });
     });
     socket.on('addedToRoom', (player) => {
       dispatch({ type: 'ADDEDTOROOM', payload: player });
@@ -117,7 +118,10 @@ const GameProvider = (props) => {
       dispatch({ type: 'RAFFLED', payload: 'RAFFLED' });
     });
     socket.on('getProducts', (product) => {
-      dispatch({ type: 'GETPRODUCT', payload: product });
+      dispatch({ type: 'CHANGEDATA', payload: product });
+    });
+    socket.on('getAdverts', (adverts) => {
+      dispatch({ type: 'CHANGEDATA', payload: adverts });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
@@ -178,9 +182,17 @@ const addOffer = (name, speciality, price, client, amount) => {
   socket.emit('addOffer', name, speciality, price, client, amount);
 }
 
-export { 
-  GameContext, 
-  GameProvider, 
+const getAdverts = () => {
+  socket.emit('getAdverts');
+}
+
+const deleteAdvert = (id) => {
+  socket.emit('deleteAdvert', id);
+}
+
+export {
+  GameContext,
+  GameProvider,
   addToRoom,
   joinToRoom,
   removeToRoom,
@@ -191,5 +203,7 @@ export {
   toPlant,
   makeTransfer,
   getProduct,
-  addOffer
+  addOffer,
+  getAdverts,
+  deleteAdvert
 };

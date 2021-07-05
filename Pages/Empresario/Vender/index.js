@@ -26,7 +26,7 @@ export default function Vendas({ navigation, route }) {
   const [selectAmount, setSelectAmount] = useState(0);
   // const [product, setProduct] = useState([]);
   // const socket = useContext(socketContext);
-  const { players, player, product, stage } = useContext(GameContext);
+  const { players, player, data: product, stage } = useContext(GameContext);
 
   useEffect(() => {
     // socket.emit('getPlayers', p => {
@@ -38,7 +38,7 @@ export default function Vendas({ navigation, route }) {
     getProduct(name);
     // socket.emit('getProducts', name, resp => setProduct(resp));
   }, []);
-  
+
   const confirmTransfer = () => {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
@@ -48,18 +48,23 @@ export default function Vendas({ navigation, route }) {
     addOffer(name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
+
   const information = () => {
-    if (name == 'Pacote 1') {
-      return setModalText('Neste pacote contém semeadora.\nProdutividade: \nPoluição:')
-    }
-    if (name == 'Pacote 2') {
-      return setModalText('Neste pacote contêm semeadora, e colheitadeira.\nProdutividade: \nPoluição:')
-    }
-    if (name == 'Pacote 3') {
-      return setModalText('Neste pacote contêm semeadora, colheitadeira e drone.\nProdutividade: \nPoluição:')
-    }
-    setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:')
+    if (name == 'Pacote 1') return setModalText('Neste pacote contém semeadora.\nProdutividade: \nPoluição:');
+    if (name == 'Pacote 2') return setModalText('Neste pacote contêm semeadora, e colheitadeira.\nProdutividade: \nPoluição:');
+    if (name == 'Pacote 3') return setModalText('Neste pacote contêm semeadora, colheitadeira e drone.\nProdutividade: \nPoluição:');
+
+    return setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:');
   }
+
+  const filterPlayers = () => {
+    let p = [];
+    p = players.filter(i => i.id !== player.id && i.type === 'Agricultor');
+    p.unshift({ name: 'Todos', avatar: 'Todos', id: -1 });
+
+    return p;
+  }
+
   return (
     <View style={styles.container}>
       <Rodada name={'Criar Anúncio'} />
@@ -76,7 +81,7 @@ export default function Vendas({ navigation, route }) {
         <View style={{ marginHorizontal: 10, flexDirection: 'row' }}>
           <FlatList
             numColumns={3}
-            data={players}
+            data={filterPlayers()}
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => <Quadrados player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />}
           />
