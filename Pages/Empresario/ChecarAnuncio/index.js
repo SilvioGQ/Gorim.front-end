@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-native';
-// import { socketContext } from "../../../context/socket";
 import { GameContext, getAdverts, deleteAdvert } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
@@ -11,8 +10,6 @@ import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
-
-  // const [offers, setOffers] = useState([]);
   const [modalText, setModalText] = useState('');
   // const socket = useContext(socketContext);
   const { player, data: offers } = useContext(GameContext);

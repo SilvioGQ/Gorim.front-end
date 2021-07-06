@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity } from 'react-native';
 import { socketContext } from "../../../context/socket";
-import { playerContext } from "../../../context/player";
+import { GameContext } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
@@ -15,7 +15,7 @@ export default function Propostas() {
 
   const [offersIndividual, setOffersIndividual] = useState([]);
   const [offersAll, setOffersAll] = useState([]);
-  const [player, setPlayer] = useContext(playerContext);
+  const { players, player } = useContext(GameContext);
   const socket = useContext(socketContext);
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('')

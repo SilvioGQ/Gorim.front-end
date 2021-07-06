@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
 import { API_URL_LOCAL } from '@env';
 
-const socket = io(API_URL_LOCAL, {
+const socket = io('https://gorim-backend.herokuapp.com/', {
   autoConnect: false
 });
 
