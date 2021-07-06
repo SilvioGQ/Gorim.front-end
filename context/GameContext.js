@@ -36,11 +36,10 @@ const reducer = (state, action) => {
         player: action.payload,
         stage: 'ADDEDTOROOM'
       };
-    case 'REMOVEDTOROOM':
+      case 'REMOVEDTOROOM':
       return {
-        ...state,
-        player: {},
-        players: [],
+        ...initialState,
+        isConnected: true,
         stage: action.payload
       };
     case 'MAXPLAYERSTOROOM':
@@ -177,8 +176,12 @@ const makeTransfer = (count, idDest) => {
   socket.emit('makeTransfer', count, idDest);
 }
 
-const getProduct = (name) => {
-  socket.emit('getProducts', name);
+const getProducts = (name = null) => {
+  if (name) {
+    socket.emit('getProducts', name);
+  } else {
+    socket.emit('getProducts');
+  }
 }
 
 const addOffer = (name, speciality, price, client, amount) => {
@@ -209,7 +212,7 @@ export {
   selectedAvatars,
   toPlant,
   makeTransfer,
-  getProduct,
+  getProducts,
   addOffer,
   getAdverts,
   deleteAdvert,
