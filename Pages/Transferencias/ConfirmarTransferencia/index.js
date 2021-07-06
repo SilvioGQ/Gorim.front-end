@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
-// import { socketContext } from "../../../context/socket";
 import { GameContext, makeTransfer } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
@@ -13,7 +12,6 @@ const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest } = route.params;
-  // const socket = useContext(socketContext);
   const { player } = useContext(GameContext);
 
   const make = () => {

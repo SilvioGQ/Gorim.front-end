@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { GameContext, getAdverts, deleteAdvert } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
@@ -11,19 +11,11 @@ import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
   const [modalText, setModalText] = useState('');
-  // const socket = useContext(socketContext);
   const { player, data: offers } = useContext(GameContext);
 
   useEffect(() => {
     getAdverts();
-    // socket.emit('getAdverts', resp => setOffers(resp));
   }, []);
-
-  const deleteAd = id => {
-    deleteAdvert(id);
-    // socket.emit('deleteAdvert', id, resp => setOffers(resp));
-  }
-
   return (
     <View style={styles.container}>
       <Rodada name={'Checar anúncios'} />
@@ -36,7 +28,7 @@ export default function ChecarAnuncio({ navigation }) {
         showsVerticalScrollIndicator={false}
         data={offers}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={deleteAd} />}
+        renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
       />
     </View>
   );

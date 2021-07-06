@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-// import { socketContext } from "../../../context/socket";
 import { GameContext } from "../../../context/GameContext";
 
 import ModalInfo from '../../../Components/ModalInfo';
@@ -16,18 +15,9 @@ const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation }) {
 
   const [modalText, setModalText] = useState('');
-  // const [players, setPlayers] = useState([]);
   const [count, setCount] = useState(0);
   const [id, setId] = useState();
-  // const socket = useContext(socketContext);
   const { players, player } = useContext(GameContext);
-
-  // useEffect(() => {
-  //   socket.emit('getPlayers', p => {
-  //     p = p.filter(i => i.id !== player.id);
-  //     setPlayers(p);
-  //   });
-  // }, []);
 
   const confirmTransfer = () => {
     if (!id) return setModalText('Selecione o destino!');
@@ -65,7 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-
   },
   header: {
     flexDirection: 'row',

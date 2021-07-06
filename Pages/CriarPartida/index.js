@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-// import { socketContext } from '../../context/socket';
-// import { playerContext } from '../../context/player';
 import { GameContext, addToRoom, joinToRoom } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
@@ -15,7 +13,6 @@ export default function CriarPartida({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
-  // const socket = useContext(socketContext);
   const { stage } = useContext(GameContext);
 
   useEffect(() => {
@@ -34,16 +31,7 @@ export default function CriarPartida({ navigation }) {
     if (name === '') return setModalText('Você precisa adicionar um nome');
     if (room === '') return setModalText('Você precisa adicionar o código da sala');
     joinToRoom(name, room);
-    // socket.emit('joinToRoom', name, room, handlePlayer);
   }
-
-  // const handlePlayer = obj => {
-  //   if (typeof obj !== 'object') return setModalText(obj);
-
-  //   console.log(obj);
-  //   setPlayer(obj);
-  //   navigation.navigate('Lobby');
-  // }
 
   return (
     <View style={styles.container}>

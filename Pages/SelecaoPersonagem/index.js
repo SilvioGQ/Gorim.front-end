@@ -14,9 +14,6 @@ export default function SelecaoPersonagem({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [avatars, setAvatars] = useState([]);
   const { players, player, stage } = useContext(GameContext);
-  // const [players, setPlayers] = useState(1);
-  // const socket = useContext(socketContext);
-  // const [player, setPlayer] = useContext(playerContext);
 
   useEffect(() => {
     let v = [];
@@ -26,20 +23,6 @@ export default function SelecaoPersonagem({ navigation }) {
 
     if (stage === 'SELECTEDAVATARS') navigation.navigate('MenuJogador');
   }, [players, stage]);
-
-  // useEffect(() => {
-    // socket.on('newSelection', (a, all) => {
-    //   setAvatars(a);
-    //   setPlayers(all);
-    // });
-    // socket.on('startGame', () => navigation.navigate('MenuJogador'));
-
-    // socket.emit('getPlayers', p => setPlayers(p.length));
-  // }, []);
-
-  // const selectAvatar = index => {
-  //   socket.emit('selectAvatar', index, () => setPlayer(player => ({ ...player, avatar: index })));
-  // }
 
   const bgQuadrados = index => {
     let color = '#fff';

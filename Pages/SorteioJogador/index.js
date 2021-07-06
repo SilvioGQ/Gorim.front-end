@@ -1,29 +1,20 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
-// import { socketContext } from '../../context/socket';
-// import { playerContext } from '../../context/player';
 import { makeRaffle } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 
 export default function SorteioJogador({ navigation }) {
 
-  // const socket = useContext(socketContext);
-  // const [player, setPlayer] = useContext(playerContext);
+
 
   useEffect(() => {
     makeRaffle();
-    // socket.on('makeRaffle', players => {
-    //   players.filter(p => {
-    //     if (p.id == player.id) setPlayer(() => ({ ...p }));
-    //   });
       
     setTimeout(() => {
       navigation.navigate('SelecaoPersonagem');
     }, 2000);
-    // });
-  
-    // socket.emit('makeRaffle');
+
   }, []);
 
   return (
@@ -54,8 +45,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   logo: {
-    width: 180,
-    height: 180
+    width: 170,
+    height: 170
   },
   loading: {
     fontFamily: 'Rubik_400Regular',

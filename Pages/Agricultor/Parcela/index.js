@@ -42,8 +42,8 @@ export default function Parcela({ navigation, route }) {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
 
-    // parcelLand.planted = true;
-    setParcelLand({ ...parcelLand, planted: true});
+   parcelLand.planted = true;
+    //setParcelLand({ ...parcelLand, planted: true});
     let p = player.parcelLand;
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, FlatList } from 'react-native';
 // import { socketContext } from '../../context/socket';
 import { GameContext, getLogs } from '../../context/GameContext';
@@ -16,14 +16,9 @@ import Rodada from '../../Components/Rodada';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
-
-  // const [logs, setLogs] = useState([]);
   const { player, data: logs} = useContext(GameContext);
-  // const socket = useContext(socketContext);
-
   useEffect(() => {
     getLogs();
-    // socket.emit('getLogs', logs => setLogs(logs));
   }, []);
 
   return (

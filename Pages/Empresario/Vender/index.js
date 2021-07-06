@@ -20,23 +20,13 @@ export default function Vendas({ navigation, route }) {
 
   const { name } = route.params;
   const [modalText, setModalText] = useState('');
-  // const [players, setPlayers] = useState();
   const [selectPrice, setSelectPrice] = useState(-1);
   const [selectClient, setSelectClient] = useState();
   const [selectAmount, setSelectAmount] = useState(0);
-  // const [product, setProduct] = useState([]);
-  // const socket = useContext(socketContext);
   const { players, player, data: product, stage } = useContext(GameContext);
 
   useEffect(() => {
-    // socket.emit('getPlayers', p => {
-    //   let todos = { name: 'Todos', avatar: 'Todos', id: -1 }
-    //   p = p.filter(i => i.id !== player.id && i.type == 'Agricultor');
-    //   p.unshift(todos);
-    //   setPlayers(p);
-    // });
     getProducts(name);
-    // socket.emit('getProducts', name, resp => setProduct(resp));
   }, []);
 
   const confirmTransfer = () => {
@@ -78,19 +68,8 @@ export default function Vendas({ navigation, route }) {
           </TouchableOpacity>
         </View>
         <Text style={styles.textos}> Clientes: </Text>
-        <View style={{ marginHorizontal: 10, flexDirection: 'row' }}>
-          <FlatList
-            numColumns={3}
-            data={filterPlayers()}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <Quadrados player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />}
-          />
-
-          {/* {players.map((item, index) => {
-            if (players !== '') {
-              return <Quadrados key={index} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />
-            }
-          })} */}
+        <View style={{ marginHorizontal: 10, flexDirection: 'row', width:'100%', flexWrap:'wrap' }}>
+          {filterPlayers().map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />)}
         </View>
         {modalText !== '' && (
           <Modal onClick={() => setModalText('')} text={modalText} />
