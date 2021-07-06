@@ -36,11 +36,10 @@ const reducer = (state, action) => {
         player: action.payload,
         stage: 'ADDEDTOROOM'
       };
-    case 'REMOVEDTOROOM':
+      case 'REMOVEDTOROOM':
       return {
-        ...state,
-        player: {},
-        players: [],
+        ...initialState,
+        isConnected: true,
         stage: action.payload
       };
     case 'MAXPLAYERSTOROOM':
