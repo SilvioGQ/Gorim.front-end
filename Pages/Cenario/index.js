@@ -18,7 +18,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
 
   // const [logs, setLogs] = useState([]);
-  const { player, data: logs} = useContext(GameContext);
+  const { player, data: logs } = useContext(GameContext);
   // const socket = useContext(socketContext);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Cenario() {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Cenário'}/>
+      <Rodada name={'Cenário'} />
       <Coin coin={player.coin} />
       <View style={styles.row}>
         <Image
@@ -60,25 +60,31 @@ export default function Cenario() {
       )}
 
       <Text style={styles.texto}>Histórico de transferência:</Text>
-      {logs && logs.map((log, index) => {
-        if (log.type == 'transfer') {
-          return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
-        }
-      })}
+      {logs && (
+        logs.map((log, index) => {
+          if (log.type == 'transfer') {
+            return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
+          }
+        })
+      )}
 
       <Text style={styles.texto}>Histórico de compras:</Text>
-      {logs && logs.map((log, index) => {
-        if (log.type == 'buy') {
-          return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
-        }
-      })}
+      {logs && (
+        logs.map((log, index) => {
+          if (log.type == 'buy') {
+            return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
+          }
+        })
+      )}
 
       <Text style={styles.texto}>Histórico de plantação:</Text>
-      {logs && logs.map((log, index) => {
-        if (log.type == 'plantation') {
-          return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
-        }
-      })}
+      {logs && (
+        logs.map((log, index) => {
+          if (log.type == 'plantation') {
+            return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
+          }
+        })
+      )}
     </View>
   );
 }
