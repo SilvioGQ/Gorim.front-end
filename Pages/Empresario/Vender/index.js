@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar, } from 'react-native';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 // import { socketContext } from "../../../context/socket";
-import { GameContext, getProduct, addOffer } from "../../../context/GameContext";
+import { GameContext, getProducts, addOffer } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
@@ -35,7 +35,7 @@ export default function Vendas({ navigation, route }) {
     //   p.unshift(todos);
     //   setPlayers(p);
     // });
-    getProduct(name);
+    getProducts(name);
     // socket.emit('getProducts', name, resp => setProduct(resp));
   }, []);
 

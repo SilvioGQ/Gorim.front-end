@@ -60,21 +60,21 @@ export default function Cenario() {
       )}
 
       <Text style={styles.texto}>Histórico de transferência:</Text>
-      {logs.map((log, index) => {
+      {logs && logs.map((log, index) => {
         if (log.type == 'transfer') {
           return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
         }
       })}
 
       <Text style={styles.texto}>Histórico de compras:</Text>
-      {logs.map((log, index) => {
+      {logs && logs.map((log, index) => {
         if (log.type == 'buy') {
           return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
         }
       })}
 
       <Text style={styles.texto}>Histórico de plantação:</Text>
-      {logs.map((log, index) => {
+      {logs && logs.map((log, index) => {
         if (log.type == 'plantation') {
           return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
         }
