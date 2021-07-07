@@ -86,7 +86,7 @@ export default function Cenario() {
       )}
 
       <Text style={styles.texto}>Histórico de plantação:</Text>
-      <HistoricosPlatacao name1={'calma'}/>
+      {/* <HistoricosPlatacao name1={'calma'}/> */}
       {logs && (
         logs.map((log, index) => {
           if (log.type == 'plantation') {

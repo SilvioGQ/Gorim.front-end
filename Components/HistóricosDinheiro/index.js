@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 
 import COLORS from '../../resources/colors';
 import imagesProducts from '../../resources/imagesProducts';
-import imagesCoins from '../../resources/imagesCoins';
 import IMAGES from '../../resources/imagesIcons'
 import { GameContext } from "../../context/GameContext";
 const Tela = Dimensions.get('screen').width;

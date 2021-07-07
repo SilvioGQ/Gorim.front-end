@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     marginRight:10,
     marginVertical:10,
     backgroundColor: COLORS.textWhite,
-    width: 96,
-    height: 92,
+    width: 94,
+    height: 86,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     marginVertical:5,
-    marginTop:12,
+    marginTop:10,
   },
   textinhos: {
     fontFamily: 'Rubik_300Light',

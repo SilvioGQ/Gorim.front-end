@@ -103,8 +103,8 @@ export default function Vendas({ navigation, route }) {
         <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom: 15 }}>Quantidade:</Text>
         {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
         {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
-        <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
       </ScrollView>
+        <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
     </View>
   );
 }
@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.textWhite,
-    width: 96,
-    height: 84,
+    width: 90,
+    height: 78,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
