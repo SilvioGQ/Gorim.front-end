@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, FlatList } from 'react-native';
-// import { socketContext } from '../../context/socket';
 import { GameContext, getLogs } from '../../context/GameContext';
-
+import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
+import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
 import Feliz from '../../assets/emojis/feliz.png';
 import Coin from '../../Components/Coin';
 import Meio from '../../assets/emojis/meio.png';
@@ -20,7 +20,19 @@ export default function Cenario() {
   useEffect(() => {
     getLogs();
   }, []);
-
+  const transfer = [
+    {
+      count:15,
+      dest:'alan'
+    }
+  ]
+  const vendeu = [
+    {
+      amount:5,
+      product:'Fertilizante',
+      buyer:'alan'
+    }
+  ]
   return (
     <View style={styles.container}>
       <Rodada name={'Cenário'} />
@@ -55,6 +67,7 @@ export default function Cenario() {
       )}
 
       <Text style={styles.texto}>Histórico de transferência:</Text>
+      {transfer.map((item,index) => <HistoricoDinheiro key={index} count={item.count} dest={item.dest}/>)}
       {logs && (
         logs.map((log, index) => {
           if (log.type == 'transfer') {
@@ -73,6 +86,7 @@ export default function Cenario() {
       )}
 
       <Text style={styles.texto}>Histórico de plantação:</Text>
+      <HistoricosPlatacao name1={'calma'}/>
       {logs && (
         logs.map((log, index) => {
           if (log.type == 'plantation') {
