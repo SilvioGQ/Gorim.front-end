@@ -12,7 +12,7 @@ import Conf from '../../../Components/Selo-Verde-Confirmacao';
 import IMAGES from '../../../resources/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
-export default function Parcela({ navigation, route }) {
+export default function Parcela({ route }) {
 
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
@@ -27,10 +27,10 @@ export default function Parcela({ navigation, route }) {
   const selectItem = (name, type) => {
     for (let i = 0; i < 3; i++) {
 
-      if (type == 'Semente') setParcelLand({ ...parcelLand, seed: name});
-      if (type == 'Fertilizante') setParcelLand({ ...parcelLand, fertilizer: name});
-      if (type == 'Agrotoxico') setParcelLand({ ...parcelLand, pesticide: name});
-      if (type == 'Maquina') setParcelLand({ ...parcelLand, machine: name});
+      if (type == 'Semente') setParcelLand({ ...parcelLand, seed: name });
+      if (type == 'Fertilizante') setParcelLand({ ...parcelLand, fertilizer: name });
+      if (type == 'Agrotoxico') setParcelLand({ ...parcelLand, pesticide: name });
+      if (type == 'Maquina') setParcelLand({ ...parcelLand, machine: name });
     }
     setDropDown(false);
     setDropDown2(false);
@@ -42,7 +42,7 @@ export default function Parcela({ navigation, route }) {
     if (!parcelLand.seed) return setModalText('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
 
-   parcelLand.planted = true;
+    parcelLand.planted = true;
     //setParcelLand({ ...parcelLand, planted: true});
     let p = player.parcelLand;
     player.inventory.forEach(e => {

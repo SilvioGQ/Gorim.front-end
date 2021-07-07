@@ -36,7 +36,7 @@ const reducer = (state, action) => {
         player: action.payload,
         stage: 'ADDEDTOROOM'
       };
-      case 'REMOVEDTOROOM':
+    case 'REMOVEDTOROOM':
       return {
         ...initialState,
         isConnected: true,
@@ -125,6 +125,12 @@ const GameProvider = (props) => {
     socket.on('getLogs', (logs) => {
       dispatch({ type: 'CHANGEDATA', payload: logs });
     });
+    socket.on('getOffers', (offersAll, offersIndividual) => {
+      let sl = [];
+      sl.all = offersAll;
+      sl.individual = offersIndividual;
+      dispatch({ type: 'CHANGEDATA', payload: sl });
+    });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
       console.log('Disconnected!');
@@ -200,6 +206,22 @@ const getLogs = () => {
   socket.emit('getLogs');
 }
 
+const getOffers = () => {
+  socket.emit('getOffers');
+}
+
+const confirmOfferAll = (item, amount) => {
+  socket.emit('confirmOfferAll', item, amount);
+}
+
+const confirmOffer = (item) => {
+  socket.emit('confirmOffer', item);
+}
+
+const rejectOffer = (id) => {
+  socket.emit('rejectOffer', id);
+}
+
 export {
   GameContext,
   GameProvider,
@@ -216,5 +238,9 @@ export {
   addOffer,
   getAdverts,
   deleteAdvert,
-  getLogs
+  getLogs,
+  getOffers,
+  confirmOfferAll,
+  confirmOffer,
+  rejectOffer
 };
