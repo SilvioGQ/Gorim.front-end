@@ -15,15 +15,9 @@ const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  // const socket = useContext(socketContext);
   const { player, stage } = useContext(GameContext);
   const [notificationScene, setNotificationScene] = useState(false);
   const [notificationNegociation, setNotificationNegociation] = useState(false);
-
-  // useEffect(() => {
-  //   socket.on('notify' + player.id, message => message === 'newOffer' ? setNotificationNegociation(true) : setNotificationScene(true));
-  //   socket.on('makeTransfers' + player.id, p => setPlayer(player => ({ ...player, ...p })));
-  // }, []);
 
   useEffect(() => {
     if (stage === 'REMOVEDTOROOM') navigation.reset({ routes: [{ name: 'Gorim' }] });
@@ -31,8 +25,6 @@ export default function MenuJogador({ navigation }) {
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
-    // socket.emit('removeFromRoom');
-    // setPlayer(player => ({ id: player.id, name: player.name }));
     removeToRoom();
   }
 
