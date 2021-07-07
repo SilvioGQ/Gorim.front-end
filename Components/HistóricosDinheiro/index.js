@@ -7,12 +7,12 @@ import IMAGES from '../../resources/imagesIcons'
 import { GameContext } from "../../context/GameContext";
 const Tela = Dimensions.get('screen').width;
 
-export default function HistoricosDinheiro({ count = null, dest = null, buyer = null, amount = null, price = null, product = null }) {
+export default function HistoricosDinheiro({ item }) {
     const { player } = useContext(GameContext);
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
-                {product == null && (
+                {item.value && (
                     <View>
                         <Image
                             style={styles.person}
@@ -21,7 +21,23 @@ export default function HistoricosDinheiro({ count = null, dest = null, buyer = 
                         <Text style={styles.text}>{player.name}</Text>
                     </View>
                 )}
-                {buyer && (
+                {item.value && (
+                    <View>
+                        <Text style={styles.text}>{item.value}$</Text>
+                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 70, height: 10 }} />
+                        <Text style={styles.textBold}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
+                    </View>
+                )}
+                {item.idPlayer && (
+                    <View>
+                        <Image
+                            style={styles.icone}
+                            source={IMAGES[item.idPlayer.avatar]}
+                        />
+                        <Text style={styles.text}>{item.idPlayer.name}</Text>
+                    </View>
+                )}
+                {/* {buyer && (
                     <View>
                         <Image
                             style={styles.person}
@@ -33,24 +49,8 @@ export default function HistoricosDinheiro({ count = null, dest = null, buyer = 
                 {price && (
                     <View>
                         <Text style={styles.text}>{amount} por {price}$ á unidade</Text>
-                        <Image source={require('../../assets/Logo/arrow.png')} style={{ width: 70, height: 10 }} />
-                        <Text style={styles.textBold}>{player.type == 'Agricultor' ? 'Comprou' : 'Vendeu para'}</Text>
-                    </View>
-                )}
-                {count && (
-                    <View>
-                        <Text style={styles.text}>{count}$</Text>
-                        <Image source={require('../../assets/Logo/arrow.png')} style={{ width: 70, height: 10 }} />
-                        <Text style={styles.textBold}>{ receved ? 'recebido' : 'transferido'}</Text>
-                    </View>
-                )}
-                {dest && (
-                    <View>
-                        <Image
-                            style={styles.icone}
-                            source={IMAGES['Icon1']}
-                        />
-                        <Text style={styles.text}>{dest}</Text>
+                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 70, height: 10 }} />
+                        <Text style={styles.textBold}>{player.type == 'Agricultor' ? 'Comprou' : 'Comprados por'}</Text>
                     </View>
                 )}
                 {product && (
@@ -61,7 +61,7 @@ export default function HistoricosDinheiro({ count = null, dest = null, buyer = 
                         />
                         <Text style={styles.text}>{product.replace(/Fertilizante |Agrotóxico /, '')}</Text>
                     </View>
-                )}
+                )} */}
 
             </View>
         </View>

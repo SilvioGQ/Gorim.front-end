@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import { GameContext, getLogs } from '../../context/GameContext';
 import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
@@ -17,25 +17,28 @@ const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
   const { player, data: logs} = useContext(GameContext);
+  console.log(logs)
   useEffect(() => {
     getLogs();
   }, []);
-  const transfer = [
-    {
-      count:15,
-      dest:'alan'
-    }
-  ]
-  const vendeu = [
-    {
-      amount:5,
-      product:'Fertilizante',
-      buyer:'alan'
-    }
-  ]
+  // const transfer = [
+  //   {
+  //     count:15,
+  //     dest:'alan'
+  //   }
+  // ]
+  // const vendeu = [
+  //   {
+  //     amount:5,
+  //     product:'Fertilizante',
+  //     buyer:'alan'
+  //   }
+  // ]
   return (
-    <View style={styles.container}>
+    <View>
       <Rodada name={'Cenário'} />
+      <ScrollView>
+      <View style={styles.container}>
       <Coin coin={player.coin} />
       <View style={styles.row}>
         <Image
@@ -67,33 +70,35 @@ export default function Cenario() {
       )}
 
       <Text style={styles.texto}>Histórico de transferência:</Text>
-      {transfer.map((item,index) => <HistoricoDinheiro key={index} count={item.count} dest={item.dest}/>)}
+      {/* {transfer.map((item,index) => <HistoricoDinheiro key={index} count={item.count} dest={item.dest}/>)} */}
       {logs && (
-        logs.map((log, index) => {
-          if (log.type == 'transfer') {
-            return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
+        logs.map((item, index) => {
+          if (item.type == 'transfer') {
+            return <HistoricoDinheiro key={index} item={item}/>
           }
         })
       )}
 
       <Text style={styles.texto}>Histórico de compras:</Text>
-      {logs && (
+      {/* {logs && (
         logs.map((log, index) => {
           if (log.type == 'buy') {
             return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
           }
         })
-      )}
+      )} */}
 
       <Text style={styles.texto}>Histórico de plantação:</Text>
       {/* <HistoricosPlatacao name1={'calma'}/> */}
-      {logs && (
+      {/* {logs && (
         logs.map((log, index) => {
           if (log.type == 'plantation') {
             return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
           }
         })
-      )}
+      )} */}
+      </View>
+      </ScrollView>
     </View>
   );
 }
