@@ -14,7 +14,7 @@ export default function AnalisarProdutos() {
   const [modalText, setModalText] = useState('');
   const [modalImage, setModalImage] = useState(true);
   //   const [products, setProducts] = useState([]);
-  const { data: products } = useContext(GameContext);
+  const { data: products, stage } = useContext(GameContext);
 
   useEffect(() => {
     // setModalImage(true);
@@ -39,11 +39,13 @@ export default function AnalisarProdutos() {
       </View>
       <FilterType type={type} setType={setType} />
       {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage={modalImage} />}
-      <FlatList
-        data={selectType()}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Produtos item={item} />}
-      />
+      {stage === 'GETPRODUCTS' && (
+        <FlatList
+          data={selectType()}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => <Produtos item={item} />}
+        />
+      )}
     </View>
   );
 }

@@ -6,8 +6,6 @@ import COLORS from '../../resources/colors';
 
 export default function SorteioJogador({ navigation }) {
 
-
-
   useEffect(() => {
     makeRaffle();
       

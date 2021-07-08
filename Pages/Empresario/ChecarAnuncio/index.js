@@ -11,7 +11,7 @@ import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
   const [modalText, setModalText] = useState('');
-  const { player, data: offers } = useContext(GameContext);
+  const { player, data: offers, stage } = useContext(GameContext);
 
   useEffect(() => {
     getAdverts();
@@ -24,12 +24,14 @@ export default function ChecarAnuncio({ navigation }) {
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={offers}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
-      />
+      {stage == 'GETADVERTS' && (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={offers}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
+        />
+      )}
     </View>
   );
 }
