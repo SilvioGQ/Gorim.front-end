@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 10,
+    margin: 8,
     backgroundColor: COLORS.textWhite,
-    width: 96,
-    height: 84,
+    width: 90,
+    height: 78,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-
     elevation: 6
   },
   textinhos: {

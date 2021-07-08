@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView
 import { GameContext, makeTransfer } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
-import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import COLORS from '../../../resources/colors';
 import logoTransfer from '../../../assets/moedas/logoTransfer.png';
 import Rodada from '../../../Components/Rodada';

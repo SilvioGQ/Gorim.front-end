@@ -40,7 +40,6 @@ export default function AnalisarProdutos() {
       <FilterType type={type} setType={setType} />
       {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage={modalImage} />}
       <FlatList
-        //showsVerticalScrollIndicator={false}
         data={selectType()}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <Produtos item={item} />}
