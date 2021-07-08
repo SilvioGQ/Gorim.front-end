@@ -12,7 +12,16 @@ export default function HistoricosDinheiro({ item }) {
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
-                {item.value && (
+                {item.product && player.type == 'Empresário' && (
+                    <View>
+                        <Image
+                            style={styles.icone}
+                            source={imagesProducts[item.product]}
+                        />
+                        <Text style={styles.text}>{item.product.replace(/Fertilizante |Agrotóxico /, '')}</Text>
+                    </View>
+                )}
+                {item.value == true || player.type == 'Agricultor' && (
                     <View>
                         <Image
                             style={styles.person}
@@ -24,11 +33,18 @@ export default function HistoricosDinheiro({ item }) {
                 {item.value && (
                     <View>
                         <Text style={styles.text}>{item.value}$</Text>
-                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 70, height: 10 }} />
-                        <Text style={styles.textBold}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
+                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 80, height: 10 }} />
+                        <Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
                     </View>
                 )}
-                {item.idPlayer && (
+                {item.price && (
+                    <View>
+                        <Text style={styles.text}>{item.amount} por {item.price}$ á unidade</Text>
+                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 }} />
+                        <Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprou' : 'Comprados pelo(a)'}</Text>
+                    </View>
+                )}
+                {item.idPlayer && item.product == null && (
                     <View>
                         <Image
                             style={styles.icone}
@@ -37,31 +53,15 @@ export default function HistoricosDinheiro({ item }) {
                         <Text style={styles.text}>{item.idPlayer.name}</Text>
                     </View>
                 )}
-                {/* {buyer && (
-                    <View>
-                        <Image
-                            style={styles.person}
-                            source={IMAGES[buyer.avatar]}
-                        />
-                        <Text style={styles.text}>{buyer}</Text>
-                    </View>
-                )}
-                {price && (
-                    <View>
-                        <Text style={styles.text}>{amount} por {price}$ á unidade</Text>
-                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 70, height: 10 }} />
-                        <Text style={styles.textBold}>{player.type == 'Agricultor' ? 'Comprou' : 'Comprados por'}</Text>
-                    </View>
-                )}
-                {product && (
+                {item.product && player.type == 'Agricultor' && (
                     <View>
                         <Image
                             style={styles.icone}
-                            source={imagesProducts[product]}
+                            source={imagesProducts[item.product.name]}
                         />
-                        <Text style={styles.text}>{product.replace(/Fertilizante |Agrotóxico /, '')}</Text>
+                        <Text style={styles.text}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
                     </View>
-                )} */}
+                )}
 
             </View>
         </View>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     colunm: {
         backgroundColor: COLORS.bgColorPrimary,
         borderRadius: 20,
-        width: '60%',
+        width: '70%',
         height: 80,
         shadowColor: "#000",
         shadowOffset: {

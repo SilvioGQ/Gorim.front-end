@@ -16,7 +16,7 @@ import Rodada from '../../Components/Rodada';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
-  const { player, data: logs} = useContext(GameContext);
+  const { player, data: logs } = useContext(GameContext);
   console.log(logs)
   useEffect(() => {
     getLogs();
@@ -38,66 +38,66 @@ export default function Cenario() {
     <View>
       <Rodada name={'Cenário'} />
       <ScrollView>
-      <View style={styles.container}>
-      <Coin coin={player.coin} />
-      <View style={styles.row}>
-        <Image
-          style={styles.image}
-          source={Papel}
-        />
-        <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
-      </View>
-      <Text style={styles.texto}>Nível de poluição:</Text>
-      <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
-        <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>20%</Text>
-        <Image style={styles.emoji} source={Feliz} />
-      </View>
-      {Height <= 780 && (
-        <>
-          <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
-          <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
-          <View style={{ flexDirection: 'row', margin: '5%' }}>
-            <View style={styles.coloridos}>
-              <Text style={styles.numero2}>400</Text>
-              <Text style={styles.inferior2}>Produtividade</Text>
-            </View>
-            <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
-              <Text style={styles.numero2}>200</Text>
-              <Text style={styles.inferior2}>Poluição</Text>
-            </View>
+        <View style={styles.container}>
+          <Coin coin={player.coin} />
+          <View style={styles.row}>
+            <Image
+              style={styles.image}
+              source={Papel}
+            />
+            <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
           </View>
-        </>
-      )}
+          <Text style={styles.texto}>Nível de poluição:</Text>
+          <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
+            <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>20%</Text>
+            <Image style={styles.emoji} source={Feliz} />
+          </View>
+          {Height <= 780 && (
+            <>
+              <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
+              <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
+              <View style={{ flexDirection: 'row', margin: '5%' }}>
+                <View style={styles.coloridos}>
+                  <Text style={styles.numero2}>400</Text>
+                  <Text style={styles.inferior2}>Produtividade</Text>
+                </View>
+                <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
+                  <Text style={styles.numero2}>200</Text>
+                  <Text style={styles.inferior2}>Poluição</Text>
+                </View>
+              </View>
+            </>
+          )}
 
-      <Text style={styles.texto}>Histórico de transferência:</Text>
-      {/* {transfer.map((item,index) => <HistoricoDinheiro key={index} count={item.count} dest={item.dest}/>)} */}
-      {logs && (
-        logs.map((item, index) => {
-          if (item.type == 'transfer') {
-            return <HistoricoDinheiro key={index} item={item}/>
-          }
-        })
-      )}
-
-      <Text style={styles.texto}>Histórico de compras:</Text>
-      {/* {logs && (
-        logs.map((log, index) => {
-          if (log.type == 'buy') {
-            return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
-          }
-        })
-      )} */}
-
-      <Text style={styles.texto}>Histórico de plantação:</Text>
-      {/* <HistoricosPlatacao name1={'calma'}/> */}
-      {/* {logs && (
-        logs.map((log, index) => {
-          if (log.type == 'plantation') {
-            return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
-          }
-        })
-      )} */}
-      </View>
+          <Text style={styles.texto}>Histórico de transferência:</Text>
+          {logs && (
+            logs.map((item, index) => {
+              if (item.type == 'transfer') {
+                return <HistoricoDinheiro key={index} item={item} />
+              }
+            })
+          )}
+          <Text style={styles.texto}>Histórico de compras:</Text>
+          {logs && (
+            logs.map((item, index) => {
+              if (item.type == 'buy') {
+                return <HistoricoDinheiro key={index} item={item} />
+              }
+            })
+          )}
+          {player.type == 'Agricultor' && (
+            <>
+              <Text style={styles.texto}>Histórico de plantação:</Text>
+              {logs && (
+                logs.map((item, index) => {
+                  if (item.type == 'plantation') {
+                    return <HistoricosPlatacao key={index} item={item}/>
+                  }
+                })
+              )}
+            </>
+          )}
+        </View>
       </ScrollView>
     </View>
   );
