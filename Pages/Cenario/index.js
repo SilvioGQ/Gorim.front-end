@@ -21,19 +21,6 @@ export default function Cenario() {
   useEffect(() => {
     getLogs();
   }, []);
-  // const transfer = [
-  //   {
-  //     count:15,
-  //     dest:'alan'
-  //   }
-  // ]
-  // const vendeu = [
-  //   {
-  //     amount:5,
-  //     product:'Fertilizante',
-  //     buyer:'alan'
-  //   }
-  // ]
   return (
     <View>
       <Rodada name={'Cenário'} />

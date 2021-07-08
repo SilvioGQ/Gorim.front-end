@@ -4,7 +4,6 @@ import { FlatList } from 'react-native-gesture-handler';
 import COLORS from '../../resources/colors';
 import IMAGES from '../../resources/imagesProducts';
 export default function HistoricosPlatacao({ item }) {
-    console.log(item)
     return (
         <View style={styles.container}>
                         <Image style={styles.imageParcel} source={require('../../assets/agricultorIcones/Parcela.png')} />
