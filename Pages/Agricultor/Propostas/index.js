@@ -31,9 +31,11 @@ export default function Propostas() {
     if (amount) {
       if (player.coin >= item.price * amount) {
         confirmOfferAll(item, amount);
-      } else if (player.coin >= item.price * item.amount) {
-        confirmOffer(item);
+      } else {
+        setModalText('Você não possui dinheiro suficiente para esta compra.');
       }
+    } else if (player.coin >= item.price * item.amount) {
+      confirmOffer(item);
     } else {
       setModalText('Você não possui dinheiro suficiente para esta compra.');
     }
@@ -73,9 +75,6 @@ export default function Propostas() {
           {offers.individual.length === 0 && (
             <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
           )}
-          {/* {offers.individual.map((item, index) => {
-            return <Text>{item.id}</Text>
-          })} */}
           <FlatList
             showsVerticalScrollIndicator={false}
             data={offers.individual}

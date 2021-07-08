@@ -17,6 +17,8 @@ const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
   const { player, data: logs} = useContext(GameContext);
+
+  console.log(logs)
   useEffect(() => {
     getLogs();
   }, []);
@@ -67,23 +69,24 @@ export default function Cenario() {
       )}
 
       <Text style={styles.texto}>Histórico de transferência:</Text>
-      {transfer.map((item,index) => <HistoricoDinheiro key={index} count={item.count} dest={item.dest}/>)}
-      {logs && (
-        logs.map((log, index) => {
-          if (log.type == 'transfer') {
-            return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
-          }
-        })
-      )}
+      {/* {transfer.map((item,index) => <HistoricoDinheiro key={index} count={item.count} dest={item.dest}/>)} */}
+      {/* {logs && (console.log(logs) */}
+        {/* // logs.map((log, index) => { */}
+        {/* //   if (log.type == 'transfer') { */}
+        {/* //     console.log(log)
+        // //     return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
+        // }
+        // })
+      // )} */}
 
       <Text style={styles.texto}>Histórico de compras:</Text>
-      {logs && (
+      {/* {logs && (
         logs.map((log, index) => {
           if (log.type == 'buy') {
             return <Text key={index} style={[styles.italiano, { fontStyle: 'normal' }]}>{log.descrip}</Text>
           }
         })
-      )}
+      )} */}
 
       <Text style={styles.texto}>Histórico de plantação:</Text>
       <HistoricosPlatacao name1={'calma'}/>
