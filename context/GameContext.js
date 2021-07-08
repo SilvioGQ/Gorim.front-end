@@ -28,7 +28,8 @@ const reducer = (state, action) => {
     case 'STARTGAME':
       return {
         ...state,
-        inGame: action.payload
+        stage: action.payload[0],
+        inGame: action.payload[1]
       };
     case 'ADDEDTOROOM':
       return {
@@ -60,7 +61,8 @@ const reducer = (state, action) => {
     case 'CHANGEDATA':
       return {
         ...state,
-        data: action.payload
+        stage: action.payload[0],
+        data: action.payload[1]
       };
     case 'DISCONNECTED':
       return {
@@ -96,7 +98,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEPLAYER', payload: player });
     });
     socket.on('startGame', () => {
-      dispatch({ type: 'STARTGAME', payload: true });
+      dispatch({ type: 'STARTGAME', payload: ['STARTGAME', true] });
     });
     socket.on('addedToRoom', (player) => {
       dispatch({ type: 'ADDEDTOROOM', payload: player });
@@ -117,19 +119,19 @@ const GameProvider = (props) => {
       dispatch({ type: 'RAFFLED', payload: 'RAFFLED' });
     });
     socket.on('getProducts', (product) => {
-      dispatch({ type: 'CHANGEDATA', payload: product });
+      dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
     });
     socket.on('getAdverts', (adverts) => {
-      dispatch({ type: 'CHANGEDATA', payload: adverts });
+      dispatch({ type: 'CHANGEDATA', payload: ['GETADVERTS', adverts] });
     });
     socket.on('getLogs', (logs) => {
-      dispatch({ type: 'CHANGEDATA', payload: logs });
+      dispatch({ type: 'CHANGEDATA', payload: ['GETLOGS', logs] });
     });
     socket.on('getOffers', (offersAll, offersIndividual) => {
       let sl = [];
       sl.all = offersAll;
       sl.individual = offersIndividual;
-      dispatch({ type: 'CHANGEDATA', payload: sl });
+      dispatch({ type: 'CHANGEDATA', payload: ['GETOFFERS', sl] });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });

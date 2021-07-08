@@ -19,14 +19,14 @@ export default function HistoricosPlatacao({ item }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection:'row',
-        backgroundColor: COLORS.bgColorPrimary,
-        marginVertical: 10,
-    },
-    imageParcel: {
-        height: 60,
-        width: 60,
-    },
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: COLORS.bgColorPrimary,
+    marginVertical: 10,
+  },
+  imageParcel: {
+    height: 60,
+    width: 60,
+  },
 });

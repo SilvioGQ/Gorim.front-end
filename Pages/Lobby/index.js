@@ -26,7 +26,7 @@ export default function Lobby({ navigation }) {
   // }, []);
   console.log(player.room);
   useEffect(() => {
-    if (inGame) navigation.navigate('SorteioJogador');
+    if (inGame && stage == 'STARTGAME') navigation.navigate('SorteioJogador');
     if (stage === 'REMOVEDTOROOM') navigation.goBack();
   }, [inGame, stage]);
 

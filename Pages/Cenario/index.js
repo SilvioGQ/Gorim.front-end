@@ -16,7 +16,7 @@ import Rodada from '../../Components/Rodada';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
-  const { player, data: logs } = useContext(GameContext);
+  const { player, data: logs, stage } = useContext(GameContext);
   console.log(logs)
   useEffect(() => {
     getLogs();
@@ -57,7 +57,7 @@ export default function Cenario() {
           )}
 
           <Text style={styles.texto}>Histórico de transferência:</Text>
-          {logs && (
+          {stage == 'GETLOGS' && (
             logs.map((item, index) => {
               if (item.type == 'transfer') {
                 return <HistoricoDinheiro key={index} item={item} />
@@ -65,7 +65,7 @@ export default function Cenario() {
             })
           )}
           <Text style={styles.texto}>Histórico de compras:</Text>
-          {logs && (
+          {stage == 'GETLOGS' && (
             logs.map((item, index) => {
               if (item.type == 'buy') {
                 return <HistoricoDinheiro key={index} item={item} />
@@ -75,10 +75,10 @@ export default function Cenario() {
           {player.type == 'Agricultor' && (
             <>
               <Text style={styles.texto}>Histórico de plantação:</Text>
-              {logs && (
+              {stage == 'GETLOGS' && (
                 logs.map((item, index) => {
                   if (item.type == 'plantation') {
-                    return <HistoricosPlatacao key={index} item={item}/>
+                    return <HistoricosPlatacao key={index} item={item} />
                   }
                 })
               )}

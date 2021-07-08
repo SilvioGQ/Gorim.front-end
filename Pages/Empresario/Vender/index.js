@@ -68,14 +68,14 @@ export default function Vendas({ navigation, route }) {
           </TouchableOpacity>
         </View>
         <Text style={styles.textos}> Clientes: </Text>
-        <View style={{ marginHorizontal: 10, flexDirection: 'row', width:'100%', flexWrap:'wrap' }}>
+        <View style={{ marginHorizontal: 10, flexDirection: 'row', width: '100%', flexWrap: 'wrap' }}>
           {filterPlayers().map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />)}
         </View>
         {modalText !== '' && (
           <Modal onClick={() => setModalText('')} text={modalText} />
         )}
         <Text style={styles.textos}> Valor: </Text>
-        {product && (
+        {stage === 'GETPRODUCTS' && (
           <View style={styles.row}>
             <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
@@ -104,7 +104,7 @@ export default function Vendas({ navigation, route }) {
         {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
         {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
       </ScrollView>
-        <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
+      <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
     </View>
   );
 }
