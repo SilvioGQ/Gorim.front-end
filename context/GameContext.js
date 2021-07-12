@@ -64,6 +64,14 @@ const reducer = (state, action) => {
         stage: action.payload[0],
         data: action.payload[1]
       };
+    case 'GETNOTIFY':
+        return {
+            ...state,
+            notify: {
+                ...state.notify,
+                ...action.payload
+            }
+        }
     case 'DISCONNECTED':
       return {
         ...state,
@@ -80,7 +88,8 @@ const initialState = {
   stage: null,
   players: [],
   player: {},
-  data: null
+  data: null,
+  notify: { scene: false, offers: false }
 }
 
 const GameProvider = (props) => {
@@ -128,10 +137,22 @@ const GameProvider = (props) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETLOGS', logs] });
     });
     socket.on('getOffers', (offersAll, offersIndividual) => {
-      let sl = [];
-      sl.all = offersAll;
-      sl.individual = offersIndividual;
-      dispatch({ type: 'CHANGEDATA', payload: ['GETOFFERS', sl] });
+        let sl = [];
+        sl.all = offersAll;
+        sl.individual = offersIndividual;
+        dispatch({ type: 'CHANGEDATA', payload: ['GETOFFERS', sl] });
+    });
+    socket.on('enableNotifyScene', () => {
+      dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
+    });
+    socket.on('enableNotifyOffers', () => {
+      dispatch({ type: 'GETNOTIFY', payload: { offers: true } });
+    });
+    socket.on('disableNotifyScene', () => {
+      dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
+    });
+    socket.on('disableNotifyOffers', () => {
+      dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });

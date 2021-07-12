@@ -15,9 +15,9 @@ const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const { player, stage } = useContext(GameContext);
-  const [notificationScene, setNotificationScene] = useState(false);
-  const [notificationNegociation, setNotificationNegociation] = useState(false);
+  const { player, stage, notify } = useContext(GameContext);
+//   const [notificationScene, setNotificationScene] = useState(false);
+//   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
   useEffect(() => {
     if (stage === 'REMOVEDTOROOM') navigation.reset({ routes: [{ name: 'Gorim' }] });
@@ -43,7 +43,7 @@ export default function MenuJogador({ navigation }) {
           </TouchableOpacity>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item type='Menu' onClick={() => { navigation.navigate('Propostas'); setNotificationNegociation(false); }} name='Checar propostas' notification={notificationNegociation} />
+              <Item type='Menu' onClick={() => navigation.navigate('Propostas')} name='Checar propostas' notification={notify.offers} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('AnalisarProdutos')} name='Analisar produtos' />
             </View>
@@ -104,7 +104,7 @@ export default function MenuJogador({ navigation }) {
           </View>
         </>
       )}
-      <Cenarios seeScenery={() => { navigation.navigate('Cenario'); setNotificationScene(false); }} stepFinish={() => navigation.navigate('AguardarJogadores')} notification={notificationScene} />
+      <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={() => navigation.navigate('AguardarJogadores')} notification={notify.scene} />
     </View>
   );
 }
