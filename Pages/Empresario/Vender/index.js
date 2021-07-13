@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar, } from 'react-native';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 // import { socketContext } from "../../../context/socket";
-import { GameContext, getProducts, addOffer } from "../../../context/GameContext";
+import { GameContext, getProducts, addAdvert } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
@@ -34,8 +34,8 @@ export default function Vendas({ navigation, route }) {
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
     if (selectAmount == -1 || selectAmount == 0) return setModalText('Selecione a quantidade!');
 
-    // socket.emit('addOffer', name, player.speciality, selectPrice, selectClient, selectAmount);
-    addOffer(name, player.speciality, selectPrice, selectClient, selectAmount);
+    // socket.emit('addAdvert', name, player.speciality, selectPrice, selectClient, selectAmount);
+    addAdvert(name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
 

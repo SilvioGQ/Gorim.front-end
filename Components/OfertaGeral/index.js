@@ -65,7 +65,7 @@ export default function Oferta({ item, confirmOffer }) {
             <Text style={styles.textDecrease}>-</Text>
           </TouchableOpacity>
           <View style={styles.buttonAmount}>
-            <Text style={styles.textAmount}>{count}</Text>
+            <Text style={styles.textAmount}>{count > item.amount ? item.amount : count}</Text>
           </View>
           <TouchableOpacity onPress={increaseCount}>
             <Text style={styles.textIncrease}>+</Text>

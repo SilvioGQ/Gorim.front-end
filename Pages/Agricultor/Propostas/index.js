@@ -18,14 +18,14 @@ export default function Propostas() {
   // const [offers["all"], setOffersAll] = useState([]);
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('');
-  const { player, data: offers } = useContext(GameContext);
+  const { player, offers, stage } = useContext(GameContext);
 
-  useEffect(() => {
-    getOffers();
-    // socket.emit('getOffers', -1, resp => { setOffersAll(resp) });
-    // socket.emit('getOffers', player.id, resp => setOffersIndividual(resp));
-    // socket.on('newOffers', resp => setOffersAll(resp));
-  }, []);
+  // useEffect(() => {
+  //   getOffers();
+  //   // socket.emit('getOffers', -1, resp => { setOffersAll(resp) });
+  //   // socket.emit('getOffers', player.id, resp => setOffersIndividual(resp));
+  //   // socket.on('newOffers', resp => setOffersAll(resp));
+  // }, []);
 
   const confirmPurchase = (item, amount = null) => {
     if (amount) {
@@ -56,9 +56,9 @@ export default function Propostas() {
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <Text style={styles.text}>Anúncios</Text>
       <FilterType type={type} setType={setType} />
-      {offers?.all && (
+      {stage === 'GETOFFERS' && (
         <>
-          {offers.all.length === 0 && (
+          {selectType().length === 0 && (
             <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
           )}
           <FlatList
@@ -67,11 +67,7 @@ export default function Propostas() {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
           />
-        </>
-      )}
-      <Text style={styles.text}>Negociação individual</Text>
-      {offers?.individual && (
-        <>
+          <Text style={styles.text}>Negociação individual</Text>
           {offers.individual.length === 0 && (
             <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
           )}

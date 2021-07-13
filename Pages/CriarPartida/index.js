@@ -16,9 +16,10 @@ export default function CriarPartida({ navigation }) {
   const { stage } = useContext(GameContext);
 
   useEffect(() => {
-    if(stage === 'ADDEDTOROOM') navigation.navigate('Lobby');
-    if(stage === 'MAXPLAYERSTOROOM') return setModalText('Sala atingiu número máximo de jogadores!');
-    if(stage === 'INGAMING') return setModalText('Sala em partida!');
+    if (stage === 'ADDEDTOROOM') navigation.navigate('Lobby');
+    if (stage === 'MAXPLAYERSTOROOM') return setModalText('Sala atingiu número máximo de jogadores!');
+    if (stage === 'NOTFOUND') return setModalText('Sala não encontrada!');
+    if (stage === 'INGAMING') return setModalText('Sala em partida!');
   }, [stage]);
 
   const createRoom = () => {
