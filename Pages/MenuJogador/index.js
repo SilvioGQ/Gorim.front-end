@@ -16,8 +16,8 @@ export default function MenuJogador({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const { player, stage, notify } = useContext(GameContext);
-//   const [notificationScene, setNotificationScene] = useState(false);
-//   const [notificationNegociation, setNotificationNegociation] = useState(false);
+  //   const [notificationScene, setNotificationScene] = useState(false);
+  //   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
   useEffect(() => {
     if (stage === 'REMOVEDTOROOM') navigation.reset({ routes: [{ name: 'Gorim' }] });
@@ -31,7 +31,7 @@ export default function MenuJogador({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Rodada'}/>
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Rodada'} />
       <Header />
       {player.type === 'Agricultor' && (
         <>
@@ -111,7 +111,7 @@ export default function MenuJogador({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
   },

@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import { GameContext, getLogs } from '../../context/GameContext';
+
 import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
 import Feliz from '../../assets/emojis/feliz.png';
@@ -16,11 +17,13 @@ import Rodada from '../../Components/Rodada';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
+
   const { player, data: logs, stage } = useContext(GameContext);
-  console.log(logs)
+
   useEffect(() => {
     getLogs();
   }, []);
+
   // const transfer = [
   //   {
   //     count:15,

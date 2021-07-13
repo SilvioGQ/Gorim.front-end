@@ -53,6 +53,11 @@ const reducer = (state, action) => {
         ...state,
         stage: action.payload
       };
+    case 'NOTFOUND':
+      return {
+        ...state,
+        stage: action.payload
+      };
     case 'SELECTEDAVATARS':
       return {
         ...state,
@@ -64,14 +69,20 @@ const reducer = (state, action) => {
         stage: action.payload[0],
         data: action.payload[1]
       };
+    case 'GETOFFERS':
+      return {
+        ...state,
+        stage: action.payload[0],
+        offers: action.payload[1]
+      };
     case 'GETNOTIFY':
-        return {
-            ...state,
-            notify: {
-                ...state.notify,
-                ...action.payload
-            }
+      return {
+        ...state,
+        notify: {
+          ...state.notify,
+          ...action.payload
         }
+      }
     case 'DISCONNECTED':
       return {
         ...state,
@@ -89,6 +100,7 @@ const initialState = {
   players: [],
   player: {},
   data: null,
+  offers: null,
   notify: { scene: false, offers: false }
 }
 
@@ -121,6 +133,9 @@ const GameProvider = (props) => {
     socket.on('inGaming', () => {
       dispatch({ type: 'INGAMING', payload: 'INGAMING' });
     });
+    socket.on('notFound', () => {
+      dispatch({ type: 'NOTFOUND', payload: 'NOTFOUND' });
+    });
     socket.on('selectedAvatars', () => {
       dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
     });
@@ -137,10 +152,10 @@ const GameProvider = (props) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETLOGS', logs] });
     });
     socket.on('getOffers', (offersAll, offersIndividual) => {
-        let sl = [];
-        sl.all = offersAll;
-        sl.individual = offersIndividual;
-        dispatch({ type: 'CHANGEDATA', payload: ['GETOFFERS', sl] });
+      let sl = [];
+      sl.all = offersAll;
+      sl.individual = offersIndividual;
+      dispatch({ type: 'GETOFFERS', payload: ['GETOFFERS', sl] });
     });
     socket.on('enableNotifyScene', () => {
       dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
@@ -213,8 +228,8 @@ const getProducts = (name = null) => {
   }
 }
 
-const addOffer = (name, speciality, price, client, amount) => {
-  socket.emit('addOffer', name, speciality, price, client, amount);
+const addAdvert = (name, speciality, price, client, amount) => {
+  socket.emit('addAdvert', name, speciality, price, client, amount);
 }
 
 const getAdverts = () => {
@@ -227,10 +242,6 @@ const deleteAdvert = (id) => {
 
 const getLogs = () => {
   socket.emit('getLogs');
-}
-
-const getOffers = () => {
-  socket.emit('getOffers');
 }
 
 const confirmOfferAll = (item, amount) => {
@@ -258,11 +269,10 @@ export {
   toPlant,
   makeTransfer,
   getProducts,
-  addOffer,
+  addAdvert,
   getAdverts,
   deleteAdvert,
   getLogs,
-  getOffers,
   confirmOfferAll,
   confirmOffer,
   rejectOffer
