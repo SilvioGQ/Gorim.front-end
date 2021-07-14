@@ -32,7 +32,7 @@ export default function SelecaoPersonagem({ navigation }) {
     return color;
   }
   const startGame = () => {
-    if (avatars.length < players.length) return setModalText('Aguarde outros jogadores escolher um avatar');
+    if (avatars.length < players.length) return setModalText('Aguarde outros jogadores escolherem um avatar');
     selectedAvatars();
   }
 

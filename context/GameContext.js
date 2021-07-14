@@ -72,8 +72,7 @@ const reducer = (state, action) => {
     case 'GETOFFERS':
       return {
         ...state,
-        stage: action.payload[0],
-        offers: action.payload[1]
+        offers: action.payload
       };
     case 'GETNOTIFY':
       return {
@@ -155,7 +154,7 @@ const GameProvider = (props) => {
       let sl = [];
       sl.all = offersAll;
       sl.individual = offersIndividual;
-      dispatch({ type: 'GETOFFERS', payload: ['GETOFFERS', sl] });
+      dispatch({ type: 'GETOFFERS', payload: sl });
     });
     socket.on('enableNotifyScene', () => {
       dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
