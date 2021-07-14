@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
-import { GameContext, removeToRoom } from '../../context/GameContext';
+import { GameContext, removeToRoom, stepFinish } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import Header from '../../Components/Header';
@@ -26,10 +26,15 @@ export default function MenuJogador({ navigation }) {
     removeToRoom();
   }
 
+  const makeStepFinish = () => {
+    navigation.navigate('AguardarJogadores');
+    stepFinish();
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Rodada'} />
+      <Rodada makeStepFinish={makeStepFinish} removeFromRoom={removeFromRoom} close={true} name={'Rodada'} />
       <Header />
       {player.type === 'Agricultor' && (
         <>
@@ -102,7 +107,7 @@ export default function MenuJogador({ navigation }) {
           </View>
         </>
       )}
-      <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={() => navigation.navigate('AguardarJogadores')} notification={notify.scene} />
+      <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={makeStepFinish} notification={notify.scene} />
     </View>
   );
 }

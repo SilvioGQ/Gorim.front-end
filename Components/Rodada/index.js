@@ -1,17 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import ModalConfirmExit from '../ModalConfirmExit';
 import COLORS from '../../resources/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function Rodada({ removeFromRoom = null, close = null, name}) {
+export default function Rodada({ makeStepFinish, removeFromRoom = null, close = null, name }) {
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [timer, setTimer] = useState(30);
+
+  useEffect(() => {
+    let value, interval = setInterval(() => {
+      if (timer > 0) {
+        value = timer - 1;
+        setTimer(value);
+      } else {
+        makeStepFinish();
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timer]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textLarge}>{name}</Text>
+      <Text style={styles.textLarge}>{name} 0:{timer >= 10 ? timer : `0${timer}`}</Text>
       <View style={{ position: 'absolute', left: '82%' }}>
         {close && (
           <>

@@ -8,6 +8,7 @@ import Button from '../../Components/Button';
 import ModalInfo from '../../Components/ModalInfo';
 
 export default function SelecaoPersonagem({ navigation }) {
+  
   const [modalText, setModalText] = useState('');
   const [avatars, setAvatars] = useState([]);
   const { players, player, stage } = useContext(GameContext);

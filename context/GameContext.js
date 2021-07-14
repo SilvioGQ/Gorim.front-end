@@ -34,8 +34,8 @@ const reducer = (state, action) => {
     case 'ADDEDTOROOM':
       return {
         ...state,
-        player: action.payload,
-        stage: 'ADDEDTOROOM'
+        stage: action.payload[0],
+        player: action.payload[1],
       };
     case 'REMOVEDTOROOM':
       return {
@@ -82,6 +82,12 @@ const reducer = (state, action) => {
           ...action.payload
         }
       }
+    case 'STEPFINISH':
+      return {
+        ...state,
+        stage: action.payload[0],
+        players: action.payload[1]
+      };
     case 'DISCONNECTED':
       return {
         ...state,
@@ -121,7 +127,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'STARTGAME', payload: ['STARTGAME', true] });
     });
     socket.on('addedToRoom', (player) => {
-      dispatch({ type: 'ADDEDTOROOM', payload: player });
+      dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
     });
     socket.on('removedToRoom', () => {
       dispatch({ type: 'REMOVEDTOROOM', payload: 'REMOVEDTOROOM' });
@@ -168,6 +174,9 @@ const GameProvider = (props) => {
     socket.on('disableNotifyOffers', () => {
       dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
     });
+    socket.on('stepFinish', (players) => {
+      dispatch({ type: 'STEPFINISH', payload: ['STEPFINISH', players] });
+    })
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
       console.log('Disconnected!');
@@ -255,6 +264,10 @@ const rejectOffer = (id) => {
   socket.emit('rejectOffer', id);
 }
 
+const stepFinish = () => {
+  socket.emit('stepFinish');
+}
+
 export {
   GameContext,
   GameProvider,
@@ -274,5 +287,6 @@ export {
   getLogs,
   confirmOfferAll,
   confirmOffer,
-  rejectOffer
+  rejectOffer,
+  stepFinish
 };

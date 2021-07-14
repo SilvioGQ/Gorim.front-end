@@ -1,27 +1,34 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { socketContext } from '../../context/socket';
+import { GameContext } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
+import Button from '../../Components/Button';
 import Clock from '../../assets/Logo/clock.png';
 
 export default function AguardarJogadores() {
 
-  const [playersEnd, setPlayersEnd] = useState(0);
-  const [players, setPlayers] = useState(1);
-  const socket = useContext(socketContext);
+  const [playersAwait, setPlayersAwait] = useState(0);
+  // const [players, setPlayers] = useState(1);
+  const { players } = useContext(GameContext);
+
+  const startVoting = () => {
+    console.log('Começar votação!');
+  }
 
   useEffect(() => {
-    socket.on('stepFinish', p => setPlayersEnd(p));
-    socket.emit('getPlayers', p => setPlayers(p.length));
-  }, []);
+    players.forEach(p => {
+      if (p.state == 'await') setPlayersAwait(playersAwait + 1);
+    });
+  }, [players]);
 
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={Clock} />
-      <Text style={styles.texto}> Aguardando resposta {'\n'} dos outros personagens..</Text>
+      <Text style={styles.texto}> Aguardando {'\n'} os outros jogadores...</Text>
       <View>
-        <Text style={{ fontSize: 24, textAlign: 'center' }}>{playersEnd}/{players}</Text>
+        <Text style={{ fontSize: 24, textAlign: 'center' }}>{playersAwait}/{players.length}</Text>
+        <Button onClick={startVoting} name='votar' />
       </View>
     </View>
   );
