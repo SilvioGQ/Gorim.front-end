@@ -14,7 +14,13 @@ export default function Oferta({ item, confirmOffer }) {
   const [coin, setCoin] = useState('');
   const [count, setCount] = useState(1);
 
-
+  useEffect(() => {
+    socket.emit('getProducts', item.name, p => {
+      if(item.price == p.cheap) setCoin('Barato');
+      if(item.price == p.medium) setCoin('Médio');
+      if(item.price == p.expensive) setCoin('Caro');
+    });
+  },[]);
 
   const increaseCount = () => { setCount(count < (item.amount > 6 ? 6 : item.amount) ? count + 1 : count); }
   const decreaseCount = () => { setCount(count > 1 ? count - 1 : count); }
