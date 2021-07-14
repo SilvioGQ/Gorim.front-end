@@ -5,27 +5,20 @@ import ModalConfirmExit from '../ModalConfirmExit';
 import COLORS from '../../resources/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function Rodada({ makeStepFinish, removeFromRoom = null, close = null, name }) {
+export default function Rodada({ timer, removeFromRoom = null, close = null, name }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [timer, setTimer] = useState(30);
 
-  useEffect(() => {
-    let value, interval = setInterval(() => {
-      if (timer > 0) {
-        value = timer - 1;
-        setTimer(value);
-      } else {
-        makeStepFinish();
-      }
-    }, 1000);
+  const stringTimer = () => {
+    let min = Math.floor(timer / 60);
+    let sec = Math.floor(timer - min * 60);
 
-    return () => clearInterval(interval);
-  }, [timer]);
+    return `${min}:${sec >= 10 ? sec : `0${sec}`}`;
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textLarge}>{name} 0:{timer >= 10 ? timer : `0${timer}`}</Text>
+      <Text style={styles.textLarge}>{name} {stringTimer()}</Text>
       <View style={{ position: 'absolute', left: '82%' }}>
         {close && (
           <>

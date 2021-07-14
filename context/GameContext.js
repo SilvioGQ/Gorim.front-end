@@ -44,20 +44,8 @@ const reducer = (state, action) => {
         stage: action.payload
       };
     case 'MAXPLAYERSTOROOM':
-      return {
-        ...state,
-        stage: action.payload
-      };
     case 'INGAMING':
-      return {
-        ...state,
-        stage: action.payload
-      };
     case 'NOTFOUND':
-      return {
-        ...state,
-        stage: action.payload
-      };
     case 'SELECTEDAVATARS':
       return {
         ...state,
@@ -144,9 +132,6 @@ const GameProvider = (props) => {
     socket.on('selectedAvatars', () => {
       dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
     });
-    socket.on('raffled', () => {
-      dispatch({ type: 'RAFFLED', payload: 'RAFFLED' });
-    });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
     });
@@ -162,17 +147,11 @@ const GameProvider = (props) => {
       sl.individual = offersIndividual;
       dispatch({ type: 'GETOFFERS', payload: sl });
     });
-    socket.on('enableNotifyScene', () => {
-      dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
+    socket.on('notifyScene', (notify) => {
+      dispatch({ type: 'GETNOTIFY', payload: { scene: notify } });
     });
-    socket.on('enableNotifyOffers', () => {
-      dispatch({ type: 'GETNOTIFY', payload: { offers: true } });
-    });
-    socket.on('disableNotifyScene', () => {
-      dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
-    });
-    socket.on('disableNotifyOffers', () => {
-      dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
+    socket.on('notifyOffers', (notify) => {
+      dispatch({ type: 'GETNOTIFY', payload: { offers: notify } });
     });
     socket.on('stepFinish', (players) => {
       dispatch({ type: 'STEPFINISH', payload: ['STEPFINISH', players] });

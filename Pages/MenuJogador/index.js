@@ -16,25 +16,33 @@ export default function MenuJogador({ navigation }) {
   const { player, stage, notify } = useContext(GameContext);
   //   const [notificationScene, setNotificationScene] = useState(false);
   //   const [notificationNegociation, setNotificationNegociation] = useState(false);
+  const [timer, setTimer] = useState(30);
 
   useEffect(() => {
     if (stage === 'REMOVEDTOROOM') navigation.reset({ routes: [{ name: 'Gorim' }] });
-  }, [stage]);
+    if (stage === 'STEPFINISH') navigation.navigate('AguardarJogadores');
+
+    let value, interval = setInterval(() => {
+      if (timer > 0) {
+        value = timer - 1;
+        setTimer(value);
+      } else if (stage !== 'STEPFINISH') {
+        stepFinish();
+      }
+    }, 1000);
+  
+    return () => clearInterval(interval);
+  }, [stage, timer]);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
     removeToRoom();
   }
 
-  const makeStepFinish = () => {
-    navigation.navigate('AguardarJogadores');
-    stepFinish();
-  }
-
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada makeStepFinish={makeStepFinish} removeFromRoom={removeFromRoom} close={true} name={'Rodada'} />
+      <Rodada timer={timer} removeFromRoom={removeFromRoom} close={true} name={'Rodada'} />
       <Header />
       {player.type === 'Agricultor' && (
         <>
@@ -107,7 +115,7 @@ export default function MenuJogador({ navigation }) {
           </View>
         </>
       )}
-      <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={makeStepFinish} notification={notify.scene} />
+      <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={() => stepFinish()} notification={notify.scene} />
     </View>
   );
 }
