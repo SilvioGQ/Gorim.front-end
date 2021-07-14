@@ -25,7 +25,6 @@ export default function CriarPartida({ navigation }) {
   const createRoom = () => {
     if (name === '') return setModalText('Você precisa adicionar um nome');
     addToRoom(name);
-    // socket.emit('addToRoom', name, handlePlayer);
   }
 
   const selectRoom = () => {

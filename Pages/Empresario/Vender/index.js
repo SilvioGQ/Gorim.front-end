@@ -34,7 +34,6 @@ export default function Vendas({ navigation, route }) {
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
     if (selectAmount == -1 || selectAmount == 0) return setModalText('Selecione a quantidade!');
 
-    // socket.emit('addAdvert', name, player.speciality, selectPrice, selectClient, selectAmount);
     addAdvert(name, player.speciality, selectPrice, selectClient, selectAmount);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }

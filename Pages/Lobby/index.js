@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
-// import { socketContext } from '../../context/socket';
-// import { playerContext } from '../../context/player';
 import { GameContext, removeToRoom, startGame } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
@@ -13,17 +11,6 @@ export default function Lobby({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const { players, player, inGame, stage } = useContext(GameContext);
-  // const [room, setRoom] = useState({});
-  // const socket = useContext(socketContext);
-  // const [player, setPlayer] = useContext(playerContext);
-
-  // useEffect(() => {
-  //   socket.on('PlayersFromRoom', r => setRoom(r));
-  //   socket.on('changeHost' + player.id, () => setPlayer(player => ({ ...player, host: true })));
-  //   socket.on('startGame', () => navigation.navigate('SorteioJogador'));
-
-  //   setRoom({ sockets: [player] });
-  // }, []);
   console.log(player.room);
   useEffect(() => {
     if (inGame && stage == 'STARTGAME') navigation.navigate('SorteioJogador');
@@ -33,11 +20,7 @@ export default function Lobby({ navigation }) {
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
     removeToRoom();
-    // socket.emit('removeFromRoom');
-    // setPlayer(player => ({ id: player.id, name: player.name }));
   }
-
-  // const startGame = () => socket.emit('startGame');
 
   return (
     <View style={styles.container}>

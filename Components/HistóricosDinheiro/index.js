@@ -8,13 +8,13 @@ import { GameContext } from "../../context/GameContext";
 const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
-
+console.log(item)
     const { player } = useContext(GameContext);
 
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
-                {item.product && player.type == 'Empresário' && (
+                {item.product && (
                     <View>
                         <Image
                             style={styles.icone}
@@ -23,7 +23,7 @@ export default function HistoricosDinheiro({ item }) {
                         <Text style={styles.text}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
                     </View>
                 )}
-                {item.idPlayer == true || player.type == 'Agricultor' && (
+                {item.product==null  && (
                     <View>
                         <Image
                             style={styles.person}
@@ -43,25 +43,16 @@ export default function HistoricosDinheiro({ item }) {
                     <View>
                         <Text style={styles.text}>{item.amount} por {item.price}$ á unidade</Text>
                         <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 }} />
-                        <Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprou' : 'Comprados pelo(a)'}</Text>
+                        <Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'Comprados pelo(a)'}</Text>
                     </View>
                 )}
-                {item.idPlayer && (T6COVJ
+                {item.idPlayer && (
                     <View>
                         <Image
                             style={styles.icone}
                             source={IMAGES[item.idPlayer.avatar]}
                         />
                         <Text style={styles.text}>{item.idPlayer.name}</Text>
-                    </View>
-                )}
-                {item.product && player.type == 'Agricultor' && (
-                    <View>
-                        <Image
-                            style={styles.icone}
-                            source={imagesProducts[item.product.name]}
-                        />
-                        <Text style={styles.text}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
                     </View>
                 )}
 

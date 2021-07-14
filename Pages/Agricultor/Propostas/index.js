@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity } from 'react-native';
-// import { socketContext } from "../../../context/socket";
 import { GameContext, getOffers, confirmOfferAll, confirmOffer, rejectOffer } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
@@ -13,19 +12,10 @@ import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
 export default function Propostas() {
-
-  // const [offersIndividual, setOffersIndividual] = useState([]);
-  // const [offers["all"], setOffersAll] = useState([]);
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('');
   const { player, offers, stage } = useContext(GameContext);
-
-  // useEffect(() => {
-  //   getOffers();
-  //   // socket.emit('getOffers', -1, resp => { setOffersAll(resp) });
-  //   // socket.emit('getOffers', player.id, resp => setOffersIndividual(resp));
-  //   // socket.on('newOffers', resp => setOffersAll(resp));
-  // }, []);
+  // socket.emit('getOffers', -1, resp => { setOffersAll(resp) });
 
   const confirmPurchase = (item, amount = null) => {
     if (amount) {

@@ -13,11 +13,9 @@ export default function AnalisarProdutos() {
   const [type, setType] = useState('');
   const [modalText, setModalText] = useState('');
   const [modalImage, setModalImage] = useState(true);
-  //   const [products, setProducts] = useState([]);
   const { data: products, stage } = useContext(GameContext);
 
   useEffect(() => {
-    // setModalImage(true);
     getProducts();
   }, []);
 
@@ -28,6 +26,7 @@ export default function AnalisarProdutos() {
       return products;
     }
   }
+  console.log(products)
   return (
     <View style={styles.container}>
       <Rodada name={'Analisar produtos'} />

@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
-// import { socketContext } from '../../context/socket';
-// import { playerContext } from '../../context/player';
 import { GameContext, removeToRoom } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';

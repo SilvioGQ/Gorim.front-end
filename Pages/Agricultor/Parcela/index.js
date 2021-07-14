@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
-// import { socketContext } from "../../../context/socket";
 import { GameContext, toPlant } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
@@ -16,12 +15,10 @@ export default function Parcela({ route }) {
 
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
-  // const [modalText2, setModalText2] = useState('');
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
   const [dropDown4, setDropDown4] = useState(false);
-  // const socket = useContext(socketContext);
   const { player } = useContext(GameContext);
 
   const selectItem = (name, type) => {
@@ -43,7 +40,6 @@ export default function Parcela({ route }) {
     if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
 
     parcelLand.planted = true;
-    //setParcelLand({ ...parcelLand, planted: true});
     let p = player.parcelLand;
     player.inventory.forEach(e => {
       if (e.name == parcelLand.seed) e.amount = e.amount - 1;;
@@ -52,9 +48,6 @@ export default function Parcela({ route }) {
       if (e.name == parcelLand.machine) e.amount = e.amount - 1;
     });
     p[parcelLand.id] = parcelLand;
-
-    // setPlayer(player => ({ ...player, ...p}));
-    // socket.emit('toPlant', parcelLand, player.inventory);
     toPlant(parcelLand, player.inventory);
   }
 

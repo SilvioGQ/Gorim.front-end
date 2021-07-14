@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, StatusBar } from 'react-native';
-// import { socketContext } from '../../context/socket';
-// import { playerContext } from '../../context/player';
 import { GameContext, selectAvatar, selectedAvatars } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
@@ -10,33 +8,31 @@ import Button from '../../Components/Button';
 import ModalInfo from '../../Components/ModalInfo';
 
 export default function SelecaoPersonagem({ navigation }) {
-
   const [modalText, setModalText] = useState('');
   const [avatars, setAvatars] = useState([]);
   const { players, player, stage } = useContext(GameContext);
-
+  
   useEffect(() => {
     let v = [];
     players.forEach(p => { if(p.avatar) v.push(p.avatar) });
-
+    
     setAvatars(v);
-
+    
     if (stage === 'SELECTEDAVATARS') navigation.navigate('MenuJogador');
   }, [players, stage]);
-
+  
   const bgQuadrados = index => {
     let color = '#fff';
-
+    
     avatars.filter(a => {
       if (a == index && player.avatar != index) color = '#CBCBCB';
     });
     if (player.avatar == index) color = '#8ACF3A';
-
+    
     return color;
   }
-
   const startGame = () => {
-    if (avatars.length < players) return setModalText('Aguarde outros jogadores escolher um avatar');
+    if (avatars.length < players.length) return setModalText('Aguarde outros jogadores escolher um avatar');
     selectedAvatars();
   }
 

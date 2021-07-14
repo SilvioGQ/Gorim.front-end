@@ -44,13 +44,9 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   text: {
-    // alignSelf: 'center',
     textTransform: 'uppercase',
     color: COLORS.textWhite,
     fontSize: 15,
     fontFamily: 'Rubik_400Regular',
-    // textAlign: 'center',
-    // alignItems: 'center',
-    // marginTop: 15
   }
 });

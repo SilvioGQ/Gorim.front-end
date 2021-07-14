@@ -35,8 +35,6 @@ export default function DropDown({ items, type, onClick, display }) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex:1,
-    // left: 200,
     width: 230,
     margin: 'auto',
     elevation: 4,

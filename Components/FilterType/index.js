@@ -35,4 +35,3 @@ const styles = StyleSheet.create({
     marginTop: 9
   },
 })
-//alt shift f
