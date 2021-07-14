@@ -10,7 +10,7 @@ import IMAGES from '../../resources/imagesIcons';
 const Tela = Dimensions.get('screen').width;
 export default function Anuncio({ item, Historico, deleteAdvert }) {
 
-  const [player, setPlayer] = useState();
+  // const [player, setPlayer] = useState();
   const [coin, setCoin] = useState('');
   const socket = useContext(socketContext);
 

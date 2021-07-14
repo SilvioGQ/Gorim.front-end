@@ -46,7 +46,7 @@ export default function Propostas() {
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <Text style={styles.text}>Anúncios</Text>
       <FilterType type={type} setType={setType} />
-      {stage === 'GETOFFERS' && (
+      {offers && (
         <>
           {selectType().length === 0 && (
             <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>

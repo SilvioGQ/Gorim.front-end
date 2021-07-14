@@ -16,6 +16,7 @@ export default function ChecarAnuncio({ navigation }) {
   useEffect(() => {
     getAdverts();
   }, []);
+  
   return (
     <View style={styles.container}>
       <Rodada name={'Checar anúncios'} />
