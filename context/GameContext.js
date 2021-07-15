@@ -1,12 +1,23 @@
 import React, { useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
-import { API_URL_LOCAL } from '@env';
+import { API_URL_HERO } from '@env';
 
-const socket = io(API_URL_LOCAL, {
+const socket = io(API_URL_HERO, {
   autoConnect: false
 });
 
 const GameContext = React.createContext();
+
+const initialState = {
+  isConnected: false,
+  inGame: false,
+  stage: null,
+  players: [],
+  player: {},
+  data: null,
+  offers: null,
+  notify: { scene: false, offers: false }
+}
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -84,17 +95,6 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-}
-
-const initialState = {
-  isConnected: false,
-  inGame: false,
-  stage: null,
-  players: [],
-  player: {},
-  data: null,
-  offers: null,
-  notify: { scene: false, offers: false }
 }
 
 const GameProvider = (props) => {
