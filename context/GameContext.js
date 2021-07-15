@@ -8,6 +8,17 @@ const socket = io(API_URL_HERO, {
 
 const GameContext = React.createContext();
 
+const initialState = {
+  isConnected: false,
+  inGame: false,
+  stage: null,
+  players: [],
+  player: {},
+  data: null,
+  offers: null,
+  notify: { scene: false, offers: false }
+}
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'CONNECTED':
@@ -84,17 +95,6 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-}
-
-const initialState = {
-  isConnected: false,
-  inGame: false,
-  stage: null,
-  players: [],
-  player: {},
-  data: null,
-  offers: null,
-  notify: { scene: false, offers: false }
 }
 
 const GameProvider = (props) => {

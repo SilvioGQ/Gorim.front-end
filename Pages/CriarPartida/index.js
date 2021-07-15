@@ -65,6 +65,8 @@ export default function CriarPartida({ navigation }) {
                 maxLength={6}
                 style={[styles.button2, styles.text2]}
                 autoCompleteType='off'
+                autoCorrect={false}
+                keyboardType='visible-password'
                 onChangeText={room => setRoom(room.toUpperCase())}
                 placeholder='ESCREVER CÓDIGO'
                 value={room}

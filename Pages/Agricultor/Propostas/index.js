@@ -46,29 +46,25 @@ export default function Propostas() {
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <Text style={styles.text}>Anúncios</Text>
       <FilterType type={type} setType={setType} />
-      {offers && (
-        <>
-          {selectType().length === 0 && (
-            <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-          )}
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={selectType()}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
-          />
-          <Text style={styles.text}>Negociação individual</Text>
-          {offers.individual.length === 0 && (
-            <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-          )}
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={offers.individual}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
-          />
-        </>
-      )}
+      {!offers || offers.all.length === 0 ?
+        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+        : <FlatList
+          showsVerticalScrollIndicator={false}
+          data={selectType()}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
+        />
+      }
+      <Text style={styles.text}>Negociação individual</Text>
+      {!offers || offers.individual.length === 0 ?
+        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+        : <FlatList
+          showsVerticalScrollIndicator={false}
+          data={offers.individual}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
+        />
+      }
     </View>
   );
 }

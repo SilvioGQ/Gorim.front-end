@@ -16,6 +16,7 @@ export default function ControleParcelas({ navigation }) {
       <FlatList
         numColumns={2}
         data={player.parcelLand}
+        showsVerticalScrollIndicator={false}
         keyExtractor={item => item.id}
         renderItem={({ item }) =>
           <TouchableOpacity onPress={() => navigation.navigate('Parcela', { parcelLand: item })} style={styles.item}>
