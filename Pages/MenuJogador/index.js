@@ -16,7 +16,7 @@ export default function MenuJogador({ navigation }) {
   const { player, stage, notify } = useContext(GameContext);
   //   const [notificationScene, setNotificationScene] = useState(false);
   //   const [notificationNegociation, setNotificationNegociation] = useState(false);
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(10000);
 
   useEffect(() => {
     if (stage === 'REMOVEDTOROOM') navigation.reset({ routes: [{ name: 'Gorim' }] });

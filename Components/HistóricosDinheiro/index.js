@@ -8,7 +8,6 @@ import { GameContext } from "../../context/GameContext";
 const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
-console.log(item)
     const { player } = useContext(GameContext);
 
     return (
@@ -34,14 +33,14 @@ console.log(item)
                 )}
                 {item.value && (
                     <View>
-                        <Text style={styles.text}>{item.value}$</Text>
+                        <Text style={[styles.text, {marginTop:5}]}>{item.value}$</Text>
                         <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 80, height: 10 }} />
                         <Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
                     </View>
                 )}
                 {item.price && (
                     <View>
-                        <Text style={styles.text}>{item.amount} por {item.price}$ á unidade</Text>
+                        <Text style={[styles.text, {marginTop:5}]}>{item.amount} por {item.price}$ á unidade</Text>
                         <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 }} />
                         <Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'Comprados pelo(a)'}</Text>
                     </View>
@@ -63,6 +62,8 @@ console.log(item)
 
 const styles = StyleSheet.create({
     colunm: {
+        alignSelf:'flex-start',
+        marginLeft:15,
         backgroundColor: COLORS.bgColorPrimary,
         borderRadius: 20,
         width: '70%',
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     },
     row3: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         marginTop: 15,
         marginBottom: 5,
         width: '90%'

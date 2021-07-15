@@ -46,9 +46,7 @@ const styles = StyleSheet.create({
     width: 160,
   },
   texto: {
-    margin: 15,
     fontFamily: 'Rubik_300Light',
-
     fontWeight: 'normal',
     fontSize: 22,
     textAlign: 'center'

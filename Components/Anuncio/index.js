@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
     width: Tela - 30,
-    height: 160,
+    height: 130,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

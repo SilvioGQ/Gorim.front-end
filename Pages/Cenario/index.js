@@ -24,7 +24,7 @@ export default function Cenario() {
     getLogs();
   }, []);
   return (
-    <View>
+    <View style={{flex:1}}>
       <Rodada name={'Cenário'} />
       <ScrollView>
         <View style={styles.container}>
@@ -77,6 +77,7 @@ export default function Cenario() {
           {player.type == 'Agricultor' && (
             <>
               <Text style={styles.texto}>Histórico de plantação:</Text>
+              <View style={{alignSelf:'flex-start', marginLeft:15}}>
               {stage == 'GETLOGS' && (
                 logs.map((item, index) => {
                   if (item.type == 'plantation') {
@@ -84,6 +85,7 @@ export default function Cenario() {
                   }
                 })
               )}
+              </View>
             </>
           )}
         </View>
