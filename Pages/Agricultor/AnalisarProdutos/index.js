@@ -26,7 +26,7 @@ export default function AnalisarProdutos() {
       return products;
     }
   }
-  console.log(products)
+
   return (
     <View style={styles.container}>
       <Rodada name={'Analisar produtos'} />

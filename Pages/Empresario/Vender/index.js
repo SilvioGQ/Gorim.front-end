@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-// import { socketContext } from "../../../context/socket";
 import { GameContext, getProducts, addAdvert } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
