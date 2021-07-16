@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { socketContext } from "../../context/socket";
 
 import COLORS from '../../resources/colors';
 import imagesProducts from '../../resources/imagesProducts';
@@ -11,16 +10,6 @@ const Tela = Dimensions.get('screen').width;
 export default function Anuncio({ item, Historico, deleteAdvert }) {
 
   // const [player, setPlayer] = useState();
-  const [coin, setCoin] = useState('');
-  const socket = useContext(socketContext);
-
-  useEffect(() => {
-    socket.emit('getProducts', item.name, p => {
-      if (item.price == p.cheap) setCoin('Baixo');
-      if (item.price == p.medium) setCoin('Normal');
-      if (item.price == p.expensive) setCoin('Alto');
-    });
-  }, []);
 
   return (
     <View style={styles.colunm}>
@@ -35,7 +24,7 @@ export default function Anuncio({ item, Historico, deleteAdvert }) {
         </View>
         <View>
           <Text style={styles.text}>Valor:</Text>
-          <Text style={styles.textBold}>{coin}</Text>
+          <Text style={styles.textBold}>{item.priceType}</Text>
         </View>
         <Text style={styles.textNormal}>{item.price}$</Text>
         <TouchableOpacity onPress={() => deleteAdvert(item.id)}>

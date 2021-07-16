@@ -43,8 +43,8 @@ export default function SelecaoPersonagem({ navigation }) {
         <Text style={styles.title}>Bem vindo ao Gorim!</Text>
         <View>
           <View style={{ marginHorizontal:20, }}>
-            {player.type === 'Agricultor' && (<Text style={styles.subtitle}>Foi selecionado para você o personagem agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
-            {player.type === 'Empresário' && (<Text style={styles.subtitle}>Foi selecionado para você o personagem empresário, logo você será responsável por anunciar os preços dos seus produtos, interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
+            {player.type === 'Agricultor' && (<Text style={styles.subtitle}>Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
+            {player.type === 'Empresário' && (<Text style={styles.subtitle}>Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos, interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
           </View>
           <Text style={styles.text}>Selecione um personagem</Text>
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}

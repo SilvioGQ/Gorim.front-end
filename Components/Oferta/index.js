@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { socketContext } from "../../context/socket";
 
 import COLORS from '../../resources/colors';
 import imagesProducts from '../../resources/imagesProducts';
@@ -9,18 +8,6 @@ import IMAGES from '../../resources/imagesIcons';
 
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer, rejectOffer }) {
-
-  const [coin, setCoin] = useState('');
-  const socket = useContext(socketContext);
-
-  useEffect(() => {
-    socket.emit('getProducts', item.name, p => {
-      if(item.price == p.cheap) setCoin('Barato');
-      if(item.price == p.medium) setCoin('Médio');
-      if(item.price == p.expensive) setCoin('Caro');
-    });
-  },[]);
-
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
@@ -45,7 +32,7 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
         </View>
         <Image
           style={styles.icone}
-          source={imagesCoins[coin]}
+          source={imagesCoins[item.priceType]}
         />
       </View>
       <Text style={styles.text}> Quantidade: {item.amount}</Text>
