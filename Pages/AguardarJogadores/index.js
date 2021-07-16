@@ -9,8 +9,7 @@ import Clock from '../../assets/Logo/clock.png';
 export default function AguardarJogadores() {
 
   const [playersAwait, setPlayersAwait] = useState(0);
-  // const [players, setPlayers] = useState(1);
-  const { players } = useContext(GameContext);
+  const { players, player } = useContext(GameContext);
 
   const startVoting = () => {
     console.log('Começar votação!');
@@ -28,7 +27,7 @@ export default function AguardarJogadores() {
       <Text style={styles.texto}> Aguardando {'\n'} os outros jogadores...</Text>
       <View>
         <Text style={{ fontSize: 24, textAlign: 'center' }}>{playersAwait}/{players.length}</Text>
-        <Button onClick={startVoting} name='votar' />
+        {player.host && <Button onClick={startVoting} name='votar' />}
       </View>
     </View>
   );
