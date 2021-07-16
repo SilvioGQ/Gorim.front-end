@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, StatusBar, } from 'react-native';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 // import { socketContext } from "../../../context/socket";
 import { GameContext, getProducts, addAdvert } from "../../../context/GameContext";
 
@@ -28,13 +28,15 @@ export default function Vendas({ navigation, route }) {
   useEffect(() => {
     getProducts(name);
   }, []);
-
   const confirmTransfer = () => {
+    let priceType;
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
     if (selectAmount == -1 || selectAmount == 0) return setModalText('Selecione a quantidade!');
-
-    addAdvert(name, player.speciality, selectPrice, selectClient, selectAmount);
+    if (selectPrice == product.cheap) priceType = 'Baixo';
+    if (selectPrice == product.medium) priceType = 'Normal';
+    if (selectPrice == product.expensive) priceType = 'Alto';
+    addAdvert(name, player.speciality, selectPrice, selectClient, selectAmount, priceType);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
   }
 

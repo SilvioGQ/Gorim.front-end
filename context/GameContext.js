@@ -1,8 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
-import { API_URL_HERO } from '@env';
+import { API_URL_HERO,API_URL_LOCAL } from '@env';
 
-const socket = io(API_URL_HERO, {
+const socket = io(API_URL_LOCAL, {
   autoConnect: false
 });
 
@@ -215,8 +215,8 @@ const getProducts = (name = null) => {
   }
 }
 
-const addAdvert = (name, speciality, price, client, amount) => {
-  socket.emit('addAdvert', name, speciality, price, client, amount);
+const addAdvert = (name, speciality, price, client, amount, priceType) => {
+  socket.emit('addAdvert', name, speciality, price, client, amount, priceType);
 }
 
 const getAdverts = () => {
