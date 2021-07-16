@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
 import { API_URL_HERO,API_URL_LOCAL } from '@env';
 
@@ -11,6 +11,7 @@ const GameContext = React.createContext();
 const initialState = {
   isConnected: false,
   inGame: false,
+  timer: 30,
   stage: null,
   players: [],
   player: {},
@@ -35,6 +36,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         player: action.payload
+      };
+    case 'UPDATETIMER':
+      return {
+        ...state,
+        timer: action.payload
       };
     case 'STARTGAME':
       return {
@@ -98,6 +104,8 @@ const reducer = (state, action) => {
 }
 
 const GameProvider = (props) => {
+  // const [timer, setTimer] = useState(30);
+  const [startTimer, setStartTimer] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -130,6 +138,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'NOTFOUND', payload: 'NOTFOUND' });
     });
     socket.on('selectedAvatars', () => {
+      setStartTimer(true);
       dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
     });
     socket.on('getProducts', (product) => {
@@ -154,6 +163,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'GETNOTIFY', payload: { offers: notify } });
     });
     socket.on('stepFinish', (players) => {
+      setStartTimer(false);
       dispatch({ type: 'STEPFINISH', payload: ['STEPFINISH', players] });
     })
     socket.on('disconnect', () => {
@@ -163,6 +173,19 @@ const GameProvider = (props) => {
 
     socket.open();
   }, []);
+
+  useEffect(() => {
+    let value, interval = setInterval(() => {
+      if (state.timer > 0 && startTimer) {
+        dispatch({ type: 'UPDATETIMER', payload: state.timer - 1});
+      } else if (startTimer) {
+        stepFinish();
+        setStartTimer(false);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [state.timer, startTimer]);
 
   return (
     <GameContext.Provider value={state}>
