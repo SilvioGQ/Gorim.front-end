@@ -32,7 +32,7 @@ export default function Anuncio({ item, Historico, deleteAdvert }) {
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
-        <Text style={styles.text}> Comprador por: {item.amount} agricultor(es):</Text>
+        <Text style={styles.textCenter}> Ainda restam: {item.amount} produto(s)</Text>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={Historico}>
           <Text style={styles.textbutton}>HISTÓRICO</Text>
         </TouchableOpacity>
@@ -44,7 +44,7 @@ export default function Anuncio({ item, Historico, deleteAdvert }) {
 const styles = StyleSheet.create({
   colunm: {
     marginLeft: 15,
-    backgroundColor: COLORS.bgColorPrimary,
+    backgroundColor: COLORS.bgColorSecondary,
     borderRadius: 20,
     width: Tela - 30,
     height: 130,
@@ -100,5 +100,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     marginBottom: 2
+  },
+  textCenter: {
+    textAlign: 'center',
+    fontSize: 15,
+    marginTop: 8
   }
 });

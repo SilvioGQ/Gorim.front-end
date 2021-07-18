@@ -24,8 +24,7 @@ export default function Rodada({ removeFromRoom = null, close = null, name }) {
       <View style={{ position: 'absolute', left: '82%' }}>
         {close && (
           <>
-            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ width: 47, height: 40, marginTop: -5 }}>
-              {/* <Image style={{ width: 23, height: 25, alignSelf: 'center', marginTop: 10 }} source={require('../../assets/Logo/Fechar.png')} /> */}
+            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ width: 47, height: 53, marginTop: -5 }}>
               <Text style={styles.textExit}>Sair</Text>
             </TouchableOpacity>
           </>
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   },
   textExit: {
     color: '#ffffff',
-    fontSize: 14,
+    fontSize: 15,
     fontFamily: 'Rubik_700Bold',
     marginTop: 21,
     textAlign: 'center',

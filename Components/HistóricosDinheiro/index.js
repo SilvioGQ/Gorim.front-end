@@ -34,7 +34,7 @@ export default function HistoricosDinheiro({ item }) {
                 {item.value && (
                     <View>
                         <Text style={[styles.text, {marginTop:5}]}>{item.value}$</Text>
-                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 80, height: 10 }} />
+                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 }} />
                         <Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
                     </View>
                 )}
@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
     colunm: {
         alignSelf:'flex-start',
         marginLeft:15,
-        backgroundColor: COLORS.bgColorPrimary,
+        backgroundColor: COLORS.bgColorSecondary,
         borderRadius: 20,
-        width: '70%',
+        width: '75%',
         height: 80,
         shadowColor: "#000",
         shadowOffset: {
@@ -80,10 +80,9 @@ const styles = StyleSheet.create({
     },
     row3: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         marginTop: 15,
-        marginBottom: 5,
-        width: '90%'
+        width: '100%'
     },
     icone: {
         width: 35,
