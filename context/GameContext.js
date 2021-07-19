@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 
-const socket = io(API_URL_HERO, {
+const socket = io(API_URL_LOCAL, {
   autoConnect: false
 });
 
@@ -16,6 +16,7 @@ const initialState = {
   players: [],
   player: {},
   data: null,
+  logs: null,
   offers: null,
   notify: { scene: false, offers: false }
 }
@@ -79,6 +80,11 @@ const reducer = (state, action) => {
         ...state,
         offers: action.payload
       };
+    case 'GETLOGS':
+      return {
+        ...state,
+        logs: action.payload
+      };
     case 'GETNOTIFY':
       return {
         ...state,
@@ -104,9 +110,15 @@ const reducer = (state, action) => {
 }
 
 const GameProvider = (props) => {
-  // const [timer, setTimer] = useState(30);
   const [startTimer, setStartTimer] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const disableNotifyScene = () => { 
+    dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
+  };
+  const disableNotifyOffers = () => {
+    dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
+  };
 
   useEffect(() => {
     socket.on('connect', () => {
@@ -148,7 +160,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETADVERTS', adverts] });
     });
     socket.on('getLogs', (logs) => {
-      dispatch({ type: 'CHANGEDATA', payload: ['GETLOGS', logs] });
+      dispatch({ type: 'GETLOGS', payload: logs });
     });
     socket.on('getOffers', (offersAll, offersIndividual) => {
       let sl = [];
@@ -156,11 +168,11 @@ const GameProvider = (props) => {
       sl.individual = offersIndividual;
       dispatch({ type: 'GETOFFERS', payload: sl });
     });
-    socket.on('notifyScene', (notify) => {
-      dispatch({ type: 'GETNOTIFY', payload: { scene: notify } });
+    socket.on('enableNotifyScene', () => {
+      dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
     });
-    socket.on('notifyOffers', (notify) => {
-      dispatch({ type: 'GETNOTIFY', payload: { offers: notify } });
+    socket.on('enableNotifyOffers', () => {
+      dispatch({ type: 'GETNOTIFY', payload: { offers: true } });
     });
     socket.on('stepFinish', (players) => {
       setStartTimer(false);
@@ -175,7 +187,7 @@ const GameProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    let value, interval = setInterval(() => {
+    let interval = setInterval(() => {
       if (state.timer > 0 && startTimer) {
         dispatch({ type: 'UPDATETIMER', payload: state.timer - 1});
       } else if (startTimer) {
@@ -188,7 +200,7 @@ const GameProvider = (props) => {
   }, [state.timer, startTimer]);
 
   return (
-    <GameContext.Provider value={state}>
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers}}>
       {props.children}
     </GameContext.Provider>
   );
@@ -250,10 +262,6 @@ const deleteAdvert = (id) => {
   socket.emit('deleteAdvert', id);
 }
 
-const getLogs = () => {
-  socket.emit('getLogs');
-}
-
 const confirmOfferAll = (item, amount) => {
   socket.emit('confirmOfferAll', item, amount);
 }
@@ -286,7 +294,6 @@ export {
   addAdvert,
   getAdverts,
   deleteAdvert,
-  getLogs,
   confirmOfferAll,
   confirmOffer,
   rejectOffer,

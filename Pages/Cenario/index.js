@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
-import { GameContext, getLogs } from '../../context/GameContext';
+import { GameContext } from '../../context/GameContext';
 
 import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
@@ -18,11 +18,12 @@ const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
 
-  const { player, data: logs, stage } = useContext(GameContext);
+  const { player, logs, disableNotifyScene } = useContext(GameContext);
 
   useEffect(() => {
-    getLogs();
+    disableNotifyScene()
   }, []);
+
   return (
     <View style={{flex:1}}>
       <Rodada name={'Cenário'} />
@@ -59,7 +60,7 @@ export default function Cenario() {
           )}
 
           <Text style={styles.texto}>Histórico de transferência:</Text>
-          {stage == 'GETLOGS' && (
+          {logs && (
             logs.map((item, index) => {
               if (item.type == 'transfer') {
                 return <HistoricoDinheiro key={index} item={item} />
@@ -67,7 +68,7 @@ export default function Cenario() {
             })
           )}
           <Text style={styles.texto}>Histórico de compras:</Text>
-          {stage == 'GETLOGS' && (
+          {logs && (
             logs.map((item, index) => {
               if (item.type == 'buy') {
                 return <HistoricoDinheiro key={index} item={item} />
@@ -78,7 +79,7 @@ export default function Cenario() {
             <>
               <Text style={styles.texto}>Histórico de plantação:</Text>
               <View style={{alignSelf:'flex-start', marginLeft:15}}>
-              {stage == 'GETLOGS' && (
+              {logs && (
                 logs.map((item, index) => {
                   if (item.type == 'plantation') {
                     return <HistoricosPlatacao key={index} item={item} />
