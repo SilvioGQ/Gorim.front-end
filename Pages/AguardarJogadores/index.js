@@ -25,8 +25,8 @@ export default function AguardarJogadores() {
     <View style={styles.container}>
       <Image style={styles.logo} source={Clock} />
       <Text style={styles.texto}> Aguardando {'\n'} os outros jogadores...</Text>
-      <View>
-        <Text style={{ fontSize: 24, textAlign: 'center' }}>{playersAwait}/{players.length}</Text>
+      <View >
+        <Text style={{ fontSize: 24, textAlign: 'center', marginTop:10, marginBottom:30 }}>{playersAwait}/{players.length}</Text>
         {player.host && <Button onClick={startVoting} name='votar' />}
       </View>
     </View>
@@ -38,16 +38,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
-    alignItems: 'center'
   },
   logo: {
     height: 170,
     width: 160,
+    alignSelf: 'center',
+    marginVertical:10
+
   },
   texto: {
     fontFamily: 'Rubik_300Light',
     fontWeight: 'normal',
     fontSize: 22,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginVertical:10
   }
 });

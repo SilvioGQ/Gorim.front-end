@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { GameContext } from '../../context/GameContext';
 
 import ModalConfirmExit from '../ModalConfirmExit';
@@ -21,10 +21,9 @@ export default function Rodada({ removeFromRoom = null, close = null, name }) {
   return (
     <View style={styles.container}>
       <Text style={styles.textLarge}>{name} {stringTimer()}</Text>
-      <View style={{ justifyContent:'flex-end' }}>
         {close && (
           <>
-            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ borderWidth:1, borderRadius:20, width: 47, height: 43, marginTop: 5 }}>
+            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ alignSelf:'center', borderWidth:1, borderRadius:20, padding:10, position:'absolute', left:'82%', top:'30%'}}>
               <Text style={styles.textExit}>Sair</Text>
             </TouchableOpacity>
           </>
@@ -33,7 +32,6 @@ export default function Rodada({ removeFromRoom = null, close = null, name }) {
           <ModalConfirmExit deletePlayer={removeFromRoom} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
         )}
       </View>
-    </View>
   );
 }
 
@@ -41,24 +39,23 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: COLORS.headerColor,
-    height: 50,
+    height: 70,
     width: Tela,
+    paddingTop:15,
     justifyContent: 'center'
   },
   textLarge: {
     color: '#ffffff',
     fontSize: 20,
     fontFamily: 'Rubik_300Light',
-    marginTop: 5,
-    textAlign: 'center',
-    alignSelf: 'center'
+    marginLeft:5,
+    alignSelf: 'center',
+    marginTop:-10
   },
   textExit: {
     color: '#ffffff',
     fontSize: 15,
     fontFamily: 'Rubik_700Bold',
-    marginTop: 11,
     textAlign: 'center',
-    alignSelf: 'center'
   }
 });
