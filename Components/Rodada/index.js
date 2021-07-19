@@ -21,10 +21,10 @@ export default function Rodada({ removeFromRoom = null, close = null, name }) {
   return (
     <View style={styles.container}>
       <Text style={styles.textLarge}>{name} {stringTimer()}</Text>
-      <View style={{ position: 'absolute', left: '82%' }}>
+      <View style={{ justifyContent:'flex-end' }}>
         {close && (
           <>
-            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ width: 47, height: 53, marginTop: -5 }}>
+            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ borderWidth:1, borderRadius:20, width: 47, height: 43, marginTop: 5 }}>
               <Text style={styles.textExit}>Sair</Text>
             </TouchableOpacity>
           </>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 15,
     fontFamily: 'Rubik_700Bold',
-    marginTop: 21,
+    marginTop: 11,
     textAlign: 'center',
     alignSelf: 'center'
   }

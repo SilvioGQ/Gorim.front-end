@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, StatusBar, Dimensions } from 'react-native';
 import { GameContext, selectAvatar, selectedAvatars } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import Quadrados from '../../Components/Quadrado'
 import Button from '../../Components/Button';
 import ModalInfo from '../../Components/ModalInfo';
-
+const Height = Dimensions.get('screen').height;
 export default function SelecaoPersonagem({ navigation }) {
   
   const [modalText, setModalText] = useState('');
@@ -95,14 +95,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light'
   },
   subtitle: {
-    fontSize: 13,
+    fontSize: Height > 700 ? 16 : 14 ,
     marginVertical: 10,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light',
   },
   text: {
-    fontSize: 13,
-    marginVertical: 20,
+    fontSize: Height > 700 ? 16 : 14,
+    marginVertical: 15,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light'
   },
