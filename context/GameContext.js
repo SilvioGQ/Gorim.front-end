@@ -63,6 +63,7 @@ const reducer = (state, action) => {
       };
     case 'MAXPLAYERSTOROOM':
     case 'INGAMING':
+    case 'RAFFLED':
     case 'NOTFOUND':
     case 'SELECTEDAVATARS':
       return {
@@ -145,6 +146,9 @@ const GameProvider = (props) => {
     });
     socket.on('inGaming', () => {
       dispatch({ type: 'INGAMING', payload: 'INGAMING' });
+    });
+    socket.on('raffled', () => {
+      dispatch({ type: 'RAFFLED', payload: 'RAFFLED' });
     });
     socket.on('notFound', () => {
       dispatch({ type: 'NOTFOUND', payload: 'NOTFOUND' });

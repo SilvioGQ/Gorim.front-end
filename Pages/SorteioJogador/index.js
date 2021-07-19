@@ -1,19 +1,21 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
-import { makeRaffle } from '../../context/GameContext';
+import { GameContext, makeRaffle } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 
 export default function SorteioJogador({ navigation }) {
 
-  useEffect(() => {
-    makeRaffle();
-      
-    setTimeout(() => {
-      navigation.navigate('SelecaoPersonagem');
-    }, 2000);
+  const { stage } = useContext(GameContext);
 
-  }, []);
+  useEffect(() => {
+    if (stage === 'RAFFLED') {
+      setTimeout(() => {
+        navigation.navigate('SelecaoPersonagem');
+      }, 1000);
+    }
+
+  }, [stage]);
 
   return (
     <View style={styles.container}>

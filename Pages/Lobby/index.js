@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
-import { GameContext, removeToRoom, startGame } from '../../context/GameContext';
+import { GameContext, removeToRoom, startGame, makeRaffle } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import Button from '../../Components/Button';
@@ -40,7 +40,7 @@ export default function Lobby({ navigation }) {
           renderItem={({ item }) => <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}
         />
       }
-      {player.host && <Button name='começar' onClick={startGame} />}
+      {player.host && <Button name='começar' onClick={() => {startGame();makeRaffle();}} />}
     </View>
   );
 }
