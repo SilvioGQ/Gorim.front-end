@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 
-const socket = io(API_URL_LOCAL, {
+const socket = io(API_URL_HERO, {
   autoConnect: false
 });
 
