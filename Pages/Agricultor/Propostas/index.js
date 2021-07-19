@@ -14,8 +14,12 @@ const Tela = Dimensions.get('screen').width;
 export default function Propostas() {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('');
-  const { player, offers, stage } = useContext(GameContext);
+  const { player, offers, disableNotifyOffers } = useContext(GameContext);
   // socket.emit('getOffers', -1, resp => { setOffersAll(resp) });
+
+  useEffect(() => {
+    disableNotifyOffers()
+  }, []);
 
   const confirmPurchase = (item, amount = null) => {
     if (amount) {
