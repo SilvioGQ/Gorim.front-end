@@ -13,7 +13,7 @@ const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const { player, stage, notify } = useContext(GameContext);
+  const { players, player, awaitPlayers, stage, notify } = useContext(GameContext);
   //   const [notificationScene, setNotificationScene] = useState(false);
   //   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
@@ -104,6 +104,7 @@ export default function MenuJogador({ navigation }) {
         </>
       )}
       <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={() => stepFinish()} notification={notify.scene} />
+      {awaitPlayers !== 0 && <Text style={{ color: 'red', paddingTop: 30 }}>{`Jogadores que estão ao seu aguardo ${awaitPlayers}/${players.length}`}</Text>}
     </View>
   );
 }

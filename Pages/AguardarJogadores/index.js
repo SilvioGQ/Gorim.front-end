@@ -1,32 +1,33 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
-import { GameContext } from '../../context/GameContext';
+import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
+import { GameContext, removeToRoom } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import Button from '../../Components/Button';
 import Clock from '../../assets/Logo/clock.png';
+import Rodada from '../../Components/Rodada';
 
 export default function AguardarJogadores() {
 
-  const [playersAwait, setPlayersAwait] = useState(0);
-  const { players, player } = useContext(GameContext);
+  const { players, player, awaitPlayers } = useContext(GameContext);
 
   const startVoting = () => {
     console.log('Começar votação!');
   }
 
-  useEffect(() => {
-    players.forEach(p => {
-      if (p.state == 'await') setPlayersAwait(playersAwait + 1);
-    });
-  }, [players]);
+  const removeFromRoom = () => {
+    setModalVisible(!modalVisible);
+    removeToRoom();
+  }
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Agurdando jogadores'} />
       <Image style={styles.logo} source={Clock} />
       <Text style={styles.texto}> Aguardando {'\n'} os outros jogadores...</Text>
       <View >
-        <Text style={{ fontSize: 24, textAlign: 'center', marginTop:10, marginBottom:30 }}>{playersAwait}/{players.length}</Text>
+        <Text style={{ fontSize: 24, textAlign: 'center', marginTop:10, marginBottom:30 }}>{awaitPlayers}/{players.length}</Text>
         {player.host && <Button onClick={startVoting} name='votar' />}
       </View>
     </View>

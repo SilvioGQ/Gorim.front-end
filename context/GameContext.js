@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 
-const socket = io(API_URL_HERO, {
+const socket = io(API_URL_LOCAL, {
   autoConnect: false
 });
 
@@ -11,7 +11,8 @@ const GameContext = React.createContext();
 const initialState = {
   isConnected: false,
   inGame: false,
-  timer: 1000,
+  timer: 10,
+  awaitPlayers: 0,
   stage: null,
   players: [],
   player: {},
@@ -98,7 +99,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         stage: action.payload[0],
-        players: action.payload[1]
+        awaitPlayers: action.payload[1]
+      };
+    case 'UPDATEAWAITPLAYERS':
+      return {
+        ...state,
+        awaitPlayers: action.payload
       };
     case 'DISCONNECTED':
       return {
@@ -178,10 +184,13 @@ const GameProvider = (props) => {
     socket.on('enableNotifyOffers', () => {
       dispatch({ type: 'GETNOTIFY', payload: { offers: true } });
     });
-    socket.on('stepFinish', (players) => {
-      setStartTimer(false);
-      dispatch({ type: 'STEPFINISH', payload: ['STEPFINISH', players] });
-    })
+    socket.on('stepFinish', (awaitPlayers) => {
+      // setStartTimer(false);
+      dispatch({ type: 'STEPFINISH', payload: ['STEPFINISH', awaitPlayers] });
+    });
+    socket.on('updateAwaitPlayers', (awaitPlayers) => {
+      dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
+    });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
       console.log('Disconnected!');
@@ -195,8 +204,8 @@ const GameProvider = (props) => {
       if (state.timer > 0 && startTimer) {
         dispatch({ type: 'UPDATETIMER', payload: state.timer - 1});
       } else if (startTimer) {
-        stepFinish();
         setStartTimer(false);
+        stepFinish();
       }
     }, 1000);
 
