@@ -26,12 +26,13 @@ export default function MenuJogador({ navigation }) {
     setModalVisible(!modalVisible);
     removeToRoom();
   }
-
+  
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Rodada'} />
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Rodada'} setModalVisible={setModalVisible} />
       <Header />
+      {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {player.type === 'Agricultor' && (
         <>
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }}>
@@ -90,7 +91,6 @@ export default function MenuJogador({ navigation }) {
           </View>
         </View>
       )}
-      {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {Height >= 780 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00' }]}>
