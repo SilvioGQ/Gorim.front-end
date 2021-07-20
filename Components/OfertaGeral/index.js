@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 15,
     marginTop: 5
   },
   text1: {

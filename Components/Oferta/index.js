@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     marginVertical: 15
   },
   button: {
-    width: 160,
+    width: 135,
     borderRadius: 20,
     backgroundColor: COLORS.warningButton,
     padding: 15
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     marginVertical: 5,
   },
   row3: {

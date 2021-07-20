@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontFamily: 'Rubik_400Regular',
     color: '#fff',
-    marginTop: 16,
+    marginTop: 15,
   },
   inferior2: {
     fontSize: 13,

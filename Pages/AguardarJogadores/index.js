@@ -23,12 +23,14 @@ export default function AguardarJogadores() {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Agurdando jogadores'} />
+      <Rodada removeFromRoom={removeFromRoom} name={'Agurdando jogadores'} />
+      <View style={styles.container2}>
       <Image style={styles.logo} source={Clock} />
       <Text style={styles.texto}> Aguardando {'\n'} os outros jogadores...</Text>
-      <View >
+      <View>
         <Text style={{ fontSize: 24, textAlign: 'center', marginTop:10, marginBottom:30 }}>{awaitPlayers}/{players.length}</Text>
         {player.host && <Button onClick={startVoting} name='votar' />}
+      </View>
       </View>
     </View>
   );
@@ -37,9 +39,13 @@ export default function AguardarJogadores() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
+  },  
+  container2: {
+    flex: 3,
+    justifyContent:'center'
   },
+
   logo: {
     height: 170,
     width: 160,

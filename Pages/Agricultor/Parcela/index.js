@@ -9,6 +9,7 @@ import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import Conf from '../../../Components/Selo-Verde-Confirmacao';
 import IMAGES from '../../../resources/imagesProducts';
+import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
 export default function Parcela({ route }) {
@@ -59,6 +60,7 @@ export default function Parcela({ route }) {
   }
   return (
     <View style={styles.container}>
+      <Rodada name={'Parcela de terra'}/>
       <ScrollView>
         <View style={styles.espaco}>
           <Image style={styles.parcel} source={Parcel} />

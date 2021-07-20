@@ -87,6 +87,7 @@ export default function Routes() {
       <Stack.Screen name="Parcela" component={Parcela} options={{
         headerTransparent: true,
         headerTitle: '',
+        headerTintColor: 'white',
       }} />
       <Stack.Screen name="Propostas" component={Propostas} options={{
         headerTransparent: true,

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     marginLeft:5,
     alignSelf: 'center',
-    marginTop:-10
+    marginTop:-15
   },
   textExit: {
     color: '#ffffff',

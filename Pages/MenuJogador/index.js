@@ -93,18 +93,18 @@ export default function MenuJogador({ navigation }) {
       )}
       {Height >= 780 && (
         <>
-          <View style={[styles.bar, { backgroundColor: '#66BF00' }]}>
+          <View style={[styles.bar, { backgroundColor: '#66BF00',  borderColor: '#8ACF3A' }]}>
             <Text style={styles.textBar}>100</Text>
-            <Text style={{ color: 'white' }}>Produtividade individual</Text>
+            <Text style={styles.inferior}>Produtividade individual</Text>
           </View>
-          <View style={[styles.bar, { backgroundColor: '#BF0000' }]}>
+          <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
             <Text style={styles.textBar}>0</Text>
-            <Text style={{ color: 'white' }}>Poluição individual</Text>
+            <Text style={styles.inferior}>Poluição individual</Text>
           </View>
         </>
       )}
       <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={() => stepFinish()} notification={notify.scene} />
-      {awaitPlayers !== 0 && <Text style={{ color: 'red', paddingTop: 30 }}>{`Jogadores que estão ao seu aguardo ${awaitPlayers}/${players.length}`}</Text>}
+      {awaitPlayers !== 0 && <Text style={{ color: 'red', paddingTop: 30 }}>{`Etapa será finalizada após todos finalizarem ${awaitPlayers}/${players.length}`}</Text>}
     </View>
   );
 }
@@ -171,5 +171,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_400Regular',
     fontSize: 36,
     color: '#fff',
-  }
+  },
+  inferior: {
+    fontSize: 18,
+    fontFamily: 'Rubik_300Light',
+    color: '#fff',
+  },
 });
