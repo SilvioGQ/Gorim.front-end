@@ -15,7 +15,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   const make = () => {
     makeTransfer(count, idDest);
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferencia foi concluída com sucesso!' } }] });
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferencia foi concluída!' } }] });
   }
   
   return (
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     width: Tela,
   },
   logo: {
-    height: 180,
-    width: 180,
+    height: 140,
+    width: 140,
     alignSelf: 'center',
     marginVertical: 50
   },

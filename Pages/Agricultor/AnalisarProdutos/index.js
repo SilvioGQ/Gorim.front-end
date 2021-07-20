@@ -10,7 +10,7 @@ import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
 export default function AnalisarProdutos() {
-  const [type, setType] = useState('');
+  const [type, setType] = useState('Agrotoxico');
   const [modalText, setModalText] = useState('');
   const [modalImage, setModalImage] = useState(true);
   const { data: products, stage } = useContext(GameContext);

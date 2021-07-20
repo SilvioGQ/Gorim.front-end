@@ -45,13 +45,13 @@ export default function Cenario() {
           {Height <= 780 && (
             <>
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
-              <Text style={[styles.inferior, styles.italiano]}>Com base nos insumos do armazém.</Text>
-              <View style={{ flexDirection: 'row', margin: '5%' }}>
+              <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
+              <View style={{ flexDirection: 'row', margin: 5 }}>
                 <View style={styles.coloridos}>
                   <Text style={styles.numero2}>400</Text>
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
-                <View style={[styles.coloridos, { backgroundColor: '#FF0D0D', borderColor: '#BF0000' }]}>
+                <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
                   <Text style={styles.numero2}>200</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
@@ -164,11 +164,10 @@ const styles = StyleSheet.create({
   },
   coloridos: {
     backgroundColor: '#8ACF3A',
-    opacity: 0.8,
     borderWidth: 1,
     borderColor: COLORS.successButton,
-    margin: '3%',
-    width: 127,
+    margin: 5,
+    width: 145,
     height: 84,
     alignItems: 'center',
     textAlign: 'center',
@@ -186,7 +185,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontFamily: 'Rubik_400Regular',
     color: '#fff',
-    marginTop: '13%',
+    marginTop: 16,
   },
   inferior2: {
     fontSize: 13,
@@ -197,7 +196,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontStyle: 'italic',
     alignSelf: 'flex-start',
-    marginLeft: '7%',
+    marginLeft: 15,
     fontFamily: 'Rubik_300Light'
   }
 });

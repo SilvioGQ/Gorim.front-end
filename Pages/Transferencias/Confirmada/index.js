@@ -10,7 +10,7 @@ export default function Confirmada({ navigation, route }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.reset({ routes: [{ name: 'MenuJogador'}] });
-    }, 3500);
+    }, 2200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   logo: {
-    height: 180,
-    width: 180,
+    height: 140,
+    width: 140,
   },
   text: {
-    marginTop: 40,
+    marginTop: 30,
     fontFamily: 'Rubik_300Light',
     fontWeight: 'normal',
     fontSize: 22,

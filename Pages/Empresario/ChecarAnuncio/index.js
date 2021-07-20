@@ -26,6 +26,7 @@ export default function ChecarAnuncio({ navigation }) {
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
       {stage == 'GETADVERTS' && (
+        offers.length===0 ? <Text style={{flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical:20}}>Você não possui anúncios</Text> :
         <FlatList
           showsVerticalScrollIndicator={false}
           data={offers}

@@ -36,7 +36,7 @@ export default function Vendas({ navigation, route }) {
     if (selectPrice == product.medium) priceType = 'Normal';
     if (selectPrice == product.expensive) priceType = 'Alto';
     addAdvert(name, player.speciality, selectPrice, selectClient, selectAmount, priceType);
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada com sucesso' } }] });
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada!' } }] });
   }
 
   const information = () => {
