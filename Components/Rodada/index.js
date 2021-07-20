@@ -1,15 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { GameContext } from '../../context/GameContext';
-
-import ModalConfirmExit from '../ModalConfirmExit';
 import COLORS from '../../resources/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function Rodada({ removeFromRoom = null, close = null, name }) {
+export default function Rodada({ removeFromRoom = null, close = null, name, setModalVisible }) {
 
   const { timer } = useContext(GameContext);
-  const [modalVisible, setModalVisible] = useState(false);
 
   const stringTimer = () => {
     let min = Math.floor(timer / 60);
@@ -23,13 +20,10 @@ export default function Rodada({ removeFromRoom = null, close = null, name }) {
       <Text style={styles.textLarge}>{name} {stringTimer()}</Text>
         {close && (
           <>
-            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ alignSelf:'center', borderWidth:1, borderRadius:20, padding:10, position:'absolute', left:'82%', top:'30%'}}>
+            <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf:'center', borderWidth:1, borderRadius:20, padding:10, position:'absolute', left:'82%', top:'30%'}}>
               <Text style={styles.textExit}>Sair</Text>
             </TouchableOpacity>
           </>
-        )}
-        {modalVisible && (
-          <ModalConfirmExit deletePlayer={removeFromRoom} text='Tem certeza que deseja sair da partida?' onClick={() => setModalVisible(!modalVisible)} />
         )}
       </View>
   );
