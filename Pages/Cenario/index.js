@@ -38,7 +38,7 @@ export default function Cenario() {
             <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
           </View>
           <Text style={styles.texto}>Nível de poluição:</Text>
-          <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 180, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
+          <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 170, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
             <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>20%</Text>
             <Image style={styles.emoji} source={Feliz} />
           </View>
@@ -51,7 +51,7 @@ export default function Cenario() {
                   <Text style={styles.numero2}>400</Text>
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
-                <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
+                <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,0.5)', borderColor: '#BF0000' }]}>
                   <Text style={styles.numero2}>200</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
@@ -67,7 +67,7 @@ export default function Cenario() {
               }
             })
           )}
-          <Text style={styles.texto}>Histórico de compras:</Text>
+          <Text style={styles.texto}>Histórico de {player.type === 'Agricultor' ? 'compras' : 'vendas'}:</Text>
           {logs && (
             logs.map((item, index) => {
               if (item.type == 'buy') {
@@ -130,11 +130,11 @@ const styles = StyleSheet.create({
     width: "90%"
   },
   emoji: {
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
     alignItems: 'center',
     marginLeft: 20,
-    marginTop: 10
+    marginTop: 15
   },
   bloquinho: {
     backgroundColor: COLORS.bgColorSecondary,

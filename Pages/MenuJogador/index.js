@@ -104,7 +104,7 @@ export default function MenuJogador({ navigation }) {
         </>
       )}
       <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={() => stepFinish()} notification={notify.scene} />
-      {awaitPlayers !== 0 && <Text style={{ color: 'red', paddingTop: 30 }}>{`Etapa será finalizada após todos finalizarem ${awaitPlayers}/${players.length}`}</Text>}
+      {awaitPlayers !== 0 && <Text style={{ color: 'red', paddingTop: 30, fontFamily: 'Rubik_300Light' }}>{`Etapa será finalizada após todos finalizarem ${awaitPlayers}/${players.length}`}</Text>}
     </View>
   );
 }

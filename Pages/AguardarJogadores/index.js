@@ -28,7 +28,7 @@ export default function AguardarJogadores() {
       <Image style={styles.logo} source={Clock} />
       <Text style={styles.texto}> Aguardando {'\n'} os outros jogadores...</Text>
       <View>
-        <Text style={{ fontSize: 24, textAlign: 'center', marginTop:10, marginBottom:30 }}>{awaitPlayers}/{players.length}</Text>
+        <Text style={{ fontSize: 24, textAlign: 'center', marginTop:10, marginBottom:30, fontFamily: 'Rubik_300Light' }}>{awaitPlayers}/{players.length}</Text>
         {player.host && <Button onClick={startVoting} name='votar' />}
       </View>
       </View>

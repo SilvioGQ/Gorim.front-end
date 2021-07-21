@@ -69,7 +69,7 @@ export default function SelecaoPersonagem({ navigation }) {
             </View>
           </View>
         </View>
-        <Text style={{ fontSize: 24, textAlign: 'center' }}>{avatars.length}/{players.length}</Text>
+        <Text style={{ fontSize: 24, textAlign: 'center', fontFamily: 'Rubik_300Light' }}>{avatars.length}/{players.length}</Text>
         {player.host && (
           <View style={{ alignItems: 'center', marginVertical: 15 }}>
             <Button onClick={startGame} name='começar' />
