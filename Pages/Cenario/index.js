@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, Fragment } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import { GameContext } from '../../context/GameContext';
 
@@ -25,7 +25,7 @@ export default function Cenario() {
   }, []);
 
   return (
-    <View style={{flex:1}}>
+    <Fragment>
       <Rodada name={'Cenário'} />
       <ScrollView>
         <View style={styles.container}>
@@ -91,7 +91,7 @@ export default function Cenario() {
           )}
         </View>
       </ScrollView>
-    </View>
+    </Fragment>
   );
 }
 
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
+    height: Height -70
   },
   title: {
     fontSize: 20,

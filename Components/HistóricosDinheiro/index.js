@@ -34,7 +34,7 @@ export default function HistoricosDinheiro({ item }) {
                 {item.value && (
                     <View>
                         <Text style={[styles.text, {marginTop:5}]}>{item.value}$</Text>
-                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 }} />
+                        <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 , transform: item.ownAction ? [{ rotateY: "0deg" }] :  [{ rotateY: "180deg" }], }} />
                         <Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
                     </View>
                 )}
@@ -42,7 +42,7 @@ export default function HistoricosDinheiro({ item }) {
                     <View>
                         <Text style={[styles.text, {marginTop:5}]}>{item.amount} por {item.price}$ á unidade</Text>
                         <Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 }} />
-                        <Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'Comprados pelo(a)'}</Text>
+                        <Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'vendido(s) para'}</Text>
                     </View>
                 )}
                 {item.idPlayer && (

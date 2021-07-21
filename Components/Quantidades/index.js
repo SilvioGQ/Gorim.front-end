@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
 export default function Quantidade({selectAmount, setSelectAmount}) {
+  useEffect ( () => {
+    if (selectAmount > 6) setSelectAmount(6);
+  },[selectAmount]
+  )
   return (
       <View style={styles.view}>
         <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(1)}>
