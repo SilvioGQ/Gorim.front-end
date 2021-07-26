@@ -4,12 +4,7 @@ import { GameContext } from '../../context/GameContext';
 
 import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
-import Feliz from '../../assets/emojis/feliz.png';
 import Coin from '../../Components/Coin';
-import Meio from '../../assets/emojis/meio.png';
-import Preocupado from '../../assets/emojis/preocupado.png';
-import Tenso from '../../assets/emojis/tenso.png';
-import Corona from '../../assets/emojis/corona.png';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
 import Rodada from '../../Components/Rodada';
@@ -36,11 +31,6 @@ export default function Cenario() {
               source={Papel}
             />
             <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
-          </View>
-          <Text style={styles.texto}>Nível de poluição:</Text>
-          <View style={[styles.row, { backgroundColor: '#FFFFFF', marginTop: 20, borderRadius: 20, height: 90, width: 170, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.32, shadowRadius: 5.46, elevation: 9 }]}>
-            <Text style={{ fontSize: 36, marginLeft: 7, textAlign: 'center', marginTop: 20 }}>20%</Text>
-            <Image style={styles.emoji} source={Feliz} />
           </View>
           {Height <= 780 && (
             <>
