@@ -11,7 +11,7 @@ const GameContext = React.createContext();
 const initialState = {
   isConnected: false,
   inGame: false,
-  timer: 900,
+  timer: 10,
   awaitPlayers: 0,
   stage: null,
   players: [],
