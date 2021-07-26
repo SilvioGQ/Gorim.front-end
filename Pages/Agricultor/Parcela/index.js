@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import { GameContext, toPlant } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingTop: StatusBar.currentHeight,
     backgroundColor: COLORS.bgColorPrimary,
   },
   parcel: {

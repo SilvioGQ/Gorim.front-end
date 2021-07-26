@@ -20,7 +20,7 @@ export default function Vendas({ navigation, route }) {
   const { name } = route.params;
   const [modalText, setModalText] = useState('');
   const [selectPrice, setSelectPrice] = useState(-1);
-  const [selectClient, setSelectClient] = useState();
+  const [selectClient, setSelectClient] = useState(-1);
   const [selectAmount, setSelectAmount] = useState(0);
   const { players, player, data: product, stage } = useContext(GameContext);
 
@@ -38,23 +38,22 @@ export default function Vendas({ navigation, route }) {
     addAdvert(name, player.speciality, selectPrice, selectClient, selectAmount, priceType);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada!' } }] });
   }
-
+  
   const information = () => {
     if (name == 'Pacote 1') return setModalText('Neste pacote contém semeadora.\nProdutividade: \nPoluição:');
     if (name == 'Pacote 2') return setModalText('Neste pacote contêm semeadora, e colheitadeira.\nProdutividade: \nPoluição:');
     if (name == 'Pacote 3') return setModalText('Neste pacote contêm semeadora, colheitadeira e drone.\nProdutividade: \nPoluição:');
-
+    
     return setModalText('Informações gerais do produto.\nProdutividade: \nPoluição:');
   }
-
+  
   const filterPlayers = () => {
     let p = [];
     p = players.filter(i => i.id !== player.id && i.type === 'Agricultor');
     p.unshift({ name: 'Todos', avatar: 'Todos', id: -1 });
-
+    
     return p;
   }
-
   return (
     <View style={styles.container}>
       <Rodada name={'Criar Anúncio'} />
