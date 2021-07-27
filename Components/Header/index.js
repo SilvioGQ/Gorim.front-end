@@ -6,7 +6,6 @@ import { GameContext } from "../../context/GameContext";
 
 export default function Header() {
 
-  const { player } = useContext(GameContext);
   const mudarcor = (valor) => {
     if (valor <= 20) return '#8ACF3A';
     if (valor > 20 && valor <= 40) return '#FCBB29';
@@ -14,6 +13,8 @@ export default function Header() {
     if (valor > 60 && valor <= 80) return '#E70000';
     if (valor > 80 && valor <= 100) return '#8B0000';
   }
+  const { player, globalPollution } = useContext(GameContext);
+
   return (
     <View style={styles.row}>
       <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}/{player.name}{'\n'}em {player.city}</Text>
@@ -22,7 +23,7 @@ export default function Header() {
           style={styles.pollution}
           source={require('../../assets/agricultorIcones/Barril.png')}
         />
-        <Text style={{ color:mudarcor(0), fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>0%</Text>
+        <Text style={{ color: mudarcor(globalPollution), fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollution}%</Text>
       </View>
       <View>
         <Coin coin={player.coin} />
