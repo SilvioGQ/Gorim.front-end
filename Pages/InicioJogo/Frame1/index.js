@@ -4,7 +4,6 @@ import COLORS from '../../../resources/colors';
 import Button from '../../../Components/Button';
 
 import Trator from '../../../assets/Logo/Trator.png';
-import Animacao from '../../../assets/Logo/Animação.png';
 
 export default function Frame1({ navigation }) {
   return (
@@ -16,10 +15,6 @@ export default function Frame1({ navigation }) {
         />
         <Text style={styles.text}>Gorim</Text>
       </View>
-      <Image
-        style={styles.logo2}
-        source={Animacao}
-      />
       <View style={styles.container}>
         <Button
           onClick={() => navigation.navigate('CriarPartida')}
