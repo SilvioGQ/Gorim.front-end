@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView, StatusBar, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, StatusBar, Dimensions, TouchableOpacity } from 'react-native';
 import { GameContext, selectAvatar, selectedAvatars } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
@@ -8,53 +8,56 @@ import Button from '../../Components/Button';
 import ModalInfo from '../../Components/ModalInfo';
 const Height = Dimensions.get('screen').height;
 export default function SelecaoPersonagem({ navigation }) {
-  
+
   const [modalText, setModalText] = useState('');
   const [avatars, setAvatars] = useState([]);
   const { players, player, stage } = useContext(GameContext);
-  
+
   useEffect(() => {
     let v = [];
-    players.forEach(p => { if(p.avatar) v.push(p.avatar) });
-    
+    players.forEach(p => { if (p.avatar) v.push(p.avatar) });
+
     setAvatars(v);
-    
+
     if (stage === 'SELECTEDAVATARS') navigation.navigate('MenuJogador');
   }, [players, stage]);
-  
+
   const bgQuadrados = index => {
     let color = '#fff';
-    
+
     avatars.filter(a => {
       if (a == index && player.avatar != index) color = '#CBCBCB';
     });
     if (player.avatar == index) color = '#8ACF3A';
-    
+
     return color;
   }
   const startGame = () => {
     if (avatars.length < players.length) return setModalText('Aguarde outros jogadores escolherem um avatar');
     selectedAvatars();
   }
-
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.title}>Bem vindo ao Gorim!</Text>
         <View>
-          <View style={{ marginHorizontal:20, }}>
-            {player.type === 'Agricultor' && (<Text style={styles.subtitle}>Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
-            {player.type === 'Empresário' && (<Text style={styles.subtitle}>Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos, interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.</Text>)}
+          <View>
+            <View style={{ flexDirection: 'row', alignSelf: 'center', }}>
+              <Text style={styles.text}>VOCÊ SÉRA</Text>
+              <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'AGRICULTOR' : 'EMPRESÁRIO'}</Text>
+            </View>
+            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.')} style={styles.button}><Text style={styles.subtitle}>VER DETALHES</Text></TouchableOpacity> : 
+            <TouchableOpacity onPress={() => setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos, interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.')} style={styles.button}><Text style={styles.subtitle}>VER DETALHES</Text></TouchableOpacity>}
           </View>
           <Text style={styles.text}>Selecione um personagem</Text>
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
           <View style={{ alignSelf: 'center' }}>
-            <View style={{  flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' }}>
               <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />
               <Quadrados onClick={() => selectAvatar('Icon2')} backgroundColor={bgQuadrados('Icon2')} icon='Icon2' />
               <Quadrados onClick={() => selectAvatar('Icon3')} backgroundColor={bgQuadrados('Icon3')} icon='Icon3' />
             </View>
-            <View style={{  flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row' }}>
               <Quadrados onClick={() => selectAvatar('Icon4')} backgroundColor={bgQuadrados('Icon4')} icon='Icon4' />
               <Quadrados onClick={() => selectAvatar('Icon5')} backgroundColor={bgQuadrados('Icon5')} icon='Icon5' />
               <Quadrados onClick={() => selectAvatar('Icon6')} backgroundColor={bgQuadrados('Icon6')} icon='Icon6' />
@@ -69,7 +72,7 @@ export default function SelecaoPersonagem({ navigation }) {
             </View>
           </View>
         </View>
-        <Text style={{ fontSize: 24, textAlign: 'center', fontFamily: 'Rubik_300Light' }}>{avatars.length}/{players.length}</Text>
+        <Text style={{ fontSize: 24, textAlign: 'center', fontFamily: 'Rubik_300Light' }}>{avatars.length} de {players.length}</Text>
         {player.host && (
           <View style={{ alignItems: 'center', marginVertical: 15 }}>
             <Button onClick={startGame} name='começar' />
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light'
   },
   subtitle: {
-    fontSize: Height > 700 ? 16 : 14 ,
+    fontSize: Height > 700 ? 16 : 14,
     marginVertical: 10,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light',
@@ -106,4 +109,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Rubik_300Light'
   },
+  textbold: {
+    fontSize: Height > 700 ? 16 : 14,
+    marginVertical: 15,
+    textAlign: 'center',
+    fontFamily: 'Rubik_700bold'
+  },
+  button:{
+    padding: 5,
+    width: '40%',
+    alignSelf: 'center',
+    backgroundColor: COLORS.textWhite,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 5.46,
+    elevation: 6
+  }
 });
