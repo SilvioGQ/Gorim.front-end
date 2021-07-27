@@ -6,7 +6,7 @@ import { GameContext } from "../../context/GameContext";
 
 export default function Header() {
 
-  const { player } = useContext(GameContext);
+  const { player, globalPollution } = useContext(GameContext);
 
   return (
     <View style={styles.row}>
@@ -16,7 +16,7 @@ export default function Header() {
           style={styles.pollution}
           source={require('../../assets/agricultorIcones/Barril.png')}
         />
-        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3, color:'#BF0000' }}>0%</Text>
+        <Text style={{ fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3, color:'#BF0000' }}>{globalPollution}%</Text>
       </View>
       <View>
         <Coin coin={player.coin} />
