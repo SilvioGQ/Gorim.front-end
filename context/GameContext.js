@@ -13,6 +13,7 @@ const initialState = {
   inGame: false,
   timer: 900,
   awaitPlayers: 0,
+  globalPollution: 0,
   stage: null,
   players: [],
   player: {},
@@ -106,6 +107,11 @@ const reducer = (state, action) => {
         ...state,
         awaitPlayers: action.payload
       };
+    case 'UPDATEGLOBALPOLLUTION':
+      return {
+        ...state,
+        globalPollution: action.payload
+      };
     case 'DISCONNECTED':
       return {
         ...state,
@@ -190,6 +196,9 @@ const GameProvider = (props) => {
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
+    });
+    socket.on('updateGlobalPollution', (pollution) => {
+      dispatch({ type: 'UPDATEGLOBALPOLLUTION', payload: pollution });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });

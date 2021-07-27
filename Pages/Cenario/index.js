@@ -17,7 +17,7 @@ export default function Cenario() {
   const { player, logs, disableNotifyScene } = useContext(GameContext);
 
   useEffect(() => {
-    disableNotifyScene()
+    disableNotifyScene();
   }, []);
 
   return (
@@ -39,11 +39,11 @@ export default function Cenario() {
               <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
               <View style={{ flexDirection: 'row', margin: 5 }}>
                 <View style={styles.coloridos}>
-                  <Text style={styles.numero2}>400</Text>
+                  <Text style={styles.numero2}>{player.productive}</Text>
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,0.5)', borderColor: '#BF0000' }]}>
-                  <Text style={styles.numero2}>200</Text>
+                  <Text style={styles.numero2}>{player.pollution}</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
               </View>
