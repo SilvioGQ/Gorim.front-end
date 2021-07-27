@@ -41,11 +41,11 @@ export default function Vendas({ navigation, route }) {
   }
   
   const information = () => {
-    if (name == 'Pacote 1') return setModalText('Neste pacote contém semeadora.\nPoluição:' + product?.pollutionEmp + ' por unidade');
-    if (name == 'Pacote 2') return setModalText('Neste pacote contêm semeadora, e colheitadeira.\nPoluição:' + product?.pollutionEmp + ' por unidade');
-    if (name == 'Pacote 3') return setModalText('Neste pacote contêm semeadora, colheitadeira e drone.\nPoluição:' + product?.pollutionEmp + ' por unidade');
+    if (name == 'Pacote 1') return setModalText('Neste pacote contém semeadora.\nPoluição: ' + product?.pollutionEmp + ' por unidade');
+    if (name == 'Pacote 2') return setModalText('Neste pacote contêm semeadora, e colheitadeira.\nPoluição: ' + product?.pollutionEmp + ' por unidade');
+    if (name == 'Pacote 3') return setModalText('Neste pacote contêm semeadora, colheitadeira e drone.\nPoluição: ' + product?.pollutionEmp + ' por unidade');
     
-    return setModalText('Informações gerais do produto.\nPoluição:' + product?.pollutionEmp + ' por unidade');
+    return setModalText('Informações gerais do produto.\nPoluição: ' + product?.pollutionEmp + ' por unidade');
   }
   
   const filterPlayers = () => {
