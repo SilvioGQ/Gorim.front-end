@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, Fragment } from 'react';
+import React, { useEffect, useContext, Fragment, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import { GameContext } from '../../context/GameContext';
 
@@ -8,11 +8,12 @@ import Coin from '../../Components/Coin';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
 import Rodada from '../../Components/Rodada';
-
+import FilterCenary from '../../Components/FilterCenary';
+import HistoricosDinheiro from '../../Components/HistóricosDinheiro';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
-
+  const [type, setType] = useState('transfer');
   const { player, logs, disableNotifyScene } = useContext(GameContext);
 
   useEffect(() => {
@@ -48,37 +49,20 @@ export default function Cenario() {
               </View>
             </>
           )}
-
-          <Text style={styles.texto}>Histórico de transferência:</Text>
-          {logs && (
-            logs.map((item, index) => {
-              if (item.type == 'transfer') {
-                return <HistoricoDinheiro key={index} item={item} />
-              }
-            })
-          )}
-          <Text style={styles.texto}>Histórico de {player.type === 'Agricultor' ? 'compras' : 'vendas'}:</Text>
-          {logs && (
-            logs.map((item, index) => {
-              if (item.type == 'buy') {
-                return <HistoricoDinheiro key={index} item={item} />
-              }
-            })
-          )}
-          {player.type == 'Agricultor' && (
-            <>
-              <Text style={styles.texto}>Histórico de plantação:</Text>
-              <View style={{alignSelf:'flex-start', marginLeft:15}}>
-              {logs && (
-                logs.map((item, index) => {
-                  if (item.type == 'plantation') {
-                    return <HistoricosPlatacao key={index} item={item} />
-                  }
-                })
-              )}
-              </View>
-            </>
-          )}
+          <FilterCenary type={type} setType={setType} />
+          <Text style={styles.texto}>Histórico:</Text>
+          {logs.filter((item) => {
+            if (item.type == type) {
+              return item
+            }
+          }).map((item, index) => {
+            if (item.type === 'plantation') {
+              return <HistoricosPlatacao key={index} item={item} />
+            } else {
+              return <HistoricosDinheiro key={index} item={item} />
+            }
+          })
+          }
         </View>
       </ScrollView>
     </Fragment>
@@ -91,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    height: Height -70
+    height: Height - 70
   },
   title: {
     fontSize: 20,

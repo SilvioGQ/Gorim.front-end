@@ -18,7 +18,7 @@ const initialState = {
   players: [],
   player: {},
   data: null,
-  logs: null,
+  logs: [],
   offers: null,
   notify: { scene: false, offers: false }
 }
