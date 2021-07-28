@@ -19,10 +19,11 @@ export default function Produtos({ item }) {
           {/* <Text style={styles.numeros}>{item.expensive}$</Text> */}
         </View>
       </View>
-          <View style={styles.poluicaoView}>
+      {item.pollution ? <View style={styles.poluicaoView}>
             <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 32, height: 32, marginLeft: 1 }} />
             <Text style={styles.poluicao}>{item.pollution}</Text>
-          </View>
+          </View> : <View></View>}
+          
     </View>
   );
 }

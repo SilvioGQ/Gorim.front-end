@@ -8,7 +8,7 @@ export default function Header() {
 
   const mudarcor = (valor) => {
     if (valor <= 20) return '#8ACF3A';
-    if (valor > 20 && valor <= 40) return '#FCBB29';
+    if (valor > 30 && valor <= 40) return '#FCBB29';
     if (valor > 40 && valor <= 60) return '#FF5C00';
     if (valor > 60 && valor <= 80) return '#E70000';
     if (valor > 80 && valor <= 100) return '#8B0000';

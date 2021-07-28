@@ -16,8 +16,7 @@ export default function ModalInfo({ text, onClick, modalImage }) {
             <>
               <View style={{ flexDirection: 'row' }}>
                 <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 25, height: 25 }} />
-                <Text style={{ fontSize: 23, fontFamily: 'Rubik_400Regular', color: '#FF0000' }}>6</Text>
-                <Text style={{ marginBottom: 15, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 18 }}> Indica quanto o produto polui</Text>
+                <Text style={{ marginBottom: 15, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 18 }}> Indica A poluição do produto</Text>
               </View>
             </>
           )}
