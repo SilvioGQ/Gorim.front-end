@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 
-const socket = io(API_URL_HERO, {
+const socket = io(API_URL_LOCAL, {
   autoConnect: false
 });
 
@@ -260,6 +260,10 @@ const toPlant = (parcelLand, inventory) => {
   socket.emit('toPlant', parcelLand, inventory);
 }
 
+const addSprayParcel = (parcelLand) => {
+  socket.emit('addSprayParcel', parcelLand);
+}
+
 const makeTransfer = (count, idDest) => {
   socket.emit('makeTransfer', count, idDest);
 }
@@ -311,6 +315,7 @@ export {
   selectAvatar,
   selectedAvatars,
   toPlant,
+  addSprayParcel,
   makeTransfer,
   getProducts,
   addAdvert,
