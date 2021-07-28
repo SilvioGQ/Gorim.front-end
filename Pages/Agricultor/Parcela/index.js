@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
-import { GameContext, toPlant } from "../../../context/GameContext";
+import { GameContext, toPlant, addSprayParcel } from "../../../context/GameContext";
 
 import Button from '../../../Components/Button';
 import COLORS from '../../../resources/colors';
@@ -53,14 +53,25 @@ export default function Parcela({ route }) {
   }
 
   const toPulverize = () => {
-    setModalText('Tem certeza que deseja gastar 400$ para compra do Pulverizador?');
+    if (!parcelLand.planted) return setModalText('Você deve plantar na parcela primeiro!');
+
+    let found = false;
+    player.inventory.forEach(e => {
+      if (e.name == 'Pulverizador' && e.amount > 0) found = true;
+    });
+    if (!found) return setModalText('Você não possuí um pulverizador!');
+
+    parcelLand.spray = true;
+    addSprayParcel(parcelLand);
   }
+
   const stamp = () => {
     setModalText('Tem certeza de que deseja solicitar o selo verde ao fiscal?');
   }
+
   return (
     <View style={styles.container}>
-      <Rodada name={'Parcela de terra'}/>
+      <Rodada name={'Parcela de terra'} />
       <ScrollView>
         <View style={styles.espaco}>
           <Image style={styles.parcel} source={Parcel} />
@@ -145,10 +156,13 @@ export default function Parcela({ route }) {
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'Maquina'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
 
-        <TouchableOpacity style={styles.button} onPress={toPulverize}>
-          <Text style={styles.buttonText}>PULVERIZAR</Text>
-          <Image source={require('../../../assets/agricultorIcones/Pulverize.png')} style={styles.pulverize} />
-        </TouchableOpacity>
+        {parcelLand.spray && <Text>Utilizado</Text>}
+        {!parcelLand.spray && (
+          <TouchableOpacity style={styles.button} onPress={toPulverize}>
+            <Text style={styles.buttonText}>PULVERIZAR</Text>
+            <Image source={require('../../../assets/agricultorIcones/Pulverize.png')} style={styles.pulverize} />
+          </TouchableOpacity>
+        )}
 
         {!parcelLand.planted && <Button onClick={selectItems} name='INICIAR PLANTIO' />}
         {parcelLand.planted && <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>}

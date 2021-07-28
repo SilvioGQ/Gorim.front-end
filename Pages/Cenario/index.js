@@ -56,6 +56,7 @@ export default function Cenario() {
               return item
             }
           }).map((item, index) => {
+            console.log(logs);
             if (item.type === 'plantation') {
               return <HistoricosPlatacao key={index} item={item} />
             } else {
