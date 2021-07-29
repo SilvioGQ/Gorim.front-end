@@ -10,13 +10,17 @@ export default function DropDown({ items, type, onClick, display }) {
 
   useEffect(() => {
     setInventory(items.filter(item => {
-      return item.type === type && item.amount > 0;
+      if (item.type === 'Maquina') {
+        return item.type === type && item.amount > 0 && item.name !== 'Pulverizador';
+      } else {
+        return item.type === type && item.amount > 0;
+      }
     }));
   }, []);
   
   return (
     <View style={[styles.container, { display: display }]}>
-      { inventory.map((item, index) => {
+      {inventory.map((item, index) => {
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}>
             <Image style={styles.icone} source={IMAGES[item.name]} />
@@ -24,7 +28,7 @@ export default function DropDown({ items, type, onClick, display }) {
           </TouchableOpacity>
         );
       })}
-      { inventory.length === 0 && (
+      {inventory.length === 0 && (
         <TouchableOpacity style={styles.item}>
           <Text style={styles.text}>Sem itens</Text>
         </TouchableOpacity>
