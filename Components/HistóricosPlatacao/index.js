@@ -22,6 +22,12 @@ export default function HistoricosPlatacao({ item }) {
           <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 190 }} source={IMAGES[item.product.machine]} />
         </>
       )}
+      {item.product.spray && (
+        <>
+          <Image style={styles.imageParcel} source={require('../../assets/agricultorIcones/Parcela.png')} />
+          <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 215 }} source={IMAGES['Pulverizador']} />
+        </>
+      )}
     </View>
   );
 }

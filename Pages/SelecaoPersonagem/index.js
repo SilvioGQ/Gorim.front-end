@@ -46,8 +46,8 @@ export default function SelecaoPersonagem({ navigation }) {
               <Text style={styles.text}>VOCÊ SÉRA</Text>
               <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'AGRICULTOR' : 'EMPRESÁRIO'}</Text>
             </View>
-            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.')} style={styles.button}><Text style={styles.subtitle}>VER DETALHES</Text></TouchableOpacity> : 
-            <TouchableOpacity onPress={() => setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos, interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.')} style={styles.button}><Text style={styles.subtitle}>VER DETALHES</Text></TouchableOpacity>}
+            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.')} style={styles.button}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
+              <TouchableOpacity onPress={() => setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos, interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.')} style={styles.button}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
           </View>
           <Text style={styles.text}>Selecione um personagem</Text>
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
@@ -73,11 +73,17 @@ export default function SelecaoPersonagem({ navigation }) {
           </View>
         </View>
         <Text style={{ fontSize: 24, textAlign: 'center', fontFamily: 'Rubik_300Light' }}>{avatars.length} de {players.length}</Text>
-        {player.host && (
+        {player.host ?
           <View style={{ alignItems: 'center', marginVertical: 15 }}>
             <Button onClick={startGame} name='começar' />
-          </View>
-        )}
+          </View> :
+          <Text style={{
+            fontSize: 20,
+            marginVertical: 35,
+            textAlign: 'center',
+            fontFamily: 'Rubik_300Light'
+          }}>AGUARDANDO O INICIO DO JOGO.</Text>
+        }
       </ScrollView>
     </View>
   );
@@ -103,6 +109,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Rubik_300Light',
   },
+  textbutton: {
+    padding: 7,
+    paddingHorizontal: 10,
+    fontSize: Height > 700 ? 12 : 11,
+    textAlign: 'center',
+    fontFamily: 'Rubik_400Regular',
+  },
   text: {
     fontSize: Height > 700 ? 16 : 14,
     marginVertical: 15,
@@ -115,19 +128,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Rubik_700bold'
   },
-  button:{
+  button: {
     padding: 5,
-    width: '40%',
     alignSelf: 'center',
     backgroundColor: COLORS.textWhite,
     borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-    elevation: 6
+    borderWidth: 0.7
   }
 });

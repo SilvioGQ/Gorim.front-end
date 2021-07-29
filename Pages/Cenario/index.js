@@ -21,7 +21,7 @@ export default function Cenario() {
   }, []);
 
   return (
-    <Fragment>
+    <View style={{backgroundColor:COLORS.bgColorPrimary, height: Height}}>
       <Rodada name={'Cenário'} />
       <ScrollView>
         <View style={styles.container}>
@@ -40,7 +40,7 @@ export default function Cenario() {
               <View style={{ flexDirection: 'row', margin: 5 }}>
                 <View style={styles.coloridos}>
                   <Text style={styles.numero2}>{player.productive}</Text>
-                  <Text style={styles.inferior2}>Produtividade</Text>
+                  <Text style={styles.inferior2}>{player.type === 'Agricultor' ? 'Produtividade ' : 'Lucro'}</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,0.5)', borderColor: '#BF0000' }]}>
                   <Text style={styles.numero2}>{player.pollution}</Text>
@@ -66,7 +66,7 @@ export default function Cenario() {
           }
         </View>
       </ScrollView>
-    </Fragment>
+    </View>
   );
 }
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
-    height: Height - 70
+    height: Height
   },
   title: {
     fontSize: 20,

@@ -13,24 +13,13 @@ export default function HistoricosDinheiro({ item }) {
 	return (
 		<View style={styles.colunm}>
 			<View style={styles.row3}>
-				{item.product && (
-					<View>
-						<Image
-							style={styles.icone}
-							source={imagesProducts[item.product.name]}
-						/>
-						<Text style={styles.text}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
-					</View>
-				)}
-				{item.product == null && (
-					<View>
-						<Image
-							style={styles.icone}
-							source={IMAGES[player.avatar]}
-						/>
-						<Text style={styles.text}>{player.name}</Text>
-					</View>
-				)}
+				<View>
+					<Image
+						style={styles.icone}
+						source={item.product ? imagesProducts[item.product.name] : IMAGES[player.avatar]}
+					/>
+					<Text style={styles.text}>{item.product ? item.product.name.replace(/Fertilizante |Agrotóxico /, '') : player.name}</Text>
+				</View>
 				{item.value && (
 					<View>
 						<Text style={[styles.text, { marginTop: 5 }]}>{item.value}$</Text>
@@ -45,15 +34,13 @@ export default function HistoricosDinheiro({ item }) {
 						<Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'vendido(s) para'}</Text>
 					</View>
 				)}
-				{item.idPlayer && (
-					<View>
-						<Image
-							style={styles.icone}
-							source={IMAGES[item.idPlayer.avatar]}
-						/>
-						<Text style={styles.text}>{item.idPlayer.name}</Text>
-					</View>
-				)}
+				<View>
+					<Image
+						style={styles.icone}
+						source={IMAGES[item.idPlayer.avatar]}
+					/>
+					<Text style={styles.text}>{item.idPlayer.name}</Text>
+				</View>
 
 			</View>
 		</View>
@@ -65,7 +52,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		backgroundColor: COLORS.bgColorSecondary,
 		borderRadius: 20,
-		width: '75%',
+		width: 255,
 		height: 80,
 		shadowColor: "#000",
 		shadowOffset: {
@@ -90,7 +77,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		textAlign: 'center',
-		fontSize: 13,
+		fontSize: 12,
 		fontFamily: 'Rubik_300Light',
 		marginBottom: 2
 	}
