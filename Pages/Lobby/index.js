@@ -27,9 +27,9 @@ export default function Lobby({ navigation }) {
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
         <Image style={styles.image} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
-      <Text style={styles.text}>CÓDIGO DA SALA</Text>
-      <View style={{ borderWidth: 1, width: '70%' }} />
-      <Text style={[styles.text, { marginBottom: 25 }]}>{player.room}</Text>
+      <Text style={styles.textcod}>CÓDIGO DA SALA</Text>
+      <View style={{ borderWidth: 1, width: '70%', borderColor: '#58AB23' }} />
+      <Text style={[styles.text, { marginBottom: 25, marginTop: 15 }]}>{player.room}</Text>
 
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {players.length === 0 ?
@@ -40,7 +40,7 @@ export default function Lobby({ navigation }) {
           renderItem={({ item }) => <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}
         />
       }
-      {player.host && <Button name='começar' onClick={() => {startGame();makeRaffle();}} />}
+      {player.host && <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} />}
     </View>
   );
 }
@@ -64,10 +64,24 @@ const styles = StyleSheet.create({
   },
   line: {
     paddingVertical: 10,
-    borderWidth: 1,
+    borderWidth: 0.3,
     width: Tela - 75,
+    borderRadius: 15,
+    borderTopColor: '#139A2A',
+    borderLeftColor: '#139A2A',
+    borderBottomColor: '#139A2A',
+    borderRightColor: '#139A2A'
   },
   text: {
+    fontSize: 32,
+    fontFamily: 'Rubik_300Light',
+    marginTop: 5,
+    textAlign: 'center',
+    alignItems: 'center',
+    lineHeight: 32
+  },
+  textcod: {
+    fontWeight: 'bold',
     fontSize: 32,
     fontFamily: 'Rubik_300Light',
     marginTop: 5,
@@ -78,5 +92,6 @@ const styles = StyleSheet.create({
   listText: {
     fontSize: 22,
     fontFamily: 'Rubik_300Light',
+    marginLeft: 10,
   },
 });

@@ -48,11 +48,11 @@ export default function CriarPartida({ navigation }) {
             <Text style={styles.header}>HOST</Text>
             <View style={styles.line} />
             <View style={styles.row}>
-              <Image style={styles.logo2} source={require('../../assets/Group28.png')} />
+              <Image style={styles.logo2} source={require('../../assets/mulhe.png')} />
               <TouchableOpacity style={styles.button2} onPress={createRoom} >
-                <Text style={styles.text}>CRIAR JOGO</Text>
+                <Text style={styles.botao}>CRIAR JOGO</Text>
               </TouchableOpacity>
-              <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../assets/right-arrow.png')} />
+              <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../assets/flecha.png')} />
             </View>
           </View>
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
@@ -60,7 +60,7 @@ export default function CriarPartida({ navigation }) {
             <Text style={[styles.header]}>ENTRAR</Text>
             <View style={styles.line} />
             <View style={styles.row}>
-              <Image style={styles.logo2} source={require('../../assets/Group29.png')} />
+              <Image style={styles.logo2} source={require('../../assets/pessoas.png')} />
               <TextInput
                 maxLength={6}
                 style={[styles.button2, styles.text2]}
@@ -73,7 +73,7 @@ export default function CriarPartida({ navigation }) {
               >
               </TextInput>
               <TouchableOpacity onPress={selectRoom} >
-                <Image style={styles.arrow} source={require('../../assets/right-arrow.png')} />
+                <Image style={styles.arrow} source={require('../../assets/flecha.png')} />
               </TouchableOpacity>
             </View>
           </View>
@@ -98,13 +98,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: '80%',
     textAlign: 'center',
-    borderRadius: 20
+    borderRadius: 17,
+    borderTopColor: '#11BBA3',
+    borderLeftColor: '#11BBA3',
+    borderBottomColor: '#11BBA3',
+    borderRightColor: '#11BBA3'
   },
   row: {
     flexDirection: 'row',
   },
   header: {
     fontFamily: 'Rubik_300Light',
+    fontWeight: '600',
     fontSize: 24,
     marginVertical: 10,
     marginTop: 30
@@ -123,11 +128,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     width: 175,
-    borderWidth: 1,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 1,
     },
     shadowOpacity: 0.32,
     shadowRadius: 4.46,
@@ -147,11 +151,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
   },
+  botao: {
+    fontSize: 24,
+    fontFamily: 'Rubik_300Light',
+    marginTop: 7,
+  },
   arrow: {
     width: 25,
     height: 25,
-    marginTop: 35,
+    marginTop: 40,
     marginLeft: 10
   },
-  line: { width: '80%', borderWidth: 1 }
+  line: { width: '80%', borderWidth: 0.2, borderColor: '#11BBA3' }
 });
