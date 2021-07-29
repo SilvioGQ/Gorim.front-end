@@ -13,19 +13,19 @@ export default function HistoricosPlatacao({ item }) {
       {item.product.pesticide != null && (
         <>
           <Image style={styles.imageParcel} source={require('../../assets/agricultorIcones/Parcela.png')} />
-          <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 135 }} source={IMAGES[item.product.pesticide]} />
+          <Image style={{ width: 35, height: 35 }} source={IMAGES[item.product.pesticide]} />
         </>
       )}
       {item.product.machine != null && (
         <>
           <Image style={styles.imageParcel} source={require('../../assets/agricultorIcones/Parcela.png')} />
-          <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 190 }} source={IMAGES[item.product.machine]} />
+          <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: item.product.pesticide != null ? 190 : 135 }} source={IMAGES[item.product.machine]} />
         </>
       )}
       {item.product.spray && (
         <>
           <Image style={styles.imageParcel} source={require('../../assets/agricultorIcones/Parcela.png')} />
-          <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 215 }} source={IMAGES['Pulverizador']} />
+          <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 205 }} source={IMAGES['Pulverizador']} />
         </>
       )}
     </View>

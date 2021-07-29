@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 8,
+    margin: 7,
     backgroundColor: COLORS.textWhite,
     width: 90,
     height: 78,

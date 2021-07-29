@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
   },
   textbutton: {
-    padding: 7,
+    padding: 8,
     paddingHorizontal: 10,
     fontSize: Height > 700 ? 12 : 11,
     textAlign: 'center',
@@ -126,10 +126,10 @@ const styles = StyleSheet.create({
     fontSize: Height > 700 ? 16 : 14,
     marginVertical: 15,
     textAlign: 'center',
-    fontFamily: 'Rubik_700bold'
+    fontFamily: 'Rubik_700Bold'
   },
   button: {
-    padding: 5,
+    padding: 2,
     alignSelf: 'center',
     backgroundColor: COLORS.textWhite,
     borderRadius: 20,

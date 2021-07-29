@@ -162,5 +162,5 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginLeft: 10
   },
-  line: { width: '80%', borderWidth: 0.2, borderColor: '#11BBA3' }
+  line: { width: '80%', borderWidth: 0.6, borderColor: '#11BBA3' }
 });

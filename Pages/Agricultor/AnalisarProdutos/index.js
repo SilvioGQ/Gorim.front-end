@@ -12,7 +12,6 @@ const Tela = Dimensions.get('screen').width;
 export default function AnalisarProdutos() {
   const [type, setType] = useState('Agrotoxico');
   const [modalText, setModalText] = useState('');
-  const [modalImage, setModalImage] = useState(true);
   const { data: products, stage } = useContext(GameContext);
 
   useEffect(() => {
@@ -37,7 +36,7 @@ export default function AnalisarProdutos() {
         </TouchableOpacity>
       </View>
       <FilterType type={type} setType={setType} />
-      {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage={modalImage} />}
+      {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage={true} />}
       {stage === 'GETPRODUCTS' && (
         <FlatList
           data={selectType()}

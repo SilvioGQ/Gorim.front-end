@@ -8,6 +8,7 @@ import DropDown from '../../../Components/DropDown';
 import Unknown from '../../../assets/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import Conf from '../../../Components/Selo-Verde-Confirmacao';
+import ModalInfo from '../../../Components/ModalInfo';
 import IMAGES from '../../../resources/imagesProducts';
 import Rodada from '../../../Components/Rodada';
 
@@ -16,6 +17,7 @@ export default function Parcela({ route }) {
 
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
+  const [modalText2, setModalText2] = useState('');
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
@@ -37,8 +39,8 @@ export default function Parcela({ route }) {
   }
 
   const selectItems = () => {
-    if (!parcelLand.seed) return setModalText('Selecione uma semente!');
-    if (!parcelLand.fertilizer) return setModalText('Selecione um fertilizante!');
+    if (!parcelLand.seed) return setModalText2('Selecione uma semente!');
+    if (!parcelLand.fertilizer) return setModalText2('Selecione um fertilizante!');
 
     parcelLand.planted = true;
     let p = player.parcelLand;
@@ -53,13 +55,13 @@ export default function Parcela({ route }) {
   }
 
   const toPulverize = () => {
-    if (!parcelLand.planted) return setModalText('Você deve plantar na parcela primeiro!');
+    if (!parcelLand.planted) return setModalText2('Você deve plantar na parcela primeiro!');
 
     let found = false;
     player.inventory.forEach(e => {
       if (e.name == 'Pulverizador' && e.amount > 0) found = true;
     });
-    if (!found) return setModalText('Você não possuí um pulverizador!');
+    if (!found) return setModalText2('Você não possuí um pulverizador!');
 
     parcelLand.spray = true;
     addSprayParcel(parcelLand);
@@ -156,7 +158,7 @@ export default function Parcela({ route }) {
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'Maquina'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
 
-        {parcelLand.spray && <Text>Utilizado</Text>}
+        {parcelLand.spray && <Text style={{ fontSize: 22, textAlign: 'center', fontFamily:'Rubik_700Bold' }}>Pulverizador ativo</Text>}
         {!parcelLand.spray && (
           <TouchableOpacity style={styles.button} onPress={toPulverize}>
             <Text style={styles.buttonText}>PULVERIZAR</Text>
@@ -165,8 +167,9 @@ export default function Parcela({ route }) {
         )}
 
         {!parcelLand.planted && <Button onClick={selectItems} name='INICIAR PLANTIO' />}
-        {parcelLand.planted && <Text style={{ fontSize: 24, textAlign: 'center', marginTop: '10%' }}>Plantio iniciado!</Text>}
+        {parcelLand.planted && <Text style={{ fontSize: 22, textAlign: 'center', marginTop: '10%', fontFamily:'Rubik_300Light' }}>Plantio iniciado!</Text>}
         {modalText !== '' && <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />}
+        {modalText2 !== '' && <ModalInfo onClick={() => setModalText2('')} text={modalText2} />}
       </ScrollView>
     </View>
   );
