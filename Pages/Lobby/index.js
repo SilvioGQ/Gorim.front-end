@@ -40,7 +40,15 @@ export default function Lobby({ navigation }) {
           renderItem={({ item }) => <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}
         />
       }
-      {player.host && <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} />}
+      {player.host ? 
+        <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} /> :
+        <Text style={{
+          fontSize: 20,
+          marginVertical: 35,
+          textAlign: 'center',
+          fontFamily: 'Rubik_300Light'
+        }}>Aguardando jogadores</Text>
+      }
     </View>
   );
 }
