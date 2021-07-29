@@ -256,8 +256,8 @@ const selectedAvatars = () => {
   socket.emit('selectedAvatars');
 }
 
-const toPlant = (parcelLand, inventory) => {
-  socket.emit('toPlant', parcelLand, inventory);
+const toPlant = (parcelLand) => {
+  socket.emit('toPlant', parcelLand);
 }
 
 const addSprayParcel = (parcelLand) => {
