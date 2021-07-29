@@ -43,7 +43,7 @@ export default function SelecaoPersonagem({ navigation }) {
         <View>
           <View>
             <View style={{ flexDirection: 'row', alignSelf: 'center', }}>
-              <Text style={styles.text}>VOCÊ SÉRA</Text>
+              <Text style={styles.text}>VOCÊ SERÁ</Text>
               <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'AGRICULTOR' : 'EMPRESÁRIO'}</Text>
             </View>
             {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes, e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores tem o direito de se cadidatar as cargos políticos em época de eleições.')} style={styles.button}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
@@ -82,7 +82,7 @@ export default function SelecaoPersonagem({ navigation }) {
             marginVertical: 35,
             textAlign: 'center',
             fontFamily: 'Rubik_300Light'
-          }}>AGUARDANDO O INICIO DO JOGO.</Text>
+          }}>AGUARDANDO O INÍCIO DO JOGO.</Text>
         }
       </ScrollView>
     </View>
