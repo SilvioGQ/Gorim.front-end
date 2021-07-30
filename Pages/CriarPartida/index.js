@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     width: Tela
   },
   input: {
-    outlineStyle: "none",
     height: 45,
     fontSize: 24,
     borderWidth: 1,
@@ -147,7 +146,6 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   text2: {
-    outlineStyle: "none",
     textTransform: 'uppercase',
     fontSize: 18,
     fontFamily: 'Rubik_300Light',

@@ -44,10 +44,10 @@ export default function Lobby({ navigation }) {
         <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} /> :
         <Text style={{
           fontSize: 20,
-          marginVertical: 35,
+          marginVertical: 40,
           textAlign: 'center',
           fontFamily: 'Rubik_300Light'
-        }}>Aguardando jogadores</Text>
+        }}>AGUARDANDO JOGADORES.</Text>
       }
     </View>
   );
@@ -59,15 +59,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    padding: '1%',
-    paddingTop: 50,
+    paddingTop: 30 ,
     width: Tela
   },
   image: {
     width: 25,
     height: 27,
     marginRight: 20,
-    marginTop: -10,
     marginVertical: 10
   },
   line: {
