@@ -9,10 +9,20 @@ export default function Produtos({ item }) {
     <View style={styles.container}>
       <View style={styles.row}>
         <Image style={styles.logo} source={IMAGES[item.name]} />
-        <Text style={styles.textos}>{item.name}</Text>
+        <View>
+          <Text style={styles.textos}>{item.name}</Text>
+          {item.name == 'Pacote 1' && <Text style={styles.pacotes}>Semeadora</Text>}
+          {item.name == 'Pacote 2' && <Text style={styles.pacotes}>Semeadora e Colheitadera</Text>}
+          {item.name == 'Pacote 3' && <Text style={styles.pacotes}>Semeadora, Colheitadera e Drone</Text>}
+        </View>
       </View>
-      <View style={{ width: '85%', flexDirection: 'row' }}>
-        <View style={styles.row}>
+
+      <View style={{
+        position: 'absolute',
+
+        left: 37, flexDirection: 'row'
+      }}>
+        <View style={[styles.row, { marginVertical: 3 }]}>
           <Text style={styles.textinhos}>Preços:</Text>
           {/* <Text style={styles.numeros}>{item.cheap}$</Text> */}
           <Text style={styles.numeros}>{item.medium}$</Text>
@@ -20,10 +30,10 @@ export default function Produtos({ item }) {
         </View>
       </View>
       {item.pollution ? <View style={styles.poluicaoView}>
-            <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 32, height: 32, marginLeft: 1 }} />
-            <Text style={styles.poluicao}>{item.pollution}</Text>
-          </View> : <View></View>}
-          
+        <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 25, height: 25, marginRight: 2 }} />
+        <Text style={styles.poluicao}>{item.pollution}</Text>
+      </View> : <View></View>}
+
     </View>
   );
 }
@@ -49,12 +59,18 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    marginVertical: 10
+    marginVertical: 10,
+    position: 'absolute',
+    top: 10,
+    left: 20
   },
   textos: {
     fontFamily: 'Rubik_700Bold',
     fontSize: 16,
-    alignSelf: 'center',
+  },
+  pacotes: {
+    fontFamily: 'Rubik_300Light',
+    fontSize: 13,
   },
   textinhos: {
     fontFamily: 'Rubik_700Bold',
@@ -63,7 +79,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 35,
-    height: 36,
+    height: 35,
     marginRight: 15
   },
   numeros: {
@@ -73,14 +89,14 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   poluicao: {
-    fontSize: 28,
+    fontSize: 22,
     fontFamily: 'Rubik_400Regular',
     color: '#FF0000'
   },
   poluicaoView: {
     flexDirection: 'row',
-    position:'absolute',
-    right:30,
-    bottom:20
+    position: 'absolute',
+    right: 30,
+    bottom: 20
   }
 });
