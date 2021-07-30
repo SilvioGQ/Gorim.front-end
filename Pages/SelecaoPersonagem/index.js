@@ -79,7 +79,7 @@ export default function SelecaoPersonagem({ navigation }) {
           </View> :
           <Text style={{
             fontSize: 20,
-            marginVertical: 35,
+            marginVertical: 40,
             textAlign: 'center',
             fontFamily: 'Rubik_300Light'
           }}>AGUARDANDO O INÍCIO DO JOGO.</Text>

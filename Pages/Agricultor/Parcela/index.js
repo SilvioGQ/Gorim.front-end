@@ -45,7 +45,7 @@ export default function Parcela({ route }) {
   const selectItems = () => {
     if (!parcelLand.seed) return setModalText2('Selecione uma semente!');
     if (!parcelLand.fertilizer) return setModalText2('Selecione um fertilizante!');
-    if(parcelLand.pesticide && parcelLand.machine) return setModalText2('Não pode plantar agrotóxico e máquinas ao mesmo tempo!');
+    if(parcelLand.pesticide && parcelLand.machine) return setModalText2('Não pode utilizar agrotóxico e máquinas ao mesmo tempo!');
  
     toPlant(parcelLand);
   }
