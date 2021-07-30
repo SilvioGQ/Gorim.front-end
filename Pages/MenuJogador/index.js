@@ -98,7 +98,7 @@ export default function MenuJogador({ navigation }) {
             <Text style={styles.inferior}>{player.type === 'Agricultor' ? 'Produtividade individual' : 'Lucro individual'}</Text>
           </View>
           <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
-            <Text style={styles.textBar}>{player.pollution}</Text>
+            <Text style={styles.textBar}>{player.pollution.toFixed(2)}</Text>
             <Text style={styles.inferior}>Poluição individual</Text>
           </View>
         </>
