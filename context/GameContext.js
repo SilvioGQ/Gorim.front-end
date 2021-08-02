@@ -12,6 +12,7 @@ const initialState = {
   isConnected: false,
   inGame: false,
   timer: 900,
+  round: 1,
   awaitPlayers: 0,
   globalPollution: 0,
   stage: null,
