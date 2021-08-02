@@ -16,7 +16,7 @@ export default function FilterCenary({ type, setType }) {
 						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Compras</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }}>
-						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Platantação</Text>
+						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Plantação</Text>
 					</TouchableOpacity>
 				</>
 			)}

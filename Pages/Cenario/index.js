@@ -43,7 +43,7 @@ export default function Cenario() {
                   <Text style={styles.inferior2}>{player.type === 'Agricultor' ? 'Produtividade ' : 'Lucro'}</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,0.5)', borderColor: '#BF0000' }]}>
-                  <Text style={styles.numero2}>{player.pollution}</Text>
+                  <Text style={styles.numero2}>{player.pollution.toFixed(2)}</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
               </View>

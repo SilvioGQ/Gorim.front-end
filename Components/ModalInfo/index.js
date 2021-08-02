@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
 import COLORS from '../../resources/colors';
+import { GameContext } from '../../context/GameContext';
 const Tela = Dimensions.get('screen').width;
-export default function ModalInfo({ text, onClick, modalImage }) {
-
+export default function ModalInfo({ text, onClick, modalImage, title }) {
+  const { player } = useContext(GameContext);
   return (
     <Modal
       animationType="fade"
@@ -11,6 +12,11 @@ export default function ModalInfo({ text, onClick, modalImage }) {
     >
       <View style={styles.modal}>
         <View style={styles.container}>
+          {title && (
+            <>
+                <Text style={{ marginVertical: 10, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 24 }}>{player.type === 'Agricultor' ? 'Agricultor' : 'Empresário'}</Text>
+            </>
+          )}
           <Text style={styles.loading}>{text}</Text>
           {modalImage && (
             <>
@@ -44,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.bgColorSecondary,
-    padding: 25,
+    padding: 20,
     borderRadius: 30,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
   loading: {
     fontFamily: 'Rubik_300Light',
     fontSize: 18,
-    textAlign: "center",
-    marginBottom: 15,
+    textAlign:'justify',
+    marginBottom: 25,
   },
 })

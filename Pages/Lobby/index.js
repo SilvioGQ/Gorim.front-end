@@ -44,7 +44,7 @@ export default function Lobby({ navigation }) {
         <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} /> :
         <Text style={{
           fontSize: 20,
-          marginVertical: 40,
+          marginVertical: 55,
           textAlign: 'center',
           fontFamily: 'Rubik_300Light'
         }}>AGUARDANDO JOGADORES.</Text>

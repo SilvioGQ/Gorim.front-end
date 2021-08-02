@@ -150,7 +150,7 @@ export default function Parcela({ route }) {
         </TouchableOpacity>
         <DropDown items={player.inventory} type={'Maquina'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
 
-        {parcelLand.spray && <Text style={{ fontSize: 22, textAlign: 'center', fontFamily:'Rubik_700Bold' }}>Pulverizador ativo</Text>}
+        {parcelLand.spray && <Text style={{ fontSize: 18, textAlign: 'center', fontFamily:'Rubik_700Bold' }}>Pulverizador ativo</Text>}
         {!parcelLand.spray && (
           <TouchableOpacity style={styles.button} onPress={toPulverize}>
             <Text style={styles.buttonText}>PULVERIZAR</Text>
