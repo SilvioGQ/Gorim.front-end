@@ -13,7 +13,7 @@ const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const { players, player, awaitPlayers, stage, notify } = useContext(GameContext);
+  const { players, player, awaitPlayers, stage, notify, round } = useContext(GameContext);
   //   const [notificationScene, setNotificationScene] = useState(false);
   //   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
@@ -30,7 +30,7 @@ export default function MenuJogador({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Rodada'} setModalVisible={setModalVisible} />
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}° Rodada`} setModalVisible={setModalVisible} />
       <Header />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {player.type === 'Agricultor' && (
