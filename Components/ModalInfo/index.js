@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
 import COLORS from '../../resources/colors';
 import { GameContext } from '../../context/GameContext';
@@ -14,17 +14,37 @@ export default function ModalInfo({ text, onClick, modalImage, title }) {
         <View style={styles.container}>
           {title && (
             <>
-                <Text style={{ marginVertical: 10, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 24 }}>{player.type === 'Agricultor' ? 'Agricultor' : 'Empresário'}</Text>
+              <Text style={{ marginVertical: 10, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 24 }}>{player.type === 'Agricultor' ? 'Agricultor' : 'Empresário'}</Text>
             </>
           )}
           <Text style={styles.loading}>{text}</Text>
           {modalImage && (
-            <>
+            <View style={{padding: 15, marginRight:25}}>
               <View style={{ flexDirection: 'row' }}>
-                <Image source={require('../../assets/agricultorIcones/Barril.png')} style={{ width: 25, height: 25 }} />
-                <Text style={{ marginBottom: 15, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 18 }}> Indica A poluição do produto</Text>
+                <View style={{ width: 32, height:30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
+                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf:'center' }}>0+</Text>
+                </View>
+                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica quanto o item faz de produtividade</Text>
               </View>
-            </>
+                <View style={{ flexDirection: 'row' }}>
+                  <View style={{ width: 32, height:30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
+                    <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf:'center' }}>0x</Text>
+                  </View>
+                  <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica o número para multiplacar o valor de produtividade da semente</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                <View style={{ width: 32, height:30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
+                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf:'center'}}>0+</Text>
+                </View>
+                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica quanto o item faz de poluição</Text>
+              </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <View style={{ width: 32, height:30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
+                    <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf:'center' }}>0x</Text>
+                  </View>
+                  <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica o número para multiplacar multiplaca o valor da poluição da semente</Text>
+                </View>
+            </View>
           )}
           <TouchableOpacity
             style={{ borderRadius: 20, padding: 10, elevation: 5, backgroundColor: COLORS.successButton, alignItems: 'center', width: 250 }}
@@ -51,18 +71,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.bgColorSecondary,
     padding: 20,
+    margin: 20,
     borderRadius: 30,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    margin: 20
   },
   loading: {
     fontFamily: 'Rubik_300Light',
     fontSize: 18,
-    textAlign:'justify',
+    textAlign: 'justify',
     marginBottom: 25,
   },
 })

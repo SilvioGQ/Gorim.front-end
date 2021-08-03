@@ -91,7 +91,7 @@ export default function MenuJogador({ navigation }) {
           </View>
         </View>
       )}
-      {Height >= 780 && (
+      {Height >= 720 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00',  borderColor: '#8ACF3A' }]}>
             <Text style={styles.textBar}>{player.productive}</Text>
