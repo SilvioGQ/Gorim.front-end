@@ -36,10 +36,10 @@ export default function Produtos({ item }) {
         bottom: 20,
       }}>
         <View style={{ padding: 5, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight:5 }}>
-          <Text style={{ fontFamily: '300_Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18 }}>{item.productive}{item.type === 'Semente' ? '+' : 'x'}</Text>
+          <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18 }}>{item.productive}{item.type === 'Semente' ? '+' : 'x'}</Text>
         </View>
         {item.pollution ? <View style={{ padding: 5, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5 }}>
-          <Text style={{ fontFamily: '300_Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18 }}>{item.pollution}{item.type === 'Semente' ? '+' : 'x'}</Text>
+          <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18 }}>{item.pollution}{item.type === 'Semente' ? '+' : 'x'}</Text>
         </View> : <View></View>}
       </View>
 

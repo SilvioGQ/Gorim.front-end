@@ -31,7 +31,7 @@ export default function AnalisarProdutos() {
       <Rodada name={'Analisar produtos'} />
       <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }}>
         <Text style={styles.header}>Produtos</Text>
-        <TouchableOpacity onPress={() => setModalText('Informações em tela: \nIcones e nomes dos produtos que podem ser usados nas parcelas de terra')}>
+        <TouchableOpacity onPress={() => setModalText('Legenda:')}>
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
         </TouchableOpacity>
       </View>

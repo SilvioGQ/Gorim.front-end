@@ -15,7 +15,6 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
   const [type, setType] = useState('transfer');
   const { player, logs, disableNotifyScene } = useContext(GameContext);
-
   useEffect(() => {
     disableNotifyScene();
   }, []);
@@ -33,7 +32,7 @@ export default function Cenario() {
             />
             <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
           </View>
-          {Height <= 780 && (
+          {Height <= 720 && (
             <>
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
               <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
@@ -42,7 +41,7 @@ export default function Cenario() {
                   <Text style={styles.numero2}>{player.productive}</Text>
                   <Text style={styles.inferior2}>{player.type === 'Agricultor' ? 'Produtividade ' : 'Lucro'}</Text>
                 </View>
-                <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,0.5)', borderColor: '#BF0000' }]}>
+                <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,1)', borderColor: '#BF0000', opacity: 0.7, }]}>
                   <Text style={styles.numero2}>{player.pollution.toFixed(2)}</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
@@ -141,6 +140,7 @@ const styles = StyleSheet.create({
   coloridos: {
     backgroundColor: '#8ACF3A',
     borderWidth: 1,
+
     borderColor: COLORS.successButton,
     margin: 5,
     width: 145,
