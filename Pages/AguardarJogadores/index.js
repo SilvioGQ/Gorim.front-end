@@ -12,7 +12,7 @@ export default function AguardarJogadores({ navigation }) {
   const { players, player, awaitPlayers, stage } = useContext(GameContext);
   const [round, setRound] = useState(false)
   useEffect(() => {
-    if(awaitPlayers === players.length && !round){
+    if(awaitPlayers === players.length && !round && player.host){
       endRound();
       setRound(true);
     }
