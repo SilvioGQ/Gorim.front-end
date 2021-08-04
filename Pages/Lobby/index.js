@@ -47,7 +47,7 @@ export default function Lobby({ navigation }) {
           marginVertical: 55,
           textAlign: 'center',
           fontFamily: 'Rubik_300Light'
-        }}>AGUARDANDO JOGADORES.</Text>
+        }}>{10 === players.length ? 'AGUARDANDO HOST INICIAR.' : 'AGUARDANDO JOGADORES.'}</Text>
       }
     </View>
   );

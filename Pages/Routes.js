@@ -29,6 +29,7 @@ import AnalisarProdutos from './Agricultor/AnalisarProdutos';
 import CriarPartida from './CriarPartida';
 import Lobby from './Lobby';
 import MenuJogador from './MenuJogador';
+import Status from './Status';
 
 const Stack = createStackNavigator();
 
@@ -117,6 +118,11 @@ export default function Routes() {
         headerTransparent: true,
         headerTitle: '',
         headerTintColor: 'white',
+      }} />
+      <Stack.Screen name="Status" component={Status} options={{
+        headerTransparent: true,
+        headerTitle: '',
+        headerLeft: () => null,
       }} />
     </Stack.Navigator>
   )

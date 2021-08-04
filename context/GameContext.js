@@ -81,6 +81,9 @@ const GameProvider = (props) => {
       // setStartTimer(false);
       dispatch({ type: 'STEPFINISH', payload: ['STEPFINISH', awaitPlayers] });
     });
+    socket.on('endRound', (round) =>{
+      dispatch({ type: 'CHANGEDATA', payload: ['ENDROUND', round]})
+    })
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
     });
@@ -191,6 +194,10 @@ const stepFinish = () => {
   socket.emit('stepFinish');
 }
 
+const endRound = () =>{
+  socket.emit('endRound');
+}
+
 export {
   GameContext,
   GameProvider,
@@ -211,5 +218,6 @@ export {
   confirmOfferAll,
   confirmOffer,
   rejectOffer,
-  stepFinish
+  stepFinish,
+  endRound
 };

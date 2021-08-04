@@ -82,7 +82,7 @@ export default function SelecaoPersonagem({ navigation }) {
             marginVertical: 40,
             textAlign: 'center',
             fontFamily: 'Rubik_300Light'
-          }}>AGUARDANDO O INÍCIO DO JOGO.</Text>
+          }}>{avatars.length === players.length ? 'AGUARDANDO HOST INICIAR' : 'AGUARDANDO JOGADORES.' }</Text>
         }
       </ScrollView>
     </View>
