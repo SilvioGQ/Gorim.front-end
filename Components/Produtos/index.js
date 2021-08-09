@@ -23,7 +23,7 @@ export default function Produtos({ item }) {
         left: 37, flexDirection: 'row'
       }}>
         <View style={[styles.row, { marginVertical: 3 }]}>
-          <Text style={styles.textinhos}>Preços:</Text>
+          <Text style={styles.textinhos}>Preço:</Text>
           {/* <Text style={styles.numeros}>{item.cheap}$</Text> */}
           <Text style={styles.numeros}>{item.medium}$</Text>
           {/* <Text style={styles.numeros}>{item.expensive}$</Text> */}

@@ -9,7 +9,7 @@ import IMAGES from '../../resources/imagesIcons';
 export default function Status({ navigation }) {
   
   const { player, globalPollution, data: round } = useContext(GameContext);
-
+  // const valor = player.coin + player.productive - (player.productive*round.tax/100)
   return (
     <View style={{ backgroundColor: COLORS.bgColorPrimary, flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -20,22 +20,22 @@ export default function Status({ navigation }) {
             <Image source={IMAGES[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Seu dinheiro: {player.coin}</Text>
+              <Text style={styles.text3}>Seu dinheiro: {player.coin}$</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição Mundial: {globalPollution}%</Text>
+              <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'}: {player.productive}</Text>
+              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'}: {player.productive}$</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição: {player.pollution}</Text>
+              <Text style={styles.text3}>Poluição: {player.pollution.toFixed(1)}</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Imposto pago: {round.tax}%</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Multa à pagar: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>
+              <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Produtividade global: 70%</Text>
