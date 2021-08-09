@@ -39,7 +39,7 @@ export default function AnalisarProdutos() {
       {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage={true} />}
       {stage === 'GETPRODUCTS' && (
         <FlatList
-          data={selectType()}
+          data={selectType().sort((a, b) => a.name.localeCompare(b.name))}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <Produtos item={item} />}
         />

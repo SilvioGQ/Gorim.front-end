@@ -9,6 +9,7 @@ import IMAGES from '../../resources/imagesIcons';
 export default function Status({ navigation }) {
   
   const { player, globalPollution, data: round } = useContext(GameContext);
+  console.log(round)
   // const valor = player.coin + player.productive - (player.productive*round.tax/100)
   return (
     <View style={{ backgroundColor: COLORS.bgColorPrimary, flex: 1 }}>
@@ -32,7 +33,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Poluição: {player.pollution.toFixed(1)}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Imposto pago: {round.tax}%</Text>
+              <Text style={styles.text3}>Imposto pago:  {round.tax}%</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>
