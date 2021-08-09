@@ -35,12 +35,12 @@ export default function Status({ navigation }) {
             <View style={styles.circulo}>
               <Text style={styles.text3}>Imposto pago:  {round.tax}%</Text>
             </View>
-            <View style={styles.circulo}>
+            {/* <View style={styles.circulo}>
               <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Produtividade global: 70%</Text>
-            </View>
+            </View> */}
             <View style={styles.botao}>
               {/* <Button onClick={() => { navigation.navigate('') }} name={'AVANÇAR'} /> */}
             </View>
