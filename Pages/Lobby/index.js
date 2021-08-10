@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 32,
     fontFamily: 'Rubik_300Light',
-    marginTop: 5,
+    paddingTop: 7,
     textAlign: 'center',
     alignItems: 'center',
     lineHeight: 32

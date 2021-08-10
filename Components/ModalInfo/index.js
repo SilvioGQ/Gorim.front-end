@@ -30,7 +30,7 @@ export default function ModalInfo({ text, onClick, modalImage, title }) {
                   <View style={{ width: 32, height:30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
                     <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf:'center' }}>0x</Text>
                   </View>
-                  <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica o número para multiplacar o valor de produtividade da semente</Text>
+                  <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica o número para multiplicar o valor de produtividade da semente</Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
                 <View style={{ width: 32, height:30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
@@ -42,7 +42,7 @@ export default function ModalInfo({ text, onClick, modalImage, title }) {
                   <View style={{ width: 32, height:30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
                     <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf:'center' }}>0x</Text>
                   </View>
-                  <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica o número para multiplacar multiplaca o valor da poluição da semente</Text>
+                  <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica o número para multiplicar o valor da poluição da semente</Text>
                 </View>
             </View>
           )}
