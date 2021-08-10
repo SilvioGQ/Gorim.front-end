@@ -23,8 +23,6 @@ export default function Cenario() {
     getTax();
     disableNotifyScene();
   }, []);
-
-  // if (stage === 'GETTAX') console.log(tax);
   console.log(tax);
 
   return (
@@ -44,7 +42,7 @@ export default function Cenario() {
           <View style={styles.numeros}>
             <View style={styles.bloquinho}>
               <Text style={styles.numero}>
-                {stage === 'GETTAX' && tax.percentual ? `${tax.percentual}%` : `${tax.value}$`}
+                {stage === 'GETTAX' && (tax.percentual ? `${tax.percentual}%` : `${tax.value}$`)}
               </Text>
               <Text style={styles.inferior}>
                 Imposto
@@ -93,8 +91,8 @@ export default function Cenario() {
               </View>
             </>
           )}
-          <FilterCenary type={type} setType={setType} />
           <Text style={styles.texto}>Histórico:</Text>
+          <FilterCenary type={type} setType={setType} />
           {logs.filter((item) => {
             if (item.type == type) {
               return item
