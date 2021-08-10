@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, Fragment, useState } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { GameContext } from '../../context/GameContext';
 
 import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
@@ -8,19 +8,21 @@ import Coin from '../../Components/Coin';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../resources/colors';
 import Rodada from '../../Components/Rodada';
+import ModalInfo from '../../Components/ModalInfo';
 import FilterCenary from '../../Components/FilterCenary';
 import HistoricosDinheiro from '../../Components/HistóricosDinheiro';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
+  const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
-  const { player, logs, disableNotifyScene } = useContext(GameContext);
+  const { player, logs, disableNotifyScene, globalPollution } = useContext(GameContext);
   useEffect(() => {
     disableNotifyScene();
   }, []);
 
   return (
-    <View style={{backgroundColor:COLORS.bgColorPrimary, height: Height}}>
+    <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
       <Rodada name={'Cenário'} />
       <ScrollView>
         <View style={styles.container}>
@@ -32,6 +34,43 @@ export default function Cenario() {
             />
             <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
           </View>
+          <Text style={styles.texto}>Informações gerais:</Text>
+          <View style={styles.numeros}>
+            <View style={styles.bloquinho}>
+              <Text style={styles.numero}>
+                { }
+              </Text>
+              <Text style={styles.inferior}>
+                Imposto
+              </Text>
+              <TouchableOpacity onPress={() => setModalText('Legenda:')}>
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
+              </TouchableOpacity>
+            </View >
+            <View style={styles.bloquinho}>
+              <Text style={styles.numero}>
+                {'100%'}
+              </Text>
+              <Text style={styles.inferior}>
+                Produtividade
+              </Text>
+              <TouchableOpacity onPress={() => setModalText('Legenda:')}>
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
+              </TouchableOpacity>
+            </View >
+            <View style={styles.bloquinho}>
+              <Text style={[styles.numero, { color: '#BF0000' }]}>
+                {globalPollution}%
+              </Text>
+              <Text style={styles.inferior}>
+                Poluição
+              </Text>
+              <TouchableOpacity onPress={() => setModalText('Legenda:')}>
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
+              </TouchableOpacity>
+            </View >
+          </View>
+          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText}/>}
           {Height <= 720 && (
             <>
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
@@ -112,8 +151,8 @@ const styles = StyleSheet.create({
   },
   bloquinho: {
     backgroundColor: COLORS.bgColorSecondary,
-    width: 66,
-    height: 84,
+    width: 85,
+    height: 85,
     alignItems: 'center',
     textAlign: 'center',
     borderRadius: 20,
@@ -129,11 +168,12 @@ const styles = StyleSheet.create({
   numero: {
     fontSize: 24,
     fontFamily: 'Rubik_300Light',
-    color: '#FF9900',
-    marginTop: '30%'
+    color: '#66BF00',
+    marginTop: '15%'
   },
   inferior: {
     fontSize: 10,
+    marginTop: 2,
     fontFamily: 'Rubik_300Light'
   },
   coloridos: {
