@@ -18,6 +18,9 @@ export default function FilterCenary({ type, setType }) {
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }}>
 						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Plantação</Text>
 					</TouchableOpacity>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
+						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Multa</Text>
+					</TouchableOpacity>
 				</>
 			)}
 			{player.type === 'Empresário' && (
@@ -28,6 +31,9 @@ export default function FilterCenary({ type, setType }) {
 					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }}>
 						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Vendas</Text>
 					</TouchableOpacity>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
+						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Multa</Text>
+					</TouchableOpacity>
 				</>
 			)}
 		</View>
@@ -36,13 +42,13 @@ export default function FilterCenary({ type, setType }) {
 
 const styles = StyleSheet.create({
 	buttonAgr: {
-		width: '30%',
+		width: '23%',
 		height: 40,
 		borderRadius: 50,
 		borderWidth: 1
 	},
 	buttonEmp: {
-		width: '44%',
+		width: '30%',
 		height: 40,
 		borderRadius: 50,
 		borderWidth: 1
