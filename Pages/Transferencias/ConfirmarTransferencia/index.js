@@ -15,7 +15,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   const make = () => {
     makeTransfer(count, idDest);
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferencia foi concluída!' } }] });
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
   }
   
   return (
