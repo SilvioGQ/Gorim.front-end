@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, Fragment, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-import { GameContext } from '../../context/GameContext';
+import { GameContext, getTax } from '../../context/GameContext';
 
 import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
@@ -11,15 +11,21 @@ import Rodada from '../../Components/Rodada';
 import ModalInfo from '../../Components/ModalInfo';
 import FilterCenary from '../../Components/FilterCenary';
 import HistoricosDinheiro from '../../Components/HistóricosDinheiro';
+
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
-  const { player, logs, disableNotifyScene, globalPollution } = useContext(GameContext);
+  const { player, logs, disableNotifyScene, data: tax, stage, globalPollution, globalProduction } = useContext(GameContext);
+
   useEffect(() => {
+    getTax();
     disableNotifyScene();
   }, []);
+
+  // if (stage === 'GETTAX') console.log(tax);
+  console.log(tax);
 
   return (
     <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
@@ -38,7 +44,7 @@ export default function Cenario() {
           <View style={styles.numeros}>
             <View style={styles.bloquinho}>
               <Text style={styles.numero}>
-                { }
+                {stage === 'GETTAX' && tax.percentual ? `${tax.percentual}%` : `${tax.value}$`}
               </Text>
               <Text style={styles.inferior}>
                 Imposto
@@ -49,7 +55,7 @@ export default function Cenario() {
             </View >
             <View style={styles.bloquinho}>
               <Text style={styles.numero}>
-                {'100%'}
+                {globalProduction}%
               </Text>
               <Text style={styles.inferior}>
                 Produtividade
