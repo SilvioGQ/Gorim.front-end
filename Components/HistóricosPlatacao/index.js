@@ -6,26 +6,34 @@ import IMAGES from '../../resources/imagesProducts';
 export default function HistoricosPlatacao({ item }) {
   return (
     <View style={styles.container}>
-      <Image style={styles.imageParcel} source={require('../../assets/agricultorIcones/Parcela.png')} />
-      <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 13 }} source={IMAGES[item.product.seed]} />
-      <Image style={styles.imageParcel} source={require('../../assets/agricultorIcones/Parcela.png')} />
-      <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 70 }} source={IMAGES[item.product.fertilizer]} />
+      <Text style={styles.numero}>1º</Text>
+      <View>
+      <Image style={styles.imagensproduto} source={IMAGES[item.product.seed]} />
+        <Text style={styles.textproduto}>{item.product.seed}</Text>
+      </View>
+      {item.product.fertilizer != null &&( 
+      <View>
+      <Image style={styles.imagensproduto} source={IMAGES[item.product.fertilizer]} />
+        <Text style={styles.textproduto}>{item.product.fertilizer.replace(/Fertilizante /,'')}</Text>
+      </View>
+      )}
       {item.product.pesticide != null && (
-        <>
-          <Image style={styles.imageParcel} source={require('../../assets/agricultorIcones/Parcela.png')} />
-          <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 135 }} source={IMAGES[item.product.pesticide]} />
-        </>
+        <View>
+          <Image style={styles.imagensproduto} source={IMAGES[item.product.pesticide]} />
+          <Text style={styles.textproduto}>{item.product.pesticide.replace(/Agrotóxico /, '')}</Text>
+        </View>
       )}
       {item.product.machine != null && (
-        <>
-        <View style={{width: 60, height: 60}}/>
-          <Image style={{ position: 'absolute', width: 35, height: 35, top: 10, left: 135 }} source={IMAGES[item.product.machine]} />
-        </>
+        <View>
+          <Image style={styles.imagensproduto} source={IMAGES[item.product.machine]} />
+          <Text style={styles.textproduto}>{item.product.machine}</Text>
+        </View>
       )}
       {item.product.spray && (
-        <>
-          <Image style={{ width: 35, height: 35, marginLeft:10, marginTop:5 }} source={IMAGES['Pulverizador']} />
-        </>
+        <View>
+          <Image style={styles.imagensproduto} source={IMAGES['Pulverizador']} />
+          <Text style={styles.textproduto}>Pulverizador</Text>
+        </View>
       )}
     </View>
   );
@@ -34,11 +42,24 @@ export default function HistoricosPlatacao({ item }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: COLORS.bgColorPrimary,
-    marginVertical: 10,
+    backgroundColor: '#C8EEDE',
+    marginVertical: 7,
+    padding: 15,
+    borderRadius: 17
   },
-  imageParcel: {
-    height: 60,
-    width: 60,
+  imagensproduto: {
+    width: 35,
+    height: 35,
+    marginRight: 10,
+    marginLeft: 10,
+    alignSelf: 'center'
+  },
+  textproduto: {
+    fontSize: 13,
+    marginRight: 10,
+    marginLeft: 10
+  },
+  numero: {
+    fontSize: 16,
   },
 });
