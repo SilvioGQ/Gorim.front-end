@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, Fragment, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
-import { GameContext } from '../../context/GameContext';
+import { GameContext, getTax } from '../../context/GameContext';
 
 import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
@@ -10,14 +10,21 @@ import COLORS from '../../resources/colors';
 import Rodada from '../../Components/Rodada';
 import FilterCenary from '../../Components/FilterCenary';
 import HistoricosDinheiro from '../../Components/HistóricosDinheiro';
+
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
+
   const [type, setType] = useState('transfer');
-  const { player, logs, disableNotifyScene } = useContext(GameContext);
+  const { player, logs, disableNotifyScene, data: tax, stage } = useContext(GameContext);
+
   useEffect(() => {
+    getTax();
     disableNotifyScene();
   }, []);
+
+  // if (stage === 'GETTAX') console.log(tax);
+  console.log(tax);
 
   return (
     <View style={{backgroundColor:COLORS.bgColorPrimary, height: Height}}>

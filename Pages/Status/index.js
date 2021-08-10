@@ -33,7 +33,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Poluição: {player.pollution.toFixed(1)}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Imposto pago:  {round.tax}%</Text>
+              <Text style={styles.text3}>Imposto pago:  {round.tax.percentual}% ({round.tax.value})</Text>
             </View>
             {/* <View style={styles.circulo}>
               <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>
