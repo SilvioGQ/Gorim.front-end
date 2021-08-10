@@ -21,23 +21,23 @@ export default function Status({ navigation }) {
             <Image source={IMAGES[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Seu dinheiro: {player.coin}$</Text>
-            </View>
-            <View style={styles.circulo}>
               <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'}: {player.productive}$</Text>
+              <Text style={styles.text3}>Poluição individual: {player.pollution.toFixed(1)}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição: {player.pollution.toFixed(1)}</Text>
+              <Text style={styles.text3}>Imposto pago: {round.tax.value}$ {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Imposto pago:  {round.tax}%</Text>
+              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'}: {player.totalProduction}$</Text>
+            </View>
+            <View style={styles.circulo}>
+              <Text style={styles.text3}>Seu dinheiro: {player.coin}$</Text>
             </View>
             {/* <View style={styles.circulo}>
               <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>
-            </View>
+              </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Produtividade global: 70%</Text>
             </View> */}
