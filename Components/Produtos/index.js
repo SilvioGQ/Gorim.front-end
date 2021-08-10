@@ -14,6 +14,8 @@ export default function Produtos({ item }) {
           {item.name == 'Pacote 1' && <Text style={styles.pacotes}>Semeadora</Text>}
           {item.name == 'Pacote 2' && <Text style={styles.pacotes}>Semeadora e Colheitadera</Text>}
           {item.name == 'Pacote 3' && <Text style={styles.pacotes}>Semeadora, Colheitadera e Drone</Text>}
+          {item.name == 'Arroz' && <Text style={styles.sementes}>Multiplica por 2 a produtividade da parcela {'\n'} quando usado com agrótoxico.</Text>}
+          {item.name == 'Soja' && <Text style={styles.sementes}>Multiplica por 3 a produtividade da parcela {'\n'} quando usado com agrótoxico.</Text>}
         </View>
       </View>
 
@@ -79,7 +81,11 @@ const styles = StyleSheet.create({
   },
   pacotes: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 13,
+    fontSize: 12,
+  },
+  sementes: {
+    fontFamily: 'Rubik_300Light',
+    fontSize: 10,
   },
   textinhos: {
     fontFamily: 'Rubik_700Bold',

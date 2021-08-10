@@ -30,7 +30,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Imposto pago: {round.tax.value}$ {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'}: {player.totalProduction}$</Text>
+              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'}: {player.productive}$</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Seu dinheiro: {player.coin}$</Text>

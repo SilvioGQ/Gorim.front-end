@@ -62,6 +62,9 @@ const GameProvider = (props) => {
     socket.on('getAdverts', (adverts) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETADVERTS', adverts] });
     });
+    socket.on('getTax', (tax) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['GETTAX', tax] });
+    });
     socket.on('getLogs', (logs) => {
       dispatch({ type: 'GETLOGS', payload: logs });
     });
@@ -89,6 +92,9 @@ const GameProvider = (props) => {
     });
     socket.on('updateGlobalPollution', (pollution) => {
       dispatch({ type: 'UPDATEGLOBALPOLLUTION', payload: pollution });
+    });
+    socket.on('updateGlobalProduction', (production) => {
+      dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
@@ -194,6 +200,10 @@ const stepFinish = () => {
   socket.emit('stepFinish');
 }
 
+const getTax = () => {
+  socket.emit('getTax');
+}
+
 const endRound = () =>{
   socket.emit('endRound');
 }
@@ -218,6 +228,7 @@ export {
   confirmOfferAll,
   confirmOffer,
   rejectOffer,
+  getTax,
   stepFinish,
   endRound
 };

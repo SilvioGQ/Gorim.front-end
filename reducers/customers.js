@@ -4,6 +4,7 @@ const initialState = {
   timer: 900,
   round: 1,
   awaitPlayers: 0,
+  globalProduction: 100,
   globalPollution: 0,
   stage: null,
   players: [],
@@ -102,6 +103,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         globalPollution: action.payload
+      };
+    case 'UPDATEGLOBALPRODUCTION':
+      return {
+        ...state,
+        globalProduction: action.payload
       };
     case 'DISCONNECTED':
       return {
