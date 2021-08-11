@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 
-const socket = io(API_URL_HERO, {
+const socket = io(API_URL_LOCAL, {
   autoConnect: false
 });
 
@@ -95,6 +95,9 @@ const GameProvider = (props) => {
     });
     socket.on('updateGlobalProduction', (production) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
+    });
+    socket.on('nextRound', () => {
+      dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
@@ -208,6 +211,10 @@ const endRound = () =>{
   socket.emit('endRound');
 }
 
+const nextRound = () =>{
+  socket.emit('nextRound');
+}
+
 export {
   GameContext,
   GameProvider,
@@ -230,5 +237,6 @@ export {
   rejectOffer,
   getTax,
   stepFinish,
-  endRound
+  endRound,
+  nextRound
 };

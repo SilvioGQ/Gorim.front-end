@@ -109,6 +109,14 @@ const reducer = (state, action) => {
         ...state,
         globalProduction: action.payload
       };
+    case 'NEXTROUND':
+      return {
+        ...state,
+        stage: action.payload,
+        round: state.round + 1,
+        timer: initialState.timer,
+        awaitPlayers: initialState.awaitPlayers,
+      };
     case 'DISCONNECTED':
       return {
         ...state,

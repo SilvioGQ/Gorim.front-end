@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
-import { GameContext } from '../../context/GameContext';
+import { GameContext, nextRound } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
 import Button from '../../Components/Button';
@@ -8,9 +8,23 @@ import IMAGES from '../../resources/imagesIcons';
 
 export default function Status({ navigation }) {
   
-  const { player, globalPollution, data: round } = useContext(GameContext);
-  console.log(round)
-  // const valor = player.coin + player.productive - (player.productive*round.tax/100)
+  const { player, globalPollution, data: round, stage } = useContext(GameContext);
+  const [countdown, setCountdown] = useState(15);
+
+  useEffect(() => {
+    if (stage === 'NEXTROUND') navigation.navigate('MenuJogador');
+
+    let interval = setInterval(() => {
+      if (countdown === 0 && player.host) {
+        nextRound();
+      } else if (countdown > 0){
+        setCountdown(countdown - 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [countdown, stage]);
+
   return (
     <View style={{ backgroundColor: COLORS.bgColorPrimary, flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -42,6 +56,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Produtividade global: 70%</Text>
             </View> */}
             <View style={styles.botao}>
+              <Text>{countdown}</Text>
               {/* <Button onClick={() => { navigation.navigate('') }} name={'AVANÇAR'} /> */}
             </View>
           </View>
