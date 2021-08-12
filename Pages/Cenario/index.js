@@ -47,7 +47,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Imposto
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito</Text>)}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito. {'\n'}  {/*<Image source={require('../../assets/Imposto.png')} style={{ width:300, height:122}}/>*/}</Text>)}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -58,7 +58,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Produtividade
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Produtividade: é todo seu lucro na rodada, ele depende da poluição, quanto maior sua poluição menor será seus lucros. Siga a tabela a baixo {'\n'}</Text>)}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Produtividade: é todo seu lucro na rodada, ele depende da poluição, quanto maior sua poluição menor será seus lucros. Siga a tabela a baixo {/*<Image source={require('../../assets/tabelaprod.png')} style={{width:287, height:255, marginTop:10, marginLeft:15}}/>*/} </Text> )}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >

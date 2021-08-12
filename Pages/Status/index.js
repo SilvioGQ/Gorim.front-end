@@ -8,19 +8,18 @@ import IMAGES from '../../resources/imagesIcons';
 
 export default function Status({ navigation }) {
   
-  const { player, globalPollution, data: round, stage } = useContext(GameContext);
-  const [countdown, setCountdown] = useState(15);
+  const { player, globalPollution, data: round, stage, globalProduction } = useContext(GameContext);
+  const [countdown, setCountdown] = useState(30);
 
   useEffect(() => {
     if (stage === 'NEXTROUND') navigation.navigate('MenuJogador');
-
     let interval = setInterval(() => {
       if (countdown === 0 && player.host) {
         nextRound();
       } else if (countdown > 0){
         setCountdown(countdown - 1);
       }
-    }, 1000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [countdown, stage]);
@@ -44,10 +43,10 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Imposto pago: {round.tax.value}$ {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'}: {player.productive}$</Text>
+              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'} : {round.totalProduction}$ = ({globalProduction}%)</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Seu dinheiro: {player.coin}$</Text>
+              <Text style={styles.text3}>Saldo atual: {player.coin}$</Text>
             </View>
             {/* <View style={styles.circulo}>
               <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>
