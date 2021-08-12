@@ -47,7 +47,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Imposto
               </Text>
-              <TouchableOpacity onPress={() => setModalText('Legenda:')}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito</Text>)}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -58,7 +58,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Produtividade
               </Text>
-              <TouchableOpacity onPress={() => setModalText('Legenda:')}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Produtividade: é todo seu lucro na rodada, ele depende da poluição, quanto maior sua poluição menor será seus lucros. Siga a tabela a baixo {'\n'}</Text>)}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -69,7 +69,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Poluição
               </Text>
-              <TouchableOpacity onPress={() => setModalText('Legenda:')}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>)}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -139,6 +139,11 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginVertical: 15,
     marginLeft: 15
+  },
+  legenda: {
+    fontFamily: 'Rubik_400Regular',
+    fontSize: 13,
+    textAlign: 'left',
   },
   numeros: {
     flexDirection: 'row',

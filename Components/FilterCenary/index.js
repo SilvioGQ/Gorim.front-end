@@ -18,8 +18,8 @@ export default function FilterCenary({ type, setType }) {
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }}>
 						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Plantação</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
-						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Multa</Text>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Multa' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
+						<Text style={[styles.textSmall, { color: type == 'Multa' ? '#fff' : '#000' }]}>Multa</Text>
 					</TouchableOpacity>
 				</>
 			)}
@@ -31,8 +31,8 @@ export default function FilterCenary({ type, setType }) {
 					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }}>
 						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Vendas</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
-						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Multa</Text>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'Multa' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
+						<Text style={[styles.textSmall, { color: type == 'Multa' ? '#fff' : '#000' }]}>Multa</Text>
 					</TouchableOpacity>
 				</>
 			)}
@@ -42,10 +42,10 @@ export default function FilterCenary({ type, setType }) {
 
 const styles = StyleSheet.create({
 	buttonAgr: {
-		width: '23%',
-		height: 40,
+		width: '24%',
+		height: 36,
 		borderRadius: 50,
-		borderWidth: 1
+		borderWidth: 1,
 	},
 	buttonEmp: {
 		width: '30%',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 	},
 	textSmall: {
 		textAlign: 'center',
-		fontSize: 13,
+		fontSize: 12,
 		fontFamily: 'Rubik_300Light',
 		marginTop: 9
 	},
