@@ -8,10 +8,11 @@ import Item from '../../Components/Item';
 import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
 import ModalConfirmExit from '../../Components/ModalConfirmExit';
+import Modal from '../../Components/ModalInfo';
 
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
-
+  const [modalText, setModalText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const { players, player, awaitPlayers, stage, notify, round } = useContext(GameContext);
   //   const [notificationScene, setNotificationScene] = useState(false);
@@ -33,6 +34,9 @@ export default function MenuJogador({ navigation }) {
       <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}° Rodada`} setModalVisible={setModalVisible} />
       <Header />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
+      {modalText !== '' && (
+          <Modal onClick={() => setModalText('')} text={modalText} />
+        )}
       {player.type === 'Agricultor' && (
         <>
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }}>
@@ -95,10 +99,17 @@ export default function MenuJogador({ navigation }) {
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00',  borderColor: '#8ACF3A' }]}>
             <Text style={styles.textBar}>{player.productive}</Text>
-            <Text style={styles.inferior}>{player.type === 'Agricultor' ? 'Produtividade individual' : 'Lucro individual'}</Text>
+            <Text style={styles.inferior}>Produtividade individual</Text>
           </View>
           <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
-            <Text style={styles.textBar}>{player.pollution.toFixed(2)}</Text>
+            <View style={{flexDirection:'row'}}>
+            <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution : player.pollution.toFixed(2)}</Text>
+            {player.type === 'Agricultor' && (
+            <TouchableOpacity onPress={()=>setModalText('Poluição é da soma da poluição de cada parcela dividida por 6')}>
+            <Image source={require('../../assets/agricultorIcones/information.png')} style={{position:'absolute', top:0, left:30, width: 23, height: 23, marginLeft: 10, marginTop:10}}/>
+            </TouchableOpacity>
+            )}
+            </View>
             <Text style={styles.inferior}>Poluição individual</Text>
           </View>
         </>
