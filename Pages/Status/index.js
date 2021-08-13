@@ -9,17 +9,18 @@ import IMAGES from '../../resources/imagesIcons';
 export default function Status({ navigation }) {
   
   const { player, globalPollution, data: round, stage, globalProduction } = useContext(GameContext);
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
     if (stage === 'NEXTROUND') navigation.navigate('MenuJogador');
+
     let interval = setInterval(() => {
       if (countdown === 0 && player.host) {
         nextRound();
       } else if (countdown > 0){
         setCountdown(countdown - 1);
       }
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [countdown, stage]);
