@@ -7,14 +7,12 @@ import { GameContext } from "../../context/GameContext";
 export default function Header() {
 
   const mudarcor = (valor) => {
-    if (valor <= 20) return '#8ACF3A';
-    if (valor > 30 && valor <= 40) return '#FCBB29';
-    if (valor > 40 && valor <= 60) return '#FF5C00';
-    if (valor > 60 && valor <= 80) return '#E70000';
-    if (valor > 80 && valor <= 100) return '#8B0000';
+    if (valor >= 20 && valor <= 50) return '#FF0000';
+    if (valor > 50 && valor <= 80) return '#A50000';
+    if (valor > 80 && valor <= 100) return '#000000';
   }
   const { player, globalPollution } = useContext(GameContext);
-
+console.log(globalPollution)
   return (
     <View style={styles.row}>
       <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}/{player.name}{'\n'}em {player.city}</Text>

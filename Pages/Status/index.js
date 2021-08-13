@@ -9,7 +9,7 @@ import IMAGES from '../../resources/imagesIcons';
 export default function Status({ navigation }) {
   
   const { player, globalPollution, data: round, stage, globalProduction } = useContext(GameContext);
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(15);
 
   useEffect(() => {
     if (stage === 'NEXTROUND') navigation.navigate('MenuJogador');
@@ -19,7 +19,7 @@ export default function Status({ navigation }) {
       } else if (countdown > 0){
         setCountdown(countdown - 1);
       }
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [countdown, stage]);
@@ -43,7 +43,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Imposto pago: {round.tax.value}$ {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>{player.type === 'Empresario' ? 'Lucro' : 'Produtividade'} : {round.totalProduction}$ = ({globalProduction}%)</Text>
+              <Text style={styles.text3}>Produtividade : {round.totalProduction}$ = ({globalProduction}%)</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Saldo atual: {player.coin}$</Text>

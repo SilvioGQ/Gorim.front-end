@@ -58,7 +58,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Produtividade
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Produtividade: é todo seu lucro na rodada, ele depende da poluição, quanto maior sua poluição menor será seus lucros. Siga a tabela a baixo {/*<Image source={require('../../assets/tabelaprod.png')} style={{width:287, height:255, marginTop:10, marginLeft:15}}/>*/} </Text> )}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conferme a tabela abaixo. {/*<Image source={require('../../assets/tabelaprod.png')} style={{width:287, height:255, marginTop:10, marginLeft:15}}/>*/} </Text> )}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -82,7 +82,7 @@ export default function Cenario() {
               <View style={{ flexDirection: 'row', margin: 5 }}>
                 <View style={styles.coloridos}>
                   <Text style={styles.numero2}>{player.productive}</Text>
-                  <Text style={styles.inferior2}>{player.type === 'Agricultor' ? 'Produtividade ' : 'Lucro'}</Text>
+                  <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,1)', borderColor: '#BF0000', opacity: 0.7, }]}>
                   <Text style={styles.numero2}>{player.pollution.toFixed(2)}</Text>
