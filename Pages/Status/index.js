@@ -13,6 +13,7 @@ export default function Status({ navigation }) {
 
   useEffect(() => {
     if (stage === 'NEXTROUND') navigation.navigate('MenuJogador');
+
     let interval = setInterval(() => {
       if (countdown === 0 && player.host) {
         nextRound();

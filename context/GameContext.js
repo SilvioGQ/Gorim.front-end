@@ -120,6 +120,12 @@ const GameProvider = (props) => {
     return () => clearInterval(interval);
   }, [state.timer, startTimer]);
 
+  useEffect(() => {
+    console.log(state.logs)
+    if (state.offers === null) disableNotifyOffers();
+    if (state.logs.length === 0) disableNotifyScene();
+  }, [state.offers, state.logs]);
+
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers}}>
       {props.children}
