@@ -23,7 +23,6 @@ export default function Cenario() {
     getTax();
     disableNotifyScene();
   }, []);
-  console.log(tax);
 
   return (
     <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>

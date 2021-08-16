@@ -6,7 +6,7 @@ import IMAGES from '../../resources/imagesProducts';
 export default function HistoricosPlatacao({ item }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.numero}>{item.id + 1}º</Text>
+      <Text style={styles.numero}>{item.product.id + 1}º</Text>
       <View>
       <Image style={styles.imagensproduto} source={IMAGES[item.product.seed]} />
         <Text style={styles.textproduto}>{item.product.seed}</Text>
