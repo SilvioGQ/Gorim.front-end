@@ -11,6 +11,7 @@ export default function Button({ name, onClick, disabled = false }) {
         style={styles.button}
         onPress={onClick}
         disabled={disabled}
+        activeOpacity={0.7}
       >
         <Text style={styles.text}>{name}</Text>
       </TouchableOpacity>

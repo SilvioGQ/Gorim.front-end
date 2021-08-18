@@ -15,7 +15,7 @@ export default function Candidato() {
           onValueChange={setSelection}
           style={styles.checkbox}
         />
-        <TouchableOpacity onPress={() => { setSelection(!isSelected) }}>
+        <TouchableOpacity onPress={() => { setSelection(!isSelected) }} activeOpacity={0.7}>
           <Text style={styles.candidato}>Me candidato a prefeito!</Text>
         </TouchableOpacity>
       </View>
@@ -25,7 +25,7 @@ export default function Candidato() {
           onValueChange={setSelection2}
           style={styles.checkbox}
         />
-        <TouchableOpacity onPress={() => { setSelection2(!isSelected2) }}>
+        <TouchableOpacity onPress={() => { setSelection2(!isSelected2) }} activeOpacity={0.7}>
           <Text style={styles.candidato}>Me candidato a vereador!</Text>
         </TouchableOpacity>
       </View>
@@ -35,7 +35,7 @@ export default function Candidato() {
           onValueChange={setSelection3}
           style={styles.checkbox}
         />
-        <TouchableOpacity onPress={() => { setSelection3(!isSelected3) }}>
+        <TouchableOpacity onPress={() => { setSelection3(!isSelected3) }} activeOpacity={0.7}>
           <Text style={styles.candidato}>Me candidato a fiscal!</Text>
         </TouchableOpacity>
       </View>

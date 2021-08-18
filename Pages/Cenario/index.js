@@ -46,7 +46,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Imposto
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito. {'\n'}  {/*<Image source={require('../../assets/Imposto.png')} style={{ width:300, height:122}}/>*/}</Text>)}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito. {'\n'}  {/*<Image source={require('../../assets/Imposto.png')} style={{ width:300, height:122}}/>*/}</Text>)} activeOpacity={0.7}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -57,7 +57,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Produtividade
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conferme a tabela abaixo. {/*<Image source={require('../../assets/tabelaprod.png')} style={{width:287, height:255, marginTop:10, marginLeft:15}}/>*/} </Text> )}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conferme a tabela abaixo. {/*<Image source={require('../../assets/tabelaprod.png')} style={{width:287, height:255, marginTop:10, marginLeft:15}}/>*/} </Text>)} activeOpacity={0.7}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -68,7 +68,7 @@ export default function Cenario() {
               <Text style={styles.inferior}>
                 Poluição
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>)}>
+              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>)} activeOpacity={0.7}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >

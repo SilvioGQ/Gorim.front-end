@@ -23,7 +23,7 @@ export default function Prefeitura({ navigation }) {
         />
       </View>
       <View style={styles.row}>
-        <TouchableOpacity onPress={() => navigation.navigate('Prevençao')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Prevençao')} activeOpacity={0.7}>
           <View style={styles.colunm}>
             <Image
               style={styles.icone}
@@ -32,7 +32,7 @@ export default function Prefeitura({ navigation }) {
             <Text style={styles.textinhos}> Medidas de {'\n'} prevenção </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Imposto')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Imposto')} activeOpacity={0.7}>
           <View style={styles.colunm}>
             <Image
               style={{ width: 44, height: 35 }} 
@@ -41,7 +41,7 @@ export default function Prefeitura({ navigation }) {
             <Text style={styles.textinhos}>  Alteração de {'\n'} impostos</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Transferindo')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Transferindo')} activeOpacity={0.7}>
           <View style={styles.colunm}>
             <Image
               style={styles.icone}

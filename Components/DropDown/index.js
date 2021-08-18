@@ -22,14 +22,14 @@ export default function DropDown({ items, type, onClick, display }) {
     <View style={[styles.container, { display: display }]}>
       {inventory.map((item, index) => {
         return (
-          <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}>
+          <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item} activeOpacity={0.7}>
             <Image style={styles.icone} source={IMAGES[item.name]} />
             <Text style={styles.text}>{item.name.replace(/Fertilizante|Agrotóxico/,'')}</Text>
           </TouchableOpacity>
         );
       })}
       {inventory.length === 0 && (
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity style={styles.item} activeOpacity={0.7}>
           <Text style={styles.text}>Sem itens</Text>
         </TouchableOpacity>
       )}

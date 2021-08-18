@@ -24,7 +24,7 @@ export default function Lobby({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}>
+      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)} activeOpacity={0.7}>
         <Image style={styles.image} source={require('../../assets/Logo/FecharPreto.png')} />
       </TouchableOpacity>
       <Text style={styles.textcod}>CÓDIGO DA SALA</Text>

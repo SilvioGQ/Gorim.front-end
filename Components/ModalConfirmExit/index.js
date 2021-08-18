@@ -9,10 +9,10 @@ export default function ModalConfirmExit({ deletePlayer, onClick }) {
         <View style={styles.modal}>
           <View style={styles.container}>
             <Text style={styles.text}>Tem certeza que deseja sair da partida?</Text>
-              <TouchableOpacity style={[styles.button, { marginRight: 20 }]} onPress={onClick} >
+          <TouchableOpacity style={[styles.button, { marginRight: 20 }]} onPress={onClick} activeOpacity={0.7} >
                 <Text style={styles.textButton}>Continuar</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.button, {backgroundColor:COLORS.warningButton}]} onPress={deletePlayer} >
+          <TouchableOpacity style={[styles.button, { backgroundColor: COLORS.warningButton }]} onPress={deletePlayer} activeOpacity={0.7}>
                 <Text style={styles.textButton}>Sair</Text>
               </TouchableOpacity>
           </View>

@@ -63,7 +63,7 @@ export default function Vendas({ navigation, route }) {
         <View style={styles.center}>
           <Image style={styles.person} source={IMAGES[name]} />
           <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /, '')} </Text>
-          <TouchableOpacity onPress={information}>
+          <TouchableOpacity onPress={information} activeOpacity={0.7}>
             <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 20 }} />
           </TouchableOpacity>
         </View>
@@ -77,21 +77,21 @@ export default function Vendas({ navigation, route }) {
         <Text style={styles.textos}> Valor: </Text>
         {stage === 'GETPRODUCTS' && (
           <View style={styles.row}>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={Baixo} />
                 <Text style={styles.categoryprice}>Baixo</Text>
                 <Text style={styles.price}>${product?.cheap}</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.medium)}>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.medium)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={Normal} />
                 <Text style={styles.categoryprice}>Normal</Text>
                 <Text style={styles.price}>${product?.medium}</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)}>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={Alto} />
                 <Text style={styles.categoryprice}>Alto</Text>

@@ -6,7 +6,7 @@ import IMAGES from '../../resources/imagesProducts';
 import IMAGES2 from '../../resources/imagesMenu';
 export default function Item({ onClick, backgroundColor = '#fff', name, type, notification = null}) {
   return (
-    <TouchableOpacity onPress={onClick}>
+    <TouchableOpacity onPress={onClick} activeOpacity={0.7}>
       <View style={[styles.colunm, {backgroundColor:backgroundColor}]}>
         {notification && <View style={{position:'absolute', left:82, width: 18, height: 18, borderRadius: 9, backgroundColor: '#F19F00', shadowColor: "#000",shadowOffset: { width: 0, height: 2,}, shadowOpacity: 0.25, shadowRadius: 3.94,elevation: 6,}} />}
         <Image

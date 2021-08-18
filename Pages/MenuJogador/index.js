@@ -39,7 +39,7 @@ export default function MenuJogador({ navigation }) {
         )}
       {player.type === 'Agricultor' && (
         <>
-          <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }}>
+          <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }} activeOpacity={0.7}>
             <View style={styles.row2}>
               <Image style={{ width: 35, height: 35 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
               <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, alignSelf: 'center', marginLeft: 10 }}>Parcelas de terra</Text>
@@ -105,7 +105,7 @@ export default function MenuJogador({ navigation }) {
             <View style={{flexDirection:'row'}}>
             <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text>
             {player.type === 'Agricultor' && (
-            <TouchableOpacity onPress={()=>setModalText('Poluição é da soma da poluição de cada parcela dividida por 6')}>
+                <TouchableOpacity onPress={() => setModalText('Poluição é da soma da poluição de cada parcela dividida por 6')} activeOpacity={0.7}>
             <Image source={require('../../assets/agricultorIcones/information.png')} style={{position:'absolute', top:0, left:30, width: 23, height: 23, marginLeft: 10, marginTop:10}}/>
             </TouchableOpacity>
             )}

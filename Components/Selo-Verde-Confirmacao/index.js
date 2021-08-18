@@ -11,10 +11,10 @@ export default function Conf({ text, confirm, denied }) {
       <View style={styles.modal}>
         <View style={styles.container}>
           <Text style={styles.loading}>{text}</Text>
-          <TouchableOpacity style={styles.button} onPress={confirm}>
+          <TouchableOpacity style={styles.button} onPress={confirm} activeOpacity={0.7}>
             <Text style={styles.buttontext}>CONFIRMAR</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.button2]} onPress={denied}>
+          <TouchableOpacity style={[styles.button, styles.button2]} onPress={denied} activeOpacity={0.7}>
             <Text style={styles.buttontext}>CANCELAR</Text>
           </TouchableOpacity>
         </View>

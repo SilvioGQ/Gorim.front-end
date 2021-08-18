@@ -20,9 +20,9 @@ export default function Imposto() {
       <View style={styles.linha}>
         <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
           <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
-            <TouchableOpacity style={styles.traco} />
-            <TouchableOpacity style={styles.traco} />
-            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
           </View>
         </View>
       </View>
@@ -35,9 +35,9 @@ export default function Imposto() {
       <View style={styles.linha}>
         <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
           <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
-            <TouchableOpacity style={styles.traco} />
-            <TouchableOpacity style={styles.traco} />
-            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
           </View>
         </View>
       </View>
@@ -50,9 +50,9 @@ export default function Imposto() {
       <View style={styles.linha}>
         <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
           <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
-            <TouchableOpacity style={styles.traco} />
-            <TouchableOpacity style={styles.traco} />
-            <TouchableOpacity style={styles.traco} />
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7} />
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
+            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
           </View>
         </View>
       </View>

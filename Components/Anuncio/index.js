@@ -27,13 +27,13 @@ export default function Anuncio({ item, Historico, deleteAdvert }) {
           <Text style={styles.textBold}>{item.priceType}</Text>
         </View>
         <Text style={styles.textNormal}>{item.price}$</Text>
-        <TouchableOpacity onPress={() => deleteAdvert(item.id)}>
+        <TouchableOpacity onPress={() => deleteAdvert(item.id)} activeOpacity={0.7}>
           <Image source={require('../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
         <Text style={styles.textCenter}> Ainda restam: {item.amount} produto(s)</Text>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={Historico}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={Historico} activeOpacity={0.7}>
           <Text style={styles.textbutton}>HISTÓRICO</Text>
         </TouchableOpacity>
       </View>

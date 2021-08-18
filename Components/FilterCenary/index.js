@@ -9,29 +9,29 @@ export default function FilterCenary({ type, setType }) {
 		<View style={{ flexDirection: 'row', marginHorizontal: 20, width: '90%', justifyContent: 'space-between', marginVertical: 10 }}>
 			{player.type === 'Agricultor' && (
 				<>
-					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }}>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Compras</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }}>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Plantação</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Multa' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Multa' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'Multa' ? '#fff' : '#000' }]}>Multa</Text>
 					</TouchableOpacity>
 				</>
 			)}
 			{player.type === 'Empresário' && (
 				<>
-					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }}>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Vendas</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'Multa' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'Multa' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'Multa' ? '#fff' : '#000' }]}>Multa</Text>
 					</TouchableOpacity>
 				</>

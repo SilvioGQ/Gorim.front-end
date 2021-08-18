@@ -10,14 +10,14 @@ export default function CaixaDeValor({ value, setValue, increment, minValue = 0,
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={decreaseValue}>
+      <TouchableOpacity onPress={decreaseValue} activeOpacity={0.7}>
         <Image style={[styles.arrow, { opacity: value === minValue ? 0.5 : 1 }]} source={require('../../assets/agricultorIcones/setaesquerda.png')} />
       </TouchableOpacity>
       <View style={styles.buttonAmount}>
         {coin ===true && (<Image style={{ width: 24, height: 27, marginRight:5, alignSelf:'center', marginTop:5 }} source={require('../../assets/moedas/Moeda.png')} />)} 
         <Text style={styles.textAmount}>{value}</Text>
       </View>
-      <TouchableOpacity onPress={increaseValue}>
+      <TouchableOpacity onPress={increaseValue} activeOpacity={0.7}>
         <Image style={[styles.arrow, { opacity: value === maxValue ? 0.5 : 1 }]} source={require('../../assets/agricultorIcones/setadireita.png')} />
       </TouchableOpacity>
     </View>

@@ -49,6 +49,7 @@ export default function ModalInfo({ text, onClick, modalImage, title }) {
           <TouchableOpacity
             style={{ borderRadius: 20, padding: 10, elevation: 5, backgroundColor: COLORS.successButton, alignItems: 'center', width: 250 }}
             onPress={onClick}
+            activeOpacity={0.7}
           >
             <Text style={{ textAlign: 'center', fontFamily: 'Rubik_400Regular', fontSize: 18, color: COLORS.textWhite }}>VOLTAR</Text>
           </TouchableOpacity>

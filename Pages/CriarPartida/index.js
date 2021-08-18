@@ -49,7 +49,7 @@ export default function CriarPartida({ navigation }) {
             <View style={styles.line} />
             <View style={styles.row}>
               <Image style={styles.logo2} source={require('../../assets/mulhe.png')} />
-              <TouchableOpacity style={styles.button2} onPress={createRoom} >
+              <TouchableOpacity style={styles.button2} onPress={createRoom} activeOpacity={0.7} >
                 <Text style={styles.botao}>CRIAR JOGO</Text>
               </TouchableOpacity>
               <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../assets/flecha.png')} />
@@ -72,7 +72,7 @@ export default function CriarPartida({ navigation }) {
                 value={room}
               >
               </TextInput>
-              <TouchableOpacity onPress={selectRoom} >
+              <TouchableOpacity onPress={selectRoom} activeOpacity={0.7}>
                 <Image style={styles.arrow} source={require('../../assets/flecha.png')} />
               </TouchableOpacity>
             </View>
