@@ -1,6 +1,6 @@
 import React from 'react';
 // import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import Routes from './Pages/Routes';
 import { GameProvider } from './context/GameContext';
@@ -16,9 +16,16 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />
   }
+  const MyTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background : '#EBFFFD',
+    },
+  };
   return (
     <GameProvider>
-      <NavigationContainer>
+      <NavigationContainer theme={MyTheme}>
         <Routes />
       </NavigationContainer>
     </GameProvider>

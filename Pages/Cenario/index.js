@@ -2,7 +2,7 @@ import React, { useEffect, useContext, Fragment, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { GameContext, getTax } from '../../context/GameContext';
 
-import HistoricoDinheiro from '../../Components/HistóricosDinheiro';
+
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
 import Coin from '../../Components/Coin';
 import Papel from '../../assets/agricultorIcones/papel.png';
@@ -14,7 +14,7 @@ import HistoricosDinheiro from '../../Components/HistóricosDinheiro';
 
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
-export default function Cenario() {
+export default function Cenario({navigation}) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
   const { player, logs, disableNotifyScene, data: tax, stage, globalPollution, globalProduction } = useContext(GameContext);
@@ -73,6 +73,9 @@ export default function Cenario() {
               </TouchableOpacity>
             </View >
           </View>
+          <TouchableOpacity onPress={() =>navigation.navigate('Historico')} style={styles.historico}>
+            <Text style={styles.textHistorico}>HISTÓRICO</Text>
+          </TouchableOpacity>
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText}/>}
           {Height <= 720 && (
             <>
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     alignSelf: 'flex-start',
     marginVertical: 15,
-    marginLeft: 15
+    marginLeft: 25
   },
   legenda: {
     fontFamily: 'Rubik_400Regular',
@@ -146,9 +149,9 @@ const styles = StyleSheet.create({
   },
   numeros: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     marginTop: '3%',
-    width: "90%"
+    width: "85%"
   },
   emoji: {
     width: 60,
@@ -221,5 +224,19 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginLeft: 15,
     fontFamily: 'Rubik_300Light'
+  },
+  historico:{
+    width:'85%',
+    height:35,
+    backgroundColor:'#66BF00',
+    borderRadius:20,
+    marginVertical:15
+  },
+  textHistorico:{
+    fontSize: 15,
+    fontFamily: 'Rubik_400Regular',
+    color: '#fff',
+    textAlign:'center',
+    marginTop:8
   }
 });

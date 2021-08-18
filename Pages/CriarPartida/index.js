@@ -86,7 +86,6 @@ export default function CriarPartida({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     paddingTop: 45,
     marginLeft: 5,
