@@ -6,7 +6,7 @@ import { GameContext } from '../../context/GameContext';
 export default function FilterCenary({ type, setType }) {
 	const { player } = useContext(GameContext);
 	return (
-		<View style={{ flexDirection: 'row', marginHorizontal: 20, width: '90%', justifyContent: 'space-between', marginVertical: 10 }}>
+		<View style={{ flexDirection: 'row', marginHorizontal: 20, width: '85%', justifyContent: 'space-between', marginVertical: 10 }}>
 			{player.type === 'Agricultor' && (
 				<>
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
@@ -18,9 +18,6 @@ export default function FilterCenary({ type, setType }) {
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }}>
 						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Plantação</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Multa' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
-						<Text style={[styles.textSmall, { color: type == 'Multa' ? '#fff' : '#000' }]}>Multa</Text>
-					</TouchableOpacity>
 				</>
 			)}
 			{player.type === 'Empresário' && (
@@ -31,9 +28,6 @@ export default function FilterCenary({ type, setType }) {
 					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }}>
 						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Vendas</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'Multa' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Multa') }}>
-						<Text style={[styles.textSmall, { color: type == 'Multa' ? '#fff' : '#000' }]}>Multa</Text>
-					</TouchableOpacity>
 				</>
 			)}
 		</View>
@@ -42,20 +36,20 @@ export default function FilterCenary({ type, setType }) {
 
 const styles = StyleSheet.create({
 	buttonAgr: {
-		width: '24%',
-		height: 36,
+		width: '30%',
+		height: 40,
 		borderRadius: 50,
-		borderWidth: 1,
+		borderWidth: 1
 	},
 	buttonEmp: {
-		width: '30%',
+		width: '44%',
 		height: 40,
 		borderRadius: 50,
 		borderWidth: 1
 	},
 	textSmall: {
 		textAlign: 'center',
-		fontSize: 12,
+		fontSize: 13,
 		fontFamily: 'Rubik_300Light',
 		marginTop: 9
 	},

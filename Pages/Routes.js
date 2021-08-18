@@ -30,9 +30,8 @@ import CriarPartida from './CriarPartida';
 import Lobby from './Lobby';
 import MenuJogador from './MenuJogador';
 import Status from './Status';
-
+import Historico from './Historico';
 const Stack = createStackNavigator();
-
 export default function Routes() {
   return (
     <Stack.Navigator initialRouteName="Gorim">
@@ -115,6 +114,11 @@ export default function Routes() {
         headerTitle: '',
       }} />
       <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio} options={{
+        headerTransparent: true,
+        headerTitle: '',
+        headerTintColor: 'white',
+      }} />
+      <Stack.Screen name="Historico" component={Historico} options={{
         headerTransparent: true,
         headerTitle: '',
         headerTintColor: 'white',
