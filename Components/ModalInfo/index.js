@@ -3,7 +3,7 @@ import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } fr
 import COLORS from '../../resources/colors';
 import { GameContext } from '../../context/GameContext';
 const Tela = Dimensions.get('screen').width;
-export default function ModalInfo({ text, onClick, modalImage, title }) {
+export default function ModalInfo({ text, onClick, modalImage, title, image }) {
   const { player } = useContext(GameContext);
   return (
     <Modal
@@ -18,6 +18,9 @@ export default function ModalInfo({ text, onClick, modalImage, title }) {
             </>
           )}
           <Text style={styles.loading}>{text}</Text>
+          {image && (
+          <Image source={require('../../assets/tabelaprod.png')} style={{width:265, height:240, marginBottom:25}}/>
+          )}
           {modalImage && (
             <View style={{padding: 15, marginRight:25}}>
               <View style={{ flexDirection: 'row' }}>

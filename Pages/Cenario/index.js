@@ -18,7 +18,7 @@ export default function Cenario({navigation}) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
   const { player, logs, disableNotifyScene, data: tax, stage, globalPollution, globalProduction } = useContext(GameContext);
-
+  const [image, setImage] = useState(true)
   useEffect(() => {
     getTax();
     disableNotifyScene();
@@ -46,7 +46,7 @@ export default function Cenario({navigation}) {
               <Text style={styles.inferior}>
                 Imposto
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito. {'\n'}  {/*<Image source={require('../../assets/Imposto.png')} style={{ width:300, height:122}}/>*/}</Text>)} activeOpacity={0.7}>
+              <TouchableOpacity onPress={() => setModalText('Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.')} activeOpacity={0.7}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -57,7 +57,7 @@ export default function Cenario({navigation}) {
               <Text style={styles.inferior}>
                 Produtividade
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conferme a tabela abaixo. {/*<Image source={require('../../assets/tabelaprod.png')} style={{width:287, height:255, marginTop:10, marginLeft:15}}/>*/} </Text>)} activeOpacity={0.7}>
+              <TouchableOpacity onPress={() => {setImage(true); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conferme a tabela abaixo.</Text>); }} activeOpacity={0.7}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -68,7 +68,7 @@ export default function Cenario({navigation}) {
               <Text style={styles.inferior}>
                 Poluição
               </Text>
-              <TouchableOpacity onPress={() => setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>)} activeOpacity={0.7}>
+              <TouchableOpacity onPress={() =>{ setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false)}} activeOpacity={0.7}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
@@ -76,7 +76,7 @@ export default function Cenario({navigation}) {
           <TouchableOpacity onPress={() =>navigation.navigate('Historico')} style={styles.historico}>
             <Text style={styles.textHistorico}>HISTÓRICO</Text>
           </TouchableOpacity>
-          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText}/>}
+          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} image={image}/>}
           {Height <= 720 && (
             <>
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
@@ -93,7 +93,7 @@ export default function Cenario({navigation}) {
               </View>
             </>
           )}
-          <Text style={styles.texto}>Histórico:</Text>
+          <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
           {logs.filter((item) => {
             if (item.type == type) {
@@ -143,9 +143,8 @@ const styles = StyleSheet.create({
     marginLeft: 25
   },
   legenda: {
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 13,
-    textAlign: 'left',
+    fontFamily: 'Rubik_300Light',
+    fontSize: 16,
   },
   numeros: {
     flexDirection: 'row',

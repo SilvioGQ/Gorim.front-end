@@ -7,9 +7,17 @@ import IMAGES from '../../resources/imagesIcons'
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
+    const [open2, setOpen2] = useState(false);
+    const [open3, setOpen3] = useState(false);
+    const [open4, setOpen4] = useState(false);
+    const [open5, setOpen5] = useState(false);
     const { player, logs, round } = useContext(GameContext);
-    const rotateZ = open ? "180deg" : "0deg"
+    const rotateZ = open ? "180deg" : "0deg";
+    const rotateZ2 = open2 ? "180deg" : "0deg";
+    const rotateZ3 = open3 ? "180deg" : "0deg";
+    const rotateZ4 = open4 ? "180deg" : "0deg";
+    const rotateZ5 = open5 ? "180deg" : "0deg";
     return (
         <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
             <Rodada name={'Histórico'} />
@@ -28,7 +36,8 @@ export default function Cenario() {
                             <Text style={styles.subtitle}>{player.city}</Text>
                         </View>
                     </View>
-                    <View style={[styles.white, { height: open ? 250 : 57 }]}>
+                    <View style={[styles.white,{height: open ? 250 : 57 }]}>
+                    <View style={styles.whiteRow}>
                         <Text style={[styles.subtitle, {
                             marginLeft: 10,
                             marginTop: 16
@@ -36,72 +45,62 @@ export default function Cenario() {
                         <TouchableOpacity onPress={() => { setOpen(!open) }}>
                             <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ }] }} source={require('../../assets/simbolos/dropdown.png')} />
                         </TouchableOpacity>
-                        {open && (
-                            <View>
-                                {logs.filter((item) => {
-                                    if (item.type == 'plantation') {
-                                        return item
-                                    }
-                                }).map((item, index) => {
-                                    if (item.type === 'plantation') {
-                                        return <Text key={index}> {`1º: Semente: ${item.product.seed}, Agrotóxico: Premiun
-                                            Fertilizante: comum`} </Text>
-                                    } else {
-                                        return <HistoricosDinheiro key={index} item={item} />
-                                    }
-                                })
-                                }
-                            </View>
-                        )}
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
+
                     </View>
-                    <View style={[styles.white, { height: open ? 250 : 57 }]}>
+                    <View style={[styles.white,{height: open2 ? 250 : 57 }]}>
+                    <View style={styles.whiteRow}>
                         <Text style={[styles.subtitle, {
                             marginLeft: 10,
                             marginTop: 16
                         }]}>Gastos</Text>
-                        <TouchableOpacity>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10 }} source={require('../../assets/simbolos/dropdown.png')} />
+                        <TouchableOpacity onPress={() => { setOpen2(!open2) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ2 }] }} source={require('../../assets/simbolos/dropdown.png')} />
                         </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
+
                     </View>
-                    <View style={[styles.white, { height: open ? 250 : 57 }]}>
+                    <View style={[styles.white,{height: open3 ? 250 : 57 }]}>
+                    <View style={styles.whiteRow}>
                         <Text style={[styles.subtitle, {
                             marginLeft: 10,
                             marginTop: 16
                         }]}>Transferências</Text>
-                        <TouchableOpacity>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10 }} source={require('../../assets/simbolos/dropdown.png')} />
+                        <TouchableOpacity onPress={() => { setOpen3(!open3) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ3 }] }} source={require('../../assets/simbolos/dropdown.png')} />
                         </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
+
                     </View>
-                    <View style={[styles.white, { height: open ? 250 : 57 }]}>
+                    <View style={[styles.white,{height: open4 ? 250 : 57 }]}>
+                    <View style={styles.whiteRow}>
                         <Text style={[styles.subtitle, {
                             marginLeft: 10,
                             marginTop: 16
                         }]}>Multas Pagas</Text>
-                        <TouchableOpacity>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10 }} source={require('../../assets/simbolos/dropdown.png')} />
+                        <TouchableOpacity onPress={() => { setOpen4(!open4) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ4 }] }} source={require('../../assets/simbolos/dropdown.png')} />
                         </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
+
                     </View>
-                    <View style={[styles.white, { height: open ? 250 : 57 }]}>
+                    <View style={[styles.white,{height: open5 ? 250 : 57 }]}>
+                    <View style={styles.whiteRow}>
                         <Text style={[styles.subtitle, {
                             marginLeft: 10,
                             marginTop: 16
                         }]}>Impostos</Text>
-                        <TouchableOpacity>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10 }} source={require('../../assets/simbolos/dropdown.png')} />
+                        <TouchableOpacity onPress={() => { setOpen5(!open5) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ5 }] }} source={require('../../assets/simbolos/dropdown.png')} />
                         </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
+
                     </View>
-                    {/* {logs.filter((item) => {
-            if (item.type == type) {
-              return item
-            }
-          }).map((item, index) => {
-            if (item.type === 'plantation') {
-              return <HistoricosPlatacao key={index} item={item} />
-            } else {
-              return <HistoricosDinheiro key={index} item={item} />
-            }
-          })
-          } */}
                 </View>
             </ScrollView>
         </View>
@@ -135,6 +134,10 @@ const styles = StyleSheet.create({
         borderRadius: 17,
         borderWidth: 1,
         backgroundColor: '#fff',
+        marginBottom: 12
+    },
+    whiteRow: {
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 20
@@ -151,3 +154,22 @@ const styles = StyleSheet.create({
         color: '#3F5510'
     }
 });
+
+
+                        {/* {open && (
+                            <View>
+                                {logs.filter((item) => {
+                                    if (item.type == 'plantation') {
+                                        return item
+                                    }
+                                }).map((item, index) => {
+                                    if (item.type === 'plantation') {
+                                        return <Text key={index}> {`1º: Semente: ${item.product.seed}, Agrotóxico: Premiun
+                                            Fertilizante: comum`} </Text>
+                                    } else {
+                                        return <HistoricosDinheiro key={index} item={item} />
+                                    }
+                                })
+                                }
+                            </View>
+                        )} */}
