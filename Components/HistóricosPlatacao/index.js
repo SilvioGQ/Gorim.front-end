@@ -45,7 +45,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#C8EEDE',
     marginVertical:25,
     padding: 15,
-    borderRadius: 17
+    borderRadius: 17,
+    marginTop: 1,
+    marginBottom: 4
   },
   imagensproduto: {
     width: 35,

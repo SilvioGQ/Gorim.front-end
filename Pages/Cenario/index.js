@@ -46,7 +46,7 @@ export default function Cenario({navigation}) {
               <Text style={styles.inferior}>
                 Imposto
               </Text>
-              <TouchableOpacity onPress={() => setModalText('Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.')} activeOpacity={0.7}>
+              <TouchableOpacity onPress={() => {setImage(false); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>)}} activeOpacity={0.7}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
