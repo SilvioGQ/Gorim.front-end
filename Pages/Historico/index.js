@@ -36,69 +36,58 @@ export default function Cenario() {
                             <Text style={styles.subtitle}>{player.city}</Text>
                         </View>
                     </View>
-                    <View style={[styles.white,{height: open ? 250 : 57 }]}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 16
-                        }]}>Parcela</Text>
-                        <TouchableOpacity onPress={() => { setOpen(!open) }}>
+                    <View style={[styles.white, { height: open ? 250 : 57 }]}>
+                        <TouchableOpacity style={styles.whiteRow} onPress={() => { setOpen(!open) }}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 16
+                            }]}>Parcela</Text>
                             <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ }] }} source={require('../../assets/simbolos/dropdown.png')} />
                         </TouchableOpacity>
-                        </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
+                        {open && <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Parcela toppen toppen</Text>}
+                    </View>
+                    <View style={[styles.white, { height: open2 ? 250 : 57 }]}>
+                        <TouchableOpacity style={styles.whiteRow} onPress={() => { setOpen2(!open2) }}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 16
+                            }]}>Gastos</Text>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ2 }] }} source={require('../../assets/simbolos/dropdown.png')} />
+                        </TouchableOpacity>
+                        {open2 && <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Parcela toppen toppen</Text>}
+                    </View>
+                    <View style={[styles.white, { height: open3 ? 250 : 57 }]}>
+                        <TouchableOpacity style={styles.whiteRow} onPress={() => { setOpen3(!open3) }}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 16
+                            }]}>Transferências</Text>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ3 }] }} source={require('../../assets/simbolos/dropdown.png')} />
+                        </TouchableOpacity>
+                        {open3 && <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Parcela toppen toppen</Text>}
 
                     </View>
-                    <View style={[styles.white,{height: open2 ? 250 : 57 }]}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 16
-                        }]}>Gastos</Text>
-                        <TouchableOpacity onPress={() => { setOpen2(!open2) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ2 }] }} source={require('../../assets/simbolos/dropdown.png')} />
+                    <View style={[styles.white, { height: open4 ? 250 : 57 }]}>
+                        <TouchableOpacity style={styles.whiteRow} onPress={() => { setOpen4(!open4) }}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 16
+                            }]}>Multas Pagas</Text>
+
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ4 }] }} source={require('../../assets/simbolos/dropdown.png')} />
                         </TouchableOpacity>
-                        </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
+                        {open4 && <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Parcela toppen toppen</Text>}
 
                     </View>
-                    <View style={[styles.white,{height: open3 ? 250 : 57 }]}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 16
-                        }]}>Transferências</Text>
-                        <TouchableOpacity onPress={() => { setOpen3(!open3) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ3 }] }} source={require('../../assets/simbolos/dropdown.png')} />
-                        </TouchableOpacity>
-                        </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
-
-                    </View>
-                    <View style={[styles.white,{height: open4 ? 250 : 57 }]}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 16
-                        }]}>Multas Pagas</Text>
-                        <TouchableOpacity onPress={() => { setOpen4(!open4) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ4 }] }} source={require('../../assets/simbolos/dropdown.png')} />
-                        </TouchableOpacity>
-                        </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
-
-                    </View>
-                    <View style={[styles.white,{height: open5 ? 250 : 57 }]}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 16
-                        }]}>Impostos</Text>
-                        <TouchableOpacity onPress={() => { setOpen5(!open5) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ5 }] }} source={require('../../assets/simbolos/dropdown.png')} />
-                        </TouchableOpacity>
-                        </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light'}}>Parcela toppen toppen</Text>
+                    <View style={[styles.white, { height: open5 ? 250 : 57 }]}>
+                        <TouchableOpacity style={styles.whiteRow} onPress={() => { setOpen5(!open5) }}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 16
+                            }]}>Impostos</Text>
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ5 }] }} source={require('../../assets/simbolos/dropdown.png')} />
+                            </TouchableOpacity>
+                        {open5 && <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Parcela toppen toppen</Text>}
 
                     </View>
                 </View>
@@ -156,7 +145,7 @@ const styles = StyleSheet.create({
 });
 
 
-                        {/* {open && (
+{/* {open && (
                             <View>
                                 {logs.filter((item) => {
                                     if (item.type == 'plantation') {

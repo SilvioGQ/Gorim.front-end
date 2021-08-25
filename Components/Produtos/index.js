@@ -14,8 +14,7 @@ export default function Produtos({ item }) {
           {item.name == 'Pacote 1' && <Text style={styles.pacotes}>Semeadora</Text>}
           {item.name == 'Pacote 2' && <Text style={styles.pacotes}>Semeadora e Colheitadera</Text>}
           {item.name == 'Pacote 3' && <Text style={styles.pacotes}>Semeadora, Colheitadera e Drone</Text>}
-          {item.name == 'Arroz' && <Text style={styles.sementes}>Multiplica por 2 a produtividade da parcela {'\n'} quando usado com agrótoxico.</Text>}
-          {item.name == 'Soja' && <Text style={styles.sementes}>Multiplica por 3 a produtividade da parcela {'\n'} quando usado com agrótoxico.</Text>}
+          {item.type == 'Agrotoxico' && <Text style={styles.sementes}>mais x2 a produtividade com arroz {'\n'}mais x3 a produtividade com soja</Text>}
         </View>
       </View>
 

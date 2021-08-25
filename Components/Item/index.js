@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   icone: {
     width: 40,
     height: 40,
-    marginVertical:5,
-    marginTop:10,
+    marginBottom:5,
+    marginTop:11.5
   },
   textinhos: {
     fontFamily: 'Rubik_300Light',
