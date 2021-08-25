@@ -6,9 +6,7 @@ import { initialState, reducer } from '../reducers/customers';
 const socket = io(API_URL_HERO, {
   autoConnect: false
 });
-
 const GameContext = React.createContext();
-
 const GameProvider = (props) => {
   const [startTimer, setStartTimer] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
