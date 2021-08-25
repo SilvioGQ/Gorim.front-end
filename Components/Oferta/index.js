@@ -14,7 +14,7 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
         <View>
           <Image
             style={styles.person}
-            source={IMAGES[item.idSeller.avatar]}
+            source={IMAGES[item.avatarSeller]}
           />
           <Text style={styles.text}>{item.idSeller.name}</Text>
         </View>
