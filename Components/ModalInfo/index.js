@@ -3,7 +3,7 @@ import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } fr
 import COLORS from '../../resources/colors';
 import { GameContext } from '../../context/GameContext';
 const Tela = Dimensions.get('screen').width;
-export default function ModalInfo({ text, onClick, modalImage, title, image }) {
+export default function ModalInfo({ text, onClick, modalImage, title, image, image2 }) {
   const { player } = useContext(GameContext);
   return (
     <Modal
@@ -19,34 +19,37 @@ export default function ModalInfo({ text, onClick, modalImage, title, image }) {
           )}
           <Text style={styles.loading}>{text}</Text>
           {image && (
-          <Image source={require('../../assets/tabelaprod.png')} style={{width:265, height:240, marginBottom:25}}/>
+            <Image source={require('../../assets/tabelaprod.png')} style={{ width: 266, height: 240, marginBottom: 25 }} />
+          )}
+          {image2 && (
+            <Image source={require('../../assets/Imposto.png')} style={{ width: 305, height: 210,marginBottom: 25 }} />
           )}
           {modalImage && (
-            <View style={{padding: 15, marginRight:25}}>
+            <View style={{ padding: 15, marginRight: 25 }}>
               <View style={{ flexDirection: 'row' }}>
-                <View style={{ width: 32, height:30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
-                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf:'center' }}>0+</Text>
+                <View style={{ width: 32, height: 30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
+                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf: 'center' }}>0+</Text>
                 </View>
-                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica quanto o item faz de produtividade</Text>
+                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14 }}>Indica quanto o item faz de produtividade</Text>
               </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <View style={{ width: 32, height:30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
-                    <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf:'center' }}>0x</Text>
-                  </View>
-                  <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica o número para multiplicar o valor de produtividade da semente</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ width: 32, height: 30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
+                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf: 'center' }}>0x</Text>
                 </View>
-                <View style={{ flexDirection: 'row' }}>
-                <View style={{ width: 32, height:30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
-                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf:'center'}}>0+</Text>
-                </View>
-                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica quanto o item faz de poluição</Text>
+                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14 }}>Indica o número para multiplicar o valor de produtividade da semente</Text>
               </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <View style={{ width: 32, height:30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
-                    <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf:'center' }}>0x</Text>
-                  </View>
-                  <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14}}>Indica o número para multiplicar o valor da poluição da semente</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ width: 32, height: 30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
+                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf: 'center' }}>0+</Text>
                 </View>
+                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14 }}>Indica quanto o item faz de poluição</Text>
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ width: 32, height: 30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
+                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf: 'center' }}>0x</Text>
+                </View>
+                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14 }}>Indica o número para multiplicar o valor da poluição da semente</Text>
+              </View>
             </View>
           )}
           <TouchableOpacity
