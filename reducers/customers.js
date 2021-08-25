@@ -70,10 +70,21 @@ const reducer = (state, action) => {
         stage: action.payload[0],
         data: action.payload[1]
       };
-    case 'GETOFFERS':
+    case 'GETOFFERSFORALL':
       return {
         ...state,
-        offers: action.payload
+        offers: {
+          ...state.offers,
+          all: action.payload
+        }
+      };
+    case 'GETOFFERINDIVIDUAL':
+      return {
+        ...state,
+        offers: {
+          ...state.offers,
+          individual: action.payload
+        }
       };
     case 'GETLOGS':
       return {

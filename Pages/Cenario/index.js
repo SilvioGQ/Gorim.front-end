@@ -83,7 +83,7 @@ export default function Cenario({navigation}) {
               <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
               <View style={{ flexDirection: 'row', margin: 5 }}>
                 <View style={styles.coloridos}>
-                  <Text style={styles.numero2}>{player.productive}</Text>
+                  <Text style={styles.numero2}>{player.production}</Text>
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,1)', borderColor: '#BF0000', opacity: 0.7, }]}>

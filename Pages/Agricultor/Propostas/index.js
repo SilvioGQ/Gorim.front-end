@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity } from 'react-native';
-import { GameContext, getOffers, confirmOfferAll, confirmOffer, rejectOffer } from "../../../context/GameContext";
+import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
@@ -24,7 +24,7 @@ export default function Propostas() {
   const confirmPurchase = (item, amount = null) => {
     if (amount) {
       if (player.coin >= item.price * amount) {
-        confirmOfferAll(item, amount);
+        confirmOffer(item, amount);
       } else {
         setModalText('Você não possui dinheiro suficiente para esta compra.');
       }
