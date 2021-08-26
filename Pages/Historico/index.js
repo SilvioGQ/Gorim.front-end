@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+
 import { GameContext } from '../../context/GameContext';
 import COLORS from '../../resources/colors';
 import Rodada from '../../Components/Rodada';
-import IMAGES from '../../resources/imagesIcons'
+import IMAGES from '../../resources/imagesIcons';
+
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
+
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
     const [open3, setOpen3] = useState(false);
@@ -18,6 +21,8 @@ export default function Cenario() {
     const rotateZ3 = open3 ? "180deg" : "0deg";
     const rotateZ4 = open4 ? "180deg" : "0deg";
     const rotateZ5 = open5 ? "180deg" : "0deg";
+
+    console.log(logs);
     return (
         <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
             <Rodada name={'Histórico'} />

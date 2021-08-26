@@ -127,7 +127,6 @@ const reducer = (state, action) => {
         round: state.round + 1,
         timer: initialState.timer,
         awaitPlayers: initialState.awaitPlayers,
-        logs: initialState.logs,
         offers: initialState.offers,
       };
     case 'DISCONNECTED':

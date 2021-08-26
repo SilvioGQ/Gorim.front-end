@@ -192,8 +192,8 @@ const deleteAdvert = (id) => {
   socket.emit('deleteAdvert', id);
 }
 
-const confirmOffer = (item) => {
-  socket.emit('confirmOffer', item);
+const confirmOffer = (item, amount = null) => {
+  socket.emit('confirmOffer', item, amount);
 }
 
 const rejectOffer = (item) => {
