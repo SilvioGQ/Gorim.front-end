@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    paddingVertical: 30,
+    paddingVertical: 110,
   },
   containerescuro: {
     flex: 1,
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
   },
   text3: {
     marginLeft: 20,
-    marginTop: 12,
-    fontSize: 20,
+    marginTop: 14,
+    fontSize: 18,
     fontFamily: 'Rubik_300Light',
   },
   img: {
