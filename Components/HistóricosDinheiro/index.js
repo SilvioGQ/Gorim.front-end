@@ -37,9 +37,9 @@ export default function HistoricosDinheiro({ item }) {
 				<View>
 					<Image
 						style={styles.icone}
-						source={IMAGES[item.idPlayer.avatar]}
+						source={IMAGES[item.avatarPlayer]}
 					/>
-					<Text style={styles.text}>{item.idPlayer.name}</Text>
+					<Text style={styles.text}>{item.namePlayer}</Text>
 				</View>
 
 			</View>

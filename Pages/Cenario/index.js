@@ -95,7 +95,7 @@ export default function Cenario({navigation}) {
           )}
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
-          {logs.filter((item) => {
+          {player.logs.filter((item) => {
             if (item.type == type) {
               return item
             }

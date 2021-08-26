@@ -15,7 +15,6 @@ export default function Propostas() {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('');
   const { player, offers, disableNotifyOffers } = useContext(GameContext);
-  // socket.emit('getOffers', -1, resp => { setOffersAll(resp) });
 
   useEffect(() => {
     disableNotifyOffers()
@@ -50,7 +49,7 @@ export default function Propostas() {
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <Text style={styles.text}>Anúncios</Text>
       <FilterType type={type} setType={setType} />
-      {!offers || offers.all.length === 0 ?
+      {offers && offers.all && offers.all.length === 0 ?
         <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
         : <FlatList
           showsVerticalScrollIndicator={false}
@@ -60,7 +59,7 @@ export default function Propostas() {
         />
       }
       <Text style={styles.text}>Negociação individual</Text>
-      {!offers || offers.individual.length === 0 ?
+      {offers && offers.individual && offers.individual.length === 0 ?
         <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
         : <FlatList
           showsVerticalScrollIndicator={false}
