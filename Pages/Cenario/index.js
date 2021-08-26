@@ -69,7 +69,7 @@ export default function Cenario({navigation}) {
               <Text style={styles.inferior}>
                 Poluição
               </Text>
-              <TouchableOpacity onPress={() =>{ setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false)}} activeOpacity={0.7}>
+              <TouchableOpacity onPress={() => { setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false);setImage2(false)}} activeOpacity={0.7}>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
               </TouchableOpacity>
             </View >
