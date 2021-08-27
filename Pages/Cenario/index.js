@@ -17,7 +17,8 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenario({navigation}) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
-  const { player, logs, disableNotifyScene, data: tax, stage, globalPollution, globalProduction } = useContext(GameContext);
+  const { player, disableNotifyScene, data: tax, stage, globalPollution, globalProduction } = useContext(GameContext);
+
   const [image, setImage] = useState(true)
   useEffect(() => {
     getTax();

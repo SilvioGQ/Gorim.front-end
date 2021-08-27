@@ -120,7 +120,6 @@ const GameProvider = (props) => {
   }, [state.timer, startTimer]);
 
   useEffect(() => {
-    console.log(state.logs)
     if (state.offers === null) disableNotifyOffers();
     if (state.logs.length === 0) disableNotifyScene();
   }, [state.offers, state.logs]);
