@@ -103,9 +103,7 @@ export default function MenuJogador({ navigation }) {
           </View>
           <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
             <View style={{ flexDirection: 'row' }}>
-              {player.pollution && (
-                <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text>
-              )}
+              {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
               {player.type === 'Agricultor' && (
                 <TouchableOpacity onPress={() => setModalText('Poluição é da soma da poluição de cada parcela dividida por 6')} activeOpacity={0.7}>
                   <Image source={require('../../assets/agricultorIcones/information.png')} style={{ position: 'absolute', top: 0, left: 30, width: 23, height: 23, marginLeft: 10, marginTop: 10, opacity: 0.4 }} />

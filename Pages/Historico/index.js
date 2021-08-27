@@ -57,7 +57,7 @@ export default function Cenario() {
                                         return item
                                     }
                                 }).map((item, index) => {
-                                        return <Text key={index}> Semente:{item.parcelLand.seed}, {item.parcelLand.pesticide ? `Agrotóxico:${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},`: '' } {item.parcelLand.fertilizer ? `Fertilizante:${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},`: '' } {item.parcelLand.machine ? `Maquina:${item.parcelLand.machine},`: '' } Pulverizador{item.parcelLand.spray ?  'Sim': 'Não'} {'\n'}</Text>
+                                        return <Text key={index}>Semente:{item.parcelLand.seed}, {item.parcelLand.pesticide ? `Agrotóxico:${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},`: '' } {item.parcelLand.fertilizer ? `Fertilizante:${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},`: '' } {item.parcelLand.machine ? `Maquina:${item.parcelLand.machine},`: '' } Pulverizador{item.parcelLand.spray ?  'Sim': 'Não'} {'\n'}</Text>
                                 })
                                 }</Text>
 
