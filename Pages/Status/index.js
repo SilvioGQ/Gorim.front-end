@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   text3: {
     marginLeft: 20,
     marginTop: 12,
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Rubik_300Light',
   },
   img: {
