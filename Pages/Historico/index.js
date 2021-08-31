@@ -12,7 +12,7 @@ export default function Cenario() {
     const [open5, setOpen5] = useState(false);
     const { player, logs, round } = useContext(GameContext);
     const rotateZ5 = open5 ? "180deg" : "0deg";
-
+    console.log(logs)
     state = {
         contents: [
           {
@@ -49,6 +49,16 @@ export default function Cenario() {
           {
             title: 'Multas',
             body: ''
+          },
+          {
+            title: 'Impostos',
+            body: logs.filter((item) => {
+                if (item.type == 'tax') {
+                    return item
+                }
+            }).map((item, index) => {
+                return <Text key={index}>{item.percentual ? `Você pagou na ultima rodada ${item.value}$ que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados ${item.value}$ em impostos.`}</Text>
+            }),
           },
         ],
       };
@@ -100,19 +110,6 @@ export default function Cenario() {
         })
         : null
     }
-                    <View style={[styles.white, { height: open5 ? 250 : 57 }]}>
-                        <View style={styles.whiteRow}>
-                            <Text style={[styles.subtitle, {
-                                marginLeft: 10,
-                                marginTop: 16
-                            }]}>Impostos</Text>
-                            <TouchableOpacity onPress={() => { setOpen5(!open5) }}>
-                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ5 }] }} source={require('../../assets/simbolos/dropdown.png')} />
-                            </TouchableOpacity>
-                        </View>
-                        <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Parcela toppen toppen</Text>
-
-                    </View>
                 </View>
             </ScrollView>
         </View>
