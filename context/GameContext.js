@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 
-const socket = io(API_URL_LOCAL, {
+const socket = io(API_URL_HERO, {
   autoConnect: false
 });
 const GameContext = React.createContext();

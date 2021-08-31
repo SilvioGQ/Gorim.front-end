@@ -12,7 +12,7 @@ export default function Cenario() {
   const [open5, setOpen5] = useState(false);
   const { player, logs, round } = useContext(GameContext);
   const rotateZ5 = open5 ? "180deg" : "0deg";
-  console.log(logs)
+  console.log(logs);
   state = {
     contents: [
       {
@@ -68,7 +68,7 @@ export default function Cenario() {
       <ScrollView style={{ alignSelf: 'stretch' }}>
         <View style={styles.container}>
           <Text style={styles.header}>HISTÓRICO</Text>
-          <Text style={styles.rodada}>RODADA {round}</Text>
+          <Text style={styles.rodada}>RODADA {round-1}</Text>
           <View style={styles.row}>
             <Image
               style={styles.image}
