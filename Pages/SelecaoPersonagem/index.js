@@ -12,14 +12,16 @@ export default function SelecaoPersonagem({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [avatars, setAvatars] = useState([]);
   const { players, player, stage } = useContext(GameContext);
+  const [title, setTitle] = useState(true);
 
   useEffect(() => {
-    let v = [];
+    let isMounted = true, v = [];
     players.forEach(p => { if (p.avatar) v.push(p.avatar) });
-
     setAvatars(v);
 
-    if (stage === 'SELECTEDAVATARS') navigation.navigate('MenuJogador');
+    if (stage === 'SELECTEDAVATARS' && isMounted) navigation.navigate('MenuJogador');
+
+    return () => isMounted = false;
   }, [players, stage]);
 
   const bgQuadrados = index => {
@@ -33,7 +35,7 @@ export default function SelecaoPersonagem({ navigation }) {
     return color;
   }
   const startGame = () => {
-    if (avatars.length < players.length) return setModalText('Aguardando outros jogadores escolherem um avatar');
+    if (avatars.length < players.length) {return setTitle(false), setModalText('Aguardando outros jogadores escolherem um avatar')};
     selectedAvatars();
   }
   return (
@@ -46,11 +48,11 @@ export default function SelecaoPersonagem({ navigation }) {
               <Text style={styles.text}>VOCÊ SERÁ</Text>
               <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'AGRICULTOR' : 'EMPRESÁRIO'}</Text>
             </View>
-            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')} style={styles.button} activeOpacity={0.7}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
-              <TouchableOpacity onPress={() => setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')} style={styles.button} activeOpacity={0.7}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
+            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button} activeOpacity={0.7}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
+              <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button} activeOpacity={0.7}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
           </View>
           <Text style={styles.text}>Selecione um personagem</Text>
-          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} title={true} />}
+          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} title={title} />}
           <View style={{ alignSelf: 'center' }}>
             <View style={{ flexDirection: 'row' }}>
               <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />

@@ -3,12 +3,10 @@ import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 
-const socket = io(API_URL_HERO, {
+const socket = io(API_URL_LOCAL, {
   autoConnect: false
 });
-
 const GameContext = React.createContext();
-
 const GameProvider = (props) => {
   const [startTimer, setStartTimer] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -68,11 +66,12 @@ const GameProvider = (props) => {
     socket.on('getLogs', (logs) => {
       dispatch({ type: 'GETLOGS', payload: logs });
     });
-    socket.on('getOffers', (offersAll, offersIndividual) => {
-      let sl = [];
-      sl.all = offersAll;
-      sl.individual = offersIndividual;
-      dispatch({ type: 'GETOFFERS', payload: sl });
+    socket.on('getOffers', (obj) => {
+      if (obj.forAll) {
+        dispatch({ type: 'GETOFFERSFORALL', payload: obj.offers });
+      } else {
+        dispatch({ type: 'GETOFFERINDIVIDUAL', payload: obj.offers });
+      }
     });
     socket.on('enableNotifyScene', () => {
       dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
@@ -121,7 +120,6 @@ const GameProvider = (props) => {
   }, [state.timer, startTimer]);
 
   useEffect(() => {
-    console.log(state.logs)
     if (state.offers === null) disableNotifyOffers();
     if (state.logs.length === 0) disableNotifyScene();
   }, [state.offers, state.logs]);
@@ -193,16 +191,12 @@ const deleteAdvert = (id) => {
   socket.emit('deleteAdvert', id);
 }
 
-const confirmOfferAll = (item, amount) => {
-  socket.emit('confirmOfferAll', item, amount);
+const confirmOffer = (item, amount = null) => {
+  socket.emit('confirmOffer', item, amount);
 }
 
-const confirmOffer = (item) => {
-  socket.emit('confirmOffer', item);
-}
-
-const rejectOffer = (id) => {
-  socket.emit('rejectOffer', id);
+const rejectOffer = (item) => {
+  socket.emit('rejectOffer', item);
 }
 
 const stepFinish = () => {
@@ -238,7 +232,6 @@ export {
   addAdvert,
   getAdverts,
   deleteAdvert,
-  confirmOfferAll,
   confirmOffer,
   rejectOffer,
   getTax,

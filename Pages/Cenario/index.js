@@ -17,7 +17,8 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenario({navigation}) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
-  const { player, logs, disableNotifyScene, data: tax, stage, globalPollution, globalProduction } = useContext(GameContext);
+  const { player, disableNotifyScene, data: tax, stage, globalPollution, globalProduction } = useContext(GameContext);
+
   const [image, setImage] = useState(true)
   const [image2, setImage2] = useState(true)
   useEffect(() => {
@@ -81,14 +82,19 @@ export default function Cenario({navigation}) {
           {Height <= 720 && (
             <>
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
+              <View style={{flexDirection:'row', alignSelf:'flex-start'}}>
               <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
+              <TouchableOpacity onPress={() => setModalText('Poluição é da soma da poluição de cada parcela dividida por 6')} activeOpacity={0.7}>
+                  <Image source={require('../../assets/agricultorIcones/information.png')} style={{width: 18, height: 18, opacity: 0.7, marginLeft:5, marginTop:-2 }} />
+                </TouchableOpacity>
+              </View>
               <View style={{ flexDirection: 'row', margin: 5 }}>
                 <View style={styles.coloridos}>
-                  <Text style={styles.numero2}>{player.productive}</Text>
+                  <Text style={styles.numero2}>{player.production}</Text>
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,1)', borderColor: '#BF0000', opacity: 0.7, }]}>
-                  <Text style={styles.numero2}>{player.pollution.toFixed(2)}</Text>
+                  <Text style={styles.numero2}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
               </View>
@@ -96,7 +102,7 @@ export default function Cenario({navigation}) {
           )}
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
-          {logs.filter((item) => {
+          {player.logs.filter((item) => {
             if (item.type == type) {
               return item
             }
@@ -141,7 +147,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     alignSelf: 'flex-start',
     marginVertical: 15,
-    marginLeft: 25
+    marginLeft: 20
   },
   legenda: {
     fontFamily: 'Rubik_300Light',
@@ -222,7 +228,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontStyle: 'italic',
     alignSelf: 'flex-start',
-    marginLeft: 15,
+    marginLeft: 20,
     fontFamily: 'Rubik_300Light'
   },
   historico:{

@@ -4,32 +4,33 @@ import { FlatList } from 'react-native-gesture-handler';
 import COLORS from '../../resources/colors';
 import IMAGES from '../../resources/imagesProducts';
 export default function HistoricosPlatacao({ item }) {
+  console.log(item)
   return (
     <View style={styles.container}>
-      <Text style={styles.numero}>{item.product.id + 1}º</Text>
+      <Text style={styles.numero}>{item.parcelLand.id + 1}º</Text>
       <View>
-      <Image style={styles.imagensproduto} source={IMAGES[item.product.seed]} />
-        <Text style={styles.textproduto}>{item.product.seed}</Text>
+      <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.seed]} />
+        <Text style={styles.textproduto}>{item.parcelLand.seed}</Text>
       </View>
-      {item.product.fertilizer != null &&( 
+      {item.parcelLand.fertilizer != null &&( 
       <View>
-      <Image style={styles.imagensproduto} source={IMAGES[item.product.fertilizer]} />
-        <Text style={styles.textproduto}>{item.product.fertilizer.replace(/Fertilizante /,'')}</Text>
+      <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.fertilizer]} />
+        <Text style={styles.textproduto}>{item.parcelLand.fertilizer.replace(/Fertilizante /,'')}</Text>
       </View>
       )}
-      {item.product.pesticide != null && (
+      {item.parcelLand.pesticide != null && (
         <View>
-          <Image style={styles.imagensproduto} source={IMAGES[item.product.pesticide]} />
-          <Text style={styles.textproduto}>{item.product.pesticide.replace(/Agrotóxico /, '')}</Text>
+          <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.pesticide]} />
+          <Text style={styles.textproduto}>{item.parcelLand.pesticide.replace(/Agrotóxico /, '')}</Text>
         </View>
       )}
-      {item.product.machine != null && (
+      {item.parcelLand.machine != null && (
         <View>
-          <Image style={styles.imagensproduto} source={IMAGES[item.product.machine]} />
-          <Text style={styles.textproduto}>{item.product.machine}</Text>
+          <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.machine]} />
+          <Text style={styles.textproduto}>{item.parcelLand.machine}</Text>
         </View>
       )}
-      {item.product.spray && (
+      {item.parcelLand.spray && (
         <View>
           <Image style={styles.imagensproduto} source={IMAGES['Pulverizador']} />
           <Text style={styles.textproduto}>Pulverizador</Text>

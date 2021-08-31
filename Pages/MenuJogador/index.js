@@ -19,15 +19,18 @@ export default function MenuJogador({ navigation }) {
   //   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
   useEffect(() => {
-    if (stage === 'REMOVEDTOROOM') navigation.reset({ routes: [{ name: 'Gorim' }] });
-    if (stage === 'STEPFINISH') navigation.navigate('AguardarJogadores');
+    let isMounted = true;
+    if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
+    if (stage === 'STEPFINISH' && isMounted) navigation.navigate('AguardarJogadores');
+  
+    return () => isMounted = false;
   }, [stage]);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
     removeToRoom();
   }
-  
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
@@ -35,8 +38,8 @@ export default function MenuJogador({ navigation }) {
       <Header />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {modalText !== '' && (
-          <Modal onClick={() => setModalText('')} text={modalText} />
-        )}
+        <Modal onClick={() => setModalText('')} text={modalText} />
+      )}
       {player.type === 'Agricultor' && (
         <>
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }} activeOpacity={0.7}>
@@ -97,18 +100,18 @@ export default function MenuJogador({ navigation }) {
       )}
       {Height >= 720 && (
         <>
-          <View style={[styles.bar, { backgroundColor: '#66BF00',  borderColor: '#8ACF3A' }]}>
-            <Text style={styles.textBar}>{player.productive}</Text>
+          <View style={[styles.bar, { backgroundColor: '#66BF00', borderColor: '#8ACF3A' }]}>
+            <Text style={styles.textBar}>{player.production}</Text>
             <Text style={styles.inferior}>Produtividade individual</Text>
           </View>
           <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
-            <View style={{flexDirection:'row'}}>
-            <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text>
-            {player.type === 'Agricultor' && (
-                <TouchableOpacity onPress={() => setModalText('Poluição é da soma da poluição de cada parcela dividida por 6')} activeOpacity={0.7}>
-            <Image source={require('../../assets/agricultorIcones/information.png')} style={{position:'absolute', top:0, left:30, width: 23, height: 23, marginLeft: 10, marginTop:10, opacity: 0.4}}/>
-            </TouchableOpacity>
-            )}
+            <View style={{ flexDirection: 'row' }}>
+              {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
+              {player.type === 'Agricultor' && (
+                <TouchableOpacity onPress={() => setModalText('Poluição é da soma da poluição de cada parcela dividida por 6.')} activeOpacity={0.7}>
+                  <Image source={require('../../assets/agricultorIcones/information.png')} style={{ position: 'absolute', top: 0, left: 30, width: 23, height: 23, marginLeft: 10, marginTop: 10, opacity: 0.4 }} />
+                </TouchableOpacity>
+              )}
             </View>
             <Text style={styles.inferior}>Poluição individual</Text>
           </View>

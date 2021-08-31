@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity } from 'react-native';
-import { GameContext, getOffers, confirmOfferAll, confirmOffer, rejectOffer } from "../../../context/GameContext";
+import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
@@ -15,16 +15,15 @@ export default function Propostas() {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('');
   const { player, offers, disableNotifyOffers } = useContext(GameContext);
-  // socket.emit('getOffers', -1, resp => { setOffersAll(resp) });
 
   useEffect(() => {
-    disableNotifyOffers()
+    disableNotifyOffers();
   }, []);
 
   const confirmPurchase = (item, amount = null) => {
     if (amount) {
       if (player.coin >= item.price * amount) {
-        confirmOfferAll(item, amount);
+        confirmOffer(item, amount);
       } else {
         setModalText('Você não possui dinheiro suficiente para esta compra.');
       }
@@ -50,24 +49,24 @@ export default function Propostas() {
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <Text style={styles.text}>Anúncios</Text>
       <FilterType type={type} setType={setType} />
-      {!offers || offers.all.length === 0 ?
-        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-        : <FlatList
-          showsVerticalScrollIndicator={false}
-          data={selectType()}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
-        />
+      {!offers.all || offers.all.length === 0 ?
+          <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+          : <FlatList
+            showsVerticalScrollIndicator={false}
+            data={selectType()}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
+          />
       }
       <Text style={styles.text}>Negociação individual</Text>
-      {!offers || offers.individual.length === 0 ?
-        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-        : <FlatList
-          showsVerticalScrollIndicator={false}
-          data={offers.individual}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
-        />
+      {!offers.individual || offers.individual.length === 0 ?
+          <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+          : <FlatList
+            showsVerticalScrollIndicator={false}
+            data={offers.individual}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
+          />
       }
     </View>
   );

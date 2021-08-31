@@ -12,7 +12,7 @@ export default function Header() {
     if (valor > 80 && valor <= 100) return '#000000';
   }
   const { player, globalPollution } = useContext(GameContext);
-console.log(globalPollution)
+  
   return (
     <View style={styles.row}>
       <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}/{player.name}{'\n'}em {player.city}</Text>

@@ -27,7 +27,7 @@ export default function ControleParcelas({ navigation }) {
             <View style={{borderRadius: 17, width: 75, height:23, backgroundColor: '#D4F15F', alignSelf:'center', marginTop:2}}>
               <View style={{flexDirection:'row', justifyContent: 'space-around'}}>
               <Text style={{color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight:'bold'}}>{item.pollution}</Text>
-              <Text style={{color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight:'bold'}}>{item.productive}</Text>
+              <Text style={{color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight:'bold'}}>{item.production}</Text>
               </View>
             </View>
           </TouchableOpacity>

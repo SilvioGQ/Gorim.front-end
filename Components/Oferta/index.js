@@ -14,7 +14,7 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
         <View>
           <Image
             style={styles.person}
-            source={IMAGES[item.idSeller.avatar]}
+            source={IMAGES[item.avatarSeller]}
           />
           <Text style={styles.text}>{item.idSeller.name}</Text>
         </View>
@@ -40,7 +40,7 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item)} activeOpacity={0.7}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#BF0000' }]} onPress={() => rejectOffer(item.id)} activeOpacity={0.7}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#BF0000' }]} onPress={() => rejectOffer(item)} activeOpacity={0.7}>
           <Text style={styles.textbutton}>REJEITAR</Text>
         </TouchableOpacity>
       </View>

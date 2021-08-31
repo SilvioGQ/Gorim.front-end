@@ -12,7 +12,9 @@ export default function Status({ navigation }) {
   const [countdown, setCountdown] = useState(15);
 
   useEffect(() => {
-    if (stage === 'NEXTROUND') navigation.navigate('MenuJogador');
+    let isMounted = true;
+
+    if (stage === 'NEXTROUND' && isMounted) navigation.navigate('MenuJogador');
 
     let interval = setInterval(() => {
       if (countdown === 0 && player.host) {
@@ -22,7 +24,7 @@ export default function Status({ navigation }) {
       }
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => { clearInterval(interval); isMounted = false; }
   }, [countdown, stage]);
 
   return (

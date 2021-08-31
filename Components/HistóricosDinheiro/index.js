@@ -27,9 +27,9 @@ export default function HistoricosDinheiro({ item }) {
 						<Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
 					</View>
 				)}
-				{item.price && (
+				{item.product && (
 					<View>
-						<Text style={[styles.text, { marginTop: 5 }]}>{item.amount} por {item.price}$ á unidade</Text>
+						<Text style={[styles.text, { marginTop: 5 }]}>{item.product.amount} por {item.product.price}$ á unidade</Text>
 						<Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 }} />
 						<Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'vendido(s) para'}</Text>
 					</View>
@@ -37,9 +37,9 @@ export default function HistoricosDinheiro({ item }) {
 				<View>
 					<Image
 						style={styles.icone}
-						source={IMAGES[item.idPlayer.avatar]}
+						source={IMAGES[item.avatarPlayer]}
 					/>
-					<Text style={styles.text}>{item.idPlayer.name}</Text>
+					<Text style={styles.text}>{item.namePlayer}</Text>
 				</View>
 
 			</View>
