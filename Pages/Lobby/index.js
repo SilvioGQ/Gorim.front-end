@@ -11,10 +11,13 @@ export default function Lobby({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const { players, player, inGame, stage } = useContext(GameContext);
-  console.log(player.room);
+
   useEffect(() => {
-    if (inGame && stage == 'STARTGAME') navigation.navigate('SorteioJogador');
-    if (stage === 'REMOVEDTOROOM') navigation.goBack();
+    let isMounted = true;
+    if (inGame && stage == 'STARTGAME' && isMounted) navigation.navigate('SorteioJogador');
+    if (stage === 'REMOVEDTOROOM' && isMounted) navigation.goBack();
+    console.log(player.room);
+    return () => isMounted = false;
   }, [inGame, stage]);
 
   const removeFromRoom = () => {

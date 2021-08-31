@@ -12,14 +12,16 @@ export default function SelecaoPersonagem({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [avatars, setAvatars] = useState([]);
   const { players, player, stage } = useContext(GameContext);
-  const [title, setTitle] = useState(true)
-  useEffect(() => {
-    let v = [];
-    players.forEach(p => { if (p.avatar) v.push(p.avatar) });
+  const [title, setTitle] = useState(true);
 
+  useEffect(() => {
+    let isMounted = true, v = [];
+    players.forEach(p => { if (p.avatar) v.push(p.avatar) });
     setAvatars(v);
 
-    if (stage === 'SELECTEDAVATARS') navigation.navigate('MenuJogador');
+    if (stage === 'SELECTEDAVATARS' && isMounted) navigation.navigate('MenuJogador');
+
+    return () => isMounted = false;
   }, [players, stage]);
 
   const bgQuadrados = index => {

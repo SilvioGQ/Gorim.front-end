@@ -19,8 +19,11 @@ export default function MenuJogador({ navigation }) {
   //   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
   useEffect(() => {
-    if (stage === 'REMOVEDTOROOM') navigation.reset({ routes: [{ name: 'Gorim' }] });
-    if (stage === 'STEPFINISH') navigation.navigate('AguardarJogadores');
+    let isMounted = true;
+    if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
+    if (stage === 'STEPFINISH' && isMounted) navigation.navigate('AguardarJogadores');
+  
+    return () => isMounted = false;
   }, [stage]);
 
   const removeFromRoom = () => {

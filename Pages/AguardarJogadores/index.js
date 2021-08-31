@@ -12,11 +12,14 @@ export default function AguardarJogadores({ navigation }) {
   const { players, player, awaitPlayers, stage } = useContext(GameContext);
   const [round, setRound] = useState(false)
   useEffect(() => {
+    let isMounted = true;
     if(awaitPlayers === players.length && !round && player.host){
       endRound();
       setRound(true);
     }
-    if (stage === 'ENDROUND') navigation.navigate('Status')
+    if (stage === 'ENDROUND' && isMounted) navigation.navigate('Status');
+
+    return () => isMounted = false;
   }, [stage, awaitPlayers])
 
   const removeFromRoom = () => {
