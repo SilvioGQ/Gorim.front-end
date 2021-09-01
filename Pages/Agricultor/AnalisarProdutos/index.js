@@ -29,17 +29,15 @@ export default function AnalisarProdutos() {
   return (
     <View style={styles.container}>
       <Rodada name={'Analisar produtos'} />
-      <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }}>
+        <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }} onPress={() => setModalText('Legenda:')} activeOpacity={0.7}>
         <Text style={styles.header}>Produtos</Text>
-        <TouchableOpacity onPress={() => setModalText('Legenda:')} activeOpacity={0.7}>
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
         </TouchableOpacity>
-      </View>
       <FilterType type={type} setType={setType} />
       {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} modalImage={true} />}
       {stage === 'GETPRODUCTS' && (
         <FlatList
-          data={selectType().sort((a, b) => a.name.localeCompare(b.name))}
+          data={selectType().sort((a, b) => a.medium-b.medium)}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <Produtos item={item} />}
         />
