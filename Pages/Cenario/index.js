@@ -14,10 +14,10 @@ import HistoricosDinheiro from '../../Components/HistóricosDinheiro';
 
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
-export default function Cenario({navigation}) {
+export default function Cenario({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
-  const { player, disableNotifyScene, data: tax, stage, globalPollution, globalProduction } = useContext(GameContext);
+  const { player, disableNotifyScene, data: tax, stage, globalPollution, globalProduction, round } = useContext(GameContext);
 
   const [image, setImage] = useState(true)
   const [image2, setImage2] = useState(true)
@@ -41,51 +41,50 @@ export default function Cenario({navigation}) {
           </View>
           <Text style={styles.texto}>Informações gerais:</Text>
           <View style={styles.numeros}>
-            <View style={styles.bloquinho}>
+            <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(true); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>) }} activeOpacity={0.7}>
               <Text style={styles.numero}>
                 {stage === 'GETTAX' && (tax.percentual ? `${tax.percentual}%` : `${tax.value}$`)}
               </Text>
               <Text style={styles.inferior}>
                 Imposto
               </Text>
-              <TouchableOpacity onPress={() => {setImage(false);setImage2(true); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>)}} activeOpacity={0.7}>
-                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
-              </TouchableOpacity>
-            </View >
-            <View style={styles.bloquinho}>
+              <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
+            </TouchableOpacity>
+              <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }} activeOpacity={0.7}>
+
               <Text style={styles.numero}>
                 {globalProduction}%
               </Text>
               <Text style={styles.inferior}>
                 Produtividade
               </Text>
-              <TouchableOpacity onPress={() => {setImage(true);setImage2(false);setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }} activeOpacity={0.7}>
-                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
               </TouchableOpacity>
-            </View >
-            <View style={styles.bloquinho}>
+              <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
               <Text style={[styles.numero, { color: '#BF0000' }]}>
                 {globalPollution}%
               </Text>
               <Text style={styles.inferior}>
                 Poluição
               </Text>
-              <TouchableOpacity onPress={() => { setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false);setImage2(false)}} activeOpacity={0.7}>
-                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity:0.7, width: 16, height: 16, marginVertical: 5, alignSelf:'center'}} />
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
               </TouchableOpacity>
             </View >
-          </View>
-          <TouchableOpacity onPress={() =>navigation.navigate('Historico')} style={styles.historico}>
-            <Text style={styles.textHistorico}>HISTÓRICO</Text>
-          </TouchableOpacity>
-          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} image={image} image2={image2}/>}
+            {/* {round > 1 ?  */}
+                     <TouchableOpacity onPress={() => navigation.navigate('Historico')} style={styles.historico}>
+                     <Text style={styles.textHistorico}>HISTÓRICO</Text>
+                   </TouchableOpacity>
+                  {/* //  :
+                  //  ''} */}
+ 
+          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} image={image} image2={image2} />}
           {Height <= 720 && (
             <>
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
-              <View style={{flexDirection:'row', alignSelf:'flex-start'}}>
-              <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
-                <TouchableOpacity onPress={() => { setModalText(<Text>Poluição é da soma da poluição de cada parcela dividida por 6</Text>); setImage(false); setImage2(false)}} activeOpacity={0.7}>
-                  <Image source={require('../../assets/agricultorIcones/information.png')} style={{width: 18, height: 18, opacity: 0.7, marginLeft:5, marginTop:-2 }} />
+              <View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
+                <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
+                <TouchableOpacity onPress={() => { setModalText(<Text>Poluição é da soma da poluição de cada parcela dividida por 6</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
+                  <Image source={require('../../assets/agricultorIcones/information.png')} style={{ width: 18, height: 18, opacity: 0.7, marginLeft: 5, marginTop: -2 }} />
                 </TouchableOpacity>
               </View>
               <View style={{ flexDirection: 'row', margin: 5 }}>
@@ -102,11 +101,7 @@ export default function Cenario({navigation}) {
           )}
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
-          {player.logs.filter((item) => {
-            if (item.type == type) {
-              return item
-            }
-          }).map((item, index) => {
+          {player.logs.filter((item) =>item.type == type).length==0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logs.filter((item) =>item.type == type).map((item, index) => {
             if (item.type === 'plantation') {
               return <HistoricosPlatacao key={index} item={item} />
             } else {
@@ -231,18 +226,18 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     fontFamily: 'Rubik_300Light'
   },
-  historico:{
-    width:'85%',
-    height:35,
-    backgroundColor:'#66BF00',
-    borderRadius:20,
-    marginVertical:15
+  historico: {
+    width: '85%',
+    height: 35,
+    backgroundColor: '#66BF00',
+    borderRadius: 20,
+    marginVertical: 15
   },
-  textHistorico:{
+  textHistorico: {
     fontSize: 15,
     fontFamily: 'Rubik_400Regular',
     color: '#fff',
-    textAlign:'center',
-    marginTop:8
+    textAlign: 'center',
+    marginTop: 8
   }
 });

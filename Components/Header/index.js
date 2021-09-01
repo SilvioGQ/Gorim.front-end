@@ -12,10 +12,9 @@ export default function Header() {
     if (valor > 80 && valor <= 100) return '#000000';
   }
   const { player, globalPollution } = useContext(GameContext);
-  
   return (
     <View style={styles.row}>
-      <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}/{player.name}{'\n'}em {player.city}</Text>
+      <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.speciality[0] : ''}/{player.name}{'\n'}em {player.city}</Text>
       <View style={{ flexDirection: 'row', paddingTop: 15 }}>
         <Image
           style={styles.pollution}
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: 'Rubik_400Regular',
-    fontSize: 20,
+    fontSize: 18,
   },
   textos: {
     fontFamily: 'Rubik_300Light',
