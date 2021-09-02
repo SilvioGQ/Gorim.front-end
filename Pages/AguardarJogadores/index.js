@@ -20,7 +20,7 @@ export default function AguardarJogadores({ navigation }) {
     if (stage === 'ENDROUND' && isMounted) navigation.navigate('Status');
 
     return () => isMounted = false;
-  }, [stage, awaitPlayers])
+  }, [stage, awaitPlayers, players]);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);

@@ -179,8 +179,8 @@ const getProducts = (name = null) => {
   }
 }
 
-const addAdvert = (name, speciality, price, client, amount, priceType) => {
-  socket.emit('addAdvert', name, speciality, price, client, amount, priceType);
+const addAdvert = (name, specialty, price, client, amount, priceType) => {
+  socket.emit('addAdvert', name, specialty, price, client, amount, priceType);
 }
 
 const getAdverts = () => {

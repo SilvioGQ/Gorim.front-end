@@ -6,13 +6,15 @@ import COLORS from '../../resources/colors';
 import Rodada from '../../Components/Rodada';
 import IMAGES from '../../resources/imagesIcons';
 import DropDownItem from 'react-native-drop-down-item';
+
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario() {
+  
   const [open5, setOpen5] = useState(false);
   const { player, logs, round } = useContext(GameContext);
   const rotateZ5 = open5 ? "180deg" : "0deg";
-  console.log(logs);
+
   state = {
     contents: [
       {

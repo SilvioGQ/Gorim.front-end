@@ -59,28 +59,28 @@ export default function MenuJogador({ navigation }) {
       )}
       {player.type === 'Empresário' && (
         <View style={styles.row}>
-          {player.speciality === 'Fertilizante' && (
+          {player.specialty === 'Fertilizante' && (
             <View style={styles.items}>
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Comum' })} name='Fertilizante Comum' />
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Premium' })} name='Fertilizante Premium' />
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
             </View>
           )}
-          {player.speciality === 'Agrotoxico' && (
+          {player.specialty === 'Agrotoxico' && (
             <View style={styles.items}>
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Super Premium' })} name='Agrotóxico Super Premium' />
             </View>
           )}
-          {player.speciality === 'Semente' && (
+          {player.specialty === 'Semente' && (
             <View style={styles.items}>
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Soja' })} name='Soja' />
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Arroz' })} name='Arroz' />
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Hortaliça' })} name='Hortaliça' />
             </View>
           )}
-          {player.speciality === 'Maquina' && (
+          {player.specialty === 'Maquina' && (
             <>
               <View style={styles.items}>
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 1' })} name='Pacote 1' />
@@ -91,10 +91,10 @@ export default function MenuJogador({ navigation }) {
             </>
           )}
           <View style={styles.items}>
-            {player.speciality === 'Maquina' && (<Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Maquina', name: 'Pulverizador' })} name='Pulverizador' />)}
+            {player.specialty === 'Maquina' && (<Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Maquina', name: 'Pulverizador' })} name='Pulverizador' />)}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
             <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
-            {player.speciality !== 'Maquina' && (<View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />)}
+            {player.specialty !== 'Maquina' && (<View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />)}
           </View>
         </View>
       )}

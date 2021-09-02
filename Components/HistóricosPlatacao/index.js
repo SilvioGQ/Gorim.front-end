@@ -3,8 +3,9 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import COLORS from '../../resources/colors';
 import IMAGES from '../../resources/imagesProducts';
+
 export default function HistoricosPlatacao({ item }) {
-  console.log(item)
+  
   return (
     <View style={styles.container}>
       <Text style={styles.numero}>{item.parcelLand.id + 1}º</Text>

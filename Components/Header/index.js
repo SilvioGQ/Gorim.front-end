@@ -14,7 +14,7 @@ export default function Header() {
   const { player, globalPollution } = useContext(GameContext);
   return (
     <View style={styles.row}>
-      <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.speciality[0] : ''}/{player.name}{'\n'}em {player.city}</Text>
+      <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name}{'\n'}em {player.city}</Text>
       <View style={{ flexDirection: 'row', paddingTop: 15 }}>
         <Image
           style={styles.pollution}
