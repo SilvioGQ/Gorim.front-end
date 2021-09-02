@@ -57,9 +57,6 @@ const GameProvider = (props) => {
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
     });
-    socket.on('getAdverts', (adverts) => {
-      dispatch({ type: 'CHANGEDATA', payload: ['GETADVERTS', adverts] });
-    });
     socket.on('getTax', (tax) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETTAX', tax] });
     });
@@ -183,10 +180,6 @@ const addAdvert = (name, specialty, price, client, amount, priceType) => {
   socket.emit('addAdvert', name, specialty, price, client, amount, priceType);
 }
 
-const getAdverts = () => {
-  socket.emit('getAdverts');
-}
-
 const deleteAdvert = (id) => {
   socket.emit('deleteAdvert', id);
 }
@@ -230,7 +223,6 @@ export {
   makeTransfer,
   getProducts,
   addAdvert,
-  getAdverts,
   deleteAdvert,
   confirmOffer,
   rejectOffer,

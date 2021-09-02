@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
-import { GameContext, getAdverts, deleteAdvert } from "../../../context/GameContext";
+import { GameContext, deleteAdvert } from "../../../context/GameContext";
 
 import Coin from '../../../Components/Coin';
 
@@ -8,32 +8,28 @@ import Anuncio from '../../../Components/Anuncio';
 import COLORS from '../../../resources/colors';
 import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
+
 const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
-  const [modalText, setModalText] = useState('');
-  const { player, data: offers, stage } = useContext(GameContext);
 
-  useEffect(() => {
-    getAdverts();
-  }, []);
-  
+  const [modalText, setModalText] = useState('');
+  const { player } = useContext(GameContext);
+
   return (
     <View style={styles.container}>
       <Rodada name={'Checar anúncios'} />
       <Coin coin={player.coin} />
       <Text style={styles.header}>Anúncios</Text>
-      {modalText !== '' && (
-        <Modal onClick={() => setModalText('')} text={modalText} />
-      )}
-      {stage == 'GETADVERTS' && (
-        offers.length===0 ? <Text style={{flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical:20}}>Você não possui anúncios</Text> :
+      {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
+      {player.offers.filter(offer => offer.idBuyer === -1).length === 0 ?
+        <Text style={{flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical:20}}>Você não possui anúncios</Text> :
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={offers}
+          data={player.offers.filter(offer => offer.idBuyer === -1)}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
         />
-      )}
+      }
     </View>
   );
 }
