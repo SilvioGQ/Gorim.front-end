@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
 import { GameContext, removeToRoom, } from '../../context/GameContext';
 
@@ -9,7 +9,6 @@ import Rodada from '../../Components/Rodada';
 export default function AguardarJogadores({ navigation }) {
 
   const { players, player, awaitPlayers, stage } = useContext(GameContext);
-  const [round, setRound] = useState(false);
 
   useEffect(() => {
     let isMounted = true;

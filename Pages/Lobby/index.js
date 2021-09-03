@@ -10,15 +10,15 @@ const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const { players, player, inGame, stage } = useContext(GameContext);
+  const { players, player, stage } = useContext(GameContext);
 
   useEffect(() => {
     let isMounted = true;
-    if (inGame && stage == 'STARTGAME' && isMounted) navigation.navigate('SorteioJogador');
+    if (stage == 'STARTGAME' && isMounted) navigation.navigate('SorteioJogador');
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.goBack();
     console.log(player.room);
     return () => isMounted = false;
-  }, [inGame, stage]);
+  }, [stage]);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);

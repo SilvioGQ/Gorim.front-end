@@ -1,11 +1,6 @@
 const initialState = {
   isConnected: false,
-  inGame: false,
   timer: 900,
-  round: 1,
-  awaitPlayers: 0,
-  globalProduction: 100,
-  globalPollution: 0,
   stage: null,
   players: [],
   player: {},
@@ -41,7 +36,10 @@ const reducer = (state, action) => {
       return {
         ...state,
         stage: action.payload[0],
-        inGame: action.payload[1]
+        round: action.payload[1].match.round,
+        awaitPlayers: action.payload[1].awaitPlayers.length,
+        globalProduction: action.payload[1].match.globalProduction,
+        globalPollution: action.payload[1].match.globalPollution,
       };
     case 'ADDEDTOROOM':
       return {
@@ -123,11 +121,11 @@ const reducer = (state, action) => {
     case 'NEXTROUND':
       return {
         ...state,
-        stage: action.payload,
-        round: state.round + 1,
+        stage: action.payload[0],
         timer: initialState.timer,
-        awaitPlayers: initialState.awaitPlayers,
         offers: initialState.offers,
+        round: action.payload[1].match.round,
+        awaitPlayers: action.payload[1].awaitPlayers.length,
       };
     case 'DISCONNECTED':
       return {

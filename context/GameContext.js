@@ -29,8 +29,8 @@ const GameProvider = (props) => {
     socket.on('updatePlayer', (player) => {
       dispatch({ type: 'UPDATEPLAYER', payload: player });
     });
-    socket.on('startGame', () => {
-      dispatch({ type: 'STARTGAME', payload: ['STARTGAME', true] });
+    socket.on('startGame', (room) => {
+      dispatch({ type: 'STARTGAME', payload: ['STARTGAME', room] });
     });
     socket.on('addedToRoom', (player) => {
       dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
@@ -92,8 +92,8 @@ const GameProvider = (props) => {
     socket.on('updateGlobalProduction', (production) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
-    socket.on('nextRound', () => {
-      dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
+    socket.on('nextRound', (room) => {
+      dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
     socket.on('disconnect', () => {
       dispatch({ type: 'DISCONNECTED', payload: false });
