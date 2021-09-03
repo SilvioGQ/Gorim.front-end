@@ -1,26 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
-import { endRound, GameContext, removeToRoom, } from '../../context/GameContext';
+import { GameContext, removeToRoom, } from '../../context/GameContext';
 
 import COLORS from '../../resources/colors';
-import Button from '../../Components/Button';
 import Clock from '../../assets/Logo/clock.png';
 import Rodada from '../../Components/Rodada';
 
 export default function AguardarJogadores({ navigation }) {
 
   const { players, player, awaitPlayers, stage } = useContext(GameContext);
-  const [round, setRound] = useState(false)
+  const [round, setRound] = useState(false);
+
   useEffect(() => {
     let isMounted = true;
-    if(awaitPlayers === players.length && !round && player.host){
-      endRound();
-      setRound(true);
-    }
     if (stage === 'ENDROUND' && isMounted) navigation.navigate('Status');
 
     return () => isMounted = false;
-  }, [stage, awaitPlayers, players]);
+  }, [stage]);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);
