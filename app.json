@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "frame1",
+    "name": "Gorim",
     "slug": "snack-286f2076-472c-4bbe-b541-e041a0573ea2",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#EBFFFD"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -16,6 +16,10 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.ifrs.gorim",
+      "versionCode": 1
+    },
     "ios": {
       "supportsTablet": true,
       "buildNumber": "1.0.0"
@@ -23,6 +27,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "raquel\n"
+    "description": "RPG online\n"
   }
 }
