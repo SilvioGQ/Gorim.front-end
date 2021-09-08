@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
-import COLORS from '../../resources/colors';
-import imagesProducts from '../../resources/imagesProducts';
-import imagesCoins from '../../resources/imagesCoins';
-import IMAGES from '../../resources/imagesIcons'
+import COLORS from '../../constants/colors';
+import imagesProducts from '../../constants/imagesProducts';
+import imagesCoins from '../../constants/imagesCoins';
+import IMAGES from '../../constants/imagesIcons'
 
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer }) {

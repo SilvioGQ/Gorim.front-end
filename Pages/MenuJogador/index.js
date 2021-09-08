@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
-import { GameContext, removeToRoom, stepFinish } from '../../context/GameContext';
+import { GameContext, removeToRoom, stepFinish } from '../../contexts/GameContext';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 import Header from '../../Components/Header';
 import Item from '../../Components/Item';
 import Cenarios from '../../Components/CenarioBotao';

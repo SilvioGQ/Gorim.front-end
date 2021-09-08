@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import { GameContext } from '../../context/GameContext';
-import COLORS from '../../resources/colors';
+import { GameContext } from '../../contexts/GameContext';
+import COLORS from '../../constants/colors';
 
 const Tela = Dimensions.get('screen').width;
 export default function Rodada({ removeFromRoom = null, close = null, name, setModalVisible }) {

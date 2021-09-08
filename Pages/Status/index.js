@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
-import { GameContext, nextRound } from '../../context/GameContext';
+import { GameContext, nextRound } from '../../contexts/GameContext';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 import Button from '../../Components/Button';
-import IMAGES from '../../resources/imagesIcons';
+import IMAGES from '../../constants/imagesIcons';
 
 export default function Status({ navigation }) {
   

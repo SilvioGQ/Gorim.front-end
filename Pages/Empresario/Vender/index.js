@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { GameContext, getProducts, addAdvert } from "../../../context/GameContext";
+import { GameContext, getProducts, addAdvert } from "../../../contexts/GameContext";
 
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Modal from '../../../Components/ModalInfo'
 import Quantidades from '../../../Components/Quantidades';
-import COLORS from '../../../resources/colors';
-import Coin from '../../../Components/Coin'
-import Baixo from '../../../assets/moedas/cheap.png';
-import Normal from '../../../assets/moedas/medium.png';
-import Alto from '../../../assets/moedas/expensive.png';
-import IMAGES from '../../../resources/imagesProducts';
+import COLORS from '../../../constants/colors';
+import Coin from '../../../Components/Coin';
+import IMAGES from '../../../constants/imagesProducts';
+import IMAGESCOINS from '../../../constants/imagesCoins';
 import CaixaDeValor from '../../../Components/CaixaDeValor';
 import Rodada from '../../../Components/Rodada';
+
 export default function Vendas({ navigation, route }) {
 
   const { name } = route.params;
@@ -79,21 +78,21 @@ export default function Vendas({ navigation, route }) {
           <View style={styles.row}>
             <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
-                <Image style={styles.icone} source={Baixo} />
+                <Image style={styles.icone} source={IMAGESCOINS["Baixo"]} />
                 <Text style={styles.categoryprice}>Baixo</Text>
                 <Text style={styles.price}>${product?.cheap}</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setSelectPrice(product?.medium)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
-                <Image style={styles.icone} source={Normal} />
+                <Image style={styles.icone} source={IMAGESCOINS["Normal"]} />
                 <Text style={styles.categoryprice}>Normal</Text>
                 <Text style={styles.price}>${product?.medium}</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
-                <Image style={styles.icone} source={Alto} />
+                <Image style={styles.icone} source={IMAGESCOINS["Alto"]} />
                 <Text style={styles.categoryprice}>Alto</Text>
                 <Text style={styles.price}>${product?.expensive}</Text>
               </View>

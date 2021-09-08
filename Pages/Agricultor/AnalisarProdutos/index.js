@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, FlatList, StatusBar } from 'react-native';
-import { GameContext, getProducts } from '../../../context/GameContext';
+import { GameContext, getProducts } from '../../../contexts/GameContext';
 
-import COLORS from '../../../resources/colors';
+import COLORS from '../../../constants/colors';
 import Produtos from '../../../Components/Produtos';
 import ModalInfo from '../../../Components/ModalInfo';
 import FilterType from '../../../Components/FilterType';

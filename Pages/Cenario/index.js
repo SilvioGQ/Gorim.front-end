@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, Fragment, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-import { GameContext, getTax } from '../../context/GameContext';
+import { GameContext, getTax } from '../../contexts/GameContext';
 
 
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
 import Coin from '../../Components/Coin';
 import Papel from '../../assets/agricultorIcones/papel.png';
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 import Rodada from '../../Components/Rodada';
 import ModalInfo from '../../Components/ModalInfo';
 import FilterCenary from '../../Components/FilterCenary';

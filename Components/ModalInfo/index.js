@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
-import COLORS from '../../resources/colors';
-import { GameContext } from '../../context/GameContext';
+import COLORS from '../../constants/colors';
+import { GameContext } from '../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width;
 export default function ModalInfo({ text, onClick, modalImage, title, image, image2 }) {
   const { player } = useContext(GameContext);

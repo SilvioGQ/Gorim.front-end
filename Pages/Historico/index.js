@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 
-import { GameContext } from '../../context/GameContext';
-import COLORS from '../../resources/colors';
+import { GameContext } from '../../contexts/GameContext';
+import COLORS from '../../constants/colors';
 import Rodada from '../../Components/Rodada';
-import IMAGES from '../../resources/imagesIcons';
+import IMAGES from '../../constants/imagesIcons';
 import DropDownItem from 'react-native-drop-down-item';
 
 const Height = Dimensions.get('screen').height;
@@ -90,8 +90,8 @@ export default function Cenario() {
                     key={i}
                     style={styles.white}
                     contentVisible={false}
-                    invisibleImage={require('../../assets/simbolos/dropdown.png')}
-                    visibleImage={require('../../assets/simbolos/dropUp.png')}
+                    invisibleImage={require('../../assets/dropdown.png')}
+                    visibleImage={require('../../assets/dropUp.png')}
                     header={
                       <View>
                         <Text style={styles.subtitle}>{param.title}</Text>

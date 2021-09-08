@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 
 const Tela = Dimensions.get('screen').width;
 export default function Button({ name, onClick, disabled = false }) {

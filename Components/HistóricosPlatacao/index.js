@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import COLORS from '../../resources/colors';
-import IMAGES from '../../resources/imagesProducts';
+import COLORS from '../../constants/colors';
+import IMAGES from '../../constants/imagesProducts';
 
 export default function HistoricosPlatacao({ item }) {
   

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 
-import COLORS from '../../resources/colors';
-import imagesProducts from '../../resources/imagesProducts';
-import IMAGES from '../../resources/imagesIcons'
-import { GameContext } from "../../context/GameContext";
+import COLORS from '../../constants/colors';
+import imagesProducts from '../../constants/imagesProducts';
+import IMAGES from '../../constants/imagesIcons';
+import { GameContext } from "../../contexts/GameContext";
 const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
@@ -23,14 +23,14 @@ export default function HistoricosDinheiro({ item }) {
 				{item.value && (
 					<View>
 						<Text style={[styles.text, { marginTop: 5 }]}>{item.value}$</Text>
-						<Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
+						<Image source={require('../../assets/Arrow.png')} style={{ width: 120, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
 						<Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
 					</View>
 				)}
 				{item.product && (
 					<View>
 						<Text style={[styles.text, { marginTop: 5 }]}>{item.product.amount} por {item.product.price}$ á unidade</Text>
-						<Image source={require('../../assets/Logo/Arrow.png')} style={{ width: 120, height: 10 }} />
+						<Image source={require('../../assets/Arrow.png')} style={{ width: 120, height: 10 }} />
 						<Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'vendido(s) para'}</Text>
 					</View>
 				)}

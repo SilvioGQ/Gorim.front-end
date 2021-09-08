@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { GameContext } from '../../context/GameContext';
+import { GameContext } from '../../contexts/GameContext';
 
 
 export default function FilterCenary({ type, setType }) {

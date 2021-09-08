@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, StatusBar, Dimensions, TouchableOpacity } from 'react-native';
-import { GameContext, selectAvatar, selectedAvatars } from '../../context/GameContext';
+import { GameContext, selectAvatar, selectedAvatars } from '../../contexts/GameContext';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 import Quadrados from '../../Components/Quadrado'
 import Button from '../../Components/Button';
 import ModalInfo from '../../Components/ModalInfo';

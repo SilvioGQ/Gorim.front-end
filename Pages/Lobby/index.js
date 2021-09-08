@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
-import { GameContext, removeToRoom, startGame, makeRaffle } from '../../context/GameContext';
+import { GameContext, removeToRoom, startGame, makeRaffle } from '../../contexts/GameContext';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 import Button from '../../Components/Button';
 import ModalConfirmExit from '../../Components/ModalConfirmExit';
 
@@ -28,7 +28,7 @@ export default function Lobby({ navigation }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)} activeOpacity={0.7}>
-        <Image style={styles.image} source={require('../../assets/Logo/FecharPreto.png')} />
+        <Image style={styles.image} source={require('../../assets/FecharPreto.png')} />
       </TouchableOpacity>
       <Text style={styles.textcod}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%', borderColor: '#58AB23' }} />

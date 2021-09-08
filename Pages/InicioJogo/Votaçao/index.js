@@ -2,9 +2,9 @@
 // import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 // import Button from '../../../Components/Button';
 // import Quadrados from '../../../Components/Quadrado';
-// import COLORS from '../../../resources/colors';
+// import COLORS from '../../../constants/colors';
 
-// import Voto from '../../../assets/Logo/vote.png';
+// import Voto from '../../../assets/symbols/vote.png';
 // import { StatusBar } from 'react-native';
 
 // const Tela = Dimensions.get('screen').width

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { GameContext } from "../../../context/GameContext";
+import { GameContext } from "../../../contexts/GameContext";
 
 import ModalInfo from '../../../Components/ModalInfo';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
-import COLORS from '../../../resources/colors';
+import COLORS from '../../../constants/colors';
 import CaixaDeValor from '../../../Components/CaixaDeValor';
 import Rodada from '../../../Components/Rodada';
 
@@ -30,7 +30,7 @@ export default function FazerTransferencia({ navigation }) {
       <Rodada name={'Fazer transferência'}/>
       <Coin coin={player.coin} />
       <View style={styles.header}>
-        <Image style={{ width: 63, height: 61 }} source={require('../../../assets/agricultorIcones/coin.png')} />
+        <Image style={{ width: 63, height: 61 }} source={require('../../../assets/icons/coin.png')} />
         <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20 }}>Fazer {'\n'}transferência</Text>
       </View>
       <Text style={styles.text}>Destinatário:</Text>

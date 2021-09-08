@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import Routes from './Pages/Routes';
-import { GameProvider } from './context/GameContext';
+import { GameProvider } from './contexts/GameContext';
 import { useFonts, Rubik_300Light, Rubik_400Regular, Rubik_700Bold } from '@expo-google-fonts/rubik';
 
 export default function App() {

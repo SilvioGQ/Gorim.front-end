@@ -1,11 +1,11 @@
 // import * as React from 'react';
 // import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 // import Button from '../../../Components/Button';
-// import COLORS from '../../../resources/colors';
+// import COLORS from '../../../constants/colors';
 
-// import Voto from '../../../assets/Logo/vote.png';
+// import Voto from '../../../assets/symbols/vote.png';
 // import { StatusBar } from 'react-native';
-// // import Man from '../../../assets/perfils/empresariox2/man1x2.png';
+// // import Man from '../../../assets/avatars/empresariox2/man1x2.png';
 
 // const Tela = Dimensions.get('screen').width
 // export default function Frame7({ navigation }) {

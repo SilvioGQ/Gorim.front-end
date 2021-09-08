@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 
-import Moeda from '../../../assets/moedas/Moeda.png';
 import Agua from '../../../assets/simbolos/agua.png';
 import Esgoto from '../../../assets/simbolos/esgoto.png';
 import Lixo from '../../../assets/simbolos/lixo.png';
+import IMAGES from '../../../constants/imagesCoins';
 
 const Tela = Dimensions.get('screen').width;
 export default function Prevençao({ navigation }) {
@@ -17,7 +17,7 @@ export default function Prevençao({ navigation }) {
       <View style={styles.row3}>
         <Image
           style={styles.logo}
-          source={Moeda}
+          source={IMAGES["Moeda"]}
         />
         <Text> 000 </Text>
       </View>

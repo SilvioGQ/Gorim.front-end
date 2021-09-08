@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 
 export default function ModalConfirmExit({ deletePlayer, onClick }) {
   return (
