@@ -35,7 +35,7 @@ export default function Status({ navigation }) {
           <View style={styles.containerescuro}>
             <Text style={styles.text}>RESUMO DA ETAPA</Text>
             <Image source={IMAGES[player.avatar]} style={styles.img} />
-            <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}/{player.name} em {player.city}</Text>
+            <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
             </View>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    paddingVertical: 110,
+    paddingVertical: 60,
   },
   containerescuro: {
     flex: 1,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 17,
     marginHorizontal: 100,
-    width: '90%'
+    width: '90%',
   },
   text: {
     fontSize: 24,
