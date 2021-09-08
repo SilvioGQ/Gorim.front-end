@@ -78,7 +78,7 @@ export default function Cenario() {
             />
             <View>
               <Text style={styles.name}>{player.name}</Text>
-              <Text style={styles.subtitle}>{player.type}</Text>
+              <Text style={styles.subtitle}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty : ''}</Text>
               <Text style={styles.subtitle}>{player.city}</Text>
             </View>
           </View>
@@ -129,17 +129,18 @@ const styles = StyleSheet.create({
     marginVertical: 35
   },
   image: {
-    width: 80,
-    height: 80
+    width: 70,
+    height: 75
   },
   name: {
     fontFamily: 'Rubik_700Bold',
-    fontSize: 18
+    fontSize: 18,
+    marginLeft: 5,
+    marginTop: 5,
   },
   subtitle: {
     fontFamily: 'Rubik_300Light',
     fontSize: 18,
-    marginVertical: 10,
     marginLeft: 5,
   },
   white: {

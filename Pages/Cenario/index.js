@@ -28,7 +28,7 @@ export default function Cenario({ navigation }) {
   }, []);
 
   return (
-    <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
+    <View style={{ backgroundColor: COLORS.bgColorPrimary}}>
       <Rodada name={'Cenário'} />
       <ScrollView>
         <View style={styles.container}>
