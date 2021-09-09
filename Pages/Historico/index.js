@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-// import Accordion from '@dooboo-ui/native-accordion';
-import { GameContext } from '../../context/GameContext';
-import COLORS from '../../resources/colors';
+import Accordion from '@dooboo-ui/native-accordion';
+import { GameContext } from '../../contexts/GameContext';
+import COLORS from '../../constants/colors';
 import Rodada from '../../Components/Rodada';
-import IMAGES from '../../resources/imagesIcons';
+import IMAGES from '../../constants/imagesIcons';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario({navigation}) {
@@ -65,7 +65,7 @@ export default function Cenario({navigation}) {
     <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
       <Rodada name={'Histórico'} arrow={true} onClick={()=>navigation.goBack()}/>
       <ScrollView style={{ alignSelf: 'stretch' }}>
-        {/* <View style={styles.container}>
+        <View style={styles.container}>
           <Text style={styles.header}>HISTÓRICO</Text>
           <Text style={styles.rodada}>RODADA {round-1}</Text>
           <View style={styles.row}>
@@ -87,8 +87,8 @@ export default function Cenario({navigation}) {
                     key={i}
                     style={styles.white}
                     contentVisible={false}
-                    invisibleElement={<Image style={{width:30,height:30,position:'absolute', left:345, right:0}} source={require('../../assets/simbolos/dropUp.png')}/>}
-                    visibleElement={<Image style={{width:30,height:30,position:'absolute', left:345,right:0}} source={require('../../assets/simbolos/dropdown.png')}/>}
+                    invisibleElement={<Image style={{width:30,height:30,position:'absolute', left:345, right:0}} source={require('../../assets/dropUp.png')}/>}
+                    visibleElement={<Image style={{width:30,height:30,position:'absolute', left:345,right:0}} source={require('../../assets/dropdown.png')}/>}
                     header={
                       <View>
                         <Text style={styles.subtitle}>{param.title}</Text>
@@ -109,7 +109,7 @@ export default function Cenario({navigation}) {
               })
               : null
           }
-        </View> */}
+        </View>
       </ScrollView>
     </View>
   );

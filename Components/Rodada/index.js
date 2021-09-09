@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
-import { GameContext } from '../../context/GameContext';
-import COLORS from '../../resources/colors';
+import { GameContext } from '../../contexts/GameContext';
+import COLORS from '../../constants/colors';
 
 const Tela = Dimensions.get('screen').width;
 export default function Rodada({ removeFromRoom = null, close = null, name, setModalVisible, arrow = null, onClick = null }) {
@@ -28,7 +28,7 @@ export default function Rodada({ removeFromRoom = null, close = null, name, setM
       {arrow && (
         <>
           <TouchableOpacity onPress={onClick} style={{ alignSelf: 'center', position: 'absolute', left: '7%', top: 20 }} activeOpacity={0.7}>
-            <Image style={styles.arrow} source={require('../../assets/simbolos/left-arrow.png')}  />
+            <Image style={styles.arrow} source={require('../../assets/icons/left-arrow.png')}  />
           </TouchableOpacity>
         </>
       )}

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     marginVertical:25,
     padding: 15,
     borderRadius: 17,
-    marginTop: 1,
+    marginTop: 15,
     marginBottom: 4
   },
   imagensproduto: {

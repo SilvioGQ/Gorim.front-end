@@ -43,7 +43,7 @@ export default function CriarPartida({ navigation }) {
         <View style={{ flex: 1, height: Height - 100, alignItems: 'center', width: Tela }}>
           <View style={{flexDirection:'row'}}>
             <TouchableOpacity style={[styles.leftArrow,{position:'absolute',left:-40,top:5,}]} onPress={() => { navigation.goBack() }} activeOpacity={0.7}>
-              <Image style={styles.leftArrow} source={require('../../assets/simbolos/left-arrow.png')} />
+              <Image style={styles.leftArrow} source={require('../../assets/icons/left-arrow.png')} />
             </TouchableOpacity>
             <TextInput style={styles.input}
               maxLength={10}
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     height: 45,
     fontSize: 24,
     borderWidth: 1,
-    width: '75%',
+    width: '70%',
     textAlign: 'center',
     borderRadius: 17,
     borderColor:'#11BBA3'
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
   leftArrow: {
     width: 25,
     height: 25,
+    opacity: 0.5
   },
   line: { width: '80%', borderWidth: 0.6, borderColor: '#11BBA3' }
 });
