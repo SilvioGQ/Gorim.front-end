@@ -101,9 +101,10 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 45,
+    marginLeft:10,
     fontSize: 24,
     borderWidth: 1,
-    width: '70%',
+    width: '80%',
     textAlign: 'center',
     borderRadius: 17,
     borderColor:'#11BBA3'
@@ -169,7 +170,8 @@ const styles = StyleSheet.create({
   leftArrow: {
     width: 25,
     height: 25,
-    opacity: 0.5
+    opacity: 0.7,
+    marginLeft:5
   },
   line: { width: '80%', borderWidth: 0.6, borderColor: '#11BBA3' }
 });

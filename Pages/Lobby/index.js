@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   line: {
     paddingVertical: 10,
-    borderWidth: 0.7,
+    borderWidth: 0.9,
     width: Tela - 75,
     borderRadius: 15,
     borderTopColor: '#139A2A',

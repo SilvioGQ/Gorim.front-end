@@ -28,7 +28,7 @@ export default function Cenario({ navigation }) {
   }, []);
 
   return (
-    <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
+    <View>
       <Rodada name={'Cenário'} arrow={true} onClick={()=>navigation.goBack()} />
       <ScrollView>
         <View style={styles.container}>
@@ -102,6 +102,7 @@ export default function Cenario({ navigation }) {
           )}
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
+
           {player.logs.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logs.filter((item) => item.type == type).map((item, index) => {
             if (item.type === 'plantation') {
               return <HistoricosPlatacao key={index} item={item} />
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: Tela,
-    height: Height
+    marginBottom:65
   },
   title: {
     fontSize: 20,
@@ -191,7 +192,6 @@ const styles = StyleSheet.create({
   coloridos: {
     backgroundColor: '#8ACF3A',
     borderWidth: 1,
-
     borderColor: COLORS.successButton,
     margin: 5,
     width: 145,
