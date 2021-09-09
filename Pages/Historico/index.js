@@ -1,20 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-<<<<<<< HEAD
 // import Accordion from '@dooboo-ui/native-accordion';
 import { GameContext } from '../../context/GameContext';
 import COLORS from '../../resources/colors';
 import Rodada from '../../Components/Rodada';
 import IMAGES from '../../resources/imagesIcons';
-=======
-
-import { GameContext } from '../../contexts/GameContext';
-import COLORS from '../../constants/colors';
-import Rodada from '../../Components/Rodada';
-import IMAGES from '../../constants/imagesIcons';
-import DropDownItem from 'react-native-drop-down-item';
-
->>>>>>> 6816eb6dfa3277757b7041caf52d007d23a344c6
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario({navigation}) {
