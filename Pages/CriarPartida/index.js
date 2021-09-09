@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { GameContext, addToRoom, joinToRoom } from '../../context/GameContext';
+import { GameContext, addToRoom, joinToRoom } from '../../contexts/GameContext';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 import ModalInfo from '../../Components/ModalInfo';
 
 const Tela = Dimensions.get('screen').width;

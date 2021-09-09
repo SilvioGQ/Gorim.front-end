@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity } from 'react-native';
-import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../../context/GameContext";
+import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../../contexts/GameContext";
 
 import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
 import OfertaGeral from '../../../Components/OfertaGeral';
 import FilterType from '../../../Components/FilterType';
-import COLORS from '../../../resources/colors';
+import COLORS from '../../../constants/colors';
 import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
 

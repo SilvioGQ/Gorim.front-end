@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
-import { GameContext, removeToRoom, } from '../../context/GameContext';
+import { GameContext, removeToRoom, } from '../../contexts/GameContext';
 
-import COLORS from '../../resources/colors';
-import Clock from '../../assets/Logo/clock.png';
+import COLORS from '../../constants/colors';
+import Clock from '../../assets/symbols/clock.png';
 import Rodada from '../../Components/Rodada';
 
 export default function AguardarJogadores({ navigation }) {

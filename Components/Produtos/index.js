@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
-import IMAGES from '../../resources/imagesProducts';
-import COLORS from '../../resources/colors';
+import IMAGES from '../../constants/imagesProducts';
+import COLORS from '../../constants/colors';
 
 export default function Produtos({ item }) {
   return (

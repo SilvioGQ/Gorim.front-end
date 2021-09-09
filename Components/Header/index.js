@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import IMAGES from '../../resources/imagesIcons'
+import IMAGES from '../../constants/imagesIcons'
 import Coin from '../Coin';
-import { GameContext } from "../../context/GameContext";
+import { GameContext } from "../../contexts/GameContext";
 
 export default function Header() {
 

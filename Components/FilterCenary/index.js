@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { GameContext } from '../../context/GameContext';
+import { GameContext } from '../../contexts/GameContext';
 
 
 export default function FilterCenary({ type, setType }) {
 	const { player } = useContext(GameContext);
 	return (
-		<View style={{ flexDirection: 'row', marginHorizontal: 20, width: '85%', justifyContent: 'space-between', marginVertical: 10 }}>
+		<View style={{flexDirection: 'row', marginHorizontal: 20, width: '80%', justifyContent: 'space-between', marginVertical: 10 }}>
 			{player.type === 'Agricultor' && (
 				<>
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>

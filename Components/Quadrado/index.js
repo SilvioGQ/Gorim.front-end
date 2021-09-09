@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import COLORS from '../../resources/colors';
-import IMAGES from '../../resources/imagesIcons'
+import COLORS from '../../constants/colors';
+import IMAGES from '../../constants/imagesIcons'
 export default function Quadrados({ player = null, onClick, backgroundColor, icon=null }) {
   return (
     <TouchableOpacity onPress={onClick} activeOpacity={0.7}>

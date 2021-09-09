@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { GameContext } from "../../../context/GameContext";
+import { GameContext } from "../../../contexts/GameContext";
 
-import COLORS from '../../../resources/colors';
+import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
 export default function ControleParcelas({ navigation }) {
 

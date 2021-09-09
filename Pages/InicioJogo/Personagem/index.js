@@ -1,7 +1,7 @@
 // import * as React from 'react';
 // import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 // import Button from '../../../Components/Button';
-// import COLORS from '../../../resources/colors';
+// import COLORS from '../../../constants/colors';
 
 // import bag from '../../../assets/simbolos/bag.png';
 // import mapsAndLocation from '../../../assets/simbolos/maps-and-location.png';

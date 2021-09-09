@@ -1,7 +1,7 @@
 // import React from 'react';
 // import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-// import COLORS from '../../../resources/colors';
-// import Handshake from '../../../assets/Logo/handshake.png';
+// import COLORS from '../../../constants/colors';
+// import Handshake from '../../../assets/symbols/handshake.png';
 
 // export default function Insumo({ route, navigation }) {
 

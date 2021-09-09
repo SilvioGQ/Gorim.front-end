@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
-import COLORS from '../../../resources/colors';
-import Confirmacao from '../../../assets/Logo/confirmacao.png';
+import COLORS from '../../../constants/colors';
+import Confirmacao from '../../../assets/symbols/confirm.png';
 
 export default function Confirmada({ navigation, route }) {
   const { text } = route.params;

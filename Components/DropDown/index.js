@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 
-import IMAGES from '../../resources/imagesProducts';
+import IMAGES from '../../constants/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
 

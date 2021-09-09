@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
-import { GameContext, makeRaffle } from '../../context/GameContext';
+import { GameContext, makeRaffle } from '../../contexts/GameContext';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 
 export default function SorteioJogador({ navigation }) {
 
@@ -24,7 +24,7 @@ export default function SorteioJogador({ navigation }) {
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Text style={styles.header}>Gorim</Text>
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('../../assets/Logo/Dados.png')} />
+        <Image style={styles.logo} source={require('../../assets/symbols/givenAway.png')} />
         <Text style={styles.loading}>Sorteando Personagens...</Text>
       </View>
     </View>

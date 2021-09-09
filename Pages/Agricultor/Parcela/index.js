@@ -1,15 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
-import { GameContext, toPlant, addSprayParcel } from "../../../context/GameContext";
+import { GameContext, toPlant, addSprayParcel } from "../../../contexts/GameContext";
 
 import Button from '../../../Components/Button';
-import COLORS from '../../../resources/colors';
+import COLORS from '../../../constants/colors';
 import DropDown from '../../../Components/DropDown';
-import Unknown from '../../../assets/unknown.png';
+import Unknown from '../../../assets/icons/unknown.png';
 import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import Conf from '../../../Components/Selo-Verde-Confirmacao';
 import ModalInfo from '../../../Components/ModalInfo';
-import IMAGES from '../../../resources/imagesProducts';
+import IMAGES from '../../../constants/imagesProducts';
+import IMAGESMENU from '../../../constants/imagesMenu';
 import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
@@ -76,7 +77,7 @@ export default function Parcela({ route, navigation }) {
         {parcelLand.planted && (
           <TouchableOpacity style={styles.button2} onPress={stamp} activeOpacity={0.7} >
             <Text style={styles.buttonText}>PEDIR SELO VERDE</Text>
-            <Image source={require('../../../assets/selos/selo.png')} style={styles.pulverize} />
+            <Image source={IMAGESMENU["Pedir selo verde"]} style={styles.pulverize} />
           </TouchableOpacity>
         )}
         <Text style={styles.title}>Nesta parcela:</Text>

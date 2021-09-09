@@ -61,7 +61,7 @@
 //           <View style={styles.colunm}>
 //             <Image
 //               style={styles.icone}
-//               source={require('../../../assets/agricultorIcones/coin.png')}
+//               source={require('../../../assets/icons/coin.png')}
 //             />
 //             <Text style={styles.textinhos}> Fazer {'\n'} tranferência </Text>
 //           </View>

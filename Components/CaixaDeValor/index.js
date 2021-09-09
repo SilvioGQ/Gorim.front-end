@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
+import IMAGES from '../../constants/imagesCoins';
 
 export default function CaixaDeValor({ value, setValue, increment, minValue = 0, maxValue = value + 1, coin = null }) {
 
@@ -14,7 +15,7 @@ export default function CaixaDeValor({ value, setValue, increment, minValue = 0,
         <Image style={[styles.arrow, { opacity: value === minValue ? 0.5 : 1 }]} source={require('../../assets/agricultorIcones/setaesquerda.png')} />
       </TouchableOpacity>
       <View style={styles.buttonAmount}>
-        {coin ===true && (<Image style={{ width: 24, height: 27, marginRight:5, alignSelf:'center', marginTop:5 }} source={require('../../assets/moedas/Moeda.png')} />)} 
+        {coin ===true && (<Image style={{ width: 24, height: 27, marginRight:5, alignSelf:'center', marginTop:5 }} source={IMAGES["Moeda"]} />)} 
         <Text style={styles.textAmount}>{value}</Text>
       </View>
       <TouchableOpacity onPress={increaseValue} activeOpacity={0.7}>

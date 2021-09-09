@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
-import { GameContext, makeTransfer } from "../../../context/GameContext";
+import { GameContext, makeTransfer } from "../../../contexts/GameContext";
 
 import Button from '../../../Components/Button';
-import COLORS from '../../../resources/colors';
-import logoTransfer from '../../../assets/moedas/logoTransfer.png';
+import COLORS from '../../../constants/colors';
+import logoTransfer from '../../../assets/symbols/transfer.png';
 import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;

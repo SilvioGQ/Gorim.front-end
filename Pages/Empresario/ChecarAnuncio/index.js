@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
-import { GameContext, deleteAdvert } from "../../../context/GameContext";
+import { GameContext, deleteAdvert } from "../../../contexts/GameContext";
 
 import Coin from '../../../Components/Coin';
 
 import Anuncio from '../../../Components/Anuncio';
-import COLORS from '../../../resources/colors';
+import COLORS from '../../../constants/colors';
 import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
 

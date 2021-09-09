@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-import COLORS from '../../resources/colors';
+import COLORS from '../../constants/colors';
 import Papel from '../../assets/agricultorIcones/papel.png';
 
 export default function Cenarios({ seeScenery, stepFinish, notification }) {

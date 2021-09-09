@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Candidato from '../../../Components/Checkbox';
 import Button from '../../../Components/Button';
-import COLORS from '../../../resources/colors';
+import COLORS from '../../../constants/colors';
 
-import Voto from '../../../assets/Logo/vote.png';
+import Voto from '../../../assets/symbols/vote.png';
 import { StatusBar } from 'react-native';
 
 const Tela = Dimensions.get('screen').width

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
-import COLORS from '../../resources/colors';
-import { GameContext } from '../../context/GameContext';
+import COLORS from '../../constants/colors';
+import { GameContext } from '../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width;
 export default function ModalInfo({ text, onClick, modalImage, title, image, image2 }) {
   const { player } = useContext(GameContext);
@@ -22,7 +22,7 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
             <Image source={require('../../assets/tabelaprod.png')} style={{ width: 266, height: 250, marginBottom: 25 }} />
           )}
           {image2 && (
-            <Image source={require('../../assets/Imposto.png')} style={{ width: 305, height: 210,marginBottom: 25 }} />
+            <Image source={require('../../assets/Imposto.png')} style={{ width: 304, height: 210, marginBottom: 25 }} />
           )}
           {modalImage && (
             <View style={{ padding: 15, marginRight: 25 }}>
