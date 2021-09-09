@@ -11,7 +11,7 @@ import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
-export default function Propostas() {
+export default function Propostas({navigation}) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('');
   const { player, offers, disableNotifyOffers } = useContext(GameContext);
@@ -44,7 +44,7 @@ export default function Propostas() {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Propostas'} />
+      <Rodada name={'Propostas'} arrow={true} onClick={()=>navigation.goBack()} />
       <Coin coin={player.coin} />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <Text style={styles.text}>Anúncios</Text>

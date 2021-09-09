@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { GameContext } from '../../context/GameContext';
 import COLORS from '../../resources/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function Rodada({ removeFromRoom = null, close = null, name, setModalVisible }) {
+export default function Rodada({ removeFromRoom = null, close = null, name, setModalVisible, arrow = null, onClick = null }) {
 
   const { timer } = useContext(GameContext);
 
@@ -18,14 +18,21 @@ export default function Rodada({ removeFromRoom = null, close = null, name, setM
   return (
     <View style={styles.container}>
       <Text style={styles.textLarge}>{name} {stringTimer()}</Text>
-        {close && (
-          <>
-          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', borderWidth: 1, borderRadius: 20, padding: 10, position: 'absolute', left: '82%', top: '30%' }} activeOpacity={0.7}>
-              <Text style={styles.textExit}>Sair</Text>
-            </TouchableOpacity>
-          </>
-        )}
-      </View>
+      {close && (
+        <>
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '82%', top: 25 }} activeOpacity={0.7}>
+            <Text style={styles.textExit}>Sair</Text>
+          </TouchableOpacity>
+        </>
+      )}
+      {arrow && (
+        <>
+          <TouchableOpacity onPress={onClick} style={{ alignSelf: 'center', position: 'absolute', left: '7%', top: 20 }} activeOpacity={0.7}>
+            <Image style={styles.arrow} source={require('../../assets/simbolos/left-arrow.png')}  />
+          </TouchableOpacity>
+        </>
+      )}
+    </View>
   );
 }
 
@@ -35,21 +42,26 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.headerColor,
     height: 70,
     width: Tela,
-    paddingTop:15,
+    paddingTop: 10,
     justifyContent: 'center'
   },
   textLarge: {
     color: '#ffffff',
     fontSize: 20,
     fontFamily: 'Rubik_300Light',
-    marginLeft:5,
+    marginLeft: 5,
     alignSelf: 'center',
-    marginTop:-15
+    marginTop: -10
   },
   textExit: {
     color: '#ffffff',
-    fontSize: 15,
+    fontSize: 17,
     fontFamily: 'Rubik_700Bold',
     textAlign: 'center',
+  },
+  arrow: {
+    width:25,
+    height:25,
+    tintColor:'#fff'
   }
 });

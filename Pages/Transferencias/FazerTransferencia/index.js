@@ -27,7 +27,7 @@ export default function FazerTransferencia({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <Rodada name={'Fazer transferência'}/>
+      <Rodada name={'Fazer transferência'} arrow={true} onClick={()=>navigation.goBack()}/>
       <Coin coin={player.coin} />
       <View style={styles.header}>
         <Image style={{ width: 63, height: 61 }} source={require('../../../assets/agricultorIcones/coin.png')} />

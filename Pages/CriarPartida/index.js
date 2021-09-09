@@ -41,13 +41,17 @@ export default function CriarPartida({ navigation }) {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, height: Height - 100, alignItems: 'center', width: Tela }}>
-          <TextInput style={styles.input}
-            maxLength={10}
-            onChangeText={name => setName(name)}
-            placeholder="Digite seu nome"
-            value={name}
-          >
-          </TextInput>
+          <View style={{flexDirection:'row'}}>
+            <TouchableOpacity style={[styles.leftArrow,{position:'absolute',left:-40,top:5,}]} onPress={() => { navigation.goBack() }} activeOpacity={0.7}>
+              <Image style={styles.leftArrow} source={require('../../assets/simbolos/left-arrow.png')} />
+            </TouchableOpacity>
+            <TextInput style={styles.input}
+              maxLength={10}
+              onChangeText={name => setName(name)}
+              placeholder="Digite seu nome"
+              value={name}
+            />
+          </View>
           <View style={{ alignItems: 'center', width: Tela, marginBottom: 50 }}>
             <Text style={styles.header}>HOST</Text>
             <View style={styles.line} />
@@ -99,13 +103,10 @@ const styles = StyleSheet.create({
     height: 45,
     fontSize: 24,
     borderWidth: 1,
-    width: '80%',
+    width: '75%',
     textAlign: 'center',
     borderRadius: 17,
-    borderTopColor: '#11BBA3',
-    borderLeftColor: '#11BBA3',
-    borderBottomColor: '#11BBA3',
-    borderRightColor: '#11BBA3'
+    borderColor:'#11BBA3'
   },
   row: {
     flexDirection: 'row',
@@ -164,6 +165,10 @@ const styles = StyleSheet.create({
     height: 25,
     marginTop: 40,
     marginLeft: 10
+  },
+  leftArrow: {
+    width: 25,
+    height: 25,
   },
   line: { width: '80%', borderWidth: 0.6, borderColor: '#11BBA3' }
 });

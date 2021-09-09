@@ -34,100 +34,27 @@ import Historico from './Historico';
 const Stack = createStackNavigator();
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="Gorim">
+    <Stack.Navigator initialRouteName="Gorim" screenOptions={{headerShown: false}}>
 
-      <Stack.Screen name="Gorim" component={Frame1} options={{
-        headerTransparent: true,
-        headerTitle: ''
-      }} />
-      <Stack.Screen name="SorteioJogador" component={SorteioJogador} options={{
-        headerLeft: () => null,
-        headerTransparent: true,
-        headerTitle: ''
-      }} />
-      <Stack.Screen name="MenuJogador" component={MenuJogador} options={{
-        headerLeft: () => null,
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="AguardarJogadores" component={AguardarJogadores} options={{
-        headerLeft: () => null,
-        headerTransparent: true,
-        headerTitle: ''
-      }} />
-      <Stack.Screen name="FazerTransferencia" component={FazerTransferencia} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="ConfirmarTransferencia" component={ConfirmarTransferencia} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada} options={{
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="ControleParcelas" component={ControleParcelas} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="Vendas" component={Vendas} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="Cenario" component={Cenario} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="Parcela" component={Parcela} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="Propostas" component={Propostas} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="AnalisarProdutos" component={AnalisarProdutos} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="CriarPartida" component={CriarPartida} options={{
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="Lobby" component={Lobby} options={{
-        headerLeft: () => null,
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="SelecaoPersonagem" component={SelecaoPersonagem} options={{
-        headerTintColor: 'white',
-        headerTransparent: true,
-        headerTitle: '',
-      }} />
-      <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="Historico" component={Historico} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerTintColor: 'white',
-      }} />
-      <Stack.Screen name="Status" component={Status} options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerLeft: () => null,
-      }} />
+      <Stack.Screen name="Gorim" component={Frame1}/>
+      <Stack.Screen name="SorteioJogador" component={SorteioJogador}/>
+      <Stack.Screen name="MenuJogador" component={MenuJogador}/>
+      <Stack.Screen name="AguardarJogadores" component={AguardarJogadores}/>
+      <Stack.Screen name="FazerTransferencia" component={FazerTransferencia}/>
+      <Stack.Screen name="ConfirmarTransferencia" component={ConfirmarTransferencia}/>
+      <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada}/>
+      <Stack.Screen name="ControleParcelas" component={ControleParcelas}/>
+      <Stack.Screen name="Vendas" component={Vendas}/>
+      <Stack.Screen name="Cenario" component={Cenario}/>
+      <Stack.Screen name="Parcela" component={Parcela}/>
+      <Stack.Screen name="Propostas" component={Propostas}/>
+      <Stack.Screen name="AnalisarProdutos" component={AnalisarProdutos}/>
+      <Stack.Screen name="CriarPartida" component={CriarPartida}/>
+      <Stack.Screen name="Lobby" component={Lobby}/>
+      <Stack.Screen name="SelecaoPersonagem" component={SelecaoPersonagem}/>
+      <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio}/>
+      <Stack.Screen name="Historico" component={Historico}/>
+      <Stack.Screen name="Status" component={Status}/>
     </Stack.Navigator>
   )
 }

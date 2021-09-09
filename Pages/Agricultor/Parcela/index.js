@@ -13,7 +13,7 @@ import IMAGES from '../../../resources/imagesProducts';
 import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
-export default function Parcela({ route }) {
+export default function Parcela({ route, navigation }) {
 
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
@@ -67,7 +67,7 @@ export default function Parcela({ route }) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Parcela de terra'} />
+      <Rodada name={'Parcela de terra'} arrow={true} onClick={()=>navigation.goBack()} />
       <ScrollView>
         <View style={styles.espaco}>
           <Image style={styles.parcel} source={Parcel} />

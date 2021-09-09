@@ -57,7 +57,7 @@ export default function Vendas({ navigation, route }) {
   }
   return (
     <View style={styles.container}>
-      <Rodada name={'Criar Anúncio'} />
+      <Rodada name={'Criar Anúncio'} arrow={true} onClick={()=>navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Coin coin={player.coin} />
         <View style={styles.center}>

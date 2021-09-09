@@ -13,6 +13,7 @@
     ]
   },
   "dependencies": {
+    "@dooboo-ui/native-accordion": "^0.7.0",
     "@expo-google-fonts/rubik": "^0.1.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^5.9.4",
@@ -33,7 +34,8 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "^0.17.1",
     "socket.io": "^4.0.1",
-    "socket.io-client": "^4.0.1"
+    "socket.io-client": "^4.0.1",
+    "styled-component": "^2.8.0"
   },
   "devDependencies": {
     "@babel/core": ">=7.12.0",

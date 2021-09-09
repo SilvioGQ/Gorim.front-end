@@ -17,7 +17,7 @@ export default function ChecarAnuncio({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Checar anúncios'} />
+      <Rodada name={'Checar anúncios'} arrow={true} onClick={()=>navigation.goBack()}/>
       <Coin coin={player.coin} />
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}

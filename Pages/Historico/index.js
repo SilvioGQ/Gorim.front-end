@@ -1,16 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-
+// import Accordion from '@dooboo-ui/native-accordion';
 import { GameContext } from '../../context/GameContext';
 import COLORS from '../../resources/colors';
 import Rodada from '../../Components/Rodada';
 import IMAGES from '../../resources/imagesIcons';
-import DropDownItem from 'react-native-drop-down-item';
-
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
-export default function Cenario() {
-  
+export default function Cenario({navigation}) {
   const [open5, setOpen5] = useState(false);
   const { player, logs, round } = useContext(GameContext);
   const rotateZ5 = open5 ? "180deg" : "0deg";
@@ -66,9 +63,9 @@ export default function Cenario() {
   };
   return (
     <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
-      <Rodada name={'Histórico'} />
+      <Rodada name={'Histórico'} arrow={true} onClick={()=>navigation.goBack()}/>
       <ScrollView style={{ alignSelf: 'stretch' }}>
-        <View style={styles.container}>
+        {/* <View style={styles.container}>
           <Text style={styles.header}>HISTÓRICO</Text>
           <Text style={styles.rodada}>RODADA {round-1}</Text>
           <View style={styles.row}>
@@ -86,12 +83,12 @@ export default function Cenario() {
             this.state.contents
               ? this.state.contents.map((param, i) => {
                 return (
-                  <DropDownItem
+                  <Accordion
                     key={i}
                     style={styles.white}
                     contentVisible={false}
-                    invisibleImage={require('../../assets/simbolos/dropdown.png')}
-                    visibleImage={require('../../assets/simbolos/dropUp.png')}
+                    invisibleElement={<Image style={{width:30,height:30,position:'absolute', left:345, right:0}} source={require('../../assets/simbolos/dropUp.png')}/>}
+                    visibleElement={<Image style={{width:30,height:30,position:'absolute', left:345,right:0}} source={require('../../assets/simbolos/dropdown.png')}/>}
                     header={
                       <View>
                         <Text style={styles.subtitle}>{param.title}</Text>
@@ -107,12 +104,12 @@ export default function Cenario() {
                     ]}>
                       {param.body}
                     </Text>
-                  </DropDownItem>
+                  </Accordion>
                 );
               })
               : null
           }
-        </View>
+        </View> */}
       </ScrollView>
     </View>
   );
@@ -147,7 +144,9 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     borderWidth: 1,
     backgroundColor: '#fff',
-    marginBottom: 12
+    marginBottom: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   whiteRow: {
     width: '100%',

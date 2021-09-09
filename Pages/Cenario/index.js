@@ -29,7 +29,7 @@ export default function Cenario({ navigation }) {
 
   return (
     <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
-      <Rodada name={'Cenário'} />
+      <Rodada name={'Cenário'} arrow={true} onClick={()=>navigation.goBack()} />
       <ScrollView>
         <View style={styles.container}>
           <Coin coin={player.coin} />
@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
     height: Height
   },
