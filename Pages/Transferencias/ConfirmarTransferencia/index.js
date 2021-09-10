@@ -25,7 +25,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text}>Fazer transferência</Text>
         <Image style={styles.logo} source={logoTransfer} />
         <Text style={styles.text}> Deseja confirmar a transação?</Text>
-        <Text style={styles.text2}>{JSON.stringify(count)}$ </Text>
+        <Text style={styles.text2}>${JSON.stringify(count)} </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={make} name='CONTINUAR' />
           <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador' }] })} style={styles.button} activeOpacity={0.7}>

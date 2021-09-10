@@ -44,7 +44,7 @@ export default function Cenario({ navigation }) {
           <View style={styles.numeros}>
             <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(true); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>) }} activeOpacity={0.7}>
               <Text style={styles.numero}>
-                {stage === 'GETTAX' && (tax.percentual ? `${tax.percentual}%` : `${tax.value}$`)}
+                {stage === 'GETTAX' && (tax.percentual ? `${tax.percentual}%` : `$${tax.value}`)}
               </Text>
               <Text style={styles.inferior}>
                 Imposto

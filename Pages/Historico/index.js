@@ -1,175 +1,190 @@
 import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-import Accordion from '@dooboo-ui/native-accordion';
+
 import { GameContext } from '../../contexts/GameContext';
 import COLORS from '../../constants/colors';
 import Rodada from '../../Components/Rodada';
 import IMAGES from '../../constants/imagesIcons';
+
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
-export default function Cenario({navigation}) {
-  const [open5, setOpen5] = useState(false);
-  const { player, logs, round } = useContext(GameContext);
-  const rotateZ5 = open5 ? "180deg" : "0deg";
+export default function Cenario() {
 
-  state = {
-    contents: [
-      {
-        title: 'Parcela',
-        body: logs.filter((item) => {
-          if (item.type == 'plantation') {
-            return item
-          }
-        }).map((item, index) => {
-          return <Text key={index}>Semente:{item.parcelLand.seed}, {item.parcelLand.pesticide ? `Agrotóxico:${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''} {item.parcelLand.fertilizer ? `Fertilizante:${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''} {item.parcelLand.machine ? `Maquina:${item.parcelLand.machine},` : ''} Pulverizador{item.parcelLand.spray ? 'Sim' : 'Não'} {'\n'}</Text>
-        })
-      },
-      ,
-      {
-        title: 'Gastos',
-        body: logs.filter((item) => {
-          if (item.type == 'buy') {
-            return item
-          }
-        }).map((item, index) => {
-          return <Text key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n`}</Text>
-        }),
-      },
-      {
-        title: 'Transferências',
-        body: logs.filter((item) => {
-          if (item.type == 'buy') {
-            return item
-          }
-        }).map((item, index) => {
-          return <Text key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n`}</Text>
-        }),
-      },
-      {
-        title: 'Multas',
-        body: ''
-      },
-      {
-        title: 'Impostos',
-        body: logs.filter((item) => {
-          if (item.type == 'tax') {
-            return item
-          }
-        }).map((item, index) => {
-          return <Text key={index}>{item.percentual ? `Você pagou na ultima rodada ${item.value}$ que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados ${item.value}$ em impostos.`}</Text>
-        }),
-      },
-    ],
-  };
-  return (
-    <View style={{ backgroundColor: COLORS.bgColorPrimary, height: Height }}>
-      <Rodada name={'Histórico'} arrow={true} onClick={()=>navigation.goBack()}/>
-      <ScrollView style={{ alignSelf: 'stretch' }}>
-        <View style={styles.container}>
-          <Text style={styles.header}>HISTÓRICO</Text>
-          <Text style={styles.rodada}>RODADA {round-1}</Text>
-          <View style={styles.row}>
-            <Image
-              style={styles.image}
-              source={IMAGES[player.avatar]}
-            />
-            <View>
-              <Text style={styles.name}>{player.name}</Text>
-              <Text style={styles.subtitle}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty : ''}</Text>
-              <Text style={styles.subtitle}>{player.city}</Text>
-            </View>
-          </View>
-          {
-            this.state.contents
-              ? this.state.contents.map((param, i) => {
-                return (
-                  <Accordion
-                    key={i}
-                    style={styles.white}
-                    contentVisible={false}
-                    invisibleElement={<Image style={{width:30,height:30,position:'absolute', left:345, right:0}} source={require('../../assets/dropUp.png')}/>}
-                    visibleElement={<Image style={{width:30,height:30,position:'absolute', left:345,right:0}} source={require('../../assets/dropdown.png')}/>}
-                    header={
-                      <View>
-                        <Text style={styles.subtitle}>{param.title}</Text>
-                      </View>
-                    }
-                  >
-                    <Text style={[
-                      styles.txt,
-                      {
-                        fontSize: 13,
-                        fontFamily: 'Rubik_300Light'
-                      }
-                    ]}>
-                      {param.body}
-                    </Text>
-                  </Accordion>
-                );
-              })
-              : null
-          }
+    const [open, setOpen] = useState(false);
+    const [open2, setOpen2] = useState(false);
+    const [open3, setOpen3] = useState(false);
+    const [open4, setOpen4] = useState(false);
+    const [open5, setOpen5] = useState(false);
+    const { player, logs, round } = useContext(GameContext);
+    const rotateZ = open ? "180deg" : "0deg";
+    const rotateZ2 = open2 ? "180deg" : "0deg";
+    const rotateZ3 = open3 ? "180deg" : "0deg";
+    const rotateZ4 = open4 ? "180deg" : "0deg";
+    const rotateZ5 = open5 ? "180deg" : "0deg";
+
+    console.log(logs);
+    return (
+        <View>
+            <Rodada name={'Histórico'} arrow={true} onClick={()=>navigation.goBack()} />
+            <ScrollView>
+                <View style={styles.container}>
+                    <Text style={styles.header}>HISTÓRICO</Text>
+                    <Text style={styles.rodada}>RODADA {round}</Text>
+                    <View style={styles.row}>
+                        <Image
+                            style={styles.image}
+                            source={IMAGES[player.avatar]}
+                        />
+                        <View>
+                            <Text style={styles.name}>{player.name}</Text>
+                            <Text style={styles.subtitle}>{player.type}</Text>
+                            <Text style={styles.subtitle}>{player.city}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.white}>
+                    <View style={styles.whiteRow}>
+                        <Text style={[styles.subtitle, {
+                            marginLeft: 10,
+                            marginTop: 15
+                        }]}>Parcela</Text>
+                        <TouchableOpacity onPress={() => { setOpen(!open) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ }] }} source={require('../../assets/dropdown.png')} />
+                        </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light', display: open4 ? 'flex' : 'none' }}>
+                            {logs.filter((item) => {
+                                    if (item.type == 'plantation') {
+                                        return item
+                                    }
+                                }).map((item, index) => {
+                                        return <Text key={index}>Semente:{item.parcelLand.seed}, {item.parcelLand.pesticide ? `Agrotóxico:${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},`: '' } {item.parcelLand.fertilizer ? `Fertilizante:${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},`: '' } {item.parcelLand.machine ? `Maquina:${item.parcelLand.machine},`: '' } Pulverizador{item.parcelLand.spray ?  'Sim': 'Não'} {'\n'}</Text>
+                                })
+                                }</Text>
+
+                    </View>
+                    <View style={styles.white}>
+                    <View style={styles.whiteRow}>
+                        <Text style={[styles.subtitle, {
+                            marginLeft: 10,
+                            marginTop: 15
+                        }]}>Gastos</Text>
+                        <TouchableOpacity onPress={() => { setOpen2(!open2) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ2 }] }} source={require('../../assets/dropdown.png')} />
+                        </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light',display: open2 ? 'flex' : 'none'}}>
+                            {logs.filter((item) => {
+                                    if (item.type == 'buy') {
+                                        return item
+                                    }
+                                }).map((item, index) => {
+                                        return <Text key={index}>{item.ownAction ?  `Você comprou ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n`}</Text>
+                                })
+                                }</Text>
+
+
+                    </View>
+                    <View style={styles.white}>
+                    <View style={styles.whiteRow}>
+                        <Text style={[styles.subtitle, {
+                            marginLeft: 10,
+                            marginTop: 15
+                        }]}>Transferências</Text>
+                        <TouchableOpacity onPress={() => { setOpen3(!open3) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ3 }] }} source={require('../../assets/dropdown.png')} />
+                        </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light', display: open3 ? 'flex' : 'none'}}>
+                            {logs.filter((item) => {
+                                    if (item.type == 'transfer') {
+                                        return item
+                                    }
+                                }).map((item, index) => {
+                                        return <Text key={index}>{item.ownAction ? `você tranferiu ${item.value} para o jogador ${item.namePlayer}\n`: `você recebeu ${item.value} do jogador ${item.namePlayer}\n`}</Text>
+                                })
+                                }</Text>
+
+                    </View>
+                    <View style={styles.white}>
+                    <View style={styles.whiteRow}>
+                        <Text style={[styles.subtitle, {
+                            marginLeft: 10,
+                            marginTop: 15
+                        }]}>Multas Pagas</Text>
+                        <TouchableOpacity onPress={() => { setOpen4(!open4) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ4 }] }} source={require('../../assets/dropdown.png')} />
+                        </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light', display: open4 ? 'flex' : 'none' }}>sajdkladsadkjasd</Text>
+                    </View>
+                    <View style={styles.white}>
+                    <View style={styles.whiteRow}>
+                        <Text style={[styles.subtitle, {
+                            marginLeft: 10,
+                            marginTop: 15
+                        }]}>Impostos</Text>
+                        <TouchableOpacity onPress={() => { setOpen5(!open5) }}>
+                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ5 }] }} source={require('../../assets/dropdown.png')} />
+                        </TouchableOpacity>
+                        </View>
+                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light', display: open5 ? 'flex' : 'none' }}>sajdkladsadkjasd</Text>
+                    </View>
+                </View>
+            </ScrollView>
         </View>
-      </ScrollView>
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    width: Tela,
-  },
-  row: {
-    flexDirection: 'row',
-    marginVertical: 35
-  },
-  image: {
-    width: 70,
-    height: 75
-  },
-  name: {
-    fontFamily: 'Rubik_700Bold',
-    fontSize: 18,
-    marginLeft: 5,
-    marginTop: 5,
-  },
-  subtitle: {
-    fontFamily: 'Rubik_300Light',
-    fontSize: 18,
-    marginLeft: 5,
-  },
-  white: {
-    width: '95%',
-    borderRadius: 17,
-    borderWidth: 1,
-    backgroundColor: '#fff',
-    marginBottom: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  whiteRow: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20
-  },
-  header: {
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 24,
-    color: '#3F5510',
-    marginTop: 25
-  },
-  rodada: {
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 18,
-    color: '#3F5510'
-  }
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        width: Tela,
+    },
+    row: {
+        flexDirection: 'row',
+        marginVertical: 35
+    },
+    image: {
+        width: 80,
+        height: 80
+    },
+    name: {
+        fontFamily: 'Rubik_700Bold',
+        fontSize: 18
+    },
+    subtitle: {
+        fontFamily: 'Rubik_300Light',
+        fontSize: 18
+    },
+    white: {
+        width: '80%',
+        borderRadius: 17,
+        borderWidth: 1,
+        backgroundColor: '#fff',
+        paddingVertical:5,
+        marginVertical:7
+    },
+    whiteRow: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    header: {
+        fontFamily: 'Rubik_400Regular',
+        fontSize: 24,
+        color: '#3F5510',
+        marginTop: 25
+    },
+    rodada: {
+        fontFamily: 'Rubik_400Regular',
+        fontSize: 18,
+        color: '#3F5510'
+    }
 });
 
 
-{/* {open && (
+                        {/* {open && (
                             <View>
                                 {logs.filter((item) => {
                                     if (item.type == 'plantation') {
