@@ -39,7 +39,7 @@ export default function FazerTransferencia({ navigation }) {
           numColumns={3}
           data={players.filter(i => i.id !== player.id)}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'}/>}
+          renderItem={({ item }) => <Quadrados player={item} onClick={() => setId(item.id)} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />}
         />
       </View>
       <Text style={[styles.text, {marginBottom: 15}]}>Valor:</Text>

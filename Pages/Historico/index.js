@@ -8,7 +8,7 @@ import IMAGES from '../../constants/imagesIcons';
 
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
-export default function Cenario() {
+export default function Cenario( {navigation} ) {
 
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
@@ -25,7 +25,7 @@ export default function Cenario() {
     console.log(logs);
     return (
         <View>
-            <Rodada name={'Histórico'} arrow={true} onClick={()=>navigation.goBack()} />
+        <Rodada name={'Historico'} arrow={true} onClick={() => navigation.goBack()} />
             <ScrollView>
                 <View style={styles.container}>
                     <Text style={styles.header}>HISTÓRICO</Text>

@@ -2,12 +2,12 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons'
-export default function Quadrados({ player = null, onClick, backgroundColor, icon=null }) {
+export default function Quadrados({ player = null, onClick, backgroundColor, color, icon=null }) {
   return (
     <TouchableOpacity onPress={onClick} activeOpacity={0.7}>
       <View style={[styles.colunm, { backgroundColor: backgroundColor }]} >
         <Image style={styles.icone} source={player ? IMAGES[player.avatar] : IMAGES[icon]} />
-        <Text style={styles.textinhos}>{player ? player.name : ''}</Text>
+        <Text style={[styles.textinhos, { color: color }]}>{player ? player.name : ''}</Text>
       </View>
     </TouchableOpacity>
   );

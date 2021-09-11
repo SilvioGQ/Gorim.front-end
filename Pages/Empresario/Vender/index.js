@@ -68,7 +68,7 @@ export default function Vendas({ navigation, route }) {
         </View>
         <Text style={styles.textos}> Clientes: </Text>
         <View style={{ marginHorizontal: 10, flexDirection: 'row', width: '100%', flexWrap: 'wrap' }}>
-          {filterPlayers().map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} />)}
+          {filterPlayers().map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'}/>)}
         </View>
         {modalText !== '' && (
           <Modal onClick={() => setModalText('')} text={modalText} />
@@ -79,22 +79,22 @@ export default function Vendas({ navigation, route }) {
             <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={IMAGESCOINS["Baixo"]} />
-                <Text style={styles.categoryprice}>Baixo</Text>
-                <Text style={styles.price}>${product?.cheap}</Text>
+                <Text style={[styles.categoryprice, { color: selectPrice == product?.cheap ? "#fff" : '#000'}]}>Baixo</Text>
+                <Text style={[styles.price, { color: selectPrice == product?.cheap ? "#fff" : '#000' }]}>${product?.cheap}</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setSelectPrice(product?.medium)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={IMAGESCOINS["Normal"]} />
-                <Text style={styles.categoryprice}>Normal</Text>
-                <Text style={styles.price}>${product?.medium}</Text>
+                <Text style={[styles.categoryprice, { color: selectPrice == product?.medium ? "#fff" : '#000' }]}>Normal</Text>
+                <Text style={[styles.price, { color: selectPrice == product?.medium ? "#fff" : '#000' }]}>${product?.medium}</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)} activeOpacity={0.7}>
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={IMAGESCOINS["Alto"]} />
-                <Text style={styles.categoryprice}>Alto</Text>
-                <Text style={styles.price}>${product?.expensive}</Text>
+                <Text style={[styles.categoryprice, { color: selectPrice == product?.expensive ? "#fff" : '#000' }]}>Alto</Text>
+                <Text style={[styles.price, { color: selectPrice == product?.expensive ? "#fff" : '#000' }]}>${product?.expensive}</Text>
               </View>
             </TouchableOpacity>
           </View>
