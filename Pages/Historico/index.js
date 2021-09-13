@@ -46,10 +46,10 @@ export default function Cenario({ navigation }) {
                             <View style={styles.whiteRow}>
                                 <Text style={[styles.subtitle, {
                                     marginLeft: 10,
-                                    marginTop: 15
+                                    marginTop: 10
                                 }]}>Parcela</Text>
                                 <TouchableOpacity onPress={() => { setOpen(!open) }}>
-                                    <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ }] }} source={require('../../assets/dropdown.png')} />
+                                    <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ }] }} source={require('../../assets/dropdown.png')} />
                                 </TouchableOpacity>
                             </View>
                             <View style={{display: open ? 'flex' : 'none', flexDirection:'column' }}>
@@ -65,15 +65,14 @@ export default function Cenario({ navigation }) {
                         :
                         null
                     }
-
                     <View style={styles.white}>
                         <View style={styles.whiteRow}>
                             <Text style={[styles.subtitle, {
                                 marginLeft: 10,
-                                marginTop: 15
-                            }]}>Gastos</Text>
+                                marginTop: 10
+                            }]}>{player.type === 'Agricultor' ? 'Gastos' : 'Vendas' }</Text>
                             <TouchableOpacity onPress={() => { setOpen2(!open2) }}>
-                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ2 }] }} source={require('../../assets/dropdown.png')} />
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ2 }] }} source={require('../../assets/dropdown.png')} />
                             </TouchableOpacity>
                         </View>
                         <View style={{ display: open2 ? 'flex' : 'none' }}>
@@ -92,10 +91,10 @@ export default function Cenario({ navigation }) {
                         <View style={styles.whiteRow}>
                             <Text style={[styles.subtitle, {
                                 marginLeft: 10,
-                                marginTop: 15
+                                marginTop: 10
                             }]}>Transferências</Text>
                             <TouchableOpacity onPress={() => { setOpen3(!open3) }}>
-                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ3 }] }} source={require('../../assets/dropdown.png')} />
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ3 }] }} source={require('../../assets/dropdown.png')} />
                             </TouchableOpacity>
                         </View>
                         <View style={{ display: open3 ? 'flex' : 'none' }}>
@@ -113,22 +112,22 @@ export default function Cenario({ navigation }) {
                         <View style={styles.whiteRow}>
                             <Text style={[styles.subtitle, {
                                 marginLeft: 10,
-                                marginTop: 15
+                                marginTop: 10
                             }]}>Multas Pagas</Text>
                             <TouchableOpacity onPress={() => { setOpen4(!open4) }}>
-                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ4 }] }} source={require('../../assets/dropdown.png')} />
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ4 }] }} source={require('../../assets/dropdown.png')} />
                             </TouchableOpacity>
                         </View>
-                        <Text style={{ display: open4 ? 'flex' : 'none' }}>Não tem multas</Text>
+                        <Text style={{marginLeft: 10, fontFamily: 'Rubik_300Light', display: open4 ? 'flex' : 'none' }}>Não tem multas</Text>
                     </View>
                     <View style={styles.white}>
                         <View style={styles.whiteRow}>
                             <Text style={[styles.subtitle, {
                                 marginLeft: 10,
-                                marginTop: 15
+                                marginTop: 10
                             }]}>Impostos</Text>
                             <TouchableOpacity onPress={() => { setOpen5(!open5) }}>
-                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ5 }] }} source={require('../../assets/dropdown.png')} />
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ5 }] }} source={require('../../assets/dropdown.png')} />
                             </TouchableOpacity>
                         </View>
                         <View style={{ display: open5 ? 'flex' : 'none' }}>{logs.filter((item) => {
@@ -172,8 +171,8 @@ const styles = StyleSheet.create({
         borderRadius: 17,
         borderWidth: 1,
         backgroundColor: '#fff',
-        paddingVertical: 5,
-        marginVertical: 7
+        paddingVertical: 10,
+        marginVertical: 10
     },
     whiteRow: {
         width: '100%',
