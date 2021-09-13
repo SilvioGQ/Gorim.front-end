@@ -29,7 +29,7 @@ export default function Cenario({ navigation }) {
 
   return (
     <View>
-      <Rodada name={'Cenário'} arrow={true} onClick={()=>navigation.goBack()} />
+      <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
         <View style={styles.container}>
           <Coin coin={player.coin} />
@@ -71,12 +71,12 @@ export default function Cenario({ navigation }) {
               <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
             </TouchableOpacity>
           </View >
-          {/* {round > 1 ?  */}
-          <TouchableOpacity onPress={() => navigation.navigate('Historico')} style={styles.historico}>
-            <Text style={styles.textHistorico}>HISTÓRICO</Text>
-          </TouchableOpacity>
-          {/* //  :
-                  //  ''} */}
+          {round > 1 ?
+            <TouchableOpacity onPress={() => navigation.navigate('Historico')} style={styles.historico}>
+              <Text style={styles.textHistorico}>HISTÓRICO</Text>
+            </TouchableOpacity>
+            :
+            null}
 
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} image={image} image2={image2} />}
           {Height <= 720 && (
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: Tela,
-    marginBottom:65
+    marginBottom: 65
   },
   title: {
     fontSize: 20,
