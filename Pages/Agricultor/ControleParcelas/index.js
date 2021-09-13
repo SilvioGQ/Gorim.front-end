@@ -10,7 +10,7 @@ export default function ControleParcelas({ navigation }) {
   const { player } = useContext(GameContext);
   return (
     <View style={styles.container}>
-      <Rodada name={'Controle de Parcelas'} arrow={true} onClick={()=>navigation.goBack()}/>
+      <Rodada name={'Controle de Parcelas'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')}/>
       <Text style={styles.mainText}>Faça suas plantações!</Text>
       <FlatList
         numColumns={2}
