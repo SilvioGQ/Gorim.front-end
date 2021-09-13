@@ -8,7 +8,7 @@ import IMAGES from '../../constants/imagesIcons';
 
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
-export default function Cenario( {navigation} ) {
+export default function Cenario({ navigation }) {
 
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
@@ -25,11 +25,11 @@ export default function Cenario( {navigation} ) {
     console.log(logs);
     return (
         <View>
-        <Rodada name={'Historico'} arrow={true} onClick={() => navigation.goBack()} />
+            <Rodada name={'Historico'} arrow={true} onClick={() => navigation.goBack()} />
             <ScrollView>
                 <View style={styles.container}>
                     <Text style={styles.header}>HISTÓRICO</Text>
-                    <Text style={styles.rodada}>RODADA {round}</Text>
+                    <Text style={styles.rodada}>RODADA {round - 1}</Text>
                     <View style={styles.row}>
                         <Image
                             style={styles.image}
@@ -41,93 +41,103 @@ export default function Cenario( {navigation} ) {
                             <Text style={styles.subtitle}>{player.city}</Text>
                         </View>
                     </View>
-                    <View style={styles.white}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 15
-                        }]}>Parcela</Text>
-                        <TouchableOpacity onPress={() => { setOpen(!open) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ }] }} source={require('../../assets/dropdown.png')} />
-                        </TouchableOpacity>
-                        </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light', display: open4 ? 'flex' : 'none' }}>
-                            {logs.filter((item) => {
+                    {player.type === 'Agricultor' ?
+                        <View style={styles.white}>
+                            <View style={styles.whiteRow}>
+                                <Text style={[styles.subtitle, {
+                                    marginLeft: 10,
+                                    marginTop: 15
+                                }]}>Parcela</Text>
+                                <TouchableOpacity onPress={() => { setOpen(!open) }}>
+                                    <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ }] }} source={require('../../assets/dropdown.png')} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{display: open ? 'flex' : 'none', flexDirection:'column' }}>
+                                {logs.filter((item) => {
                                     if (item.type == 'plantation') {
                                         return item
                                     }
                                 }).map((item, index) => {
-                                        return <Text key={index}>Semente:{item.parcelLand.seed}, {item.parcelLand.pesticide ? `Agrotóxico:${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},`: '' } {item.parcelLand.fertilizer ? `Fertilizante:${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},`: '' } {item.parcelLand.machine ? `Maquina:${item.parcelLand.machine},`: '' } Pulverizador{item.parcelLand.spray ?  'Sim': 'Não'} {'\n'}</Text>
+                                    return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}key={index}>Semente:{item.parcelLand.seed}, {item.parcelLand.pesticide ? `Agrotóxico:${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''} {item.parcelLand.fertilizer ? `Fertilizante:${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''} {item.parcelLand.machine ? `Maquina:${item.parcelLand.machine},` : ''} Pulverizador{item.parcelLand.spray ? 'Sim' : 'Não'} {'\n'} </Text>
                                 })
-                                }</Text>
+                                }</View>
+                                </View>
+                        :
+                        null
+                    }
 
-                    </View>
                     <View style={styles.white}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 15
-                        }]}>Gastos</Text>
-                        <TouchableOpacity onPress={() => { setOpen2(!open2) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ2 }] }} source={require('../../assets/dropdown.png')} />
-                        </TouchableOpacity>
+                        <View style={styles.whiteRow}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 15
+                            }]}>Gastos</Text>
+                            <TouchableOpacity onPress={() => { setOpen2(!open2) }}>
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ2 }] }} source={require('../../assets/dropdown.png')} />
+                            </TouchableOpacity>
                         </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light',display: open2 ? 'flex' : 'none'}}>
+                        <View style={{ display: open2 ? 'flex' : 'none' }}>
                             {logs.filter((item) => {
-                                    if (item.type == 'buy') {
-                                        return item
-                                    }
-                                }).map((item, index) => {
-                                        return <Text key={index}>{item.ownAction ?  `Você comprou ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n`}</Text>
-                                })
-                                }</Text>
+                                if (item.type == 'buy') {
+                                    return item
+                                }
+                            }).map((item, index) => {
+                                return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, para o agricultor ${item.namePlayer} \n`}</Text>
+                            })
+                            }</View>
 
 
                     </View>
                     <View style={styles.white}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 15
-                        }]}>Transferências</Text>
-                        <TouchableOpacity onPress={() => { setOpen3(!open3) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ3 }] }} source={require('../../assets/dropdown.png')} />
-                        </TouchableOpacity>
+                        <View style={styles.whiteRow}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 15
+                            }]}>Transferências</Text>
+                            <TouchableOpacity onPress={() => { setOpen3(!open3) }}>
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ3 }] }} source={require('../../assets/dropdown.png')} />
+                            </TouchableOpacity>
                         </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light', display: open3 ? 'flex' : 'none'}}>
+                        <View style={{ display: open3 ? 'flex' : 'none' }}>
                             {logs.filter((item) => {
-                                    if (item.type == 'transfer') {
-                                        return item
-                                    }
-                                }).map((item, index) => {
-                                        return <Text key={index}>{item.ownAction ? `você tranferiu ${item.value} para o jogador ${item.namePlayer}\n`: `você recebeu ${item.value} do jogador ${item.namePlayer}\n`}</Text>
-                                })
-                                }</Text>
+                                if (item.type == 'transfer') {
+                                    return item
+                                }
+                            }).map((item, index) => {
+                                return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `você tranferiu ${item.value} para o jogador ${item.namePlayer}\n` : `você recebeu ${item.value} do jogador ${item.namePlayer}\n`}</Text>
+                            })
+                            }</View>
 
                     </View>
                     <View style={styles.white}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 15
-                        }]}>Multas Pagas</Text>
-                        <TouchableOpacity onPress={() => { setOpen4(!open4) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ4 }] }} source={require('../../assets/dropdown.png')} />
-                        </TouchableOpacity>
+                        <View style={styles.whiteRow}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 15
+                            }]}>Multas Pagas</Text>
+                            <TouchableOpacity onPress={() => { setOpen4(!open4) }}>
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ4 }] }} source={require('../../assets/dropdown.png')} />
+                            </TouchableOpacity>
                         </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light', display: open4 ? 'flex' : 'none' }}>sajdkladsadkjasd</Text>
+                        <Text style={{ display: open4 ? 'flex' : 'none' }}>Não tem multas</Text>
                     </View>
                     <View style={styles.white}>
-                    <View style={styles.whiteRow}>
-                        <Text style={[styles.subtitle, {
-                            marginLeft: 10,
-                            marginTop: 15
-                        }]}>Impostos</Text>
-                        <TouchableOpacity onPress={() => { setOpen5(!open5) }}>
-                            <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ:rotateZ5 }] }} source={require('../../assets/dropdown.png')} />
-                        </TouchableOpacity>
+                        <View style={styles.whiteRow}>
+                            <Text style={[styles.subtitle, {
+                                marginLeft: 10,
+                                marginTop: 15
+                            }]}>Impostos</Text>
+                            <TouchableOpacity onPress={() => { setOpen5(!open5) }}>
+                                <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 10, transform: [{ rotateZ: rotateZ5 }] }} source={require('../../assets/dropdown.png')} />
+                            </TouchableOpacity>
                         </View>
-                        <Text style={{marginLeft: 10, fontFamily:'Rubik_300Light', display: open5 ? 'flex' : 'none' }}>sajdkladsadkjasd</Text>
+                        <View style={{ display: open5 ? 'flex' : 'none' }}>{logs.filter((item) => {
+                            if (item.type == 'tax') {
+                                return item
+                            }
+                        }).map((item, index) => {
+                            return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.percentual ? `Você pagou na ultima rodada ${item.value}$ que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados ${item.value}$ em impostos.`}</Text>
+                        })}</View>
                     </View>
                 </View>
             </ScrollView>
@@ -162,8 +172,8 @@ const styles = StyleSheet.create({
         borderRadius: 17,
         borderWidth: 1,
         backgroundColor: '#fff',
-        paddingVertical:5,
-        marginVertical:7
+        paddingVertical: 5,
+        marginVertical: 7
     },
     whiteRow: {
         width: '100%',
@@ -184,7 +194,7 @@ const styles = StyleSheet.create({
 });
 
 
-                        {/* {open && (
+{/* {open && (
                             <View>
                                 {logs.filter((item) => {
                                     if (item.type == 'plantation') {
