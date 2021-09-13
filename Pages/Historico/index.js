@@ -58,7 +58,7 @@ export default function Cenario({ navigation }) {
                                         return item
                                     }
                                 }).map((item, index) => {
-                                    return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}key={index}>Semente:{item.parcelLand.seed}, {item.parcelLand.pesticide ? `Agrotóxico:${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''} {item.parcelLand.fertilizer ? `Fertilizante:${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''} {item.parcelLand.machine ? `Maquina:${item.parcelLand.machine},` : ''} Pulverizador{item.parcelLand.spray ? 'Sim' : 'Não'} {'\n'} </Text>
+                                    return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}key={index}>Semente:{item.parcelLand.seed}, {item.parcelLand.pesticide ? `Agrotóxico:${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''} {item.parcelLand.fertilizer ? `Fertilizante:${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''} {item.parcelLand.machine ? `Maquina:${item.parcelLand.machine},` : ''} Pulverizador{item.parcelLand.spray ? 'Sim' : 'Não'}{'\n'}</Text>
                                 })
                                 }</View>
                                 </View>
@@ -81,7 +81,7 @@ export default function Cenario({ navigation }) {
                                     return item
                                 }
                             }).map((item, index) => {
-                                return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por ${item.product.price}$ cada, para o agricultor ${item.namePlayer} \n`}</Text>
+                                return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por $${item.product.price} cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por $${item.product.price} cada, para o agricultor ${item.namePlayer} \n`}</Text>
                             })
                             }</View>
 
@@ -103,7 +103,7 @@ export default function Cenario({ navigation }) {
                                     return item
                                 }
                             }).map((item, index) => {
-                                return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `você tranferiu ${item.value} para o jogador ${item.namePlayer}\n` : `você recebeu ${item.value} do jogador ${item.namePlayer}\n`}</Text>
+                                return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `você tranferiu $${item.value} para o jogador ${item.namePlayer}\n` : `você recebeu $${item.value} do jogador ${item.namePlayer}\n`}</Text>
                             })
                             }</View>
 
@@ -135,7 +135,7 @@ export default function Cenario({ navigation }) {
                                 return item
                             }
                         }).map((item, index) => {
-                            return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.percentual ? `Você pagou na ultima rodada ${item.value}$ que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados ${item.value}$ em impostos.`}</Text>
+                            return <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }} key={index}>{item.percentual ? `Você pagou na ultima rodada $${item.value} que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados $${item.value} em impostos.`}</Text>
                         })}</View>
                     </View>
                 </View>
