@@ -12,7 +12,7 @@ export default function AguardarJogadores({ navigation }) {
 
   useEffect(() => {
     let isMounted = true;
-    if (stage === 'ENDROUND' && isMounted) navigation.navigate('Status');
+    if (stage === 'ALLFORENDSTAGE' && isMounted) navigation.navigate('Status');
 
     return () => isMounted = false;
   }, [stage]);

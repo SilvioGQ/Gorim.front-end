@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 
-const socket = io(API_URL_HERO, {
+const socket = io(API_URL_LOCAL, {
   autoConnect: false
 });
 const GameContext = React.createContext();
@@ -14,6 +14,7 @@ const GameProvider = (props) => {
   const disableNotifyScene = () => { 
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
   };
+
   const disableNotifyOffers = () => {
     dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
   };
@@ -35,24 +36,9 @@ const GameProvider = (props) => {
     socket.on('addedToRoom', (player) => {
       dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
     });
-    socket.on('removedToRoom', () => {
-      dispatch({ type: 'REMOVEDTOROOM', payload: 'REMOVEDTOROOM' });
-    });
-    socket.on('maxPlayersToRoom', () => {
-      dispatch({ type: 'MAXPLAYERSTOROOM', payload: 'MAXPLAYERSTOROOM' });
-    });
-    socket.on('inGaming', () => {
-      dispatch({ type: 'INGAMING', payload: 'INGAMING' });
-    });
-    socket.on('raffled', () => {
-      dispatch({ type: 'RAFFLED', payload: 'RAFFLED' });
-    });
-    socket.on('notFound', () => {
-      dispatch({ type: 'NOTFOUND', payload: 'NOTFOUND' });
-    });
-    socket.on('selectedAvatars', () => {
-      setStartTimer(true);
-      dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
+    socket.on('reportMessage', (msg) => {
+      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
+      dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -76,12 +62,8 @@ const GameProvider = (props) => {
     socket.on('enableNotifyOffers', () => {
       dispatch({ type: 'GETNOTIFY', payload: { offers: true } });
     });
-    socket.on('stepFinish', (awaitPlayers) => {
-      // setStartTimer(false);
-      dispatch({ type: 'STEPFINISH', payload: ['STEPFINISH', awaitPlayers] });
-    });
-    socket.on('endRound', (round) =>{
-      dispatch({ type: 'CHANGEDATA', payload: ['ENDROUND', round]})
+    socket.on('endStage', (round) =>{
+      dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round]})
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
@@ -93,6 +75,8 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
     socket.on('nextRound', (room) => {
+      disableNotifyScene();
+      disableNotifyOffers();
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
     socket.on('disconnect', () => {
@@ -109,7 +93,7 @@ const GameProvider = (props) => {
         dispatch({ type: 'UPDATETIMER', payload: state.timer - 1});
       } else if (startTimer) {
         setStartTimer(false);
-        stepFinish();
+        endStage();
       }
     }, 1000);
 
@@ -122,7 +106,7 @@ const GameProvider = (props) => {
   }, [state.offers, state.logs]);
 
   return (
-    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers}}>
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer}}>
       {props.children}
     </GameContext.Provider>
   );
@@ -192,8 +176,8 @@ const rejectOffer = (item) => {
   socket.emit('rejectOffer', item);
 }
 
-const stepFinish = () => {
-  socket.emit('stepFinish');
+const endStage = () => {
+  socket.emit('endStage');
 }
 
 const getTax = () => {
@@ -223,6 +207,6 @@ export {
   confirmOffer,
   rejectOffer,
   getTax,
-  stepFinish,
+  endStage,
   nextRound
 };

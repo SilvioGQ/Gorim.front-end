@@ -58,6 +58,8 @@ const reducer = (state, action) => {
     case 'RAFFLED':
     case 'NOTFOUND':
     case 'SELECTEDAVATARS':
+    case 'ENDSTAGE':
+    case 'ALLFORENDSTAGE':
       return {
         ...state,
         stage: action.payload
@@ -97,12 +99,6 @@ const reducer = (state, action) => {
           ...action.payload
         }
       }
-    case 'STEPFINISH':
-      return {
-        ...state,
-        stage: action.payload[0],
-        awaitPlayers: action.payload[1]
-      };
     case 'UPDATEAWAITPLAYERS':
       return {
         ...state,

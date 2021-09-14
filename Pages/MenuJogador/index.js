@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
-import { GameContext, removeToRoom, stepFinish } from '../../contexts/GameContext';
+import { GameContext, removeToRoom, endStage } from '../../contexts/GameContext';
 
 import COLORS from '../../constants/colors';
 import Header from '../../Components/Header';
@@ -21,7 +21,7 @@ export default function MenuJogador({ navigation }) {
   useEffect(() => {
     let isMounted = true;
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
-    if (stage === 'STEPFINISH' && isMounted) navigation.navigate('AguardarJogadores');
+    if (stage === 'ENDSTAGE' && isMounted) navigation.navigate('AguardarJogadores');
 
     return () => isMounted = false;
   }, [stage]);
@@ -122,7 +122,7 @@ export default function MenuJogador({ navigation }) {
               }
         </>
       )}
-      <Cenarios seeScenery={() => navigation.navigate('Cenario')} stepFinish={() => stepFinish()} notification={notify.scene} />
+      <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => endStage()} notification={notify.scene} />
       {awaitPlayers !== 0 && <Text style={{ color: 'red', marginTop: 50, fontFamily: 'Rubik_300Light' }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
   );

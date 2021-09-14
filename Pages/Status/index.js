@@ -14,7 +14,15 @@ export default function Status({ navigation }) {
   useEffect(() => {
     let isMounted = true;
 
-    if (stage === 'NEXTROUND' && isMounted) navigation.navigate('MenuJogador');
+    if (stage === 'NEXTROUND' && isMounted) {
+      if (player.office == 'citizen') {
+        console.log('Não tenho cargo!')
+        navigation.navigate('MenuJogador');
+      } else {
+        console.log('Tenho cargo!')
+        navigation.navigate('MenuJogador');
+      }
+    }
 
     let interval = setInterval(() => {
       if (countdown === 0 && player.host) {
