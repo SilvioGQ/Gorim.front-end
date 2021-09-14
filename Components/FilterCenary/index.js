@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { GameContext } from '../../contexts/GameContext';
-
+const Height = Dimensions.get('screen').height;
 
 export default function FilterCenary({ type, setType }) {
 	const { player } = useContext(GameContext);
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 	},
 	textSmall: {
 		textAlign: 'center',
-		fontSize: 13,
+		fontSize: Height < 780 ? 11 : 13,
 		fontFamily: 'Rubik_300Light',
 		marginTop: 9
 	},

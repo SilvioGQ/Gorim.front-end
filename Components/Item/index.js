@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions} from 'react-native';
 
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesProducts';
 import IMAGES2 from '../../constants/imagesMenu';
+const Height = Dimensions.get('screen').height;
 export default function Item({ onClick, backgroundColor = '#fff', name, type, notification = null}) {
   return (
     <TouchableOpacity onPress={onClick} activeOpacity={0.7}>
@@ -25,8 +26,8 @@ const styles = StyleSheet.create({
     marginRight:10,
     marginVertical:10,
     backgroundColor: COLORS.textWhite,
-    width: 94,
-    height: 86,
+    width: Height > 720 && Height < 800 ? 87 : 94 ,
+    height:Height > 720 && Height < 800 ? 79 : 86,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -41,12 +42,12 @@ const styles = StyleSheet.create({
   icone: {
     width: 40,
     height: 40,
-    marginBottom:5,
-    marginTop:11.5
+    marginBottom: Height > 720 && Height < 800 ? 2: 5,
+    marginTop: 11.5
   },
   textinhos: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 11,
+    fontSize: Height > 720 && Height < 800 ? 9 : 11,
     textAlign:'center',
     marginHorizontal:5
   },

@@ -21,7 +21,7 @@ export default function MenuJogador({ navigation }) {
   useEffect(() => {
     let isMounted = true;
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
-    if (stage === 'ENDSTAGE' && isMounted) navigation.navigate('AguardarJogadores');
+    if (stage === 'ENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'AguardarJogadores' }] });
 
     return () => isMounted = false;
   }, [stage]);
@@ -123,7 +123,7 @@ export default function MenuJogador({ navigation }) {
         </>
       )}
       <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => endStage()} notification={notify.scene} />
-      {awaitPlayers !== 0 && <Text style={{ color: 'red', marginTop: 50, fontFamily: 'Rubik_300Light' }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
+      {awaitPlayers !== 0 && <Text style={{ color: 'red', marginTop: 45, fontFamily: 'Rubik_300Light' }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
   );
 }
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start',
     marginHorizontal: 20,
-    marginVertical: 20,
+    marginVertical: 10,
     width: '100%',
     flexWrap: 'wrap'
   },
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 20,
+    marginVertical: 12,
     backgroundColor: COLORS.bgColorSecondary,
     width: '88%',
     height: 50,
@@ -180,11 +180,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   bar: {
-    padding: 8,
+    padding: 6,
     width: '89%',
     borderRadius: 20,
     alignItems: 'center',
-    marginTop: 15
+    marginTop: 10,
+    marginBottom:5
   },
   textBar: {
     fontFamily: 'Rubik_400Regular',

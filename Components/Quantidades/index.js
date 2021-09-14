@@ -56,6 +56,6 @@ const styles = StyleSheet.create({
     width:'90%',
     marginHorizontal:20,
     justifyContent:'space-around',
-    marginVertical:15,
+    marginVertical:10,
   },
 });

@@ -43,7 +43,7 @@ export default function SelecaoPersonagem({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Bem vindo ao Gorim!</Text>
         <View>
           <View>

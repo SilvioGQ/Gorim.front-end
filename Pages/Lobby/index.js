@@ -14,7 +14,7 @@ export default function Lobby({ navigation }) {
 
   useEffect(() => {
     let isMounted = true;
-    if (stage == 'STARTGAME' && isMounted) navigation.navigate('SorteioJogador');
+    if (stage == 'STARTGAME' && isMounted) navigation.reset({ routes: [{ name: 'SorteioJogador' }] });
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.goBack();
     console.log(player.room);
     return () => isMounted = false;

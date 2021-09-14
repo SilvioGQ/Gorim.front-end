@@ -17,10 +17,10 @@ export default function Status({ navigation }) {
     if (stage === 'NEXTROUND' && isMounted) {
       if (player.office == 'citizen') {
         console.log('Não tenho cargo!')
-        navigation.navigate('MenuJogador');
+        navigation.reset({ routes: [{ name: 'MenuJogador' }] });
       } else {
         console.log('Tenho cargo!')
-        navigation.navigate('MenuJogador');
+        navigation.reset({ routes: [{ name: 'MenuJogador' }] });
       }
     }
 

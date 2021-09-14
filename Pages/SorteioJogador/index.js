@@ -11,7 +11,7 @@ export default function SorteioJogador({ navigation }) {
   useEffect(() => {
     if (stage === 'RAFFLED') {
       let timer = setTimeout(() => {
-        navigation.navigate('SelecaoPersonagem');
+        navigation.reset({ routes: [{ name: 'SelecaoPersonagem' }] });
       }, 1000);
 
       return () => clearTimeout(timer);

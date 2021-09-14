@@ -12,7 +12,7 @@ export default function AguardarJogadores({ navigation }) {
 
   useEffect(() => {
     let isMounted = true;
-    if (stage === 'ALLFORENDSTAGE' && isMounted) navigation.navigate('Status');
+    if (stage === 'ALLFORENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'Status' }] });
 
     return () => isMounted = false;
   }, [stage]);
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
   },
   texto: {
     fontFamily: 'Rubik_300Light',
-    fontWeight: 'normal',
     fontSize: 22,
     textAlign: 'center',
     marginVertical: 10
