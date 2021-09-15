@@ -3,16 +3,16 @@ import { Text, View, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'rea
 const Tela = Dimensions.get('screen').width;
 import COLORS from '../../constants/colors';
 
-export default function ModalConfirmExit({ deletePlayer, onClick }) {
+export default function ModalAsk({ finish, back }) {
   return (
       <Modal animationType="fade" transparent={true} >
         <View style={styles.modal}>
           <View style={styles.container}>
-            <Text style={styles.text}>Tem certeza que deseja sair da partida?</Text>
-          <TouchableOpacity style={[styles.button, { backgroundColor: COLORS.warningButton, marginRight: 20 }]} onPress={deletePlayer} activeOpacity={0.7} >
+            <Text style={styles.text}>Tem certeza que deseja finalizar a partida?</Text>
+          <TouchableOpacity style={[styles.button, {marginRight: 20 }]} onPress={finish} activeOpacity={0.7} >
                 <Text style={styles.textButton}>Sim</Text>
               </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={onClick} activeOpacity={0.7}>
+          <TouchableOpacity style={[styles.button, {backgroundColor: COLORS.warningButton}]} onPress={back} activeOpacity={0.7}>
                 <Text style={styles.textButton}>Não</Text>
               </TouchableOpacity>
           </View>

@@ -102,8 +102,8 @@ export default function Vendas({ navigation, route }) {
         <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom: 15 }}>Quantidade:</Text>
         {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
         {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
-      </ScrollView>
       <Button onClick={confirmTransfer} name={selectClient == -1 ? 'ANUNCIAR' : 'VENDER'} />
+      </ScrollView>
     </View>
   );
 }
@@ -111,7 +111,6 @@ export default function Vendas({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
   },
   categoryprice: {
     fontFamily: 'Rubik_300Light',
