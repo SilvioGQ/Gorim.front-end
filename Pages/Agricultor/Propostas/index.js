@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../../contexts/GameContext";
 
 import Coin from '../../../Components/Coin';
@@ -58,6 +58,7 @@ export default function Propostas({navigation}) {
             renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
           />
       }
+      <View style={styles.negociacao}>
       <Text style={styles.text}>Negociação individual</Text>
       {!offers.individual || offers.individual.length === 0 ?
           <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
@@ -68,6 +69,7 @@ export default function Propostas({navigation}) {
             renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
           />
       }
+      </View>
     </View>
   );
 }
@@ -89,6 +91,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 22,
     marginVertical: 10
+  },
+  negociacao: {
+    marginTop: 50,
+    marginBottom: 50
   },
   textSmall: {
     textAlign: 'center',
