@@ -9,11 +9,13 @@ import Cenarios from '../../Components/CenarioBotao';
 import Rodada from '../../Components/Rodada';
 import ModalConfirmExit from '../../Components/ModalConfirmExit';
 import Modal from '../../Components/ModalInfo';
+import ModalAsk from '../../Components/ModalAsk';
 
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible2, setModalVisible2] = useState(false);
   const { players, player, awaitPlayers, stage, notify, round } = useContext(GameContext);
   //   const [notificationScene, setNotificationScene] = useState(false);
   //   const [notificationNegociation, setNotificationNegociation] = useState(false);
@@ -37,6 +39,7 @@ export default function MenuJogador({ navigation }) {
       <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}° Rodada`} setModalVisible={setModalVisible} />
       <Header />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
+      {modalVisible2 && <ModalAsk finish={() => endStage()} back={() => setModalVisible2(!modalVisible2)} />}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
@@ -122,7 +125,9 @@ export default function MenuJogador({ navigation }) {
               }
         </>
       )}
-      <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => endStage()} notification={notify.scene} />
+      <View style={{paddingVertical:25, flexDirection: 'row',}}>
+      <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
+      </View>
       {awaitPlayers !== 0 && <Text style={{ color: 'red', marginTop: 45, fontFamily: 'Rubik_300Light' }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
   );
@@ -131,7 +136,6 @@ export default function MenuJogador({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
   },
   container2: {

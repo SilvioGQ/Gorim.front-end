@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     paddingTop: StatusBar.currentHeight,
     width: Tela
@@ -56,7 +55,6 @@ const styles = StyleSheet.create({
   texto: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     marginEnd: '4%',
     marginStart: '4%',

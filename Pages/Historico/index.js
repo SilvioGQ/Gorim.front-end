@@ -94,7 +94,7 @@ export default function Cenario({ navigation }) {
             </View>
             <View style={{ display: open3 ? 'flex' : 'none' }}>
               {logs.filter((item) =>item.type == 'transfer').length > 0 ? logs.filter((item) =>item.type == 'transfer').map((item, index) => {
-                return <Text style={{ marginLeft: 5, paddingHorizontal:5, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `você tranferiu $${item.value} para o jogador ${item.namePlayer}\n` : `você recebeu $${item.value} do jogador ${item.namePlayer}\n`}</Text>
+                return <Text style={{ marginLeft: 5, paddingHorizontal:5, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `Você transferiu $${item.value} para o jogador ${item.namePlayer}\n` : `Você recebeu $${item.value} do jogador ${item.namePlayer}\n`}</Text>
               })
               :
               <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Você não fez transferências</Text>
@@ -128,7 +128,7 @@ export default function Cenario({ navigation }) {
                 return item
               }
             }).map((item, index) => {
-              return <Text style={{ marginLeft: 5, paddingHorizontal:5, fontFamily: 'Rubik_300Light' }} key={index}>{item.percentual ? `Você pagou $${item.value} na ultima rodada, o que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados $${item.value} em impostos.`}</Text>
+              return <Text style={{ marginLeft: 5, paddingHorizontal:5, fontFamily: 'Rubik_300Light' }} key={index}>{item.percentual ? `Você pagou $${item.value} na última rodada, o que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados $${item.value} em impostos.`}</Text>
             })}</View>
           </View>
         </View>

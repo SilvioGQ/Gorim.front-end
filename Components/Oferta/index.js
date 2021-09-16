@@ -35,12 +35,12 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
           source={imagesCoins[item.priceType]}
         />
       </View>
-      <Text style={styles.text}> Quantidade: {item.amount}</Text>
+      <Text style={styles.text2}> Quantidade: {item.amount}</Text>
       <View style={styles.row}>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item)} activeOpacity={0.7}>
           <Text style={styles.textbutton}>CONFIRMAR</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#BF0000' }]} onPress={() => rejectOffer(item)} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.button} onPress={() => rejectOffer(item)} activeOpacity={0.7}>
           <Text style={styles.textbutton}>REJEITAR</Text>
         </TouchableOpacity>
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
     width: Tela-30,
-    height: 185,
+    height: 165,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
     elevation: 6,
-    marginVertical: 15
+    marginVertical: 10
   },
   button: {
-    width: 135,
+    width: 120,
     borderRadius: 20,
     backgroundColor: COLORS.warningButton,
-    padding: 15
+    padding: 12
   },
   textbutton: {
     color: COLORS.textWhite,
@@ -80,23 +80,22 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginVertical: 5,
+    marginTop: -5,
   },
   row3: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 15,
-    marginBottom:5
   },
   icone: {
     width: 36,
     height: 36,
     alignSelf: 'center',
-    marginTop: -30
+    marginTop: -25
   },
   person: {
     width: 56,
-    height: 58,
+    height: 56,
   },
   textBold: {
     fontSize: 13,
@@ -106,6 +105,11 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 15,
-    marginBottom:2
+    marginBottom:1
+  },
+  text2: {
+    textAlign: 'center',
+    fontSize: 15,
+    marginBottom:7
   }
 });

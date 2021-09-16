@@ -27,8 +27,10 @@ export default function Rodada({ removeFromRoom = null, close = null, name, setM
       )}
       {arrow && (
         <>
-          <TouchableOpacity onPress={onClick} style={{ alignSelf: 'center', position: 'absolute', left: '7%', top: 20 }} activeOpacity={0.7}>
+          <TouchableOpacity onPress={onClick} style={{ position: 'absolute', left: '7%', top: 20 }} activeOpacity={0.7}>
+            <View style={{width:60,height:35}}>
             <Image style={styles.arrow} source={require('../../assets/icons/left-arrow.png')}  />
+            </View>
           </TouchableOpacity>
         </>
       )}

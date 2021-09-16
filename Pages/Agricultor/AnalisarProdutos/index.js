@@ -49,7 +49,6 @@ export default function AnalisarProdutos({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
   },
   header: {

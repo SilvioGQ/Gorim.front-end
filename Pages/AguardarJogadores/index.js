@@ -25,7 +25,7 @@ export default function AguardarJogadores({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} name={'Agurdando jogadores'} />
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={'Agurdando jogadores'} />
       <View style={styles.container2}>
         <Image style={styles.logo} source={Clock} />
         <Text style={styles.texto}> Aguardando {'\n'} os outros jogadores...</Text>
@@ -41,7 +41,6 @@ export default function AguardarJogadores({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
   },
   container2: {
     flex: 3,
