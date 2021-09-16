@@ -62,6 +62,9 @@ const GameProvider = (props) => {
     socket.on('enableNotifyOffers', () => {
       dispatch({ type: 'GETNOTIFY', payload: { offers: true } });
     });
+    // socket.on('disableNotifyOffers', () => {
+    //   dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
+    // });
     socket.on('endStage', (round) =>{
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round]})
     });
@@ -99,11 +102,6 @@ const GameProvider = (props) => {
 
     return () => clearInterval(interval);
   }, [state.timer, startTimer]);
-
-  useEffect(() => {
-    if (state.offers === null) disableNotifyOffers();
-    if (state.logs.length === 0) disableNotifyScene();
-  }, [state.offers, state.logs]);
 
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer}}>

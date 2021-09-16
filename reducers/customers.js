@@ -120,6 +120,7 @@ const reducer = (state, action) => {
         stage: action.payload[0],
         timer: initialState.timer,
         offers: initialState.offers,
+        notify: initialState.notify,
         round: action.payload[1].match.round,
         awaitPlayers: action.payload[1].awaitPlayers.length,
       };
