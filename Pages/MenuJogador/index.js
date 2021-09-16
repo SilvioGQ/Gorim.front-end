@@ -69,7 +69,7 @@ export default function MenuJogador({ navigation }) {
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Fertilizante Super Premium' })} name='Fertilizante Super Premium' />
             </View>
           )}
-          {player.specialty === 'Agrotoxico' && (
+          {player.specialty === 'Agrotóxico' && (
             <View style={styles.items}>
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Comum' })} name='Agrotóxico Comum' />
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Agrotóxico Premium' })} name='Agrotóxico Premium' />
@@ -83,7 +83,7 @@ export default function MenuJogador({ navigation }) {
               <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Hortaliça' })} name='Hortaliça' />
             </View>
           )}
-          {player.specialty === 'Maquina' && (
+          {player.specialty === 'Máquinas' && (
             <>
               <View style={styles.items}>
                 <Item type='Produtos' onClick={() => navigation.navigate('Vendas', { name: 'Pacote 1' })} name='Pacote 1' />
