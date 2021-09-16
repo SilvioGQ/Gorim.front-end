@@ -47,6 +47,7 @@ export default function Propostas({navigation}) {
       <Rodada name={'Propostas'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
+      <View style={{flex:1.65}}>
       <Text style={styles.text}>Anúncios</Text>
       <FilterType type={type} setType={setType} />
       {!offers.all || offers.all.length === 0 ?
@@ -58,7 +59,8 @@ export default function Propostas({navigation}) {
             renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
           />
       }
-      <View style={styles.negociacao}>
+      </View>
+      <View style={{flex:1}}>
       <Text style={styles.text}>Negociação individual</Text>
       {!offers.individual || offers.individual.length === 0 ?
           <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
@@ -77,8 +79,6 @@ export default function Propostas({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
-    width: Tela,
   },
   header: {
     fontFamily: 'Rubik_300Light',
@@ -91,10 +91,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 22,
     marginVertical: 10
-  },
-  negociacao: {
-    marginTop: 50,
-    marginBottom: 50
   },
   textSmall: {
     textAlign: 'center',

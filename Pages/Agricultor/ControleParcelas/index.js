@@ -40,7 +40,6 @@ export default function ControleParcelas({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center'
   },
   imageParcel: {

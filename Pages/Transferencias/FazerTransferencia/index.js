@@ -53,7 +53,6 @@ export default function FazerTransferencia({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
   },
   header: {

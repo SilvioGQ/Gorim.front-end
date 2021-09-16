@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.8,
     justifyContent: 'space-around',
-    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     marginTop: 40
   },

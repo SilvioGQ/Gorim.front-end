@@ -44,7 +44,7 @@ export default function Oferta({ item, confirmOffer }) {
         />
       </View>
       <View style={styles.row}>
-          <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => { confirmOffer(item, count); setCount(1); }} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.button} onPress={() => { confirmOffer(item, count); setCount(1); }} activeOpacity={0.7}>
           <Text style={styles.textbutton}>COMPRAR</Text>
         </TouchableOpacity>
         <Text style={styles.text}> Quantidade:</Text>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
     width: Tela - 30,
-    height: 155,
+    height: 140,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -80,12 +80,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
     elevation: 6,
-    marginVertical: 15
+    marginVertical: 10
   },
   button: {
-    width: 110,
+    width: 120,
     borderRadius: 20,
-    backgroundColor: COLORS.warningButton,
+    backgroundColor: COLORS.successButton,
     padding: 12
   },
   textbutton: {
@@ -97,27 +97,21 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginVertical: 5,
-  },
-  row2: {
-    flexDirection: 'row',
-    marginBottom: 5,
   },
   row3: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 15,
-    marginBottom: 5
+    marginTop: 10,
   },
   icone: {
     width: 36,
     height: 36,
     alignSelf: 'center',
-    marginTop: -30
+    marginTop: -25
   },
   person: {
     width: 56,
-    height: 58,
+    height: 56,
   },
   textBold: {
     fontSize: 13,
@@ -148,14 +142,12 @@ const styles = StyleSheet.create({
   },
   textAmount: {
     alignSelf: 'center',
-    textAlign: 'center',
     marginTop: 3,
     fontFamily: 'Rubik_400Regular',
     fontSize: 18
   },
   textIncrease: {
     alignSelf: 'center',
-    textAlign: 'center',
     marginTop: -8,
     marginLeft: 7.5,
     fontFamily: 'Rubik_400Regular',
@@ -164,7 +156,6 @@ const styles = StyleSheet.create({
   },
   textDecrease: {
     alignSelf: 'center',
-    textAlign: 'center',
     marginTop: -5,
     marginRight: 7.5,
     fontFamily: 'Rubik_400Regular',

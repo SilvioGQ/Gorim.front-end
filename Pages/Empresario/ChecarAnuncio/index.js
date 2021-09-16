@@ -37,7 +37,6 @@ export default function ChecarAnuncio({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
     width: Tela,
   },
   header: {

@@ -41,7 +41,6 @@ export default function AguardarJogadores({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
   },
   container2: {
     flex: 3,

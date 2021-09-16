@@ -3,13 +3,12 @@ import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-nati
 import { GameContext, nextRound } from '../../contexts/GameContext';
 
 import COLORS from '../../constants/colors';
-import Button from '../../Components/Button';
 import IMAGES from '../../constants/imagesIcons';
 
 export default function Status({ navigation }) {
   
   const { player, globalPollution, data: round, stage, globalProduction } = useContext(GameContext);
-  const [countdown, setCountdown] = useState(15);
+  const [countdown, setCountdown] = useState(30);
 
   useEffect(() => {
     let isMounted = true;
@@ -36,7 +35,7 @@ export default function Status({ navigation }) {
   }, [countdown, stage]);
 
   return (
-    <View style={{ backgroundColor: COLORS.bgColorPrimary, flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
       <ScrollView>
         <View style={styles.container}>
@@ -81,7 +80,6 @@ export default function Status({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     paddingVertical: 60,
   },
