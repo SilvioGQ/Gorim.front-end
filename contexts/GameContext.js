@@ -2,6 +2,8 @@ import React, { useState, useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
+import { schedulePushNotification } from '../helpers/schedulePushNotification';
+import { Platform } from 'react-native';
 
 const socket = io(API_URL_HERO, {
   autoConnect: false
@@ -20,9 +22,16 @@ const GameProvider = (props) => {
   };
 
   useEffect(() => {
+    let isConnected = null;
+
     socket.on('connect', () => {
-      dispatch({ type: 'CONNECTED', payload: true });
-      console.log('Connected!');
+      if (isConnected === null) {
+        console.log('Connected!');
+      } else {
+        if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
+        console.log('Reconnected!');
+      }
+      isConnected = true;
     });
     socket.on('refreshPlayers', (players) => {
       dispatch({ type: 'REFRESHPLAYERS', payload: players });
@@ -83,8 +92,9 @@ const GameProvider = (props) => {
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
     socket.on('disconnect', () => {
-      dispatch({ type: 'DISCONNECTED', payload: false });
+      if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
       console.log('Disconnected!');
+      isConnected = false;
     });
 
     socket.open();

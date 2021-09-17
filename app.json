@@ -27,6 +27,13 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "RPG online\n"
+    "description": "RPG online\n",
+    "plugins": [
+      ["expo-notifications",
+      {
+        "icon": "./assets/icon.png",
+        "color": "#EBFFFD"
+      }]
+    ]
   }
 }

@@ -1,5 +1,4 @@
 const initialState = {
-  isConnected: false,
   timer: 900,
   stage: null,
   players: [],
@@ -12,11 +11,6 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'CONNECTED':
-      return {
-        ...state,
-        isConnected: action.payload
-      };
     case 'REFRESHPLAYERS':
       return {
         ...state,
@@ -50,7 +44,6 @@ const reducer = (state, action) => {
     case 'REMOVEDTOROOM':
       return {
         ...initialState,
-        isConnected: true,
         stage: action.payload
       };
     case 'MAXPLAYERSTOROOM':
@@ -123,11 +116,6 @@ const reducer = (state, action) => {
         notify: initialState.notify,
         round: action.payload[1].match.round,
         awaitPlayers: action.payload[1].awaitPlayers.length,
-      };
-    case 'DISCONNECTED':
-      return {
-        ...state,
-        isConnected: action.payload
       };
     default:
       return state;
