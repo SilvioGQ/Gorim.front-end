@@ -8,7 +8,7 @@ import IMAGES from '../../constants/imagesIcons';
 export default function Status({ navigation }) {
   
   const { player, globalPollution, data: round, stage, globalProduction } = useContext(GameContext);
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(15);
 
   useEffect(() => {
     let isMounted = true;

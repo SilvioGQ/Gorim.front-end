@@ -34,7 +34,7 @@ export default function Anuncio({ item, Historico, deleteAdvert }) {
       <View style={styles.row}>
         <Text style={styles.textCenter}> Ainda restam: {item.amount} produto(s)</Text>
         <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={Historico} activeOpacity={0.7}>
-          <Text style={styles.textbutton}>HISTÓRICO</Text>
+          <Text style={styles.textbutton}>RESUMO</Text>
         </TouchableOpacity>
       </View>
     </View>

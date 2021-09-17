@@ -14,7 +14,7 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
         <View style={styles.container}>
           {title && (
             <>
-              <Text style={{ marginVertical: 10, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 24 }}>{player.type === 'Agricultor' ? 'Agricultor' : 'Empresário'}</Text>
+              <Text style={{ marginVertical: 10, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 24 }}>{player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}`}</Text>
             </>
           )}
           <Text style={styles.loading}>{text}</Text>
