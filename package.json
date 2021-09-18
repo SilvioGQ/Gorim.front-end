@@ -13,8 +13,6 @@
     ]
   },
   "dependencies": {
-    "@dev-event/react-native-accordion": "^2.0.3",
-    "@dooboo-ui/native-accordion": "^0.7.0",
     "@expo-google-fonts/rubik": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
@@ -27,9 +25,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.63.2",
-    "react-native-accordionlist": "^1.0.9",
     "react-native-dotenv": "^3.0.0",
-    "react-native-drop-down-item": "^1.1.0",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
