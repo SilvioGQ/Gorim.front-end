@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 120,
     alignSelf: 'center',
   }
