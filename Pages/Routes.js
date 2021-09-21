@@ -9,7 +9,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 // import Selo from './Fiscal/Selo';
 // import Multa from './Fiscal/Multa';
 // import Prevençao from './Prefeitura/Prevencao';
-// import Prefeitura from './Prefeitura/Prefeitura';
 // import Imposto from './Prefeitura/Imposto';
 import Frame1 from './InicioJogo/Frame1';
 import SorteioJogador from './SorteioJogador';
@@ -31,11 +30,11 @@ import Lobby from './Lobby';
 import MenuJogador from './MenuJogador';
 import Status from './Status';
 import Historico from './Historico';
+
 const Stack = createStackNavigator();
 export default function Routes() {
   return (
     <Stack.Navigator initialRouteName="Gorim" screenOptions={{headerShown: false}}>
-
       <Stack.Screen name="Gorim" component={Frame1}/>
       <Stack.Screen name="SorteioJogador" component={SorteioJogador}/>
       <Stack.Screen name="MenuJogador" component={MenuJogador}/>
