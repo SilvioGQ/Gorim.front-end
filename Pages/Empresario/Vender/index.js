@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: 'Rubik_300Light',
-    fontWeight: 'bold',
     fontSize: 20,
     marginLeft: 10
   },

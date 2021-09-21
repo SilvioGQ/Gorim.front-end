@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: 'Rubik_400Regular',
-    fontSize: 24,
+    fontSize: 20,
     textAlign: 'center',
     marginLeft: 20
   },

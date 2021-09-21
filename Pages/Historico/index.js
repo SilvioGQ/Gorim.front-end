@@ -39,7 +39,7 @@ export default function Cenario({ navigation }) {
             </View>
           </View>
           {player.type === 'Agricultor' ?
-            <View style={styles.white}>
+            <View style={styles.backgreen}>
               <View style={styles.whiteRow}>
                 <Text style={[styles.subtitle, {
                   marginLeft: 10,
@@ -60,7 +60,7 @@ export default function Cenario({ navigation }) {
             :
             null
           }
-          <View style={styles.white}>
+          <View style={styles.backgreen}>
             <View style={styles.whiteRow}>
               <Text style={[styles.subtitle, {
                 marginLeft: 10,
@@ -82,7 +82,7 @@ export default function Cenario({ navigation }) {
 
 
           </View>
-          <View style={styles.white}>
+          <View style={styles.backgreen}>
             <View style={styles.whiteRow}>
               <Text style={[styles.subtitle, {
                 marginLeft: 10,
@@ -101,7 +101,7 @@ export default function Cenario({ navigation }) {
               }</View>
 
           </View>
-          <View style={styles.white}>
+          <View style={styles.backgreen}>
             <View style={styles.whiteRow}>
               <Text style={[styles.subtitle, {
                 marginLeft: 10,
@@ -113,7 +113,7 @@ export default function Cenario({ navigation }) {
             </View>
             <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light', display: open4 ? 'flex' : 'none' }}>Você não teve multas</Text>
           </View>
-          <View style={styles.white}>
+          <View style={styles.backgreen}>
             <View style={styles.whiteRow}>
               <Text style={[styles.subtitle, {
                 marginLeft: 10,
@@ -159,11 +159,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     fontSize: 18
   },
-  white: {
+  backgreen: {
     width: '80%',
     borderRadius: 17,
-    borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#C8EEDE',
     paddingVertical: 10,
     marginVertical: 10
   },
@@ -184,22 +183,3 @@ const styles = StyleSheet.create({
     color: '#3F5510'
   }
 });
-
-
-{/* {open && (
-                            <View>
-                                {logs.filter((item) => {
-                                    if (item.type == 'plantation') {
-                                        return item
-                                    }
-                                }).map((item, index) => {
-                                    if (item.type === 'plantation') {
-                                        return <Text key={index}> {`1º: Semente: ${item.parcelLand.seed}, Agrotóxico: Premiun
-                                            Fertilizante: comum`} </Text>
-                                    } else {
-                                        return <HistoricosDinheiro key={index} item={item} />
-                                    }
-                                })
-                                }
-                            </View>
-                        )} */}

@@ -14,18 +14,27 @@ export default function ChecarAnuncio({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const { player } = useContext(GameContext);
-
   return (
     <View style={styles.container}>
-      <Rodada name={'Checar anúncios'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')}/>
+      <Rodada name={'Checar anúncios'} arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       {player.offers.filter(offer => offer.idBuyer === -1).length === 0 ?
-        <Text style={{flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical:20}}>Você não possui anúncios</Text> :
+        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 20 }}>Você não possui anúncios</Text> :
         <FlatList
           showsVerticalScrollIndicator={false}
           data={player.offers.filter(offer => offer.idBuyer === -1)}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
+        />
+      }
+      <Text style={styles.header}>Ofertas individuais</Text>
+      {player.offers.filter(offer => offer.idBuyer !== -1).length === 0 ?
+        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 20 }}>Você não fez oferta individual</Text> :
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={player.offers.filter(offer => offer.idBuyer !== -1)}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
         />
@@ -42,8 +51,8 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
-    fontSize: 32,
-    marginBottom: 35
+    fontSize: 20,
+    marginBottom: 25
   },
   text: {
     fontFamily: 'Rubik_300Light',

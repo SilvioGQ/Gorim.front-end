@@ -47,7 +47,7 @@ export default function Propostas({navigation}) {
       <Rodada name={'Propostas'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
-      <View style={{flex:1.65}}>
+      <View style={{flex:1.50}}>
       <Text style={styles.text}>Anúncios</Text>
       <FilterType type={type} setType={setType} />
       {!offers.all || offers.all.length === 0 ?
@@ -83,14 +83,14 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
-    fontSize: 32,
+    fontSize: 20,
     marginBottom: 10
   },
   text: {
     fontFamily: 'Rubik_300Light',
     textAlign: 'center',
-    fontSize: 22,
-    marginVertical: 10
+    fontSize: 20,
+    marginVertical: 5
   },
   textSmall: {
     textAlign: 'center',

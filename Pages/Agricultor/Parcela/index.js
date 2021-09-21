@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 23,
+    fontSize: 20,
   },
   image: {
     marginRight: '20%'

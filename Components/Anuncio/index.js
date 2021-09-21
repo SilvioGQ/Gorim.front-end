@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 
 import COLORS from '../../constants/colors';
 import imagesProducts from '../../constants/imagesProducts';
-import imagesCoins from '../../constants/imagesCoins';
 import IMAGES from '../../constants/imagesIcons';
-
+import { GameContext } from '../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width;
 export default function Anuncio({ item, Historico, deleteAdvert }) {
 
-  // const [player, setPlayer] = useState();
-
+  const { players } = useContext(GameContext);
+  const Buyer = () => {
+    let p = players.filter(i => i.id == item.idBuyer);
+    return p[0].name;
+  }
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
@@ -32,10 +34,14 @@ export default function Anuncio({ item, Historico, deleteAdvert }) {
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
-        <Text style={styles.textCenter}> Ainda restam: {item.amount} produto(s)</Text>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={Historico} activeOpacity={0.7}>
-          <Text style={styles.textbutton}>RESUMO</Text>
-        </TouchableOpacity>
+        <Text style={styles.textCenter}> {item.idBuyer !== -1 ? `Você ofereceu ${item.amount} produto(s) para ${Buyer()}` : `Ainda restam: ${item.amount} produto(s)`}</Text>
+        {item.idBuyer !== -1 ?
+          null
+          :
+          <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={Historico} activeOpacity={0.7}>
+            <Text style={styles.textbutton}>RESUMO</Text>
+          </TouchableOpacity>
+        }
       </View>
     </View>
   );
