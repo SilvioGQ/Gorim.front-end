@@ -23,12 +23,14 @@ const GameProvider = (props) => {
 
   useEffect(() => {
     let isConnected = null;
+    let player = {};
 
     socket.on('connect', () => {
       if (isConnected === null) {
         console.log('Connected!');
       } else {
         if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
+        reconnect(player);
         console.log('Reconnected!');
       }
       isConnected = true;
@@ -36,14 +38,16 @@ const GameProvider = (props) => {
     socket.on('refreshPlayers', (players) => {
       dispatch({ type: 'REFRESHPLAYERS', payload: players });
     });
-    socket.on('updatePlayer', (player) => {
-      dispatch({ type: 'UPDATEPLAYER', payload: player });
+    socket.on('updatePlayer', (p) => {
+      player = p;
+      dispatch({ type: 'UPDATEPLAYER', payload: p });
     });
     socket.on('startGame', (room) => {
       dispatch({ type: 'STARTGAME', payload: ['STARTGAME', room] });
     });
-    socket.on('addedToRoom', (player) => {
-      dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
+    socket.on('addedToRoom', (p) => {
+      player = p;
+      dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', p] });
     });
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
@@ -194,6 +198,10 @@ const getTax = () => {
 
 const nextRound = () =>{
   socket.emit('nextRound');
+}
+
+const reconnect = (player) => {
+  socket.emit('reconnect', player);
 }
 
 export {
