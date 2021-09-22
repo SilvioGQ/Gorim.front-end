@@ -6,8 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 // import Frame6 from './InicioJogo/Votaçao';
 // import Frame7 from './InicioJogo/Eleitos';
 // import Fiscal from './Fiscal/Fiscal1';
-// import Selo from './Fiscal/Selo';
-// import Multa from './Fiscal/Multa';
+import Selo from './Fiscal/Selo';
+import Multa from './Fiscal/Multa';
 // import Prevençao from './Prefeitura/Prevencao';
 // import Imposto from './Prefeitura/Imposto';
 import Frame1 from './InicioJogo/Frame1';
@@ -28,6 +28,7 @@ import AnalisarProdutos from './Agricultor/AnalisarProdutos';
 import CriarPartida from './CriarPartida';
 import Lobby from './Lobby';
 import MenuJogador from './MenuJogador';
+import MenuPolitico from './MenuPolitico';
 import Status from './Status';
 import Historico from './Historico';
 
@@ -54,6 +55,9 @@ export default function Routes() {
       <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio}/>
       <Stack.Screen name="Historico" component={Historico}/>
       <Stack.Screen name="Status" component={Status}/>
+      <Stack.Screen name="MenuPolitico" component={MenuPolitico}/>
+      <Stack.Screen name="Selo" component={Selo}/>
+      <Stack.Screen name="Multa" component={Multa}/>
     </Stack.Navigator>
   )
 }

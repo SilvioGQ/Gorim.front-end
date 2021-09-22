@@ -14,13 +14,7 @@ export default function Status({ navigation }) {
     let isMounted = true;
 
     if (stage === 'NEXTROUND' && isMounted) {
-      if (player.office == 'citizen') {
-        console.log('Não tenho cargo!')
-        navigation.reset({ routes: [{ name: 'MenuJogador' }] });
-      } else {
-        console.log('Tenho cargo!')
-        navigation.reset({ routes: [{ name: 'MenuJogador' }] });
-      }
+        navigation.reset({ routes: [{ name: 'MenuPolitico' }] })
     }
 
     let interval = setInterval(() => {
