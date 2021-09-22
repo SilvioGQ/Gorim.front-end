@@ -53,6 +53,7 @@ const reducer = (state, action) => {
     case 'SELECTEDAVATARS':
     case 'ENDSTAGE':
     case 'ALLFORENDSTAGE':
+    case 'RECONNECTED':
       return {
         ...state,
         stage: action.payload

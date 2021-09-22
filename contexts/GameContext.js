@@ -4,6 +4,7 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
+import ModalInfo from '../Components/ModalInfo';
 
 const socket = io(API_URL_HERO, {
   autoConnect: false
@@ -12,6 +13,7 @@ const GameContext = React.createContext();
 const GameProvider = (props) => {
   const [startTimer, setStartTimer] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [openModal, setOpenModal] = useState(false);
 
   const disableNotifyScene = () => { 
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
@@ -30,7 +32,6 @@ const GameProvider = (props) => {
         console.log('Connected!');
       } else {
         if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
-        reconnect(player);
         console.log('Reconnected!');
       }
       isConnected = true;
@@ -50,7 +51,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', p] });
     });
     socket.on('reportMessage', (msg) => {
-      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
+      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, reconnected
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
     });
     socket.on('getProducts', (product) => {
@@ -97,12 +98,17 @@ const GameProvider = (props) => {
     });
     socket.on('disconnect', () => {
       if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
+      if (player.room) setOpenModal(true);
       console.log('Disconnected!');
       isConnected = false;
     });
 
     socket.open();
   }, []);
+
+  useEffect(() => {
+    if (openModal && state.stage === 'RECONNECTED') setOpenModal(false);
+  }, [openModal, state.stage]);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -119,6 +125,9 @@ const GameProvider = (props) => {
 
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer}}>
+      {openModal  && (
+        <ModalInfo onClick={() => { if (socket.connected) reconnect(state.player) }} text={'Você foi desconectado, para voltar a partida clique o botão abaixo'} textButton={'RECONECTAR'} />
+      )}
       {props.children}
     </GameContext.Provider>
   );
@@ -224,5 +233,6 @@ export {
   rejectOffer,
   getTax,
   endStage,
-  nextRound
+  nextRound,
+  reconnect
 };
