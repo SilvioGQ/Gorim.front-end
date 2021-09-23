@@ -19,6 +19,8 @@ export default function SelecaoPersonagem({ navigation }) {
     players.forEach(p => { if (p.avatar) v.push(p.avatar) });
     setAvatars(v);
 
+    if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
+
     if (stage === 'SELECTEDAVATARS' && isMounted)  {
       setStartTimer(true);
       navigation.reset({ routes: [{ name: 'MenuJogador' }] });

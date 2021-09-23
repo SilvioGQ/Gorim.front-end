@@ -14,6 +14,10 @@ export default function Lobby({ navigation }) {
 
   useEffect(() => {
     let isMounted = true;
+    
+    if (stage === 'NAVIGATEFORSELECTIONAVATARS') navigation.reset({ routes: [{ name: 'SelecaoPersonagem' }] });
+    if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
+
     if (stage == 'STARTGAME' && isMounted) navigation.reset({ routes: [{ name: 'SorteioJogador' }] });
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.goBack();
     console.log(player.room);

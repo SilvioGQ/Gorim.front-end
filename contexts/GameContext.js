@@ -96,6 +96,10 @@ const GameProvider = (props) => {
       disableNotifyOffers();
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
+    socket.on('reconnectToRoom', (stage) => {
+      setOpenModal(false);
+      dispatch({ type: 'RECONNECTED', payload: stage });
+    });
     socket.on('disconnect', () => {
       if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
       if (player.room) setOpenModal(true);
@@ -105,10 +109,6 @@ const GameProvider = (props) => {
 
     socket.open();
   }, []);
-
-  useEffect(() => {
-    if (openModal && state.stage === 'RECONNECTED') setOpenModal(false);
-  }, [openModal, state.stage]);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -126,7 +126,7 @@ const GameProvider = (props) => {
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer}}>
       {openModal  && (
-        <ModalInfo onClick={() => { if (socket.connected) reconnect(state.player) }} text={'Você foi desconectado, para voltar a partida clique o botão abaixo'} textButton={'RECONECTAR'} />
+        <ModalInfo onClick={() => { if (socket.connected) reconnectToRoom(state.player) }} text={'Você foi desconectado, para voltar a partida clique o botão abaixo'} textButton={'RECONECTAR'} />
       )}
       {props.children}
     </GameContext.Provider>
@@ -209,8 +209,8 @@ const nextRound = () =>{
   socket.emit('nextRound');
 }
 
-const reconnect = (player) => {
-  socket.emit('reconnect', player);
+const reconnectToRoom = (player) => {
+  socket.emit('reconnectToRoom', player);
 }
 
 export {
@@ -234,5 +234,5 @@ export {
   getTax,
   endStage,
   nextRound,
-  reconnect
+  reconnectToRoom
 };

@@ -53,7 +53,6 @@ const reducer = (state, action) => {
     case 'SELECTEDAVATARS':
     case 'ENDSTAGE':
     case 'ALLFORENDSTAGE':
-    case 'RECONNECTED':
       return {
         ...state,
         stage: action.payload
@@ -117,6 +116,11 @@ const reducer = (state, action) => {
         notify: initialState.notify,
         round: action.payload[1].match.round,
         awaitPlayers: action.payload[1].awaitPlayers.length,
+      };
+    case 'RECONNECTED':
+      return {
+        ...state,
+        stage : action.payload
       };
     default:
       return state;
