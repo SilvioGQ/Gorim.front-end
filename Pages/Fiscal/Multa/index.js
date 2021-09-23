@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import Button from '../../../Components/Button';
-import Quadrados from '../../../Components/Quadrado';
+import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
@@ -10,32 +10,21 @@ export default function Multa({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.row3}>
+      <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <View style={styles.row}>
         <Image
-          style={styles.logo}
-          source={Moeda}
+          style={styles.image}
+          source={require('../../../assets/icons/penalty.png')}
         />
-        <Text> 000 </Text>
+        {modalText !== '' && (
+          <Modal onClick={() => setModalText('')} text={modalText} />
+        )}
+        <Text style={styles.title}>Aplicação{'\n'}de multa</Text>
+        <TouchableOpacity onPress={information} activeOpacity={0.7}>
+          <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 20 }} />
+        </TouchableOpacity>
       </View>
-      <View style={styles.espaco}>
-        <Image
-          style={{ width: 62, height: 62 }}
-          source={Test}
-        />
-        <Text style={styles.header}>Aplicação {"\n"}de multa</Text>
-      </View>
-      <Text style={styles.font}> Destinatário:</Text>
-      <Quadrados />
-      <Text style={styles.font}> Gravidade:</Text>
-      <View style={styles.linha}>
-        <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
-        </View>
-      </View>
-      <View style={styles.nivel}>
-        <Text styles={styles.texto}>Baixo</Text>
-        <Text styles={styles.texto}>Medio</Text>
-        <Text styles={styles.texto}>Alto</Text>
-      </View>
+      
       <Button
         onClick={() => navigation.navigate('Fiscal')}
         name='APLICAR' />
@@ -46,8 +35,6 @@ export default function Multa({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBFFFD',
-    padding: 6,
     width: Tela
   },
   row: {

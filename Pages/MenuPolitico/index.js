@@ -51,7 +51,7 @@ export default function MenuJogador({ navigation }) {
               <Item type='' onClick={() => navigation.navigate('HistoricoJ')} name='Histórico dos Jogadores' />
             </View>
           )}
-          {player.office === 'Fiscal' && (
+          {player.office !== '' && (
             <View style={styles.items}>
               <Item type='' onClick={() => navigation.navigate('Selo')} name='Conceder selo verde' />
               <Item type='' onClick={() => navigation.navigate('Multa')} name='Aplicar multas' />
