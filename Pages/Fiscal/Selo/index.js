@@ -1,111 +1,81 @@
-// import React from 'react';
-// import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
-// import Button from '../../../Components/Button';
-// import Quadrados from '../../../Components/Quadrado';
+import React, { useState, useContext, useEffect } from 'react';
+import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import Button from '../../../Components/Button';
+import Quadrados from '../../../Components/Quadrado';
+import Rodada from '../../../Components/Rodada';
+import parcelaAgr from '../../../Components/parcelaAgr'
+import { GameContext } from '../../../contexts/GameContext.js'
+import HistoricosPlatacao from '../../../Components/HistóricosPlatacao'
+const Tela = Dimensions.get('screen').width;
+export default function Selo({ navigation, route }) {
+  const [selectClient, setSelectClient] = useState(-1);
+  const { players, player } = useContext(GameContext);
+  const [modalText, setModalText] = useState('');
+  const [farmer, setFarmer] = useState([]);
+  useEffect(() => {
+    setFarmer(players.filter(i => i.type === 'Agricultor'))
+  }, [])
+  return (
+    <View>
+      <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.row}>
+            <Image
+              style={styles.image}
+              source={require('../../../assets/icons/stamp.png')}
+            />
+            <Text style={styles.title}>Concessão de{'\n'}selo verde</Text>
+          </View>
+          <Text style={styles.texto}>Destinatário:</Text>
+          <View style={{ marginHorizontal: 10, flexDirection: 'row', width: '100%', flexWrap: 'wrap' }}>
+            {farmer.map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
+          </View>
+          <Text style={styles.texto}>Plantações:</Text>
+          {selectClient === -1 ?
+          null
+          :
+          farmer.find((f) => f.id === selectClient).parcelLand.map((p) => {
+            console.log(p)
+            // if (parcel.planted === true && !parcel.pesticide) {
+              return <Text>`parcela ${p.id + 1}`</Text>
+            // }
+          })
+          }
+          <Button
+            onClick={() => navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })}
+            name='CONCEDER' />
+        </View>
+      </ScrollView>
+    </View>
 
-// import Moeda from '../../../assets/moedas/Moeda.png';
-// import SeloGrande from '../../../assets/selos/selogrande.png';
+  );
+}
 
-// const Tela = Dimensions.get('screen').width;
-// export default function Selo({ navigation, route }) {
-//   const { title } = route.params;
-
-//   return (
-//     <View style={styles.container}>
-//       <View style={styles.row3}>
-//         <Image
-//           style={styles.logo}
-//           source={Moeda}
-//         />
-//         <Text> 000 </Text>
-//       </View>
-//       <View style={styles.espaco}>
-//         <Image
-//           style={{ width: 62, height: 62 }}
-//           source={SeloGrande}
-//         />
-//         <Text style={styles.header}>{JSON.stringify(title)} de {'\n'} selo verde</Text>
-//       </View>
-//       <Text style={{ fontSize: 18, marginTop: 15, fontFamily: 'Rubik_300Light' }}> Destinatário:</Text>
-//       <Quadrados />
-//       <Button
-//         onClick={() => navigation.navigate('Fiscal')}
-//         name='CONCEDER' />
-//     </View>
-
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#EBFFFD',
-//     padding: 6,
-//     width: Tela
-//   },
-//   row: {
-//     flexDirection: 'row',
-//     alignItems: 'flex-start',
-//     justifyContent: 'flex-start',
-//     marginTop: 20,
-//     marginLeft: 8,
-//     width: Tela,
-//     flexWrap: 'wrap'
-//   },
-//   espaco: {
-//     flexDirection: 'row',
-//     alignSelf: 'center',
-//     justifyContent: 'center',
-//     margin: 15,
-//     width: Tela
-//   },
-//   row3: {
-//     flexDirection: 'row',
-//     alignSelf: 'center',
-//     justifyContent: 'flex-end',
-//     margin: 10,
-//     width: Tela
-//   },
-//   row2: {
-//     flexDirection: 'row',
-//     alignItems: 'flex-start',
-//     justifyContent: 'flex-start',
-//     marginTop: 10,
-//     marginLeft: 6
-//   },
-//   colunm: {
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     margin: 10,
-//     backgroundColor: '#FFFFFF',
-//     width: 96,
-//     height: 84,
-//     borderRadius: 20,
-//     shadowColor: "#000",
-//     shadowOffset: {
-//       width: 0,
-//       height: 4,
-//     },
-//     shadowOpacity: 0.32,
-//     shadowRadius: 5.46,
-
-//     elevation: 9
-//   },
-//   header: {
-//     fontFamily: 'Rubik_300Light',
-
-//     fontSize: 20,
-//   },
-//   textinhos: {
-//     fontFamily: 'Rubik_300Light',
-//     fontSize: 14,
-//   },
-//   logo: {
-//     width: 20,
-//     height: 23
-//   },
-//   icone: {
-//     width: 32,
-//     height: 35,
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    width: Tela,
+  },
+  title: {
+    fontSize: 20,
+    fontFamily: 'Rubik_300Light',
+  },
+  row: {
+    flexDirection: 'row',
+    marginVertical: 20
+  },
+  image: {
+    width: 62,
+    height: 60,
+  },
+  texto: {
+    fontFamily: 'Rubik_400Regular',
+    fontSize: 20,
+    textAlign: 'left',
+    alignSelf: 'flex-start',
+    marginVertical: 15,
+    marginLeft: 20
+  },
+});

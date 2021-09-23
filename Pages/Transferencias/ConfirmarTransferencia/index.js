@@ -15,6 +15,11 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   const make = () => {
     makeTransfer(count, idDest);
+    // if(etapa == 2){
+    //   navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!', Menu: 'MenuPolitico' } }] });
+    // }else{
+    //   navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
+    // }
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
   }
   

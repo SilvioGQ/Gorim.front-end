@@ -6,10 +6,10 @@ import Confirmacao from '../../../assets/symbols/confirm.png';
 
 export default function Confirmada({ navigation, route }) {
   const { text } = route.params;
-
+  const { Menu } = route.params
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.reset({ routes: [{ name: 'MenuJogador'}] });
+      navigation.reset({ routes: [{ name: Menu == 'MenuPolitico' ? 'MenuPolitico': 'MenuJogador'}] });
     }, 2200);
 
     return () => clearTimeout(timer);
