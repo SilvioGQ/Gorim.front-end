@@ -14,10 +14,12 @@
   },
   "dependencies": {
     "@expo-google-fonts/rubik": "^0.1.0",
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
     "core-js": "3.3.0",
+    "date-fns": "^2.24.0",
     "expo": "^42.0.3",
     "expo-app-loading": "^1.0.3",
     "expo-cli": "^4.4.7",

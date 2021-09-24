@@ -4,18 +4,17 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
+import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 import ModalAsk from '../Components/ModalAsk';
 
-const socket = io(API_URL_HERO, {
-  autoConnect: false
-});
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
   const [startTimer, setStartTimer] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const [openModal, setOpenModal] = useState(false);
 
-  const disableNotifyScene = () => { 
+  const disableNotifyScene = () => {
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
   };
 
@@ -44,6 +43,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEPLAYER', payload: p });
     });
     socket.on('startGame', (room) => {
+      recordStartTime();
       dispatch({ type: 'STARTGAME', payload: ['STARTGAME', room] });
     });
     socket.on('addedToRoom', (p) => {
@@ -64,11 +64,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'GETLOGS', payload: logs });
     });
     socket.on('getOffers', (obj) => {
-      if (obj.forAll) {
-        dispatch({ type: 'GETOFFERSFORALL', payload: obj.offers });
-      } else {
-        dispatch({ type: 'GETOFFERINDIVIDUAL', payload: obj.offers });
-      }
+      dispatch({ type: obj.forAll ? 'GETOFFERSFORALL' : 'GETOFFERINDIVIDUAL', payload: obj.offers });
     });
     socket.on('enableNotifyScene', () => {
       dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
@@ -79,8 +75,8 @@ const GameProvider = (props) => {
     // socket.on('disableNotifyOffers', () => {
     //   dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
     // });
-    socket.on('endStage', (round) =>{
-      dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round]})
+    socket.on('endStage', (round) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] })
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
@@ -92,8 +88,6 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
     socket.on('nextRound', (room) => {
-      disableNotifyScene();
-      disableNotifyOffers();
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
     socket.on('reconnectToRoom', (stage) => {
@@ -111,9 +105,9 @@ const GameProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    let interval = setInterval(() => {
-      if (state.timer > 0 && startTimer) {
-        dispatch({ type: 'UPDATETIMER', payload: state.timer - 1});
+    let timer = 905, interval = setInterval(async () => {
+      if (timer > 0 && startTimer) {
+        dispatch({ type: 'UPDATETIMER', payload: await recordGetTime() });
       } else if (startTimer) {
         setStartTimer(false);
         endStage();
@@ -121,12 +115,12 @@ const GameProvider = (props) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [state.timer, startTimer]);
+  }, [startTimer]);
 
   return (
-    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer}}>
-      {openModal  && (
-        <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={()=>{}} text={'Você foi desconectado, deseja voltar para partida?'} />
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer }}>
+      {openModal && (
+        <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={() => { }} text={'Você foi desconectado, deseja voltar para partida?'} />
       )}
       {props.children}
     </GameContext.Provider>
@@ -174,11 +168,7 @@ const makeTransfer = (count, idDest) => {
 }
 
 const getProducts = (name = null) => {
-  if (name) {
-    socket.emit('getProducts', name);
-  } else {
-    socket.emit('getProducts');
-  }
+  socket.emit('getProducts', name);
 }
 
 const addAdvert = (name, specialty, price, client, amount, priceType) => {
@@ -205,7 +195,7 @@ const getTax = () => {
   socket.emit('getTax');
 }
 
-const nextRound = () =>{
+const nextRound = () => {
   socket.emit('nextRound');
 }
 
