@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Text, View, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 const Tela = Dimensions.get('screen').width;
@@ -12,7 +13,7 @@ export default function ModalAsk({ finish, back, text = 'Tem certeza que deseja 
           <TouchableOpacity style={[styles.button, { marginRight: 20, opacity: opacity }]} onPress={finish} activeOpacity={0.7} >
             <Text style={styles.textButton}>Sim</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, { backgroundColor: COLORS.warningButton }]} onPress={back} activeOpacity={0.7}>
+          <TouchableOpacity style={[styles.button, { backgroundColor: COLORS.warningButton }]} onPress={back } activeOpacity={0.7}>
             <Text style={styles.textButton}>Não</Text>
           </TouchableOpacity>
         </View>

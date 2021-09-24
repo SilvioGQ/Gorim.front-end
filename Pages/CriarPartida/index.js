@@ -42,7 +42,7 @@ export default function CriarPartida({ navigation }) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, height: Height - 100, alignItems: 'center', width: Tela }}>
           <View style={{flexDirection:'row'}}>
-            <TouchableOpacity style={[styles.leftArrow,{position:'absolute',left:-40,top:5,}]} onPress={() => { navigation.goBack() }} activeOpacity={0.7}>
+            <TouchableOpacity style={[styles.leftArrow,{position:'absolute',left:-40,top:5,}]} onPress={() =>navigation.reset({ routes: [{ name: 'Gorim'}] })} activeOpacity={0.7}>
               <Image style={styles.leftArrow} source={require('../../assets/icons/left-arrow.png')} />
             </TouchableOpacity>
             <TextInput style={styles.input}
