@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
@@ -7,9 +7,7 @@ import { Platform } from 'react-native';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 import ModalAsk from '../Components/ModalAsk';
 
-const socket = io(API_URL_HERO, {
-  autoConnect: false
-});
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
   const [startTimer, setStartTimer] = useState(false);
@@ -66,11 +64,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'GETLOGS', payload: logs });
     });
     socket.on('getOffers', (obj) => {
-      if (obj.forAll) {
-        dispatch({ type: 'GETOFFERSFORALL', payload: obj.offers });
-      } else {
-        dispatch({ type: 'GETOFFERINDIVIDUAL', payload: obj.offers });
-      }
+      dispatch({ type: obj.forAll ? 'GETOFFERSFORALL' : 'GETOFFERINDIVIDUAL', payload: obj.offers });
     });
     socket.on('enableNotifyScene', () => {
       dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
@@ -94,8 +88,6 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
     socket.on('nextRound', (room) => {
-      disableNotifyScene();
-      disableNotifyOffers();
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
     socket.on('reconnectToRoom', (stage) => {
@@ -126,9 +118,9 @@ const GameProvider = (props) => {
   }, [startTimer]);
 
   return (
-    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer}}>
-      {openModal  && (
-        <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={()=>{}} text={'Você foi desconectado, deseja voltar para partida?'} />
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer }}>
+      {openModal && (
+        <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={() => { }} text={'Você foi desconectado, deseja voltar para partida?'} />
       )}
       {props.children}
     </GameContext.Provider>
@@ -176,11 +168,7 @@ const makeTransfer = (count, idDest) => {
 }
 
 const getProducts = (name = null) => {
-  if (name) {
-    socket.emit('getProducts', name);
-  } else {
-    socket.emit('getProducts');
-  }
+  socket.emit('getProducts', name);
 }
 
 const addAdvert = (name, specialty, price, client, amount, priceType) => {
