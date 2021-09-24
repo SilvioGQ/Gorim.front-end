@@ -3,7 +3,7 @@ import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } fr
 import COLORS from '../../constants/colors';
 import { GameContext } from '../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width;
-export default function ModalInfo({ text, onClick, modalImage, title, image, image2, textButton = 'VOLTAR'}) {
+export default function ModalInfo({ text, onClick, modalImage, title, image, image2}) {
   const { player } = useContext(GameContext);
   return (
     <Modal
@@ -57,7 +57,7 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
             onPress={onClick}
             activeOpacity={0.7}
           >
-            <Text style={{ textAlign: 'center', fontFamily: 'Rubik_400Regular', fontSize: 18, color: COLORS.textWhite }}>{textButton}</Text>
+            <Text style={{ textAlign: 'center', fontFamily: 'Rubik_400Regular', fontSize: 18, color: COLORS.textWhite }}>VOLTAR</Text>
           </TouchableOpacity>
         </View>
       </View>

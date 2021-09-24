@@ -4,7 +4,7 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
-import ModalInfo from '../Components/ModalInfo';
+import ModalAsk from '../Components/ModalAsk';
 
 const socket = io(API_URL_HERO, {
   autoConnect: false
@@ -126,7 +126,7 @@ const GameProvider = (props) => {
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer}}>
       {openModal  && (
-        <ModalInfo onClick={() => { if (socket.connected) reconnectToRoom(state.player) }} text={'Você foi desconectado, para voltar a partida clique o botão abaixo'} textButton={'RECONECTAR'} />
+        <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={()=>{}} text={'Você foi desconectado, deseja voltar para partida?'} />
       )}
       {props.children}
     </GameContext.Provider>

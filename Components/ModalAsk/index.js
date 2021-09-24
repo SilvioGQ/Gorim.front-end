@@ -3,21 +3,21 @@ import { Text, View, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'rea
 const Tela = Dimensions.get('screen').width;
 import COLORS from '../../constants/colors';
 
-export default function ModalAsk({ finish, back }) {
+export default function ModalAsk({ finish, back, text = 'Tem certeza que deseja finalizar a partida?', opacity }) {
   return (
-      <Modal animationType="fade" transparent={true} >
-        <View style={styles.modal}>
-          <View style={styles.container}>
-            <Text style={styles.text}>Tem certeza que deseja finalizar a partida?</Text>
-          <TouchableOpacity style={[styles.button, {marginRight: 20 }]} onPress={finish} activeOpacity={0.7} >
-                <Text style={styles.textButton}>Sim</Text>
-              </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, {backgroundColor: COLORS.warningButton}]} onPress={back} activeOpacity={0.7}>
-                <Text style={styles.textButton}>Não</Text>
-              </TouchableOpacity>
-          </View>
+    <Modal animationType="fade" transparent={true} >
+      <View style={styles.modal}>
+        <View style={styles.container}>
+          <Text style={styles.text}>{text}</Text>
+          <TouchableOpacity style={[styles.button, { marginRight: 20, opacity: opacity }]} onPress={finish} activeOpacity={0.7} >
+            <Text style={styles.textButton}>Sim</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, { backgroundColor: COLORS.warningButton }]} onPress={back} activeOpacity={0.7}>
+            <Text style={styles.textButton}>Não</Text>
+          </TouchableOpacity>
         </View>
-      </Modal>
+      </View>
+    </Modal>
   );
 }
 
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorSecondary,
     padding: 25,
     borderRadius: 30,
-    shadowColor: "#000", 
-    shadowOffset: {width: 0,height: 2},
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
@@ -46,12 +46,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light',
     fontSize: 18,
     textAlign: "center",
-    marginBottom:15,
+    marginBottom: 15,
   },
   button: {
     alignItems: 'center',
     width: 250,
-    padding:10,
+    padding: 10,
     backgroundColor: COLORS.successButton,
     borderRadius: 20,
     margin: 10,
@@ -61,5 +61,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Rubik_300Light',
     color: '#fff',
-  }, 
+  },
 });
