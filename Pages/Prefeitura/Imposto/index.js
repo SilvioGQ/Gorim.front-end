@@ -1,14 +1,23 @@
-import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import Button from '../../../Components/Button';
+import { GameContext } from '../../../contexts/GameContext';
+import Imposto2 from '../../../assets/icons/tax.png';
+import Rodada from '../../../Components/Rodada';
+import Coin from '../../../Components/Coin';
 
-import Imposto2 from '../../../assets/simbolos/imposto.png';
-import Rectangle from '../../../assets/Rectangle.png';
 
 const Tela = Dimensions.get('screen').width;
+
 export default function Imposto() {
+
+  const { player } = useContext(GameContext);
+  
   return (
+    <ScrollView>
     <View style={styles.container}>
+      <Rodada name={'Alterar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <Coin coin={player.coin} />
       <View style={styles.espaco}>
         <Image
           style={{ width: 62, height: 48 }}
@@ -17,64 +26,59 @@ export default function Imposto() {
         <Text style={styles.header}>Aplicação {"\n"}de multa</Text>
       </View>
       <Text style={styles.font}> Para produtividade nula:</Text>
-      <View style={styles.linha}>
-        <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
-          <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
-          </View>
-        </View>
+      <View style={styles.view}>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>$5</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>$10</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>$15</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.nivel}>
-        <Text styles={styles.texto}>Baixo</Text>
-        <Text styles={styles.texto}>Medio</Text>
-        <Text styles={styles.texto}>Alto</Text>
-      </View>
+
       <Text style={styles.font}> Para produtividade entre 1 e 200:</Text>
-      <View style={styles.linha}>
-        <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
-          <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
-          </View>
-        </View>
+      <View style={styles.view}>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>%5</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>%10</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>%15</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.nivel}>
-        <Text styles={styles.texto}>Baixo</Text>
-        <Text styles={styles.texto}>Medio</Text>
-        <Text styles={styles.texto}>Alto</Text>
-      </View>
+     
       <Text style={styles.font}> Para produtividade acima de 200:</Text>
-      <View style={styles.linha}>
-        <View style={{ zIndex: 1, marginTop: -5, marginLeft: 4 }}>
-          <View style={{ justifyContent: 'space-between', width: '85%', flexDirection: 'row', marginLeft: '6%' }}>
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7} />
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
-            <TouchableOpacity style={styles.traco} activeOpacity={0.7}/>
-          </View>
-        </View>
+      <View style={styles.view}>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>%25</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>%30</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.texto}>%35</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.nivel}>
-        <Text styles={styles.texto}>Baixo</Text>
-        <Text styles={styles.texto}>Medio</Text>
-        <Text styles={styles.texto}>Alto</Text>
-      </View>
+     
       <Button
-        onClick={() => navigation.navigate('Fiscal')}
+        onClick={() => navigation.navigate()}
         name='APLICAR' />
+        <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+          <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
+        </TouchableOpacity>
     </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBFFFD',
-    padding: 6,
     width: Tela,
-    paddingTop: 35
   },
   espaco: {
     flexDirection: 'row',
@@ -84,31 +88,68 @@ const styles = StyleSheet.create({
     width: Tela
   },
   header: {
-    fontFamily: 'Rubik_300Light',
-    fontSize: 20,
+    fontFamily: 'Rubik_400Regular',
+    fontSize: 22,
   },
   font: {
+    marginLeft: 25,
     fontSize: 20,
     marginTop: 15,
     fontFamily: 'Rubik_300Light'
   },
-  linha: {
-    margin: '16%',
-    marginLeft: '5%',
-    borderWidth: 1,
-    width: '85%',
-    height: 1
-  },
-  nivel: {
+  view: {
     flexDirection: 'row',
+    width: '90%',
+    marginHorizontal: 20,
     justifyContent: 'space-around',
-    marginRight: '5%',
-    marginTop: -12
+    marginVertical: 10,
   },
-  traco: {
-    width: 1,
-    height: 12,
-    zIndex: 1,
+  botao: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    width: 96,
+    height: 38,
+    alignContent: 'center',
+    alignItems: 'center',
+    marginBottom: 40,
+    marginTop: 17,
     borderWidth: 1,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 5.00,
+
+    elevation: 6
+  },
+  texto: {
+    marginVertical: 7,
+    fontSize: 15,
+  },
+  textButton: {
+    color: '#fff',
+    fontSize: 15,
+    fontFamily: 'Rubik_400Regular',
+    textAlign: 'center',
+    alignItems: 'center',
+    marginTop: 15
+  },
+  button: {
+    height: 47,
+    margin: '2%',
+    alignSelf: 'center',
+    backgroundColor: '#BF0000',
+    borderRadius: 25,
+    width: '80%',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 4.46,
+    elevation: 2,
   }
 });

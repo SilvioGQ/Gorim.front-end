@@ -8,8 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 // import Fiscal from './Fiscal/Fiscal1';
 import Selo from './Fiscal/Selo';
 import Multa from './Fiscal/Multa';
-// import Prevençao from './Prefeitura/Prevencao';
-// import Imposto from './Prefeitura/Imposto';
+import Prevencao from './Prefeitura/Prevencao';
+import Imposto from './Prefeitura/Imposto';
 import Frame1 from './InicioJogo/Frame1';
 import SorteioJogador from './SorteioJogador';
 import AguardarJogadores from './AguardarJogadores';
@@ -58,6 +58,8 @@ export default function Routes() {
       <Stack.Screen name="MenuPolitico" component={MenuPolitico}/>
       <Stack.Screen name="Selo" component={Selo}/>
       <Stack.Screen name="Multa" component={Multa}/>
+      <Stack.Screen name="Prevencao" component={Prevencao} />
+      <Stack.Screen name="Imposto" component={Imposto} />
     </Stack.Navigator>
   )
 }
