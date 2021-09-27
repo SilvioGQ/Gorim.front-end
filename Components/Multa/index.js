@@ -4,7 +4,8 @@ import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo'
-export default function MultaComponent({ item, player }) {
+export default function MultaComponent({ item }) {
+    console.log(item)
     const [modalText, setModalText] = useState('');
     const information = () => {
         return setModalText('Tabela para aplicação de multas.\nO porra.');
@@ -22,7 +23,7 @@ export default function MultaComponent({ item, player }) {
                 <Text style={styles.textinhos}>{'nome kjdsklfa'}</Text>
             </View>
             <View>
-                <Text style={styles.text}>Total poluição</Text>
+                <Text style={styles.text}>Total poluição: </Text>
                 <View style={{flexDirection:'row'}}>
                 <Text style={styles.text}>Gravidade: </Text>
                 <Dropdown
@@ -36,7 +37,7 @@ export default function MultaComponent({ item, player }) {
                     <TouchableOpacity style={styles.button} onPress={() => { }} activeOpacity={0.7}>
                         <Text style={styles.textbutton}>CONFIRMAR</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={() => { }} activeOpacity={0.7}>
+                    <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={() => {navigation.navigate('MultaVerMais') }} activeOpacity={0.7}>
                         <Text style={styles.textbutton}>VER MAIS</Text>
                     </TouchableOpacity>
                 </View>
@@ -67,7 +68,8 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         fontFamily: 'Rubik_300Light',
-        alignItems:'center'
+        alignItems:'center',
+        marginTop:5
     },
     textinhos: {
         fontSize: 13,
