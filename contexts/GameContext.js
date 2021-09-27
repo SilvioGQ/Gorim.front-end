@@ -66,6 +66,9 @@ const GameProvider = (props) => {
     socket.on('getOffers', (obj) => {
       dispatch({ type: obj.forAll ? 'GETOFFERSFORALL' : 'GETOFFERINDIVIDUAL', payload: obj.offers });
     });
+    socket.on('suggestTax', (suggest) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['SUGGESTTAX', suggest] });
+    });
     socket.on('enableNotifyScene', () => {
       dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
     });
@@ -203,6 +206,9 @@ const nextStage = () =>{
 const reconnectToRoom = (player) => {
   socket.emit('reconnectToRoom', player);
 }
+const suggestTax = () =>{
+  socket.emit('suggestTax');
+}
 
 export {
   GameContext,
@@ -225,5 +231,6 @@ export {
   getTax,
   endStage,
   nextStage,
-  reconnectToRoom
+  reconnectToRoom,
+  suggestTax
 };

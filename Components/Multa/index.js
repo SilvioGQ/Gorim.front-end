@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo'
-export default function MultaComponent({ item, navigation }) {
+export default function MultaComponent({ item, navigation, suggest }) {
   console.log(item)
   const [modalText, setModalText] = useState('');
   const information = () => {
     return setModalText('Tabela para aplicação de multas.\nO porra.');
   };
+  console.log(suggest())
   const data = [
+    { label: 'Nenhum', value: 0 },
     { label: 'Baixo', value: 1 },
     { label: 'Medio', value: 2 },
     { label: 'Alto', value: 3 },
-    { label: 'Nenhum', value: 4 },
   ]
+
   return (
     <View style={styles.container}>
       <View>
@@ -29,7 +31,7 @@ export default function MultaComponent({ item, navigation }) {
           <Dropdown
             data={data}
             style={{ height: 28, width: 110, borderRadius: 17 }}
-            defaultValue={2}
+            defaultValue={suggest()}
             onSelectedChange={({ label }) => console.log(label)}
           />
         </View>

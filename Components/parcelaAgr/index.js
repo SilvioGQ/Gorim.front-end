@@ -11,8 +11,8 @@ export default function parcelaAgr({ item }) {
                 <Text style={styles.numero}>Parcela: {item.id + 1}º</Text>
                 <View style={{ borderRadius: 17, width: 75, height: 23, backgroundColor: '#D4F15F', alignSelf: 'center', marginTop: 2 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={{ color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.polution}</Text>
-                        <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.production}</Text>
+                        <Text style={{ color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.polution}</Text>
+                        <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.production}</Text>
                     </View>
                 </View>
                 <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)} activeOpacity={0.7}>
@@ -20,28 +20,28 @@ export default function parcelaAgr({ item }) {
                 </TouchableOpacity>
             </View>
             <View>
-                <Image style={styles.imagensproduto} source={IMAGES[item.seed]} />
-                <Text style={styles.textproduto}>{item.seed}</Text>
+                <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.seed]} />
+                <Text style={styles.textproduto}>{item.parcelLand.seed}</Text>
             </View>
-            {item.fertilizer != null && (
+            {item.parcelLand.fertilizer != null && (
                 <View>
-                    <Image style={styles.imagensproduto} source={IMAGES[item.fertilizer]} />
-                    <Text style={styles.textproduto}>{item.fertilizer.replace(/Fertilizante /, '')}</Text>
+                    <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.fertilizer]} />
+                    <Text style={styles.textproduto}>{item.parcelLand.fertilizer.replace(/Fertilizante /, '')}</Text>
                 </View>
             )}
-            {item.pesticide != null && (
+            {item.parcelLand.pesticide != null && (
                 <View>
-                    <Image style={styles.imagensproduto} source={IMAGES[item.pesticide]} />
-                    <Text style={styles.textproduto}>{item.pesticide.replace(/Agrotóxico /, '')}</Text>
+                    <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.pesticide]} />
+                    <Text style={styles.textproduto}>{item.parcelLand.pesticide.replace(/Agrotóxico /, '')}</Text>
                 </View>
             )}
-            {item.machine != null && (
+            {item.parcelLand.machine != null && (
                 <View>
-                    <Image style={styles.imagensproduto} source={IMAGES[item.machine]} />
-                    <Text style={styles.textproduto}>{item.machine}</Text>
+                    <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.machine]} />
+                    <Text style={styles.textproduto}>{item.parcelLand.machine}</Text>
                 </View>
             )}
-            {item.spray && (
+            {item.parcelLand.spray && (
                 <View>
                     <Image style={styles.imagensproduto} source={IMAGES['Pulverizador']} />
                     <Text style={styles.textproduto}>Pulverizador</Text>

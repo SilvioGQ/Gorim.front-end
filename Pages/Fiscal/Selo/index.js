@@ -36,10 +36,9 @@ export default function Selo({ navigation, route }) {
           {selectClient === -1 ?
           null
           :
-          farmer.find((f) => f.id === selectClient).logs.filter(i => i.type === 'plantation').map((p) => {
-            console.log(p)
+          logs.filter(i => i.type === 'plantation' && i.playerId === selectClient).map((p) => {
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <parcelaAgr item={p} key={index}/>
+              return <parcelaAgr item={p} key={p.id}/>
             // }
           })
           }

@@ -3,15 +3,14 @@ import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
 import MultaComponent from '../../../Components/Multa';
-import { GameContext } from '../../../contexts/GameContext';
+import { GameContext, suggestTax } from '../../../contexts/GameContext';
 import Modal from '../../../Components/ModalInfo';
 const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
   const [modalText, setModalText] = useState('');
-  const { players, player } = useContext(GameContext);
-  const [Polutions, setPolutions] = useState([]);
+  const { players, player, data:suggest, stage } = useContext(GameContext);
   useEffect(() => {
-    setPolutions(players.filter(i => i.pollution >= 90))
+    suggestTax()
   }, [])
   return (
     <View style={styles.container}>
@@ -31,9 +30,12 @@ export default function Multa({ navigation }) {
       </View>
 
 
-      {players.map((item, index) => {
-        return <MultaComponent item={item} key={index}/>
+      {stage === 'SUGGESTTAX' ? 
+      players.map((item, index) => {
+        return <MultaComponent suggest={()=>{return suggest.find(i => i.playerId === item.id)}} item={item} key={index}/>
       })
+      : 
+      null
       }
       <Button
         onClick={() => navigation.navigate('Fiscal')}
