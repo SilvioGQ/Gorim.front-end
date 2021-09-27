@@ -9,12 +9,13 @@ import HistoricosPlatacao from '../../../Components/HistóricosPlatacao'
 const Tela = Dimensions.get('screen').width;
 export default function Selo({ navigation, route }) {
   const [selectClient, setSelectClient] = useState(-1);
-  const { players, player } = useContext(GameContext);
+  const { players, player, logs } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
   const [farmer, setFarmer] = useState([]);
   useEffect(() => {
     setFarmer(players.filter(i => i.type === 'Agricultor'))
   }, [])
+  console.log(logs)
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -35,10 +36,10 @@ export default function Selo({ navigation, route }) {
           {selectClient === -1 ?
           null
           :
-          farmer.find((f) => f.id === selectClient).parcelLand.map((p) => {
+          farmer.find((f) => f.id === selectClient).logs.filter(i => i.type === 'plantation').map((p) => {
             console.log(p)
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <Text>`parcela ${p.id + 1}`</Text>
+              return <parcelaAgr item={p} key={index}/>
             // }
           })
           }

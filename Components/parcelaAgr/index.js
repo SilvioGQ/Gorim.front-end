@@ -11,15 +11,14 @@ export default function parcelaAgr({ item }) {
                 <Text style={styles.numero}>Parcela: {item.id + 1}º</Text>
                 <View style={{ borderRadius: 17, width: 75, height: 23, backgroundColor: '#D4F15F', alignSelf: 'center', marginTop: 2 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={{ color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{12}</Text>
-                        <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{12}</Text>
+                        <Text style={{ color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.polution}</Text>
+                        <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.production}</Text>
                     </View>
                 </View>
                 <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)} activeOpacity={0.7}>
                     <Image style={styles.image} source={require('../../assets/FecharPreto.png')} />
                 </TouchableOpacity>
             </View>
-
             <View>
                 <Image style={styles.imagensproduto} source={IMAGES[item.seed]} />
                 <Text style={styles.textproduto}>{item.seed}</Text>
@@ -55,7 +54,8 @@ export default function parcelaAgr({ item }) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: '#C8EEDE',
+        backgroundColor: '#fff',
+        borderWidth:1,
         marginVertical: 25,
         padding: 15,
         borderRadius: 17,

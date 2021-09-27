@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
 import MultaComponent from '../../../Components/Multa';
+import { GameContext } from '../../../contexts/GameContext';
+import Modal from '../../../Components/ModalInfo';
 const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
   const [modalText, setModalText] = useState('');
@@ -29,8 +31,8 @@ export default function Multa({ navigation }) {
       </View>
 
 
-      {players.filter(i => i.pollution >= 0).map((item, index) => {
-        <MultaComponent item={item} key={index}  />
+      {players.map((item, index) => {
+        return <MultaComponent item={item} key={index}/>
       })
       }
       <Button

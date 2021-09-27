@@ -29,7 +29,7 @@ export default function Cenario({ navigation }) {
 
   return (
     <View>
-      <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
+      <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
         <View style={styles.container}>
           <Coin coin={player.coin} />
