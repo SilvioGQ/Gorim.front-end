@@ -4,17 +4,27 @@ import IMAGES from '../../constants/imagesIcons'
 import Coin from '../Coin';
 import { GameContext } from "../../contexts/GameContext";
 
-export default function Header() {
+export default function Header({ typeMenu = 'player' }) {
+
+  const { player, globalPollution } = useContext(GameContext);
 
   const mudarcor = (valor) => {
     if (valor >= 20 && valor <= 50) return '#FF0000';
     if (valor > 50 && valor <= 80) return '#A50000';
     if (valor > 80 && valor <= 100) return '#000000';
   }
-  const { player, globalPollution } = useContext(GameContext);
+
+  const getTypeMenu = () => {
+    if (typeMenu == 'player') {
+      return `${player.type ? player.type.slice(0, 3) : ''}${player.type === 'Empresário' ? player.specialty[0] : ''}`;
+    } else {
+      return `${player.office.slice(0, 3)}`;
+    }
+  }
+
   return (
     <View style={styles.row}>
-      <Text style={styles.header}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name}{'\n'}em {player.city}</Text>
+      <Text style={styles.header}>{`${getTypeMenu()}/${player.name}\nem ${player.city}`}</Text>
       <View style={{ flexDirection: 'row', paddingTop: 15 }}>
         <Image
           style={styles.pollution}
@@ -23,7 +33,7 @@ export default function Header() {
         <Text style={{ color: mudarcor(globalPollution), fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollution}%</Text>
       </View>
       <View>
-        <Coin coin={player.coin} />
+        <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} />
       </View>
       <Image style={styles.person} source={IMAGES[player.avatar]} />
     </View>

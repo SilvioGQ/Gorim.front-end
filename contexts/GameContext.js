@@ -5,10 +5,9 @@ import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
 import ModalAsk from '../Components/ModalAsk';
+import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_HERO, {
-  autoConnect: false
-});
+const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
   const [startTimer, setStartTimer] = useState(false);
@@ -44,6 +43,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEPLAYER', payload: p });
     });
     socket.on('startGame', (room) => {
+      recordStartTime();
       dispatch({ type: 'STARTGAME', payload: ['STARTGAME', room] });
     });
     socket.on('addedToRoom', (p) => {
@@ -64,11 +64,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'GETLOGS', payload: logs });
     });
     socket.on('getOffers', (obj) => {
-      if (obj.forAll) {
-        dispatch({ type: 'GETOFFERSFORALL', payload: obj.offers });
-      } else {
-        dispatch({ type: 'GETOFFERINDIVIDUAL', payload: obj.offers });
-      }
+      dispatch({ type: obj.forAll ? 'GETOFFERSFORALL' : 'GETOFFERINDIVIDUAL', payload: obj.offers });
     });
     socket.on('enableNotifyScene', () => {
       dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
@@ -91,9 +87,8 @@ const GameProvider = (props) => {
     socket.on('updateGlobalProduction', (production) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
-    socket.on('nextRound', (room) => {
-      disableNotifyScene();
-      disableNotifyOffers();
+    socket.on('nextStage', (room) => {
+      recordStartTime();
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
     socket.on('reconnectToRoom', (stage) => {
@@ -111,9 +106,9 @@ const GameProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    let interval = setInterval(() => {
-      if (state.timer > 0 && startTimer) {
-        dispatch({ type: 'UPDATETIMER', payload: state.timer - 1});
+    let timer = 900, interval = setInterval(async () => {
+      if (timer > 0 && startTimer) {
+        dispatch({ type: 'UPDATETIMER', payload: await recordGetTime() });
       } else if (startTimer) {
         setStartTimer(false);
         endStage();
@@ -174,11 +169,7 @@ const makeTransfer = (count, idDest) => {
 }
 
 const getProducts = (name = null) => {
-  if (name) {
-    socket.emit('getProducts', name);
-  } else {
-    socket.emit('getProducts');
-  }
+  socket.emit('getProducts', name);
 }
 
 const addAdvert = (name, specialty, price, client, amount, priceType) => {
@@ -205,8 +196,8 @@ const getTax = () => {
   socket.emit('getTax');
 }
 
-const nextRound = () =>{
-  socket.emit('nextRound');
+const nextStage = () =>{
+  socket.emit('nextStage');
 }
 
 const reconnectToRoom = (player) => {
@@ -233,6 +224,6 @@ export {
   rejectOffer,
   getTax,
   endStage,
-  nextRound,
+  nextStage,
   reconnectToRoom
 };

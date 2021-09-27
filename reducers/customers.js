@@ -42,10 +42,6 @@ const reducer = (state, action) => {
         player: action.payload[1],
       };
     case 'REMOVEDTOROOM':
-      return {
-        ...initialState,
-        stage: action.payload
-      };
     case 'MAXPLAYERSTOROOM':
     case 'INGAMING':
     case 'RAFFLED':

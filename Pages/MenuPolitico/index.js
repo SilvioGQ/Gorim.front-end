@@ -17,8 +17,6 @@ export default function MenuJogador({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
   const { players, player, awaitPlayers, stage, notify, round } = useContext(GameContext);
-  //   const [notificationScene, setNotificationScene] = useState(false);
-  //   const [notificationNegociation, setNotificationNegociation] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -37,61 +35,61 @@ export default function MenuJogador({ navigation }) {
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}° Rodada`} setModalVisible={setModalVisible} />
-      <Header />
+      <Header typeMenu="politic" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {modalVisible2 && <ModalAsk finish={() => endStage()} back={() => setModalVisible2(!modalVisible2)} />}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
-        <View style={styles.row}>
-          {player.office === 'Prefeito' && (
-            <View style={styles.items}>
-              <Item type='' onClick={() => navigation.navigate('Prevencao')} name='Medidas de prevenção' />
-              <Item type='' onClick={() => navigation.navigate('Imposto')} name='Alteração de impostos' />
-              <Item type='' onClick={() => navigation.navigate('HistoricoJ')} name='Histórico dos Jogadores' />
-            </View>
-          )}
-          {player.office !== '' && (
-            <View style={styles.items}>
-              <Item type='' onClick={() => navigation.navigate('Selo')} name='Conceder selo verde' />
-              <Item type='' onClick={() => navigation.navigate('Multa')} name='Aplicar multas' />
-              <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-            </View>
-          )}
-          {player.office === 'Prefeito' && (
+      <View style={styles.row}>
+        {player.office === 'Prefeito' && (
+          <View style={styles.items}>
+            <Item type='' onClick={() => navigation.navigate('Prevencao')} name='Medidas de prevenção' />
+            <Item type='' onClick={() => navigation.navigate('Imposto')} name='Alteração de impostos' />
+            <Item type='' onClick={() => navigation.navigate('HistoricoJ')} name='Histórico dos Jogadores' />
+          </View>
+        )}
+        {player.office === 'Fiscal' && (
+          <View style={styles.items}>
+            <Item type='' onClick={() => navigation.navigate('Selo')} name='Conceder selo verde' />
+            <Item type='' onClick={() => navigation.navigate('Multa')} name='Aplicar multas' />
+            <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
+          </View>
+        )}
+        {player.office === 'Prefeito' && (
           <View style={styles.items}>
             {player.office === 'Prefeito' && (<Item type='' onClick={() => navigation.navigate('Sugestao')} name='Sugestões' />)}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-            <View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }}/>
+            <View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />
           </View>
-          )}
-        </View>
+        )}
+      </View>
       {Height >= 720 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00', borderColor: '#8ACF3A' }]}>
             <Text style={styles.textBar}>{player.production}</Text>
             <Text style={styles.inferior}>Produtividade individual</Text>
           </View>
-              {player.type === 'Agricultor' ?
-          <TouchableOpacity style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]} onPress={() => setModalText('Poluição é a soma da poluição de cada parcela dividida por 6.')} activeOpacity={0.7}>
-            <View style={{ flexDirection: 'row' }}>
-              {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
+          {player.type === 'Agricultor' ?
+            <TouchableOpacity style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]} onPress={() => setModalText('Poluição é a soma da poluição de cada parcela dividida por 6.')} activeOpacity={0.7}>
+              <View style={{ flexDirection: 'row' }}>
+                {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ position: 'absolute', top: 0, left: 30, width: 23, height: 23, marginLeft: 70, marginTop: 10, opacity: 0.5 }} />
-            </View>
-            <Text style={styles.inferior}>Poluição individual</Text>
-          </TouchableOpacity>
-              :
-              <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
+              </View>
+              <Text style={styles.inferior}>Poluição individual</Text>
+            </TouchableOpacity>
+            :
+            <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
               <View style={{ flexDirection: 'row' }}>
                 {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
               </View>
               <Text style={styles.inferior}>Poluição individual</Text>
             </View>
-              }
+          }
         </>
       )}
-      <View style={{paddingVertical:25, flexDirection: 'row',}}>
-      <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
+      <View style={{ paddingVertical: 25, flexDirection: 'row', }}>
+        <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
       </View>
       {awaitPlayers !== 0 && <Text style={{ color: 'red', marginTop: 45, fontFamily: 'Rubik_300Light' }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
@@ -154,7 +152,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     marginTop: 10,
-    marginBottom:5
+    marginBottom: 5
   },
   textBar: {
     fontFamily: 'Rubik_400Regular',

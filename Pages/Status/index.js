@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
-import { GameContext, nextRound } from '../../contexts/GameContext';
+import { GameContext, nextStage } from '../../contexts/GameContext';
 
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
@@ -19,7 +19,7 @@ export default function Status({ navigation }) {
 
     let interval = setInterval(() => {
       if (countdown === 0 && player.host) {
-        nextRound();
+        nextStage();
       } else if (countdown > 0){
         setCountdown(countdown - 1);
       }
