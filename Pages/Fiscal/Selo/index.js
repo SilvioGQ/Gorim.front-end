@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Rodada from '../../../Components/Rodada';
-import parcelaAgr from '../../../Components/parcelaAgr'
+import ParcelaAgr from '../../../Components/parcelaAgr'
 import { GameContext } from '../../../contexts/GameContext.js'
 import HistoricosPlatacao from '../../../Components/HistóricosPlatacao'
 const Tela = Dimensions.get('screen').width;
@@ -15,7 +15,6 @@ export default function Selo({ navigation, route }) {
   useEffect(() => {
     setFarmer(players.filter(i => i.type === 'Agricultor'))
   }, [])
-  console.log(logs)
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -33,12 +32,9 @@ export default function Selo({ navigation, route }) {
             {farmer.map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
           </View>
           <Text style={styles.texto}>Plantações:</Text>
-          {selectClient === -1 ?
-          null
-          :
-          logs.filter(i => i.type === 'plantation' && i.playerId === selectClient).map((p) => {
+          {logs.filter(i => i.type === 'plantation' && i.playerId === selectClient).map((p) => {
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <parcelaAgr item={p} key={p.id}/>
+              return <TouchableOpacity onPress={()=>{}}> <ParcelaAgr item={p} key={p.id}/></TouchableOpacity>
             // }
           })
           }
