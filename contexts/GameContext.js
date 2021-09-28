@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useCallback, useRef } from 'react';
 import io from 'socket.io-client';
 import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
@@ -7,12 +7,17 @@ import { Platform } from 'react-native';
 import ModalAsk from '../Components/ModalAsk';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_HERO, { autoConnect: false });
+const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
-  const [startTimer, setStartTimer] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const [openModal, setOpenModal] = useState(false);
+  const [startTimer, setStartTimer] = useState(false);
+  const callbackForTimer = useCallback(event => {
+    if (event === 'ENDSTAGE') endStage();
+    if (event === 'NEXTSTAGE') nextStage();
+  });
+  const refContainer = useRef();
 
   const disableNotifyScene = () => { 
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
@@ -21,6 +26,12 @@ const GameProvider = (props) => {
   const disableNotifyOffers = () => {
     dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
   };
+
+  const startTime = (maxTime, callback) => {
+    recordStartTime(maxTime);
+    setStartTimer(true);
+    refContainer.current = callback;
+  }
 
   useEffect(() => {
     let isConnected = null;
@@ -43,7 +54,6 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEPLAYER', payload: p });
     });
     socket.on('startGame', (room) => {
-      recordStartTime();
       dispatch({ type: 'STARTGAME', payload: ['STARTGAME', room] });
     });
     socket.on('addedToRoom', (p) => {
@@ -51,7 +61,8 @@ const GameProvider = (props) => {
       dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', p] });
     });
     socket.on('reportMessage', (msg) => {
-      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, reconnected
+      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage
+      if (msg === 'selectedAvatars') startTime(15, 'ENDSTAGE');
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
     });
     socket.on('getProducts', (product) => {
@@ -78,7 +89,8 @@ const GameProvider = (props) => {
     // socket.on('disableNotifyOffers', () => {
     //   dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
     // });
-    socket.on('endStage', (round) =>{
+    socket.on('endStage', (round) => {
+      startTime(15, 'NEXTSTAGE');
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round]})
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
@@ -91,7 +103,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
     socket.on('nextStage', (room) => {
-      recordStartTime();
+      startTime(15, 'ENDROUND');
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
     socket.on('reconnectToRoom', (stage) => {
@@ -109,12 +121,14 @@ const GameProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    let timer = 900, interval = setInterval(async () => {
-      if (timer > 0 && startTimer) {
-        dispatch({ type: 'UPDATETIMER', payload: await recordGetTime() });
-      } else if (startTimer) {
+    let timer, interval = setInterval(async () => {
+      timer = await recordGetTime();
+      if (timer === 0 && startTimer) {
         setStartTimer(false);
-        endStage();
+        callbackForTimer(refContainer.current);
+        dispatch({ type: 'UPDATETIMER', payload: 0 });
+      } else if (startTimer) {
+        dispatch({ type: 'UPDATETIMER', payload: timer });
       }
     }, 1000);
 
@@ -122,7 +136,7 @@ const GameProvider = (props) => {
   }, [state.timer, startTimer]);
 
   return (
-    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer}}>
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer, startTime}}>
       {openModal  && (
         <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={()=>{}} text={'Você foi desconectado, deseja voltar para partida?'} />
       )}
