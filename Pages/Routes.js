@@ -32,7 +32,7 @@ import MenuJogador from './MenuJogador';
 import MenuPolitico from './MenuPolitico';
 import Status from './Status';
 import Historico from './Historico';
-
+import HistoricoJogadores from './Prefeitura/HistoricoJogadores';
 const Stack = createStackNavigator();
 export default function Routes() {
   return (
@@ -62,6 +62,7 @@ export default function Routes() {
       <Stack.Screen name="MultaVerMais" component={MultaVerMais} />
       <Stack.Screen name="Prevencao" component={Prevencao} />
       <Stack.Screen name="Imposto" component={Imposto} />
+      <Stack.Screen name="HistoricoJogadores" component={HistoricoJogadores} />
     </Stack.Navigator>
   )
 }
