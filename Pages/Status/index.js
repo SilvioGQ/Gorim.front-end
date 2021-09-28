@@ -1,32 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
-import { GameContext, nextStage } from '../../contexts/GameContext';
+import { GameContext } from '../../contexts/GameContext';
 
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 
 export default function Status({ navigation }) {
   
-  const { player, globalPollution, data: round, stage, globalProduction } = useContext(GameContext);
-  const [countdown, setCountdown] = useState(15);
+  const { player, globalPollution, data: round, stage, globalProduction, startTime, timer } = useContext(GameContext);
+
+  // useEffect(() => {
+  //   startTime(15, 'NEXTSTAGE');
+  // }, []);
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (stage === 'NEXTROUND' && isMounted) {
-        navigation.reset({ routes: [{ name: 'MenuPolitico' }] })
-    }
-
-    let interval = setInterval(() => {
-      if (countdown === 0 && player.host) {
-        nextStage();
-      } else if (countdown > 0){
-        setCountdown(countdown - 1);
-      }
-    }, 1000);
-
-    return () => { clearInterval(interval); isMounted = false; }
-  }, [countdown, stage]);
+    if (stage === 'NEXTROUND') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
+  }, [stage]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -59,7 +48,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Produtividade global: 70%</Text>
             </View> */}
             <View style={styles.botao}>
-              <Text>{countdown}</Text>
+              <Text>{timer}</Text>
               {/* <Button onClick={() => { navigation.navigate('') }} name={'AVANÇAR'} /> */}
             </View>
           </View>
