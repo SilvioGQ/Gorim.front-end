@@ -12,7 +12,7 @@ import Modal from '../../Components/ModalInfo';
 import ModalAsk from '../../Components/ModalAsk';
 
 const Height = Dimensions.get('screen').height;
-export default function MenuJogador({ navigation }) {
+export default function MenuPolitico({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);

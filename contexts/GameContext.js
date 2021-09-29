@@ -65,7 +65,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', p] });
     });
     socket.on('reportMessage', (msg) => {
-      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage
+      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
       if (msg === 'selectedAvatars') startTime(15, 'ENDSTAGE');
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
     });
@@ -95,7 +95,8 @@ const GameProvider = (props) => {
     // });
     socket.on('endStage', (round) => {
       startTime(15, 'NEXTSTAGE');
-      dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round]})
+      console.log('oi')
+      dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round]});
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
