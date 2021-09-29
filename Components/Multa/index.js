@@ -5,12 +5,11 @@ import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo'
 export default function MultaComponent({ item, navigation, suggest, onclick }) {
-  console.log(item)
   const [modalText, setModalText] = useState('');
   const information = () => {
     return setModalText('Tabela para aplicação de multas.\nO porra.');
   };
-  console.log(suggest())
+  // console.log(suggest())
   const data = [
     { label: 'Nenhum', value: 0 },
     { label: 'Baixo', value: 1 },

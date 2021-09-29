@@ -19,8 +19,6 @@ export default function Selo({ navigation, route }) {
       setLogs(logs.find((p)=> p.id === selectClient))
     }
   }, [selectClient])
-  console.log('os logs' + logs)
-  console.log('logs do player' + Logs)
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />

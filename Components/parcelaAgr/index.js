@@ -3,11 +3,10 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesProducts';
 
-export default function ParcelaAgr({ item }) {
-console.log(item)
+export default function ParcelaAgr({ item,backgroundGreen }) {
     return (
-        <View style={styles.container}>
-            <View style={{ flexDirection: 'row', }}>
+        <View style={[styles.container,{backgroundColor: backgroundGreen}]}>
+            <View style={{ flexDirection: 'row' }}>
                 <Text style={styles.numero}>Parcela: {item.parcelLand.id + 1}º</Text>
                 <View style={{ borderRadius: 17, width: 75, height: 23, backgroundColor: '#D4F15F', alignSelf: 'center'}}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -55,7 +54,6 @@ console.log(item)
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
         marginVertical: 25,
         padding: 20,
         borderRadius: 17,

@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
-import parcelaAgr from '../../../Components/parcelaAgr';
+import ParcelaAgr from '../../../Components/parcelaAgr';
+import { GameContext } from '../../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width;
-export default function Multa({ navigation }) {
+export default function Multa({ navigation, route }) {
+  const {client} = route.params
+  const { logs } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
+  const [Logs, setLogs] = useState([]);
+  const [backgroundColor, setBackgroundColor] = useState('#fff');
+  useEffect(() => {
+      setLogs(logs.find((p)=> p.id === client))
+  }, [client])
+  console.log('os logs', logs)
+  console.log('logs do player', Logs)
   return (
     <View style={styles.container}>
       <Rodada name={'Detalhes de Parcelas'} arrow={true} onClick={() => navigation.navigate('Multa')} />
@@ -22,7 +32,14 @@ export default function Multa({ navigation }) {
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
         </TouchableOpacity>
       </View>
-      
+      {Logs.length !== 0 ? 
+          Logs.logs.filter(i => i.type === 'plantation').map((p) => {
+            // if (parcel.planted === true && !parcel.pesticide) {
+              return <TouchableOpacity onPress={()=>{setBackgroundColor('#66BF00')}}> <ParcelaAgr item={p} key={p.id} backgroundGreen={backgroundColor}/></TouchableOpacity>
+            // }
+          }):
+          null
+          }
       <Button
         onClick={() => navigation.navigate('Multa')}
         name='VOLTAR' />
