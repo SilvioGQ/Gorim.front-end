@@ -95,7 +95,6 @@ const GameProvider = (props) => {
     // });
     socket.on('endStage', (round) => {
       startTime(15, 'NEXTSTAGE');
-      console.log('oi')
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round]});
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
