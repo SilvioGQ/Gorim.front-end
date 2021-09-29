@@ -48,7 +48,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Produtividade global: 70%</Text>
             </View> */}
             <View style={styles.botao}>
-              <Text>{timer}</Text>
+              <Text>{timer >= 0 ? timer : ''}</Text>
               {/* <Button onClick={() => { navigation.navigate('') }} name={'AVANÇAR'} /> */}
             </View>
           </View>

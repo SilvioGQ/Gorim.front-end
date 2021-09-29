@@ -5,7 +5,7 @@ import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
 import ModalAsk from '../Components/ModalAsk';
-import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime, resetRecordTime } from '../helpers/recordTimer';
 
 const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
@@ -19,7 +19,7 @@ const GameProvider = (props) => {
   });
   const refContainer = useRef();
 
-  const disableNotifyScene = () => { 
+  const disableNotifyScene = () => {
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
   };
 
@@ -40,6 +40,7 @@ const GameProvider = (props) => {
   useEffect(() => {
     let isConnected = null;
     let player = {};
+    resetRecordTime();
 
     socket.on('connect', () => {
       if (isConnected === null) {
@@ -66,7 +67,7 @@ const GameProvider = (props) => {
     });
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
-      if (msg === 'selectedAvatars') startTime(15, 'ENDSTAGE');
+      if (msg === 'selectedAvatars') startTime(600, 'ENDSTAGE');
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
     });
     socket.on('getProducts', (product) => {
@@ -94,8 +95,8 @@ const GameProvider = (props) => {
     //   dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
     // });
     socket.on('endStage', (round) => {
-      startTime(15, 'NEXTSTAGE');
-      dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round]});
+      startTime(30, 'NEXTSTAGE');
+      dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
@@ -107,7 +108,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
     socket.on('nextStage', (room) => {
-      startTime(15, 'ENDROUND');
+      startTime(600, 'ENDROUND');
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
     });
     socket.on('reconnectToRoom', (stage) => {
@@ -125,15 +126,14 @@ const GameProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    let timer, interval = setInterval(async () => {
-      timer = await recordGetTime();
-      if (timer === 0 && startTimer) {
-        setStartTimer(false);
-        callbackForTimer(refContainer.current);
-        dispatch({ type: 'UPDATETIMER', payload: 0 });
-      } else if (startTimer) {
+    let interval = setInterval(() => {
+      recordGetTime().then(timer => {
+        if (timer === 0 && startTimer) {
+          setStartTimer(false);
+          callbackForTimer(refContainer.current);
+        }
         dispatch({ type: 'UPDATETIMER', payload: timer });
-      }
+      });
     }, 1000);
 
     return () => clearInterval(interval);
@@ -141,8 +141,8 @@ const GameProvider = (props) => {
 
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, startTime, stopCallback }}>
-      {openModal  && (
-        <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={()=>{}} text={'Você foi desconectado, deseja voltar para partida?'} />
+      {openModal && (
+        <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={() => { }} text={'Você foi desconectado, deseja voltar para partida?'} />
       )}
       {props.children}
     </GameContext.Provider>
@@ -217,14 +217,14 @@ const getTax = () => {
   socket.emit('getTax');
 }
 
-const nextStage = () =>{
+const nextStage = () => {
   socket.emit('nextStage');
 }
 
 const reconnectToRoom = (player) => {
   socket.emit('reconnectToRoom', player);
 }
-const suggestTax = () =>{
+const suggestTax = () => {
   socket.emit('suggestTax');
 }
 

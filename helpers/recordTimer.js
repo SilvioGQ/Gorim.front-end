@@ -1,6 +1,16 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { differenceInSeconds } from "date-fns";
 
+const resetRecordTime = async () => {
+  try {
+    await AsyncStorage.removeItem("@start_time");
+    await AsyncStorage.removeItem("@maxTime");
+  } catch (err) {
+    // TODO: handle errors from setItem properly
+    console.warn(err);
+  }
+}
+
 const recordStartTime = async (maxTime) => {
   try {
     const now = new Date();
@@ -24,4 +34,4 @@ const recordGetTime = async () => {
   }
 }
 
-export { recordStartTime, recordGetTime }
+export { resetRecordTime, recordStartTime, recordGetTime }
