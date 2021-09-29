@@ -5,7 +5,7 @@ const recordStartTime = async (maxTime) => {
   try {
     const now = new Date();
     await AsyncStorage.setItem("@start_time", now.toISOString());
-    await AsyncStorage.setItem("@maxTime", maxTime);
+    await AsyncStorage.setItem("@maxTime", maxTime.toString());
   } catch (err) {
     // TODO: handle errors from setItem properly
     console.warn(err);
