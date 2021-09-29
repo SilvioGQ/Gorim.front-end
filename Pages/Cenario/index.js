@@ -26,7 +26,7 @@ export default function Cenario({ navigation }) {
     getTax();
     disableNotifyScene();
   }, []);
-
+  console.log(player)
   return (
     <View>
       <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />

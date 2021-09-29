@@ -36,7 +36,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Imposto pago: ${round.tax.value} {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Produtividade $: {round.totalProduction} = ({globalProduction}%)</Text>
+              <Text style={styles.text3}>Produtividade: ${round.totalProduction} = ({globalProduction}%)</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Saldo atual: ${player.coin}</Text>

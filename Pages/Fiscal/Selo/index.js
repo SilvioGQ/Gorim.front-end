@@ -12,9 +12,15 @@ export default function Selo({ navigation, route }) {
   const { players, player, logs } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
   const [farmer, setFarmer] = useState([]);
+  const [Logs, setLogs] = useState([]);
   useEffect(() => {
     setFarmer(players.filter(i => i.type === 'Agricultor'))
-  }, [])
+    if(selectClient !== -1){
+      setLogs(logs.find((p)=> p.id === selectClient))
+    }
+  }, [selectClient])
+  console.log('os logs' + logs)
+  console.log('logs do player' + Logs)
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -32,11 +38,13 @@ export default function Selo({ navigation, route }) {
             {farmer.map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
           </View>
           <Text style={styles.texto}>Plantações:</Text>
-          {logs.filter(i => i.type === 'plantation' && i.playerId === selectClient).map((p) => {
+          {Logs.length !== 0 ? 
+          Logs.logs.filter(i => i.type === 'plantation').map((p) => {
             // if (parcel.planted === true && !parcel.pesticide) {
               return <TouchableOpacity onPress={()=>{}}> <ParcelaAgr item={p} key={p.id}/></TouchableOpacity>
             // }
-          })
+          }):
+          null
           }
           <Button
             onClick={() => navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })}
