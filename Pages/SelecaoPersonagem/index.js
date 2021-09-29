@@ -11,7 +11,7 @@ export default function SelecaoPersonagem({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const [avatars, setAvatars] = useState([]);
-  const { players, player, stage, setStartTimer } = useContext(GameContext);
+  const { players, player, stage } = useContext(GameContext);
   const [title, setTitle] = useState(true);
 
   useEffect(() => {
@@ -20,11 +20,7 @@ export default function SelecaoPersonagem({ navigation }) {
     setAvatars(v);
 
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
-
-    if (stage === 'SELECTEDAVATARS' && isMounted)  {
-      setStartTimer(true);
-      navigation.reset({ routes: [{ name: 'MenuJogador' }] });
-    }
+    if (stage === 'SELECTEDAVATARS' && isMounted) navigation.reset({ routes: [{ name: 'MenuJogador' }] });
 
     return () => isMounted = false;
   }, [players, stage]);

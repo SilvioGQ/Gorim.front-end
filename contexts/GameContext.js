@@ -33,6 +33,10 @@ const GameProvider = (props) => {
     refContainer.current = callback;
   }
 
+  const stopCallback = () => {
+    refContainer.current = 'NOTHING';
+  }
+
   useEffect(() => {
     let isConnected = null;
     let player = {};
@@ -136,7 +140,7 @@ const GameProvider = (props) => {
   }, [state.timer, startTimer]);
 
   return (
-    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, setStartTimer, startTime}}>
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, startTime, stopCallback }}>
       {openModal  && (
         <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={()=>{}} text={'Você foi desconectado, deseja voltar para partida?'} />
       )}
