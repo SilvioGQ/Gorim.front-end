@@ -32,12 +32,13 @@ export default function Multa({ navigation, route }) {
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
         </TouchableOpacity>
       </View>
-      {Logs.length !== 0 ? 
+      {Logs.length !== 0 ?
           Logs.logs.filter(i => i.type === 'plantation').map((p) => {
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <TouchableOpacity onPress={()=>{setBackgroundColor('#66BF00')}}> <ParcelaAgr item={p} key={p.id} backgroundGreen={backgroundColor}/></TouchableOpacity>
+              return <ParcelaAgr item={p} key={p.id} backgroundGreen={backgroundColor}/>
             // }
-          }):
+          })
+          :
           null
           }
       <Button

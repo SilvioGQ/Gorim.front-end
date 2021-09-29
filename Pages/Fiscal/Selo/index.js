@@ -13,6 +13,7 @@ export default function Selo({ navigation, route }) {
   const [modalText, setModalText] = useState('');
   const [farmer, setFarmer] = useState([]);
   const [Logs, setLogs] = useState([]);
+  const [backgroundColor, setBackgroundColor] = useState('#fff');
   useEffect(() => {
     setFarmer(players.filter(i => i.type === 'Agricultor'))
     if(selectClient !== -1){
@@ -36,12 +37,13 @@ export default function Selo({ navigation, route }) {
             {farmer.map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
           </View>
           <Text style={styles.texto}>Plantações:</Text>
-          {Logs.length !== 0 ? 
+          {Logs.length !== 0 ?
           Logs.logs.filter(i => i.type === 'plantation').map((p) => {
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <TouchableOpacity onPress={()=>{}}> <ParcelaAgr item={p} key={p.id}/></TouchableOpacity>
+              return <TouchableOpacity><ParcelaAgr item={p} key={p.id} backgroundGreen={backgroundColor}/></TouchableOpacity>
             // }
-          }):
+          })
+          :
           null
           }
           <Button
