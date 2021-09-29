@@ -4,7 +4,7 @@ import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo'
-export default function MultaComponent({ item, navigation, suggest }) {
+export default function MultaComponent({ item, navigation, suggest, onclick }) {
   console.log(item)
   const [modalText, setModalText] = useState('');
   const information = () => {
@@ -39,7 +39,7 @@ export default function MultaComponent({ item, navigation, suggest }) {
           <TouchableOpacity style={styles.button} onPress={() => { }} activeOpacity={0.7}>
             <Text style={styles.textbutton}>CONFIRMAR</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={() => { navigation.navigate('MultaVerMais') }} activeOpacity={0.7}>
+          <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={onclick} activeOpacity={0.7}>
             <Text style={styles.textbutton}>VER MAIS</Text>
           </TouchableOpacity>
         </View>
