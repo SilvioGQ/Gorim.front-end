@@ -11,10 +11,10 @@ export default function MultaComponent({ item, navigation, suggest, onclick }) {
   };
   // console.log(suggest())
   const data = [
-    { label: 'Nenhum', value: 0 },
-    { label: 'Baixo', value: 1 },
-    { label: 'Medio', value: 2 },
-    { label: 'Alto', value: 3 },
+    { label: 'Nenhuma', value: 0 },
+    { label: 'Baixa', value: 1 },
+    { label: 'Média', value: 2 },
+    { label: 'Alta', value: 3 },
   ]
 
   return (
@@ -26,11 +26,11 @@ export default function MultaComponent({ item, navigation, suggest, onclick }) {
       <View>
         <Text style={styles.text}>Total poluição: {item.pollution} </Text>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={styles.text}>Gravidade: </Text>
+          <Text style={styles.text}>Multa: </Text>
           <Dropdown
             data={data}
             style={{ height: 28, width: 110, borderRadius: 17 }}
-            defaultValue={suggest()}
+            defaultValue={suggest}
             onSelectedChange={({ label }) => console.log(label)}
           />
         </View>

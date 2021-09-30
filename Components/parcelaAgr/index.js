@@ -14,8 +14,8 @@ export default function ParcelaAgr({ item, backgroundGreen, display2 }) {
                         <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.production}</Text>
                     </View>
                 </View>
-                <TouchableOpacity style={{ position: 'absolute', left: '97%', display:display2 }} onPress={() => { }} activeOpacity={0.7}>
-                    <Image style={styles.image} source={require('../../assets/FecharPreto.png')} style={{width:20,height:20}} />
+                <TouchableOpacity style={{ position: 'absolute', left: '97%',  display:display2 }} onPress={() => { }} activeOpacity={0.7}>
+                    <Image style={styles.image} source={require('../../assets/FecharPreto.png')} style={{width:20,height:20, display:display2}} />
                 </TouchableOpacity>
             </View>
             <View style={{ flexDirection: 'row' }}>
@@ -26,13 +26,13 @@ export default function ParcelaAgr({ item, backgroundGreen, display2 }) {
                 {item.parcelLand.fertilizer != null && (
                     <View>
                         <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.fertilizer]} />
-                        <Text style={styles.textproduto}>{item.parcelLand.fertilizer.replace(/Fertilizante /, '')}</Text>
+                        <Text style={styles.textproduto}>{item.parcelLand.fertilizer.replace(/Fertilizante /, 'F.')}</Text>
                     </View>
                 )}
                 {item.parcelLand.pesticide != null && (
                     <View>
                         <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.pesticide]} />
-                        <Text style={styles.textproduto}>{item.parcelLand.pesticide.replace(/Agrotóxico /, '')}</Text>
+                        <Text style={styles.textproduto}>{item.parcelLand.pesticide.replace(/Agrotóxico /, 'A.')}</Text>
                     </View>
                 )}
                 {item.parcelLand.machine != null && (
@@ -84,9 +84,5 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: 'Rubik_300Light',
         marginRight: 10
-    },
-    image: {
-        width: 25,
-        height: 27,
     },
 });

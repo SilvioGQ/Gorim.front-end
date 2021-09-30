@@ -32,7 +32,7 @@ export default function Multa({ navigation }) {
 
       {stage === 'SUGGESTTAX' ? 
       players.map((item, index) => {
-        return <MultaComponent suggest={()=>{return suggest.find(i => i.playerId === item.id)}} item={item} key={index} onclick={()=>{navigation.navigate('MultaVerMais', {client:item.id})}}/>
+        return <MultaComponent suggest={0} item={item} key={index} onclick={()=>{navigation.navigate('MultaVerMais', {client:item.id})}}/>
       })
       : 
       null
