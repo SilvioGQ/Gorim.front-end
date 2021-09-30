@@ -20,6 +20,7 @@ export default function Selo({ navigation, route }) {
       setLogs(logs.find((p)=> p.id === selectClient))
     }
   }, [selectClient])
+  console.log(Logs)
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -38,9 +39,9 @@ export default function Selo({ navigation, route }) {
           </View>
           <Text style={styles.texto}>Plantações:</Text>
           {Logs.length !== 0 ?
-          Logs.logs.filter(i => i.type === 'plantation').map((p) => {
+          Logs.logs.filter(i => i.type === 'plantation').map((p, index) => {
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <TouchableOpacity><ParcelaAgr item={p} key={p.id} backgroundGreen={backgroundColor}/></TouchableOpacity>
+              return <TouchableOpacity><ParcelaAgr item={p} key={index} backgroundGreen={backgroundColor} display={'flex'}/></TouchableOpacity>
             // }
           })
           :

@@ -35,7 +35,7 @@ export default function Multa({ navigation, route }) {
       {Logs.length !== 0 ?
           Logs.logs.filter(i => i.type === 'plantation').map((p) => {
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <ParcelaAgr item={p} key={p.id} backgroundGreen={backgroundColor}/>
+              return <ParcelaAgr item={p} key={p.id} backgroundGreen={backgroundColor} display2='none'/>
             // }
           })
           :

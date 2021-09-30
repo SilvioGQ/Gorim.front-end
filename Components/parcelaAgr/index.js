@@ -3,10 +3,10 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesProducts';
 
-export default function ParcelaAgr({ item, backgroundGreen }) {
+export default function ParcelaAgr({ item, backgroundGreen, display2 }) {
     return (
         <View style={[styles.container, { backgroundColor: backgroundGreen }]}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', marginTop:-5 }}>
                 <Text style={styles.numero}>Parcela: {item.parcelLand.id + 1}º</Text>
                 <View style={{ borderRadius: 17, width: 75, height: 23, backgroundColor: '#D4F15F', alignSelf: 'center' }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -14,8 +14,8 @@ export default function ParcelaAgr({ item, backgroundGreen }) {
                         <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.production}</Text>
                     </View>
                 </View>
-                <TouchableOpacity style={{ position: 'absolute', left: '95%' }} onPress={() => { }} activeOpacity={0.7}>
-                    <Image style={styles.image} source={require('../../assets/FecharPreto.png')} />
+                <TouchableOpacity style={{ position: 'absolute', left: '97%', display:display2 }} onPress={() => { }} activeOpacity={0.7}>
+                    <Image style={styles.image} source={require('../../assets/FecharPreto.png')} style={{width:20,height:20}} />
                 </TouchableOpacity>
             </View>
             <View style={{ flexDirection: 'row' }}>

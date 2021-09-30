@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Tela,
     alignItems: 'center',
-    justifyContent: 'center'
   },
   row: {
     flexDirection: 'row',
