@@ -9,7 +9,7 @@ import Coin from '../../../Components/Coin';
 
 const Tela = Dimensions.get('screen').width;
 
-export default function Imposto() {
+export default function Imposto({navigation}) {
 
   const { player } = useContext(GameContext);
   

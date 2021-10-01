@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Rodada from '../../../Components/Rodada';
@@ -13,7 +13,7 @@ export default function Selo({ navigation, route }) {
   const [modalText, setModalText] = useState('');
   const [farmer, setFarmer] = useState([]);
   const [Logs, setLogs] = useState([]);
-  const [backgroundColor, setBackgroundColor] = useState('#fff');
+  const [selectParcel, setSelectParcel] = useState(-1);
   useEffect(() => {
     setFarmer(players.filter(i => i.type === 'Agricultor'))
     if(selectClient !== -1){
@@ -41,7 +41,7 @@ export default function Selo({ navigation, route }) {
           {Logs.length !== 0 ?
           Logs.logs.filter(i => i.type === 'plantation').map((p, index) => {
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <TouchableOpacity><ParcelaAgr item={p} key={index} backgroundGreen={backgroundColor} display={'flex'}/></TouchableOpacity>
+              return <ParcelaAgr item={p} key={p.id} onClick={()=>{setSelectParcel(p.id)}} backgroundGreen={selectParcel == p.id ? '#8ACF3A' : '#fff'} vermais={false} display={'flex'}/>
             // }
           })
           :

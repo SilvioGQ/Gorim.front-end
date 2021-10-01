@@ -9,9 +9,11 @@ const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
   const [modalText, setModalText] = useState('');
   const { players, player, data:suggest, stage } = useContext(GameContext);
+
   useEffect(() => {
     suggestTax()
   }, [])
+  console.log(suggest)
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -30,9 +32,9 @@ export default function Multa({ navigation }) {
       </View>
 
 
-      {stage === 'SUGGESTTAX' ? 
+      {stage === 'SUGGESTTAX' ?
       players.map((item, index) => {
-        return <MultaComponent suggest={0} item={item} key={index} onclick={()=>{navigation.navigate('MultaVerMais', {client:item.id})}}/>
+        return <MultaComponent item={item} key={index} onclick={()=>{navigation.navigate('MultaVerMais', {client:item.id})}}/>
       })
       : 
       null
