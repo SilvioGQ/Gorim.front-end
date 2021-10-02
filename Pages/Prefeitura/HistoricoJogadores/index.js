@@ -1,35 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import Quadrados from '../../../Components/Quadrado';
-import Jogadores from '../../../Components/HistoricoJogadores';
+import HistoricoAgricultor from '../../../Components/HistoricoAgricultor';
+import HistoricoEmpresario from '../../../Components/HistoricoEmpresario';
 import { GameContext } from '../../../contexts/GameContext';
 import { FlatList } from 'react-native-gesture-handler';
 // import COLORS from '../../constants/colors';
 import Rodada from '../../../Components/Rodada';
-
+import FiltroHistoricoJogadores from '../../../Components/FiltroHistoricoJogadores'
 import IMAGES from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width;
 export default function HistoricoJogadores({ navigation }) {
-    const [open, setOpen] = useState(false);
-    const [open2, setOpen2] = useState(false);
-    const [open3, setOpen3] = useState(false);
-    const [open4, setOpen4] = useState(false);
-    const [open5, setOpen5] = useState(false);
-    const { players, player, round } = useContext(GameContext);
-    const rotateZ = open ? "180deg" : "0deg";
-    const rotateZ2 = open2 ? "180deg" : "0deg";
-    const rotateZ3 = open3 ? "180deg" : "0deg";
-    const rotateZ4 = open4 ? "180deg" : "0deg";
-    const rotateZ5 = open5 ? "180deg" : "0deg";
+
+    const { players, player, round, logs } = useContext(GameContext);
+    const [type, setType] = useState('Agricultor');
     const [selectClient, setSelectClient] = useState(-1);
-    const [modalText, setModalText] = useState('');
-    const [count, setCount] = useState(0);
-    const [id, setId] = useState();
+
     const filterPlayers = () => {
         let p = [];
         p = players.filter(i => i.id !== player.id);
-        
-
         return p;
     }
     return (
@@ -37,22 +26,28 @@ export default function HistoricoJogadores({ navigation }) {
             <View>
                 <Rodada name={'HistoricoJogadores'} arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
                 <View style={styles.container}>
-                    <Text style={styles.header}>HISTÓRICO Jogadores</Text>
-                    <Text style={styles.rodada}>RODADA {round - 1}</Text>
-                    <View style={styles.row}>
+                    <View style={styles.espaco}>
                         <Image
-                            style={styles.image}
-                            source={IMAGES[player.avatar]}
+                            style={{ width: 62, height: 62 }}
+                            source={require('../../../assets/symbols/group.png')}
                         />
-                        <View>
-                            <Text style={styles.name}>{player.name}</Text>
-                            <Text style={styles.subtitle}>{player.type}</Text>
-                            <Text style={styles.subtitle}>{player.city}</Text>
-                        </View>
+                        <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>Histórico dos{"\n"}Jogadores</Text>
                     </View>
-                   
-                        {filterPlayers().map((item) => <Jogadores key={item.id} player={item} onClick={() => setSelectClient(item.id)} />)}
-
+                    <Text style={styles.header}>Jogadores em {player.city}:</Text>
+                    <FiltroHistoricoJogadores type={type} setType={setType} />
+                    {/* <View style={styles.backgreen}> */}
+                    <View style={styles.whiteRow}>
+                        {filterPlayers((p) => p.type == type).map((item) => {
+                            console.log(type);
+                            if (type === 'Agricultor') {
+                                return <HistoricoAgricultor key={item.id} player={item} onClick={() => setSelectClient(item.id)} />
+                            } else {
+                                return <HistoricoEmpresario key={item.id} player={item} onClick={() => setSelectClient(item.id)} />
+                            }
+                        }
+                        )}
+                    </View>
+                    {/* </View> */}
 
 
                 </View>
@@ -64,7 +59,6 @@ export default function HistoricoJogadores({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         width: Tela,
     },
     row: {
@@ -83,23 +77,32 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_300Light',
         fontSize: 18
     },
-    backgreen: {
-        width: '80%',
-        borderRadius: 17,
-        backgroundColor: '#C8EEDE',
-        paddingVertical: 10,
-        marginVertical: 10
-    },
+    // backgreen: {
+    //     width: '90%',
+    //     height: '10%',
+    //     borderRadius: 17,
+    //     backgroundColor: '#C8EEDE',
+    //     paddingVertical: 10,
+    //     marginVertical: 10
+    // },
     whiteRow: {
-        width: '100%',
-        flexDirection: 'row',
+        width: '90%',
+        marginHorizontal: 50,
         justifyContent: 'space-between',
+    },
+    espaco: {
+        marginTop: 20,
+        flexDirection: 'row',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        width: Tela
     },
     header: {
         fontFamily: 'Rubik_400Regular',
-        fontSize: 24,
-        color: '#3F5510',
-        marginTop: 25
+        fontSize: 20,
+        marginTop: 25,
+        marginLeft: 25,
+        marginBottom: 30,
     },
     rodada: {
         fontFamily: 'Rubik_400Regular',

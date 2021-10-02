@@ -46,7 +46,7 @@ export default function MenuPolitico({ navigation }) {
           <View style={styles.items}>
             <Item type='' onClick={() => navigation.navigate('Prevencao')} name='Medidas de prevenção' />
             <Item type='' onClick={() => navigation.navigate('Imposto')} name='Alteração de impostos' />
-            <Item type='' onClick={() => navigation.navigate('HistoricoJ')} name='Histórico dos Jogadores' />
+            <Item type='' onClick={() => navigation.navigate('HistoricoJogadores')} name='Histórico dos Jogadores' />
           </View>
         )}
         {player.office === 'Fiscal' && (
