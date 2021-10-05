@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
-import COLORS from '../../../constants/colors';
-import Confirmacao from '../../../assets/symbols/confirm.png';
-
 export default function Confirmada({ navigation, route }) {
   const { text } = route.params;
   const { Menu } = route.params
@@ -17,7 +14,7 @@ export default function Confirmada({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={Confirmacao} />
+      <Image style={styles.logo} source={require('../../../assets/symbols/confirm.png')} />
       <Text style={styles.text}>{text}</Text>
     </View>
   );

@@ -11,7 +11,8 @@ const IMAGES = {
     "Pacote 1": require('../../assets/products/machines/package.png'),
     "Pacote 2": require('../../assets/products/machines/package.png'),
     "Pacote 3": require('../../assets/products/machines/package.png'),
-    "Pulverizador" : require('../../assets/products/machines/spray.png')
+    "Pulverizador" : require('../../assets/products/machines/spray.png'),
+    "Desconhecido" : require('../../assets/icons/unknown.png')
 };
 
 export default IMAGES;

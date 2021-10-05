@@ -2,10 +2,9 @@ import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import Button from '../../../Components/Button';
 import { GameContext } from '../../../contexts/GameContext';
-import Imposto2 from '../../../assets/icons/tax.png';
 import Rodada from '../../../Components/Rodada';
 import Coin from '../../../Components/Coin';
-
+import IMAGES from '../../../constants/imagesMenu/index'
 
 const Tela = Dimensions.get('screen').width;
 
@@ -21,7 +20,7 @@ export default function Imposto({navigation}) {
       <View style={styles.espaco}>
         <Image
           style={{ width: 62, height: 48 }}
-          source={Imposto2}
+          source={IMAGES['Alteração de impostos']}
         />
         <Text style={styles.header}>Aplicação {"\n"}de multa</Text>
       </View>

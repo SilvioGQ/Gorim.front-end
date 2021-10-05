@@ -5,8 +5,6 @@ import { GameContext, toPlant, addSprayParcel } from "../../../contexts/GameCont
 import Button from '../../../Components/Button';
 import COLORS from '../../../constants/colors';
 import DropDown from '../../../Components/DropDown';
-import Unknown from '../../../assets/icons/unknown.png';
-import Parcel from '../../../assets/agricultorIcones/Parcela.png';
 import Conf from '../../../Components/Selo-Verde-Confirmacao';
 import ModalInfo from '../../../Components/ModalInfo';
 import IMAGES from '../../../constants/imagesProducts';
@@ -71,7 +69,7 @@ export default function Parcela({ route, navigation }) {
       <Rodada name={'Parcela de terra'} arrow={true} onClick={()=>navigation.goBack()} />
       <ScrollView>
         <View style={styles.espaco}>
-          <Image style={styles.parcel} source={Parcel} />
+          <Image style={styles.parcel} source={require('../../../assets/agricultorIcones/Parcela.png')} />
           <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
         </View>
         {parcelLand.planted && (
@@ -85,7 +83,7 @@ export default function Parcela({ route, navigation }) {
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown(!dropDown) }} activeOpacity={0.7}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.seed ? 35 : 25, height: parcelLand.seed ? 35 : 45 }]}
-              source={parcelLand.seed ? IMAGES[parcelLand.seed] : Unknown} />
+              source={parcelLand.seed ? IMAGES[parcelLand.seed] : IMAGES['Desconhecido']} />
             <View>
               <Text>Sementes</Text>
               <Text style={styles.bold}>{parcelLand.seed ? parcelLand.seed : '-'}</Text>
@@ -102,7 +100,7 @@ export default function Parcela({ route, navigation }) {
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown2(!dropDown2) }} activeOpacity={0.7}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.fertilizer ? 35 : 25, height: parcelLand.fertilizer ? 35 : 45 }]}
-              source={parcelLand.fertilizer ? IMAGES[parcelLand.fertilizer] : Unknown} />
+              source={parcelLand.fertilizer ? IMAGES[parcelLand.fertilizer] : IMAGES['Desconhecido']} />
             <View>
               <Text>Fertilizantes</Text>
               <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer.replace(/Fertilizante /, '') : '-'}</Text>
@@ -119,7 +117,7 @@ export default function Parcela({ route, navigation }) {
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown3(!dropDown3) }} activeOpacity={0.7}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.pesticide ? 35 : 25, height: parcelLand.pesticide ? 35 : 45 }]}
-              source={parcelLand.pesticide ? IMAGES[parcelLand.pesticide] : Unknown} />
+              source={parcelLand.pesticide ? IMAGES[parcelLand.pesticide] : IMAGES['Desconhecido']} />
             <View>
               <Text>Agrotóxicos</Text>
               <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide.replace(/Agrotóxico /, '') : '-'}</Text>
@@ -136,7 +134,7 @@ export default function Parcela({ route, navigation }) {
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown4(!dropDown4) }} activeOpacity={0.7}>
           <View style={styles.row}>
             <Image style={[styles.image, { width: parcelLand.machine ? 35 : 25, height: parcelLand.machine ? 35 : 45 }]}
-              source={parcelLand.machine ? IMAGES[parcelLand.machine] : Unknown} />
+              source={parcelLand.machine ? IMAGES[parcelLand.machine] : IMAGES['Desconhecido']} />
             <View>
               <Text>Máquinas</Text>
               <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
