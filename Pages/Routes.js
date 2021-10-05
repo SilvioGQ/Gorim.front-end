@@ -33,6 +33,7 @@ import MenuPolitico from './MenuPolitico';
 import Status from './Status';
 import Historico from './Historico';
 import HistoricoJogadores from './Prefeitura/HistoricoJogadores';
+
 const Stack = createStackNavigator();
 export default function Routes() {
   return (

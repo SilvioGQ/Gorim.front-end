@@ -20,6 +20,7 @@ export default function SelecaoPersonagem({ navigation }) {
     setAvatars(v);
 
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
+    if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
     if (stage === 'SELECTEDAVATARS' && isMounted) navigation.reset({ routes: [{ name: 'MenuJogador' }] });
 
     return () => isMounted = false;

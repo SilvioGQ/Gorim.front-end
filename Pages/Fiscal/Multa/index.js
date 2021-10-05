@@ -1,17 +1,22 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { GameContext, suggestTax } from '../../../contexts/GameContext';
+
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
 import MultaComponent from '../../../Components/Multa';
-import { GameContext, suggestTax } from '../../../contexts/GameContext';
 import Modal from '../../../Components/ModalInfo';
+
 const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
+
   const [modalText, setModalText] = useState('');
-  const { players, player, data:suggest, stage } = useContext(GameContext);
+  const { players, player, data: suggest, stage } = useContext(GameContext);
+
   useEffect(() => {
-    suggestTax()
-  }, [])
+    suggestTax();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
