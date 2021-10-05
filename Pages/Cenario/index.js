@@ -5,7 +5,6 @@ import { GameContext, getTax } from '../../contexts/GameContext';
 
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
 import Coin from '../../Components/Coin';
-import Papel from '../../assets/agricultorIcones/papel.png';
 import COLORS from '../../constants/colors';
 import Rodada from '../../Components/Rodada';
 import ModalInfo from '../../Components/ModalInfo';
@@ -36,7 +35,7 @@ export default function Cenario({ navigation }) {
           <View style={styles.row}>
             <Image
               style={styles.image}
-              source={Papel}
+              source={require('../../assets/agricultorIcones/papel.png')}
             />
             <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
           </View>

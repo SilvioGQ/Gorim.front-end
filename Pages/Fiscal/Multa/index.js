@@ -11,12 +11,21 @@ const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
 
   const [modalText, setModalText] = useState('');
+<<<<<<< HEAD
   const { players, player, data: suggest, stage } = useContext(GameContext);
 
   useEffect(() => {
     suggestTax();
   }, []);
 
+=======
+  const { players, player, data:suggest, stage } = useContext(GameContext);
+
+  useEffect(() => {
+    suggestTax()
+  }, [])
+  console.log(suggest)
+>>>>>>> 85c706a1428e9e4c916a30925a51e192f37eb02a
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -35,9 +44,9 @@ export default function Multa({ navigation }) {
       </View>
 
 
-      {stage === 'SUGGESTTAX' ? 
+      {stage === 'SUGGESTTAX' ?
       players.map((item, index) => {
-        return <MultaComponent suggest={()=>{return suggest.find(i => i.playerId === item.id)}} item={item} key={index} onclick={()=>{navigation.navigate('MultaVerMais', {client:item.id})}}/>
+        return <MultaComponent item={item} key={index} onclick={()=>{navigation.navigate('MultaVerMais', {client:item.id})}}/>
       })
       : 
       null
@@ -51,7 +60,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Tela,
     alignItems: 'center',
-    justifyContent: 'center'
   },
   row: {
     flexDirection: 'row',

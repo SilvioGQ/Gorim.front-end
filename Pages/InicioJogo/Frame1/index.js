@@ -2,22 +2,19 @@ import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../../constants/colors';
 import Button from '../../../Components/Button';
-
-import Trator from '../../../assets/icons/tractor.png';
-import Animacao from '../../../assets/symbols/logo.png';
 export default function Frame1({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <Image
           style={styles.logo}
-          source={Trator}
+          source={require('../../../assets/icons/tractor.png')}
         />
         <Text style={styles.text}>Gorim</Text>
       </View>
       <Image
         style={styles.logo2}
-        source={Animacao}
+        source={require('../../../assets/symbols/logo.png')}
       />
       <View style={styles.container}>
         <Button

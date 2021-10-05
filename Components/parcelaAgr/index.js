@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesProducts';
 
-export default function ParcelaAgr({ item, backgroundGreen }) {
+export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick }) {
     return (
-        <View style={[styles.container, { backgroundColor: backgroundGreen }]}>
-            <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity onPress={onClick} style={[styles.container, { backgroundColor: backgroundGreen }]}>
+            <View style={{ flexDirection: 'row', marginTop:-5 }}>
                 <Text style={styles.numero}>Parcela: {item.parcelLand.id + 1}º</Text>
+                {vermais ? 
                 <View style={{ borderRadius: 17, width: 75, height: 23, backgroundColor: '#D4F15F', alignSelf: 'center' }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                        <Text style={{ color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.pollution}</Text>
-                        <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.production}</Text>
-                    </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <Text style={{ color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.pollution}</Text>
+                    <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.production}</Text>
                 </View>
-                <TouchableOpacity style={{ position: 'absolute', left: '95%' }} onPress={() => { }} activeOpacity={0.7}>
-                    <Image style={styles.image} source={require('../../assets/FecharPreto.png')} />
+            </View>
+            :
+                <Text style={{ color: '#CF0101', fontSize: 14, fontFamily: 'Rubik_300Light' }}>Poluição: {item.parcelLand.pollution}</Text>
+            }
+                
+                <TouchableOpacity style={{ position: 'absolute', left: '97%',  display:display2 }} onPress={() => { }} activeOpacity={0.7}>
+                    <Image style={styles.image} source={require('../../assets/FecharPreto.png')} style={{width:20,height:20, display:display2}} />
                 </TouchableOpacity>
             </View>
             <View style={{ flexDirection: 'row' }}>
@@ -26,13 +30,13 @@ export default function ParcelaAgr({ item, backgroundGreen }) {
                 {item.parcelLand.fertilizer != null && (
                     <View>
                         <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.fertilizer]} />
-                        <Text style={styles.textproduto}>{item.parcelLand.fertilizer.replace(/Fertilizante /, '')}</Text>
+                        <Text style={styles.textproduto}>{item.parcelLand.fertilizer.replace(/Fertilizante /, 'F.')}</Text>
                     </View>
                 )}
                 {item.parcelLand.pesticide != null && (
                     <View>
                         <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.pesticide]} />
-                        <Text style={styles.textproduto}>{item.parcelLand.pesticide.replace(/Agrotóxico /, '')}</Text>
+                        <Text style={styles.textproduto}>{item.parcelLand.pesticide.replace(/Agrotóxico /, 'A.')}</Text>
                     </View>
                 )}
                 {item.parcelLand.machine != null && (
@@ -48,7 +52,7 @@ export default function ParcelaAgr({ item, backgroundGreen }) {
                     </View>
                 )}
             </View>
-        </View>
+        </TouchableOpacity>
     );
 }
 
@@ -84,9 +88,5 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: 'Rubik_300Light',
         marginRight: 10
-    },
-    image: {
-        width: 25,
-        height: 27,
     },
 });

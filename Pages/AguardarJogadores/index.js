@@ -1,9 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
 import { GameContext, removeToRoom, } from '../../contexts/GameContext';
-
-import COLORS from '../../constants/colors';
-import Clock from '../../assets/symbols/clock.png';
 import Rodada from '../../Components/Rodada';
 
 export default function AguardarJogadores({ navigation }) {
@@ -27,7 +24,7 @@ export default function AguardarJogadores({ navigation }) {
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada removeFromRoom={removeFromRoom} close={true} name={'Agurdando jogadores'} />
       <View style={styles.container2}>
-        <Image style={styles.logo} source={Clock} />
+        <Image style={styles.logo} source={require('../../assets/symbols/clock.png')} />
         <Text style={styles.texto}> Aguardando {'\n'} os outros jogadores...</Text>
         <View>
           <Text style={{ fontSize: 24, textAlign: 'center', marginTop: 10, marginBottom: 30, fontFamily: 'Rubik_300Light' }}>{awaitPlayers} de {players.length}</Text>

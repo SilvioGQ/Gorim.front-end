@@ -1,22 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
-import Modal from '../../Components/ModalInfo'
-export default function MultaComponent({ item, navigation, suggest, onclick }) {
+import Modal from '../../Components/ModalInfo';
+import { GameContext, suggestTax } from '../../contexts/GameContext';
+export default function MultaComponent({ item, navigation, onclick }) {
+  const { players, player, data:suggest, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
+  useEffect(() => {
+    suggestTax()
+  }, [])
+  const [sugestao, setSugestao] = useState()
   const information = () => {
     return setModalText('Tabela para aplicação de multas.\nO porra.');
   };
-  // console.log(suggest())
   const data = [
-    { label: 'Nenhum', value: 0 },
-    { label: 'Baixo', value: 1 },
-    { label: 'Medio', value: 2 },
-    { label: 'Alto', value: 3 },
+    { label: 'Nenhuma', value: 1 },
+    { label: 'Baixa', value: 2 },
+    { label: 'Média', value: 3 },
+    { label: 'Alta', value: 4 },
   ]
-
+  console.log(sugestao)
   return (
     <View style={styles.container}>
       <View>
@@ -26,14 +31,15 @@ export default function MultaComponent({ item, navigation, suggest, onclick }) {
       <View>
         <Text style={styles.text}>Total poluição: {item.pollution} </Text>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={styles.text}>Gravidade: </Text>
+          <Text style={styles.text}>Multa:</Text>
           <Dropdown
             data={data}
             style={{ height: 28, width: 110, borderRadius: 17 }}
-            defaultValue={suggest()}
+            defaultValue={async()=> {const ss= await suggest.find(i => i.playerId === item.id).gravity; return ss+1 }}
             onSelectedChange={({ label }) => console.log(label)}
           />
         </View>
+        <Text> Sugestão {data[0].label}</Text>
         <View style={styles.row}>
           <TouchableOpacity style={styles.button} onPress={() => { }} activeOpacity={0.7}>
             <Text style={styles.textbutton}>CONFIRMAR</Text>
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: '#fff',
-    marginVertical: 25,
+    marginVertical: 15,
     padding: 15,
     borderRadius: 17,
     marginTop: 15,
