@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesProducts';
 
 export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick }) {
