@@ -103,11 +103,10 @@ const reducer = (state, action) => {
         ...state,
         globalProduction: action.payload
       };
-    case 'NEXTROUND':
+    case 'NEXTSTAGE':
       return {
         ...state,
         stage: action.payload[0],
-        timer: initialState.timer,
         offers: initialState.offers,
         notify: initialState.notify,
         round: action.payload[1].match.round,

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
 import { GameContext } from '../../contexts/GameContext';
 
@@ -9,12 +9,8 @@ export default function Status({ navigation }) {
   
   const { player, globalPollution, data: round, stage, globalProduction, startTime, timer } = useContext(GameContext);
 
-  // useEffect(() => {
-  //   startTime(15, 'NEXTSTAGE');
-  // }, []);
-
   useEffect(() => {
-    if (stage === 'NEXTROUND') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
+    if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
   }, [stage]);
 
   return (
