@@ -11,21 +11,12 @@ const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
 
   const [modalText, setModalText] = useState('');
-<<<<<<< HEAD
   const { players, player, data: suggest, stage } = useContext(GameContext);
 
   useEffect(() => {
     suggestTax();
   }, []);
 
-=======
-  const { players, player, data:suggest, stage } = useContext(GameContext);
-
-  useEffect(() => {
-    suggestTax()
-  }, [])
-  console.log(suggest)
->>>>>>> 85c706a1428e9e4c916a30925a51e192f37eb02a
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
