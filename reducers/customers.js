@@ -1,5 +1,5 @@
 const initialState = {
-  timer: -1,
+  timer: 0,
   stage: null,
   players: [],
   player: {},
