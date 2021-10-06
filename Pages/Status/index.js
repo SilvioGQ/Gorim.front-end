@@ -7,7 +7,7 @@ import IMAGES from '../../constants/imagesIcons';
 
 export default function Status({ navigation }) {
   
-  const { player, globalPollution, data: round, stage, globalProduction, startTime, timer } = useContext(GameContext);
+  const { player, globalPollution, data: round, stage, globalProduction, timer } = useContext(GameContext);
 
   useEffect(() => {
 
@@ -49,7 +49,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Produtividade global: 70%</Text>
             </View> */}
             <View style={styles.botao}>
-              <Text>{timer >= 0 ? timer : ''}</Text>
+              <Text>{timer}</Text>
               {/* <Button onClick={() => { navigation.navigate('') }} name={'AVANÇAR'} /> */}
             </View>
           </View>

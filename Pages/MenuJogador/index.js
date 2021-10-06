@@ -16,7 +16,7 @@ export default function MenuJogador({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
-  const { players, player, awaitPlayers, stage, notify, round, timer, stopCallback } = useContext(GameContext);
+  const { players, player, awaitPlayers, stage, notify, round, stopCallback } = useContext(GameContext);
 
   useEffect(() => {
     let isMounted = true;
@@ -29,7 +29,7 @@ export default function MenuJogador({ navigation }) {
     if (stage === 'ENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'AguardarJogadores' }] });
 
     return () => isMounted = false;
-  }, [stage, timer]);
+  }, [stage]);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);

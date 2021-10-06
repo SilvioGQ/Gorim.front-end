@@ -12,7 +12,6 @@ const GameContext = React.createContext();
 const GameProvider = (props) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [startTimer, setStartTimer] = useState(false);
   const callbackForTimer = useCallback(event => {
     if (event === 'ENDSTAGE' && socket.connected) endStage();
     if (event === 'NEXTSTAGE' && socket.connected) nextStage();
@@ -28,10 +27,21 @@ const GameProvider = (props) => {
     dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
   };
 
-  const startTime = (maxTime, callback) => {
-    recordStartTime(maxTime);
-    setStartTimer(true);
+  const startTimer = (maxTime, callback) => {
     refContainer.current = callback;
+
+    dispatch({ type: 'UPDATETIMER', payload: maxTime });
+    recordStartTime(maxTime, socket.id).then(() => {
+      let interval = setInterval(() => {
+        recordGetTime(socket.id).then(timer => {
+          dispatch({ type: 'UPDATETIMER', payload: timer });
+          if (timer === 0) {
+            callbackForTimer(refContainer.current);
+            clearInterval(interval);
+          }
+        });
+      }, 1000);
+    });
   }
 
   const stopCallback = () => {
@@ -41,7 +51,6 @@ const GameProvider = (props) => {
   useEffect(() => {
     let isConnected = null;
     let player = {};
-    resetRecordTime();
 
     socket.on('connect', () => {
       if (isConnected === null) {
@@ -69,8 +78,8 @@ const GameProvider = (props) => {
     });
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
-      if (msg === 'selectedAvatars') startTime(15, 'ENDSTAGE');
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
+      if (msg === 'selectedAvatars') startTimer(15, 'ENDSTAGE');
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -98,8 +107,8 @@ const GameProvider = (props) => {
     //   dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
     // });
     socket.on('endStage', (round) => {
-      startTime(15, 'NEXTSTAGE');
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
+      startTimer(20, 'NEXTSTAGE');
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
@@ -111,8 +120,8 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
     socket.on('nextStage', (room) => {
-      startTime(15, 'ENDROUND');
       dispatch({ type: 'NEXTSTAGE', payload: ['NEXTSTAGE', room] });
+      startTimer(10, 'ENDROUND');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });
@@ -127,22 +136,8 @@ const GameProvider = (props) => {
     socket.open();
   }, []);
 
-  useEffect(() => {
-    let interval = setInterval(() => {
-      recordGetTime().then(timer => {
-        if (timer === 0 && startTimer) {
-          setStartTimer(false);
-          callbackForTimer(refContainer.current);
-        }
-        dispatch({ type: 'UPDATETIMER', payload: timer });
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [state.timer, startTimer]);
-
   return (
-    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, startTime, stopCallback }}>
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, stopCallback }}>
       {modal && (
         <ModalInfo onClick={()=>{setModal(false)}}  display={socket.connected ? 'flex' : 'none'} text={'Estamos reconectando você para partida'} />
       )}
