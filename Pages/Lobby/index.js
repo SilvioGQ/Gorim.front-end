@@ -17,6 +17,8 @@ export default function Lobby({ navigation }) {
     
     if (stage === 'NAVIGATEFORSELECTIONAVATARS') navigation.reset({ routes: [{ name: 'SelecaoPersonagem' }] });
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
+    if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
+    if (stage === 'NAVIGATEFORSTATUS') navigation.reset({ routes: [{ name: 'Status' }] });
 
     if (stage == 'STARTGAME' && isMounted) navigation.reset({ routes: [{ name: 'SorteioJogador' }] });
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.goBack();
