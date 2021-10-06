@@ -4,10 +4,10 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
-import ModalAsk from '../Components/ModalAsk';
+import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime, resetRecordTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io('https://gorim-backend.herokuapp.com/', { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -48,7 +48,6 @@ const GameProvider = (props) => {
         console.log('Connected!');
       } else {
         if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
-        setModal(false);
         reconnectToRoom(player);
         console.log('Reconnected!');
       }
@@ -145,7 +144,7 @@ const GameProvider = (props) => {
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, startTime, stopCallback }}>
       {modal && (
-        <ModalAsk finish={() => { }} opacity={socket.connected ? 1 : 0.5} back={() => { }} text={'Você foi desconectado, deseja voltar para partida?'} />
+        <ModalInfo onClick={()=>{setModal(false)}}  display={socket.connected ? 'flex' : 'none'} text={'Estamos reconectando você para partida'} />
       )}
       {props.children}
     </GameContext.Provider>
