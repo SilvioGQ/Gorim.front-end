@@ -21,12 +21,6 @@ export default function FiltroHistoricoJogadores({ type, setType }) {
 
 const styles = StyleSheet.create({
     buttonAgr: {
-        width: '30%',
-        height: 40,
-        borderRadius: 50,
-        borderWidth: 1
-    },
-    buttonEmp: {
         width: '44%',
         height: 40,
         borderRadius: 50,

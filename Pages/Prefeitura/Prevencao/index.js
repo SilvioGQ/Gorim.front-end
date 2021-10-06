@@ -8,7 +8,7 @@ import Coin from '../../../Components/Coin';
 const Tela = Dimensions.get('screen').width;
 export default function Prevencao({ navigation }) {
 
-  // const [selectMedida, setSelectMedida] = useState(-1);
+  const [selectMedida, setSelectMedida] = useState(-1);
   const { player } = useContext(GameContext);
   return (
     <ScrollView>
@@ -26,27 +26,27 @@ export default function Prevencao({ navigation }) {
 
         <View style={styles.row}>
           <View style={styles.quadrados}>
-            <TouchableOpacity style={styles.fundo}>
+            <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida == 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida(1)} activeOpacity={0.7}>
               <Image style={{ width: 50, height: 50, marginTop: 15, marginBottom: 10, marginLeft: 20, position: 'absolute' }} source={require('../../../assets/icons/water.png')} />
-              <Text style={styles.texto}>Tratamento de água</Text>
-              <Text style={styles.textomenor}>Reduz a poluição em 5%</Text>
-              <Text style={styles.textopreco}>Preços: $800</Text>
+              <Text style={[styles.texto, { color: selectMedida == 1 ? "#fff" : '#000' }]}>Tratamento de água</Text>
+              <Text style={[styles.textomenor, { color: selectMedida == 1 ? "#fff" : '#000' }]}>Reduz a poluição em 5%</Text>
+              <Text style={[styles.textopreco, { color: selectMedida == 1 ? "#fff" : '#000' }]}>Preços: $800</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.quadrados}>
-            <TouchableOpacity style={styles.fundo}>
+            <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida == 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida(2)} activeOpacity={0.7}>
               <Image style={{ width: 45, height: 45, marginTop: 20, marginBottom: 10, marginLeft: 20, position: 'absolute' }} source={require('../../../assets/icons/sewer.png')} />
-              <Text style={styles.texto}>Tratamento de esgoto</Text>
-              <Text style={styles.textomenor}>Reduz a poluição em 10%</Text>
-              <Text style={styles.textopreco}>Preços: $1600</Text>
+              <Text style={[styles.texto, { color: selectMedida == 2 ? "#fff" : '#000' }]}>Tratamento de esgoto</Text>
+              <Text style={[styles.textomenor, { color: selectMedida == 2 ? "#fff" : '#000' }]}>Reduz a poluição em 10%</Text>
+              <Text style={[styles.textopreco, { color: selectMedida == 2 ? "#fff" : '#000' }]}>Preços: $1600</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.quadrados}>
-            <TouchableOpacity style={styles.fundo}>
+            <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida == 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida(3)} activeOpacity={0.7}>
               <Image style={{ width: 50, height: 50, marginTop: 15, marginBottom: 10, marginLeft: 20, position: 'absolute' }} source={require('../../../assets/icons/trash.png')} />
-              <Text style={styles.texto}>Tratamento de lixo</Text>
-              <Text style={styles.textomenor}>Reduz a poluição em 15%</Text>
-              <Text style={styles.textopreco}>Preços: $2400</Text>
+              <Text style={[styles.texto, { color: selectMedida == 3 ? "#fff" : '#000' }]}>Tratamento de lixo</Text>
+              <Text style={[styles.textomenor, { color: selectMedida == 3 ? "#fff" : '#000' }]}>Reduz a poluição em 15%</Text>
+              <Text style={[styles.textopreco, { color: selectMedida == 3 ? "#fff" : '#000' }]}>Preços: $2400</Text>
             </TouchableOpacity>
           </View>
         </View>

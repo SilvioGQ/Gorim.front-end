@@ -9,7 +9,9 @@ import IMAGES from '../../../constants/imagesMenu/index'
 const Tela = Dimensions.get('screen').width;
 
 export default function Imposto({navigation}) {
-
+  const [selectImposto, setSelectImposto] = useState(-1);
+  const [selectImposto2, setSelectImposto2] = useState(-1);
+  const [selectImposto3, setSelectImposto3] = useState(-1);
   const { player } = useContext(GameContext);
   
   return (
@@ -22,44 +24,44 @@ export default function Imposto({navigation}) {
           style={{ width: 62, height: 48 }}
           source={IMAGES['Alteração de impostos']}
         />
-        <Text style={styles.header}>Aplicação {"\n"}de multa</Text>
+        <Text style={styles.header}>Alteração {"\n"}de impostos</Text>
       </View>
       <Text style={styles.font}> Para produtividade nula:</Text>
       <View style={styles.view}>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>$5</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto == 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto(1)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto == 1 ? "#fff" : '#000' }]}>$5</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>$10</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto == 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto(2)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto == 2 ? "#fff" : '#000' }]}>$10</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>$15</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto == 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto(3)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto == 3 ? "#fff" : '#000' }]}>$15</Text>
         </TouchableOpacity>
       </View>
 
       <Text style={styles.font}> Para produtividade entre 1 e 200:</Text>
       <View style={styles.view}>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>%5</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto2 == 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto2(1)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto2 == 1 ? "#fff" : '#000' }]}>%5</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>%10</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto2 == 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto2(2)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto2 == 2 ? "#fff" : '#000' }]}>%10</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>%15</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto2 == 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto2(3)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto2 == 3 ? "#fff" : '#000' }]}>%15</Text>
         </TouchableOpacity>
       </View>
      
       <Text style={styles.font}> Para produtividade acima de 200:</Text>
       <View style={styles.view}>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>%25</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto3 == 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto3(1)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto3 == 1 ? "#fff" : '#000' }]}>%25</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>%30</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto3 == 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto3(2)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto3 == 2 ? "#fff" : '#000' }]}>%30</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.botao}>
-          <Text style={styles.texto}>%35</Text>
+          <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto3 == 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto3(3)} activeOpacity={0.7}>
+            <Text style={[styles.texto, { color: selectImposto3 == 3 ? "#fff" : '#000' }]}>%35</Text>
         </TouchableOpacity>
       </View>
      

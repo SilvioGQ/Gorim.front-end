@@ -16,15 +16,10 @@ export default function HistoricoJogadores({ navigation }) {
     const [type, setType] = useState('Agricultor');
     const [selectClient, setSelectClient] = useState(-1);
 
-    const filterPlayers = () => {
-        let p = [];
-        p = players.filter(i => i.id !== player.id);
-        return p;
-    }
     return (
         <ScrollView>
             <View>
-                <Rodada name={'HistoricoJogadores'} arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
+                <Rodada name={'HistoricoJogadores'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
                 <View style={styles.container}>
                     <View style={styles.espaco}>
                         <Image
@@ -34,10 +29,12 @@ export default function HistoricoJogadores({ navigation }) {
                         <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>Histórico dos{"\n"}Jogadores</Text>
                     </View>
                     <Text style={styles.header}>Jogadores em {player.city}:</Text>
+                    <View style={{alignItems: 'center'}}>
                     <FiltroHistoricoJogadores type={type} setType={setType} />
-                    {/* <View style={styles.backgreen}> */}
+                    </View>
+
                     <View style={styles.whiteRow}>
-                        {filterPlayers((p) => p.type == type).map((item) => {
+                        {players.filter((p) => p.type == type).map((item) => {
                             console.log(type);
                             if (type === 'Agricultor') {
                                 return <HistoricoAgricultor key={item.id} player={item} onClick={() => setSelectClient(item.id)} />
@@ -47,7 +44,7 @@ export default function HistoricoJogadores({ navigation }) {
                         }
                         )}
                     </View>
-                    {/* </View> */}
+
 
 
                 </View>
@@ -77,14 +74,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Rubik_300Light',
         fontSize: 18
     },
-    // backgreen: {
-    //     width: '90%',
-    //     height: '10%',
-    //     borderRadius: 17,
-    //     backgroundColor: '#C8EEDE',
-    //     paddingVertical: 10,
-    //     marginVertical: 10
-    // },
     whiteRow: {
         width: '90%',
         marginHorizontal: 50,

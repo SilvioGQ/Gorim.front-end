@@ -7,17 +7,18 @@ import { Platform } from 'react-native';
 import ModalAsk from '../Components/ModalAsk';
 import { recordStartTime, recordGetTime, resetRecordTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_HERO, { autoConnect: false });
+const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
+
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [openModal, setOpenModal] = useState(false);
   const [startTimer, setStartTimer] = useState(false);
   const callbackForTimer = useCallback(event => {
-    if (event === 'ENDSTAGE') endStage();
-    if (event === 'NEXTSTAGE') nextStage();
+    if (event === 'ENDSTAGE' && socket.connected) endStage();
+    if (event === 'NEXTSTAGE' && socket.connected) nextStage();
   });
   const refContainer = useRef();
+  const [modal, setModal] = useState(false);
 
   const disableNotifyScene = () => {
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
@@ -47,6 +48,8 @@ const GameProvider = (props) => {
         console.log('Connected!');
       } else {
         if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
+        setModal(false);
+        reconnectToRoom(player);
         console.log('Reconnected!');
       }
       isConnected = true;
@@ -67,7 +70,7 @@ const GameProvider = (props) => {
     });
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
-      if (msg === 'selectedAvatars') startTime(200, 'ENDSTAGE');
+      if (msg === 'selectedAvatars') startTime(15, 'ENDSTAGE');
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
     });
     socket.on('getProducts', (product) => {
@@ -83,6 +86,7 @@ const GameProvider = (props) => {
       dispatch({ type: obj.forAll ? 'GETOFFERSFORALL' : 'GETOFFERINDIVIDUAL', payload: obj.offers });
     });
     socket.on('suggestTax', (suggest) => {
+      console.log(suggest);
       dispatch({ type: 'CHANGEDATA', payload: ['SUGGESTTAX', suggest] });
     });
     socket.on('enableNotifyScene', () => {
@@ -95,7 +99,7 @@ const GameProvider = (props) => {
     //   dispatch({ type: 'GETNOTIFY', payload: { offers: false } });
     // });
     socket.on('endStage', (round) => {
-      startTime(30, 'NEXTSTAGE');
+      startTime(15, 'NEXTSTAGE');
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
@@ -108,17 +112,16 @@ const GameProvider = (props) => {
       dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
     });
     socket.on('nextStage', (room) => {
-      startTime(600, 'ENDROUND');
-      dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
+      startTime(15, 'ENDROUND');
+      dispatch({ type: 'NEXTSTAGE', payload: ['NEXTSTAGE', room] });
     });
     socket.on('reconnectToRoom', (stage) => {
-      setOpenModal(false);
       dispatch({ type: 'RECONNECTED', payload: stage });
     });
     socket.on('disconnect', () => {
       if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
-      if (player.room) setOpenModal(true);
       console.log('Disconnected!');
+      setModal(true);
       isConnected = false;
     });
 
@@ -141,8 +144,8 @@ const GameProvider = (props) => {
 
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, startTime, stopCallback }}>
-      {openModal && (
-        <ModalAsk finish={() => { if (socket.connected) reconnectToRoom(state.player) }} opacity={socket.connected ? 1 : 0.5} back={() => { }} text={'Você foi desconectado, deseja voltar para partida?'} />
+      {modal && (
+        <ModalAsk finish={() => { }} opacity={socket.connected ? 1 : 0.5} back={() => { }} text={'Você foi desconectado, deseja voltar para partida?'} />
       )}
       {props.children}
     </GameContext.Provider>
