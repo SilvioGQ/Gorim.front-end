@@ -10,6 +10,7 @@ export default function Status({ navigation }) {
   const { player, globalPollution, data: round, stage, globalProduction, startTime, timer } = useContext(GameContext);
 
   useEffect(() => {
+    if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
   }, [stage]);
 
