@@ -67,7 +67,7 @@ const GameProvider = (props) => {
     });
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
-      if (msg === 'selectedAvatars') startTime(600, 'ENDSTAGE');
+      if (msg === 'selectedAvatars') startTime(200, 'ENDSTAGE');
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
     });
     socket.on('getProducts', (product) => {
