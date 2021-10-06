@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 
 import { GameContext } from '../../contexts/GameContext';
@@ -8,10 +8,11 @@ export default function HistoricoPlayers({ player }) {
     const [open, setOpen] = useState(false);
     const { logs } = useContext(GameContext);
     const rotateZ = open ? "180deg" : "0deg";
-    console.log(Logs);
+
     const [Logs, setLogs] = useState([]);
     useEffect(() => {
         setLogs(logs.find((p)=> p.id === player.id))
+        console.log(Logs);
     }, [])
     return (
         <View>
@@ -28,7 +29,7 @@ export default function HistoricoPlayers({ player }) {
                 <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
                     <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Poluição: </Text>
                     <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Produtividade: $</Text>
-                    <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Imposto pago: {Logs.logs.filter((f)=>{f.type == 'tax'}).value} </Text>
+                    <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Imposto pago: {/*Logs.logs[0].value*/} </Text>
                     {/* ${round.tax.value} {round.tax.percentual ? '= (' + round.tax.percentual + '%)' : ''} */}
 
                 </View>

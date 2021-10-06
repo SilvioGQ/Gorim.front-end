@@ -19,8 +19,10 @@ export default function SelecaoPersonagem({ navigation }) {
     players.forEach(p => { if (p.avatar) v.push(p.avatar) });
     setAvatars(v);
 
+    if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
+    
     if (stage === 'SELECTEDAVATARS' && isMounted) navigation.reset({ routes: [{ name: 'MenuJogador' }] });
 
     return () => isMounted = false;
