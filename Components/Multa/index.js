@@ -8,7 +8,7 @@ import { GameContext, sendTax, suggestTax } from '../../contexts/GameContext';
 export default function MultaComponent({ item, navigation, onclick }) {
   const { players, player, data:suggest, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
-
+  const [numero, setNumero] = useState(1);
   useEffect(() => {
     suggestTax();
   }, []);
@@ -23,7 +23,6 @@ export default function MultaComponent({ item, navigation, onclick }) {
     { label: 'Média', value: 3 },
     { label: 'Alta', value: 4 },
   ]
-  console.log(item)
   return (
     <View style={styles.container}>
       <View>
@@ -37,8 +36,8 @@ export default function MultaComponent({ item, navigation, onclick }) {
           <Dropdown
             data={data}
             style={{ height: 28, width: 110, borderRadius: 17 }}
-            defaultValue={async()=> {const ss= await suggest.find(i => i.playerId === item.id).gravity; return ss+1 }}
-            onSelectedChange={({ label }) => console.log(label)}
+            defaultValue={numero}
+            onSelectedChange={({ value }) => setNumero(value)}
           />
         </View>
         <Text> Sugestão {data[0].label}</Text>

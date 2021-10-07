@@ -156,7 +156,7 @@ export default function Parcela({ route, navigation }) {
           <Text style={{ fontSize: 22, textAlign: 'center', marginTop: '10%', fontFamily:'Rubik_300Light' }}>Plantio iniciado!</Text> :
           <Button onClick={selectItems} name='INICIAR PLANTIO' />
         }
-        {modalText !== '' && <Conf confirm={() => requestStamp(parcelLand)} text={modalText} denied={() => setModalText('')} />}
+        {modalText !== '' && <Conf confirm={() => {requestStamp(parcelLand); setModalText('')}} text={modalText} denied={() => setModalText('')} />}
         {modalText2 !== '' && <ModalInfo onClick={() => setModalText2('')} text={modalText2} />}
       </ScrollView>
     </View>

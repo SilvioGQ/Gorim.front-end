@@ -17,10 +17,10 @@ export default function Selo({ navigation, route }) {
   useEffect(() => {
     setFarmer(players.filter(i => i.type === 'Agricultor'))
     if(selectClient !== -1){
-      setLogs(logs.find((p)=> p.id === selectClient))
+      setLogs(players.find((p)=> p.id === selectClient))
     }
   }, [selectClient])
-  console.log(Logs)
+  console.log(player)
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -41,7 +41,7 @@ export default function Selo({ navigation, route }) {
           {Logs.length !== 0 ?
           Logs.logs.filter(i => i.type === 'plantation').map((p, index) => {
             // if (parcel.planted === true && !parcel.pesticide) {
-              return <ParcelaAgr item={p} key={p.id} onClick={()=>{setSelectParcel(p.id)}} backgroundGreen={selectParcel == p.id ? '#8ACF3A' : '#fff'} vermais={false} display={'flex'}/>
+              return <ParcelaAgr item={p} key={p.id} onClick={()=>{setSelectParcel(p.id)}} backgroundGreen={selectParcel == p.id ? '#8ACF3A' : '#fff'} vermais={true} display={'flex'}/>
             // }
           })
           :

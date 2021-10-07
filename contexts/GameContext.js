@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime, resetRecordTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -79,7 +79,7 @@ const GameProvider = (props) => {
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
-      if (msg === 'selectedAvatars') startTimer(15, 'ENDSTAGE');
+      if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -108,7 +108,7 @@ const GameProvider = (props) => {
     // });
     socket.on('endStage', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
-      startTimer(20, 'NEXTSTAGE');
+      startTimer(5, 'NEXTSTAGE');
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
