@@ -6,14 +6,9 @@ import COLORS from '../../constants/colors';
 const Tela = Dimensions.get('screen').width;
 export default function HistoricoPlayers({ player }) {
     const [open, setOpen] = useState(false);
-    const { logs } = useContext(GameContext);
+    const { logs, data: round, globalProduction } = useContext(GameContext);
     const rotateZ = open ? "180deg" : "0deg";
-
-    const [Logs, setLogs] = useState([]);
-    useEffect(() => {
-        setLogs(logs.find((p)=> p.id === player.id))
-        console.log(Logs);
-    }, [])
+    console.log(player);
     return (
         <View>
             <View style={styles.backgreen}>
@@ -27,9 +22,9 @@ export default function HistoricoPlayers({ player }) {
                     </TouchableOpacity>
                 </View>
                 <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
-                    <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Poluição: </Text>
-                    <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Produtividade: $</Text>
-                    <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Imposto pago: {/*Logs.logs[0].value*/} </Text>
+                    <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Poluição: {player.pollution.toFixed(1)}</Text>
+                    <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Produtividade: ${player.production}</Text>
+                    <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Imposto pago: ${player.logs.find((item) => item.type == 'tax').value}</Text>
                     {/* ${round.tax.value} {round.tax.percentual ? '= (' + round.tax.percentual + '%)' : ''} */}
 
                 </View>

@@ -31,7 +31,7 @@ export default function HistoricoJogadores({ navigation }) {
                     </View>
 
                     <View style={styles.whiteRow}>
-                        {players.filter((p) => p.type == type).map((item) => {
+                        {players.filter((p) => p.type == type && p.city == player.city).map((item) => {
                             console.log(type);
                             if (type === 'Agricultor') {
                                 return <HistoricoPlayers key={item.id} player={item} />
