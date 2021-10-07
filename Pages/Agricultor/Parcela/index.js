@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
-import { GameContext, toPlant, addSprayParcel } from "../../../contexts/GameContext";
+import { GameContext, toPlant, addSprayParcel, requestStamp } from "../../../contexts/GameContext";
 
 import Button from '../../../Components/Button';
 import COLORS from '../../../constants/colors';
@@ -60,10 +60,6 @@ export default function Parcela({ route, navigation }) {
     addSprayParcel(parcelLand);
   }
 
-  const stamp = () => {
-    setModalText('Tem certeza de que deseja solicitar o selo verde ao fiscal?');
-  }
-
   return (
     <View style={styles.container}>
       <Rodada name={'Parcela de terra'} arrow={true} onClick={()=>navigation.goBack()} />
@@ -73,7 +69,7 @@ export default function Parcela({ route, navigation }) {
           <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
         </View>
         {parcelLand.planted && (
-          <TouchableOpacity style={styles.button2} onPress={stamp} activeOpacity={0.7} >
+          <TouchableOpacity style={styles.button2} onPress={() => setModalText('Tem certeza de que deseja solicitar o selo verde ao fiscal?')} activeOpacity={0.7} >
             <Text style={styles.buttonText}>PEDIR SELO VERDE</Text>
             <Image source={IMAGESMENU["Pedir selo verde"]} style={styles.pulverize} />
           </TouchableOpacity>
@@ -160,7 +156,7 @@ export default function Parcela({ route, navigation }) {
           <Text style={{ fontSize: 22, textAlign: 'center', marginTop: '10%', fontFamily:'Rubik_300Light' }}>Plantio iniciado!</Text> :
           <Button onClick={selectItems} name='INICIAR PLANTIO' />
         }
-        {modalText !== '' && <Conf confirm={() => setModalText('')} text={modalText} denied={() => setModalText('')} />}
+        {modalText !== '' && <Conf confirm={() => requestStamp(parcelLand)} text={modalText} denied={() => setModalText('')} />}
         {modalText2 !== '' && <ModalInfo onClick={() => setModalText2('')} text={modalText2} />}
       </ScrollView>
     </View>

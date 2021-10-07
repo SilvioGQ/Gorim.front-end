@@ -8,9 +8,11 @@ import { GameContext, suggestTax } from '../../contexts/GameContext';
 export default function MultaComponent({ item, navigation, onclick }) {
   const { players, player, data:suggest, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
+
   useEffect(() => {
-    suggestTax()
-  }, [])
+    suggestTax();
+  }, []);
+  
   const [sugestao, setSugestao] = useState()
   const information = () => {
     return setModalText('Tabela para aplicação de multas.\nO porra.');
@@ -21,7 +23,7 @@ export default function MultaComponent({ item, navigation, onclick }) {
     { label: 'Média', value: 3 },
     { label: 'Alta', value: 4 },
   ]
-  console.log(sugestao)
+  console.log(item)
   return (
     <View style={styles.container}>
       <View>

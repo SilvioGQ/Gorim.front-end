@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
-import { GameContext, suggestTax } from '../../../contexts/GameContext';
+import React, { useState, useContext } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { GameContext } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -11,11 +11,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
 
   const [modalText, setModalText] = useState('');
-  const { players, player, data: suggest, stage } = useContext(GameContext);
-
-  useEffect(() => {
-    suggestTax();
-  }, []);
+  const { players, stage } = useContext(GameContext);
 
   return (
     <View style={styles.container}>
@@ -34,14 +30,7 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
 
-
-      {stage === 'SUGGESTTAX' ?
-      players.map((item, index) => {
-        return <MultaComponent item={item} key={index} onclick={()=>{navigation.navigate('MultaVerMais', {client:item.id})}}/>
-      })
-      : 
-      null
-      }
+      {players.map(item => <MultaComponent item={item} key={item.id} onclick={()=> navigation.navigate('MultaVerMais', {client:item.id})} />)}
     </View>
   );
 }

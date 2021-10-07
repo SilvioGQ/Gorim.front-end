@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalAsk from '../Components/ModalAsk';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_HERO, { autoConnect: false });
+const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -222,8 +222,13 @@ const nextStage = () => {
 const reconnectToRoom = (player) => {
   socket.emit('reconnectToRoom', player);
 }
+
 const suggestTax = () => {
   socket.emit('suggestTax');
+}
+
+const requestStamp = (parcelLand) => {
+  socket.emit('requestStamp', parcelLand);
 }
 
 export {
@@ -248,5 +253,6 @@ export {
   endStage,
   nextStage,
   reconnectToRoom,
-  suggestTax
+  suggestTax,
+  requestStamp
 };
