@@ -4,7 +4,7 @@ import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
-import { GameContext, suggestTax } from '../../contexts/GameContext';
+import { GameContext, sendTax, suggestTax } from '../../contexts/GameContext';
 export default function MultaComponent({ item, navigation, onclick }) {
   const { players, player, data:suggest, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
@@ -43,7 +43,7 @@ export default function MultaComponent({ item, navigation, onclick }) {
         </View>
         <Text> Sugestão {data[0].label}</Text>
         <View style={styles.row}>
-          <TouchableOpacity style={styles.button} onPress={() => { }} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.button} onPress={() => sendTax(item.id, 'Médio')} activeOpacity={0.7}>
             <Text style={styles.textbutton}>CONFIRMAR</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={onclick} activeOpacity={0.7}>
