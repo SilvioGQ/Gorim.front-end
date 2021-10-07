@@ -6,7 +6,7 @@ const Height = Dimensions.get('screen').height;
 export default function FilterCenary({ type, setType }) {
 	const { player } = useContext(GameContext);
 	return (
-		<View style={{flexDirection: 'row', marginHorizontal: 20, width: '80%', justifyContent: 'space-between', marginVertical: 10 }}>
+		<View style={{ flexDirection: 'row', marginHorizontal: 20, width: '80%', justifyContent: 'space-between', marginVertical: 10 }}>
 			{player.type === 'Agricultor' && (
 				<>
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
@@ -17,6 +17,32 @@ export default function FilterCenary({ type, setType }) {
 					</TouchableOpacity>
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Plantação</Text>
+					</TouchableOpacity>
+				</>
+			)}
+			{player.type === '' && (
+				<>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
+						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }} activeOpacity={0.7}>
+						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Selos</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }} activeOpacity={0.7}>
+						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Multas</Text>
+					</TouchableOpacity>
+				</>
+			)}
+						{player.type === '' && (
+				<>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
+						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }} activeOpacity={0.7}>
+						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Imposto</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }} activeOpacity={0.7}>
+						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Prevenção</Text>
 					</TouchableOpacity>
 				</>
 			)}

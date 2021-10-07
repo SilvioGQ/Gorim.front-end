@@ -1,10 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-import Quadrados from '../../../Components/Quadrado';
-import HistoricoAgricultor from '../../../Components/HistoricoAgricultor';
-import HistoricoEmpresario from '../../../Components/HistoricoEmpresario';
+import React, { useContext, useState } from 'react';
+import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import HistoricoPlayers from '../../../Components/HistoricoPlayers';
 import { GameContext } from '../../../contexts/GameContext';
-import { FlatList } from 'react-native-gesture-handler';
 // import COLORS from '../../constants/colors';
 import Rodada from '../../../Components/Rodada';
 import FiltroHistoricoJogadores from '../../../Components/FiltroHistoricoJogadores'
@@ -37,9 +34,9 @@ export default function HistoricoJogadores({ navigation }) {
                         {players.filter((p) => p.type == type).map((item) => {
                             console.log(type);
                             if (type === 'Agricultor') {
-                                return <HistoricoAgricultor key={item.id} player={item} onClick={() => setSelectClient(item.id)} />
+                                return <HistoricoPlayers key={item.id} player={item} />
                             } else {
-                                return <HistoricoEmpresario key={item.id} player={item} onClick={() => setSelectClient(item.id)} />
+                                return <HistoricoPlayers key={item.id} player={item}/>
                             }
                         }
                         )}

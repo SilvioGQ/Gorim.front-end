@@ -39,7 +39,7 @@ export default function MenuJogador({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}° Rodada`} setModalVisible={setModalVisible} />
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}° Rodada 1° etapa`} setModalVisible={setModalVisible} />
       <Header typeMenu="player" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {modalVisible2 && <ModalAsk finish={() => {endStage(); stopCallback(); }} back={() => setModalVisible2(!modalVisible2)} />}
