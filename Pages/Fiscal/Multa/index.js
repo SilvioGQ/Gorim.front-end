@@ -32,9 +32,9 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>Agricultores</Text>
-      {players.filter(p=>p.type === "Agricultor").map(item => <MultaComponent item={item} key={item.id} /*display={display}*/ numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero);setDisplay('none')}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
+      {players.filter(p=>p.type === "Agricultor").map(item => <MultaComponent item={item} key={item.id} display={'flex'} numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero);setDisplay('none')}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
       <Text style={styles.text}>Empresário</Text>
-      {players.filter(p=>p.type === "Empresário").map(item => <MultaComponent item={item} key={item.id} /*display={display}*/ numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero);setDisplay('none')}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
+      {players.filter(p=>p.type === "Empresário").map(item => <MultaComponent item={item} key={item.id} display={'flex'} numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero);setDisplay('none')}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
     </View>
   );
 }
