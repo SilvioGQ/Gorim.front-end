@@ -14,6 +14,7 @@ export default function Multa({ navigation, route }) {
   useEffect(() => {
     setLogs(players.find((p) => p.id === client.id))
   }, [client.id])
+  console.log(client.logs)
   return (
     <View style={styles.container}>
       <Rodada name={'Ver mais'} arrow={true} onClick={() => navigation.navigate('Multa')} />

@@ -12,7 +12,6 @@ export default function Multa({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const { players, stage, player } = useContext(GameContext);
-  const [display, setDisplay] = useState('flex');
   const [numero, setNumero] = useState(1);
   console.log(player.appliedTax)
   return (
@@ -32,9 +31,9 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>Agricultores</Text>
-      {players.filter(p=>p.type === "Agricultor").map(item => <MultaComponent item={item} key={item.id} display={'flex'} numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero);setDisplay('none')}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
+      {players.filter(p=>p.type === "Agricultor" && player.appliedTax.indexOf(p.id) === -1).map(item => <MultaComponent item={item} key={item.id} numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero)}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
       <Text style={styles.text}>Empresário</Text>
-      {players.filter(p=>p.type === "Empresário").map(item => <MultaComponent item={item} key={item.id} display={'flex'} numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero);setDisplay('none')}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
+      {players.filter(p=>p.type === "Empresário" && player.appliedTax.indexOf(p.id) === -1).map(item => <MultaComponent item={item} key={item.id} numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero)}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
     </View>
   );
 }

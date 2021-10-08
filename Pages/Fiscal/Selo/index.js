@@ -14,7 +14,7 @@ export default function Selo({ navigation, route }) {
   const [modalText, setModalText] = useState('');
   const [farmer, setFarmer] = useState([]);
   const [Logs, setLogs] = useState([]);
-  const [selectParcel, setSelectParcel] = useState(-1);
+  const [selectParcel, setSelectParcel] = useState([]);
   const [parcelLands, setParcelLands] = useState([]);
 
   useEffect(() => {
@@ -49,15 +49,13 @@ export default function Selo({ navigation, route }) {
           <Text style={styles.texto}>Plantações:</Text>
           {Logs.length !== 0 ?
           Logs.logs.filter(i => i.type === 'plantation').map((p, index) => {
-            // if (parcel.planted === true && !parcel.pesticide) {
-              return <ParcelaAgr item={p} key={p.id} onClick={()=>{setSelectParcel(p.id)}} backgroundGreen={selectParcel == p.id ? '#8ACF3A' : '#fff'} vermais={true} display={'flex'}/>
-            // }
+              return <ParcelaAgr item={p} key={p.id} onClick={()=>{ selectParcel.includes(p.id) ? setSelectParcel(selectParcel.filter((e)=>(e !== p.id))) :  setSelectParcel([...selectParcel, p.id])}} backgroundGreen={selectParcel.includes(p.id) ? '#8ACF3A' : '#fff'} vermais={true} display2={'none'}/>
           })
           :
           null
           }
           <Button
-            onClick={() => selectParcel !== -1 ? navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] }) : setModalText('Você precisa selecionar uma parcela')}
+            onClick={() => selectParcel.length !== 0  ? navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] }) : setModalText('Você precisa selecionar uma parcela')}
             name='CONCEDER' />
         </View>
       </ScrollView>

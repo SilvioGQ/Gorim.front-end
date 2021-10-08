@@ -31,7 +31,7 @@ export default function MultaComponent({ item, onclick,display, numero, setNumer
     return await suggest
   }
   return (
-    <View style={[styles.container, {display: display}]}>
+    <View style={styles.container}>
       <View>
         <Image style={styles.icone} source={IMAGES[item.avatar]} />
         <Text style={styles.textinhos}>{item.name}</Text>
@@ -47,7 +47,6 @@ export default function MultaComponent({ item, onclick,display, numero, setNumer
             onSelectedChange={({ label }) => setNumero(label)}
           />
         </View>
-        <Text> Sugestão {data[0].label}</Text>
         <View style={styles.row}>
           <TouchableOpacity style={styles.button} onPress={onClike} activeOpacity={0.7}>
             <Text style={styles.textbutton}>CONFIRMAR</Text>
