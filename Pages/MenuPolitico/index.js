@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
-import { GameContext, removeToRoom, endStage } from '../../contexts/GameContext';
+import { GameContext, removeToRoom, endStage, makeTransferOffice } from '../../contexts/GameContext';
 
 import COLORS from '../../constants/colors';
 import Header from '../../Components/Header';
@@ -27,9 +27,11 @@ export default function MenuPolitico({ navigation }) {
 
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
     if (stage === 'ENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'AguardarJogadores' }] });
-
+    
     return () => isMounted = false;
   }, [stage]);
+  
+  // makeTransferOffice(500, players[0].id == player.id ? players[1].id : players[0].id);
 
   const removeFromRoom = () => {
     setModalVisible(!modalVisible);

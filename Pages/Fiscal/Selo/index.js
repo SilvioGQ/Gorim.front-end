@@ -4,7 +4,7 @@ import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Rodada from '../../../Components/Rodada';
 import ParcelaAgr from '../../../Components/parcelaAgr'
-import { GameContext } from '../../../contexts/GameContext.js'
+import { GameContext, sendStamp } from '../../../contexts/GameContext.js'
 import HistoricosPlatacao from '../../../Components/HistóricosPlatacao'
 const Tela = Dimensions.get('screen').width;
 export default function Selo({ navigation, route }) {
@@ -14,13 +14,18 @@ export default function Selo({ navigation, route }) {
   const [farmer, setFarmer] = useState([]);
   const [Logs, setLogs] = useState([]);
   const [selectParcel, setSelectParcel] = useState(-1);
+  const [parcelLands, setParcelLands] = useState([]);
+
   useEffect(() => {
     setFarmer(players.filter(i => i.type === 'Agricultor'))
     if(selectClient !== -1){
       setLogs(players.find((p)=> p.id === selectClient))
+      setParcelLands(players.find((p)=> p.id === selectClient).parcelLand.filter(p => p.planted));
+      sendStamp(selectClient, parcelLands);
     }
-  }, [selectClient])
-  console.log(player)
+  }, [selectClient]);
+  console.log(player.appliedStamp)
+
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />

@@ -21,7 +21,7 @@
     "core-js": "3.3.0",
     "date-fns": "^2.24.0",
     "expo": "^42.0.3",
-    "expo-app-loading": "^1.0.3",
+    "expo-app-loading": "1.1.2",
     "expo-cli": "^4.4.7",
     "expo-notifications": "~0.12.3",
     "react": "17.0.1",
