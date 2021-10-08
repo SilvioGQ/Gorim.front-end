@@ -11,9 +11,10 @@ const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
 
   const [modalText, setModalText] = useState('');
-  const { players, stage } = useContext(GameContext);
+  const { players, stage, player } = useContext(GameContext);
   const [display, setDisplay] = useState('flex');
   const [numero, setNumero] = useState(1);
+  console.log(player.appliedTax)
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
