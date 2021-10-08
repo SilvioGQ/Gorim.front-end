@@ -30,8 +30,10 @@ export default function Multa({ navigation }) {
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
         </TouchableOpacity>
       </View>
-
-      {players.map(item => <MultaComponent item={item} key={item.id} onclick={()=> navigation.navigate('MultaVerMais', {client:item.id})} />)}
+      <Text style={styles.text}>Agricultores</Text>
+      {players.filter(p=>p.type === "Agricultor").map(item => <MultaComponent item={item} key={item.id} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
+      <Text style={styles.text}>Empresário</Text>
+      {players.filter(p=>p.type === "Empresário").map(item => <MultaComponent item={item} key={item.id} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
     </View>
   );
 }
@@ -61,5 +63,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 15,
     fontFamily: 'Rubik_300Light'
+  },
+  text: {
+    fontFamily: 'Rubik_300Light',
+    textAlign: 'center',
+    fontSize: 20,
+    marginVertical: 20
   },
 });

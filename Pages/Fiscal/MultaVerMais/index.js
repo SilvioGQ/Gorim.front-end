@@ -12,12 +12,14 @@ export default function Multa({ navigation, route }) {
   const [Logs, setLogs] = useState([]);
   const [backgroundColor, setBackgroundColor] = useState('#fff');
   useEffect(() => {
-    setLogs(players.find((p) => p.id === client))
-  }, [client])
+    setLogs(players.find((p) => p.id === client.id))
+  }, [client.id])
   return (
     <View style={styles.container}>
-      <Rodada name={'Detalhes de Parcelas'} arrow={true} onClick={() => navigation.navigate('Multa')} />
-      <View style={styles.row}>
+      <Rodada name={'Ver mais'} arrow={true} onClick={() => navigation.navigate('Multa')} />
+      {client.type=='Agricultor' ?
+        <View>
+        <View style={styles.row}>
         <Image
           style={styles.image}
           source={require('../../../assets/icons/penalty.png')}
@@ -39,6 +41,23 @@ export default function Multa({ navigation, route }) {
         :
         null
       }
+      </View>
+      :
+      <View style={styles.row}>
+      <Image
+        style={styles.image}
+        source={require('../../../assets/icons/penalty.png')}
+      />
+      {modalText !== '' && (
+        <Modal onClick={() => setModalText('')} text={modalText} />
+      )}
+      <Text style={styles.header}>Detalhes de{'\n'}Empresário</Text>
+      <TouchableOpacity onPress={() => { }} activeOpacity={0.7}>
+        <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
+      </TouchableOpacity>
+    </View>
+    }
+      
       <Button
         onClick={() => navigation.navigate('Multa')}
         name='VOLTAR' />
