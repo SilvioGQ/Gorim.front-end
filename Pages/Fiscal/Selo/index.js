@@ -6,6 +6,7 @@ import Rodada from '../../../Components/Rodada';
 import ParcelaAgr from '../../../Components/parcelaAgr'
 import { GameContext } from '../../../contexts/GameContext.js'
 import HistoricosPlatacao from '../../../Components/HistóricosPlatacao'
+import Modal from '../../../Components/ModalInfo';
 const Tela = Dimensions.get('screen').width;
 export default function Selo({ navigation, route }) {
   const [selectClient, setSelectClient] = useState(-1);
@@ -37,6 +38,9 @@ export default function Selo({ navigation, route }) {
           <View style={{ marginHorizontal: 10, flexDirection: 'row', width: '100%', flexWrap: 'wrap' }}>
             {farmer.map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
           </View>
+          {modalText !== '' && (
+          <Modal onClick={() => setModalText('')} text={modalText} />
+        )}
           <Text style={styles.texto}>Plantações:</Text>
           {Logs.length !== 0 ?
           Logs.logs.filter(i => i.type === 'plantation').map((p, index) => {
@@ -48,7 +52,7 @@ export default function Selo({ navigation, route }) {
           null
           }
           <Button
-            onClick={() => navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })}
+            onClick={() => selectParcel !== -1 ? navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] }) : setModalText('Você precisa selecionar uma parcela')}
             name='CONCEDER' />
         </View>
       </ScrollView>

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { GameContext } from '../../../contexts/GameContext';
+import { GameContext, sendTax } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -12,7 +12,8 @@ export default function Multa({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const { players, stage } = useContext(GameContext);
-
+  const [display, setDisplay] = useState('flex');
+  const [numero, setNumero] = useState(1);
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -30,9 +31,9 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>Agricultores</Text>
-      {players.filter(p=>p.type === "Agricultor").map(item => <MultaComponent item={item} key={item.id} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
+      {players.filter(p=>p.type === "Agricultor").map(item => <MultaComponent item={item} key={item.id} /*display={display}*/ numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero);setDisplay('none')}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
       <Text style={styles.text}>Empresário</Text>
-      {players.filter(p=>p.type === "Empresário").map(item => <MultaComponent item={item} key={item.id} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
+      {players.filter(p=>p.type === "Empresário").map(item => <MultaComponent item={item} key={item.id} /*display={display}*/ numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero);setDisplay('none')}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)}
     </View>
   );
 }
@@ -45,7 +46,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom:10,
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center'

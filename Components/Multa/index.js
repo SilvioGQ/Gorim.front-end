@@ -4,11 +4,12 @@ import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
-import { GameContext, sendTax, suggestTax } from '../../contexts/GameContext';
-export default function MultaComponent({ item, navigation, onclick }) {
+import { GameContext, suggestTax } from '../../contexts/GameContext';
+export default function MultaComponent({ item, onclick,display, numero, setNumero, onClike }) {
   const { players, player, data:suggest, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
-  const [numero, setNumero] = useState(1);
+
+
   useEffect(() => {
     suggestTax();
   }, []);
@@ -30,25 +31,25 @@ export default function MultaComponent({ item, navigation, onclick }) {
     return await suggest
   }
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {display: display}]}>
       <View>
         <Image style={styles.icone} source={IMAGES[item.avatar]} />
         <Text style={styles.textinhos}>{item.name}</Text>
       </View>
       <View>
-        <Text style={styles.text}>Total poluição: {item.pollution.toFixed(2)} </Text>
+        <Text style={styles.text}>Total poluição: {item.pollution.toFixed(1)} </Text>
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.text}>Multa:</Text>
           <Dropdown
             data={data}
             style={{ height: 28, width: 110, borderRadius: 17 }}
             defaultValue={1}
-            onSelectedChange={({ value }) => setNumero(value)}
+            onSelectedChange={({ label }) => setNumero(label)}
           />
         </View>
         <Text> Sugestão {data[0].label}</Text>
         <View style={styles.row}>
-          <TouchableOpacity style={styles.button} onPress={() => sendTax(item.id, 'Médio')} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.button} onPress={onClike} activeOpacity={0.7}>
             <Text style={styles.textbutton}>CONFIRMAR</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={onclick} activeOpacity={0.7}>
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     padding: 15,
     borderRadius: 17,
-    marginTop: 15,
+    marginVertical: 10,
     marginBottom: 4,
     shadowColor: "#000",
     shadowOffset: {
