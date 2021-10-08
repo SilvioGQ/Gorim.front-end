@@ -17,6 +17,7 @@ export default function Parcela({ route, navigation }) {
   const [parcelLand, setParcelLand] = useState(route.params.parcelLand);
   const [modalText, setModalText] = useState('');
   const [modalText2, setModalText2] = useState('');
+  const [viewButton, setViewButton] = useState(true);
   const [dropDown, setDropDown] = useState(false);
   const [dropDown2, setDropDown2] = useState(false);
   const [dropDown3, setDropDown3] = useState(false);
@@ -68,7 +69,7 @@ export default function Parcela({ route, navigation }) {
           <Image style={styles.parcel} source={require('../../../assets/agricultorIcones/Parcela.png')} />
           <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
         </View>
-        {parcelLand.planted && (
+        {parcelLand.planted && viewButton && parcelLand.pesticide === null&& (
           <TouchableOpacity style={styles.button2} onPress={() => setModalText('Tem certeza de que deseja solicitar o selo verde ao fiscal?')} activeOpacity={0.7} >
             <Text style={styles.buttonText}>PEDIR SELO VERDE</Text>
             <Image source={IMAGESMENU["Pedir selo verde"]} style={styles.pulverize} />
@@ -156,7 +157,7 @@ export default function Parcela({ route, navigation }) {
           <Text style={{ fontSize: 22, textAlign: 'center', marginTop: '10%', fontFamily:'Rubik_300Light' }}>Plantio iniciado!</Text> :
           <Button onClick={selectItems} name='INICIAR PLANTIO' />
         }
-        {modalText !== '' && <Conf confirm={() => {requestStamp(parcelLand); setModalText('')}} text={modalText} denied={() => setModalText('')} />}
+        {modalText !== '' && <Conf confirm={() => {requestStamp(parcelLand); setModalText(''); setViewButton(false)}} text={modalText} denied={() => setModalText('')} />}
         {modalText2 !== '' && <ModalInfo onClick={() => setModalText2('')} text={modalText2} />}
       </ScrollView>
     </View>

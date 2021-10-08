@@ -23,6 +23,12 @@ export default function MultaComponent({ item, navigation, onclick }) {
     { label: 'Média', value: 3 },
     { label: 'Alta', value: 4 },
   ]
+  useEffect(()=>{
+    console.log(Sugestão())
+  }, [Sugestão])
+  const Sugestão = async ()=>{
+    return await suggest
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -30,13 +36,13 @@ export default function MultaComponent({ item, navigation, onclick }) {
         <Text style={styles.textinhos}>{item.name}</Text>
       </View>
       <View>
-        <Text style={styles.text}>Total poluição: {item.pollution} </Text>
+        <Text style={styles.text}>Total poluição: {item.pollution.toFixed(2)} </Text>
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.text}>Multa:</Text>
           <Dropdown
             data={data}
             style={{ height: 28, width: 110, borderRadius: 17 }}
-            defaultValue={numero}
+            defaultValue={1}
             onSelectedChange={({ value }) => setNumero(value)}
           />
         </View>
