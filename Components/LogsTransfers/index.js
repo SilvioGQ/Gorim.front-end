@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     row3: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginVertical: 10,
+        marginVertical: 15,
         marginHorizontal:10
     },
     icone: {

@@ -24,7 +24,7 @@ export default function Imposto({navigation}) {
           style={{ width: 62, height: 48 }}
           source={IMAGES['Alteração de impostos']}
         />
-        <Text style={styles.header}>Alteração {"\n"}de impostos</Text>
+          <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir alteração de {"\n"}impostos' : 'Alteração {"\n"}de impostos'}</Text>
       </View>
       <Text style={styles.font}> Para produtividade nula:</Text>
       <View style={styles.view}>
