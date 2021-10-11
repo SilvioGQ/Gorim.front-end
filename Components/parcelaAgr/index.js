@@ -2,10 +2,15 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import IMAGES from '../../constants/imagesProducts';
 
-export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick }) {
+export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick, pedido = false }) {
     return (
         <TouchableOpacity onPress={onClick} style={[styles.container, { backgroundColor: backgroundGreen }]}>
             <View style={{ flexDirection: 'row', marginTop:-5 }}>
+                {pedido ? 
+                <Image source={require('../../assets/symbols/Pedido.png')} style={{width:32,height:32}}/>
+                :
+                null
+                }
                 <Text style={styles.numero}>Parcela: {item.parcelLand.id + 1}º</Text>
                 {vermais ? 
                 <View style={{ borderRadius: 17, width: 75, height: 23, backgroundColor: '#D4F15F', alignSelf: 'center' }}>

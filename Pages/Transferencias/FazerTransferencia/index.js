@@ -25,6 +25,7 @@ export default function FazerTransferencia({ navigation }) {
 
     navigation.navigate('ConfirmarTransferencia', { idDest: id, count });
   }
+  console.log(players)
   return (
     <View style={styles.container}>
       <Rodada name={'Fazer transferência'} arrow={true} onClick={()=> navigation.goBack()}/>
