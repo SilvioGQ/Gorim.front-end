@@ -15,18 +15,17 @@ export default function Selo({ navigation, route }) {
   const [farmer, setFarmer] = useState([]);
   const [Logs, setLogs] = useState([]);
   const [selectParcel, setSelectParcel] = useState([]);
-  const [parcelLands, setParcelLands] = useState([]);
 
   useEffect(() => {
-    setFarmer(players.filter(i => i.type === 'Agricultor'))
+    setFarmer(players.filter(i => i.type === 'Agricultor'  && i.city == player.city))
     if(selectClient !== -1){
       setLogs(players.find((p)=> p.id === selectClient))
-      setParcelLands(players.find((p)=> p.id === selectClient).parcelLand.filter(p => p.planted));
-      sendStamp(selectClient, parcelLands);
     }
   }, [selectClient]);
-  console.log(player.appliedStamp)
-
+  const aplicar = ()=>{
+    sendStamp(selectClient, selectParcel); 
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })
+  }
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -48,14 +47,14 @@ export default function Selo({ navigation, route }) {
         )}
           <Text style={styles.texto}>Plantações:</Text>
           {Logs.length !== 0 ?
-          Logs.logs.filter(i => i.type === 'plantation').map((p, index) => {
+          Logs.logs.filter(i => i.type === 'plantation' && player.appliedStamp.includes(i.playerId+i.id.toString()) === false).map((p, index) => {
               return <ParcelaAgr item={p} key={p.id} onClick={()=>{ selectParcel.includes(p.id) ? setSelectParcel(selectParcel.filter((e)=>(e !== p.id))) :  setSelectParcel([...selectParcel, p.id])}} backgroundGreen={selectParcel.includes(p.id) ? '#8ACF3A' : '#fff'} vermais={true} display2={'none'}/>
           })
           :
           null
           }
           <Button
-            onClick={() => selectParcel.length !== 0  ? navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] }) : setModalText('Você precisa selecionar uma parcela')}
+            onClick={ ()=>{selectParcel.length !== 0 ? aplicar(): setModalText('Selecione uma parcela')}}
             name='CONCEDER' />
         </View>
       </ScrollView>

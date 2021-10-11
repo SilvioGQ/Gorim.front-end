@@ -29,14 +29,11 @@ export default function Multa({ navigation, route }) {
           <Modal onClick={() => setModalText('')} text={modalText} />
         )}
         <Text style={styles.header}>Detalhes de{'\n'}Parcelas</Text>
-        <TouchableOpacity onPress={() => { }} activeOpacity={0.7}>
-          <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
-        </TouchableOpacity>
       </View>
       {Logs.length !== 0 ?
         Logs.logs.filter(i => i.type === 'plantation').map((p) => {
           // if (parcel.planted === true && !parcel.pesticide) {
-          return <ParcelaAgr item={p} key={p.id} vermais={false} onClick={() => { }} display2='none' />
+          return <ParcelaAgr item={p} key={p.id} vermais={false} display2='none' />
           // }
         })
         :
@@ -44,6 +41,7 @@ export default function Multa({ navigation, route }) {
       }
       </View>
       :
+      <View>
       <View style={styles.row}>
       <Image
         style={styles.image}
@@ -53,9 +51,16 @@ export default function Multa({ navigation, route }) {
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
       <Text style={styles.header}>Detalhes de{'\n'}Empresário</Text>
-      <TouchableOpacity onPress={() => { }} activeOpacity={0.7}>
-        <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
-      </TouchableOpacity>
+    </View>
+    {Logs.length !== 0 ?
+      Logs.logs.filter(i => i.type === 'buy').map((p) => {
+        // if (parcel.planted === true && !parcel.pesticide) {
+        return console.log(p)
+        // }
+      })
+      :
+      null
+    }
     </View>
     }
       
