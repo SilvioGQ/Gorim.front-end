@@ -3,7 +3,7 @@ import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } fr
 import COLORS from '../../constants/colors';
 import { GameContext } from '../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width;
-export default function ModalInfo({ text, onClick, modalImage, title, image, image2, display = 'flex'}) {
+export default function ModalInfo({ text, onClick, modalImage, title, image, image2, image3 = false, display = 'flex' }) {
   const { player } = useContext(GameContext);
   return (
     <Modal
@@ -23,6 +23,9 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
           )}
           {image2 && (
             <Image source={require('../../assets/Imposto.png')} style={{ width: 304, height: 210, marginBottom: 25 }} />
+          )}
+          {image3 && (
+            <Image source={require('../../assets/tabelamulta4.png')} style={{ width: 319, height: 213, marginBottom: 25 }} />
           )}
           {modalImage && (
             <View style={{ padding: 15, marginRight: 25 }}>
@@ -53,7 +56,7 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
             </View>
           )}
           <TouchableOpacity
-            style={{ borderRadius: 20, padding: 10, elevation: 5, backgroundColor: COLORS.successButton, alignItems: 'center', width: 250, display:display }}
+            style={{ borderRadius: 20, padding: 10, elevation: 5, backgroundColor: COLORS.successButton, alignItems: 'center', width: 250, display: display }}
             onPress={onClick}
             activeOpacity={0.7}
           >

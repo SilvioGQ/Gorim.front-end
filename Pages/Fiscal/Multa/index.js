@@ -13,7 +13,6 @@ export default function Multa({ navigation }) {
   const [modalText, setModalText] = useState('');
   const { players, stage, player } = useContext(GameContext);
   const [numero, setNumero] = useState(1);
-  console.log(player.appliedTax)
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -23,10 +22,10 @@ export default function Multa({ navigation }) {
           source={require('../../../assets/icons/penalty.png')}
         />
         {modalText !== '' && (
-          <Modal onClick={() => setModalText('')} text={modalText} />
+          <Modal onClick={() => setModalText('')} text={modalText} image3={true} />
         )}
         <Text style={styles.header}>Aplicação{'\n'}de multa</Text>
-        <TouchableOpacity onPress={() => { }} activeOpacity={0.7}>
+        <TouchableOpacity onPress={() => { setModalText('Tabela de multas:') }} activeOpacity={0.7}>
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
         </TouchableOpacity>
       </View>
