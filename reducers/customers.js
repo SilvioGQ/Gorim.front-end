@@ -118,7 +118,6 @@ const reducer = (state, action) => {
         notify: initialState.notify,
         round: action.payload[1].match.round,
         awaitPlayers: action.payload[1].awaitPlayers.length,
-        phase: action.payload[1].match.phase
       };
     case 'RECONNECTED':
       return {
