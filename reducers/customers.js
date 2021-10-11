@@ -34,6 +34,7 @@ const reducer = (state, action) => {
         awaitPlayers: action.payload[1].awaitPlayers.length,
         globalProduction: action.payload[1].match.globalProduction,
         globalPollution: action.payload[1].match.globalPollution,
+        phase: action.payload[1].match.phase
       };
     case 'ADDEDTOROOM':
       return {
@@ -111,6 +112,7 @@ const reducer = (state, action) => {
         notify: initialState.notify,
         round: action.payload[1].match.round,
         awaitPlayers: action.payload[1].awaitPlayers.length,
+        phase: action.payload[1].match.phase
       };
     case 'RECONNECTED':
       return {

@@ -16,7 +16,7 @@ export default function MenuPolitico({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
-  const { players, player, awaitPlayers, stage, notify, round } = useContext(GameContext);
+  const { players, player, awaitPlayers, stage, notify, round, phase } = useContext(GameContext);
 
   useEffect(() => {
     let isMounted = true;
@@ -41,7 +41,7 @@ export default function MenuPolitico({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}ª Rodada 2ª etapa`} setModalVisible={setModalVisible} />
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}ª Rodada ${phase}ª etapa`} setModalVisible={setModalVisible} />
       <Header typeMenu="politic" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {modalVisible2 && <ModalAsk finish={() => endStage()} back={() => setModalVisible2(!modalVisible2)} />}

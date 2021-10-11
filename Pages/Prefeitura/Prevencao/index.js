@@ -20,9 +20,9 @@ export default function Prevencao({ navigation }) {
             style={{ width: 62, height: 62 }}
             source={require('../../../assets/icons/water.png')}
           />
-          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>Medidas de {"\n"}Prevenção</Text>
+          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de {"\n"}Prevenção' : 'Medidas de {"\n"}Prevenção'}</Text>
         </View>
-        <Text style={styles.header}>Medidas à aplicar na cidade:</Text>
+        <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir mudanças na cidade' : 'Medidas à aplicar na cidade:'}</Text>
 
         <View style={styles.row}>
           <View style={styles.quadrados}>
