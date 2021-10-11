@@ -52,7 +52,7 @@ export default function Selo({ navigation, route }) {
               return <ParcelaAgr item={p} key={p.parcelLand.id} onClick={()=>{ selectParcel.includes(p.parcelLand.id) ? setSelectParcel(selectParcel.filter((e)=>(e !== p.parcelLand.id))) :  setSelectParcel([...selectParcel, p.parcelLand.id])}} backgroundGreen={selectParcel.includes(p.parcelLand.id) ? '#8ACF3A' : '#fff'} vermais={true} display2={'none'}/>
           })
           :
-          <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 15, marginVertical: 30 }}>Não há mais parcelas para conceder selo!</Text>
+          <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 15, marginVertical: 30 }}>Não há mais parcelas para conceder selo!</Text>
           }
           <Button
             onClick={ ()=>{selectParcel.length !== 0 ? aplicar(): setModalText('Selecione uma parcela')}}

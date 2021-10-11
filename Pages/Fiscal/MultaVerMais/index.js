@@ -4,6 +4,7 @@ import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
 import ParcelaAgr from '../../../Components/parcelaAgr';
 import { GameContext } from '../../../contexts/GameContext';
+import LogsTransfer from '../../../Components/LogsTransfers';
 const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation, route }) {
   const { client } = route.params
@@ -55,7 +56,7 @@ export default function Multa({ navigation, route }) {
     {Logs.length !== 0 ?
       Logs.logs.filter(i => i.type === 'buy').map((p) => {
         // if (parcel.planted === true && !parcel.pesticide) {
-        return console.log(p)
+        return <LogsTransfer item={p} key={p.id} />
         // }
       })
       :
