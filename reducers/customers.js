@@ -31,11 +31,17 @@ const reducer = (state, action) => {
         ...state,
         stage: action.payload[0],
         round: action.payload[1].match.round,
+        phase: action.payload[1].match.phase,
         awaitPlayers: action.payload[1].awaitPlayers.length,
         globalProduction: action.payload[1].match.globalProduction,
         globalPollution: action.payload[1].match.globalPollution,
         phase: action.payload[1].match.phase
       };
+    case 'UPDATEPHASE':
+      return {
+        ...state,
+        phase: action.payload
+      }
     case 'ADDEDTOROOM':
       return {
         ...state,

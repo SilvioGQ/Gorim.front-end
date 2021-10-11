@@ -113,6 +113,9 @@ const GameProvider = (props) => {
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
     });
+    socket.on('updatePhase', (phase) => {
+      dispatch({ type: 'UPDATEPHASE', payload: phase });
+    });
     socket.on('updateGlobalPollution', (pollution) => {
       dispatch({ type: 'UPDATEGLOBALPOLLUTION', payload: pollution });
     });
