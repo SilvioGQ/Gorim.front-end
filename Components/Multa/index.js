@@ -1,35 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { GameContext, suggestTax } from '../../contexts/GameContext';
+
 import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
-import { GameContext, suggestTax } from '../../contexts/GameContext';
-export default function MultaComponent({ item, onclick,display, numero, setNumero, onClike }) {
-  const { players, player, data:suggest, stage } = useContext(GameContext);
-  const [modalText, setModalText] = useState('');
 
+const data = [
+  { label: 'Nenhuma', value: 1 },
+  { label: 'Baixa', value: 2 },
+  { label: 'Média', value: 3 },
+  { label: 'Alta', value: 4 },
+];
+
+export default function MultaComponent({ item, onclick, display, numero, setNumero, onClike }) {
+  const { player, data: suggest, stage } = useContext(GameContext);
 
   useEffect(() => {
     suggestTax();
   }, []);
-  
-  const [sugestao, setSugestao] = useState()
-  const information = () => {
-    return setModalText('Tabela para aplicação de multas.\nO porra.');
-  };
-  const data = [
-    { label: 'Nenhuma', value: 1 },
-    { label: 'Baixa', value: 2 },
-    { label: 'Média', value: 3 },
-    { label: 'Alta', value: 4 },
-  ]
-  useEffect(()=>{
-    console.log(Sugestão())
-  }, [Sugestão])
-  const Sugestão = async ()=>{
-    return await suggest
-  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -40,12 +31,14 @@ export default function MultaComponent({ item, onclick,display, numero, setNumer
         <Text style={styles.text}>Total poluição: {item.pollution.toFixed(1)} </Text>
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.text}>Multa:</Text>
-          <Dropdown
-            data={data}
-            style={{ height: 28, width: 110, borderRadius: 17 }}
-            defaultValue={1}
-            onSelectedChange={({ label }) => setNumero(label)}
-          />
+          {stage === 'SUGGESTTAX' && (
+            <Dropdown
+              data={data}
+              style={{ height: 28, width: 110, borderRadius: 17 }}
+              defaultValue={suggest.find(p => p.playerId === player.id).gravity + 1}
+              onSelectedChange={({ label }) => setNumero(label)}
+            />
+          )}
         </View>
         <View style={styles.row}>
           <TouchableOpacity style={styles.button} onPress={onClike} activeOpacity={0.7}>

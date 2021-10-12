@@ -94,7 +94,6 @@ const GameProvider = (props) => {
       dispatch({ type: obj.forAll ? 'GETOFFERSFORALL' : 'GETOFFERINDIVIDUAL', payload: obj.offers });
     });
     socket.on('suggestTax', (suggest) => {
-      console.log(suggest);
       dispatch({ type: 'CHANGEDATA', payload: ['SUGGESTTAX', suggest] });
     });
     socket.on('enableNotifyScene', () => {
