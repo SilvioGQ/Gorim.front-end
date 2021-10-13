@@ -12,7 +12,12 @@ const IMAGES = {
     "Pacote 2": require('../../assets/products/machines/package.png'),
     "Pacote 3": require('../../assets/products/machines/package.png'),
     "Pulverizador" : require('../../assets/products/machines/spray.png'),
-    "Desconhecido" : require('../../assets/icons/unknown.png')
+    "Desconhecido" : require('../../assets/icons/unknown.png'),
+    "stamp" : require("../../assets/icons/stamp.png"),
+    "fine" : require('../../assets/icons/letter.png'),
+    "Tratamento de Lixo" : require('../../assets/icons/trash.png'),
+    "Tratamento de Esgoto" : require('../../assets/icons/sewer.png'),
+    "Tramento de Água" : require('../../assets/icons/water.png'),
 };
 
 export default IMAGES;

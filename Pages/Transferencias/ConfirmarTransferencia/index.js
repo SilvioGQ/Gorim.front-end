@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
 import { GameContext, makeTransfer } from "../../../contexts/GameContext";
 
@@ -9,16 +9,12 @@ import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
-  const { count, idDest } = route.params;
-  const { player } = useContext(GameContext);
+  const { count, idDest, type, provider } = route.params;
+  console.log(type)
+  console.log(provider)
 
   const make = () => {
-    makeTransfer(count, idDest);
-    // if(etapa == 2){
-    //   navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!', Menu: 'MenuPolitico' } }] });
-    // }else{
-    //   navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
-    // }
+    makeTransfer(count, idDest, provider, type);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
   }
   

@@ -13,21 +13,21 @@ export default function Selo({ navigation, route }) {
   const { players, player, logs } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
   const [farmer, setFarmer] = useState([]);
-  const [Logs, setLogs] = useState([]);
+  const [selectedPlayer, setSelectedPlayer] = useState([]);
   const [selectParcel, setSelectParcel] = useState([]);
 
   useEffect(() => {
     setFarmer(players.filter(i => i.type === 'Agricultor'  && i.city == player.city))
     if(selectClient !== -1){
-      setLogs(players.find((p)=> p.id === selectClient))
+      setSelectedPlayer(players.find((p)=> p.id === selectClient))
     }
   }, [selectClient]);
   const aplicar = ()=>{
     sendStamp(selectClient, selectParcel); 
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })
   }
-  console.log(player.appliedStamp)
-  console.log(Logs)
+  console.log(selectedPlayer)
+  console.log(player.logsOffice)
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -48,12 +48,15 @@ export default function Selo({ navigation, route }) {
           <Modal onClick={() => setModalText('')} text={modalText} />
         )}
           <Text style={styles.texto}>Plantações:</Text>
-          {Logs.length !== 0 ?
-          Logs.logs.filter(i => i.type === 'plantation' && player.appliedStamp.includes(i.playerId+i.parcelLand.id.toString()) === false).map((p, index) => {
+          {selectedPlayer.length === 0 ?
+           <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 15, marginVertical: 30 }}>Selecione um agricultor!</Text>
+           :
+          selectedPlayer.logs && selectedPlayer.logs.filter(i=> i.type=='plantation').length !== player.appliedStamp.filter(i=> i.indexOf(selectClient) !== -1).length  ?
+          selectedPlayer.logs.filter(i => i.type === 'plantation' && player.appliedStamp.includes(selectClient+i.parcelLand.id.toString()) === false).map((p, index) => {
               return <ParcelaAgr item={p} key={p.parcelLand.id} onClick={()=>{ selectParcel.includes(p.parcelLand.id) ? setSelectParcel(selectParcel.filter((e)=>(e !== p.parcelLand.id))) :  setSelectParcel([...selectParcel, p.parcelLand.id])}} backgroundGreen={selectParcel.includes(p.parcelLand.id) ? '#8ACF3A' : '#fff'} vermais={true} display2={'none'} pedido={p.parcelLand.requestStamp === true ? true : false}/>
           })
           :
-          <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 15, marginVertical: 30 }}>Não há mais parcelas para conceder selo!</Text>
+          <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 15, marginVertical: 30 }}>Não há parcelas para conceder selo!</Text>
           }
           <Button
             onClick={ ()=>{selectParcel.length !== 0 ? aplicar(): setModalText('Selecione uma parcela')}}

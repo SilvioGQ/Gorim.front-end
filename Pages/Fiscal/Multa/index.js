@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { GameContext, sendTax } from '../../../contexts/GameContext';
+import { GameContext, sendFine} from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -12,7 +12,8 @@ export default function Multa({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const { players, stage, player } = useContext(GameContext);
-  const [numero, setNumero] = useState(1);
+  const [numero, setNumero] = useState('Nenhuma');
+  console.log(player.logsOffice)
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -30,11 +31,11 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>Agricultores</Text>
-      {players.filter(p=>p.type === "Agricultor" && player.appliedTax.indexOf(p.id) === -1 && p.city == player.city ).length !== 0 ? players.filter(p=>p.type === "Agricultor" && player.appliedTax.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero)}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />) 
+      {players.filter(p=>p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city ).length !== 0 ? players.filter(p=>p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} numero={numero} setNumero={setNumero} onClike={() => {sendFine(item.id, numero)}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />) 
       : 
       <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical:20 }}>Não há mais multas para aplicar!</Text>}
       <Text style={styles.text}>Empresário</Text>
-      {players.filter(p=>p.type === "Empresário" && player.appliedTax.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p=>p.type === "Empresário" && player.appliedTax.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} numero={numero} setNumero={setNumero} onClike={() => {sendTax(item.id, numero)}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)
+      {players.filter(p=>p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p=>p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} numero={numero} setNumero={setNumero} onClike={() => {sendFine(item.id, numero)}} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)
       :
       <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 20 }}>Não há mais multas para aplicar!</Text>}
     </View>
