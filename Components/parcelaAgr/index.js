@@ -2,12 +2,15 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import IMAGES from '../../constants/imagesProducts';
 
-export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick, pedido = false }) {
+export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick, pedido}) {
     return (
         <TouchableOpacity onPress={onClick} style={[styles.container, { backgroundColor: backgroundGreen }]}>
-            <View style={{ flexDirection: 'row', marginTop:-5 }}>
+            <View style={{ flexDirection: 'row', marginBottom:15, marginTop:1 }}>
                 {pedido ? 
-                <Image source={require('../../assets/symbols/Pedido.png')} style={{width:32,height:32}}/>
+                <View style={{flexDirection:'row'}}>
+                <Image source={require('../../assets/symbols/Pedido.png')} style={{width:27,height:27}}/>
+                <Image source={require('../../assets/icons/stamp.png')} style={{width:27,height:27}}/>
+                </View>
                 :
                 null
                 }
@@ -92,6 +95,6 @@ const styles = StyleSheet.create({
     numero: {
         fontSize: 14,
         fontFamily: 'Rubik_300Light',
-        marginRight: 10
+        marginLeft: 10
     },
 });

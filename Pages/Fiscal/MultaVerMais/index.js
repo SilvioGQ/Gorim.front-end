@@ -11,7 +11,6 @@ export default function Multa({ navigation, route }) {
   const { players } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
   const [Logs, setLogs] = useState([]);
-  const [backgroundColor, setBackgroundColor] = useState('#fff');
   useEffect(() => {
     setLogs(players.find((p) => p.id === client.id))
   }, [client.id])
@@ -34,7 +33,7 @@ export default function Multa({ navigation, route }) {
       {Logs.length !== 0 ?
         Logs.logs.filter(i => i.type === 'plantation').map((p) => {
           // if (parcel.planted === true && !parcel.pesticide) {
-          return <ParcelaAgr item={p} key={p.id} vermais={false} display2='none' />
+          return <ParcelaAgr item={p} key={p.id} vermais={false} display2='none' pedido={false} />
           // }
         })
         :
