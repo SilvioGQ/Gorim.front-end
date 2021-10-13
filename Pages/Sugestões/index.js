@@ -3,22 +3,19 @@ import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpaci
 import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../contexts/GameContext";
 
 import Coin from '../../Components/Coin';
-// import Oferta from '../../../Components/Oferta';
-// import OfertaGeral from '../../../Components/OfertaGeral';
-// import FilterType from '../../../Components/FilterType';
-// import COLORS from '../../../constants/colors';
-// import Modal from '../../../Components/ModalInfo';
+import SugestoesRecebidas from '../../Components/SugestoesRecebidas';
+import SugestoesEnviadas from '../../Components/SugestoesEnviadas';
 import Rodada from '../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
 export default function Sugestoes({ navigation }) {
     const [modalText, setModalText] = useState('');
     const [type, setType] = useState('');
-    const { player, offers, disableNotifyOffers } = useContext(GameContext);
+    const { player} = useContext(GameContext);
 
-    useEffect(() => {
-        disableNotifyOffers();
-    }, []);
+    // useEffect(() => {
+    //     disableNotifyOffers();
+    // }, []);
 
     // const confirmPurchase = (item, amount = null) => {
     //     if (amount) {
@@ -47,6 +44,35 @@ export default function Sugestoes({ navigation }) {
             <Rodada name={'Sugestões'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
             <Coin coin={player.coin} />
             <Text style={styles.texto}>Sugestões:</Text>
+
+
+            {player.office === 'Fiscal' && (
+                // flatlist
+
+            //     <FilterType type={type} setType={setType} />
+            //     {!offers.all || offers.all.length === 0 ?
+            //     <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+            //     : <FlatList
+            //         showsVerticalScrollIndicator={false}
+            //         data={selectType()}
+            //         keyExtractor={(item, index) => index.toString()}
+            //         renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
+            //     />
+            // }
+            <SugestoesRecebidas></SugestoesRecebidas>
+            
+            )}
+
+            {player.office === 'Fiscal' && (
+            <SugestoesEnviadas></SugestoesEnviadas>
+            )}
+
+{/* 
+            {player.office === 'Vereador' && (
+
+            )} */}
+
+
             {/* {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
             <View style={{ flex: 1.50 }}>
                 <Text style={styles.text}>Anúncios</Text>
