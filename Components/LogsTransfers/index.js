@@ -14,7 +14,7 @@ export default function LogsTransfer({ item }) {
         <View style={styles.colunm}>
             <View style={styles.row3}>
                 <Text style={{fontSize: 13, fontFamily: 'Rubik_300Light'}}>Item vendido {item.product.amount} vezes</Text>
-                <Text style={{fontSize: 13, fontFamily: 'Rubik_300Light', color:COLORS.warningButton, marginLeft:10}}>Poluição:</Text>
+                <Text style={{fontSize: 13, fontFamily: 'Rubik_300Light', color:COLORS.warningButton, marginLeft:10}}>Poluição:{item.pollution}</Text>
             </View>
             <View>
                 <Image

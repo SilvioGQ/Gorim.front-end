@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
+import { GameContext } from "../../../contexts/GameContext";
 
 export default function Confirmada({ navigation, route }) {
+  const { phase } = useContext(GameContext);
   const { text } = route.params;
-  const { Menu } = route.params
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.reset({ routes: [{ name: Menu == 'MenuPolitico' ? 'MenuPolitico': 'MenuJogador'}] });
-    }, 2200);
+      navigation.reset({ routes: [{ name: phase == 2 ? 'MenuPolitico': 'MenuJogador'}] });
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);

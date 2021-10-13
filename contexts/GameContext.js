@@ -184,8 +184,8 @@ const addSprayParcel = (parcelLand) => {
   socket.emit('addSprayParcel', parcelLand);
 }
 
-const makeTransfer = (count, idDest) => {
-  socket.emit('makeTransfer', count, idDest, false, false);
+const makeTransfer = (count, idDest, coin, coinSalary) => {
+  socket.emit('makeTransfer', count, idDest, coin, coinSalary);
 }
 
 const getProducts = (name = null) => {
@@ -232,8 +232,8 @@ const requestStamp = (parcelLand) => {
   socket.emit('requestStamp', parcelLand);
 }
 
-const sendTax = (playerId, gravity) => {
-  socket.emit('sendTax', playerId, gravity);
+const sendFine= (playerId, gravity) => {
+  socket.emit('sendFine', playerId, gravity);
 }
 
 const sendStamp = (playerId, parcelLands) => {
@@ -264,6 +264,6 @@ export {
   reconnectToRoom,
   suggestTax,
   requestStamp,
-  sendTax,
+  sendFine,
   sendStamp
 };
