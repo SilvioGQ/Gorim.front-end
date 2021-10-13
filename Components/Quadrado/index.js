@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   textinhos: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 14,
+    fontSize: 10,
   },
   icone: {
     width: 40,
