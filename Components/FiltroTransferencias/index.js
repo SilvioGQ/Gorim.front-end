@@ -13,7 +13,7 @@ export default function FiltroTransferencias({ type, setType }) {
                     <Text style={[styles.textSmall, { color: type == 'Agricultor' ? '#fff' : '#000' }]}>Agr/Emp</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Fiscal' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Fiscal')}} activeOpacity={0.7}>
-                    <Text style={[styles.textSmall, { color: type == 'Fiscal' ? '#fff' : '#000' }]}>Políticos</Text>
+                    <Text style={[styles.textSmall, { color: type == 'Fiscal' ? '#fff' : '#000' }]}>Ver/Pre/Fis</Text>
                 </TouchableOpacity>
             </>
         </View>
