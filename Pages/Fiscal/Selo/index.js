@@ -22,12 +22,12 @@ export default function Selo({ navigation, route }) {
       setSelectedPlayer(players.find((p)=> p.id === selectClient))
     }
   }, [selectClient]);
+  
   const aplicar = ()=>{
     sendStamp(selectClient, selectParcel); 
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })
   }
-  console.log(selectedPlayer)
-  console.log(player.logsOffice)
+
   return (
     <View>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />

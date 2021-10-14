@@ -10,8 +10,6 @@ const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest, type, provider } = route.params;
-  console.log(type)
-  console.log(provider)
 
   const make = () => {
     makeTransfer(count, idDest, provider, type);

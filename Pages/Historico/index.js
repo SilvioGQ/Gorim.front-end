@@ -20,10 +20,11 @@ export default function Cenario({ navigation }) {
   const rotateZ3 = open3 ? "180deg" : "0deg";
   const rotateZ4 = open4 ? "180deg" : "0deg";
   const rotateZ5 = open5 ? "180deg" : "0deg";
-  console.log(logs);
+
   useEffect(()=>{
     setLogs(logs.find((p)=> p.id === player.id))
-  }, [])
+  }, []);
+  
   return (
       <ScrollView>
     <View>

@@ -11,10 +11,11 @@ export default function Multa({ navigation, route }) {
   const { players } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
   const [Logs, setLogs] = useState([]);
+  
   useEffect(() => {
     setLogs(players.find((p) => p.id === client.id))
-  }, [client.id])
-  console.log(client.logs)
+  }, [client.id]);
+
   return (
     <View style={styles.container}>
       <Rodada name={'Ver mais'} arrow={true} onClick={() => navigation.navigate('Multa')} />

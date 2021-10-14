@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { GameContext, suggestTax } from '../../contexts/GameContext';
+import { GameContext, suggestFine } from '../../contexts/GameContext';
 
 import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
@@ -18,7 +18,7 @@ export default function MultaComponent({ item, onclick, display, numero, setNume
   const { player, data: suggest, stage } = useContext(GameContext);
 
   useEffect(() => {
-    suggestTax();
+    suggestFine();
   }, []);
 
   return (
@@ -31,7 +31,7 @@ export default function MultaComponent({ item, onclick, display, numero, setNume
         <Text style={styles.text}>Total poluição: {item.pollution.toFixed(1)} </Text>
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.text}>Multa:</Text>
-          {stage === 'SUGGESTTAX' && (
+          {stage === 'SUGGESTFINE' && (
             <Dropdown
               data={data}
               style={{ height: 28, width: 110, borderRadius: 17 }}

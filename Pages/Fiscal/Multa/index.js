@@ -13,7 +13,7 @@ export default function Multa({ navigation }) {
   const [modalText, setModalText] = useState('');
   const { players, stage, player } = useContext(GameContext);
   const [numero, setNumero] = useState('Nenhuma');
-  console.log(player.logsOffice)
+
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
