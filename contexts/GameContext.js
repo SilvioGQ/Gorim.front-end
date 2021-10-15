@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime, resetRecordTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -240,6 +240,10 @@ const sendStamp = (playerId, parcelLands) => {
   socket.emit('sendStamp', playerId, parcelLands);
 }
 
+const applyPrevention = (prevention) => {
+  socket.emit('applyPrevention', prevention);
+}
+
 export {
   GameContext,
   GameProvider,
@@ -265,5 +269,6 @@ export {
   suggestFine,
   requestStamp,
   sendFine,
-  sendStamp
+  sendStamp,
+  applyPrevention
 };
