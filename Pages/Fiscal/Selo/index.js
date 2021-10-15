@@ -17,7 +17,7 @@ export default function Selo({ navigation, route }) {
   const [selectParcel, setSelectParcel] = useState([]);
 
   useEffect(() => {
-    setFarmer(players.filter(i => i.type === 'Agricultor'  /*&& i.city == player.city*/))
+    setFarmer(players.filter(i => i.type === 'Agricultor'  && i.city == player.city))
     if(selectClient !== -1){
       setSelectedPlayer(players.find((p)=> p.id === selectClient))
     }

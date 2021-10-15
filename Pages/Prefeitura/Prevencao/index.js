@@ -13,14 +13,14 @@ export default function Prevencao({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Rodada name={'Aplicar medidas'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+        <Rodada name={player.office === 'Vereador' ? 'Sugerir Medidas' : 'Aplicar Medidas'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
         <Coin coin={player.coin} />
         <View style={styles.espaco}>
           <Image
             style={{ width: 62, height: 62 }}
             source={require('../../../assets/icons/water.png')}
           />
-          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de {"\n"}Prevenção' : 'Medidas de {"\n"}Prevenção'}</Text>
+          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de\nPrevenção' : 'Medidas de\nPrevenção'}</Text>
         </View>
         <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir mudanças na cidade' : 'Medidas à aplicar na cidade:'}</Text>
 

@@ -49,7 +49,7 @@ export default function MenuPolitico({ navigation }) {
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
       <View style={styles.row}>
-        {player.office === 'Prefeito' && (
+        {player.office === 'Prefeito' || player.office === 'Vereador' && (
           <View style={styles.items}>
             <Item type='' onClick={() => navigation.navigate('Prevencao')} name='Medidas de prevenção' />
             <Item type='' onClick={() => navigation.navigate('Imposto')} name='Alteração de impostos' />
@@ -63,9 +63,9 @@ export default function MenuPolitico({ navigation }) {
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
           </View>
         )}
-        {player.office === 'Prefeito' && (
+        {player.office === 'Prefeito' || player.office === 'Vereador' && (
           <View style={styles.items}>
-            {player.office === 'Prefeito' && (<Item type='' onClick={() => navigation.navigate('Sugestoes')} name='Sugestões' />)}
+            {player.office === 'Prefeito' || player.office === 'Vereador' && (<Item type='' onClick={() => navigation.navigate('Sugestoes')} name='Sugestões' />)}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
             <View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />
           </View>

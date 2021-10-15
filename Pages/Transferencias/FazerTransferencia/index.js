@@ -46,7 +46,7 @@ export default function FazerTransferencia({ navigation }) {
             numColumns={3}
             data={phase === 1 ? players.filter(i => i.id !== player.id && i.office !== 'Cidadão') : players.filter(i => i.office !== 'Cidadão')}
             keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <Quadrados abr={item.type.slice(0, 3)} player={item} onClick={() => { setId(item.id); setType(item.type) }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />}
+            renderItem={({ item }) => <Quadrados abr={item.type.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />}
           />
         </View>
         :
@@ -55,7 +55,7 @@ export default function FazerTransferencia({ navigation }) {
             numColumns={3}
             data={phase === 2 ? players.filter(i => i.id !== player.id && i.office !== 'Cidadão') : players.filter(i => i.office !== 'Cidadão')}
             keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <Quadrados abr={item.office.slice(0, 3)} player={item} onClick={() => { setId(item.id); setType(item.office) }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />}
+            renderItem={({ item }) => <Quadrados abr={item.office.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />}
           />
 
         </View>
