@@ -6,8 +6,7 @@ import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime, resetRecordTime } from '../helpers/recordTimer';
-
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
