@@ -42,7 +42,7 @@ export default function Sugestoes({ navigation }) {
     return (
         <View style={styles.container}>
             <Rodada name={'Sugestões'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
-            <Coin coin={player.coin} />
+            <Coin coin={player.serviceSalary} />
             <Text style={styles.texto}>Sugestões:</Text>
             {player.office === 'Prefeito' && (
                 // flatlist

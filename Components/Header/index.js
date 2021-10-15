@@ -9,7 +9,7 @@ export default function Header({ typeMenu = 'player' }) {
   const { player, globalPollution } = useContext(GameContext);
 
   const mudarcor = (valor) => {
-    if (valor >= 20 && valor <= 50) return '#FF0000';
+    if (valor >= 0 && valor <= 50) return '#FF0000';
     if (valor > 50 && valor <= 80) return '#A50000';
     if (valor > 80 && valor <= 100) return '#000000';
   }
