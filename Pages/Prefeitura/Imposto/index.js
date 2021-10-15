@@ -18,7 +18,7 @@ export default function Imposto({navigation}) {
     <ScrollView>
     <View style={styles.container}>
       <Rodada name={player.office === 'Vereador' ? 'Sugerir impostos' : 'Aplicar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
-      <Coin coin={player.coin} />
+      <Coin coin={player.serviceSalary} />
       <View style={styles.espaco}>
         <Image
           style={{ width: 62, height: 48 }}
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
     width: Tela
   },
   header: {
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 22,
+    fontFamily: 'Rubik_300Light',
+    fontSize: 20,
   },
   font: {
     marginLeft: 25,

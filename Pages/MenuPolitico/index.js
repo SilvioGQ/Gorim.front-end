@@ -27,10 +27,10 @@ export default function MenuPolitico({ navigation }) {
 
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
     if (stage === 'ENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'AguardarJogadores' }] });
-    
+
     return () => isMounted = false;
   }, [stage]);
-  
+
   // makeTransferOffice(500, players[0].id == player.id ? players[1].id : players[0].id);
 
   const removeFromRoom = () => {
@@ -49,27 +49,25 @@ export default function MenuPolitico({ navigation }) {
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
       <View style={styles.row}>
-        {player.office === 'Prefeito' || player.office === 'Vereador' && (
-          <View style={styles.items}>
-            <Item type='' onClick={() => navigation.navigate('Prevencao')} name='Medidas de prevenção' />
-            <Item type='' onClick={() => navigation.navigate('Imposto')} name='Alteração de impostos' />
-            <Item type='' onClick={() => navigation.navigate('HistoricoJogadores')} name='Histórico dos Jogadores' />
-          </View>
-        )}
-        {player.office === 'Fiscal' && (
+        {player.office === 'Prefeito' || player.office === 'Vereador' ?
+          <>
+            <View style={styles.items}>
+              <Item type='' onClick={() => navigation.navigate('Prevencao')} name='Medidas de prevenção' />
+              <Item type='' onClick={() => navigation.navigate('Imposto')} name='Alteração de impostos' />
+              <Item type='' onClick={() => navigation.navigate('HistoricoJogadores')} name='Histórico dos Jogadores' />
+            </View>
+            <View style={styles.items}>
+              <Item type='' onClick={() => navigation.navigate('Sugestoes')} name='Sugestões' />
+              <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
+              <View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />
+            </View>
+          </>
+          :
           <View style={styles.items}>
             <Item type='' onClick={() => navigation.navigate('Selo')} name='Conceder selo verde' />
             <Item type='' onClick={() => navigation.navigate('Multa')} name='Aplicar multas' />
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-          </View>
-        )}
-        {player.office === 'Prefeito' || player.office === 'Vereador' && (
-          <View style={styles.items}>
-            {player.office === 'Prefeito' || player.office === 'Vereador' && (<Item type='' onClick={() => navigation.navigate('Sugestoes')} name='Sugestões' />)}
-            <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-            <View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />
-          </View>
-        )}
+          </View>}
       </View>
       <View style={{ paddingVertical: 25, flexDirection: 'row', }}>
         <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />

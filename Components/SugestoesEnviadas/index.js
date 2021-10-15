@@ -7,7 +7,7 @@ import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 
 const Tela = Dimensions.get('screen').width;
-export default function SugestoesEnviadas({ item, confirmOffer, rejectOffer }) {
+export default function SugestoesEnviadas({ item }) {
     const { player } = useContext(GameContext);
     return (
         <View style={styles.colunm}>
@@ -27,23 +27,6 @@ export default function SugestoesEnviadas({ item, confirmOffer, rejectOffer }) {
                         source={IMAGES[item.avatarSeller]}
                     /> */}
                 </View>
-
-                {/* <View>
-                    <Text style={styles.text}>Produto:</Text>
-                    <Text style={styles.textBold}>{item.name}</Text>
-                </View>
-                <Image
-                    style={styles.icone}
-                    source={imagesProducts[item.name]}
-                />
-                <View>
-                    <Text style={styles.text}>Preço:</Text>
-                    <Text style={styles.textBold}>${item.price}</Text>
-                </View>
-                <Image
-                    style={styles.icone}
-                    source={imagesCoins[item.priceType]}
-                /> */}
             </View>
             <View style={styles.row}>
                 <Text style={styles.text3}> Aguardando resposta...</Text>
