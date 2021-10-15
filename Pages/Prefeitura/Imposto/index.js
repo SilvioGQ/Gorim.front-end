@@ -17,14 +17,14 @@ export default function Imposto({navigation}) {
   return (
     <ScrollView>
     <View style={styles.container}>
-      <Rodada name={'Alterar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <Rodada name={player.office === 'Vereador' ? 'Sugerir impostos' : 'Aplicar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <Coin coin={player.coin} />
       <View style={styles.espaco}>
         <Image
           style={{ width: 62, height: 48 }}
           source={IMAGES['Alteração de impostos']}
         />
-          <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir alteração de {"\n"}impostos' : 'Alteração {"\n"}de impostos'}</Text>
+          <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir alteração de\nimpostos' : 'Alteração\nde impostos'}</Text>
       </View>
       <Text style={styles.font}> Para produtividade nula:</Text>
       <View style={styles.view}>
