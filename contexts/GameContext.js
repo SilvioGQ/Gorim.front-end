@@ -5,7 +5,7 @@ import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
-import { recordStartTime, recordGetTime, resetRecordTime } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
 const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, StatusBar } from 'react-native';
+import React, {useContext} from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, } from 'react-native';
 import { GameContext, makeTransfer } from "../../../contexts/GameContext";
 
 import Button from '../../../Components/Button';
@@ -10,12 +10,11 @@ const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest, type, provider } = route.params;
-
+  const { phase } = useContext(GameContext);
   const make = () => {
     makeTransfer(count, idDest, provider, type);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
   }
-  
   return (
     <View style={styles.container}>
       <Rodada name={'Fazer transferência'} arrow={true} onClick={()=>navigation.goBack()}/>
@@ -26,7 +25,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text2}>${JSON.stringify(count)} </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={make} name='CONTINUAR' />
-          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: 'MenuJogador' }] })} style={styles.button} activeOpacity={0.7}>
+          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: phase === 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button} activeOpacity={0.7}>
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
         </View>

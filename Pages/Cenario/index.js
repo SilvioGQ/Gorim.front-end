@@ -25,7 +25,7 @@ export default function Cenario({ navigation }) {
     getTax();
     disableNotifyScene();
   }, []);
-
+  console.log(player)
   return (
     <View>
       <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />
@@ -126,16 +126,24 @@ export default function Cenario({ navigation }) {
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
 
-          {player.logs.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logs.filter((item) => item.type == type).map((item, index) => {
+          {phase === 1 ?
+          player.logs.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logs.filter((item) => item.type == type).map((item, index) => {
             if (item.type === 'plantation') {
               return <HistoricosPlatacao key={index} item={item} />
             } else if (item.type === 'transfer' || item.type === 'buy') {
+              return <HistoricosDinheiro key={index} item={item} />
+            }
+          })
+          : 
+          player.logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logsOffice.filter((item) => item.type == type).map((item, index) => {
+            if (item.type === 'transfer') {
               return <HistoricosDinheiro key={index} item={item} />
             } else if (item.type === 'fine' || item.type === 'stamp') {
               return <HistoricoPolitico key={index} item={item} />
             }
           })
           }
+          
         </View>
       </ScrollView>
     </View>
