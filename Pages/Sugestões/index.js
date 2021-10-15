@@ -44,9 +44,7 @@ export default function Sugestoes({ navigation }) {
             <Rodada name={'Sugestões'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
             <Coin coin={player.coin} />
             <Text style={styles.texto}>Sugestões:</Text>
-
-
-            {player.office === 'Fiscal' && (
+            {player.office === 'Prefeito' && (
                 // flatlist
 
             //     <FilterType type={type} setType={setType} />
@@ -59,12 +57,12 @@ export default function Sugestoes({ navigation }) {
             //         renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
             //     />
             // }
-            <SugestoesRecebidas></SugestoesRecebidas>
+            <SugestoesRecebidas/>
             
             )}
 
-            {player.office === 'Fiscal' && (
-            <SugestoesEnviadas></SugestoesEnviadas>
+            {player.office === 'Vereador' && (
+            <SugestoesEnviadas/>
             )}
 
 {/* 

@@ -12,16 +12,16 @@ export default function Prevencao({ navigation }) {
   const [selectMedida, setSelectMedida] = useState({});
   const { player } = useContext(GameContext);
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <View style={styles.container}>
         <Rodada name={player.office === 'Vereador' ? 'Sugerir Medidas' : 'Aplicar Medidas'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
-        <Coin coin={player.coin} />
+        <ScrollView>
+        <Coin coin={player.serviceSalary} />
         <View style={styles.espaco}>
           <Image
             style={{ width: 62, height: 62 }}
             source={require('../../../assets/icons/water.png')}
           />
-          <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de\nPrevenção' : 'Medidas de\nPrevenção'}</Text>
+          <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de\nPrevenção' : 'Medidas de\nPrevenção'}</Text>
         </View>
         <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir mudanças na cidade' : 'Medidas à aplicar na cidade:'}</Text>
 
@@ -56,8 +56,8 @@ export default function Prevencao({ navigation }) {
             onClick={() => applyPrevention(selectMedida)}
             name='APLICAR' />
         </View>
-      </View>
     </ScrollView>
+      </View>
   );
 }
 
@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
   },
   texto: {
     marginTop: 18,
-    fontSize: 18,
+    fontSize: 16,
     marginLeft: 80,
     fontFamily: 'Rubik_700Bold',
   },
   textomenor: {
-    fontSize: 14,
+    fontSize: 13,
     marginLeft: 80,
   },
   textopreco: {
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     width: Tela
   },
     header: {
-    fontFamily: 'Rubik_400Regular',
+    fontFamily: 'Rubik_300Light',
     fontSize: 20,
     marginTop: 25,
     marginLeft: 25
