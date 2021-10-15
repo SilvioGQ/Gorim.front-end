@@ -16,26 +16,15 @@ export default function Imposto({ navigation }) {
   const { player } = useContext(GameContext);
 
   return (
-    <ScrollView>
-<<<<<<< HEAD
-      <View style={styles.container}>
+    <View style={styles.container}>
         <Rodada name={player.office === 'Vereador' ? 'Sugerir impostos' : 'Aplicar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+        <ScrollView>
         <Coin coin={player.coin} />
         <View style={styles.espaco}>
           <Image
             style={{ width: 62, height: 48 }}
             source={IMAGES['Alteração de impostos']}
           />
-=======
-    <View style={styles.container}>
-      <Rodada name={player.office === 'Vereador' ? 'Sugerir impostos' : 'Aplicar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
-      <Coin coin={player.serviceSalary} />
-      <View style={styles.espaco}>
-        <Image
-          style={{ width: 62, height: 48 }}
-          source={IMAGES['Alteração de impostos']}
-        />
->>>>>>> 53b2ed7c86f014553b1ce6cf66808e8e4d464972
           <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir alteração de\nimpostos' : 'Alteração\nde impostos'}</Text>
         </View>
         <Text style={styles.font}> Para produtividade nula:</Text>
@@ -83,8 +72,8 @@ export default function Imposto({ navigation }) {
         <TouchableOpacity style={styles.button} activeOpacity={0.7}>
           <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
         </TouchableOpacity>
-      </View>
     </ScrollView>
+      </View>
   );
 }
 
