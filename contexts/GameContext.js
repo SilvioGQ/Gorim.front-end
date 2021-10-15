@@ -244,6 +244,10 @@ const applyPrevention = (prevention) => {
   socket.emit('applyPrevention', prevention);
 }
 
+const applyTax = (newTax) => {
+  socket.emit('applyTax', newTax);
+}
+
 export {
   GameContext,
   GameProvider,
@@ -270,5 +274,6 @@ export {
   requestStamp,
   sendFine,
   sendStamp,
-  applyPrevention
+  applyPrevention,
+  applyTax
 };
