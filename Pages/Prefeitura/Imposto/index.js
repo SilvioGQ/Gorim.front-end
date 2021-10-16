@@ -67,7 +67,7 @@ export default function Imposto({ navigation }) {
         </View>
 
         <Button
-          onClick={() => applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 })}
+          onClick={() => {applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] });}}
           name='APLICAR' />
         <TouchableOpacity style={styles.button} activeOpacity={0.7}>
           <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
