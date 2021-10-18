@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import IMAGES from '../../constants/imagesProducts';
 
-export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick, pedido}) {
+export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick, pedido, color}) {
     return (
         <TouchableOpacity onPress={onClick} style={[styles.container, { backgroundColor: backgroundGreen }]}>
             <View style={{ flexDirection: 'row', marginBottom:15, marginTop:1 }}>
@@ -14,7 +14,7 @@ export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, ver
                 :
                 null
                 }
-                <Text style={styles.numero}>Parcela: {item.parcelLand.id + 1}º</Text>
+                <Text style={[styles.numero, {color: color}]}>Parcela: {item.parcelLand.id + 1}º</Text>
                 {vermais ? 
                 <View style={{ borderRadius: 17, width: 75, height: 23, backgroundColor: '#D4F15F', alignSelf: 'center', marginLeft:25 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -33,30 +33,30 @@ export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, ver
             <View style={{ flexDirection: 'row' }}>
                 <View>
                     <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.seed]} />
-                    <Text style={styles.textproduto}>{item.parcelLand.seed}</Text>
+                    <Text style={[styles.textproduto, {color: color}]}>{item.parcelLand.seed}</Text>
                 </View>
                 {item.parcelLand.fertilizer != null && (
                     <View>
                         <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.fertilizer]} />
-                        <Text style={styles.textproduto}>{item.parcelLand.fertilizer.replace(/Fertilizante /, 'F.')}</Text>
+                        <Text style={[styles.textproduto, {color: color}]}>{item.parcelLand.fertilizer.replace(/Fertilizante /, 'F.')}</Text>
                     </View>
                 )}
                 {item.parcelLand.pesticide != null && (
                     <View>
                         <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.pesticide]} />
-                        <Text style={styles.textproduto}>{item.parcelLand.pesticide.replace(/Agrotóxico /, 'A.')}</Text>
+                        <Text style={[styles.textproduto, {color: color}]}>{item.parcelLand.pesticide.replace(/Agrotóxico /, 'A.')}</Text>
                     </View>
                 )}
                 {item.parcelLand.machine != null && (
                     <View>
                         <Image style={styles.imagensproduto} source={IMAGES[item.parcelLand.machine]} />
-                        <Text style={styles.textproduto}>{item.parcelLand.machine}</Text>
+                        <Text style={[styles.textproduto, {color: color}]}>{item.parcelLand.machine}</Text>
                     </View>
                 )}
                 {item.parcelLand.spray && (
                     <View>
                         <Image style={styles.imagensproduto} source={IMAGES['Pulverizador']} />
-                        <Text style={styles.textproduto}>Pulverizador</Text>
+                        <Text style={[styles.textproduto, {color: color}]}>Pulverizador</Text>
                     </View>
                 )}
             </View>
