@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_HERO, { autoConnect: false });
+const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -92,6 +92,9 @@ const GameProvider = (props) => {
     });
     socket.on('getOffers', (obj) => {
       dispatch({ type: obj.forAll ? 'GETOFFERSFORALL' : 'GETOFFERINDIVIDUAL', payload: obj.offers });
+    });
+    socket.on('getCityTax', (tax) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['GETCITYTAX', tax] });
     });
     socket.on('suggestFine', (suggest) => {
       dispatch({ type: 'CHANGEDATA', payload: ['SUGGESTFINE', suggest] });
@@ -232,7 +235,7 @@ const requestStamp = (parcelLand) => {
   socket.emit('requestStamp', parcelLand);
 }
 
-const sendFine= (playerId, gravity) => {
+const sendFine = (playerId, gravity) => {
   socket.emit('sendFine', playerId, gravity);
 }
 
@@ -246,6 +249,14 @@ const applyPrevention = (prevention) => {
 
 const applyTax = (newTax) => {
   socket.emit('applyTax', newTax);
+}
+
+const applyDefaultTax = () => {
+  socket.emit('applyDefaultTax');
+}
+
+const getCityTax = () => {
+  socket.emit('getCityTax');
 }
 
 export {
@@ -275,5 +286,7 @@ export {
   sendFine,
   sendStamp,
   applyPrevention,
-  applyTax
+  applyTax,
+  applyDefaultTax,
+  getCityTax
 };

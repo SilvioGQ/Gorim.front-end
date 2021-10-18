@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
-import { GameContext, applyTax } from '../../../contexts/GameContext';
+import { GameContext, applyTax, applyDefaultTax, getCityTax } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -13,12 +13,24 @@ export default function Imposto({ navigation }) {
   const [selectImposto, setSelectImposto] = useState(-1);
   const [selectImposto2, setSelectImposto2] = useState(-1);
   const [selectImposto3, setSelectImposto3] = useState(-1);
-  const { player } = useContext(GameContext);
+  const { player, stage, data: tax } = useContext(GameContext);
+
+  useEffect(() => {
+    getCityTax();
+  }, []);
+
+  useEffect(() => {
+    if (stage === 'GETCITYTAX') {
+      setSelectImposto(tax.lowProduction);
+      setSelectImposto2(tax.mediumProduction);
+      setSelectImposto3(tax.highProduction);
+    }
+  }, [stage, tax]);
 
   return (
     <View style={styles.container}>
-        <Rodada name={player.office === 'Vereador' ? 'Sugerir impostos' : 'Aplicar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
-        <ScrollView>
+      <Rodada name={player.office === 'Vereador' ? 'Sugerir impostos' : 'Aplicar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <ScrollView>
         <Coin coin={player.coin} />
         <View style={styles.espaco}>
           <Image
@@ -67,13 +79,13 @@ export default function Imposto({ navigation }) {
         </View>
 
         <Button
-          onClick={() => {applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] });}}
+          onClick={() => { applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}
           name='APLICAR' />
-        <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={() => { applyDefaultTax(); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}>
           <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
         </TouchableOpacity>
-    </ScrollView>
-      </View>
+      </ScrollView>
+    </View>
   );
 }
 
