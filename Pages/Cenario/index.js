@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, Fragment, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-import { GameContext, getTax } from '../../contexts/GameContext';
+import { GameContext, calcPlayerTax } from '../../contexts/GameContext';
 
 
 import HistoricosPlatacao from '../../Components/HistóricosPlatacao';
@@ -22,7 +22,7 @@ export default function Cenario({ navigation }) {
   const [image2, setImage2] = useState(true);
 
   useEffect(() => {
-    getTax();
+    calcPlayerTax();
     disableNotifyScene();
   }, []);
   console.log(player)
@@ -66,7 +66,7 @@ export default function Cenario({ navigation }) {
             <View style={styles.numeros}>
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(true); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>) }} activeOpacity={0.7}>
                 <Text style={styles.numero}>
-                  {stage === 'GETTAX' && (tax.percentual ? `${tax.percentual}%` : `$${tax.value}`)}
+                  {stage === 'CALCPLAYERTAX' && (tax.percentual ? `${tax.percentual}%` : `$${tax.value}`)}
                 </Text>
                 <Text style={styles.inferior}>
                   Imposto
@@ -117,7 +117,7 @@ export default function Cenario({ navigation }) {
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,1)', borderColor: '#BF0000', opacity: 0.7, }]}>
-                  <Text style={styles.numero2}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text>
+                  <Text style={styles.numero2}>{player.pollution.toFixed(1).toString().indexOf('.0') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
               </View>
@@ -138,7 +138,7 @@ export default function Cenario({ navigation }) {
           player.logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logsOffice.filter((item) => item.type == type).map((item, index) => {
             if (item.type === 'transfer') {
               return <HistoricosDinheiro key={index} item={item} />
-            } else if (item.type === 'fine' || item.type === 'stamp') {
+            } else if (item.type === 'fine' || item.type === 'stamp' || item.type === 'tax' || item.type === 'prevention') {
               return <HistoricoPolitico key={index} item={item} />
             }
           })

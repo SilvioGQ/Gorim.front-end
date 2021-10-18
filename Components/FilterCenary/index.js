@@ -41,8 +41,8 @@ export default function FilterCenary({ type, setType }) {
 					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'tax' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('tax') }} activeOpacity={0.7}>
 						<Text style={[styles.textSmall, { color: type == 'tax' ? '#fff' : '#000' }]}>Imposto</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'preventation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('preventation') }} activeOpacity={0.7}>
-						<Text style={[styles.textSmall, { color: type == 'preventation' ? '#fff' : '#000' }]}>Prevenção</Text>
+					<TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'prevention' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('prevention') }} activeOpacity={0.7}>
+						<Text style={[styles.textSmall, { color: type == 'prevention' ? '#fff' : '#000' }]}>Prevenção</Text>
 					</TouchableOpacity>
 				</>
 			)}

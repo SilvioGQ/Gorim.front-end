@@ -14,22 +14,22 @@ export default function HistoricoJogadores({ navigation }) {
 	const [selectClient, setSelectClient] = useState(-1);
 
 	return (
-		<ScrollView>
-			<View>
-				<Rodada name={'HistoricoJogadores'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
-				<View style={styles.container}>
-					<View style={styles.espaco}>
-						<Image
-							style={{ width: 62, height: 62 }}
-							source={require('../../../assets/symbols/group.png')}
-						/>
-						<Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>Histórico dos{"\n"}Jogadores</Text>
-					</View>
-					<Text style={styles.header}>Jogadores em {player.city}:</Text>
-					<View style={{ alignItems: 'center' }}>
-						<FiltroHistoricoJogadores type={type} setType={setType} />
-					</View>
+		<View>
+			<Rodada name={'HistoricoJogadores'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+			<View style={styles.container}>
+				<View style={styles.espaco}>
+					<Image
+						style={{ width: 62, height: 62 }}
+						source={require('../../../assets/symbols/group.png')}
+					/>
+					<Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 20, marginTop: 15, marginLeft: 5 }}>Histórico dos{"\n"}Jogadores</Text>
+				</View>
+				<Text style={styles.header}>Jogadores em {player.city}:</Text>
+				<View style={{ alignItems: 'center' }}>
+					<FiltroHistoricoJogadores type={type} setType={setType} />
+				</View>
 
+				<ScrollView>
 					<View style={styles.whiteRow}>
 						{players.filter((p) => p.type == type && p.city == player.city).map((item) => {
 							if (type === 'Agricultor') {
@@ -41,11 +41,11 @@ export default function HistoricoJogadores({ navigation }) {
 						)}
 					</View>
 
+				</ScrollView>
 
 
-				</View>
 			</View>
-		</ScrollView>
+		</View>
 	);
 }
 

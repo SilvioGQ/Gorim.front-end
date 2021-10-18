@@ -8,12 +8,7 @@ import { GameContext } from "../../contexts/GameContext";
 const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
-    const data = [
-        { label: 'Nenhuma', value: 1 },
-        { label: 'Baixa', value: 2 },
-        { label: 'Média', value: 3 },
-        { label: 'Alta', value: 4 },
-      ];
+    const { player } = useContext(GameContext);
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
@@ -41,7 +36,7 @@ export default function HistoricosDinheiro({ item }) {
                 </View>
                 </>
                 )}
-                {/* {player.office === 'Prefeito' && (
+                {player.office === 'Prefeito' && (
                     <>
                 <View>
                     <Image
@@ -51,19 +46,19 @@ export default function HistoricosDinheiro({ item }) {
                     <Text style={styles.text}>{item.namePlayer}</Text>
                 </View>
                     <View>
-                        <Text style={[styles.text, { marginTop: 5 }]}>{item.type === ''?  `${item.text}` : `$${item.value}`} </Text>
+                        <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'prevention'?  `$${item.value}` : ``} </Text>
                         <Image source={require('../../assets/Arrow.png')} style={{ width: 120, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
                         <Text style={styles.text}>Aplicou</Text>
                     </View>
                     <View>
                         <Image
                             style={styles.icone}
-                            source={imagesProducts[item.type]}
+                            source={imagesProducts[item.label]}
                         />
-                        <Text style={styles.text}>{item.type === '' ? item.type : item.percentual}</Text>
+                        <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : ''}</Text>
                     </View>
                 </>
-                )} */}
+                )}
             </View>
         </View>
     );

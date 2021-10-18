@@ -107,7 +107,7 @@ export default function MenuJogador({ navigation }) {
       {Height >= 720 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00', borderColor: '#8ACF3A' }]}>
-            <Text style={styles.textBar}>{player.production}</Text>
+            <Text style={styles.textBar}>{player.production.toFixed(0)}</Text>
             <Text style={styles.inferior}>Produtividade individual</Text>
           </View>
               {player.type === 'Agricultor' ?

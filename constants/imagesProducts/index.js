@@ -15,9 +15,9 @@ const IMAGES = {
     "Desconhecido" : require('../../assets/icons/unknown.png'),
     "stamp" : require("../../assets/icons/stamp.png"),
     "fine" : require('../../assets/icons/letter.png'),
-    "Tratamento de Lixo" : require('../../assets/icons/trash.png'),
-    "Tratamento de Esgoto" : require('../../assets/icons/sewer.png'),
-    "Tramento de Água" : require('../../assets/icons/water.png'),
+    "Tratamento de lixo" : require('../../assets/icons/trash.png'),
+    "Tratamento de esgoto" : require('../../assets/icons/sewer.png'),
+    "Tratamento de água" : require('../../assets/icons/water.png'),
 };
 
 export default IMAGES;

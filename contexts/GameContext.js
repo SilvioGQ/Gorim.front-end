@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -84,8 +84,8 @@ const GameProvider = (props) => {
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
     });
-    socket.on('getTax', (tax) => {
-      dispatch({ type: 'CHANGEDATA', payload: ['GETTAX', tax] });
+    socket.on('calcPlayerTax', (tax) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['CALCPLAYERTAX', tax] });
     });
     socket.on('getLogs', (logs) => {
       dispatch({ type: 'GETLOGS', payload: logs });
@@ -215,8 +215,8 @@ const endStage = () => {
   socket.emit('endStage');
 }
 
-const getTax = () => {
-  socket.emit('getTax');
+const calcPlayerTax = () => {
+  socket.emit('calcPlayerTax');
 }
 
 const nextStage = () => {
@@ -277,7 +277,7 @@ export {
   deleteAdvert,
   confirmOffer,
   rejectOffer,
-  getTax,
+  calcPlayerTax,
   endStage,
   nextStage,
   reconnectToRoom,
