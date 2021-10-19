@@ -56,8 +56,8 @@ export default function Prevencao({ navigation }) {
         </View>
         <View style={{ marginBottom: 25 }}>
           <Button
-            onClick={() =>{if(player.serviceSalary < selectMedida.value) return setModalVisible('Saldo insuficiente'); else {applyPrevention(selectMedida); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Medida aplicada!' } }] });};} }
-            name='APLICAR' />
+            onClick={() =>{if(player.serviceSalary < selectMedida.value) return setModalVisible('Saldo insuficiente'); else if(Object.keys(selectMedida).length!==0){{applyPrevention(selectMedida); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Medida aplicada!' } }] });};}else setModalVisible('Selecione alguma medida preventiva');} }
+            name= {player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
         </View>
     </ScrollView>
       </View>

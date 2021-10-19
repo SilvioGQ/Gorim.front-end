@@ -79,8 +79,13 @@ export default function Imposto({ navigation }) {
         </View>
 
         <Button
+<<<<<<< HEAD
           onClick={() => { player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }) : suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}
           name='APLICAR' />
+=======
+          onClick={() => { applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}
+          name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
+>>>>>>> d54185ece04f04f5f1abe1b21ee90f31a692fdff
         <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={() => { applyDefaultTax(); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}>
           <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
         </TouchableOpacity>

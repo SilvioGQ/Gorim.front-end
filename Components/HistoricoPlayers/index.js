@@ -21,7 +21,7 @@ export default function HistoricoPlayers({ player }) {
         </View>
         <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
           <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Poluição: {player.pollution.toFixed(1)}</Text>
-          <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Produtividade: ${player.production}</Text>
+          <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Produtividade: ${player.production < 0 ? '0' : player.production}</Text>
           <Text style={{ marginLeft: 5, paddingHorizontal: 5, fontFamily: 'Rubik_300Light' }}>Imposto pago: ${player.logs.find((item) => item.type == 'tax').value}</Text>
           {/* ${round.tax.value} {round.tax.percentual ? '= (' + round.tax.percentual + '%)' : ''} */}
 
