@@ -61,7 +61,7 @@ export default function Sugestoes({ navigation }) {
             
             )}
 
-            {player.office === 'Prefeito' && (
+            {player.office === 'Vereador' && (
             <SugestoesEnviadas/>
             )}
 

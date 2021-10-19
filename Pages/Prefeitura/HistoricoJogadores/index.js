@@ -32,11 +32,7 @@ export default function HistoricoJogadores({ navigation }) {
 				<ScrollView>
 					<View style={styles.whiteRow}>
 						{players.filter((p) => p.type == type && p.city == player.city).map((item) => {
-							if (type === 'Agricultor') {
 								return <HistoricoPlayers key={item.id} player={item} />
-							} else {
-								return <HistoricoPlayers key={item.id} player={item} />
-							}
 						}
 						)}
 					</View>

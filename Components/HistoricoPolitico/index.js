@@ -12,7 +12,7 @@ export default function HistoricosDinheiro({ item }) {
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
-                {player.office === 'Fiscal' && (
+                {player.office === 'Fiscal' ?
                     <>
                     <View>
                         <Image
@@ -34,10 +34,8 @@ export default function HistoricosDinheiro({ item }) {
                     />
                     <Text style={styles.text}>{item.namePlayer}</Text>
                 </View>
-                </>
-                )}
-                {player.office === 'Prefeito' && (
-                    <>
+                </> :
+                <>
                 <View>
                     <Image
                         style={styles.icone}
@@ -46,19 +44,19 @@ export default function HistoricosDinheiro({ item }) {
                     <Text style={styles.text}>{item.namePlayer}</Text>
                 </View>
                     <View>
-                        <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'prevention'?  `$${item.value}` : ``} </Text>
-                        <Image source={require('../../assets/Arrow.png')} style={{ width: 120, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
+                        <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'prevention'?  `$${item.value}` : `${item.label}`} </Text>
+                        <Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
                         <Text style={styles.text}>Aplicou</Text>
                     </View>
                     <View>
                         <Image
                             style={styles.icone}
-                            source={imagesProducts[item.type]}
+                            source={imagesProducts[item.type === 'prevention' ? item.label : item.type]}
                         />
-                        <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : `${item.percentual}%`}</Text>
+                        <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : item.value > 0 ? `$${item.value}` : `${item.percentual}%`}</Text>
                     </View>
                 </>
-                )}
+                }
             </View>
         </View>
     );
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: 'center',
-        fontSize: 12,
+        fontSize: 11,
         fontFamily: 'Rubik_300Light',
         marginBottom: 2
     }
