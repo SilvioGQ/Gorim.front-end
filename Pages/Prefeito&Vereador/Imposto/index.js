@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
-import { GameContext, applyTax, applyDefaultTax, getCityTax } from '../../../contexts/GameContext';
+import { GameContext, applyTax, applyDefaultTax, getCityTax, suggestTax } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -79,7 +79,7 @@ export default function Imposto({ navigation }) {
         </View>
 
         <Button
-          onClick={() => { applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}
+          onClick={() => { player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }) : suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}
           name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
         <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={() => { applyDefaultTax(); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}>
           <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
