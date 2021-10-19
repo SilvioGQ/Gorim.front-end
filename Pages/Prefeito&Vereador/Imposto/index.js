@@ -26,7 +26,12 @@ export default function Imposto({ navigation }) {
       setSelectImposto3(tax.highProduction);
     }
   }, [stage, tax]);
-
+const apply = ()=>{
+  player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 })
+  : 
+  suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 });
+  navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Imposto Aplicado!' : 'Imposto Sugerido!' } }] });
+}
   return (
     <View style={styles.container}>
       <Rodada name={player.office === 'Vereador' ? 'Sugerir impostos' : 'Aplicar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -79,9 +84,9 @@ export default function Imposto({ navigation }) {
         </View>
 
         <Button
-          onClick={() => { player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }) : suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}
+          onClick={() => apply()}
           name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
-        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={() => { applyDefaultTax(); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Imposto aplicado!' } }] }); }}>
+        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={() => { applyDefaultTax(); }}>
           <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
         </TouchableOpacity>
       </ScrollView>

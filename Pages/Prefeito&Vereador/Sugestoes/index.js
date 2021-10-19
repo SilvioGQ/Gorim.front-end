@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, ScrollView } from 'react-native';
-import { GameContext, getSuggestTax } from "../../../contexts/GameContext";
+import { GameContext, getSuggest } from "../../../contexts/GameContext";
 
 import Coin from '../../../Components/Coin';
 import SugestoesRecebidas from '../../../Components/SugestoesRecebidas';
@@ -10,14 +10,15 @@ import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function Sugestoes({ navigation }) {
     const [modalText, setModalText] = useState('');
+    const [suggest1, setSuggest] = useState();
     const { player, data: suggest, stage } = useContext(GameContext);
 
     useEffect(() => {
-        getSuggestTax();
+        getSuggest();
     }, []);
 
     useEffect(() => {
-        if (stage === 'GETSUGGESTTAX') console.log(suggest);
+        console.log(suggest);
     }, [stage]);
 
     // const confirmPurchase = (item, amount = null) => {
@@ -65,13 +66,15 @@ export default function Sugestoes({ navigation }) {
             )}
 
             {player.office === 'Vereador' && (
-            <SugestoesEnviadas/>
+                 stage === 'GETSUGGEST' &&(
+                     <FlatList
+                     showsVerticalScrollIndicator={false}
+                     data={suggest}
+                     keyExtractor={(item, index) => index.toString()}
+                     renderItem={({ item, index }) => <SugestoesEnviadas key={index} item={item} />}
+                 />
+                 )
             )}
-
-{/* 
-            {player.office === 'Vereador' && (
-
-            )} */}
 
 
             {/* {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}

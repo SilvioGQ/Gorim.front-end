@@ -9,18 +9,34 @@ import IMAGES from '../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width;
 export default function SugestoesEnviadas({ item }) {
     const { player } = useContext(GameContext);
+    const [color, setColor] = useState('#000')
+    console.log(item)
+    const status = ()=>{
+        if(item.approved === null ){
+            setColor('#000')
+            return 'Aguardando resposta'
+        }
+        if(item.approved){
+            setColor(COLORS.successButton)
+            return 'Sugestão aceita';
+        }
+        if(!item.approved){
+            setColor(COLORS.warningButton)
+            return 'Sugestação recusada';
+        }
+    }
     return (
         <View style={styles.colunm}>
             <View>
                 <View style={styles.row3}>
                 <View style={{marginLeft: 20}}>
                         <Image style={styles.person} source={IMAGES[player.avatar]} />
-                        <Text style={styles.text}>{player.type.slice(0, 3)}/{player.name}</Text>
+                        <Text style={styles.text}>{player.office.slice(0, 3)}/{player.name}</Text>
                     </View>
                         <View style={{ marginLeft: 10 }}>
-                            <Text style={styles.text2}>Alteração de imposto:</Text>
-                            <Text style={styles.text1}>Para produtividade acima de 200</Text>
-                            <Text style={styles.textBold}>15%</Text>
+                            <Text style={styles.text2}>{item.type === 'tax' ? "Alteração de imposto" : "Medida de prevenção"}</Text>
+                            <Text style={styles.text1}>{item.label}</Text>
+                            <Text style={styles.textBold}>{item.value > 0 ? `$${item.value}` : `${item.percentual}%` }</Text>
                         </View>
                         <TouchableOpacity>
                         <Image style={styles.icon} source={require('../../assets/FecharPreto.png')} />
@@ -28,7 +44,7 @@ export default function SugestoesEnviadas({ item }) {
                 </View>
             </View>
             <View>
-                <Text style={styles.text3}> Aguardando resposta...</Text>
+                <Text style={[styles.text3, {color:color}]}>{status()}</Text>
             </View>
         </View>
     );

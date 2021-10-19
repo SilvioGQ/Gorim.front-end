@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -96,8 +96,8 @@ const GameProvider = (props) => {
     socket.on('getCityTax', (tax) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETCITYTAX', tax] });
     });
-    socket.on('getSuggestTax', (taxs) => {
-      dispatch({ type: 'CHANGEDATA', payload: ['GETSUGGESTTAX', taxs] });
+    socket.on('getSuggest', (taxs) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['GETSUGGEST', taxs] });
     });
     socket.on('suggestFine', (suggest) => {
       dispatch({ type: 'CHANGEDATA', payload: ['SUGGESTFINE', suggest] });
@@ -266,10 +266,13 @@ const suggestTax = (suggest) => {
   socket.emit('suggestTax', suggest);
 }
 
-const getSuggestTax = () => {
-  socket.emit('getSuggestTax');
+const getSuggest = () => {
+  socket.emit('getSuggest');
 }
 
+const suggestPrevention = (suggest) => {
+  socket.emit('suggestPrevention', suggest);
+}
 export {
   GameContext,
   GameProvider,
@@ -301,5 +304,6 @@ export {
   applyDefaultTax,
   getCityTax,
   suggestTax,
-  getSuggestTax
+  suggestPrevention,
+  getSuggest
 };

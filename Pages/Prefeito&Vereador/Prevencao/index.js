@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
-import { GameContext, applyPrevention } from '../../../contexts/GameContext';
+import { GameContext, applyPrevention, suggestPrevention } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -12,6 +12,15 @@ export default function Prevencao({ navigation }) {
   const [selectMedida, setSelectMedida] = useState({});
   const { player } = useContext(GameContext);
   const [modalVisible, setModalVisible] = useState('');
+  const apply = ()=>{
+    if(player.serviceSalary < selectMedida.value) return setModalVisible('Saldo insuficiente');
+    if(Object.keys(selectMedida).length!==0){
+      player.office === 'Prefeito' ? applyPrevention(selectMedida)
+      : 
+      suggestPrevention(selectMedida);
+    }else return setModalVisible('Selecione alguma medida preventiva');
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Medida aplicada!' : 'Medida Sugerida!' } }] });
+  }
   return (
     <View style={styles.container}>
         <Rodada name={player.office === 'Vereador' ? 'Sugerir Medidas' : 'Aplicar Medidas'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -56,7 +65,7 @@ export default function Prevencao({ navigation }) {
         </View>
         <View style={{ marginBottom: 25 }}>
           <Button
-            onClick={() =>{if(player.serviceSalary < selectMedida.value) return setModalVisible('Saldo insuficiente'); else if(Object.keys(selectMedida).length!==0){{applyPrevention(selectMedida); navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Medida aplicada!' } }] });};}else setModalVisible('Selecione alguma medida preventiva');} }
+            onClick={() =>apply()}
             name= {player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
         </View>
     </ScrollView>
