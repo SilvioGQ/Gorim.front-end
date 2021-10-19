@@ -10,7 +10,6 @@ import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function Sugestoes({ navigation }) {
     const [modalText, setModalText] = useState('');
-    const [suggest1, setSuggest] = useState();
     const { player, data: suggest, stage } = useContext(GameContext);
 
     useEffect(() => {
@@ -21,48 +20,13 @@ export default function Sugestoes({ navigation }) {
         console.log(suggest);
     }, [stage]);
 
-    // const confirmPurchase = (item, amount = null) => {
-    //     if (amount) {
-    //         if (player.coin >= item.price * amount) {
-    //             confirmOffer(item, amount);
-    //         } else {
-    //             setModalText('Você não possui dinheiro suficiente para esta compra.');
-    //         }
-    //     } else if (player.coin >= item.price * item.amount) {
-    //         confirmOffer(item);
-    //     } else {
-    //         setModalText('Você não possui dinheiro suficiente para esta compra.');
-    //     }
-    // }
-
-    // const selectType = () => {
-    //     if (type !== '') {
-    //         return offers.all.filter(i => i.type == type);
-    //     } else {
-    //         return offers.all;
-    //     }
-    // }
-
     return (
         <View style={styles.container}>
             <Rodada name={'Sugestões'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
             <Coin coin={player.serviceSalary} />
             <Text style={styles.texto}>Sugestões:</Text>
             {player.office === 'Prefeito' && (
-                // flatlist
-
-            //     <FilterType type={type} setType={setType} />
-            //     {!offers.all || offers.all.length === 0 ?
-            //     <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-            //     : <FlatList
-            //         showsVerticalScrollIndicator={false}
-            //         data={selectType()}
-            //         keyExtractor={(item, index) => index.toString()}
-            //         renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
-            //     />
-            // }
             <SugestoesRecebidas/>
-            
             )}
 
             {player.office === 'Vereador' && (

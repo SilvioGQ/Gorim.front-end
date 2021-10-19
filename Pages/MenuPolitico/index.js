@@ -63,11 +63,15 @@ export default function MenuPolitico({ navigation }) {
             </View>
           </>
           :
+          null
+        }
+        {player.office === 'Fiscal' && (
           <View style={styles.items}>
             <Item type='' onClick={() => navigation.navigate('Selo')} name='Conceder selo verde' />
             <Item type='' onClick={() => navigation.navigate('Multa')} name='Aplicar multas' />
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-          </View>}
+          </View>
+        )}
       </View>
       <View style={{ paddingVertical: 25, flexDirection: 'row', }}>
         <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
