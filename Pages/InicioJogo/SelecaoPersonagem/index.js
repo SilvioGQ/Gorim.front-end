@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView, StatusBar, Dimensions, TouchableOpacity } from 'react-native';
-import { GameContext, selectAvatar, selectedAvatars } from '../../contexts/GameContext';
+import { GameContext, selectAvatar, selectedAvatars } from '../../../contexts/GameContext';
 
-import COLORS from '../../constants/colors';
-import Quadrados from '../../Components/Quadrado'
-import Button from '../../Components/Button';
-import ModalInfo from '../../Components/ModalInfo';
+import COLORS from '../../../constants/colors';
+import Quadrados from '../../../Components/Quadrado'
+import Button from '../../../Components/Button';
+import ModalInfo from '../../../Components/ModalInfo';
 const Height = Dimensions.get('screen').height;
 export default function SelecaoPersonagem({ navigation }) {
 

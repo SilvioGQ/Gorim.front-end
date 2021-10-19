@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
-import { GameContext, removeToRoom, startGame, makeRaffle } from '../../contexts/GameContext';
+import { GameContext, removeToRoom, startGame, makeRaffle } from '../../../contexts/GameContext';
 
-import COLORS from '../../constants/colors';
-import Button from '../../Components/Button';
-import ModalConfirmExit from '../../Components/ModalConfirmExit';
+import COLORS from '../../../constants/colors';
+import Button from '../../../Components/Button';
+import ModalConfirmExit from '../../../Components/ModalConfirmExit';
 
 const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation }) {
@@ -34,7 +34,7 @@ export default function Lobby({ navigation }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)} activeOpacity={0.7}>
-        <Image style={styles.image} source={require('../../assets/FecharPreto.png')} />
+        <Image style={styles.image} source={require('../../../assets/FecharPreto.png')} />
       </TouchableOpacity>
       <Text style={styles.textcod}>CÓDIGO DA SALA</Text>
       <View style={{ borderWidth: 1, width: '70%', borderColor: '#58AB23' }} />

@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { GameContext, addToRoom, joinToRoom } from '../../contexts/GameContext';
-
-import COLORS from '../../constants/colors';
-import ModalInfo from '../../Components/ModalInfo';
+import { GameContext, addToRoom, joinToRoom } from '../../../contexts/GameContext';
+import ModalInfo from '../../../Components/ModalInfo';
 
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
@@ -43,7 +41,7 @@ export default function CriarPartida({ navigation }) {
         <View style={{ flex: 1, height: Height - 100, alignItems: 'center', width: Tela }}>
           <View style={{flexDirection:'row'}}>
             <TouchableOpacity style={[styles.leftArrow,{position:'absolute',left:-40,top:5,}]} onPress={() =>navigation.reset({ routes: [{ name: 'Gorim'}] })} activeOpacity={0.7}>
-              <Image style={styles.leftArrow} source={require('../../assets/icons/left-arrow.png')} />
+              <Image style={styles.leftArrow} source={require('../../../assets/icons/left-arrow.png')} />
             </TouchableOpacity>
             <TextInput style={styles.input}
               maxLength={10}
@@ -56,11 +54,11 @@ export default function CriarPartida({ navigation }) {
             <Text style={styles.header}>HOST</Text>
             <View style={styles.line} />
             <View style={styles.row}>
-              <Image style={styles.logo2} source={require('../../assets/mulhe.png')} />
+              <Image style={styles.logo2} source={require('../../../assets/mulhe.png')} />
               <TouchableOpacity style={styles.button2} onPress={createRoom} activeOpacity={0.7} >
                 <Text style={styles.botao}>CRIAR JOGO</Text>
               </TouchableOpacity>
-              <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../assets/flecha.png')} />
+              <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../../assets/flecha.png')} />
             </View>
           </View>
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
@@ -68,7 +66,7 @@ export default function CriarPartida({ navigation }) {
             <Text style={[styles.header]}>ENTRAR</Text>
             <View style={styles.line} />
             <View style={styles.row}>
-              <Image style={styles.logo2} source={require('../../assets/pessoas.png')} />
+              <Image style={styles.logo2} source={require('../../../assets/pessoas.png')} />
               <TextInput
                 maxLength={6}
                 style={[styles.button2, styles.text2]}
@@ -81,7 +79,7 @@ export default function CriarPartida({ navigation }) {
               >
               </TextInput>
               <TouchableOpacity onPress={selectRoom} activeOpacity={0.7}>
-                <Image style={styles.arrow} source={require('../../assets/flecha.png')} />
+                <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
               </TouchableOpacity>
             </View>
           </View>

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { GameContext } from "../../contexts/GameContext";
 
 import COLORS from '../../constants/colors';
@@ -22,6 +22,9 @@ export default function SugestoesEnviadas({ item }) {
                             <Text style={styles.text1}>Para produtividade acima de 200</Text>
                             <Text style={styles.textBold}>15%</Text>
                         </View>
+                        <TouchableOpacity>
+                        <Image style={styles.icon} source={require('../../assets/FecharPreto.png')} />
+                        </TouchableOpacity>
                 </View>
             </View>
             <View>
@@ -72,6 +75,12 @@ const styles = StyleSheet.create({
     person: {
         width: 48,
         height: 49,
+    },
+    icon: {
+        width: 25,
+        height: 25,
+        marginLeft:5,
+        marginTop:-10
     },
     textBold: {
         fontSize: 15,

@@ -1,9 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
-import { GameContext, makeRaffle } from '../../contexts/GameContext';
-
-import COLORS from '../../constants/colors';
-
+import { GameContext, makeRaffle } from '../../../contexts/GameContext';
 export default function SorteioJogador({ navigation }) {
 
   const { stage } = useContext(GameContext);
@@ -24,7 +21,7 @@ export default function SorteioJogador({ navigation }) {
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Text style={styles.header}>Gorim</Text>
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('../../assets/symbols/givenAway.png')} />
+        <Image style={styles.logo} source={require('../../../assets/symbols/givenAway.png')} />
         <Text style={styles.loading}>Sorteando Personagens...</Text>
       </View>
     </View>

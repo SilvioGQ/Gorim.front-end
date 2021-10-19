@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
-import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../contexts/GameContext";
+import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../../contexts/GameContext";
 
-import Coin from '../../Components/Coin';
-import SugestoesRecebidas from '../../Components/SugestoesRecebidas';
-import SugestoesEnviadas from '../../Components/SugestoesEnviadas';
-import Rodada from '../../Components/Rodada';
+import Coin from '../../../Components/Coin';
+import SugestoesRecebidas from '../../../Components/SugestoesRecebidas';
+import SugestoesEnviadas from '../../../Components/SugestoesEnviadas';
+import Rodada from '../../../Components/Rodada';
 
 const Tela = Dimensions.get('screen').width;
 export default function Sugestoes({ navigation }) {
     const [modalText, setModalText] = useState('');
-    const [type, setType] = useState('');
     const { player} = useContext(GameContext);
 
     // useEffect(() => {
