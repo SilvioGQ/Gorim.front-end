@@ -53,9 +53,9 @@ export default function HistoricosDinheiro({ item }) {
                     <View>
                         <Image
                             style={styles.icone}
-                            source={imagesProducts[item.label]}
+                            source={imagesProducts[item.type]}
                         />
-                        <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : ''}</Text>
+                        <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : `${item.percentual}%`}</Text>
                     </View>
                 </>
                 )}

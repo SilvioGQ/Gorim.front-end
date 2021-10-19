@@ -15,6 +15,7 @@ const IMAGES = {
     "Desconhecido" : require('../../assets/icons/unknown.png'),
     "stamp" : require("../../assets/icons/stamp.png"),
     "fine" : require('../../assets/icons/letter.png'),
+    "tax" : require("../../assets/icons/tax.png"),
     "Tratamento de lixo" : require('../../assets/icons/trash.png'),
     "Tratamento de esgoto" : require('../../assets/icons/sewer.png'),
     "Tratamento de água" : require('../../assets/icons/water.png'),
