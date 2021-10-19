@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
-import { GameContext, getOffers, confirmOffer, rejectOffer } from "../../contexts/GameContext";
+import { GameContext, getSuggestTax } from "../../contexts/GameContext";
 
 import Coin from '../../Components/Coin';
 import SugestoesRecebidas from '../../Components/SugestoesRecebidas';
@@ -11,11 +11,15 @@ const Tela = Dimensions.get('screen').width;
 export default function Sugestoes({ navigation }) {
     const [modalText, setModalText] = useState('');
     const [type, setType] = useState('');
-    const { player} = useContext(GameContext);
+    const { player, data: suggest, stage } = useContext(GameContext);
 
-    // useEffect(() => {
-    //     disableNotifyOffers();
-    // }, []);
+    useEffect(() => {
+        getSuggestTax();
+    }, []);
+
+    useEffect(() => {
+        if (stage === 'GETSUGGESTTAX') console.log(suggest);
+    }, [stage]);
 
     // const confirmPurchase = (item, amount = null) => {
     //     if (amount) {
