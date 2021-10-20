@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, {useContext} from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
-import { GameContext } from "../../contexts/GameContext";
+import { GameContext, deleteSuggest } from "../../contexts/GameContext";
 
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
@@ -9,19 +9,12 @@ import IMAGES from '../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width;
 export default function SugestoesEnviadas({ item }) {
     const { player } = useContext(GameContext);
-    const [color, setColor] = useState('#000')
-    console.log(item)
-    const status = ()=>{
-        if(item.approved === null ){
-            setColor('#000')
+    const status = () => {
+        if(item.approved == null ){
             return 'Aguardando resposta'
-        }
-        if(item.approved){
-            setColor(COLORS.successButton)
+        }else if(item.approved){
             return 'Sugestão aceita';
-        }
-        if(!item.approved){
-            setColor(COLORS.warningButton)
+        }else if(!item.approved){
             return 'Sugestação recusada';
         }
     }
@@ -38,13 +31,13 @@ export default function SugestoesEnviadas({ item }) {
                             <Text style={styles.text1}>{item.label}</Text>
                             <Text style={styles.textBold}>{item.value > 0 ? `$${item.value}` : `${item.percentual}%` }</Text>
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{deleteSuggest(item)}} style={{position: 'absolute', right:10, top:0, display: item.approved == null ? 'flex' : 'none'}}>
                         <Image style={styles.icon} source={require('../../assets/FecharPreto.png')} />
                         </TouchableOpacity>
                 </View>
             </View>
             <View>
-                <Text style={[styles.text3, {color:color}]}>{status()}</Text>
+                <Text style={[styles.text3, {color:item.approved ? COLORS.successButton : '#000'}]}>{status()}</Text>
             </View>
         </View>
     );
@@ -95,8 +88,6 @@ const styles = StyleSheet.create({
     icon: {
         width: 25,
         height: 25,
-        marginLeft:5,
-        marginTop:-10
     },
     textBold: {
         fontSize: 15,
@@ -116,7 +107,7 @@ const styles = StyleSheet.create({
     },
     text3: {
         textAlign: 'center',
-        fontSize: 17,
+        fontSize: 15,
         marginBottom: 10
     },
 });

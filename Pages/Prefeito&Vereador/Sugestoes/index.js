@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, ScrollView } from 'react-native';
-import { GameContext, getSuggest } from "../../../contexts/GameContext";
+import { GameContext } from "../../../contexts/GameContext";
 
 import Coin from '../../../Components/Coin';
 import SugestoesRecebidas from '../../../Components/SugestoesRecebidas';
@@ -10,36 +10,32 @@ import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function Sugestoes({ navigation }) {
     const [modalText, setModalText] = useState('');
-    const { player, data: suggest, stage } = useContext(GameContext);
-
-    useEffect(() => {
-        getSuggest();
-    }, []);
-
-    useEffect(() => {
-        console.log(suggest);
-    }, [stage]);
-
+    const { player, suggests } = useContext(GameContext);
     return (
         <View style={styles.container}>
             <Rodada name={'Sugestões'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
             <Coin coin={player.serviceSalary} />
             <Text style={styles.texto}>Sugestões:</Text>
             {player.office === 'Prefeito' && (
-            <SugestoesRecebidas/>
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={suggests}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item, index }) => <SugestoesRecebidas key={index} item={item} />}
+                />
             )}
 
             {player.office === 'Vereador' && (
-                 stage === 'GETSUGGEST' &&(
-                     <FlatList
-                     showsVerticalScrollIndicator={false}
-                     data={suggest}
-                     keyExtractor={(item, index) => index.toString()}
-                     renderItem={({ item, index }) => <SugestoesEnviadas key={index} item={item} />}
-                 />
-                 )
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={suggests}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item, index }) => <SugestoesEnviadas key={index} item={item} />}
+                />
             )}
-
+            {suggests.length === 0 && (
+                <Text style={{ flex: 1.5, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, justifyContent: 'center' }}>Você não fez sugestões!</Text>
+            )}
 
             {/* {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
             <View style={{ flex: 1.50 }}>

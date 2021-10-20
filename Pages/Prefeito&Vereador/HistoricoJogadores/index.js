@@ -6,6 +6,7 @@ import { GameContext } from '../../../contexts/GameContext';
 import Rodada from '../../../Components/Rodada';
 import FiltroHistoricoJogadores from '../../../Components/FiltroHistoricoJogadores'
 import IMAGES from '../../../constants/imagesIcons';
+import { Fragment } from 'react';
 const Tela = Dimensions.get('screen').width;
 export default function HistoricoJogadores({ navigation }) {
 
@@ -14,7 +15,7 @@ export default function HistoricoJogadores({ navigation }) {
 	const [selectClient, setSelectClient] = useState(-1);
 
 	return (
-		<View>
+		<Fragment>
 			<Rodada name={'HistoricoJogadores'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
 			<View style={styles.container}>
 				<View style={styles.espaco}>
@@ -41,14 +42,13 @@ export default function HistoricoJogadores({ navigation }) {
 
 
 			</View>
-		</View>
+		</Fragment>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		width: Tela,
 	},
 	row: {
 		flexDirection: 'row',

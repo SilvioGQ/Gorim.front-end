@@ -5,6 +5,7 @@ const initialState = {
   player: {},
   data: null,
   logs: [],
+  suggests:[],
   offers: [],
   notify: { scene: false, offers: false }
 }
@@ -118,6 +119,11 @@ const reducer = (state, action) => {
         notify: initialState.notify,
         round: action.payload[1].match.round,
         awaitPlayers: action.payload[1].awaitPlayers.length,
+      };
+      case 'GETSUGGESTS':
+      return {
+        ...state,
+        suggests: action.payload
       };
     case 'RECONNECTED':
       return {

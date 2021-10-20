@@ -96,8 +96,8 @@ const GameProvider = (props) => {
     socket.on('getCityTax', (tax) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETCITYTAX', tax] });
     });
-    socket.on('getSuggest', (taxs) => {
-      dispatch({ type: 'CHANGEDATA', payload: ['GETSUGGEST', taxs] });
+    socket.on('getSuggests', (suggests) => {
+      dispatch({ type: 'GETSUGGESTS', payload: suggests });
     });
     socket.on('suggestFine', (suggest) => {
       dispatch({ type: 'CHANGEDATA', payload: ['SUGGESTFINE', suggest] });
@@ -266,12 +266,14 @@ const suggestTax = (suggest) => {
   socket.emit('suggestTax', suggest);
 }
 
-const getSuggest = () => {
-  socket.emit('getSuggest');
-}
-
 const suggestPrevention = (suggest) => {
   socket.emit('suggestPrevention', suggest);
+}
+const deleteSuggest = (suggest) => {
+  socket.emit('deleteSuggest', suggest);
+}
+const toggleApprovedSuggest = (suggest, status) => {
+  socket.emit('toggleApprovedSuggest', suggest, status);
 }
 export {
   GameContext,
@@ -305,5 +307,6 @@ export {
   getCityTax,
   suggestTax,
   suggestPrevention,
-  getSuggest
+  deleteSuggest,
+  toggleApprovedSuggest
 };

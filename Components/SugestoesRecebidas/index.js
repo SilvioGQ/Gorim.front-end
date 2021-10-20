@@ -1,32 +1,32 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { GameContext } from "../../contexts/GameContext";
+import { GameContext, toggleApprovedSuggest } from "../../contexts/GameContext";
 
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 
 const Tela = Dimensions.get('screen').width;
-export default function SugestoesRecebidas({ item, confirmOffer, rejectOffer }) {
+export default function SugestoesRecebidas({ item }) {
     const { player } = useContext(GameContext);
     return (
         <View style={styles.colunm}>
-                <View style={styles.row3}>
-                    <View style={{marginLeft: 20}}>
-                        <Image style={styles.person} source={IMAGES[player.avatar]} />
-                        <Text style={styles.text}>{player.type.slice(0, 3)}/{player.name}</Text>
-                    </View>
-                        <View style={{ marginLeft: 10 }}>
-                            <Text style={styles.text2}>Alteração de imposto:</Text>
-                            <Text style={styles.text1}>Para produtividade acima de 200</Text>
-                            <Text style={styles.textBold}>15%</Text>
-                        </View>
+            <View style={styles.row3}>
+                <View style={{ marginLeft: 20 }}>
+                    <Image style={styles.person} source={IMAGES[player.avatar]} />
+                    <Text style={styles.text}>{player.type.slice(0, 3)}/{player.name}</Text>
                 </View>
-                <View style={styles.row}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => confirmOffer(item)} activeOpacity={0.7}>
+                <View style={{ marginLeft: 10 }}>
+                    <Text style={styles.text2}>{item.type === 'tax' ? "Alteração de imposto" : "Medida de prevenção"}</Text>
+                    <Text style={styles.text1}>{item.label}</Text>
+                    <Text style={styles.textBold}>{item.value > 0 ? `$${item.value}` : `${item.percentual}%`}</Text>
+                </View>
+            </View>
+            <View style={styles.row}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => toggleApprovedSuggest(item, true)} activeOpacity={0.7}>
                     <Text style={styles.textbutton}>Aceitar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => rejectOffer(item)} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.button} onPress={() => toggleApprovedSuggest(item, false)} activeOpacity={0.7}>
                     <Text style={styles.textbutton}>Recusar</Text>
                 </TouchableOpacity>
             </View>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 13,
         marginVertical: 5,
-        marginRight:5
+        marginRight: 5
     },
     text2: {
         fontSize: 15,
