@@ -135,7 +135,6 @@ export default function Cenario({ navigation }) {
               }
             })
             :
-            player.office !== 'Vereador' && (
               player.logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logsOffice.filter((item) => item.type == type).map((item, index) => {
                 if (item.type === 'transfer') {
                   return <HistoricosDinheiro key={index} item={item} />
@@ -143,16 +142,6 @@ export default function Cenario({ navigation }) {
                   return <HistoricoPolitico key={index} item={item} />
                 }
               })
-            )
-          }
-          {phase === 2 && player.office == "Vereador" ?
-            players.find((item)=>item.office === "Prefeito").logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : players.find((item)=>item.office === "Prefeito").logsOffice.filter((item) => item.type == type).map((item, index) => {
-              if (item.type === 'fine' || item.type === 'stamp' || item.type === 'tax' || item.type === 'prevention') {
-                return <HistoricoPolitico key={index} item={item} />
-              }
-            })
-            :
-            null
           }
         </View>
       </ScrollView>

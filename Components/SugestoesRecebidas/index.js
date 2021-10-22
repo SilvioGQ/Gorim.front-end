@@ -1,8 +1,8 @@
 
-import React, {useContext } from 'react';
+import React, {useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { GameContext, toggleApprovedSuggest } from "../../contexts/GameContext";
-
+import ModalInfo from '../../Components/ModalInfo';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import IMAGES2 from '../../constants/imagesProducts';
@@ -10,6 +10,7 @@ import IMAGES2 from '../../constants/imagesProducts';
 const Tela = Dimensions.get('screen').width;
 export default function SugestoesRecebidas({ item }) {
     const { player } = useContext(GameContext);
+    const [modalText, setModalText] = useState('');
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
@@ -20,6 +21,7 @@ export default function SugestoesRecebidas({ item }) {
                 <View style={{ position: 'absolute', marginLeft: 55 }}>
                     <Image style={styles.icon} source={item.type === 'tax' ? IMAGES2['tax'] : IMAGES2[item.label] } />
                 </View>
+                {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText}/>}
                 <View style={{ marginLeft: 10 }}>
                     <Text style={styles.text2}>{item.type === 'tax' ? "Alteração de imposto" : "Medida de prevenção"}</Text>
                     <Text style={styles.text1}>{item.label}</Text>
@@ -27,10 +29,10 @@ export default function SugestoesRecebidas({ item }) {
                 </View>
             </View>
             <View style={styles.row}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() => toggleApprovedSuggest(item, true)} activeOpacity={0.7}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() =>  {if(item.value > player.serviceSalary && item.type !== 'tax') return setModalText('Saldo insuficiente'); else return toggleApprovedSuggest(item, true)}} activeOpacity={0.7}>
                     <Text style={styles.textbutton}>Aceitar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => toggleApprovedSuggest(item, false)} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.button} onPress={() =>toggleApprovedSuggest(item, false)} activeOpacity={0.7}>
                     <Text style={styles.textbutton}>Recusar</Text>
                 </TouchableOpacity>
             </View>
