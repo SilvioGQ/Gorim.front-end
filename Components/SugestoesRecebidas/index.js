@@ -1,10 +1,11 @@
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, {useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { GameContext, toggleApprovedSuggest } from "../../contexts/GameContext";
 
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
+import IMAGES2 from '../../constants/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
 export default function SugestoesRecebidas({ item }) {
@@ -15,6 +16,9 @@ export default function SugestoesRecebidas({ item }) {
                 <View style={{ marginLeft: 20 }}>
                     <Image style={styles.person} source={IMAGES[player.avatar]} />
                     <Text style={styles.text}>{player.type.slice(0, 3)}/{player.name}</Text>
+                </View>
+                <View style={{ position: 'absolute', marginLeft: 55 }}>
+                    <Image style={styles.icon} source={item.type === 'tax' ? IMAGES2['tax'] : IMAGES2[item.label] } />
                 </View>
                 <View style={{ marginLeft: 10 }}>
                     <Text style={styles.text2}>{item.type === 'tax' ? "Alteração de imposto" : "Medida de prevenção"}</Text>
@@ -75,6 +79,11 @@ const styles = StyleSheet.create({
     person: {
         width: 48,
         height: 49,
+    },
+    icon: {
+        width: 22,
+        height: 21,
+        marginTop: 30,
     },
     textBold: {
         fontSize: 15,

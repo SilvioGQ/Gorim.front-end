@@ -37,32 +37,6 @@ export default function Sugestoes({ navigation }) {
                 <Text style={{ flex: 1.5, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, justifyContent: 'center' }}>Você não fez sugestões!</Text>
             )}
 
-            {/* {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
-            <View style={{ flex: 1.50 }}>
-                <Text style={styles.text}>Anúncios</Text>
-                <FilterType type={type} setType={setType} />
-                {!offers.all || offers.all.length === 0 ?
-                    <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-                    : <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={selectType()}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
-                    />
-                }
-            </View>
-            <View style={{ flex: 1 }}>
-                <Text style={styles.text}>Negociação individual</Text>
-                {!offers.individual || offers.individual.length === 0 ?
-                    <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
-                    : <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={offers.individual}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
-                    />
-                }
-            </View> */}
         </View>
     );
 }

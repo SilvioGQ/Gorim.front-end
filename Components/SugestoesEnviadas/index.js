@@ -5,6 +5,7 @@ import { GameContext, deleteSuggest } from "../../contexts/GameContext";
 
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
+import IMAGES2 from '../../constants/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
 export default function SugestoesEnviadas({ item }) {
@@ -26,6 +27,9 @@ export default function SugestoesEnviadas({ item }) {
                         <Image style={styles.person} source={IMAGES[player.avatar]} />
                         <Text style={styles.text}>{player.office.slice(0, 3)}/{player.name}</Text>
                     </View>
+                    <View style={{ position: 'absolute', marginLeft: 55 }}>
+                        <Image style={styles.icon2} source={item.type === 'tax' ? IMAGES2['tax'] : IMAGES2[item.label] } />
+                     </View>
                         <View style={{ marginLeft: 10 }}>
                             <Text style={styles.text2}>{item.type === 'tax' ? "Alteração de imposto" : "Medida de prevenção"}</Text>
                             <Text style={styles.text1}>{item.label}</Text>
@@ -88,6 +92,11 @@ const styles = StyleSheet.create({
     icon: {
         width: 25,
         height: 25,
+    },
+    icon2: {
+        width: 22,
+        height: 21,
+        marginTop: 30,
     },
     textBold: {
         fontSize: 15,
