@@ -20,7 +20,7 @@ export default function Rodada({ removeFromRoom = null, close = null, name, setM
       <Text style={styles.textLarge}>{name} {timer >= 0 ? `(${stringTimer(timer)})` : ''}</Text>
       {close && (
         <>
-          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '82%', top: 25 }} activeOpacity={0.7}>
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '83%', top: 25 }} activeOpacity={0.7}>
             <Text style={styles.textExit}>Sair</Text>
           </TouchableOpacity>
         </>

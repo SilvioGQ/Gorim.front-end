@@ -86,9 +86,11 @@ const apply = ()=>{
         <Button
           onClick={() => apply()}
           name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
+        {player.office === 'Prefeito' && (
         <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={() => { applyDefaultTax(); }}>
           <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
         </TouchableOpacity>
+        )}
       </ScrollView>
     </View>
   );
