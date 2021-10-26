@@ -25,7 +25,7 @@ export default function Cenario({ navigation }) {
     calcPlayerTax();
     disableNotifyScene();
   }, []);
-  console.log(players.find((item)=>item.office === "Prefeito"))
+  // console.log(players.find((item)=>item.office === "Prefeito"))
   return (
     <View>
       <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />
@@ -53,7 +53,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
               <TouchableOpacity style={[styles.bloquinho, { width: 145 }]} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
                 <Text style={{ fontSize: 24, fontFamily: 'Rubik_300Light', marginTop: '7%', color: '#BF0000' }}>
-                  {globalPollution}%
+                  {globalPollution /*.toFixed(0)*/}%
                 </Text>
                 <Text style={styles.inferior}>
                   Poluição
@@ -85,7 +85,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
                 <Text style={[styles.numero, { color: '#BF0000' }]}>
-                  {globalPollution}%
+                  {globalPollution.toFixed(0)}%
                 </Text>
                 <Text style={styles.inferior}>
                   Poluição
@@ -117,7 +117,7 @@ export default function Cenario({ navigation }) {
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,1)', borderColor: '#BF0000', opacity: 0.7, }]}>
-                  <Text style={styles.numero2}>{player.pollution.toFixed(1).toString().indexOf('.0') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text>
+                  <Text style={styles.numero2}>{player.pollution.toFixed(0)}</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
               </View>
