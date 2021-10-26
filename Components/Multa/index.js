@@ -1,26 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Picker } from 'react-native';
 import { GameContext, suggestFine } from '../../contexts/GameContext';
-
-import Dropdown from 'react-native-dropdown-enhanced';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
 
-const data = [
-  { label: 'Nenhuma', value: 1 },
-  { label: 'Baixa', value: 2 },
-  { label: 'Média', value: 3 },
-  { label: 'Alta', value: 4 },
-];
-
-export default function MultaComponent({ item, onclick, display, numero, setNumero, onClike }) {
+export default function MultaComponent({ item, onclick, display, onClike }) {
   const { player, data: suggest, stage } = useContext(GameContext);
-
+  const [numero, setNumero] = useState('Nenhuma');
   useEffect(() => {
     suggestFine();
   }, []);
-
+  // setNumero(suggest.find(p => p.playerId === player.id).label)
   return (
     <View style={styles.container}>
       <View>
@@ -32,16 +23,20 @@ export default function MultaComponent({ item, onclick, display, numero, setNume
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.text}>Multa:</Text>
           {stage === 'SUGGESTFINE' && (
-            <Dropdown
-              data={data}
-              style={{ height: 28, width: 110, borderRadius: 17 }}
-              defaultValue={suggest.find(p => p.playerId === player.id).gravity + 1}
-              onSelectedChange={({ label }) => setNumero(label)}
-            />
+          <Picker
+            selectedValue={numero}
+            style={{ height: 28, width: 110, borderRadius: 17 }}
+            onValueChange={(itemValue) => setNumero(itemValue)}
+          >
+            <Picker.Item label="Nenhuma" value={"Nenhuma"} />
+            <Picker.Item label="Baixa" value={"Baixa"} />
+            <Picker.Item label="Média" value={"Média"} />
+            <Picker.Item label="Alta" value={"Alta"} />
+          </Picker>
           )}
         </View>
         <View style={styles.row}>
-          <TouchableOpacity style={styles.button} onPress={onClike} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.button} onPress={() => onClike(item.id, numero)} activeOpacity={0.7}>
             <Text style={styles.textbutton}>CONFIRMAR</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={onclick} activeOpacity={0.7}>
