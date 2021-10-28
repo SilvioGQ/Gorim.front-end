@@ -16,7 +16,7 @@ export default function HistoricoJogadores({ navigation }) {
 
 	return (
 		<Fragment>
-			<Rodada name={'HistoricoJogadores'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+			<Rodada name={'Histórico Jogadores'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
 			<View style={styles.container}>
 				<View style={styles.espaco}>
 					<Image

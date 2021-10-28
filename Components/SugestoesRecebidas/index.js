@@ -9,14 +9,18 @@ import IMAGES2 from '../../constants/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
 export default function SugestoesRecebidas({ item }) {
-    const { player } = useContext(GameContext);
+    const { player, players } = useContext(GameContext);
+    const Buyer = () => {
+        let p = players.find(i => i.office == 'Vereador' && i.city === player.city);
+        return p;
+      }
     const [modalText, setModalText] = useState('');
     return (
         <View style={styles.colunm}>
             <View style={styles.row3}>
                 <View style={{ marginLeft: 20 }}>
-                    <Image style={styles.person} source={IMAGES[player.avatar]} />
-                    <Text style={styles.text}>{player.type.slice(0, 3)}/{player.name}</Text>
+                    <Image style={styles.person} source={IMAGES[Buyer().avatar]} />
+                    <Text style={styles.text}>{Buyer().office.slice(0, 3)}/{Buyer().name}</Text>
                 </View>
                 <View style={{ position: 'absolute', marginLeft: 55 }}>
                     <Image style={styles.icon} source={item.type === 'tax' ? IMAGES2['tax'] : IMAGES2[item.label] } />
