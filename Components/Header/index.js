@@ -30,7 +30,7 @@ export default function Header({ typeMenu = 'player' }) {
           style={styles.pollution}
           source={require('../../assets/agricultorIcones/Barril.png')}
         />
-        <Text style={{ color: mudarcor(globalPollution), fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollution ? globalPollution /*.toFixed(0)*/: null}%</Text>
+        <Text style={{ color: mudarcor(globalPollution), fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollution}%</Text>
       </View>
       <View>
         <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} />

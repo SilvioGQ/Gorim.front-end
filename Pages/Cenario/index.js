@@ -53,7 +53,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
               <TouchableOpacity style={[styles.bloquinho, { width: 145 }]} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
                 <Text style={{ fontSize: 24, fontFamily: 'Rubik_300Light', marginTop: '7%', color: '#BF0000' }}>
-                  {globalPollution /*.toFixed(0)*/}%
+                  {globalPollution}%
                 </Text>
                 <Text style={styles.inferior}>
                   Poluição
@@ -85,7 +85,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
                 <Text style={[styles.numero, { color: '#BF0000' }]}>
-                  {globalPollution.toFixed(0)}%
+                  {globalPollution}%
                 </Text>
                 <Text style={styles.inferior}>
                   Poluição
