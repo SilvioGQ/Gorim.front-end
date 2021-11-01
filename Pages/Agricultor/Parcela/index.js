@@ -74,6 +74,7 @@ export default function Parcela({ route, navigation }) {
             <Image source={IMAGESMENU["Pedir selo verde"]} style={styles.pulverize} />
           </TouchableOpacity>
         )}
+        {parcelLand.requestStamp && <Text style={{ fontSize: 18, textAlign: 'center', fontFamily:'Rubik_700Bold' }}>Sele requisitado!</Text>}
         <Text style={styles.title}>Nesta parcela:</Text>
 
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown(!dropDown) }} activeOpacity={0.7}>

@@ -1,42 +1,25 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, CheckBox, TouchableOpacity } from 'react-native';
-
-import COLORS from '../../constants/colors';
-
-export default function Candidato() {
-  const [isSelected, setSelection] = useState(false);
-  const [isSelected2, setSelection2] = useState(false);
-  const [isSelected3, setSelection3] = useState(false);
+import { Text, View, StyleSheet, CheckBox, TouchableOpacity } from 'react-native';
+export default function CheckBox1({callback,text, onValueChange}) {
+  const [selectedIndex, setSelectedIndex] = React.useState(-1);
+  console.log(id)
+  const handleCheckboxChange = (id) => {
+    setSelectedIndex(id)
+    if (onValueChange) {
+      onValueChange(text, id);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <CheckBox
-          value={isSelected}
-          onValueChange={setSelection}
           style={styles.checkbox}
+          onValueChange={onValueChange}
+          selectedIndex={selectedIndex}
+          onCheckboxChange={handleCheckboxChange}
         />
-        <TouchableOpacity onPress={() => { setSelection(!isSelected) }} activeOpacity={0.7}>
-          <Text style={styles.candidato}>Me candidato a prefeito!</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
-        <CheckBox
-          value={isSelected2}
-          onValueChange={setSelection2}
-          style={styles.checkbox}
-        />
-        <TouchableOpacity onPress={() => { setSelection2(!isSelected2) }} activeOpacity={0.7}>
-          <Text style={styles.candidato}>Me candidato a vereador!</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
-        <CheckBox
-          value={isSelected3}
-          onValueChange={setSelection3}
-          style={styles.checkbox}
-        />
-        <TouchableOpacity onPress={() => { setSelection3(!isSelected3) }} activeOpacity={0.7}>
-          <Text style={styles.candidato}>Me candidato a fiscal!</Text>
+        <TouchableOpacity onPress={() => {  }} activeOpacity={0.7}>
+          <Text style={styles.candidato}>{text}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -45,23 +28,19 @@ export default function Candidato() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.8,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    marginTop: 40
+    flex: 0.4,
+    justifyContent: 'center',
   },
   row: {
     flexDirection: 'row',
   },
   candidato: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 20,
-    alignItems: 'center',
-    marginHorizontal: 12
+    fontSize: 18,
+    marginLeft: 10
   },
   checkbox: {
     height: 20,
     width: 20,
-    marginLeft: 10
   }
 });
