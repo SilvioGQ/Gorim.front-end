@@ -2,54 +2,40 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import COLORS from '../../../constants/colors';
-
+import Rodada from '../../../Components/Rodada';
 import Voto from '../../../assets/symbols/vote.png';
-import { StatusBar } from 'react-native';
-// import Man from '../../../assets/avatars/empresariox2/man1x2.png';
 
 const Tela = Dimensions.get('screen').width
-export default function Frame7({ navigation }) {
+export default function Votacao({ navigation }) {
   return (
     <View style={styles.container}>
+      <Rodada name={'Eleitos'} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.self}>
           <Image
             style={styles.logo}
             source={Voto}
           />
-          <Text style={styles.title}>Eleições em {"\n"} localização </Text>
+          <Text style={styles.title}>Eleições em {"\n"} {/*player.city*/} </Text>
         </View>
-        <View style={{ alignItems: 'flex-start', marginLeft: '12%' }}>
-          <Text style={styles.Resultado}>Resultados:</Text>
-          <Text style={styles.texto}>Eleito a prefeito com X votos: </Text>
-          <Image 
-            style={styles.person}
-            source={Man}
-          />
-          <Text style={styles.self2}>Joao</Text>
-          <Text style={styles.texto}> Eleito a vereador com X votos: </Text>
-          <Image 
-            style={styles.person}
-            source={Man}
-          />
-          <Text style={styles.self2}>Joao</Text>
-          <Text style={styles.texto}> Eleito a Fiscal com X votos: </Text>
-          <Image
-            style={styles.person}
-            source={Man}
-          />
-          <Text style={styles.self2}>Joao</Text>
+        <View style={{ marginLeft: 15 }}>
+          <Text style={styles.resultado}> Resultados:</Text>
+          <Text style={styles.texto}>Eleito para prefeito com X votos: </Text>
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={{ height: 100, width: 90, alignSelf: 'center', marginVertical: 30 }} />
+          <Text style={styles.texto}>Eleito para vereador com X votos: </Text>
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={{ height: 100, width: 90, alignSelf: 'center', marginVertical: 30 }} />
+          <Text style={styles.texto}>Eleito para fiscal com X votos: </Text>
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={{ height: 100, width: 90, alignSelf: 'center', marginVertical: 30 }} />
         </View>
         <Button
-          onClick={() => navigation.reset({
-            routes: [{ name: 'frame8' }]
-          })}
-          name='CONTINUAR'
+          onClick={() => navigation.navigate('frame7')}
+          name='Continuar'
         />
       </ScrollView>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -57,48 +43,41 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
-    paddingTop:StatusBar.currentHeight,
+    padding: 5,
     width: Tela
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center'
   },
   self: {
     flexDirection: 'row',
-    alignSelf: 'center'
-  },
-  self2: {
     alignSelf: 'center',
-    marginRight: '17%'
+    justifyContent: 'center',
+    marginVertical:20
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    paddingLeft: '12%'
   },
   title: {
     fontFamily: 'Rubik_300Light',
     fontSize: 22,
-    alignItems: 'center',
-    alignSelf: 'center'
+    alignItems: 'center'
   },
   logo: {
     width: 60,
     height: 60
   },
-  person: {
-    width: 95,
-    height: 105,
-    alignSelf: 'center',
-    marginRight: 60
-  },
   texto: {
     fontFamily: 'Rubik_300Light',
     fontSize: 17,
-    lineHeight: 49,
-    alignItems: 'center'
+    lineHeight: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  Resultado: {
+  resultado: {
     fontFamily: 'Rubik_300Light',
-    fontSize: 23,
     color: '#FFB800',
-    lineHeight: 49,
-    alignSelf: 'flex-start'
-  }
+    fontSize: 23,
+    marginVertical: 20
+  },
 });
