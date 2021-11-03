@@ -101,16 +101,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 1,
     marginLeft: 10
-  },
-  poluicao: {
-    fontSize: 22,
-    fontFamily: 'Rubik_400Regular',
-    color: '#FF0000'
-  },
-  poluicaoView: {
-    flexDirection: 'row',
-    position: 'absolute',
-    right: 30,
-    bottom: 20
   }
 });

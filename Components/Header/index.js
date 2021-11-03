@@ -54,19 +54,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_400Regular',
     fontSize: 18,
   },
-  textos: {
-    
-    fontSize: 20,
-    alignSelf: 'center'
-  },
-  textinhos: {
-    
-    fontSize: 14,
-  },
-  logo: {
-    width: 20,
-    height: 23
-  },
   pollution: {
     width: 18,
     height: 18,

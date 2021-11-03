@@ -9,7 +9,7 @@ export default function Item({ onClick, backgroundColor = '#fff', name, type, no
   return (
     <TouchableOpacity onPress={onClick}  >
       <View style={[styles.colunm, {backgroundColor:backgroundColor}]}>
-        {notification && <View style={{position:'absolute', left:82, width: 18, height: 18, borderRadius: 9, backgroundColor: '#F19F00', shadowColor: "#000",shadowOffset: { width: 0, height: 2,}, shadowOpacity: 0.25, shadowRadius: 3.94,elevation: 6,}} />}
+        {notification && <View style={[styles.notificacao]} />}
         <Image
           style={styles.icone}
           source={type == 'Produtos' ?  IMAGES[name] : IMAGES2[name]}
@@ -50,5 +50,20 @@ const styles = StyleSheet.create({
     textAlign:'center',
     marginHorizontal:5
   },
+  notificacao: {
+    position: 'absolute', 
+    left: 82, 
+    width: 18, 
+    height: 18, 
+    borderRadius: 9,
+    backgroundColor: '#F19F00', 
+    shadowColor: "#000", 
+    shadowOffset: { 
+      width: 0, 
+      height: 2, }, 
+      shadowOpacity: 0.25, 
+      shadowRadius: 3.94, 
+      elevation: 6,
+  }
 })
 //alt shift f

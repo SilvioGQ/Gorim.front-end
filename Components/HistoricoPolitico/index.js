@@ -14,48 +14,48 @@ export default function HistoricosDinheiro({ item }) {
             <View style={styles.row3}>
                 {player.office === 'Fiscal' ?
                     <>
-                    <View>
-                        <Image
-                            style={styles.icone}
-                            source={imagesProducts[item.type]}
-                        />
-                        <Text style={styles.text}>{item.type == 'fine' ? 'Multa' : 'Selo'}</Text>
-                    </View>
+                        <View>
+                            <Image
+                                style={styles.icone}
+                                source={imagesProducts[item.type]}
+                            />
+                            <Text style={styles.text}>{item.type == 'fine' ? 'Multa' : 'Selo'}</Text>
+                        </View>
 
-                    <View>
-                        <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'stamp'?  `${item.amount} selos ` : `$${item.value}`} </Text>
-                        <Image source={require('../../assets/Arrow.png')} style={{ width: 120, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
-                        <Text style={styles.text}>{item.type === 'stamp'?  `concedidos` : `${item.gravity}`}</Text>
-                    </View>
-                <View>
-                    <Image
-                        style={styles.icone}
-                        source={IMAGES[item.avatarPlayer]}
-                    />
-                    <Text style={styles.text}>{item.namePlayer}</Text>
-                </View>
-                </> :
-                <>
-                <View>
-                    <Image
-                        style={styles.icone}
-                        source={IMAGES[item.avatarPlayer]}
-                    />
-                    <Text style={styles.text}>{item.namePlayer}</Text>
-                </View>
-                    <View>
-                        <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'prevention'?  `$${item.value}` : `${item.label}`} </Text>
-                        <Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
-                        <Text style={styles.text}>{player.office === 'Vereador' ? 'Sugeriu' : 'Aplicou' }</Text>
-                    </View>
-                    <View>
-                        <Image
-                            style={styles.icone}
-                            source={imagesProducts[item.type === 'prevention' ? item.label : item.type]}
-                        />
-                        <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : item.value > 0 ? `$${item.value}` : `${item.percentual}%`}</Text>
-                    </View>
-                </>
+                        <View>
+                            <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'stamp' ? `${item.amount} selos ` : `$${item.value}`} </Text>
+                            <Image source={require('../../assets/Arrow.png')} style={{ width: 120, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
+                            <Text style={styles.text}>{item.type === 'stamp' ? `concedidos` : `${item.gravity}`}</Text>
+                        </View>
+                        <View>
+                            <Image
+                                style={styles.icone}
+                                source={IMAGES[item.avatarPlayer]}
+                            />
+                            <Text style={styles.text}>{item.namePlayer}</Text>
+                        </View>
+                    </> :
+                    <>
+                        <View>
+                            <Image
+                                style={styles.icone}
+                                source={IMAGES[item.avatarPlayer]}
+                            />
+                            <Text style={styles.text}>{item.namePlayer}</Text>
+                        </View>
+                        <View>
+                            <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'prevention' ? `$${item.value}` : `${item.label}`} </Text>
+                            <Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
+                            <Text style={styles.text}>{player.office === 'Vereador' ? 'Sugeriu' : 'Aplicou'}</Text>
+                        </View>
+                        <View>
+                            <Image
+                                style={styles.icone}
+                                source={imagesProducts[item.type === 'prevention' ? item.label : item.type]}
+                            />
+                            <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : item.value > 0 ? `$${item.value}` : `${item.percentual}%`}</Text>
+                        </View>
+                    </>
                 }
             </View>
         </View>
