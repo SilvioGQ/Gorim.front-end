@@ -34,7 +34,7 @@ export default function Sugestoes({ navigation }) {
                 />
             )}
             {suggests.length === 0 && (
-                <Text style={{ flex: 1.5, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, justifyContent: 'center' }}>Você não fez sugestões!</Text>
+                <Text style={styles.textBold}>Você não fez sugestões!</Text>
             )}
 
         </View>
@@ -46,13 +46,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        
         textAlign: 'center',
         fontSize: 20,
         marginBottom: 10
     },
     text: {
-        
         textAlign: 'center',
         fontSize: 20,
         marginVertical: 5
@@ -60,8 +58,14 @@ const styles = StyleSheet.create({
     textSmall: {
         textAlign: 'center',
         fontSize: 13,
-        
         marginTop: 9
+    },
+    textBold:{
+        flex: 1.5, 
+        textAlign: 'center', 
+        fontFamily: 'Rubik_700Bold', 
+        fontSize: 18, 
+        justifyContent: 'center'
     },
     button: {
         width: '22%',
