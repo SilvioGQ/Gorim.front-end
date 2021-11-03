@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 60,
-    color: COLORS.successButton
+    color: COLORS.successButton,
   },
   row: {
     flex: 1,

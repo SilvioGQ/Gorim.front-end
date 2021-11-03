@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 30,
-    fontFamily: 'Rubik_300Light',
+    
     fontWeight: 'normal',
     fontSize: 22,
     textAlign: 'center'

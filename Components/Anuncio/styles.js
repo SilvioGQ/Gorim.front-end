@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     },
     textNormal: {
       fontSize: 24,
-      fontFamily: 'Rubik_300Light',
     },
     text: {
       textAlign: 'center',

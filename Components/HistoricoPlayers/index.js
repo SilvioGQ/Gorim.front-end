@@ -31,7 +31,6 @@ export default function HistoricoPlayers({ player }) {
 
 const styles = StyleSheet.create({
   subtitle: {
-    fontFamily: 'Rubik_300Light',
     fontSize: 18,
     marginLeft: 10,
     marginTop: 10

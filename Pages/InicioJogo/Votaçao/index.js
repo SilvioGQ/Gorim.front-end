@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     paddingLeft: '12%'
   },
   title: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 22,
     alignItems: 'center',
     marginVertical: 10
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     height: 60
   },
   texto: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 17,
     lineHeight: 18,
     alignItems: 'center',

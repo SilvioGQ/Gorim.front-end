@@ -36,10 +36,10 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
           )}
         </View>
         <View style={styles.row}>
-          <TouchableOpacity style={styles.button} onPress={() => onClike(item.id, numero)} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.button} onPress={() => onClike(item.id, numero)}  >
             <Text style={styles.textbutton}>CONFIRMAR</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={onclick} activeOpacity={0.7}>
+          <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={onclick}  >
             <Text style={styles.textbutton}>VER MAIS</Text>
           </TouchableOpacity>
         </View>
@@ -69,13 +69,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontFamily: 'Rubik_300Light',
+    
     alignItems: 'center',
     marginTop: 5
   },
   textinhos: {
     fontSize: 13,
-    fontFamily: 'Rubik_300Light',
+    
     textAlign: 'center'
   },
   row: {

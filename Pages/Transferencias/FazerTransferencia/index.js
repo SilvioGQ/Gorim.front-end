@@ -34,7 +34,7 @@ export default function FazerTransferencia({ navigation }) {
       <Coin coin={phase === 1 ? player.coin : player.serviceSalary} />
       <View style={styles.header}>
         <Image style={{ width: 63, height: 61 }} source={require('../../../assets/icons/coin.png')} />
-        <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20 }}>Fazer {'\n'}transferência</Text>
+        <Text style={{  fontSize: 20 }}>Fazer {'\n'}transferência</Text>
       </View>
       <Text style={styles.text}>Destinatário:</Text>
       <View style={{ alignItems: 'center' }}>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     marginTop: 30,
-    fontFamily: 'Rubik_300Light',
+    
     marginHorizontal: 15,
   }
 });

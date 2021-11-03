@@ -44,18 +44,18 @@ export default function Oferta({ item, confirmOffer }) {
         />
       </View>
       <View style={styles.row}>
-          <TouchableOpacity style={styles.button} onPress={() => { confirmOffer(item, count); setCount(1); }} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.button} onPress={() => { confirmOffer(item, count); setCount(1); }}  >
           <Text style={styles.textbutton}>COMPRAR</Text>
         </TouchableOpacity>
         <Text style={styles.text}> Quantidade:</Text>
         <View style={styles.arrows}>
-            <TouchableOpacity onPress={decreaseCount} activeOpacity={0.7}>
+            <TouchableOpacity onPress={decreaseCount}  >
             <Text style={styles.textDecrease}>-</Text>
           </TouchableOpacity>
           <View style={styles.buttonAmount}>
             <Text style={styles.textAmount}>{count > item.amount ? item.amount : count}</Text>
           </View>
-            <TouchableOpacity onPress={increaseCount} activeOpacity={0.7}>
+            <TouchableOpacity onPress={increaseCount}  >
             <Text style={styles.textIncrease}>+</Text>
           </TouchableOpacity>
         </View>

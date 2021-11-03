@@ -33,7 +33,20 @@ import Status from './Status';
 import Historico from './Historico';
 import HistoricoJogadores from './Prefeito&Vereador/HistoricoJogadores';
 import Sugestoes from './Prefeito&Vereador/Sugestoes';
-
+import {
+  setCustomText,
+  setCustomTouchableOpacity
+} from 'react-native-global-props';
+const customTextProps = {
+  style: {
+    fontFamily: 'Rubik_300Light'
+  }
+};
+const CustomTouchableOpacityProps = {
+  activeOpacity: 0.7
+};
+setCustomText(customTextProps);
+setCustomTouchableOpacity(CustomTouchableOpacityProps)
 const Stack = createStackNavigator();
 export default function Routes() {
   return (

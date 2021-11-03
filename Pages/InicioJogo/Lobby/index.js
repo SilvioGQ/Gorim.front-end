@@ -33,7 +33,7 @@ export default function Lobby({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)} activeOpacity={0.7}>
+      <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => setModalVisible(!modalVisible)}  >
         <Image style={styles.image} source={require('../../../assets/FecharPreto.png')} />
       </TouchableOpacity>
       <Text style={styles.textcod}>CÓDIGO DA SALA</Text>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 32,
-    fontFamily: 'Rubik_300Light',
+    
     marginTop: 5,
     textAlign: 'center',
     alignItems: 'center',
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   textcod: {
     fontWeight: 'bold',
     fontSize: 32,
-    fontFamily: 'Rubik_300Light',
+    
     paddingTop: 7,
     textAlign: 'center',
     alignItems: 'center',
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   listText: {
     fontSize: 22,
-    fontFamily: 'Rubik_300Light',
+    
     marginLeft: 10,
   },
 });

@@ -14,7 +14,7 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
         <View style={styles.container}>
           {title && (
             <>
-              <Text style={{ marginVertical: 10, textAlign: "center", fontFamily: 'Rubik_300Light', fontSize: 24 }}>{player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}`}</Text>
+              <Text style={{ marginVertical: 10, textAlign: "center",  fontSize: 24 }}>{player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}`}</Text>
             </>
           )}
           <Text style={styles.loading}>{text}</Text>
@@ -58,7 +58,7 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
           <TouchableOpacity
             style={{ borderRadius: 20, padding: 10, elevation: 5, backgroundColor: COLORS.successButton, alignItems: 'center', width: 250, display: display }}
             onPress={onClick}
-            activeOpacity={0.7}
+             
           >
             <Text style={{ textAlign: 'center', fontFamily: 'Rubik_400Regular', fontSize: 18, color: COLORS.textWhite }}>VOLTAR</Text>
           </TouchableOpacity>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   loading: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 18,
     textAlign: 'justify',
     marginBottom: 25,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   texto: {
     marginBottom: 15, 
     textAlign: 'left', 
-    fontFamily: 'Rubik_300Light', 
+     
     fontSize: 14
   },
   estilo: {
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginRight: 5 
   },
   texto1: {
-    fontFamily: 'Rubik_300Light', 
+     
     fontWeight: 'bold', 
     color: '#58AB23', 
     fontSize: 18, 
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   texto2: {
-    fontFamily: 'Rubik_300Light', 
+     
     fontWeight: 'bold', 
     color: COLORS.warningButton, 
     fontSize: 18, 

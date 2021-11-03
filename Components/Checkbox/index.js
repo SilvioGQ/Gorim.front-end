@@ -15,7 +15,7 @@ export default function Candidato() {
 
           style={styles.checkbox}
         />
-        <TouchableOpacity onPress={() => { setSelection(true); setSelection2(false); setSelection3(false) }} activeOpacity={0.7}>
+        <TouchableOpacity onPress={() => { setSelection(true); setSelection2(false); setSelection3(false) }}  >
           <Text style={styles.candidato}>Me candidato a prefeito!</Text>
         </TouchableOpacity>
       </View>
@@ -25,7 +25,7 @@ export default function Candidato() {
   
           style={styles.checkbox}
         />
-        <TouchableOpacity onPress={() => { setSelection2(true); setSelection(false); setSelection3(false) }} activeOpacity={0.7}>
+        <TouchableOpacity onPress={() => { setSelection2(true); setSelection(false); setSelection3(false) }}  >
           <Text style={styles.candidato}>Me candidato a vereador!</Text>
         </TouchableOpacity>
       </View>
@@ -35,7 +35,7 @@ export default function Candidato() {
   
           style={styles.checkbox}
         />
-        <TouchableOpacity onPress={() => { setSelection3(true); setSelection2(false); setSelection(false) }} activeOpacity={0.7}>
+        <TouchableOpacity onPress={() => { setSelection3(true); setSelection2(false); setSelection(false) }}  >
           <Text style={styles.candidato}>Me candidato a fiscal!</Text>
         </TouchableOpacity>
       </View>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   candidato: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 20,
     alignItems: 'center',
     marginHorizontal: 12

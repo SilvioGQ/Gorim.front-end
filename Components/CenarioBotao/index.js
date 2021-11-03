@@ -14,7 +14,7 @@ export default function Cenarios({ seeScenery, endStage, notification }) {
             <View style={[styles.notificacao]} />}
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={endStage} activeOpacity={0.7}>
+      <TouchableOpacity onPress={endStage}  >
         <View style={styles.resumo}>
           <Text style={styles.candidato}>Finalizar etapa</Text>
         </View>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   candidato: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 12,
     paddingHorizontal: 20
   },
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   titulo: {
-    fontFamily: 'Rubik_300Light', 
+     
     fontSize: 12, 
     paddingHorizontal: 5
   },

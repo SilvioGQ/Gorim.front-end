@@ -8,22 +8,22 @@ export default function Quantidade({selectAmount, setSelectAmount}) {
   )
   return (
       <View style={styles.view}>
-      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(1)} activeOpacity={0.7}>
+      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(1)}  >
         <Text style={[styles.numeros2, { color: selectAmount >= 1 ? "#fff" : '#000' }]}>1</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(2)} activeOpacity={0.7}>
+      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(2)}  >
         <Text style={[styles.numeros2, { color: selectAmount >= 2 ? "#fff" : '#000' }]}>2</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(3)} activeOpacity={0.7}>
+      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(3)}  >
         <Text style={[styles.numeros2, { color: selectAmount >= 3 ? "#fff" : '#000' }]}>3</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 4 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(4)} activeOpacity={0.7}>
+      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 4 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(4)}  >
         <Text style={[styles.numeros2, { color: selectAmount >= 4 ? "#fff" : '#000' }]}>4</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 5 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(5)} activeOpacity={0.7}>
+      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 5 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(5)}  >
         <Text style={[styles.numeros2, { color: selectAmount >= 5 ? "#fff" : '#000' }]}>5</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 6 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(6)} activeOpacity={0.7}>
+      <TouchableOpacity style={[styles.numeros, { backgroundColor: selectAmount >= 6 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectAmount(6)}  >
         <Text style={[styles.numeros2, { color: selectAmount >= 6 ? "#fff" : '#000' }]}>6</Text>
         </TouchableOpacity>
       </View>

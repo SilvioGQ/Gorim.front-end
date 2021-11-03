@@ -20,14 +20,14 @@ export default function Rodada({ removeFromRoom = null, close = null, name, setM
       <Text style={styles.textLarge}>{name} {timer >= 0 ? `(${stringTimer(timer)})` : ''}</Text>
       {close && (
         <>
-          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '83%', top: 25 }} activeOpacity={0.7}>
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '83%', top: 25 }}  >
             <Text style={styles.textExit}>Sair</Text>
           </TouchableOpacity>
         </>
       )}
       {arrow && (
         <>
-          <TouchableOpacity onPress={onClick} style={{ position: 'absolute', left: '7%', top: 20 }} activeOpacity={0.7}>
+          <TouchableOpacity onPress={onClick} style={{ position: 'absolute', left: '7%', top: 20 }}  >
             <View style={{width:60,height:35}}>
             <Image style={styles.arrow} source={require('../../assets/icons/left-arrow.png')}  />
             </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   textLarge: {
     color: '#ffffff',
     fontSize: 20,
-    fontFamily: 'Rubik_300Light',
+    
     marginLeft: 5,
     alignSelf: 'center',
     marginTop: -10

@@ -61,10 +61,10 @@ export default function FilterCenary({ type, setType }) {
 			)}
 			{player.type === 'Empresário' && phase === 1 && (
 				<>
-					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}  >
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }}  >
 						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Vendas</Text>
 					</TouchableOpacity>
 				</>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 	textSmall: {
 		textAlign: 'center',
 		fontSize: Height < 780 ? 11 : 13,
-		fontFamily: 'Rubik_300Light',
+		
 		marginTop: 9
 	},
 })

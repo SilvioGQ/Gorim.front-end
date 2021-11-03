@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 	text: {
 		textAlign: 'center',
 		fontSize: 12,
-		fontFamily: 'Rubik_300Light',
+		
 		marginBottom: 2,
 	},
 	absolute: {

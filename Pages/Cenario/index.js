@@ -42,8 +42,8 @@ export default function Cenario({ navigation }) {
           <Text style={styles.texto}>Informações gerais:</Text>
           {phase === 2 && (
             <View style={styles.numeros}>
-              <TouchableOpacity style={[styles.bloquinho, { width: 145 }]} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }} activeOpacity={0.7}>
-                <Text style={{ fontSize: 24, fontFamily: 'Rubik_300Light', color: '#66BF00', marginTop: '7%' }}>
+              <TouchableOpacity style={[styles.bloquinho, { width: 145 }]} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }}  >
+                <Text style={{ fontSize: 24,  color: '#66BF00', marginTop: '7%' }}>
                   {globalProduction}%
                 </Text>
                 <Text style={styles.inferior}>
@@ -51,8 +51,8 @@ export default function Cenario({ navigation }) {
                 </Text>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.bloquinho, { width: 145 }]} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
-                <Text style={{ fontSize: 24, fontFamily: 'Rubik_300Light', marginTop: '7%', color: '#BF0000' }}>
+              <TouchableOpacity style={[styles.bloquinho, { width: 145 }]} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }}  >
+                <Text style={{ fontSize: 24,  marginTop: '7%', color: '#BF0000' }}>
                   {globalPollution}%
                 </Text>
                 <Text style={styles.inferior}>
@@ -64,7 +64,7 @@ export default function Cenario({ navigation }) {
           )}
           {phase === 1 && (
             <View style={styles.numeros}>
-              <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(true); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>) }} activeOpacity={0.7}>
+              <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(true); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>) }}  >
                 <Text style={styles.numero}>
                   {stage === 'CALCPLAYERTAX' && (tax.percentual ? `${tax.percentual}%` : `$${tax.value}`)}
                 </Text>
@@ -73,7 +73,7 @@ export default function Cenario({ navigation }) {
                 </Text>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }} activeOpacity={0.7}>
+              <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }}  >
 
                 <Text style={styles.numero}>
                   {globalProduction}%
@@ -83,7 +83,7 @@ export default function Cenario({ navigation }) {
                 </Text>
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
+              <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }}  >
                 <Text style={[styles.numero, { color: '#BF0000' }]}>
                   {globalPollution}%
                 </Text>
@@ -107,7 +107,7 @@ export default function Cenario({ navigation }) {
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
               <View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
                 <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
-                <TouchableOpacity onPress={() => { setModalText(<Text>Poluição é da soma da poluição de cada parcela dividida por 6</Text>); setImage(false); setImage2(false) }} activeOpacity={0.7}>
+                <TouchableOpacity onPress={() => { setModalText(<Text>Poluição é da soma da poluição de cada parcela dividida por 6</Text>); setImage(false); setImage2(false) }}  >
                   <Image source={require('../../assets/agricultorIcones/information.png')} style={{ width: 18, height: 18, opacity: 0.7, marginLeft: 5, marginTop: -2 }} />
                 </TouchableOpacity>
               </View>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontFamily: 'Rubik_300Light',
+    
     marginTop: 10
   },
   row: {
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
   legenda: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 16,
   },
   numeros: {
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   },
   numero: {
     fontSize: 24,
-    fontFamily: 'Rubik_300Light',
+    
     color: '#66BF00',
     marginTop: '15%'
   },
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   },
   inferior2: {
     fontSize: 13,
-    fontFamily: 'Rubik_300Light',
+    
     color: '#fff',
   },
   italiano: {

@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     text: {
         textAlign: 'center',
         fontSize: 11,
-        fontFamily: 'Rubik_300Light',
+        
         marginBottom: 2
     }
 });

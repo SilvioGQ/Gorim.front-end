@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     textSmall: {
         textAlign: 'center',
         fontSize: Height < 780 ? 11 : 13,
-        fontFamily: 'Rubik_300Light',
+        
         marginTop: 9
     },
 })

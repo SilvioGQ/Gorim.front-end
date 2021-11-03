@@ -18,7 +18,7 @@ export default function ControleParcelas({ navigation }) {
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.id}
         renderItem={({ item }) =>
-          <TouchableOpacity onPress={() => navigation.navigate('Parcela', { parcelLand: item })} style={styles.item} activeOpacity={0.7}>
+          <TouchableOpacity onPress={() => navigation.navigate('Parcela', { parcelLand: item })} style={styles.item}  >
             <Image style={styles.imageParcel} source={require('../../../assets/agricultorIcones/Parcela.png')} />
             <View style={{ flexDirection: 'row', display: item.planted ? 'flex' : 'none' }}>
               <Image style={{ position: 'absolute', width: 46, height: 77, bottom: 5, left: 5 }} source={require('../../../assets/agricultorIcones/Planted.png')} />
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginRight: 20
   },
   mainText: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 20,
     lineHeight: 120,
     alignSelf: 'center',

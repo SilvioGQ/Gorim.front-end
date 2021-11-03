@@ -23,10 +23,10 @@ export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, ver
                 </View>
             </View>
             :
-                <Text style={{ color: '#CF0101', fontSize: 14, fontFamily: 'Rubik_300Light', marginLeft:25 }}>Poluição: {item.parcelLand.pollution}</Text>
+                <Text style={{ color: '#CF0101', fontSize: 14,  marginLeft:25 }}>Poluição: {item.parcelLand.pollution}</Text>
             }
                 
-                <TouchableOpacity style={{ position: 'absolute', left: '97%',  display:display2 }} onPress={() => { }} activeOpacity={0.7}>
+                <TouchableOpacity style={{ position: 'absolute', left: '97%',  display:display2 }} onPress={() => { }}  >
                     <Image style={styles.image} source={require('../../assets/FecharPreto.png')} style={{width:20,height:20, display:display2}} />
                 </TouchableOpacity>
             </View>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     numero: {
         fontSize: 14,
-        fontFamily: 'Rubik_300Light',
+        
         marginLeft: 10
     },
 });

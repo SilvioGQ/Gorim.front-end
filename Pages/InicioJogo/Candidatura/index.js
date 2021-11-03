@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     width: 60
   },
   title: {
-    fontFamily: 'Rubik_300Light',
     fontSize: 23,
     marginTop: 25,
     alignItems: 'center'
@@ -68,7 +67,6 @@ const styles = StyleSheet.create({
     marginTop: '2%'
   },
   paragrafo: {
-    fontFamily: 'Rubik_300Light',
     fontSize: 18,
     lineHeight: 30,
     textAlign:'justify',

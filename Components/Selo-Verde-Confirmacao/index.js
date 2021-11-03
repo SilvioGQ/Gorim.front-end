@@ -11,10 +11,10 @@ export default function Conf({ text, confirm, denied }) {
       <View style={styles.modal}>
         <View style={styles.container}>
           <Text style={styles.loading}>{text}</Text>
-          <TouchableOpacity style={styles.button} onPress={confirm} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.button} onPress={confirm}  >
             <Text style={styles.buttontext}>CONFIRMAR</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.button2]} onPress={denied} activeOpacity={0.7}>
+          <TouchableOpacity style={[styles.button, styles.button2]} onPress={denied}  >
             <Text style={styles.buttontext}>CANCELAR</Text>
           </TouchableOpacity>
         </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     width: Tela,
   },
   loading: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 18,
     textAlign: "center",
     marginBottom:15,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   buttontext: {
     textAlign: 'center',
     fontSize: 15,
-    fontFamily: 'Rubik_300Light',
+    
     color: '#fff',
   }
 });

@@ -62,7 +62,7 @@ export default function Vendas({ navigation, route }) {
         <View style={styles.center}>
           <Image style={styles.person} source={IMAGES[name]} />
           <Text style={styles.header}>Anunciar{'\n'}{name.replace(/Fertilizante |Agrotóxico /, '')} </Text>
-          <TouchableOpacity onPress={information} activeOpacity={0.7}>
+          <TouchableOpacity onPress={information}  >
             <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 20 }} />
           </TouchableOpacity>
         </View>
@@ -76,21 +76,21 @@ export default function Vendas({ navigation, route }) {
         <Text style={styles.textos}> Valor: </Text>
         {stage === 'GETPRODUCTS' && (
           <View style={styles.row}>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)} activeOpacity={0.7}>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}  >
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={IMAGESCOINS["Baixo"]} />
                 <Text style={[styles.categoryprice, { color: selectPrice == product?.cheap ? "#fff" : '#000'}]}>Baixo</Text>
                 <Text style={[styles.price, { color: selectPrice == product?.cheap ? "#fff" : '#000' }]}>${product?.cheap}</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.medium)} activeOpacity={0.7}>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.medium)}  >
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={IMAGESCOINS["Normal"]} />
                 <Text style={[styles.categoryprice, { color: selectPrice == product?.medium ? "#fff" : '#000' }]}>Normal</Text>
                 <Text style={[styles.price, { color: selectPrice == product?.medium ? "#fff" : '#000' }]}>${product?.medium}</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)} activeOpacity={0.7}>
+            <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)}  >
               <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
                 <Image style={styles.icone} source={IMAGESCOINS["Alto"]} />
                 <Text style={[styles.categoryprice, { color: selectPrice == product?.expensive ? "#fff" : '#000' }]}>Alto</Text>
@@ -99,7 +99,7 @@ export default function Vendas({ navigation, route }) {
             </TouchableOpacity>
           </View>
         )}
-        <Text style={{ fontSize: 18, fontFamily: 'Rubik_300Light', marginHorizontal: 15, marginTop: 30, marginBottom: 15 }}>Quantidade:</Text>
+        <Text style={{ fontSize: 18,  marginHorizontal: 15, marginTop: 30, marginBottom: 15 }}>Quantidade:</Text>
         {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
         {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
         <View style={{marginVertical:25}}>
@@ -115,12 +115,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   categoryprice: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 12,
     marginTop: 5
   },
   price: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 12,
   },
   row: {
@@ -153,13 +153,13 @@ const styles = StyleSheet.create({
     elevation: 6
   },
   header: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 20,
     marginLeft: 10
   },
   textos: {
     fontSize: 18,
-    fontFamily: 'Rubik_300Light',
+    
     marginHorizontal: 15,
     marginTop: 30
   },

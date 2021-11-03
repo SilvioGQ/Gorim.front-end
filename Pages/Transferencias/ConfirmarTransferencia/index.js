@@ -25,7 +25,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text2}>${JSON.stringify(count)} </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={make} name='CONTINUAR' />
-          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: phase === 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button} activeOpacity={0.7}>
+          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: phase === 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button}  >
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
         </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   text2: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 48,
     textAlign: 'center',
     marginVertical: 20

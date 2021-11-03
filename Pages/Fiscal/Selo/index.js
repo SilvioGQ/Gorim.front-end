@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontFamily: 'Rubik_300Light',
+    
   },
   row: {
     flexDirection: 'row',

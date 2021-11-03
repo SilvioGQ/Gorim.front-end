@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 
   },
   texto: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 22,
     textAlign: 'center',
     marginVertical: 10

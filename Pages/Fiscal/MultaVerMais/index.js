@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   header: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 20,
   },
   image: {

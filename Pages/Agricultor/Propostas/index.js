@@ -81,13 +81,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    fontFamily: 'Rubik_300Light',
     textAlign: 'center',
     fontSize: 20,
     marginBottom: 10
   },
   text: {
-    fontFamily: 'Rubik_300Light',
     textAlign: 'center',
     fontSize: 20,
     marginVertical: 5
@@ -95,7 +93,6 @@ const styles = StyleSheet.create({
   textSmall: {
     textAlign: 'center',
     fontSize: 13,
-    fontFamily: 'Rubik_300Light',
     marginTop: 9
   },
   button: {

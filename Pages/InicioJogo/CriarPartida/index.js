@@ -40,7 +40,7 @@ export default function CriarPartida({ navigation }) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, height: Height - 100, alignItems: 'center', width: Tela }}>
           <View style={{flexDirection:'row'}}>
-            <TouchableOpacity style={[styles.leftArrow,{position:'absolute',left:-40,top:5,}]} onPress={() =>navigation.reset({ routes: [{ name: 'Gorim'}] })} activeOpacity={0.7}>
+            <TouchableOpacity style={[styles.leftArrow,{position:'absolute',left:-40,top:5,}]} onPress={() =>navigation.reset({ routes: [{ name: 'Gorim'}] })}  >
               <Image style={styles.leftArrow} source={require('../../../assets/icons/left-arrow.png')} />
             </TouchableOpacity>
             <TextInput style={styles.input}
@@ -55,7 +55,7 @@ export default function CriarPartida({ navigation }) {
             <View style={styles.line} />
             <View style={styles.row}>
               <Image style={styles.logo2} source={require('../../../assets/mulhe.png')} />
-              <TouchableOpacity style={styles.button2} onPress={createRoom} activeOpacity={0.7} >
+              <TouchableOpacity style={styles.button2} onPress={createRoom}   >
                 <Text style={styles.botao}>CRIAR JOGO</Text>
               </TouchableOpacity>
               <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../../assets/flecha.png')} />
@@ -78,7 +78,7 @@ export default function CriarPartida({ navigation }) {
                 value={room}
               >
               </TextInput>
-              <TouchableOpacity onPress={selectRoom} activeOpacity={0.7}>
+              <TouchableOpacity onPress={selectRoom}  >
                 <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
               </TouchableOpacity>
             </View>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   header: {
-    fontFamily: 'Rubik_300Light',
+
     fontWeight: '600',
     fontSize: 24,
     marginVertical: 10,
@@ -145,18 +145,18 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    fontFamily: 'Rubik_300Light',
+
     marginTop: 5
   },
   text2: {
     textTransform: 'uppercase',
     fontSize: 18,
-    fontFamily: 'Rubik_300Light',
+
     textAlign: 'center',
   },
   botao: {
     fontSize: 24,
-    fontFamily: 'Rubik_300Light',
+
     marginTop: 7,
   },
   arrow: {
