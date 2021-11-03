@@ -30,28 +30,28 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
           {modalImage && (
             <View style={{ padding: 15, marginRight: 25 }}>
               <View style={{ flexDirection: 'row' }}>
-                <View style={{ width: 32, height: 30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
-                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf: 'center' }}>0+</Text>
+                <View style={[styles.estilo]}>
+                  <Text style={[styles.texto1]}>0+</Text>
                 </View>
-                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14 }}>Indica quanto o item faz de produtividade</Text>
+                <Text style={[styles.texto]}>Indica quanto o item faz de produtividade</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                <View style={{ width: 32, height: 30, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
-                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: '#58AB23', fontSize: 18, alignSelf: 'center' }}>0x</Text>
+                <View style={[styles.estilo]}>
+                  <Text style={[styles.texto1]}>0x</Text>
                 </View>
-                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14 }}>Indica o número para multiplicar o valor de produtividade da semente</Text>
+                <Text style={[styles.texto]}>Indica o número para multiplicar o valor de produtividade da semente</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                <View style={{ width: 32, height: 30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
-                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf: 'center' }}>0+</Text>
+                <View style={[styles.estilo2]}>
+                  <Text style={[styles.texto2]}>0+</Text>
                 </View>
-                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14 }}>Indica quanto o item faz de poluição</Text>
+                <Text style={[styles.texto]}>Indica quanto o item faz de poluição</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                <View style={{ width: 32, height: 30, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5, marginRight: 5 }}>
-                  <Text style={{ fontFamily: 'Rubik_300Light', fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18, alignSelf: 'center' }}>0x</Text>
+                <View style={[styles.estilo2]}>
+                  <Text style={[styles.texto2]}>0x</Text>
                 </View>
-                <Text style={{ marginBottom: 15, textAlign: 'left', fontFamily: 'Rubik_300Light', fontSize: 14 }}>Indica o número para multiplicar o valor da poluição da semente</Text>
+                <Text style={[styles.texto]}>Indica o número para multiplicar o valor da poluição da semente</Text>
               </View>
             </View>
           )}
@@ -95,4 +95,40 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     marginBottom: 25,
   },
+  texto: {
+    marginBottom: 15, 
+    textAlign: 'left', 
+    fontFamily: 'Rubik_300Light', 
+    fontSize: 14
+  },
+  estilo: {
+    width: 32, 
+    height: 30, 
+    borderRadius: 10, 
+    borderColor: '#58AB23', 
+    borderWidth: 2.5, 
+    marginRight: 5 
+  },
+  texto1: {
+    fontFamily: 'Rubik_300Light', 
+    fontWeight: 'bold', 
+    color: '#58AB23', 
+    fontSize: 18, 
+    alignSelf: 'center'
+  },
+  estilo2: {
+    width: 32, 
+    height: 30, 
+    borderRadius: 10, 
+    borderColor: COLORS.warningButton, 
+    borderWidth: 2.5, 
+    marginRight: 5
+  },
+  texto2: {
+    fontFamily: 'Rubik_300Light', 
+    fontWeight: 'bold', 
+    color: COLORS.warningButton, 
+    fontSize: 18, 
+    alignSelf: 'center'
+  }
 })

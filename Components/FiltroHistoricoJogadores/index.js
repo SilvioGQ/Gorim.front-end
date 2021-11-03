@@ -8,10 +8,10 @@ export default function FiltroHistoricoJogadores({ type, setType }) {
     return (
         <View style={{ flexDirection: 'row', marginHorizontal: 20, width: '80%', justifyContent: 'space-between', marginVertical: 10 }}>
                 <>
-                    <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Agricultor' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Agricultor') }} activeOpacity={0.7}>
+                    <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Agricultor' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Agricultor') }} activeOpacity={0.7}>
                         <Text style={[styles.textSmall, { color: type == 'Agricultor' ? '#fff' : '#000' }]}>Agricultor</Text>
                     </TouchableOpacity>
-                <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Empresário' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Empresário') }} activeOpacity={0.7}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Empresário' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Empresário') }} activeOpacity={0.7}>
                         <Text style={[styles.textSmall, { color: type == 'Empresário' ? '#fff' : '#000' }]}>Empresário</Text>
                     </TouchableOpacity>
                 </>
@@ -20,7 +20,7 @@ export default function FiltroHistoricoJogadores({ type, setType }) {
 }
 
 const styles = StyleSheet.create({
-    buttonAgr: {
+    button: {
         width: '44%',
         height: 40,
         borderRadius: 50,

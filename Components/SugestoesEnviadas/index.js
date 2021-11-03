@@ -64,19 +64,6 @@ const styles = StyleSheet.create({
         elevation: 6,
         marginVertical: 10
     },
-    button: {
-        width: 120,
-        borderRadius: 20,
-        backgroundColor: COLORS.warningButton,
-        padding: 12,
-        marginTop: 5
-    },
-    textbutton: {
-        color: COLORS.textWhite,
-        fontSize: 15,
-        textAlign: 'center',
-        fontFamily: 'Rubik_400Regular'
-    },
     row3: {
         flexDirection: 'row',
         marginTop: 15,

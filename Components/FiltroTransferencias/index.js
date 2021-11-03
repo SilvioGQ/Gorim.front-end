@@ -9,10 +9,10 @@ export default function FiltroTransferencias({ type, setType }) {
     return (
         <View style={{ flexDirection: 'row', marginHorizontal: 20, width: '80%', justifyContent: 'space-between', marginVertical: 10 }}>
             <>
-                <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Agricultor' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Agricultor')}} activeOpacity={0.7}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Agricultor' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Agricultor')}} activeOpacity={0.7}>
                     <Text style={[styles.textSmall, { color: type == 'Agricultor' ? '#fff' : '#000' }]}>Agr/Emp</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Fiscal' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Fiscal')}} activeOpacity={0.7}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: type == 'Fiscal' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Fiscal')}} activeOpacity={0.7}>
                     <Text style={[styles.textSmall, { color: type == 'Fiscal' ? '#fff' : '#000' }]}>Ver/Pre/Fis</Text>
                 </TouchableOpacity>
             </>
@@ -21,7 +21,7 @@ export default function FiltroTransferencias({ type, setType }) {
 }
 
 const styles = StyleSheet.create({
-    buttonAgr: {
+    button: {
         width: '44%',
         height: 40,
         borderRadius: 50,
