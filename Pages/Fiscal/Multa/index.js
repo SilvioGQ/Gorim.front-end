@@ -25,7 +25,7 @@ export default function Multa({ navigation }) {
           <Modal onClick={() => setModalText('')} text={modalText} image3={true} />
         )}
         <Text style={styles.header}>Aplicação{'\n'}de multa</Text>
-        <TouchableOpacity onPress={() => { setModalText('Tabela de multas:') }} activeOpacity={0.7}>
+        <TouchableOpacity onPress={() => { setModalText('Tabela de multas:') }}  >
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
         </TouchableOpacity>
       </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   header: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 20,
   },
   image: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light'
   },
   text: {
-    fontFamily: 'Rubik_300Light',
+    
     textAlign: 'center',
     fontSize: 20,
     marginVertical: 20

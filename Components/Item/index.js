@@ -7,7 +7,7 @@ import IMAGES2 from '../../constants/imagesMenu';
 const Height = Dimensions.get('screen').height;
 export default function Item({ onClick, backgroundColor = '#fff', name, type, notification = null}) {
   return (
-    <TouchableOpacity onPress={onClick} activeOpacity={0.7}>
+    <TouchableOpacity onPress={onClick}  >
       <View style={[styles.colunm, {backgroundColor:backgroundColor}]}>
         {notification && <View style={{position:'absolute', left:82, width: 18, height: 18, borderRadius: 9, backgroundColor: '#F19F00', shadowColor: "#000",shadowOffset: { width: 0, height: 2,}, shadowOpacity: 0.25, shadowRadius: 3.94,elevation: 6,}} />}
         <Image
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     marginTop: 11.5
   },
   textinhos: {
-    fontFamily: 'Rubik_300Light',
     fontSize: Height > 720 && Height < 800 ? 9 : 11,
     textAlign:'center',
     marginHorizontal:5

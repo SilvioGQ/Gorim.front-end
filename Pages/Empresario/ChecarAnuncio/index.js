@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
     width: Tela,
   },
   header: {
-    fontFamily: 'Rubik_300Light',
+    
     textAlign: 'center',
     fontSize: 20,
     marginBottom: 25
   },
   text: {
-    fontFamily: 'Rubik_300Light',
+    
     textAlign: 'center',
     fontSize: 22,
     paddingTop: 10

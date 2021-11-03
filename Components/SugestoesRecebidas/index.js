@@ -33,10 +33,10 @@ export default function SugestoesRecebidas({ item }) {
                 </View>
             </View>
             <View style={styles.row}>
-                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() =>  {if(item.value > player.serviceSalary && item.type !== 'tax') return setModalText('Saldo insuficiente'); else return toggleApprovedSuggest(item, true)}} activeOpacity={0.7}>
+                <TouchableOpacity style={[styles.button, { backgroundColor: '#66BF00' }]} onPress={() =>  {if(item.value > player.serviceSalary && item.type !== 'tax') return setModalText('Saldo insuficiente'); else return toggleApprovedSuggest(item, true)}}  >
                     <Text style={styles.textbutton}>Aceitar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() =>toggleApprovedSuggest(item, false)} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.button} onPress={() =>toggleApprovedSuggest(item, false)}  >
                     <Text style={styles.textbutton}>Recusar</Text>
                 </TouchableOpacity>
             </View>

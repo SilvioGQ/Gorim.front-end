@@ -8,10 +8,10 @@ export default function FiltroHistoricoJogadores({ type, setType }) {
     return (
         <View style={{ flexDirection: 'row', marginHorizontal: 20, width: '80%', justifyContent: 'space-between', marginVertical: 10 }}>
                 <>
-                    <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Agricultor' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Agricultor') }} activeOpacity={0.7}>
+                    <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Agricultor' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Agricultor') }}  >
                         <Text style={[styles.textSmall, { color: type == 'Agricultor' ? '#fff' : '#000' }]}>Agricultor</Text>
                     </TouchableOpacity>
-                <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Empresário' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Empresário') }} activeOpacity={0.7}>
+                <TouchableOpacity style={[styles.buttonAgr, { backgroundColor: type == 'Empresário' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('Empresário') }}  >
                         <Text style={[styles.textSmall, { color: type == 'Empresário' ? '#fff' : '#000' }]}>Empresário</Text>
                     </TouchableOpacity>
                 </>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     textSmall: {
         textAlign: 'center',
         fontSize: Height < 780 ? 11 : 13,
-        fontFamily: 'Rubik_300Light',
+        
         marginTop: 9
     },
 })

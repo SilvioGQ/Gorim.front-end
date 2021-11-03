@@ -50,10 +50,10 @@ export default function MenuJogador({ navigation }) {
       )}
       {player.type === 'Agricultor' && (
         <>
-          <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }} activeOpacity={0.7}>
+          <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }}  >
             <View style={styles.row2}>
               <Image style={{ width: 35, height: 35 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
-              <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 20, alignSelf: 'center', marginLeft: 10 }}>Parcelas de terra</Text>
+              <Text style= {{ fontSize: 20, alignSelf: 'center', marginLeft: 10 }}>Parcelas de terra</Text>
             </View>
           </TouchableOpacity>
           <View style={styles.row}>
@@ -113,7 +113,7 @@ export default function MenuJogador({ navigation }) {
             <Text style={styles.inferior}>Produtividade individual</Text>
           </View>
               {player.type === 'Agricultor' ?
-          <TouchableOpacity style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]} onPress={() => setModalText('Poluição é a soma da poluição de cada parcela dividida por 6.')} activeOpacity={0.7}>
+          <TouchableOpacity style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]} onPress={() => setModalText('Poluição é a soma da poluição de cada parcela dividida por 6.')}  >
             <View style={{ flexDirection: 'row' }}>
               {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ position: 'absolute', top: 0, left: 30, width: 23, height: 23, marginLeft: 70, marginTop: 10, opacity: 0.5 }} />
@@ -133,7 +133,7 @@ export default function MenuJogador({ navigation }) {
       <View style={{paddingVertical:25, flexDirection: 'row',}}>
       <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
       </View>
-      {awaitPlayers !== 0 && <Text style={{ color: 'red', marginTop: 45, fontFamily: 'Rubik_300Light' }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
+      {awaitPlayers !== 0 && <Text style={{ color: 'red', }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
   );
 }
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   textLarge: {
     color: '#ffffff',
     fontSize: 20,
-    fontFamily: 'Rubik_300Light',
+    
     marginTop: 20,
     marginLeft: 15
   },
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   },
   inferior: {
     fontSize: 18,
-    fontFamily: 'Rubik_300Light',
+    
     color: '#fff',
   },
 });

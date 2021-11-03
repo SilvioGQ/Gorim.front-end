@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 14,
     fontSize: 18,
-    fontFamily: 'Rubik_300Light',
+    
   },
   img: {
     height: 85,

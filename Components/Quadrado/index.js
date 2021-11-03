@@ -4,7 +4,7 @@ import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesIcons'
 export default function Quadrados({ player = null, onClick, backgroundColor, color, icon=null, abr }) {
   return (
-    <TouchableOpacity onPress={onClick} activeOpacity={0.7}>
+    <TouchableOpacity onPress={onClick}  >
       <View style={[styles.colunm, { backgroundColor: backgroundColor }]} >
         <Image style={styles.icone} source={player ? IMAGES[player.avatar] : IMAGES[icon]} />
         {player ? 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     elevation: 6
   },
   textinhos: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 10,
   },
   icone: {

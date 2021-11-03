@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   textLarge: {
     color: '#ffffff',
     fontSize: 20,
-    fontFamily: 'Rubik_300Light',
+    
     marginTop: 20,
     marginLeft: 15
   },
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
   inferior: {
     fontSize: 18,
-    fontFamily: 'Rubik_300Light',
+    
     color: '#fff',
   },
 });

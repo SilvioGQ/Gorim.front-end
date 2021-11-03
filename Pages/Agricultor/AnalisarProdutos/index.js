@@ -29,7 +29,7 @@ export default function AnalisarProdutos({navigation}) {
   return (
     <View style={styles.container}>
       <Rodada name={'Analisar produtos'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
-        <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }} onPress={() => setModalText('Legenda:')} activeOpacity={0.7}>
+        <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }} onPress={() => setModalText('Legenda:')}  >
         <Text style={styles.header}>Produtos</Text>
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
         </TouchableOpacity>

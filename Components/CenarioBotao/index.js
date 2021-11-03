@@ -7,14 +7,14 @@ import Papel from '../../assets/agricultorIcones/papel.png';
 export default function Cenarios({ seeScenery, endStage, notification }) {
   return (
     <View style={{ height: 60, justifyContent: 'space-between', flexDirection: 'row', width:'88%',backgroundColor: COLORS.bgColorPrimary }}>
-      <TouchableOpacity onPress={seeScenery} activeOpacity={0.7}>
+      <TouchableOpacity onPress={seeScenery}  >
         <View style={[styles.resumo]}>
           <Image style={styles.logo} source={Papel} />
-          <Text style={{ fontFamily: 'Rubik_300Light', fontSize: 12, paddingHorizontal: 5 }}> Resumo de cenário </Text>
+          <Text style={{  fontSize: 12, paddingHorizontal: 5 }}> Resumo de cenário </Text>
           {notification && <View style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: '#F19F00', marginTop: -40, shadowColor: "#000", shadowOffset: { width: 0, height: 2, }, shadowOpacity: 0.25, shadowRadius: 3.94, elevation: 6, }} />}
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={endStage} activeOpacity={0.7}>
+      <TouchableOpacity onPress={endStage}  >
         <View style={styles.resumo}>
           <Text style={styles.candidato}>Finalizar etapa</Text>
         </View>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   candidato: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 12,
     paddingHorizontal: 20
   },

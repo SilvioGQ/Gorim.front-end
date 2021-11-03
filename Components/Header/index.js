@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   textos: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 20,
     alignSelf: 'center'
   },
   textinhos: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 14,
   },
   logo: {

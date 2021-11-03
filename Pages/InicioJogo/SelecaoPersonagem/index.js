@@ -52,8 +52,8 @@ export default function SelecaoPersonagem({ navigation }) {
               <Text style={styles.text}>VOCÊ SERÁ</Text>
               <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}`}</Text>
             </View>
-            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button} activeOpacity={0.7}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
-              <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button} activeOpacity={0.7}><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
+            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
+              <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
           </View>
           <Text style={styles.text}>Selecione um personagem</Text>
           {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} title={title} />}
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     fontSize: Height > 700 ? 16 : 14,
     marginVertical: 10,
     textAlign: 'center',
-    fontFamily: 'Rubik_300Light',
+    
   },
   textbutton: {
     padding: 8,

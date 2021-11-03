@@ -116,7 +116,7 @@ export default function Cenario({ navigation }) {
                 <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ4 }] }} source={require('../../assets/dropdown.png')} />
               </TouchableOpacity>
             </View>
-            <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light', display: open4 ? 'flex' : 'none' }}>Você não teve multas</Text>
+            <Text style={{ marginLeft: 10,  display: open4 ? 'flex' : 'none' }}>Você não teve multas</Text>
           </View>
           <View style={styles.backgreen}>
             <View style={styles.whiteRow}>
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   subtitle: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 18
   },
   backgreen: {

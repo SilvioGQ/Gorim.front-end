@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   subtitle: {
-    fontFamily: 'Rubik_300Light',
+    
     fontSize: 18
   },
   backgreen: {
