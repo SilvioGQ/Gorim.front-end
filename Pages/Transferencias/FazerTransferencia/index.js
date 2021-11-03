@@ -7,7 +7,6 @@ import ModalInfo from '../../../Components/ModalInfo';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import Coin from '../../../Components/Coin';
-import COLORS from '../../../constants/colors';
 import CaixaDeValor from '../../../Components/CaixaDeValor';
 import Rodada from '../../../Components/Rodada';
 import FiltroTransferencias from '../../../Components/FiltroTransferencias';
@@ -33,15 +32,15 @@ export default function FazerTransferencia({ navigation }) {
       <Rodada name={'Fazer transferência'} arrow={true} onClick={() => navigation.goBack()} />
       <Coin coin={phase === 1 ? player.coin : player.serviceSalary} />
       <View style={styles.header}>
-        <Image style={{ width: 63, height: 61 }} source={require('../../../assets/icons/coin.png')} />
-        <Text style={{  fontSize: 20 }}>Fazer {'\n'}transferência</Text>
+        <Image source={require('../../../assets/icons/coin.png')} />
+        <Text style={styles.textFont}>Fazer {'\n'}transferência</Text>
       </View>
       <Text style={styles.text}>Destinatário:</Text>
       <View style={{ alignItems: 'center' }}>
         <FiltroTransferencias type={type} setType={setType} />
       </View>
       {type === 'Agricultor' ?
-        <View style={{ marginHorizontal: 10 }}>
+        <View style={styles.margin}>
           <FlatList
             numColumns={3}
             data={phase === 1 ? players.filter(i => i.id !== player.id && i.office !== 'Cidadão') : players.filter(i => i.office !== 'Cidadão')}
@@ -50,7 +49,7 @@ export default function FazerTransferencia({ navigation }) {
           />
         </View>
         :
-        <View style={{ marginHorizontal: 10 }}>
+        <View style={styles.margin}>
           <FlatList
             numColumns={3}
             data={phase === 2 ? players.filter(i => i.id !== player.id && i.office !== 'Cidadão') : players.filter(i => i.office !== 'Cidadão')}
@@ -73,7 +72,6 @@ export default function FazerTransferencia({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: Tela,
   },
   header: {
     flexDirection: 'row',
@@ -85,7 +83,16 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     marginTop: 30,
-    
     marginHorizontal: 15,
+  },
+  textFont: {
+    fontSize: 20
+  },
+  icon:{
+    width: 63, 
+    height: 61
+  },
+  margin: {
+    marginHorizontal:10
   }
 });

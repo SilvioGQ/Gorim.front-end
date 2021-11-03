@@ -10,11 +10,9 @@ export default function Status({ navigation }) {
   const { player, globalPollution, data: round, stage, globalProduction, timer } = useContext(GameContext);
 
   useEffect(() => {
-
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
     if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
-
     if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
   }, [stage]);
 
@@ -93,7 +91,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 14,
     fontSize: 18,
-    
   },
   img: {
     height: 85,

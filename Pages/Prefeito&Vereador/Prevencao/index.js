@@ -40,7 +40,7 @@ export default function Prevencao({ navigation }) {
         <View style={styles.row}>
           <View style={styles.quadrados}>
             <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida.id == 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida({ id: 1, value: 800, preventionPercentual: 0.05, label: 'Tratamento de água' })}  >
-              <Image style={{ width: 50, height: 50, marginTop: 15, marginBottom: 10, marginLeft: 20, position: 'absolute' }} source={require('../../../assets/icons/water.png')} />
+              <Image style={styles.image} source={require('../../../assets/icons/water.png')} />
               <Text style={[styles.texto, { color: selectMedida.id == 1 ? "#fff" : '#000' }]}>Tratamento de água</Text>
               <Text style={[styles.textomenor, { color: selectMedida.id == 1 ? "#fff" : '#000' }]}>Reduz a poluição em 5%</Text>
               <Text style={[styles.textopreco, { color: selectMedida.id == 1 ? "#fff" : '#000' }]}>Preço: $800</Text>
@@ -56,7 +56,7 @@ export default function Prevencao({ navigation }) {
           </View>
           <View style={styles.quadrados}>
             <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida.id == 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida({ id: 3, value: 2400, preventionPercentual: 0.15, label: 'Tratamento de lixo' })}  >
-              <Image style={{ width: 50, height: 50, marginTop: 15, marginBottom: 10, marginLeft: 20, position: 'absolute' }} source={require('../../../assets/icons/trash.png')} />
+              <Image style={styles.image} source={require('../../../assets/icons/trash.png')} />
               <Text style={[styles.texto, { color: selectMedida.id == 3 ? "#fff" : '#000' }]}>Tratamento de lixo</Text>
               <Text style={[styles.textomenor, { color: selectMedida.id == 3 ? "#fff" : '#000' }]}>Reduz a poluição em 15%</Text>
               <Text style={[styles.textopreco, { color: selectMedida.id == 3 ? "#fff" : '#000' }]}>Preço: $2400</Text>
@@ -77,6 +77,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: Tela
+  },
+  image:{ 
+    width: 50, 
+    height: 50,
+    marginTop: 15,
+    marginBottom: 10, 
+    marginLeft: 20, 
+    position: 'absolute' 
   },
   row: {
     flexDirection: 'row',
