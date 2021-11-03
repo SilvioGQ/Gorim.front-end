@@ -86,19 +86,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  container2: {
-    flexDirection: 'row',
-    backgroundColor: COLORS.headerColor,
-    height: 65,
-    width: '100%',
-  },
-  textLarge: {
-    color: '#ffffff',
-    fontSize: 20,
-    
-    marginTop: 20,
-    marginLeft: 15
-  },
   row: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
@@ -107,46 +94,9 @@ const styles = StyleSheet.create({
     width: '100%',
     flexWrap: 'wrap'
   },
-  row2: {
-    flexDirection: 'row',
-    marginHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 12,
-    backgroundColor: COLORS.bgColorSecondary,
-    width: '88%',
-    height: 50,
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-    elevation: 6,
-  },
   items: {
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  bar: {
-    padding: 6,
-    width: '89%',
-    borderRadius: 20,
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 5
-  },
-  textBar: {
-    fontFamily: 'Rubik_400Regular',
-    fontSize: 36,
-    color: '#fff',
-  },
-  inferior: {
-    fontSize: 18,
-    
-    color: '#fff',
-  },
+  }
 });

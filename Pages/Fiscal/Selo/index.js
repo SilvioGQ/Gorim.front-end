@@ -49,14 +49,14 @@ export default function Selo({ navigation, route }) {
         )}
           <Text style={styles.texto}>Plantações:</Text>
           {selectedPlayer.length === 0 ?
-           <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 15, marginVertical: 30 }}>Selecione um agricultor!</Text>
+           <Text style={[styles.texto2]}>Selecione um agricultor!</Text>
            :
           selectedPlayer.logs && selectedPlayer.logs.filter(i=> i.type=='plantation').length !== player.appliedStamp.filter(i=> i.indexOf(selectClient) !== -1).length  ?
           selectedPlayer.logs.filter(i => i.type === 'plantation' && player.appliedStamp.includes(selectClient+i.parcelLand.id.toString()) === false).map((p, index) => {
               return <ParcelaAgr item={p} key={p.parcelLand.id} onClick={()=>{ selectParcel.includes(p.parcelLand.id) ? setSelectParcel(selectParcel.filter((e)=>(e !== p.parcelLand.id))) :  setSelectParcel([...selectParcel, p.parcelLand.id])}} backgroundGreen={selectParcel.includes(p.parcelLand.id) ? '#8ACF3A' : '#fff'} color={selectParcel.includes(p.parcelLand.id) ? '#fff' : '#000'} vermais={true} display2={'none'} pedido={p.parcelLand.requestStamp === true ? true : false}/>
           })
           :
-          <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 15, marginVertical: 30 }}>Não há parcelas para conceder selo!</Text>
+          <Text style={[styles.texto2]}>Não há parcelas para conceder selo!</Text>
           }
           <Button
             onClick={ ()=>{selectParcel.length !== 0 ? aplicar(): setModalText('Selecione uma parcela')}}
@@ -94,4 +94,10 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     marginLeft: 20
   },
+  texto2: {
+    textAlign: 'center', 
+    fontFamily: 'Rubik_700Bold', 
+    fontSize: 15, 
+    marginVertical: 30
+  }
 });

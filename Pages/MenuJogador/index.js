@@ -143,19 +143,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  container2: {
-    flexDirection: 'row',
-    backgroundColor: COLORS.headerColor,
-    height: 65,
-    width: '100%',
-  },
-  textLarge: {
-    color: '#ffffff',
-    fontSize: 20,
-    
-    marginTop: 20,
-    marginLeft: 15
-  },
   row: {
     flexDirection: 'row',
     alignSelf: 'flex-start',

@@ -32,11 +32,11 @@ export default function Multa({ navigation }) {
       <Text style={styles.text}>Agricultores</Text>
       {players.filter(p=>p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city ).length !== 0 ? players.filter(p=>p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />) 
       : 
-      <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical:20 }}>Não há mais multas para aplicar!</Text>}
+      <Text style={[styles.text2]}>Não há mais multas para aplicar!</Text>}
       <Text style={styles.text}>Empresário</Text>
       {players.filter(p=>p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p=>p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)
       :
-      <Text style={{textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 20 }}>Não há mais multas para aplicar!</Text>}
+      <Text style={[styles.text2]}>Não há mais multas para aplicar!</Text>}
     </View>
   );
 }
@@ -74,4 +74,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: 20
   },
+  text2: {
+    textAlign: 'center', 
+    fontFamily: 'Rubik_700Bold', 
+    fontSize: 18, 
+    marginVertical: 20
+  }
 });

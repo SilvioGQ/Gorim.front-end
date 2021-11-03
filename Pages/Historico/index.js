@@ -56,10 +56,10 @@ export default function Cenario({ navigation }) {
               </View>
               <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
                 {Logs.logs.filter((item) =>item.type == 'plantation').length > 0 ? Logs.logs.filter((item) =>item.type == 'plantation').map((item, index) => {
-                  return <Text style={{ marginLeft: 5, paddingHorizontal:5, fontFamily: 'Rubik_300Light' }} key={index}>Parcela {item.parcelLand.id + 1}{'\n'}Semente: {item.parcelLand.seed},{item.parcelLand.pesticide ? ` Agrotóxico: ${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''}{item.parcelLand.fertilizer ? ` Fertilizante: ${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''}{item.parcelLand.machine ? ` Máquina: ${item.parcelLand.machine},` : ''} Pulverizador:{item.parcelLand.spray ? ' Sim' : ' Não'}{'\n'}</Text>
+                  return <Text style={[styles.texto]} key={index}>Parcela {item.parcelLand.id + 1}{'\n'}Semente: {item.parcelLand.seed},{item.parcelLand.pesticide ? ` Agrotóxico: ${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''}{item.parcelLand.fertilizer ? ` Fertilizante: ${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''}{item.parcelLand.machine ? ` Máquina: ${item.parcelLand.machine},` : ''} Pulverizador:{item.parcelLand.spray ? ' Sim' : ' Não'}{'\n'}</Text>
                 })
                 :
-                <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Você não plantou</Text>
+                <Text style={[styles.textonao]}>Você não plantou</Text>
                 }</View>
             </View>
             :
@@ -77,10 +77,10 @@ export default function Cenario({ navigation }) {
             </View>
             <View style={{ display: open2 ? 'flex' : 'none' }}>
               {Logs.logs.filter((item)=>item.type == 'buy').length > 0 ? Logs.logs.filter((item)=>item.type == 'buy').map((item, index) => {
-                return <Text style={{ marginLeft: 5, paddingHorizontal:5, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por $${item.product.price} cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por $${item.product.price} cada, para o agricultor ${item.namePlayer} \n`}</Text>
+                return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por $${item.product.price} cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por $${item.product.price} cada, para o agricultor ${item.namePlayer} \n`}</Text>
               })
               :
-              <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Você não {player.type === 'Agricultor' ? 'teve gastos' : 'fez vendas'}</Text>
+              <Text style={[styles.textonao]}>Você não {player.type === 'Agricultor' ? 'teve gastos' : 'fez vendas'}</Text>
               }
 
               </View>
@@ -99,10 +99,10 @@ export default function Cenario({ navigation }) {
             </View>
             <View style={{ display: open3 ? 'flex' : 'none' }}>
               {Logs.logs.filter((item) =>item.type == 'transfer').length > 0 ? Logs.logs.filter((item) =>item.type == 'transfer').map((item, index) => {
-                return <Text style={{ marginLeft: 5, paddingHorizontal:5, fontFamily: 'Rubik_300Light' }} key={index}>{item.ownAction ? `Você transferiu $${item.value} para o jogador ${item.namePlayer}\n` : `Você recebeu $${item.value} do jogador ${item.namePlayer}\n`}</Text>
+                return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você transferiu $${item.value} para o jogador ${item.namePlayer}\n` : `Você recebeu $${item.value} do jogador ${item.namePlayer}\n`}</Text>
               })
               :
-              <Text style={{ marginLeft: 10, fontFamily: 'Rubik_300Light' }}>Você não fez transferências</Text>
+              <Text style={[styles.textonao]}>Você não fez transferências</Text>
               }</View>
 
           </View>
@@ -133,7 +133,7 @@ export default function Cenario({ navigation }) {
                 return item
               }
             }).map((item, index) => {
-              return <Text style={{ marginLeft: 5, paddingHorizontal:5, fontFamily: 'Rubik_300Light' }} key={index}>{item.percentual ? `Você pagou $${item.value} na última rodada, o que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados $${item.value} em impostos.`}</Text>
+              return <Text style={[styles.texto]} key={index}>{item.percentual ? `Você pagou $${item.value} na última rodada, o que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados $${item.value} em impostos.`}</Text>
             })}</View>
           </View>
         </View>
@@ -186,5 +186,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_400Regular',
     fontSize: 18,
     color: '#3F5510'
+  },
+  texto: {
+    marginLeft: 5, 
+    paddingHorizontal: 5, 
+    fontFamily: 'Rubik_300Light'
+  },
+  textonao: {
+    marginLeft: 10, 
+    fontFamily: 'Rubik_300Light'
   }
 });

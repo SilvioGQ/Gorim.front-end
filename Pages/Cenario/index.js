@@ -49,7 +49,7 @@ export default function Cenario({ navigation }) {
                 <Text style={styles.inferior}>
                   Produtividade
                 </Text>
-                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={[styles.imagem]} />
               </TouchableOpacity>
               <TouchableOpacity style={[styles.bloquinho, { width: 145 }]} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }}  >
                 <Text style={{ fontSize: 24,  marginTop: '7%', color: '#BF0000' }}>
@@ -58,7 +58,7 @@ export default function Cenario({ navigation }) {
                 <Text style={styles.inferior}>
                   Poluição
                 </Text>
-                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={[styles.imagem]} />
               </TouchableOpacity>
             </View >
           )}
@@ -71,7 +71,7 @@ export default function Cenario({ navigation }) {
                 <Text style={styles.inferior}>
                   Imposto
                 </Text>
-                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={[styles.imagem]} />
               </TouchableOpacity>
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }}  >
 
@@ -81,7 +81,7 @@ export default function Cenario({ navigation }) {
                 <Text style={styles.inferior}>
                   Produtividade
                 </Text>
-                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={[styles.imagem]} />
               </TouchableOpacity>
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }}  >
                 <Text style={[styles.numero, { color: '#BF0000' }]}>
@@ -90,7 +90,7 @@ export default function Cenario({ navigation }) {
                 <Text style={styles.inferior}>
                   Poluição
                 </Text>
-                <Image source={require('../../assets/agricultorIcones/information.png')} style={{ opacity: 0.7, width: 16, height: 16, marginVertical: 5, alignSelf: 'center' }} />
+                <Image source={require('../../assets/agricultorIcones/information.png')} style={[styles.imagem]} />
               </TouchableOpacity>
             </View >
           )}
@@ -127,7 +127,7 @@ export default function Cenario({ navigation }) {
           <FilterCenary type={type} setType={setType} />
 
           {phase === 1 ?
-            player.logs.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logs.filter((item) => item.type == type).map((item, index) => {
+            player.logs.filter((item) => item.type == type).length == 0 ? <Text style={[styles.textlogs]}>Nenhuma ação executada</Text> : player.logs.filter((item) => item.type == type).map((item, index) => {
               if (item.type === 'plantation') {
                 return <HistoricosPlatacao key={index} item={item} />
               } else if (item.type === 'transfer' || item.type === 'buy') {
@@ -135,7 +135,7 @@ export default function Cenario({ navigation }) {
               }
             })
             :
-              player.logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : player.logsOffice.filter((item) => item.type == type).map((item, index) => {
+              player.logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={[styles.textlogs]}>Nenhuma ação executada</Text> : player.logsOffice.filter((item) => item.type == type).map((item, index) => {
                 if (item.type === 'transfer') {
                   return <HistoricosDinheiro key={index} item={item} />
                 } else if (item.type === 'fine' || item.type === 'stamp' || item.type === 'tax' || item.type === 'prevention') {
@@ -271,5 +271,19 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     marginTop: 8
+  },
+  imagem: {
+    opacity: 0.7, 
+    width: 16, 
+    height: 16, 
+    marginVertical: 5, 
+    alignSelf: 'center'
+  },
+  textlogs: {
+    flex: 1, 
+    textAlign: 'center', 
+    fontFamily: 'Rubik_700Bold', 
+    fontSize: 18, 
+    marginVertical: 50
   }
 });

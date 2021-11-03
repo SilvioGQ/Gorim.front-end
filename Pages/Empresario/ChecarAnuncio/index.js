@@ -21,7 +21,7 @@ export default function ChecarAnuncio({ navigation }) {
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       {player.offers.filter(offer => offer.idBuyer === -1).length === 0 ?
-        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 20 }}>Você não possui anúncios</Text> :
+        <Text style={[styles.text]}>Você não possui anúncios</Text> :
         <FlatList
           showsVerticalScrollIndicator={false}
           data={player.offers.filter(offer => offer.idBuyer === -1)}
@@ -31,7 +31,7 @@ export default function ChecarAnuncio({ navigation }) {
       }
       <Text style={styles.header}>Ofertas individuais</Text>
       {player.offers.filter(offer => offer.idBuyer !== -1).length === 0 ?
-        <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 20 }}>Você não fez oferta individual</Text> :
+        <Text style={[styles.text]}>Você não fez oferta individual</Text> :
         <FlatList
           showsVerticalScrollIndicator={false}
           data={player.offers.filter(offer => offer.idBuyer !== -1)}
@@ -55,9 +55,10 @@ const styles = StyleSheet.create({
     marginBottom: 25
   },
   text: {
-    
-    textAlign: 'center',
-    fontSize: 22,
-    paddingTop: 10
+    flex: 1, 
+    textAlign: 'center', 
+    fontFamily: 'Rubik_700Bold', 
+    fontSize: 18, 
+    marginVertical: 20
   }
 });

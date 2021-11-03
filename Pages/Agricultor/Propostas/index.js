@@ -80,25 +80,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  header: {
-    textAlign: 'center',
-    fontSize: 20,
-    marginBottom: 10
-  },
   text: {
     textAlign: 'center',
     fontSize: 20,
     marginVertical: 5
-  },
-  textSmall: {
-    textAlign: 'center',
-    fontSize: 13,
-    marginTop: 9
-  },
-  button: {
-    width: '22%',
-    height: 40,
-    borderRadius: 50,
-    borderWidth: 1
   }
 });

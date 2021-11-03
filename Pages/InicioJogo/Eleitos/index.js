@@ -21,11 +21,11 @@ export default function Votacao({ navigation }) {
         <View style={{ marginLeft: 15 }}>
           <Text style={styles.resultado}> Resultados:</Text>
           <Text style={styles.texto}>Eleito para prefeito com X votos: </Text>
-          <Image source={require('../../../assets/avatars/Icon1.png')} style={{ height: 100, width: 90, alignSelf: 'center', marginVertical: 30 }} />
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={[styles.imagem]} />
           <Text style={styles.texto}>Eleito para vereador com X votos: </Text>
-          <Image source={require('../../../assets/avatars/Icon1.png')} style={{ height: 100, width: 90, alignSelf: 'center', marginVertical: 30 }} />
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={[styles.imagem]} />
           <Text style={styles.texto}>Eleito para fiscal com X votos: </Text>
-          <Image source={require('../../../assets/avatars/Icon1.png')} style={{ height: 100, width: 90, alignSelf: 'center', marginVertical: 30 }} />
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={[styles.imagem]} />
         </View>
         <Button
           onClick={() => navigation.navigate('frame7')}
@@ -77,4 +77,10 @@ const styles = StyleSheet.create({
     fontSize: 23,
     marginVertical: 20
   },
+  imagem: {
+    height: 100, 
+    width: 90, 
+    alignSelf: 'center', 
+    marginVertical: 30
+  }
 });
