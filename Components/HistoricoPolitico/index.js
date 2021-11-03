@@ -7,7 +7,7 @@ import IMAGES from '../../constants/imagesIcons';
 import { GameContext } from "../../contexts/GameContext";
 const Tela = Dimensions.get('screen').width;
 
-export default function HistoricosDinheiro({ item }) {
+export default function HistoricoPolitico({ item }) {
     const { player } = useContext(GameContext);
     return (
         <View style={styles.colunm}>
