@@ -18,12 +18,12 @@ export default function Votacao({ navigation }) {
           />
           <Text style={styles.title}>Eleições em {"\n"} {/*player.city*/} </Text>
         </View>
-        <View style={{ marginLeft: 15 }}>
-          <Text style={styles.texto}> Vote em um candidato à prefeito:</Text>
+        <View style={{ marginLeft: 20 }}>
+          <Text style={styles.texto}> Vote em um candidato a prefeito:</Text>
+          <Quadrados />  <Quadrados />
+          <Text style={styles.texto}> Vote em um candidato a vereador:</Text>
           <Quadrados />
-          <Text style={styles.texto}> Vote em um candidato à vereador:</Text>
-          <Quadrados />
-          <Text style={styles.texto}> Vote em um candidato à fiscal:</Text>
+          <Text style={styles.texto}> Vote em um candidato a fiscal:</Text>
           <Quadrados />
         </View>
         <Button
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     alignItems: 'center',
     padding: 5,
-    width: Tela
+    width: Tela,
   },
   self: {
     flexDirection: 'row',
@@ -73,5 +73,6 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     alignItems: 'center',
     justifyContent: 'center',
+    marginVertical: 10,
   },
 });

@@ -27,7 +27,9 @@ export default function Frame5({ navigation }) {
       <View style={styles.texto}>
         <Text style={styles.paragrafo}>Antes de começar, a cidade de {/*player.city*/} precisa de representantes e reguladores que serão responsáveis por gerir os recursos públicos em busca de alinhar lucro e meio ambiente. Você pode se candidatar à estes cargos e, logo, haverá uma votação para eleger os líderes da cidade! </Text>
       </View>
+      <View>
         <CheckBox />
+      </View>
       <Button
         onClick={() => navigation.navigate('frame6')}
         name='CONTINUAR'

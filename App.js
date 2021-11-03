@@ -3,7 +3,9 @@ import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import Routes from './Pages/Routes';
-import Candidato from './Pages/InicioJogo/Votaçao';
+// import Candidato from './Pages/InicioJogo/Votaçao';
+import Candidato from './Pages/InicioJogo/Eleitos';
+
 import { GameProvider } from './contexts/GameContext';
 import { useFonts, Rubik_300Light, Rubik_400Regular, Rubik_700Bold } from '@expo-google-fonts/rubik';
 

@@ -47,11 +47,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.8,
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginTop: 40
   },
   row: {
     flexDirection: 'row',
+    marginVertical: 10
   },
   candidato: {
     fontFamily: 'Rubik_300Light',
@@ -60,8 +61,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 12
   },
   checkbox: {
-    height: 20,
-    width: 20,
+    height: 25,
+    width: 25,
     marginLeft: 10
   }
 });
