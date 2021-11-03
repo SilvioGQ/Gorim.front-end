@@ -9,7 +9,7 @@ import FilterType from '../../../Components/FilterType';
 import COLORS from '../../../constants/colors';
 import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
-
+import TextBold from '../../../Components/Atons/TextBold';
 const Tela = Dimensions.get('screen').width;
 export default function Propostas({navigation}) {
   const [modalText, setModalText] = useState('');
@@ -51,7 +51,7 @@ export default function Propostas({navigation}) {
       <Text style={styles.text}>Anúncios</Text>
       <FilterType type={type} setType={setType} />
       {!offers.all || offers.all.length === 0 ?
-          <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+          <TextBold>Você não tem nada!</TextBold>
           : <FlatList
             showsVerticalScrollIndicator={false}
             data={selectType()}
@@ -63,7 +63,7 @@ export default function Propostas({navigation}) {
       <View style={{flex:1}}>
       <Text style={styles.text}>Negociação individual</Text>
       {!offers.individual || offers.individual.length === 0 ?
-          <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Você não tem nada!</Text>
+          <TextBold>Você não tem nada!</TextBold>
           : <FlatList
             showsVerticalScrollIndicator={false}
             data={offers.individual}

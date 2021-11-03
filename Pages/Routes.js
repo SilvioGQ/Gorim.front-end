@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-
 // import Frame4 from './InicioJogo/Personagem';
 // import Frame5 from './InicioJogo/Candidatura';
 // import Frame6 from './InicioJogo/Votaçao';
