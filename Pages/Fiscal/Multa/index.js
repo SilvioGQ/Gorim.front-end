@@ -6,6 +6,7 @@ import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
 import MultaComponent from '../../../Components/Multa';
 import Modal from '../../../Components/ModalInfo';
+import TextBold from '../../../Components/Atons/TextBold';
 
 const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
@@ -32,11 +33,11 @@ export default function Multa({ navigation }) {
       <Text style={styles.text}>Agricultores</Text>
       {players.filter(p=>p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city ).length !== 0 ? players.filter(p=>p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />) 
       : 
-      <Text style={[styles.text2]}>Não há mais multas para aplicar!</Text>}
+      <TextBold>Não há mais multas para aplicar!</TextBold>}
       <Text style={styles.text}>Empresário</Text>
       {players.filter(p=>p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p=>p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)
       :
-      <Text style={[styles.text2]}>Não há mais multas para aplicar!</Text>}
+      <TextBold>Não há mais multas para aplicar!</TextBold>}
     </View>
   );
 }
@@ -74,10 +75,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: 20
   },
-  text2: {
-    textAlign: 'center', 
-    fontFamily: 'Rubik_700Bold', 
-    fontSize: 18, 
-    marginVertical: 20
-  }
 });

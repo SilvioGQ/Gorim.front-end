@@ -21,11 +21,11 @@ export default function Votacao({ navigation }) {
         <View style={{ marginLeft: 15 }}>
           <Text style={styles.resultado}> Resultados:</Text>
           <Text style={styles.texto}>Eleito para prefeito com X votos: </Text>
-          <Image source={require('../../../assets/avatars/Icon1.png')} style={[styles.imagem]} />
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={styles.icone} />
           <Text style={styles.texto}>Eleito para vereador com X votos: </Text>
-          <Image source={require('../../../assets/avatars/Icon1.png')} style={[styles.imagem]} />
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={styles.icone} />
           <Text style={styles.texto}>Eleito para fiscal com X votos: </Text>
-          <Image source={require('../../../assets/avatars/Icon1.png')} style={[styles.imagem]} />
+          <Image source={require('../../../assets/avatars/Icon1.png')} style={styles.icone} />
         </View>
         <Button
           onClick={() => navigation.navigate('frame7')}
@@ -45,6 +45,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     width: Tela
+  },
+  icone: {
+    height: 100, 
+    width: 90, 
+    alignSelf: 'center', 
+    marginVertical: 30
   },
   self: {
     flexDirection: 'row',
@@ -77,10 +83,4 @@ const styles = StyleSheet.create({
     fontSize: 23,
     marginVertical: 20
   },
-  imagem: {
-    height: 100, 
-    width: 90, 
-    alignSelf: 'center', 
-    marginVertical: 30
-  }
 });

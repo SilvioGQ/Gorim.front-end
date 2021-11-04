@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
   },
   icone: {
     width: 40,
-    height: 40,
+    height: 44,
   },
 });

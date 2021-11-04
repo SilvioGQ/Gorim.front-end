@@ -29,7 +29,7 @@
       "buildNumber": "1.0.1"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     },
     "description": "RPG online\n",
     "plugins": [

@@ -9,6 +9,8 @@ const IMAGES = {
   'Icon8': require('../../assets/avatars/Icon8.png'),
   'Icon9': require('../../assets/avatars/Icon9.png'),
   'Icon10': require('../../assets/avatars/Icon10.png'),
+  'Icon11': require('../../assets/avatars/Icon11.png'),
+  'Icon12': require('../../assets/avatars/Icon12.png'),
   'Todos': require('../../assets/symbols/group.png')
 };
 export default IMAGES;

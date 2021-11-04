@@ -8,6 +8,7 @@ import Anuncio from '../../../Components/Anuncio';
 import COLORS from '../../../constants/colors';
 import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
+import TextBold from '../../../Components/Atons/TextBold';
 
 const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
@@ -21,7 +22,7 @@ export default function ChecarAnuncio({ navigation }) {
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       {player.offers.filter(offer => offer.idBuyer === -1).length === 0 ?
-        <Text style={[styles.text]}>Você não possui anúncios</Text> :
+        <TextBold>Você não possui anúncios</TextBold> :
         <FlatList
           showsVerticalScrollIndicator={false}
           data={player.offers.filter(offer => offer.idBuyer === -1)}
@@ -31,7 +32,7 @@ export default function ChecarAnuncio({ navigation }) {
       }
       <Text style={styles.header}>Ofertas individuais</Text>
       {player.offers.filter(offer => offer.idBuyer !== -1).length === 0 ?
-        <Text style={[styles.text]}>Você não fez oferta individual</Text> :
+        <TextBold>Você não fez oferta individual</TextBold> :
         <FlatList
           showsVerticalScrollIndicator={false}
           data={player.offers.filter(offer => offer.idBuyer !== -1)}

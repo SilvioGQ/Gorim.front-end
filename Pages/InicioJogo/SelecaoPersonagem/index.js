@@ -73,8 +73,10 @@ export default function SelecaoPersonagem({ navigation }) {
               <Quadrados onClick={() => selectAvatar('Icon8')} backgroundColor={bgQuadrados('Icon8')} icon='Icon8' />
               <Quadrados onClick={() => selectAvatar('Icon9')} backgroundColor={bgQuadrados('Icon9')} icon='Icon9' />
             </View>
-            <View style={{ alignSelf: 'center' }}>
+            <View style={{ flexDirection: 'row' }}>
               <Quadrados onClick={() => selectAvatar('Icon10')} backgroundColor={bgQuadrados('Icon10')} icon='Icon10' />
+              <Quadrados onClick={() => selectAvatar('Icon11')} backgroundColor={bgQuadrados('Icon11')} icon='Icon11' />
+              <Quadrados onClick={() => selectAvatar('Icon12')} backgroundColor={bgQuadrados('Icon12')} icon='Icon12' />
             </View>
           </View>
         </View>
