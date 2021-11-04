@@ -32,7 +32,7 @@ export default function FazerTransferencia({ navigation }) {
       <Rodada name={'Fazer transferência'} arrow={true} onClick={() => navigation.goBack()} />
       <Coin coin={phase === 1 ? player.coin : player.serviceSalary} />
       <View style={styles.header}>
-        <Image source={require('../../../assets/icons/coin.png')} />
+        <Image source={require('../../../assets/icons/coin.png')} style={styles.icon} />
         <Text style={styles.textFont}>Fazer {'\n'}transferência</Text>
       </View>
       <Text style={styles.text}>Destinatário:</Text>

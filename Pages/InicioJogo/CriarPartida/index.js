@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   header: {
-
     fontWeight: '600',
     fontSize: 24,
     marginVertical: 10,
@@ -151,12 +150,10 @@ const styles = StyleSheet.create({
   text2: {
     textTransform: 'uppercase',
     fontSize: 18,
-
     textAlign: 'center',
   },
   botao: {
     fontSize: 24,
-
     marginTop: 7,
   },
   arrow: {
