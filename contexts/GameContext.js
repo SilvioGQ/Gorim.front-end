@@ -12,7 +12,22 @@ const GameContext = React.createContext();
 const GameProvider = (props) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const stopCallback = () => {
+    refContainer.current = 'NOTHING';
+  }
   const callbackForTimer = useCallback(event => {
+    if (event === 'ENDSTAGE') {
+      endStage();
+      stopCallback();
+    }
+    if (event === 'NEXTSTAGE') {
+      nextStage();
+      stopCallback();
+    }
+    if (event === 'ENDROUND') {
+      endRound();
+      stopCallback();
+    }
     if (event === 'ENDSTAGE' && socket.connected) endStage();
     if (event === 'NEXTSTAGE' && socket.connected) nextStage();
   });
@@ -44,9 +59,6 @@ const GameProvider = (props) => {
     });
   }
 
-  const stopCallback = () => {
-    refContainer.current = 'NOTHING';
-  }
 
   useEffect(() => {
     let isConnected = null;
@@ -130,6 +142,14 @@ const GameProvider = (props) => {
     socket.on('nextStage', (room) => {
       dispatch({ type: 'NEXTSTAGE', payload: ['NEXTSTAGE', room] });
       startTimer(10, 'ENDROUND');
+    });
+    socket.on('endRound', () => {
+      dispatch({ type: 'ENDROUND', payload: 'ENDROUND' });
+    });
+    socket.on('nextRound', (room) => {
+      console.log(room)
+      dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
+      startTimer(400, 'ENDSTAGE');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });
@@ -275,6 +295,13 @@ const deleteSuggest = (suggest) => {
 const toggleApprovedSuggest = (suggest, status) => {
   socket.emit('toggleApprovedSuggest', suggest, status);
 }
+const endRound = () => {
+  socket.emit('endRound');
+}
+
+const nextRound = () => {
+  socket.emit('nextRound');
+}
 export {
   GameContext,
   GameProvider,
@@ -308,5 +335,7 @@ export {
   suggestTax,
   suggestPrevention,
   deleteSuggest,
-  toggleApprovedSuggest
+  toggleApprovedSuggest,
+  endRound,
+  nextRound
 };

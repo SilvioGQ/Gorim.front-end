@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
-import { GameContext, removeToRoom, endStage, makeTransferOffice } from '../../contexts/GameContext';
+import { GameContext, removeToRoom, endStage, makeTransferOffice, endRound } from '../../contexts/GameContext';
 
 import COLORS from '../../constants/colors';
 import Header from '../../Components/Header';
@@ -20,12 +20,11 @@ export default function MenuPolitico({ navigation }) {
 
   useEffect(() => {
     let isMounted = true;
-
     if (stage === 'NAVIGATEFORSTATUS') navigation.reset({ routes: [{ name: 'Status' }] });
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
-
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
+    if (stage === 'ENDROUND' && isMounted) navigation.reset({ routes: [{ name: 'AguardarJogadores' }] });
     if (stage === 'ENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'AguardarJogadores' }] });
 
     return () => isMounted = false;
@@ -44,7 +43,7 @@ export default function MenuPolitico({ navigation }) {
       <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}ª Rodada - ${phase}ª Etapa`} setModalVisible={setModalVisible} />
       <Header typeMenu="politic" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
-      {modalVisible2 && <ModalAsk finish={() => endStage()} back={() => setModalVisible2(!modalVisible2)} />}
+      {modalVisible2 && <ModalAsk finish={() => endRound()} back={() => setModalVisible2(!modalVisible2)} />}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}

@@ -125,6 +125,15 @@ const reducer = (state, action) => {
         ...state,
         suggests: action.payload
       };
+      case 'NEXTROUND':
+      return {
+        ...state,
+        stage: action.payload[0],
+        phase: action.payload[1].match.phase,
+        round: action.payload[1].match.round,
+        awaitPlayers: action.payload[1].awaitPlayers.length,
+      };
+      case 'ENDROUND':
     case 'RECONNECTED':
       return {
         ...state,
