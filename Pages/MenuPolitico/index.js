@@ -18,6 +18,7 @@ export default function MenuPolitico({ navigation }) {
   const [modalVisible2, setModalVisible2] = useState(false);
   const { players, player, awaitPlayers, stage, notify, round, phase } = useContext(GameContext);
 
+
   useEffect(() => {
     let isMounted = true;
     if (stage === 'NAVIGATEFORSTATUS') navigation.reset({ routes: [{ name: 'Status' }] });
@@ -39,6 +40,7 @@ export default function MenuPolitico({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={{ color: notify.suggests ? 'red' : 'yellow'}}>Teste</Text>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}ª Rodada - ${phase}ª Etapa`} setModalVisible={setModalVisible} />
       <Header typeMenu="politic" />
