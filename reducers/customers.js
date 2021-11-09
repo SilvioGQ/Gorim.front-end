@@ -7,7 +7,7 @@ const initialState = {
   logs: [],
   suggests:[],
   offers: [],
-  notify: { scene: false, offers: false }
+  notify: { scene: false, offers: false, suggests: false }
 }
 
 const reducer = (state, action) => {

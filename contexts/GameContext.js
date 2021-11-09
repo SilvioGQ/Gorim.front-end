@@ -12,27 +12,25 @@ const GameContext = React.createContext();
 const GameProvider = (props) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const stopCallback = () => {
-    refContainer.current = 'NOTHING';
-  }
-  const callbackForTimer = useCallback(event => {
-    if (event === 'ENDSTAGE') {
-      endStage();
-      stopCallback();
-    }
-    if (event === 'NEXTSTAGE') {
-      nextStage();
-      stopCallback();
-    }
-    if (event === 'ENDROUND') {
-      endRound();
-      stopCallback();
-    }
-    if (event === 'ENDSTAGE' && socket.connected) endStage();
-    if (event === 'NEXTSTAGE' && socket.connected) nextStage();
-  });
-  const refContainer = useRef();
   const [modal, setModal] = useState(false);
+  const refContainer = useRef();
+  
+  const callbackForTimer = useCallback(event => {
+    switch (true) {
+      case event === 'ENDSTAGE':
+        endStage();
+      break;
+      case event === 'NEXTSTAGE':
+        nextStage();
+      break;
+      case event === 'ENDROUND':
+        endRound();
+      break;
+      default:
+        refContainer.current();
+      break;
+    }
+  });
 
   const disableNotifyScene = () => {
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
@@ -59,6 +57,9 @@ const GameProvider = (props) => {
     });
   }
 
+  const stopCallback = () => {
+    refContainer.current = 'NOTHING';
+  }
 
   useEffect(() => {
     let isConnected = null;
@@ -141,7 +142,7 @@ const GameProvider = (props) => {
     });
     socket.on('nextStage', (room) => {
       dispatch({ type: 'NEXTSTAGE', payload: ['NEXTSTAGE', room] });
-      startTimer(10, 'ENDROUND');
+      startTimer(400, 'ENDROUND');
     });
     socket.on('endRound', () => {
       dispatch({ type: 'ENDROUND', payload: 'ENDROUND' });
@@ -165,9 +166,9 @@ const GameProvider = (props) => {
   }, []);
 
   return (
-    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, stopCallback }}>
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, stopCallback, startTimer }}>
       {modal && (
-        <ModalInfo onClick={()=>{setModal(false)}}  display={socket.connected ? 'flex' : 'none'} text={'Estamos reconectando você para partida'} />
+        <ModalInfo onClick={() => { setModal(false) }} display={socket.connected ? 'flex' : 'none'} text={'Estamos reconectando você para partida'} />
       )}
       {props.children}
     </GameContext.Provider>
