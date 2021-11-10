@@ -9,53 +9,63 @@ export default function FilterCenary({ type, setType }) {
 		<View style={{ flexDirection: 'row', marginHorizontal: 20, width: '80%', justifyContent: 'space-between', marginVertical: 10 }}>
 			{player.type === 'Agricultor' && phase === 1 && (
 				<>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'buy' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('buy') }}>
 						<Text style={[styles.textSmall, { color: type == 'buy' ? '#fff' : '#000' }]}>Compras</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'plantation' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('plantation') }}>
 						<Text style={[styles.textSmall, { color: type == 'plantation' ? '#fff' : '#000' }]}>Plantação</Text>
 					</TouchableOpacity>
 				</>
 			)}
 			{player.office === 'Fiscal' && phase === 2 && (
 				<>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'stamp' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('stamp') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'stamp' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('stamp') }}>
 						<Text style={[styles.textSmall, { color: type == 'stamp' ? '#fff' : '#000' }]}>Selos</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'fine' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('fine') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'fine' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('fine') }}>
 						<Text style={[styles.textSmall, { color: type == 'fine' ? '#fff' : '#000' }]}>Multas</Text>
 					</TouchableOpacity>
 				</>
 			)}
 			{player.office === 'Prefeito' && phase === 2 && (
 				<>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'tax' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('tax') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'tax' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('tax') }}>
 						<Text style={[styles.textSmall, { color: type == 'tax' ? '#fff' : '#000' }]}>Imposto</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'prevention' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('prevention') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'prevention' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('prevention') }}>
 						<Text style={[styles.textSmall, { color: type == 'prevention' ? '#fff' : '#000' }]}>Prevenção</Text>
 					</TouchableOpacity>
 				</>
 			)}
 			{player.office === 'Vereador' && phase === 2 && (
 				<>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }} activeOpacity={0.7}>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'tax' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('tax') }} activeOpacity={0.7}>
-						<Text style={[styles.textSmall, { color: type == 'tax' ? '#fff' : '#000' }]}>Imposto</Text>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'tax' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('tax') }}>
+						<Text style={[styles.textSmall, { color: type == 'tax' ? '#fff' : '#000' }]}>pre/Imposto</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'prevention' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('prevention') }} activeOpacity={0.7}>
-						<Text style={[styles.textSmall, { color: type == 'prevention' ? '#fff' : '#000' }]}>Prevenção</Text>
+					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'prevention' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('prevention') }}>
+						<Text style={[styles.textSmall, { color: type == 'prevention' ? '#fff' : '#000' }]}>pre/Prevenção</Text>
+					</TouchableOpacity>
+				</>
+			)}
+			{!player.office && phase === 2 && (
+				<>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'tax' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('tax') }}>
+						<Text style={[styles.textSmall, { color: type == 'tax' ? '#fff' : '#000' }]}>pre/Imposto</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'prevention' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('prevention') }}>
+						<Text style={[styles.textSmall, { color: type == 'prevention' ? '#fff' : '#000' }]}>pre/Prevenção</Text>
 					</TouchableOpacity>
 				</>
 			)}
@@ -89,7 +99,7 @@ const styles = StyleSheet.create({
 	textSmall: {
 		textAlign: 'center',
 		fontSize: Height < 780 ? 11 : 13,
-		
+
 		marginTop: 9
 	},
 })

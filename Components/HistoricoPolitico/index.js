@@ -46,7 +46,7 @@ export default function HistoricoPolitico({ item }) {
                         <View>
                             <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'prevention' ? `$${item.value}` : `${item.label}`} </Text>
                             <Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
-                            <Text style={styles.text}>{player.office === 'Vereador' ? 'Sugeriu' : 'Aplicou'}</Text>
+                            <Text style={styles.text}>Aplicou</Text>
                         </View>
                         <View>
                             <Image

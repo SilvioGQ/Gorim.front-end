@@ -13,18 +13,14 @@ export default function Cenario({ navigation }) {
   const [open3, setOpen3] = useState(false);
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
-  const [Logs, setLogs] = useState();
-  const { player, logs, round } = useContext(GameContext);
+  const { player, round } = useContext(GameContext);
   const rotateZ = open ? "180deg" : "0deg";
   const rotateZ2 = open2 ? "180deg" : "0deg";
   const rotateZ3 = open3 ? "180deg" : "0deg";
   const rotateZ4 = open4 ? "180deg" : "0deg";
   const rotateZ5 = open5 ? "180deg" : "0deg";
 
-  useEffect(()=>{
-    setLogs(logs.find((p)=> p.id === player.id))
-  }, []);
-  
+  console.log(player)
   return (
       <ScrollView>
     <View>
@@ -55,7 +51,7 @@ export default function Cenario({ navigation }) {
                 </TouchableOpacity>
               </View>
               <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
-                {Logs.logs.filter((item) =>item.type == 'plantation').length > 0 ? Logs.logs.filter((item) =>item.type == 'plantation').map((item, index) => {
+                {player.logs.filter((item) =>item.type == 'plantation').length > 0 ? player.logs.filter((item) =>item.type == 'plantation').map((item, index) => {
                   return <Text style={[styles.texto]} key={index}>Parcela {item.parcelLand.id + 1}{'\n'}Semente: {item.parcelLand.seed},{item.parcelLand.pesticide ? ` Agrotóxico: ${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''}{item.parcelLand.fertilizer ? ` Fertilizante: ${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''}{item.parcelLand.machine ? ` Máquina: ${item.parcelLand.machine},` : ''} Pulverizador:{item.parcelLand.spray ? ' Sim' : ' Não'}{'\n'}</Text>
                 })
                 :
@@ -76,7 +72,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
             </View>
             <View style={{ display: open2 ? 'flex' : 'none' }}>
-              {Logs.logs.filter((item)=>item.type == 'buy').length > 0 ? Logs.logs.filter((item)=>item.type == 'buy').map((item, index) => {
+              {player.logs.filter((item)=>item.type == 'buy').length > 0 ? player.logs.filter((item)=>item.type == 'buy').map((item, index) => {
                 return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por $${item.product.price} cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por $${item.product.price} cada, para o agricultor ${item.namePlayer} \n`}</Text>
               })
               :
@@ -98,7 +94,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
             </View>
             <View style={{ display: open3 ? 'flex' : 'none' }}>
-              {Logs.logs.filter((item) =>item.type == 'transfer').length > 0 ? Logs.logs.filter((item) =>item.type == 'transfer').map((item, index) => {
+              {player.logs.filter((item) =>item.type == 'transfer').length > 0 ? player.logs.filter((item) =>item.type == 'transfer').map((item, index) => {
                 return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você transferiu $${item.value} para o jogador ${item.namePlayer}\n` : `Você recebeu $${item.value} do jogador ${item.namePlayer}\n`}</Text>
               })
               :
@@ -116,7 +112,13 @@ export default function Cenario({ navigation }) {
                 <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ4 }] }} source={require('../../assets/dropdown.png')} />
               </TouchableOpacity>
             </View>
-            <Text style={{ marginLeft: 10,  display: open4 ? 'flex' : 'none' }}>Você não teve multas</Text>
+            <View style={{ display: open4 ? 'flex' : 'none' }}>
+              {player.logs.filter((item) =>item.type == 'fine').length > 0 ? player.logs.filter((item) =>item.type == 'fine').map((item, index) => {
+                return <Text style={[styles.texto]} key={index}>{item.gravity !== 'Nenhuma' ? `Você pagou uma multa de $${item.value} a taxa "${item.gravity}"` : "O fiscal não te aplicou multas"}</Text>
+              })
+              :
+              <Text style={[styles.textonao]}>Fiscal não te aplicou multa</Text>
+              }</View>
           </View>
           <View style={styles.backgreen}>
             <View style={styles.whiteRow}>
@@ -128,7 +130,8 @@ export default function Cenario({ navigation }) {
                 <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ5 }] }} source={require('../../assets/dropdown.png')} />
               </TouchableOpacity>
             </View>
-            <View style={{ display: open5 ? 'flex' : 'none' }}>{Logs.logs.filter((item)=> {
+            <View style={{ display: open5 ? 'flex' : 'none' }}>
+              {player.logs.filter((item)=> {
               if (item.type == 'tax') {
                 return item
               }

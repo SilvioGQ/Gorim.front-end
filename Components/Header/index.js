@@ -18,7 +18,7 @@ export default function Header({ typeMenu = 'player' }) {
     if (typeMenu == 'player') {
       return `${player.type ? player.type.slice(0, 3) : ''}${player.type === 'Empresário' ? player.specialty[0] : ''}`;
     } else {
-      return `${player.office.slice(0, 3)}`;
+      return `${player.office ? player.office.slice(0, 3) : 'cid'}`;
     }
   }
 
@@ -33,7 +33,7 @@ export default function Header({ typeMenu = 'player' }) {
         <Text style={{ color: mudarcor(globalPollution), fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollution}%</Text>
       </View>
       <View>
-        <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} />
+        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : null }
       </View>
       <Image style={styles.person} source={IMAGES[player.avatar]} />
     </View>
