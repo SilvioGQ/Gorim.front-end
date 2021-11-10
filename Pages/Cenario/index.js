@@ -31,7 +31,7 @@ export default function Cenario({ navigation }) {
       <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
         <View style={styles.container}>
-          {player.office ? <Coin coin={phase === 1 ? player.coin : player.serviceSalary} /> : null}
+          {player.office && phase == 2 ? <Coin coin={phase === 1 ? player.coin : player.serviceSalary} /> : null}
           <View style={styles.row}>
             <Image
               style={styles.image}

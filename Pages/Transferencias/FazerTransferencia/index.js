@@ -52,7 +52,7 @@ export default function FazerTransferencia({ navigation }) {
         <View style={styles.margin}>
           <FlatList
             numColumns={3}
-            data={phase === 2 ? players.filter(i => i.id !== player.id && i.office !== 'Cidadão') : players.filter(i => i.office !== 'Cidadão')}
+            data={phase === 2 ? players.filter(i => i.id !== player.id && i.office) : players.filter(i => i.office)}
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => <Quadrados abr={item.office.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />}
           />
