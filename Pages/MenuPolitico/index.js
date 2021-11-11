@@ -37,7 +37,6 @@ export default function MenuPolitico({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={{ color: notify.suggests ? 'red' : 'yellow'}}>Teste</Text>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}ª Rodada - ${phase}ª Etapa`} setModalVisible={setModalVisible} />
       <Header typeMenu="politic" />
@@ -55,7 +54,7 @@ export default function MenuPolitico({ navigation }) {
               <Item type='' onClick={() => navigation.navigate('HistoricoJogadores')} name='Histórico dos Jogadores' />
             </View>
             <View style={styles.items}>
-              <Item type='' onClick={() => navigation.navigate('Sugestoes')} name='Sugestões' />
+              <Item type='' onClick={() => navigation.navigate('Sugestoes')} name='Sugestões' notification={notify.suggests} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
               <View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />
             </View>
