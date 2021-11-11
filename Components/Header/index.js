@@ -6,7 +6,7 @@ import { GameContext } from "../../contexts/GameContext";
 
 export default function Header({ typeMenu = 'player' }) {
 
-  const { player, globalPollution } = useContext(GameContext);
+  const { player, globalPollution, phase } = useContext(GameContext);
 
   const mudarcor = (valor) => {
     if (valor >= 0 && valor <= 50) return '#FF0000';
@@ -33,7 +33,7 @@ export default function Header({ typeMenu = 'player' }) {
         <Text style={{ color: mudarcor(globalPollution), fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollution}%</Text>
       </View>
       <View>
-        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : null }
+        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : phase === 1 ? player.coin : null }
       </View>
       <Image style={styles.person} source={IMAGES[player.avatar]} />
     </View>

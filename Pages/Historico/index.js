@@ -156,8 +156,8 @@ const styles = StyleSheet.create({
     marginVertical: 35
   },
   image: {
-    width: 80,
-    height: 80
+    width: 70,
+    height: 75
   },
   name: {
     fontFamily: 'Rubik_700Bold',

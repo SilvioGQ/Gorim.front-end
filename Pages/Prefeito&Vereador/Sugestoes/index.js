@@ -39,7 +39,10 @@ export default function Sugestoes({ navigation }) {
         />
       )}
       {suggests.length === 0 && (
+        player.office === 'Vereador' ?
         <Text style={styles.textBold}>Você não fez sugestões!</Text>
+        :
+        <Text style={styles.textBold}>Não há sugestões!</Text>
       )}
 
     </View>

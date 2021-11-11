@@ -27,10 +27,10 @@ export default function CaixaDeValor({ value, setValue, increment, minValue = 0,
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: 5,
+    marginVertical: 15,
     flexDirection: 'row',
     justifyContent: 'center',
+    marginBottom:30
 
   },
   arrow: {

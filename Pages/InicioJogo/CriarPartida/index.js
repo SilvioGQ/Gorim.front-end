@@ -105,7 +105,8 @@ const styles = StyleSheet.create({
     width: '80%',
     textAlign: 'center',
     borderRadius: 17,
-    borderColor:'#11BBA3'
+    borderColor:'#11BBA3',
+    fontFamily:'Rubik_300Light',
   },
   row: {
     flexDirection: 'row',
@@ -144,13 +145,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-
     marginTop: 5
   },
   text2: {
     textTransform: 'uppercase',
     fontSize: 18,
     textAlign: 'center',
+    fontFamily:'Rubik_300Light'
   },
   botao: {
     fontSize: 24,

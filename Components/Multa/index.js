@@ -25,7 +25,7 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
           {stage === 'SUGGESTFINE' && (
           <Picker
             selectedValue={numero}
-            style={{ height: 28, width: 110, borderRadius: 17 }}
+            style={{ height: 28, width: 155, borderRadius: 17, borderWidth:1 }}
             onValueChange={(itemValue) => setNumero(itemValue)}
           >
             <Picker.Item label="Nenhuma" value={"Nenhuma"} />
