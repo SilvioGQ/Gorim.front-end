@@ -39,6 +39,12 @@ export default function Cenario({ navigation }) {
               <Text style={styles.subtitle}>{player.city}</Text>
             </View>
           </View>
+          {/* <View style={styles.backgreen}>
+            <Text style={[styles.texto]}>Poluição: {player.pollution.toFixed(1)}</Text>
+          </View>
+          <View style={styles.backgreen}>
+            <Text style={[styles.texto]}>Produtividade: ${player.production < 0 ? '0' : player.production}</Text>
+          </View> */}
           {player.type === 'Agricultor' ?
             <View style={styles.backgreen}>
               <View style={styles.whiteRow}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { GameContext } from "../../contexts/GameContext";
 
 import COLORS from '../../constants/colors';
 import imagesProducts from '../../constants/imagesProducts';
@@ -8,12 +9,16 @@ import IMAGES from '../../constants/imagesIcons'
 
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer }) {
-
   const [count, setCount] = useState(1);
+  const { player, players } = useContext(GameContext);
 
+  selectPlayer = (id) => {
+    return players.find(player => player.id === id);
+  }
   const increaseCount = () => { setCount(count < (item.amount > 6 ? 6 : item.amount) ? count + 1 : count); }
   const decreaseCount = () => { setCount(count > 1 ? count - 1 : count); }
   
+  console.log(item.idSeller);
   return (
     <View>
     <Text style={styles.text1}>Ainda restam {item.amount} produtos</Text>
@@ -24,7 +29,7 @@ export default function Oferta({ item, confirmOffer }) {
             style={styles.person}
             source={IMAGES[item.avatarSeller]}
           />
-          <Text style={styles.text}>{item.idSeller.name}</Text>
+            <Text style={styles.text}>{this.selectPlayer(item.idSeller).name}</Text>
         </View>
         <View>
           <Text style={styles.text}>Produto:</Text>
