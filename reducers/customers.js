@@ -4,7 +4,7 @@ const initialState = {
   players: [],
   player: {},
   data: null,
-  logs: [],
+  oldLogs: [],
   suggests:[],
   offers: [],
   notify: { scene: false, offers: false, suggests: false }
@@ -86,7 +86,7 @@ const reducer = (state, action) => {
     case 'GETLOGS':
       return {
         ...state,
-        logs: action.payload
+        oldLogs: action.payload
       };
     case 'GETNOTIFY':
       return {

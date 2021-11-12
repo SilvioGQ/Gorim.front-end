@@ -35,7 +35,7 @@ export default function MenuJogador({ navigation }) {
     setModalVisible(!modalVisible);
     removeToRoom();
   }
-  console.log(player)
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />

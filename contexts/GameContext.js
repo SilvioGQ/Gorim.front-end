@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_HERO, { autoConnect: false });
+const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -152,7 +152,6 @@ const GameProvider = (props) => {
       dispatch({ type: 'ENDROUND', payload: 'ENDROUND' });
     });
     socket.on('nextRound', (room) => {
-      console.log(room)
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
       startTimer(400, 'ENDSTAGE');
     });
