@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -278,10 +278,6 @@ const applyTax = (newTax) => {
   socket.emit('applyTax', newTax);
 }
 
-const applyDefaultTax = () => {
-  socket.emit('applyDefaultTax');
-}
-
 const getCityTax = () => {
   socket.emit('getCityTax');
 }
@@ -334,7 +330,6 @@ export {
   sendStamp,
   applyPrevention,
   applyTax,
-  applyDefaultTax,
   getCityTax,
   suggestTax,
   suggestPrevention,

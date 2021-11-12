@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
-import { GameContext, applyTax, applyDefaultTax, getCityTax, suggestTax } from '../../../contexts/GameContext';
+import { GameContext, applyTax, getCityTax, suggestTax } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -87,7 +87,7 @@ const apply = ()=>{
           onClick={() => apply()}
           name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
         {player.office === 'Prefeito' && (
-        <TouchableOpacity style={styles.button}   onPress={() => { applyDefaultTax(); }}>
+          <TouchableOpacity style={styles.button} onPress={() => { setSelectImposto("Médio"); setSelectImposto2("Médio"); setSelectImposto3("Médio") }}>
           <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
         </TouchableOpacity>
         )}
