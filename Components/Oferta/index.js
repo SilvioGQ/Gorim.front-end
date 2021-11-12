@@ -8,6 +8,7 @@ import IMAGES from '../../constants/imagesIcons';
 
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer, rejectOffer }) {
+  console.log(item)
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>

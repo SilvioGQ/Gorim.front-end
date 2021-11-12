@@ -17,14 +17,15 @@ export default function DropDown({ items, type, onClick, display }) {
       }
     }));
   }, []);
-  
+
   return (
     <View style={[styles.container, { display: display }]}>
       {inventory.map((item, index) => {
+        console.log(item)
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}  >
             <Image style={styles.icone} source={IMAGES[item.name]} />
-            <Text style={styles.text}>{item.name.replace(/Fertilizante|Agrotóxico/,'')}</Text>
+            <Text style={styles.text}>{item.name.replace(/Fertilizante|Agrotóxico/, '')} restante:{item.amount}</Text>
           </TouchableOpacity>
         );
       })}
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   text: {
-    
+
     fontSize: 15,
     marginLeft: 15
   }
