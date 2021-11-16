@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-
 import { GameContext } from '../../contexts/GameContext';
-import COLORS from '../../constants/colors';
 import Rodada from '../../Components/Rodada';
 import IMAGES from '../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width;
@@ -53,12 +51,12 @@ console.log(oldLogs)
               </TouchableOpacity>
             </View>
             <View style={{ display: open6 ? 'flex' : 'none' }}>
-              {player.logs.filter((item) => {
-                if (item.type == 'tax') {
+              {oldLogs.find(p => p.id === player.id).logs.filter((item) => {
+                if (item.type == 'info') {
                   return item
                 }
               }).map((item, index) => {
-                return <Text style={[styles.texto]} key={index}>{item.percentual ? `Você produziu na última rodada${item.value}, e poluiu total de${item.percentual}% da sua produtividade` : `Foram cobrados $${item.value} em impostos.`}</Text>
+                return <Text style={[styles.texto]} key={index}>{`Você poluiu ${item.pollution}, e produziu $${item.production < 0 ? 0: item.production}.`}</Text>
               })}
             </View>
           </View>
@@ -230,38 +228,62 @@ console.log(oldLogs)
             <Text style={[styles.subtitle, {
               marginLeft: 10,
               marginTop: 10
-            }]}>{player.office === 'Vereador' ? 'Sugestão de impostos' : 'Impostos aplicados'}</Text>
+            }]}>{player.office === 'Vereador' ? 'Impostos aplicados' : 'Impostos aplicados'}</Text>
             <TouchableOpacity onPress={() => { setOpen4(!open4) }}>
               <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ4 }] }} source={require('../../assets/dropdown.png')} />
             </TouchableOpacity>
           </View>
+          {player.office === 'Vereador' ? 
           <View style={{ display: open4 ? 'flex' : 'none' }}>
+          {oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'tax').length > 0 ? oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'tax').map((item, index) => {
+            return <Text style={[styles.texto]} key={index}>{`O prefeito aplicou imposto ${item.value > 0 ? `$${item.value}` : `${item.percentual}%`} para ${item.label}`}</Text>
+          })
+            :
+            <Text style={[styles.textonao]}>O prefeito não aplicou imposto</Text>
+          }
+        </View>
+        :
+        <View style={{ display: open4 ? 'flex' : 'none' }}>
             {oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => item.type == 'tax').length > 0 ? oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => item.type == 'tax').map((item, index) => {
-              return <Text style={[styles.texto]} key={index}>{player.office === "Vereador" ? `Você sugeriu imposto ${item.value > 0 ? `$${item.value}` : `${item.percentual}%`} para ${item.label}` : `Você aplicou imposto ${item.value > 0 ? `$${item.value} para ${item.label}` : `${item.percentual}%`} para ${item.label}`}</Text>
+              return <Text style={[styles.texto]} key={index}>{`Você aplicou imposto ${item.value > 0 ? `$${item.value} para ${item.label}` : `${item.percentual}%`} para ${item.label}`}</Text>
             })
               :
-              <Text style={[styles.textonao]}>Você não {player.office === 'Vereador' ? 'sugeriu imposto' : 'aplicou imposto'}</Text>
+              <Text style={[styles.textonao]}>Não aplicou imposto</Text>
             }
           </View>
+        
+        }
+          
         </View>
         <View style={styles.backgreen}>
           <View style={styles.whiteRow}>
             <Text style={[styles.subtitle, {
               marginLeft: 10,
               marginTop: 10
-            }]}>{player.office === 'Vereador' ? 'Sugestão de prevenção' : 'Prevenção'}</Text>
+            }]}>{player.office === 'Vereador' ? 'Prevenção' : 'Prevenção'}</Text>
             <TouchableOpacity onPress={() => { setOpen5(!open5) }}>
               <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ5 }] }} source={require('../../assets/dropdown.png')} />
             </TouchableOpacity>
           </View>
+          {player.office === "Vereador" ? 
           <View style={{ display: open5 ? 'flex' : 'none' }}>
+          {oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'prevention').length > 0 ? oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'prevention').map((item, index) => {
+            return <Text style={[styles.texto]} key={index}>{`O prefeito aplicou ${item.label}`}</Text>
+          })
+            :
+            <Text style={[styles.textonao]}>O prefeito não aplicou medida de prevenção</Text>
+          }
+        </View>
+        :
+        <View style={{ display: open5 ? 'flex' : 'none' }}>
             {oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => item.type == 'prevention').length > 0 ? oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => item.type == 'prevention').map((item, index) => {
-              return <Text style={[styles.texto]} key={index}>{player.office === 'Vereador' ? `Você sugeriu ${item.label}` : `Você aplicou ${item.label}`}</Text>
+              return <Text style={[styles.texto]} key={index}>{`Você aplicou ${item.label}`}</Text>
             })
               :
-              <Text style={[styles.textonao]}>Você não {player.office === 'Vereador' ? 'sugeriu medida de prevenção' : 'aplicou medida de prevenção'}</Text>
+              <Text style={[styles.textonao]}>Você não aplicou medida de prevenção.</Text>
             }
           </View>
+        }
         </View>
         </>
           }
