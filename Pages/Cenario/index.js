@@ -20,10 +20,11 @@ export default function Cenario({ navigation }) {
 
   const [image, setImage] = useState(true);
   const [image2, setImage2] = useState(true);
-
+  console.log(player.logsOffice)
   useEffect(() => {
     calcPlayerTax();
     disableNotifyScene();
+    player.office ? null : setType('tax')
   }, []);
   // const finded = (type) =>{
   //   players.find((item) => item.office === "Prefeito" && item.city === player.city).length > 0 ?  players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).length == 0 ?  <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type)((item, index) => {
@@ -136,7 +137,7 @@ export default function Cenario({ navigation }) {
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
 
-          {phase === 1 &&
+          {phase === 1 ?
             player.logs.filter((item) => item.type == type).length == 0 ? <Text style={[styles.textlogs]}>Nenhuma ação executada</Text> : player.logs.filter((item) => item.type == type).map((item, index) => {
               if (item.type === 'plantation') {
                 return <HistoricosPlatacao key={index} item={item} />
@@ -144,28 +145,19 @@ export default function Cenario({ navigation }) {
                 return <HistoricosDinheiro key={index} item={item} />
               }
             })
-          }
-          {phase === 2 && player.office !== 'Vereador' ?
-            player.logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={[styles.textlogs]}>Nenhuma ação executada</Text> : player.logsOffice.filter((item) => item.type == type).map((item, index) => {
+            :
+            player.office ? player.logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={[styles.textlogs]}>Nenhuma ação executada</Text> : player.logsOffice.filter((item) => item.type == type).map((item, index) => {
               if (item.type === 'transfer') {
                 return <HistoricosDinheiro key={index} item={item} />
-              } else if (item.type === 'fine' || item.type === 'stamp' || item.type === 'tax' || item.type === 'prevention') {
+              }
+              else if (player.office !== "Vereador" || item.type === 'fine' || item.type === 'stamp' || item.type === 'tax' || item.type === 'prevention') {
                 return <HistoricoPolitico key={index} item={item} />
               }
             })
             :
             null
           }
-          {/* {phase === 2 && player.office === 'Vereador' ?
-            player.logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={[styles.textlogs]}>Nenhuma ação executada</Text> : player.logsOffice.filter((item) => item.type == type).map((item, index) => {
-              if (item.type === 'transfer') {
-                return <HistoricosDinheiro key={index} item={item} />
-              }
-            })
-            :
-            null
-          } */}
-          {phase === 2 && (!player.office || player.office === "Vereador") && players.find((item) => item.office === "Prefeito" && item.city === player.city) ?
+          {phase === 2 && (!player.office || player.office === "Vereador") && !!players.find((item) => item.office === "Prefeito" && item.city === player.city) ?
             players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).map((item, index) => {
               if (item.type === 'tax' || item.type === 'prevention') {
                 return <HistoricoPolitico key={index} item={item} />
@@ -174,15 +166,6 @@ export default function Cenario({ navigation }) {
             :
             null
           }
-          {/* {phase === 2 && !player.office ?
-            players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).length == 0 ? <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).map((item, index) => {
-              if (item.type === 'tax' || item.type === 'prevention') {
-                return <HistoricoPolitico key={index} item={item} />
-              }
-            })
-            :
-            null
-          } */}
         </View>
       </ScrollView>
     </View>
