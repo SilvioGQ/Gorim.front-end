@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { GameContext } from "../../contexts/GameContext";
 
 import COLORS from '../../constants/colors';
 import imagesProducts from '../../constants/imagesProducts';
@@ -8,6 +9,11 @@ import IMAGES from '../../constants/imagesIcons';
 
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer, rejectOffer }) {
+  const { player, players } = useContext(GameContext);
+
+  selectPlayer = (id) => {
+    return players.find(player => player.id === id);
+  }
   console.log(item)
   return (
     <View style={styles.colunm}>
@@ -17,6 +23,8 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
             style={styles.person}
             source={IMAGES[item.avatarSeller]}
           />
+          <Text style={styles.text}>{this.selectPlayer(item.idSeller).name}</Text>
+
           <Text style={styles.text}>{item.idSeller.name}</Text>
         </View>
         <View>

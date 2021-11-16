@@ -22,6 +22,7 @@ export default function Parcela({ route, navigation }) {
   const [dropDown3, setDropDown3] = useState(false);
   const [dropDown4, setDropDown4] = useState(false);
   const { player } = useContext(GameContext);
+  console.log(player.inventory)
 
   useEffect(() => {
     if (player.parcelLand[parcelLand.id] !== parcelLand) setParcelLand(player.parcelLand[parcelLand.id]);
