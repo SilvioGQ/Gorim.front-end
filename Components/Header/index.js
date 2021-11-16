@@ -33,7 +33,7 @@ export default function Header({ typeMenu = 'player' }) {
         <Text style={{ color: mudarcor(globalPollution), fontSize: 21, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollution}%</Text>
       </View>
       <View>
-        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : phase === 1 ? player.coin : null }
+        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : phase === 1 ? <Coin coin={player.coin} /> : null }
       </View>
       <Image style={styles.person} source={IMAGES[player.avatar]} />
     </View>
