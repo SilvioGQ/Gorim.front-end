@@ -56,7 +56,7 @@ export default function Cenario({ navigation }) {
                       return item
                     }
                   }).map((item, index) => {
-                    return <Text style={[styles.texto]} key={index}>{`Você poluiu ${item.pollution}, e produziu $${item.production < 0 ? 0 : item.production}.`}</Text>
+                    return <Text style={[styles.texto]} key={index}>{`Você poluiu ${item.pollution.toFixed(1)}, e produziu $${item.production < 0 ? 0 : item.production}.`}</Text>
                   })}
                 </View>
               </View>

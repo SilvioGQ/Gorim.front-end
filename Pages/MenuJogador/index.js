@@ -20,7 +20,7 @@ export default function MenuJogador({ navigation }) {
 
   useEffect(() => {
     let isMounted = true;
-    
+
     if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'NAVIGATEFORSTATUS') navigation.reset({ routes: [{ name: 'Status' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
@@ -44,7 +44,7 @@ export default function MenuJogador({ navigation }) {
 
       <Header typeMenu="player" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
-      {modalVisible2 && <ModalAsk finish={() => {endStage(); stopCallback(); }} back={() => setModalVisible2(!modalVisible2)} />}
+      {modalVisible2 && <ModalAsk finish={() => { endStage(); stopCallback(); }} back={() => setModalVisible2(!modalVisible2)} />}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
@@ -53,7 +53,7 @@ export default function MenuJogador({ navigation }) {
           <TouchableOpacity onPress={() => navigation.navigate('ControleParcelas')} style={{ width: '100%' }}  >
             <View style={styles.row2}>
               <Image style={{ width: 35, height: 35 }} source={require('../../assets/agricultorIcones/ParcelaPequena.png')} />
-              <Text style= {{ fontSize: 20, alignSelf: 'center', marginLeft: 10 }}>Parcelas de terra</Text>
+              <Text style={{ fontSize: 20, alignSelf: 'center', marginLeft: 10 }}>Parcelas de terra</Text>
             </View>
           </TouchableOpacity>
           <View style={styles.row}>
@@ -112,26 +112,26 @@ export default function MenuJogador({ navigation }) {
             <Text style={styles.textBar}>{player.production}</Text>
             <Text style={styles.inferior}>Produtividade individual</Text>
           </View>
-              {player.type === 'Agricultor' ?
-          <TouchableOpacity style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]} onPress={() => setModalText('Poluição é a soma da poluição de cada parcela dividida por 6.')}  >
-            <View style={{ flexDirection: 'row' }}>
-              {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
+          {player.type === 'Agricultor' ?
+            <TouchableOpacity style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]} onPress={() => setModalText('Poluição é a soma da poluição de cada parcela dividida por 6.')}  >
+              <View style={{ flexDirection: 'row' }}>
+                {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
                 <Image source={require('../../assets/agricultorIcones/information.png')} style={{ position: 'absolute', top: 0, left: 30, width: 23, height: 23, marginLeft: 70, marginTop: 10, opacity: 0.5 }} />
-            </View>
-            <Text style={styles.inferior}>Poluição individual</Text>
-          </TouchableOpacity>
-              :
-              <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
+              </View>
+              <Text style={styles.inferior}>Poluição individual</Text>
+            </TouchableOpacity>
+            :
+            <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
               <View style={{ flexDirection: 'row' }}>
                 {player.pollution ? <Text style={styles.textBar}>{player.pollution.toFixed(2).toString().indexOf('.00') !== -1 ? player.pollution.toFixed(0) : player.pollution.toFixed(2)}</Text> : <Text style={styles.textBar}>0</Text>}
               </View>
               <Text style={styles.inferior}>Poluição individual</Text>
             </View>
-              }
+          }
         </>
       )}
-      <View style={{paddingVertical:25, flexDirection: 'row',}}>
-      <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
+      <View style={{ paddingVertical: 25, flexDirection: 'row', }}>
+        <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
       </View>
       {awaitPlayers !== 0 && <Text style={{ color: 'red', }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     marginTop: 10,
-    marginBottom:5
+    marginBottom: 5
   },
   textBar: {
     fontFamily: 'Rubik_400Regular',
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   },
   inferior: {
     fontSize: 18,
-    
+
     color: '#fff',
   },
 });

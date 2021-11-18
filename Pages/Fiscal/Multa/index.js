@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { GameContext, sendFine} from '../../../contexts/GameContext';
+import { GameContext, sendFine } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -31,13 +31,13 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>Agricultores</Text>
-      {players.filter(p=>p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city ).length !== 0 ? players.filter(p=>p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />) 
-      : 
-      <TextBold>Não há mais multas para aplicar!</TextBold>}
+      {players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
+        :
+        <TextBold>Não há mais multas para aplicar!</TextBold>}
       <Text style={styles.text}>Empresário</Text>
-      {players.filter(p=>p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p=>p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={()=> navigation.navigate('MultaVerMais', {client:item})} />)
-      :
-      <TextBold>Não há mais multas para aplicar!</TextBold>}
+      {players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
+        :
+        <TextBold>Não há mais multas para aplicar!</TextBold>}
     </View>
   );
 }
@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     marginTop: 20,
-    marginBottom:10,
+    marginBottom: 10,
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center'
   },
   header: {
-    
+
     fontSize: 20,
   },
   image: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_300Light'
   },
   text: {
-    
+
     textAlign: 'center',
     fontSize: 20,
     marginVertical: 20
