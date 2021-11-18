@@ -25,7 +25,7 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
           {stage === 'SUGGESTFINE' && (
           <Picker
             selectedValue={numero}
-            style={styles.pícker}
+            style={styles.picker}
             onValueChange={(itemValue) => setNumero(itemValue)}
           >
             <Picker.Item label="Nenhuma" value={"Nenhuma"} />
@@ -104,10 +104,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Rubik_400Regular'
   },
-  pícker: {
+  picker: {
     height: 28, 
     width: 155, 
-    borderRadius: 17, 
-    borderWidth: 1 
+    borderWidth: 1,
   }
 });
