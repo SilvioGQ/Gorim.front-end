@@ -56,7 +56,7 @@ export default function MenuPolitico({ navigation }) {
             <View style={styles.items}>
               <Item type='' onClick={() => navigation.navigate('Sugestoes')} name='Sugestões' notification={notify.suggests} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
-              <View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />
+              <View style={styles.estilo} />
             </View>
           </>
           :
@@ -73,7 +73,7 @@ export default function MenuPolitico({ navigation }) {
       <View style={{ paddingVertical: 25, flexDirection: 'row', }}>
         <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
       </View>
-      {awaitPlayers !== 0 && <Text style={{ color: 'red', marginTop: 45, fontFamily: 'Rubik_300Light' }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
+      {awaitPlayers !== 0 && <Text style={styles.await}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
   );
 }
@@ -95,5 +95,18 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  await: {
+    color: 'red', 
+    marginTop: 45, 
+    fontFamily: 'Rubik_300Light'
+  },
+  estilo: {
+    marginRight: 10, 
+    marginVertical: 10, 
+    backgroundColor: COLORS.bgColorPrimary, 
+    width: 96, 
+    height: 92, 
+    borderRadius: 20
   }
 });

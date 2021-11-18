@@ -18,19 +18,19 @@ export default function Selo({ navigation, route }) {
   const [selectParcel, setSelectParcel] = useState([]);
 
   useEffect(() => {
-    setFarmer(players.filter(i => i.type === 'Agricultor'  && i.city == player.city))
-    if(selectClient !== -1){
-      setSelectedPlayer(players.find((p)=> p.id === selectClient))
+    setFarmer(players.filter(i => i.type === 'Agricultor' && i.city == player.city))
+    if (selectClient !== -1) {
+      setSelectedPlayer(players.find((p) => p.id === selectClient))
     }
   }, [selectClient]);
-  
-  const aplicar = ()=>{
-    sendStamp(selectClient, selectParcel); 
+
+  const aplicar = () => {
+    sendStamp(selectClient, selectParcel);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })
   }
 
   return (
-    <View style={{flex:1,marginBottom:30}}>
+    <View style={{ flex: 1, marginBottom: 30 }}>
       <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <ScrollView>
         <View style={styles.container}>
@@ -42,25 +42,25 @@ export default function Selo({ navigation, route }) {
             <Text style={styles.title}>Concessão de{'\n'}selo verde</Text>
           </View>
           <Text style={styles.texto}>Destinatário:</Text>
-          <View style={{ marginHorizontal: 10, flexDirection: 'row', width: '100%', flexWrap: 'wrap' }}>
+          <View style={styles.estilo}>
             {farmer.map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
           </View>
           {modalText !== '' && (
-          <Modal onClick={() => setModalText('')} text={modalText} />
-        )}
+            <Modal onClick={() => setModalText('')} text={modalText} />
+          )}
           <Text style={styles.texto}>Plantações:</Text>
           {selectedPlayer.length === 0 ?
-           <TextBold>Selecione um agricultor!</TextBold>
-           :
-          selectedPlayer.logs && selectedPlayer.logs.filter(i=> i.type=='plantation').length !== player.appliedStamp.filter(i=> i.indexOf(selectClient) !== -1).length  ?
-          selectedPlayer.logs.filter(i => i.type === 'plantation' && player.appliedStamp.includes(selectClient+i.parcelLand.id.toString()) === false).map((p, index) => {
-              return <ParcelaAgr item={p} key={p.parcelLand.id} onClick={()=>{ selectParcel.includes(p.parcelLand.id) ? setSelectParcel(selectParcel.filter((e)=>(e !== p.parcelLand.id))) :  setSelectParcel([...selectParcel, p.parcelLand.id])}} backgroundGreen={selectParcel.includes(p.parcelLand.id) ? '#8ACF3A' : '#fff'} color={selectParcel.includes(p.parcelLand.id) ? '#fff' : '#000'} vermais={true} display2={'none'} pedido={p.parcelLand.requestStamp === true ? true : false}/>
-          })
-          :
-          <TextBold>Não há parcelas para conceder selo!</TextBold>
+            <TextBold>Selecione um agricultor!</TextBold>
+            :
+            selectedPlayer.logs && selectedPlayer.logs.filter(i => i.type == 'plantation').length !== player.appliedStamp.filter(i => i.indexOf(selectClient) !== -1).length ?
+              selectedPlayer.logs.filter(i => i.type === 'plantation' && player.appliedStamp.includes(selectClient + i.parcelLand.id.toString()) === false).map((p, index) => {
+                return <ParcelaAgr item={p} key={p.parcelLand.id} onClick={() => { selectParcel.includes(p.parcelLand.id) ? setSelectParcel(selectParcel.filter((e) => (e !== p.parcelLand.id))) : setSelectParcel([...selectParcel, p.parcelLand.id]) }} backgroundGreen={selectParcel.includes(p.parcelLand.id) ? '#8ACF3A' : '#fff'} color={selectParcel.includes(p.parcelLand.id) ? '#fff' : '#000'} vermais={true} display2={'none'} pedido={p.parcelLand.requestStamp === true ? true : false} />
+              })
+              :
+              <TextBold>Não há parcelas para conceder selo!</TextBold>
           }
           <Button
-            onClick={ ()=>{selectParcel.length !== 0 ? aplicar(): setModalText('Selecione uma parcela')}}
+            onClick={() => { selectParcel.length !== 0 ? aplicar() : setModalText('Selecione uma parcela') }}
             name='CONCEDER' />
         </View>
       </ScrollView>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    
+
   },
   row: {
     flexDirection: 'row',
@@ -94,5 +94,11 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginVertical: 15,
     marginLeft: 20
+  },
+  estilo: {
+    marginHorizontal: 10, 
+    flexDirection: 'row', 
+    width: '100%', 
+    flexWrap: 'wrap'
   }
 });

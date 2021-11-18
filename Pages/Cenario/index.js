@@ -155,7 +155,7 @@ export default function Cenario({ navigation }) {
               }
             })
             :
-            <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text>
+            <Text style={styles.textlogs}>Nenhuma ação executada</Text>
           }
           {phase === 2 && (!player.office || player.office === "Vereador") && !!players.find((item) => item.office === "Prefeito" && item.city === player.city) ?
             players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == 'tax' || item.type === 'prevention').length == 0 ? player.office === "Vereador" ? null: <Text style={[styles.textlogs]}>Nenhuma ação executada</Text>  : players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).map((item, index) => {
