@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
-import { GameContext, applyPrevention, suggestPrevention } from '../../../contexts/GameContext';
+import { GameContext, applyPrevention, suggestPrevention, getPreventions } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
@@ -10,33 +10,39 @@ const Tela = Dimensions.get('screen').width;
 export default function Prevencao({ navigation }) {
 
   const [selectMedida, setSelectMedida] = useState({});
-  const { player } = useContext(GameContext);
+  const { player, stage, data: preventions } = useContext(GameContext);
   const [modalVisible, setModalVisible] = useState('');
-  const apply = ()=>{
-    if(player.serviceSalary < selectMedida.value) return setModalVisible('Saldo insuficiente');
-    if(Object.keys(selectMedida).length!==0){
+  const apply = () => {
+    if (player.serviceSalary < selectMedida.value) return setModalVisible('Saldo insuficiente');
+    if (Object.keys(selectMedida).length !== 0) {
       player.office === 'Prefeito' ? applyPrevention(selectMedida)
-      : 
-      suggestPrevention(selectMedida);
-    }else return setModalVisible('Selecione alguma medida preventiva');
+        :
+        suggestPrevention(selectMedida);
+    } else return setModalVisible('Selecione alguma medida preventiva');
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Medida aplicada!' : 'Medida Sugerida!' } }] });
   }
+
+  useEffect(() => {
+    getPreventions();
+  }, []);
+  console.log(preventions)
+
   return (
     <View style={styles.container}>
-        <Rodada name={player.office === 'Vereador' ? 'Sugerir Medidas' : 'Aplicar Medidas'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
-        <ScrollView>
+      <Rodada name={player.office === 'Vereador' ? 'Sugerir Medidas' : 'Aplicar Medidas'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <ScrollView>
         <Coin coin={player.serviceSalary} />
         <View style={styles.espaco}>
           <Image
             style={{ width: 62, height: 62 }}
             source={require('../../../assets/icons/water.png')}
           />
-          <Text style={{  fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de\nPrevenção' : 'Medidas de\nPrevenção'}</Text>
+          <Text style={{ fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de\nPrevenção' : 'Medidas de\nPrevenção'}</Text>
         </View>
         <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir mudanças na cidade' : 'Medidas a aplicar na cidade:'}</Text>
         {modalVisible !== '' && (
-        <Modal onClick={() => setModalVisible('')} text={modalVisible} />
-      )}
+          <Modal onClick={() => setModalVisible('')} text={modalVisible} />
+        )}
         <View style={styles.row}>
           <View style={styles.quadrados}>
             <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida.id == 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida({ id: 1, value: 800, preventionPercentual: 0.05, label: 'Tratamento de água' })}  >
@@ -65,11 +71,11 @@ export default function Prevencao({ navigation }) {
         </View>
         <View style={{ marginBottom: 25 }}>
           <Button
-            onClick={() =>apply()}
-            name= {player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
+            onClick={() => apply()}
+            name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
         </View>
-    </ScrollView>
-      </View>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -78,13 +84,13 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Tela
   },
-  image:{ 
-    width: 50, 
+  image: {
+    width: 50,
     height: 50,
     marginTop: 15,
-    marginBottom: 10, 
-    marginLeft: 20, 
-    position: 'absolute' 
+    marginBottom: 10,
+    marginLeft: 20,
+    position: 'absolute'
   },
   row: {
     flexDirection: 'row',
@@ -135,8 +141,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: Tela
   },
-    header: {
-    
+  header: {
+
     fontSize: 20,
     marginTop: 25,
     marginLeft: 25
