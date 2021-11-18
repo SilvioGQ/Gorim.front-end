@@ -10,7 +10,7 @@ export default function Frame1({ navigation }) {
           style={styles.logo}
           source={require('../../../assets/icons/tractor.png')}
         />
-        <Text style={styles.text}>Gorim</Text>
+        <Text style={styles.text}>Gorim 1.0.1</Text>
       </View>
       <Image
         style={styles.logo2}

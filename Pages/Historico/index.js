@@ -174,7 +174,7 @@ export default function Cenario({ navigation }) {
                     </View>
                     <View style={{ display: open3 ? 'flex' : 'none' }}>
                       {oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => item.type == 'stamp').length > 0 ? oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => item.type == 'stamp').map((item, index) => {
-                        return <Text style={[styles.texto]} key={index}>{`Você concedeu ${item.amount},para o jogador ${item.namePlayer}`}</Text>
+                        return <Text style={[styles.texto]} key={index}>{`Você concedeu ${item.amount} selo(s),para o ${item.namePlayer}`}</Text>
                       })
                         :
                         <Text style={[styles.textonao]}>Você não concedeu selos</Text>
@@ -203,6 +203,7 @@ export default function Cenario({ navigation }) {
                 </>
                 :
                 <>
+                {player.office === "Prefeito" && (
                   <View style={styles.backgreen}>
                     <View style={styles.whiteRow}>
                       <Text style={[styles.subtitle, {
@@ -223,6 +224,7 @@ export default function Cenario({ navigation }) {
                       })}
                     </View>
                   </View>
+                )}
                   <View style={styles.backgreen}>
                     <View style={styles.whiteRow}>
                       <Text style={[styles.subtitle, {

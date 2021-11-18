@@ -20,12 +20,12 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
       </View>
       <View>
         <Text style={styles.text}>Total poluição: {item.pollution.toFixed(1)} </Text>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row', marginVertical:5 }}>
           <Text style={styles.text}>Multa:</Text>
           {stage === 'SUGGESTFINE' && (
           <Picker
             selectedValue={numero}
-            style={{ height: 28, width: 155, borderRadius: 17, borderWidth:1 }}
+            style={styles.pícker}
             onValueChange={(itemValue) => setNumero(itemValue)}
           >
             <Picker.Item label="Nenhuma" value={"Nenhuma"} />
@@ -104,4 +104,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Rubik_400Regular'
   },
+  pícker: {
+    height: 28, 
+    width: 155, 
+    borderRadius: 17, 
+    borderWidth: 1 
+  }
 });
