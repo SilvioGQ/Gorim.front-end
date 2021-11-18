@@ -14,22 +14,20 @@ const GameProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [modal, setModal] = useState(false);
   const refContainer = useRef();
-  
+
   const callbackForTimer = useCallback(event => {
     switch (true) {
       case event === 'ENDSTAGE':
         endStage();
-      break;
+        break;
       case event === 'NEXTSTAGE':
         nextStage();
-      break;
+        break;
       case event === 'ENDROUND':
         endRound();
-      break;
-      default:
-        refContainer.current();
-      break;
+        break;
     }
+    stopCallback();
   });
 
   const disableNotifyScene = () => {
@@ -96,7 +94,7 @@ const GameProvider = (props) => {
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
-      if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
+      if (msg === 'selectedAvatars') startTimer(15, 'ENDSTAGE');
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -146,14 +144,14 @@ const GameProvider = (props) => {
     });
     socket.on('nextStage', (room) => {
       dispatch({ type: 'NEXTSTAGE', payload: ['NEXTSTAGE', room] });
-      startTimer(400, 'ENDROUND');
+      startTimer(15, 'ENDROUND');
     });
     socket.on('endRound', () => {
       dispatch({ type: 'ENDROUND', payload: 'ENDROUND' });
     });
     socket.on('nextRound', (room) => {
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
-      startTimer(400, 'ENDSTAGE');
+      startTimer(15, 'ENDSTAGE');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });

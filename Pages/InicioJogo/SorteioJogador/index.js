@@ -3,13 +3,13 @@ import { Text, View, StyleSheet, Image, StatusBar } from 'react-native';
 import { GameContext } from '../../../contexts/GameContext';
 export default function SorteioJogador({ navigation }) {
 
-  const { stage, startTimer } = useContext(GameContext);
+  const { stage } = useContext(GameContext);
 
   useEffect(() => {
     if (stage === 'RAFFLED') {
-      startTimer(2, () => {
+      setTimeout(() => {
         navigation.reset({ routes: [{ name: 'SelecaoPersonagem' }] });
-      });
+      }, 2000);
     }
 
   }, [stage]);
