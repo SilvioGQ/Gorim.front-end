@@ -9,7 +9,7 @@ import Rodada from '../../../Components/Rodada';
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
-  const { count, idDest, type, provider } = route.params;
+  const { count, idDest, type, provider, nameDest } = route.params;
   const { phase } = useContext(GameContext);
   const make = () => {
     makeTransfer(count, idDest, provider, type);
@@ -21,7 +21,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.text}>Fazer transferência</Text>
         <Image style={styles.logo} source={require('../../../assets/symbols/transfer.png')} />
-        <Text style={styles.text}> Deseja confirmar a transação?</Text>
+        <Text style={styles.text}> Deseja confirmar a transação para {nameDest}?</Text>
         <Text style={styles.text2}>${JSON.stringify(count)} </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={make} name='CONTINUAR' />

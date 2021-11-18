@@ -20,7 +20,7 @@ export default function Sugestoes({ navigation }) {
     <View style={styles.container}>
       <Rodada name={'Sugestões'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <Coin coin={player.serviceSalary} />
-      <Text style={styles.texto}>Sugestões:</Text>
+      <Text style={styles.texto}>Sugestões</Text>
       {player.office === 'Prefeito' && (
         <FlatList
           showsVerticalScrollIndicator={false}

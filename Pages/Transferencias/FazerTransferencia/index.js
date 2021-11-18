@@ -22,8 +22,8 @@ export default function FazerTransferencia({ navigation }) {
   const confirmTransfer = () => {
     if (!id) return setModalText('Selecione o destino!');
     if (count === 0) return setModalText('Adicione um valor!');
-
-    navigation.navigate('ConfirmarTransferencia', { idDest: id, count, provider: phase === 1 ? false : true, type: type == 'Agricultor' || type == "Empresário" ? false : true });
+    const destName = players.find(i => i.id === id).name
+    navigation.navigate('ConfirmarTransferencia', { idDest: id, nameDest:destName, count, provider: phase === 1 ? false : true, type: type == 'Agricultor' || type == "Empresário" ? false : true });
   }
 
   return (
