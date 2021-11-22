@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { GameContext, deleteAdvert } from "../../../contexts/GameContext";
 
 import Coin from '../../../Components/Coin';
-
+import FilterNew from '../../../Components/FilterNew';
 import Anuncio from '../../../Components/Anuncio';
 import COLORS from '../../../constants/colors';
 import Modal from '../../../Components/ModalInfo';
@@ -22,7 +22,8 @@ export default function ChecarAnuncio({ navigation }) {
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       {player.offers.filter(offer => offer.idBuyer === -1).length === 0 ?
-        <TextBold>Você não possui anúncios</TextBold> :
+        <TextBold>Você não possui anúncios</TextBold> 
+        :
         <FlatList
           showsVerticalScrollIndicator={false}
           data={player.offers.filter(offer => offer.idBuyer === -1)}
@@ -32,7 +33,8 @@ export default function ChecarAnuncio({ navigation }) {
       }
       <Text style={styles.header}>Ofertas individuais</Text>
       {player.offers.filter(offer => offer.idBuyer !== -1).length === 0 ?
-        <TextBold>Você não fez oferta individual</TextBold> :
+        <TextBold>Você não fez oferta individual</TextBold> 
+        :
         <FlatList
           showsVerticalScrollIndicator={false}
           data={player.offers.filter(offer => offer.idBuyer !== -1)}
