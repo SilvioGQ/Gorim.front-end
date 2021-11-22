@@ -33,6 +33,12 @@ import Status from './Status';
 import Historico from './Historico';
 import HistoricoJogadores from './Prefeito&Vereador/HistoricoJogadores';
 import Sugestoes from './Prefeito&Vereador/Sugestoes';
+import Eleitos from './InicioJogo/Eleitos';
+import Detalhes from './InicioJogo/DetalhesEleitos';
+
+import Candidatura from './InicioJogo/Candidatura';
+
+
 import {
   setCustomText,
   setCustomTouchableOpacity
@@ -78,6 +84,10 @@ export default function Routes() {
       <Stack.Screen name="Imposto" component={Imposto} />
       <Stack.Screen name="HistoricoJogadores" component={HistoricoJogadores} />
       <Stack.Screen name="Sugestoes" component={Sugestoes} />
+      <Stack.Screen name="Eleitos" component={Eleitos} />
+      <Stack.Screen name="Detalhes" component={Detalhes} />
+      <Stack.Screen name="Candidatura" component={Candidatura} />
+
     </Stack.Navigator>
   )
 }
