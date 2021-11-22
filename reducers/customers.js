@@ -5,7 +5,7 @@ const initialState = {
   player: {},
   data: null,
   oldLogs: [],
-  suggests:[],
+  suggests: [],
   offers: [],
   notify: { scene: false, offers: false, suggests: false }
 }
@@ -120,12 +120,12 @@ const reducer = (state, action) => {
         round: action.payload[1].match.round,
         awaitPlayers: action.payload[1].awaitPlayers.length,
       };
-      case 'GETSUGGESTS':
+    case 'GETSUGGESTS':
       return {
         ...state,
         suggests: action.payload
       };
-      case 'NEXTROUND':
+    case 'NEXTROUND':
       return {
         ...state,
         stage: action.payload[0],
@@ -133,11 +133,16 @@ const reducer = (state, action) => {
         round: action.payload[1].match.round,
         awaitPlayers: action.payload[1].awaitPlayers.length,
       };
-      case 'ENDROUND':
+    case 'ENDROUND':
+      return {
+        ...state,
+        stage: action.payload,
+        notify: { ...initialState.notify }
+      };
     case 'RECONNECTED':
       return {
         ...state,
-        stage : action.payload
+        stage: action.payload
       };
     default:
       return state;
