@@ -31,14 +31,18 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>Agricultores</Text>
-      {players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
-        :
-        <TextBold>Não há mais multas para aplicar!</TextBold>}
+      {players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ? 
+      <TextBold>Não há mais multas para aplicar!</TextBold>
+      :
+      players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
+        }
       <Text style={styles.text}>Empresário</Text>
-      {players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length !== 0 ? players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
-        :
-        <TextBold>Não há mais multas para aplicar!</TextBold>}
-    </View>
+      {players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ? 
+      <TextBold>Não há mais multas para aplicar!</TextBold>
+      :
+      players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
+        }
+        </View>
   );
 }
 
