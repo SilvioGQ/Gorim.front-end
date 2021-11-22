@@ -10,7 +10,7 @@ export default function Frame1({ navigation }) {
           style={styles.logo}
           source={require('../../../assets/icons/tractor.png')}
         />
-        <Text style={styles.text}>Gorim 1.0.1</Text>
+        <Text style={styles.text}>Gorim</Text>
       </View>
       <Image
         style={styles.logo2}
@@ -21,6 +21,7 @@ export default function Frame1({ navigation }) {
           onClick={() => navigation.navigate('CriarPartida')}
           name='começar' />
       </View>
+      <Text style={styles.v}>v1.0.2</Text>
     </View>
   );
 }
@@ -48,4 +49,11 @@ const styles = StyleSheet.create({
     height: 280,
     width: 280
   },
+  v: {
+    position:'absolute',
+    bottom:15,
+    right:15,
+    fontSize:12,
+    color:'#a8a8a8'
+  }
 });

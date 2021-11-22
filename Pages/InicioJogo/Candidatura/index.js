@@ -5,11 +5,13 @@ import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
 import COLORS from '../../../constants/colors';
 const Tela = Dimensions.get('screen').width
-export default function Frame5({ navigation }) {
+export default function Candidatura({ navigation }) {
   const data = [
     { title: 'Me candidato a prefeito!', value: 1 },
     { title: 'Me candidato a vereador!', value: 2 },
     { title: 'Me candidato a fiscal!', value: 3 },
+    { title: 'Não quero me candidatar.', value: 4 },
+
   ];
   const handleValueChange = (socialMediaName, checkboxId) => {
     // do what ever you want with this two

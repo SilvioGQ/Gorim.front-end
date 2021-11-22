@@ -39,6 +39,16 @@ export default function Candidato() {
           <Text style={styles.candidato}>Me candidato a fiscal!</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.row}>
+        <CheckBox
+          value={isSelected3}
+
+          style={styles.checkbox}
+        />
+        <TouchableOpacity onPress={() => { setSelection3(true); setSelection2(false); setSelection(false) }}  >
+          <Text style={styles.candidato}>Não quero me candidatar.</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -63,6 +73,6 @@ const styles = StyleSheet.create({
   checkbox: {
     height: 25,
     width: 25,
-    marginLeft: 10
+    marginLeft: 10,
   }
 });

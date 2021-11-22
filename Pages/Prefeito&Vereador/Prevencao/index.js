@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { GameContext, applyPrevention, suggestPrevention, getPreventions } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
 import Coin from '../../../Components/Coin';
 import Modal from '../../../Components/ModalInfo';
+import IMAGES from '../../../constants/imagesProducts';
+
 const Tela = Dimensions.get('screen').width;
 export default function Prevencao({ navigation }) {
 
@@ -30,51 +32,39 @@ export default function Prevencao({ navigation }) {
   return (
     <View style={styles.container}>
       <Rodada name={player.office === 'Vereador' ? 'Sugerir Medidas' : 'Aplicar Medidas'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
-      <ScrollView>
-        <Coin coin={player.serviceSalary} />
-        <View style={styles.espaco}>
-          <Image
-            style={{ width: 62, height: 62 }}
-            source={require('../../../assets/icons/water.png')}
-          />
-          <Text style={{ fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de\nPrevenção' : 'Medidas de\nPrevenção'}</Text>
-        </View>
-        <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir mudanças na cidade' : 'Medidas a aplicar na cidade:'}</Text>
-        {modalVisible !== '' && (
-          <Modal onClick={() => setModalVisible('')} text={modalVisible} />
-        )}
-        <View style={styles.row}>
-          <View style={styles.quadrados}>
-            <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida.id == 1 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida({ id: 1, value: 800, preventionPercentual: 0.05, label: 'Tratamento de água' })}  >
-              <Image style={styles.image} source={require('../../../assets/icons/water.png')} />
-              <Text style={[styles.texto, { color: selectMedida.id == 1 ? "#fff" : '#000' }]}>Tratamento de água</Text>
-              <Text style={[styles.textomenor, { color: selectMedida.id == 1 ? "#fff" : '#000' }]}>Reduz a poluição em 5%</Text>
-              <Text style={[styles.textopreco, { color: selectMedida.id == 1 ? "#fff" : '#000' }]}>Preço: $800</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.quadrados}>
-            <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida.id == 2 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida({ id: 2, value: 1600, preventionPercentual: 0.1, label: 'Tratamento de esgoto' })}  >
-              <Image style={{ width: 45, height: 45, marginTop: 20, marginBottom: 10, marginLeft: 20, position: 'absolute' }} source={require('../../../assets/icons/sewer.png')} />
-              <Text style={[styles.texto, { color: selectMedida.id == 2 ? "#fff" : '#000' }]}>Tratamento de esgoto</Text>
-              <Text style={[styles.textomenor, { color: selectMedida.id == 2 ? "#fff" : '#000' }]}>Reduz a poluição em 10%</Text>
-              <Text style={[styles.textopreco, { color: selectMedida.id == 2 ? "#fff" : '#000' }]}>Preço: $1600</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.quadrados}>
-            <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida.id == 3 ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida({ id: 3, value: 2400, preventionPercentual: 0.15, label: 'Tratamento de lixo' })}  >
-              <Image style={styles.image} source={require('../../../assets/icons/trash.png')} />
-              <Text style={[styles.texto, { color: selectMedida.id == 3 ? "#fff" : '#000' }]}>Tratamento de lixo</Text>
-              <Text style={[styles.textomenor, { color: selectMedida.id == 3 ? "#fff" : '#000' }]}>Reduz a poluição em 15%</Text>
-              <Text style={[styles.textopreco, { color: selectMedida.id == 3 ? "#fff" : '#000' }]}>Preço: $2400</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={{ marginBottom: 25 }}>
-          <Button
-            onClick={() => apply()}
-            name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
-        </View>
-      </ScrollView>
+      <Coin coin={player.serviceSalary} />
+      <View style={styles.espaco}>
+        <Image
+          style={{ width: 62, height: 62 }}
+          source={require('../../../assets/icons/water.png')}
+        />
+        <Text style={{ fontSize: 20, marginTop: 15, marginLeft: 5 }}>{player.office === 'Vereador' ? 'Sugerir Medidas de\nPrevenção' : 'Medidas de\nPrevenção'}</Text>
+      </View>
+      <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir mudanças na cidade' : 'Medidas a aplicar na cidade:'}</Text>
+      {modalVisible !== '' && (
+        <Modal onClick={() => setModalVisible('')} text={modalVisible} />
+      )}
+      <View style={styles.row}>
+        <FlatList
+          data={preventions}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.quadrados}>
+              <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida.id == item.id ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida({ id: item.id, value: item.value, preventionPercentual: item.pollutionReduction, label: item.label })}  >
+                <Image style={styles.image} source={IMAGES[item.label]} />
+                <Text style={[styles.texto, { color: selectMedida.id == item.id ? "#fff" : '#000' }]}>{item.label}</Text>
+                <Text style={[styles.textomenor, { color: selectMedida.id == item.id ? "#fff" : '#000' }]}>Reduz a poluição em {item.pollutionReduction*100}%</Text>
+                <Text style={[styles.textopreco, { color: selectMedida.id == item.id ? "#fff" : '#000' }]}>Preço: ${item.value}</Text>
+              </TouchableOpacity>
+            </View>
+          )
+        }/>
+      </View>
+      <View style={{ marginBottom: 25 }}>
+        <Button
+          onClick={() => apply()}
+          name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
+      </View>
     </View>
   );
 }
@@ -94,16 +84,14 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
     marginTop: 20,
     marginBottom: 40,
     width: Tela,
     flexWrap: 'wrap'
   },
   quadrados: {
-    marginTop: 10,
+    marginVertical: 10,
+    marginHorizontal:20,
   },
   texto: {
     marginTop: 18,
@@ -142,9 +130,8 @@ const styles = StyleSheet.create({
     width: Tela
   },
   header: {
-
     fontSize: 20,
     marginTop: 25,
-    marginLeft: 25
+    marginLeft: 20
   },
 });
