@@ -7,11 +7,13 @@ import Rodada from '../../../Components/Rodada';
 import MultaComponent from '../../../Components/Multa';
 import Modal from '../../../Components/ModalInfo';
 import TextBold from '../../../Components/Atons/TextBold';
+import FilterNew from '../../../Components/FilterNew';
 
 const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
 
   const [modalText, setModalText] = useState('');
+  const [type, setType] = useState('Agricultores');
   const { players, stage, player } = useContext(GameContext);
 
   return (
@@ -30,18 +32,20 @@ export default function Multa({ navigation }) {
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, alignSelf: 'center', marginLeft: 10, marginTop: 10 }} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.text}>Agricultores</Text>
-      {players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ? 
-      <TextBold>Não há mais multas para aplicar!</TextBold>
+      <FilterNew type={type} setType={setType} nome1={'Agricultores'} nome2={'Empresario'}/>
+      {type === 'Agricultores' ? 
+      players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ? 
+      <TextBold>Não há mais multas para aplicar em agricultores!</TextBold>
       :
-      players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
-        }
-      <Text style={styles.text}>Empresário</Text>
-      {players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ? 
-      <TextBold>Não há mais multas para aplicar!</TextBold>
+      players.filter(p => p.type === "Agricultor" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => 
+      <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
       :
-      players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
-        }
+      players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ? 
+      <TextBold>Não há mais multas para aplicar empresários!</TextBold>
+      :
+      players.filter(p => p.type === "Empresário" && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item => 
+      <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
+    }
         </View>
   );
 }

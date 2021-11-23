@@ -50,7 +50,10 @@ export default function Lobby({ navigation }) {
         />
       }
       {player.host ? 
-        <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} /> :
+       <View style={styles.margin}> 
+         <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} color={players.length > 5 ? '#fff' : COLORS.successButton} back={players.length > 5 ? COLORS.successButton : '#fff'}/* disabled={players.length > 5 ? false : true}*/ /> 
+         <Text style={{fontSize:12, color:players.length > 5 ? COLORS.successButton : COLORS.warningButton, textAlign:'center'}}>{players.length} de 10 jogadores</Text>
+       </View> :
         <Text style={{
           fontSize: 20,
           marginVertical: 55,
@@ -108,4 +111,7 @@ const styles = StyleSheet.create({
     
     marginLeft: 10,
   },
+  margin: {
+    marginVertical:15
+  }
 });

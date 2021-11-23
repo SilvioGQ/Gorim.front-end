@@ -14,6 +14,7 @@ const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
 
   const [modalText, setModalText] = useState('');
+  const [type, setType] = useState('propaganda');
   const { player } = useContext(GameContext);
   return (
     <View style={styles.container}>
@@ -21,26 +22,28 @@ export default function ChecarAnuncio({ navigation }) {
       <Coin coin={player.coin} />
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
-      {player.offers.filter(offer => offer.idBuyer === -1).length === 0 ?
-        <TextBold>Você não possui anúncios</TextBold> 
+      <FilterNew type={type} setType={setType} nome1={'propaganda'} nome2={'individual'}/>
+      {
+        type === 'propaganda' ? 
+        player.offers.filter(offer => offer.idBuyer === -1).length === 0 ?
+          <TextBold>Você não fez propagandas</TextBold> 
+          :
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={player.offers.filter(offer => offer.idBuyer === -1)}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
+          />
         :
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={player.offers.filter(offer => offer.idBuyer === -1)}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
-        />
-      }
-      <Text style={styles.header}>Ofertas individuais</Text>
-      {player.offers.filter(offer => offer.idBuyer !== -1).length === 0 ?
-        <TextBold>Você não fez oferta individual</TextBold> 
-        :
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={player.offers.filter(offer => offer.idBuyer !== -1)}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
-        />
+        player.offers.filter(offer => offer.idBuyer !== -1).length === 0 ?
+          <TextBold>Você não fez ofertas individuais</TextBold> 
+          :
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={player.offers.filter(offer => offer.idBuyer !== -1)}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
+          />
       }
     </View>
   );
