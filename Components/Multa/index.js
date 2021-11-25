@@ -7,11 +7,16 @@ import Modal from '../../Components/ModalInfo';
 
 export default function MultaComponent({ item, onclick, display, onClike }) {
   const { player, data: suggest, stage } = useContext(GameContext);
-  const [numero, setNumero] = useState('Nenhuma');
+  const [numero, setNumero] = useState();
   useEffect(() => {
     suggestFine();
   }, []);
-  // setNumero(suggest.find(p => p.playerId === player.id).label)
+  useEffect(() =>{
+    if(stage === 'SUGGESTFINE'){
+      setNumero(suggest.find(p => p.playerId === item.id).gravity);
+    }
+  },[stage])
+
   return (
     <View style={styles.container}>
       <View>

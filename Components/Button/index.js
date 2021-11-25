@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.successButton,
+    borderWidth: 2,
+    borderColor:COLORS.successButton,
     borderRadius: 25,
     width: '80%',
     shadowColor: "#000",
