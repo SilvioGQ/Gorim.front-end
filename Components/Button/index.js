@@ -4,15 +4,15 @@ import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-nati
 import COLORS from '../../constants/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function Button({ name, onClick, disabled = false }) {
+export default function Button({ name, onClick, disabled = false, back = COLORS.successButton, color = COLORS.textWhite }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, {backgroundColor: back}]}
         onPress={onClick}
         disabled={disabled}
       >
-        <Text style={styles.text}>{name}</Text>
+        <Text style={[styles.text, {color: color}]}>{name}</Text>
       </TouchableOpacity>
     </View>
   );

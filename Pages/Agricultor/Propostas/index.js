@@ -6,13 +6,14 @@ import Coin from '../../../Components/Coin';
 import Oferta from '../../../Components/Oferta';
 import OfertaGeral from '../../../Components/OfertaGeral';
 import FilterType from '../../../Components/FilterType';
+import FilterNew from '../../../Components/FilterNew';
 import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
 import TextBold from '../../../Components/Atons/TextBold';
 const Tela = Dimensions.get('screen').width;
 export default function Propostas({navigation}) {
   const [modalText, setModalText] = useState('');
-  const [type, setType] = useState('');
+  const [type, setType] = useState('propaganda');
   const { player, offers, disableNotifyOffers } = useContext(GameContext);
 
   useEffect(() => {
@@ -33,43 +34,42 @@ export default function Propostas({navigation}) {
     }
   }
 
-  const selectType = () => {
-    if (type !== '') {
-      return offers.all.filter(i => i.type == type);
-    } else {
-      return offers.all;
-    }
-  }
+  // const selectType = () => {
+  //   if (type !== '') {
+  //     return offers.all.filter(i => i.type == type);
+  //   } else {
+  //     return offers.all;
+  //   }
+  // }
 
   return (
     <View style={styles.container}>
       <Rodada name={'Propostas'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
-      <View style={{flex:1.50}}>
+      <View style={{flex:1}}>
       <Text style={styles.text}>Anúncios</Text>
-      <FilterType type={type} setType={setType} />
-      {!offers.all || offers.all.length === 0 ?
-          <TextBold>Você não tem nada!</TextBold>
+      {/* <FilterType type={type} setType={setType} /> */}
+      <FilterNew type={type} setType={setType} nome1={'propaganda'} nome2={'individual'}/>
+      {type==='propaganda' ? 
+      !offers.all || offers.all.length === 0 ?
+          <TextBold>Não tem propagandas!</TextBold>
           : <FlatList
             showsVerticalScrollIndicator={false}
-            data={selectType()}
+            data={offers.all}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
           />
-      }
-      </View>
-      <View style={{flex:1}}>
-      <Text style={styles.text}>Negociação individual</Text>
-      {!offers.individual || offers.individual.length === 0 ?
-          <TextBold>Você não tem nada!</TextBold>
+          :
+          !offers.individual || offers.individual.length === 0 ?
+          <TextBold>Ninguém te mandou oferta!</TextBold>
           : <FlatList
             showsVerticalScrollIndicator={false}
             data={offers.individual}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
           />
-      }
+    }
       </View>
     </View>
   );
