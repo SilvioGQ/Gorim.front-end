@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   text: {
-
+    color:'#fff',
     fontSize: 15,
     marginLeft: 15
   }

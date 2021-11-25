@@ -87,8 +87,8 @@ export default function Parcela({ route, navigation }) {
               <Text style={styles.bold}>{parcelLand.seed ? parcelLand.seed : '-'}</Text>
             </View>
             {parcelLand.seed && !parcelLand.planted && (
-              <TouchableOpacity style={[styles.estilo]} onPress={() => setParcelLand({ ...parcelLand, seed: null })}  >
-                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={[styles.imagem]} />
+              <TouchableOpacity style={styles.estilo} onPress={() => setParcelLand({ ...parcelLand, seed: null })}  >
+                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={styles.imagem} />
               </TouchableOpacity>
             )}
           </View>
@@ -104,8 +104,8 @@ export default function Parcela({ route, navigation }) {
               <Text style={styles.bold}>{parcelLand.fertilizer ? parcelLand.fertilizer.replace(/Fertilizante /, '') : '-'}</Text>
             </View>
             {parcelLand.fertilizer && !parcelLand.planted && (
-              <TouchableOpacity style={[styles.estilo]} onPress={() => setParcelLand({ ...parcelLand, fertilizer: null })}  >
-                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={[styles.imagem]} />
+              <TouchableOpacity style={styles.estilo} onPress={() => setParcelLand({ ...parcelLand, fertilizer: null })}  >
+                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={styles.imagem} />
               </TouchableOpacity>
             )}
           </View>
@@ -121,8 +121,8 @@ export default function Parcela({ route, navigation }) {
               <Text style={styles.bold}>{parcelLand.pesticide ? parcelLand.pesticide.replace(/Agrotóxico /, '') : '-'}</Text>
             </View>
             {parcelLand.pesticide && !parcelLand.planted && (
-              <TouchableOpacity style={[styles.estilo]} onPress={() => setParcelLand({ ...parcelLand, pesticide: null })}  >
-                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={[styles.imagem]} />
+              <TouchableOpacity style={styles.estilo} onPress={() => setParcelLand({ ...parcelLand, pesticide: null })}  >
+                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={styles.imagem} />
               </TouchableOpacity>
             )}
           </View>
@@ -138,8 +138,8 @@ export default function Parcela({ route, navigation }) {
               <Text style={styles.bold}>{parcelLand.machine ? parcelLand.machine : '-'}</Text>
             </View>
             {parcelLand.machine && !parcelLand.planted && (
-              <TouchableOpacity style={[styles.estilo]} onPress={() => setParcelLand({ ...parcelLand, machine: null })}  >
-                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={[styles.imagem]} />
+              <TouchableOpacity style={styles.estilo} onPress={() => setParcelLand({ ...parcelLand, machine: null })}  >
+                <Image source={require('../../../assets/agricultorIcones/FecharVermelho.png')} style={styles.imagem} />
               </TouchableOpacity>
             )}
           </View>
@@ -178,7 +178,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     paddingVertical: 30,
-    marginLeft: Tela * 0.05 + '%'
+    marginLeft: Tela * 0.05 + '%',
+    marginRight: 20
   },
   rowX: {
     flexDirection: 'row',
@@ -267,7 +268,10 @@ const styles = StyleSheet.create({
   },
   imagem: {
     width: 20,
-    height: 20
+    height: 20,
+    paddingVertical:5,
+    paddingLeft:10,
+    paddingRight:5
   },
   textparcel: {
     fontSize: 18,
