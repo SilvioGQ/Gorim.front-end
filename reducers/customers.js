@@ -37,11 +37,6 @@ const reducer = (state, action) => {
         globalProduction: action.payload[1].match.globalProduction,
         globalPollution: action.payload[1].match.globalPollution,
       };
-    case 'UPDATEPHASE':
-      return {
-        ...state,
-        phase: action.payload
-      }
     case 'ADDEDTOROOM':
       return {
         ...state,
@@ -116,7 +111,7 @@ const reducer = (state, action) => {
         stage: action.payload[0],
         offers: initialState.offers,
         notify: initialState.notify,
-        round: action.payload[1].match.round,
+        phase: action.payload[1].match.phase,
         awaitPlayers: action.payload[1].awaitPlayers.length,
       };
     case 'GETSUGGESTS':
