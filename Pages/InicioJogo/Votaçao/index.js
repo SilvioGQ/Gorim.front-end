@@ -1,12 +1,15 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
+import FiltroVotacao from '../../../Components/FiltroVotacao'
 import Voto from '../../../assets/symbols/vote.png';
 const Tela = Dimensions.get('screen').width
 export default function Votacao({ navigation }) {
+  const [type, setType] = useState('Prefeito');
+
   return (
     <View style={styles.container}>
       <Rodada name={'Votação'} />
@@ -18,17 +21,20 @@ export default function Votacao({ navigation }) {
           />
           <Text style={styles.title}>Eleições em {"\n"} {/*player.city*/} </Text>
         </View>
-        <View style={{ marginLeft: 20 }}>
+        <View style={{ alignItems: 'center' }}>
+          <FiltroVotacao type={type} setType={setType} />
+        </View>
+        {/* <View style={{ marginLeft: 20 }}>
           <Text style={styles.texto}> Vote em um candidato a prefeito:</Text>
           <Quadrados />  <Quadrados />
           <Text style={styles.texto}> Vote em um candidato a vereador:</Text>
           <Quadrados />
           <Text style={styles.texto}> Vote em um candidato a fiscal:</Text>
           <Quadrados />
-        </View>
+        </View> */}
         <Button
           onClick={() => navigation.navigate('frame7')}
-          name='VOTAR'
+          name='FINALIZAR VOTOS'
         />
       </ScrollView>
     </View>

@@ -5,50 +5,44 @@ import COLORS from '../../constants/colors';
 
 export default function Candidato() {
   const [isSelected, setSelection] = useState(false);
-  const [isSelected2, setSelection2] = useState(false);
-  const [isSelected3, setSelection3] = useState(false);
+
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        <CheckBox
-          value={isSelected}
+     
+      
+      <TouchableOpacity style={styles.row} onPress={() => { setSelection(1); }}  >
+          <Image
+          source={isSelected ==1 ? require("../../assets/circleselect.png") : require("../../assets/circle.png")}
+            style={styles.checkbox}
+          />
+          <Text style={styles.candidato}>Me candidato a prefeito! (0)</Text>
+        </TouchableOpacity>
 
+      <TouchableOpacity style={styles.row} onPress={() => { setSelection(2); }}  >
+        <Image
+          source={isSelected == 2 ? require("../../assets/circleselect.png") : require("../../assets/circle.png")}
           style={styles.checkbox}
         />
-        <TouchableOpacity onPress={() => { setSelection(true); setSelection2(false); setSelection3(false) }}  >
-          <Text style={styles.candidato}>Me candidato a prefeito!</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
-        <CheckBox
-          value={isSelected2}
-  
-          style={styles.checkbox}
-        />
-        <TouchableOpacity onPress={() => { setSelection2(true); setSelection(false); setSelection3(false) }}  >
-          <Text style={styles.candidato}>Me candidato a vereador!</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
-        <CheckBox
-          value={isSelected3}
-  
-          style={styles.checkbox}
-        />
-        <TouchableOpacity onPress={() => { setSelection3(true); setSelection2(false); setSelection(false) }}  >
-          <Text style={styles.candidato}>Me candidato a fiscal!</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.row}>
-        <CheckBox
-          value={isSelected3}
+        <Text style={styles.candidato}>Me candidato a vereador! (0)</Text>
+      </TouchableOpacity>
+ 
 
+      <TouchableOpacity style={styles.row} onPress={() => { setSelection(3); }}  >
+        <Image
+          source={isSelected == 3 ? require("../../assets/circleselect.png") : require("../../assets/circle.png")}
           style={styles.checkbox}
         />
-        <TouchableOpacity onPress={() => { setSelection3(true); setSelection2(false); setSelection(false) }}  >
-          <Text style={styles.candidato}>Não quero me candidatar.</Text>
-        </TouchableOpacity>
-      </View>
+        <Text style={styles.candidato}>Me candidato a fiscal! (0)</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.row} onPress={() => { setSelection(4); }}  >
+        <Image
+          source={isSelected == 4 ? require("../../assets/circleselect.png") : require("../../assets/circle.png")}
+          style={styles.checkbox}
+        />
+        <Text style={styles.candidato}>Não quero me candidatar. (0)</Text>
+      </TouchableOpacity>
+     
     </View>
   )
 }

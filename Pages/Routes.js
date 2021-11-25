@@ -35,8 +35,8 @@ import HistoricoJogadores from './Prefeito&Vereador/HistoricoJogadores';
 import Sugestoes from './Prefeito&Vereador/Sugestoes';
 import Eleitos from './InicioJogo/Eleitos';
 import Detalhes from './InicioJogo/DetalhesEleitos';
-
 import Candidatura from './InicioJogo/Candidatura';
+import Votacao from './InicioJogo/Votaçao';
 
 
 import {
@@ -87,6 +87,7 @@ export default function Routes() {
       <Stack.Screen name="Eleitos" component={Eleitos} />
       <Stack.Screen name="Detalhes" component={Detalhes} />
       <Stack.Screen name="Candidatura" component={Candidatura} />
+      <Stack.Screen name="Votacao" component={Votacao} />
 
     </Stack.Navigator>
   )

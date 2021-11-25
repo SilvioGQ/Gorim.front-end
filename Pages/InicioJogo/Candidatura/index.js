@@ -13,9 +13,7 @@ export default function Candidatura({ navigation }) {
     { title: 'Não quero me candidatar.', value: 4 },
 
   ];
-  const handleValueChange = (socialMediaName, checkboxId) => {
-    // do what ever you want with this two
-  };
+
   return (
     <View style={styles.container}>
       <Rodada name={'Cadidatura'} />
