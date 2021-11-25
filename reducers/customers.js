@@ -36,7 +36,6 @@ const reducer = (state, action) => {
         awaitPlayers: action.payload[1].awaitPlayers.length,
         globalProduction: action.payload[1].match.globalProduction,
         globalPollution: action.payload[1].match.globalPollution,
-        phase: action.payload[1].match.phase
       };
     case 'UPDATEPHASE':
       return {
