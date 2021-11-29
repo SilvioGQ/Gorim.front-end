@@ -1,10 +1,5 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-// import Frame4 from './InicioJogo/Personagem';
-// import Frame5 from './InicioJogo/Candidatura';
-// import Frame6 from './InicioJogo/Votaçao';
-// import Frame7 from './InicioJogo/Eleitos';
-// import Fiscal from './Fiscal/Fiscal1';
 import Selo from './Fiscal/Selo';
 import Multa from './Fiscal/Multa';
 import MultaVerMais from './Fiscal/MultaVerMais';
@@ -19,7 +14,6 @@ import ChecarAnuncio from './Empresario/ChecarAnuncio';
 import FazerTransferencia from './Transferencias/FazerTransferencia';
 import ConfirmarTransferencia from './Transferencias/ConfirmarTransferencia';
 import TransferenciaConfirmada from './Transferencias/Confirmada';
-//import Insumo from './Transferencias/Insumo';
 import Cenario from './Cenario';
 import ControleParcelas from './Agricultor/ControleParcelas';
 import Parcela from './Agricultor/Parcela';
@@ -36,7 +30,7 @@ import Sugestoes from './Prefeito&Vereador/Sugestoes';
 import Eleitos from './InicioJogo/Eleitos';
 import Detalhes from './InicioJogo/DetalhesEleitos';
 import Candidatura from './InicioJogo/Candidatura';
-import Votacao from './InicioJogo/Votaçao';
+import Votacao from './InicioJogo/Votacao';
 
 
 import {

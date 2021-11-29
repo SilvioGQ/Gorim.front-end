@@ -92,7 +92,7 @@ const GameProvider = (props) => {
       dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', p] });
     });
     socket.on('reportMessage', (msg) => {
-      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage
+      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
     });
@@ -116,6 +116,9 @@ const GameProvider = (props) => {
     });
     socket.on('getPreventions', (preventions) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPREVENTIONS', preventions] });
+    });
+    socket.on('getElections', (elections) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['GETELECTIONS', elections] });
     });
     socket.on('suggestFine', (suggest) => {
       dispatch({ type: 'CHANGEDATA', payload: ['SUGGESTFINE', suggest] });
@@ -305,6 +308,9 @@ const getPreventions = () => {
   socket.emit('getPreventions');
 }
 
+const addCandidature = (candidature) => {
+  socket.emit('addCandidature', candidature);
+}
 export {
   GameContext,
   GameProvider,
@@ -340,5 +346,6 @@ export {
   toggleApprovedSuggest,
   endRound,
   nextRound,
-  getPreventions
+  getPreventions,
+  addCandidature,
 };

@@ -51,6 +51,7 @@ const reducer = (state, action) => {
     case 'SELECTEDAVATARS':
     case 'ENDSTAGE':
     case 'ALLFORENDSTAGE':
+    case 'INITELECTIONS':
       return {
         ...state,
         stage: action.payload

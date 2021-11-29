@@ -4,12 +4,12 @@ import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
-import FiltroVotacao from '../../../Components/FiltroVotacao'
-import Voto from '../../../assets/symbols/vote.png';
+import FilterNew from '../../../Components/FilterNew'
+import { GameContext } from '../../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width
 export default function Votacao({ navigation }) {
   const [type, setType] = useState('Prefeito');
-
+  const { player } = useContext(GameContext);
   return (
     <View style={styles.container}>
       <Rodada name={'Votação'} />
@@ -17,12 +17,12 @@ export default function Votacao({ navigation }) {
         <View style={styles.self}>
           <Image
             style={styles.logo}
-            source={Voto}
+            source={require('../../../assets/symbols/vote.png')}
           />
-          <Text style={styles.title}>Eleições em {"\n"} {/*player.city*/} </Text>
+          <Text style={styles.title}>Eleições em{"\n"}{player.city}</Text>
         </View>
         <View style={{ alignItems: 'center' }}>
-          <FiltroVotacao type={type} setType={setType} />
+          <FilterNew nome1='Prefeito' nome2='Vereador' nome3='Fiscal' type={type} setType={setType} />
         </View>
         {/* <View style={{ marginLeft: 20 }}>
           <Text style={styles.texto}> Vote em um candidato a prefeito:</Text>
@@ -33,7 +33,7 @@ export default function Votacao({ navigation }) {
           <Quadrados />
         </View> */}
         <Button
-          onClick={() => navigation.navigate('frame7')}
+          onClick={() => navigation.navigate('Eleitos')}
           name='FINALIZAR VOTOS'
         />
       </ScrollView>

@@ -14,6 +14,7 @@ export default function Status({ navigation }) {
     if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
     if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
+    if (stage === 'INITELECTIONS') navigation.reset({ routes: [{ name: 'Candidatura' }] });
   }, [stage]);
 
   return (
