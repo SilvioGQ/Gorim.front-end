@@ -1,16 +1,17 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Cargos from '../../../Components/Cargos';
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
-import { addCandidature, GameContext, getElections } from '../../../contexts/GameContext';
-import { useEffect } from 'react';
-const Tela = Dimensions.get('screen').width
+import { addCandidature, GameContext } from '../../../contexts/GameContext';
+import COLORS from '../../../constants/colors';
 export default function Candidatura({ navigation }) {
-  const { players, player, stage } = useContext(GameContext);
+  const { players, player, awaitPlayers } = useContext(GameContext);
   useEffect(()=>{
-    // navigation.navigate('Votacao')
-  },[stage])
+    if(awaitPlayers === players.length){
+      navigation.navigate('Votacao')
+    }
+  },[awaitPlayers])
   const [isSelected, setSelection] = useState(false);
   return (
     <View style={styles.container}>
@@ -29,9 +30,10 @@ export default function Candidatura({ navigation }) {
           <Cargos isSelected={isSelected} setSelection={setSelection} />
       </View>
       <Button
-        onClick={() => {addCandidature(isSelected);  }  }
+        onClick={() => { addCandidature(isSelected);  }  }
         name='CANDIDATAR'
       />
+      <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom:20, color:COLORS.warningButton}}>{awaitPlayers} de {players.length} se candidataram</Text>
     </View>
   );
 }

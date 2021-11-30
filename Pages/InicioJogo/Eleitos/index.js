@@ -1,12 +1,33 @@
-import React, { useEffect, useContext, Fragment, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import Button from '../../../Components/Button';
 import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
-import Voto from '../../../assets/symbols/vote.png';
-
+import { GameContext, winnersElection } from '../../../contexts/GameContext';
+import IMAGES from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width
 export default function Eleitos({ navigation }) {
+  const { data: elections, player, players, stage } = useContext(GameContext);
+  const [mayor, setMayor] = useState()
+  const [cityCouncilor, setCityCouncilor] = useState()
+  const [supervisor, setSupervisor] = useState()
+  useEffect(() => {
+    winnersElection()
+  }, [])
+  useEffect(() => {
+    if (stage === 'WINNERSELECTION') {
+      if(elections['mayor'][0]){
+        setMayor(players.find(i => i.id === elections['mayor'][0].id));
+      }
+      if(elections['cityCouncilor'][0]){
+      setCityCouncilor(players.find(i => i.id === elections['cityCouncilor'][0].id))
+      }
+      if(elections['supervisor'][0]){
+      setSupervisor(players.find(i => i.id === elections['supervisor'][0].id))
+      }
+    }
+  }, [stage])
+  console.log(elections)
   return (
     <View style={styles.container}>
       <Rodada name={'Resultados das eleições'} />
@@ -14,37 +35,43 @@ export default function Eleitos({ navigation }) {
         <View style={styles.self}>
           <Image
             style={styles.logo}
-            source={Voto}
+            source={require('../../../assets/symbols/vote.png')}
           />
-          <Text style={styles.title}>Eleições em {"\n"} {/*player.city*/} </Text>
+          <Text style={styles.title}>Eleições em {"\n"}{player.city} </Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.resultados}>Resultados:</Text>
-           <TouchableOpacity onPress={() => navigation.navigate('Detalhes')} style={styles.historico}>
-              <Text style={styles.botao}>DETALHES</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Detalhes')} style={styles.historico}>
+            <Text style={styles.botao}>DETALHES</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.numeros}>
-          <View style={styles.bloquinho}>
-            <Text style={styles.texto}>Prefeito</Text>
-            <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-            <Text style={styles.resultado}>Alan</Text>
-            <Text style={styles.resultado}>4 votos</Text>
-
-          </View>
+          {mayor && (
+            <View style={styles.bloquinho}>
+              <Text style={styles.texto}>Prefeito</Text>
+              <Image source={IMAGES[mayor.avatar]} style={styles.icone} />
+              <Text style={styles.resultado}>{mayor.name}</Text>
+              <Text style={styles.resultado}>{elections['mayor'][0].votes} votos</Text>
+            </View>
+          )}
+          {cityCouncilor && (
           <View style={styles.bloquinho}>
             <Text style={styles.texto}>Vereador</Text>
-            <Image source={require('../../../assets/avatars/Icon2.png')} style={styles.icone} />
-            <Text style={styles.resultado}>Alan</Text>
-            <Text style={styles.resultado}>4 votos</Text>
+            <Image source={IMAGES[cityCouncilor.avatar]} style={styles.icone} />
+            <Text style={styles.resultado}>{cityCouncilor.name}</Text>
+            <Text style={styles.resultado}>{elections['cityCouncilor'][0].votes} votos</Text>
           </View>
+          )}
+          {supervisor && (
           <View style={styles.bloquinho}>
             <Text style={styles.texto}>Fiscal</Text>
-            <Image source={require('../../../assets/avatars/Icon3.png')} style={styles.icone} />
-            <Text style={styles.resultado}>Alan</Text>
-            <Text style={styles.resultado}>4 votos</Text>
+            <Image source={IMAGES[supervisor.avatar]} style={styles.icone} />
+            <Text style={styles.resultado}>{supervisor.name}</Text>
+            <Text style={styles.resultado}>{elections['supervisor'][0].votes} votos</Text>
           </View>
+          )}
         </View>
+
         <Button
           onClick={() => navigation.navigate('frame7')}
           name='Continuar'
@@ -133,9 +160,9 @@ const styles = StyleSheet.create({
     height: 30,
     backgroundColor: '#66BF00',
     borderRadius: 20,
-  
+
   },
-  botao:{
+  botao: {
     color: '#fff',
     alignSelf: 'center',
     marginTop: 8

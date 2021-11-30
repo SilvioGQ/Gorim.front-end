@@ -1,42 +1,76 @@
-import React, { useContext, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Image, Dimensions, FlatList } from 'react-native';
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
 import FilterNew from '../../../Components/FilterNew'
-import { GameContext } from '../../../contexts/GameContext';
+import ModalAsk from '../../../Components/ModalAsk';
+import { GameContext, addVote } from '../../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width
 export default function Votacao({ navigation }) {
   const [type, setType] = useState('Prefeito');
-  const { player } = useContext(GameContext);
+  const [votes, setVotes] = useState({ mayor: '', cityCouncilor: '', supervisor: ''});
+  const [voted, setVoted] = useState(false);
+  const { data: elections, player, players, awaitPlayers } = useContext(GameContext);
+  useEffect(()=>{
+    // if(awaitPlayers === players.length){
+    //   navigation.navigate('Eleitos');
+    // }
+  },[awaitPlayers])
+  // const emptyVote = () => {
+  //   let p = elections['mayor'];
+  //   p.push({ id: 'dfsgfdgsfdfsdg', votes: 0 });
+  //   return p;
+  // }
+  const [modalText, setModalText] = useState();
+  console.log(votes)
   return (
     <View style={styles.container}>
       <Rodada name={'Votação'} />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.self}>
-          <Image
-            style={styles.logo}
-            source={require('../../../assets/symbols/vote.png')}
-          />
-          <Text style={styles.title}>Eleições em{"\n"}{player.city}</Text>
-        </View>
-        <View style={{ alignItems: 'center' }}>
-          <FilterNew nome1='Prefeito' nome2='Vereador' nome3='Fiscal' type={type} setType={setType} />
-        </View>
-        {/* <View style={{ marginLeft: 20 }}>
-          <Text style={styles.texto}> Vote em um candidato a prefeito:</Text>
-          <Quadrados />  <Quadrados />
-          <Text style={styles.texto}> Vote em um candidato a vereador:</Text>
-          <Quadrados />
-          <Text style={styles.texto}> Vote em um candidato a fiscal:</Text>
-          <Quadrados />
-        </View> */}
-        <Button
-          onClick={() => navigation.navigate('Eleitos')}
-          name='FINALIZAR VOTOS'
+      <View style={styles.self}>
+        <Image
+          style={styles.logo}
+          source={require('../../../assets/symbols/vote.png')}
         />
-      </ScrollView>
+        <Text style={styles.title}>Eleições em{"\n"}{player.city}</Text>
+      </View>
+      {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => {addVote(votes); setVoted(true); navigation.navigate('Eleitos'); setModalText(!modalText);  }} back={() => setModalText(!modalText)} />}
+      <View style={{ alignItems: 'center', width: Tela, }}>
+        <FilterNew nome1='Prefeito' nome2='Vereador' nome3='Fiscal' type={type} setType={setType} />
+      </View>
+      {type === "Prefeito" && (
+        <FlatList
+          data={elections['mayor']}
+          numColumns={3}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
+        />
+      )}
+      {type === "Vereador" && (
+        <FlatList
+          data={elections['cityCouncilor']}
+          numColumns={3}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
+        />
+      )}
+      {type === "Fiscal" && (
+        <FlatList
+          data={elections['supervisor']}
+          numColumns={3}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
+        />
+      )}
+      {voted ? 
+      <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom:20, color:COLORS.warningButton}}>{awaitPlayers} de {players.length} votaram.</Text>
+      :
+      <Button
+        onClick={() => {setModalText(true);}}
+        name='FINALIZAR VOTOS'
+      />
+    }
     </View>
   );
 }
@@ -55,7 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     justifyContent: 'center',
-    marginVertical:20
+    marginVertical: 20
   },
   row: {
     flexDirection: 'row',
@@ -64,7 +98,7 @@ const styles = StyleSheet.create({
     paddingLeft: '12%'
   },
   title: {
-    
+
     fontSize: 22,
     alignItems: 'center',
     marginVertical: 10
@@ -74,7 +108,7 @@ const styles = StyleSheet.create({
     height: 60
   },
   texto: {
-    
+
     fontSize: 17,
     lineHeight: 18,
     alignItems: 'center',

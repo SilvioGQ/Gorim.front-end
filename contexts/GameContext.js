@@ -123,6 +123,9 @@ const GameProvider = (props) => {
     socket.on('suggestFine', (suggest) => {
       dispatch({ type: 'CHANGEDATA', payload: ['SUGGESTFINE', suggest] });
     });
+    socket.on('winnersElection', (winners) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['WINNERSELECTION', winners] });
+    });
     socket.on('enableNotifyScene', () => {
       dispatch({ type: 'GETNOTIFY', payload: { scene: true } });
     });
@@ -311,6 +314,12 @@ const getPreventions = () => {
 const addCandidature = (candidature) => {
   socket.emit('addCandidature', candidature);
 }
+const addVote = (votes) => {
+  socket.emit('addVote', votes);
+}
+const winnersElection= () => {
+  socket.emit('winnersElection');
+}
 export {
   GameContext,
   GameProvider,
@@ -348,4 +357,6 @@ export {
   nextRound,
   getPreventions,
   addCandidature,
+  addVote,
+  winnersElection
 };
