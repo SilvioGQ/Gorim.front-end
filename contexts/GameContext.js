@@ -95,6 +95,7 @@ const GameProvider = (props) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
+      if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });

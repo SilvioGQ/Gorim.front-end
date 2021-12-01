@@ -17,6 +17,10 @@ export default function Eleitos({ navigation }) {
   }, []);
 
   useEffect(() => {
+    if (stage === 'NEXTSTAGE') navigation.navigate('MenuPolitico');
+  }, [stage]);
+
+  useEffect(() => {
     if (stage === 'WINNERSELECTION') {
       if(elections['mayor'][0]){
         setMayor(players.find(i => i.id === elections['mayor'][0].id));
@@ -74,10 +78,11 @@ export default function Eleitos({ navigation }) {
           )}
         </View>
 
-        <Button
-          onClick={() => navigation.navigate('frame7')}
+        {/* NÃO É PRA TER ESSE BOTÃO (?) */}
+        {/* <Button
+          onClick={() => navigation.navigate('MenuPolitico')}
           name='Continuar'
-        />
+        /> */}
       </ScrollView>
     </View>
   );
