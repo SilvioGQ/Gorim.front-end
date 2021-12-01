@@ -11,7 +11,6 @@ export default function Eleitos({ navigation }) {
   const [mayor, setMayor] = useState();
   const [cityCouncilor, setCityCouncilor] = useState();
   const [supervisor, setSupervisor] = useState();
-
   useEffect(() => {
     winnersElection();
   }, []);
@@ -108,18 +107,15 @@ const styles = StyleSheet.create({
   },
   self: {
     flexDirection: 'row',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    marginVertical: 20
+    marginVertical: 20,
+    alignItems:'center',
+    justifyContent:'center'
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    width: '90%',
-    marginBottom: 20,
-    marginTop: 20
-
+    width: Tela-40,
+    marginVertical:20
   },
   title: {
     fontSize: 22,
@@ -151,11 +147,9 @@ const styles = StyleSheet.create({
   },
   numeros: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: '3%',
-    marginBottom: 40,
-    width: "80%",
-    alignSelf: 'center'
+    justifyContent: 'space-around',
+    marginTop: 40,
+    width: Tela,
   },
   resultados: {
     fontSize: 20,
@@ -163,15 +157,14 @@ const styles = StyleSheet.create({
     marginLeft: 35
   },
   historico: {
-    width: '30%',
     height: 30,
     backgroundColor: '#66BF00',
     borderRadius: 20,
-
+    paddingHorizontal:10,
+    paddingVertical:5
   },
   botao: {
     color: '#fff',
-    alignSelf: 'center',
-    marginTop: 8
+    marginTop: 6,
   }
 });

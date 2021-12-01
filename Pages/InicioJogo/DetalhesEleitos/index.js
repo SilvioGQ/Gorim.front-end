@@ -1,12 +1,39 @@
-import React, { useEffect, useContext, Fragment, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useEffect, useContext, useState } from 'react';
+import { Text, View, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import Button from '../../../Components/Button';
 import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
 import Voto from '../../../assets/symbols/vote.png';
-
+import { GameContext, winnersElection } from '../../../contexts/GameContext'
+import IMAGES from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width
 export default function Detalhes({ navigation }) {
+    const { data: elections, player, players, stage } = useContext(GameContext);
+    const [mayor, setMayor] = useState();
+    const [cityCouncilor, setCityCouncilor] = useState();
+    const [supervisor, setSupervisor] = useState();
+
+    useEffect(() => {
+        winnersElection();
+    }, []);
+
+    useEffect(() => {
+        if (stage === 'NEXTSTAGE') navigation.navigate('MenuPolitico');
+    }, [stage]);
+
+    useEffect(() => {
+        if (stage === 'WINNERSELECTION') {
+            if (elections['mayor'][0]) {
+                setMayor(players.find(i => i.id === elections['mayor'][0].id));
+            }
+            if (elections['cityCouncilor'][0]) {
+                setCityCouncilor(players.find(i => i.id === elections['cityCouncilor'][0].id))
+            }
+            if (elections['supervisor'][0]) {
+                setSupervisor(players.find(i => i.id === elections['supervisor'][0].id))
+            }
+        }
+    }, [stage])
     return (
         <View style={styles.container}>
             <Rodada name={'Detalhes'} />
@@ -17,7 +44,7 @@ export default function Detalhes({ navigation }) {
                         style={styles.logo}
                         source={Voto}
                     />
-                    <Text style={styles.title}>Eleições em {"\n"} {/*player.city*/} </Text>
+                    <Text style={styles.title}>Eleições em {"\n"} {player.city} </Text>
                 </View>
                 <View>
                     <Text style={styles.resultados}>Detalhes:</Text>
@@ -26,54 +53,42 @@ export default function Detalhes({ navigation }) {
                 <View style={styles.numeros}>
                     <View style={{ width: 300 }} >
                         <ScrollView horizontal={true} >
-
                             <View style={styles.bloquinho}>
                                 <Text style={[styles.texto, { alignSelf: 'center', marginTop: 20 }]}>Eleição Prefeito</Text>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-
+                                {mayor && (elections['mayor'].map((item, index) => {
+                                    return (
+                                        <View key={index} style={styles.a}>
+                                            <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
+                                            <Text style={styles.resultado}>{players.find(i => i.id === item.id).name} com {item.votes} votos</Text>
+                                        </View>
+                                    );
+                                }))
+                                }
                             </View>
+
                             <View style={styles.bloquinho}>
                                 <Text style={[styles.texto, { alignSelf: 'center', marginTop: 20 }]}>Eleição Vereador</Text>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-
+                                {cityCouncilor && (elections['cityCouncilor'].map((item, index) => {
+                                    return (
+                                        <View key={index} style={styles.a}>
+                                            <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
+                                            <Text style={styles.resultado}>{players.find(i => i.id === item.id).name} com {item.votes} votos</Text>
+                                        </View>
+                                    );
+                                }))
+                                }
                             </View>
                             <View style={styles.bloquinho}>
                                 <Text style={[styles.texto, { alignSelf: 'center', marginTop: 20 }]}>Eleição Fiscal</Text>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-                                <View style={styles.a}>
-                                    <Image source={require('../../../assets/avatars/Icon4.png')} style={styles.icone} />
-                                    <Text style={styles.resultado}>Alan com x votos</Text>
-                                </View>
-
+                                {supervisor && (elections['supervisor'].map((item, index) => {
+                                    return (
+                                        <View key={index} style={styles.a}>
+                                            <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
+                                            <Text style={styles.resultado}>{players.find(i => i.id === item.id).name} com {item.votes} votos</Text>
+                                        </View>
+                                    );
+                                }))
+                                }
                             </View>
                         </ScrollView>
                     </View>
