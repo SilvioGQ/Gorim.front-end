@@ -10,14 +10,14 @@ import { GameContext, addVote } from '../../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width
 export default function Votacao({ navigation }) {
   const [type, setType] = useState('Prefeito');
-  const [votes, setVotes] = useState({ mayor: '', cityCouncilor: '', supervisor: ''});
+  const [votes, setVotes] = useState({ mayor: '', cityCouncilor: '', supervisor: '' });
   const [voted, setVoted] = useState(false);
-  const { data: elections, player, players, awaitPlayers } = useContext(GameContext);
-  useEffect(()=>{
-    // if(awaitPlayers === players.length){
-    //   navigation.navigate('Eleitos');
-    // }
-  },[awaitPlayers])
+  const { data: elections, player, players, awaitPlayers, stage } = useContext(GameContext);
+
+  useEffect(() => {
+    if (stage === 'INITRESULTSVOTATION') navigation.navigate('Eleitos');
+  }, [stage]);
+
   // const emptyVote = () => {
   //   let p = elections['mayor'];
   //   p.push({ id: 'dfsgfdgsfdfsdg', votes: 0 });
@@ -35,7 +35,7 @@ export default function Votacao({ navigation }) {
         />
         <Text style={styles.title}>Eleições em{"\n"}{player.city}</Text>
       </View>
-      {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => {addVote(votes); setVoted(true); navigation.navigate('Eleitos'); setModalText(!modalText);  }} back={() => setModalText(!modalText)} />}
+      {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => { addVote(votes); setVoted(true); setModalText(!modalText); }} back={() => setModalText(!modalText)} />}
       <View style={{ alignItems: 'center', width: Tela, }}>
         <FilterNew nome1='Prefeito' nome2='Vereador' nome3='Fiscal' type={type} setType={setType} />
       </View>
@@ -44,7 +44,7 @@ export default function Votacao({ navigation }) {
           data={elections['mayor']}
           numColumns={3}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
+          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({ ...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
         />
       )}
       {type === "Vereador" && (
@@ -52,7 +52,7 @@ export default function Votacao({ navigation }) {
           data={elections['cityCouncilor']}
           numColumns={3}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
+          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({ ...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
         />
       )}
       {type === "Fiscal" && (
@@ -60,17 +60,15 @@ export default function Votacao({ navigation }) {
           data={elections['supervisor']}
           numColumns={3}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
+          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({ ...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
         />
       )}
-      {voted ? 
-      <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom:20, color:COLORS.warningButton}}>{awaitPlayers} de {players.length} votaram.</Text>
-      :
-      <Button
-        onClick={() => {setModalText(true);}}
-        name='FINALIZAR VOTOS'
-      />
-    }
+      {!voted && (
+        <Button onClick={() => { setModalText(true); }} name='FINALIZAR VOTOS' />
+      )}
+      {awaitPlayers > 0 && (
+        <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom: 20, color: COLORS.warningButton }}>{awaitPlayers} de {players.length} votaram.</Text>
+      )}
     </View>
   );
 }

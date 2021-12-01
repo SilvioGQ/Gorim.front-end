@@ -6,13 +6,13 @@ import Rodada from '../../../Components/Rodada';
 import { addCandidature, GameContext } from '../../../contexts/GameContext';
 import COLORS from '../../../constants/colors';
 export default function Candidatura({ navigation }) {
-  const { players, player, awaitPlayers } = useContext(GameContext);
-  useEffect(()=>{
-    if(awaitPlayers === players.length){
-      navigation.navigate('Votacao')
-    }
-  },[awaitPlayers])
+  const { players, player, awaitPlayers, stage } = useContext(GameContext);
   const [isSelected, setSelection] = useState(false);
+
+  useEffect(() => {
+    if (stage === 'INITVOTATION') navigation.navigate('Votacao');
+  }, [stage]);
+  
   return (
     <View style={styles.container}>
       <Rodada name={'Cadidatura'} />

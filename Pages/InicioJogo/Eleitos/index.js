@@ -8,12 +8,14 @@ import IMAGES from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width
 export default function Eleitos({ navigation }) {
   const { data: elections, player, players, stage } = useContext(GameContext);
-  const [mayor, setMayor] = useState()
-  const [cityCouncilor, setCityCouncilor] = useState()
-  const [supervisor, setSupervisor] = useState()
+  const [mayor, setMayor] = useState();
+  const [cityCouncilor, setCityCouncilor] = useState();
+  const [supervisor, setSupervisor] = useState();
+
   useEffect(() => {
-    winnersElection()
-  }, [])
+    winnersElection();
+  }, []);
+
   useEffect(() => {
     if (stage === 'WINNERSELECTION') {
       if(elections['mayor'][0]){
