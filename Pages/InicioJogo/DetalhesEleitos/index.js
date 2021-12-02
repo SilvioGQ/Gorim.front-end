@@ -38,13 +38,12 @@ export default function Detalhes({ navigation }) {
         <View style={styles.container}>
             <Rodada name={'Detalhes'} />
             <ScrollView showsVerticalScrollIndicator={false}>
-
                 <View style={styles.self}>
                     <Image
                         style={styles.logo}
                         source={Voto}
                     />
-                    <Text style={styles.title}>Eleições em {"\n"} {player.city} </Text>
+                    <Text style={styles.title}>Eleições em {"\n"}{player.city} </Text>
                 </View>
                 <View>
                     <Text style={styles.resultados}>Detalhes:</Text>
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
         width: Tela
     },
     icone: {
-        height: 50,
+        height: 55,
         width: 50,
         alignSelf: 'flex-start',
         marginTop: 20,
@@ -126,9 +125,9 @@ const styles = StyleSheet.create({
     },
     self: {
         flexDirection: 'row',
-        alignSelf: 'center',
-        justifyContent: 'center',
-        marginVertical: 20
+        marginVertical: 20,
+        alignItems:'center',
+        justifyContent:'center'
     },
     row: {
         flexDirection: 'row',
@@ -156,9 +155,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     resultado: {
-        fontSize: 18,
-        marginLeft: 75,
-        marginTop: 30
+        fontSize: 14,
+        marginLeft: 70,
+        marginTop: 38.5
     },
     bloquinho: {
         backgroundColor: '#C8EEDE',

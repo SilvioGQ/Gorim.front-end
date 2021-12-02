@@ -7,7 +7,7 @@ import IMAGES from '../../constants/imagesIcons';
 
 export default function Status({ navigation }) {
   
-  const { player, globalPollution, data: round, stage, globalProduction, timer } = useContext(GameContext);
+  const { player, globalPollution, data: round, stage, globalProduction, timer, phase } = useContext(GameContext);
 
   useEffect(() => {
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
@@ -23,7 +23,7 @@ export default function Status({ navigation }) {
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.containerescuro}>
-            <Text style={styles.text}>RESUMO DA ETAPA</Text>
+            <Text style={styles.text}>RESUMO DA ETAPA {phase}</Text>
             <Image source={IMAGES[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>

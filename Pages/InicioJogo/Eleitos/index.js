@@ -56,7 +56,7 @@ export default function Eleitos({ navigation }) {
               <Text style={styles.texto}>Prefeito</Text>
               <Image source={IMAGES[mayor.avatar]} style={styles.icone} />
               <Text style={styles.resultado}>{mayor.name}</Text>
-              <Text style={styles.resultado}>{elections['mayor'][0].votes} votos</Text>
+              {elections['mayor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['mayor'][0].votes} votos</Text>  }
             </View>
           )}
           {cityCouncilor && (
@@ -64,7 +64,7 @@ export default function Eleitos({ navigation }) {
             <Text style={styles.texto}>Vereador</Text>
             <Image source={IMAGES[cityCouncilor.avatar]} style={styles.icone} />
             <Text style={styles.resultado}>{cityCouncilor.name}</Text>
-            <Text style={styles.resultado}>{elections['cityCouncilor'][0].votes} votos</Text>
+            {elections['cityCouncilor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['cityCouncilor'][0].votes} votos</Text>  }
           </View>
           )}
           {supervisor && (
@@ -72,7 +72,7 @@ export default function Eleitos({ navigation }) {
             <Text style={styles.texto}>Fiscal</Text>
             <Image source={IMAGES[supervisor.avatar]} style={styles.icone} />
             <Text style={styles.resultado}>{supervisor.name}</Text>
-            <Text style={styles.resultado}>{elections['supervisor'][0].votes} votos</Text>
+            {elections['supervisor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['supervisor'][0].votes} votos</Text>  }
           </View>
           )}
         </View>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     width: Tela
   },
   icone: {
-    height: 50,
+    height: 55,
     width: 50,
     alignSelf: 'center',
     marginTop: 20,
@@ -165,6 +165,6 @@ const styles = StyleSheet.create({
   },
   botao: {
     color: '#fff',
-    marginTop: 6,
+    marginTop: 4,
   }
 });

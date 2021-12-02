@@ -15,7 +15,7 @@ export default function Candidatura({ navigation }) {
   
   return (
     <View style={styles.container}>
-      <Rodada name={'Cadidatura'} />
+      <Rodada name={'Candidatura'} />
       <View style={styles.row}>
         <Image
           style={styles.logo}

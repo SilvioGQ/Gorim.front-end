@@ -14,7 +14,7 @@ const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
 
   const [modalText, setModalText] = useState('');
-  const [type, setType] = useState('propaganda');
+  const [type, setType] = useState('Todos');
   const { player } = useContext(GameContext);
   return (
     <View style={styles.container}>
@@ -22,11 +22,11 @@ export default function ChecarAnuncio({ navigation }) {
       <Coin coin={player.coin} />
       <Text style={styles.header}>Anúncios</Text>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
-      <FilterNew type={type} setType={setType} nome1={'propaganda'} nome2={'individual'}/>
+      <FilterNew type={type} setType={setType} nome1={'Todos'} nome2={'Individual'}/>
       {
-        type === 'propaganda' ? 
+        type === 'Todos' ? 
         player.offers.filter(offer => offer.idBuyer === -1).length === 0 ?
-          <TextBold>Você não fez propagandas</TextBold> 
+          <TextBold>Não há anúncios gerais ativos.</TextBold> 
           :
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -36,7 +36,7 @@ export default function ChecarAnuncio({ navigation }) {
           />
         :
         player.offers.filter(offer => offer.idBuyer !== -1).length === 0 ?
-          <TextBold>Você não fez ofertas individuais</TextBold> 
+          <TextBold>Não há anúncios individuais ativos.</TextBold> 
           :
           <FlatList
             showsVerticalScrollIndicator={false}

@@ -13,7 +13,7 @@ import TextBold from '../../../Components/Atons/TextBold';
 const Tela = Dimensions.get('screen').width;
 export default function Propostas({navigation}) {
   const [modalText, setModalText] = useState('');
-  const [type, setType] = useState('propaganda');
+  const [type, setType] = useState('Anuncios');
   const { player, offers, disableNotifyOffers } = useContext(GameContext);
 
   useEffect(() => {
@@ -44,16 +44,16 @@ export default function Propostas({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Propostas'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
+      <Rodada name={'Checar anúncios'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <View style={{flex:1}}>
       <Text style={styles.text}>Anúncios</Text>
       {/* <FilterType type={type} setType={setType} /> */}
-      <FilterNew type={type} setType={setType} nome1={'propaganda'} nome2={'individual'}/>
-      {type==='propaganda' ? 
+      <FilterNew type={type} setType={setType} nome1={'Gerais'} nome2={'Individual'}/>
+      {type==='Gerais' ? 
       !offers.all || offers.all.length === 0 ?
-          <TextBold>Não tem propagandas!</TextBold>
+          <TextBold>Não tem anúncios gerais!</TextBold>
           : <FlatList
             showsVerticalScrollIndicator={false}
             data={offers.all}
@@ -62,7 +62,7 @@ export default function Propostas({navigation}) {
           />
           :
           !offers.individual || offers.individual.length === 0 ?
-          <TextBold>Ninguém te mandou oferta!</TextBold>
+          <TextBold>Ninguém te mandou anúncio individual!</TextBold>
           : <FlatList
             showsVerticalScrollIndicator={false}
             data={offers.individual}
