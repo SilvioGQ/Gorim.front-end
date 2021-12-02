@@ -51,7 +51,7 @@ export default function Eleitos({ navigation }) {
           </TouchableOpacity>
         </View>
         <View style={styles.numeros}>
-          {mayor && (
+          {mayor && stage === 'WINNERSELECTION' && (
             <View style={styles.bloquinho}>
               <Text style={styles.texto}>Prefeito</Text>
               <Image source={IMAGES[mayor.avatar]} style={styles.icone} />
@@ -59,7 +59,7 @@ export default function Eleitos({ navigation }) {
               {elections['mayor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['mayor'][0].votes} votos</Text>  }
             </View>
           )}
-          {cityCouncilor && (
+          {cityCouncilor && stage === 'WINNERSELECTION' && (
           <View style={styles.bloquinho}>
             <Text style={styles.texto}>Vereador</Text>
             <Image source={IMAGES[cityCouncilor.avatar]} style={styles.icone} />
@@ -67,7 +67,7 @@ export default function Eleitos({ navigation }) {
             {elections['cityCouncilor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['cityCouncilor'][0].votes} votos</Text>  }
           </View>
           )}
-          {supervisor && (
+          {supervisor && stage === 'WINNERSELECTION' && (
           <View style={styles.bloquinho}>
             <Text style={styles.texto}>Fiscal</Text>
             <Image source={IMAGES[supervisor.avatar]} style={styles.icone} />
