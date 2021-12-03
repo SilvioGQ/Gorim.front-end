@@ -10,6 +10,7 @@ import FilterNew from '../../../Components/FilterNew';
 import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
 import TextBold from '../../../Components/Atons/TextBold';
+import HeaderIcons from '../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function Propostas({navigation}) {
   const [modalText, setModalText] = useState('');
@@ -48,7 +49,7 @@ export default function Propostas({navigation}) {
       <Coin coin={player.coin} />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <View style={{flex:1}}>
-      <Text style={styles.text}>Anúncios</Text>
+      <HeaderIcons name={'Checar \nAnúncios'} icon='Checar anúncios'/>
       {/* <FilterType type={type} setType={setType} /> */}
       <FilterNew type={type} setType={setType} nome1={'Gerais'} nome2={'Individual'}/>
       {type==='Gerais' ? 

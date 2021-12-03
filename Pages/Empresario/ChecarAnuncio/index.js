@@ -9,7 +9,7 @@ import COLORS from '../../../constants/colors';
 import Modal from '../../../Components/ModalInfo';
 import Rodada from '../../../Components/Rodada';
 import TextBold from '../../../Components/Atons/TextBold';
-
+import HeaderIcons from '../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function ChecarAnuncio({ navigation }) {
 
@@ -20,7 +20,7 @@ export default function ChecarAnuncio({ navigation }) {
     <View style={styles.container}>
       <Rodada name={'Checar anúncios'} arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
-      <Text style={styles.header}>Anúncios</Text>
+      <HeaderIcons name={'Checar \nAnúncios'} icon='Checar Anúncios'/>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <FilterNew type={type} setType={setType} nome1={'Todos'} nome2={'Individual'}/>
       {

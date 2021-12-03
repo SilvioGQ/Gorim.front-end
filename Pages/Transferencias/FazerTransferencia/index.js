@@ -9,7 +9,7 @@ import Coin from '../../../Components/Coin';
 import CaixaDeValor from '../../../Components/CaixaDeValor';
 import Rodada from '../../../Components/Rodada';
 import FiltroTransferencias from '../../../Components/FiltroTransferencias';
-
+import HeaderIcons from '../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation }) {
 
@@ -31,10 +31,7 @@ export default function FazerTransferencia({ navigation }) {
       <Rodada name={'Fazer transferência'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
         <Coin coin={phase === 1 ? player.coin : player.serviceSalary} />
-        <View style={styles.header}>
-          <Image source={require('../../../assets/icons/coin.png')} style={styles.icon} />
-          <Text style={styles.textFont}>Fazer {'\n'}transferência</Text>
-        </View>
+        <HeaderIcons name={'Fazer \nTranferência'} icon='Fazer Transferência'/>
         <Text style={styles.text}>Destinatário:</Text>
         <View style={{ alignItems: 'center' }}>
           <FiltroTransferencias type={type} setType={setType} />

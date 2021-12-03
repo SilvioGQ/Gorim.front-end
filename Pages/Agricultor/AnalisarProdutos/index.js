@@ -7,7 +7,7 @@ import Produtos from '../../../Components/Produtos';
 import ModalInfo from '../../../Components/ModalInfo';
 import FilterType from '../../../Components/FilterType';
 import Rodada from '../../../Components/Rodada';
-
+import HeaderIcons from '../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function AnalisarProdutos({navigation}) {
   const [type, setType] = useState('Agrotoxico');
@@ -30,7 +30,7 @@ export default function AnalisarProdutos({navigation}) {
     <View style={styles.container}>
       <Rodada name={'Analisar produtos'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
         <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }} onPress={() => setModalText('Legenda:')}  >
-        <Text style={styles.header}>Produtos</Text>
+        <HeaderIcons name={'Analisar \nprodutos'} icon='Analisar produtos'/>
           <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
         </TouchableOpacity>
       <FilterType type={type} setType={setType} />

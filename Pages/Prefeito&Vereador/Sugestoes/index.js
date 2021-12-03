@@ -6,7 +6,7 @@ import Coin from '../../../Components/Coin';
 import SugestoesRecebidas from '../../../Components/SugestoesRecebidas';
 import SugestoesEnviadas from '../../../Components/SugestoesEnviadas';
 import Rodada from '../../../Components/Rodada';
-
+import HeaderIcons from '../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function Sugestoes({ navigation }) {
   const [modalText, setModalText] = useState('');
@@ -20,7 +20,7 @@ export default function Sugestoes({ navigation }) {
     <View style={styles.container}>
       <Rodada name={'Sugestões'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <Coin coin={player.serviceSalary} />
-      <Text style={styles.texto}>Sugestões</Text>
+      <HeaderIcons name={'Sugestões'} icon='Sugestões'/>
       {player.office === 'Prefeito' && (
         <FlatList
           showsVerticalScrollIndicator={false}
