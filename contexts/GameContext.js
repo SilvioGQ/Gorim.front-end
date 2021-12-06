@@ -26,6 +26,12 @@ const GameProvider = (props) => {
       case event === 'ENDROUND':
         endRound();
         break;
+      case event === 'INITVOTATION':
+        addCandidature(null);
+        break;
+      case event === 'INITRESULTSVOTATION':
+        addVote({ mayor: '', cityCouncilor: '', supervisor: '' });
+        break;
     }
     stopCallback();
   });
@@ -95,6 +101,8 @@ const GameProvider = (props) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
+      if (msg === 'INITELECTIONS') startTimer(30, 'INITVOTATION');
+      if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
       if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
     });
     socket.on('getProducts', (product) => {
