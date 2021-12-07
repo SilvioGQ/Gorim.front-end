@@ -23,6 +23,7 @@
     "expo": "^42.0.3",
     "expo-app-loading": "1.1.2",
     "expo-cli": "^4.12.11",
+    "expo-constants": "~11.0.1",
     "expo-notifications": "~0.12.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",

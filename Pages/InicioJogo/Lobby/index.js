@@ -22,7 +22,7 @@ export default function Lobby({ navigation }) {
 
     if (stage == 'STARTGAME' && isMounted) navigation.reset({ routes: [{ name: 'SorteioJogador' }] });
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'CriarPartida' }] });
-    console.log(player.room);
+    
     return () => isMounted = false;
   }, [stage]);
 

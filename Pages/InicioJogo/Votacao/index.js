@@ -13,6 +13,7 @@ export default function Votacao({ navigation }) {
   const [votes, setVotes] = useState({ mayor: '', cityCouncilor: '', supervisor: '' });
   const [voted, setVoted] = useState(false);
   const { data: elections, player, players, awaitPlayers, stage } = useContext(GameContext);
+  const [modalText, setModalText] = useState();
 
   useEffect(() => {
     if (stage === 'INITRESULTSVOTATION') navigation.navigate('Eleitos');
@@ -23,8 +24,7 @@ export default function Votacao({ navigation }) {
   //   p.push({ id: 'dfsgfdgsfdfsdg', votes: 0 });
   //   return p;
   // }
-  const [modalText, setModalText] = useState();
-  console.log(votes)
+
   return (
     <View style={styles.container}>
       <Rodada name={'Votação'} />

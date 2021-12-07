@@ -95,6 +95,7 @@ const GameProvider = (props) => {
     });
     socket.on('addedToRoom', (p) => {
       player = p;
+      console.log(player.room)
       dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', p] });
     });
     socket.on('reportMessage', (msg) => {

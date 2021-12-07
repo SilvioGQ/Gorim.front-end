@@ -14,7 +14,7 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
   selectPlayer = (id) => {
     return players.find(player => player.id === id);
   }
-  console.log(item)
+  
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>

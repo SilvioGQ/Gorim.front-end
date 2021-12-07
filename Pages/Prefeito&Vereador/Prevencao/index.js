@@ -27,7 +27,6 @@ export default function Prevencao({ navigation }) {
   useEffect(() => {
     getPreventions();
   }, []);
-  console.log(preventions)
 
   return (
     <View style={styles.container}>

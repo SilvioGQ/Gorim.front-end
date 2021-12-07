@@ -1,7 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
+import Constants from "expo-constants";
+
 import COLORS from '../../../constants/colors';
 import Button from '../../../Components/Button';
+
 export default function Frame1({ navigation }) {
   return (
     <View style={styles.container}>
@@ -21,7 +24,7 @@ export default function Frame1({ navigation }) {
           onClick={() => navigation.navigate('CriarPartida')}
           name='começar' />
       </View>
-      <Text style={styles.v}>v1.0.2</Text>
+      <Text style={styles.v}>v{Constants.manifest.version}</Text>
     </View>
   );
 }

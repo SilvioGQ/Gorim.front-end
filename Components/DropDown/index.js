@@ -21,7 +21,6 @@ export default function DropDown({ items, type, onClick, display }) {
   return (
     <View style={[styles.container, { display: display }]}>
       {inventory.map((item, index) => {
-        console.log(item)
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}  >
             <Image style={styles.icone} source={IMAGES[item.name]} />

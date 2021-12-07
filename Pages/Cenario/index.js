@@ -20,7 +20,7 @@ export default function Cenario({ navigation }) {
 
   const [image, setImage] = useState(true);
   const [image2, setImage2] = useState(true);
-  console.log(player.logsOffice)
+
   useEffect(() => {
     calcPlayerTax();
     disableNotifyScene();
@@ -36,7 +36,6 @@ export default function Cenario({ navigation }) {
   //   null
     
   // }
-  // console.log(players.find((item)=>item.office === "Prefeito"))
   return (
     <View>
       <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />

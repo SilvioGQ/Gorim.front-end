@@ -18,7 +18,6 @@ export default function Oferta({ item, confirmOffer }) {
   const increaseCount = () => { setCount(count < (item.amount > 6 ? 6 : item.amount) ? count + 1 : count); }
   const decreaseCount = () => { setCount(count > 1 ? count - 1 : count); }
   
-  console.log(item.idSeller);
   return (
     <View>
     <Text style={styles.text1}>Ainda restam {item.amount} produtos</Text>

@@ -31,8 +31,8 @@ export default function Eleitos({ navigation }) {
       setSupervisor(players.find(i => i.id === elections['supervisor'][0].id))
       }
     }
-  }, [stage])
-  console.log(elections)
+  }, [stage]);
+  
   return (
     <View style={styles.container}>
       <Rodada name={'Resultados das eleições'} />

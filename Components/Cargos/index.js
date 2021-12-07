@@ -1,11 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { GameContext } from '../../contexts/GameContext';
 
 import COLORS from '../../constants/colors';
-import { GameContext } from '../../contexts/GameContext';
+
 export default function Cargos({isSelected, setSelection}) {
+
   const { stage, data: elections } = useContext(GameContext);
-  console.log(elections)
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.row} onPress={() => { setSelection("Prefeito"); }}  >
