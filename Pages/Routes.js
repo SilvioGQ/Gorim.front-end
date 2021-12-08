@@ -33,46 +33,45 @@ import Candidatura from './InicioJogo/Candidatura';
 import Votacao from './InicioJogo/Votacao';
 
 
-import {
-  setCustomText,
-  setCustomTouchableOpacity
-} from 'react-native-global-props';
-const customTextProps = {
-  style: {
-    fontFamily: 'Rubik_300Light'
-  }
-};
-const CustomTouchableOpacityProps = {
-  activeOpacity: 0.7
-};
-setCustomText(customTextProps);
-setCustomTouchableOpacity(CustomTouchableOpacityProps)
+import { setCustomText, setCustomTouchableOpacity } from 'react-native-global-props';
 const Stack = createStackNavigator();
 export default function Routes() {
+
+  const customTextProps = {
+    style: {
+      fontFamily: 'Rubik_300Light'
+    }
+  };
+  const CustomTouchableOpacityProps = {
+    activeOpacity: 0.7
+  };
+  setCustomText(customTextProps);
+  setCustomTouchableOpacity(CustomTouchableOpacityProps);
+
   return (
-    <Stack.Navigator initialRouteName="Gorim" screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Gorim" component={Frame1}/>
-      <Stack.Screen name="SorteioJogador" component={SorteioJogador}/>
-      <Stack.Screen name="MenuJogador" component={MenuJogador}/>
-      <Stack.Screen name="AguardarJogadores" component={AguardarJogadores}/>
-      <Stack.Screen name="FazerTransferencia" component={FazerTransferencia}/>
-      <Stack.Screen name="ConfirmarTransferencia" component={ConfirmarTransferencia}/>
-      <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada}/>
-      <Stack.Screen name="ControleParcelas" component={ControleParcelas}/>
-      <Stack.Screen name="Vendas" component={Vendas}/>
-      <Stack.Screen name="Cenario" component={Cenario}/>
-      <Stack.Screen name="Parcela" component={Parcela}/>
-      <Stack.Screen name="Propostas" component={Propostas}/>
-      <Stack.Screen name="AnalisarProdutos" component={AnalisarProdutos}/>
-      <Stack.Screen name="CriarPartida" component={CriarPartida}/>
-      <Stack.Screen name="Lobby" component={Lobby}/>
-      <Stack.Screen name="SelecaoPersonagem" component={SelecaoPersonagem}/>
-      <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio}/>
-      <Stack.Screen name="Historico" component={Historico}/>
-      <Stack.Screen name="Status" component={Status}/>
-      <Stack.Screen name="MenuPolitico" component={MenuPolitico}/>
-      <Stack.Screen name="Selo" component={Selo}/>
-      <Stack.Screen name="Multa" component={Multa}/>
+    <Stack.Navigator initialRouteName="Gorim" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Gorim" component={Frame1} />
+      <Stack.Screen name="SorteioJogador" component={SorteioJogador} />
+      <Stack.Screen name="MenuJogador" component={MenuJogador} />
+      <Stack.Screen name="AguardarJogadores" component={AguardarJogadores} />
+      <Stack.Screen name="FazerTransferencia" component={FazerTransferencia} />
+      <Stack.Screen name="ConfirmarTransferencia" component={ConfirmarTransferencia} />
+      <Stack.Screen name="TransferenciaConfirmada" component={TransferenciaConfirmada} />
+      <Stack.Screen name="ControleParcelas" component={ControleParcelas} />
+      <Stack.Screen name="Vendas" component={Vendas} />
+      <Stack.Screen name="Cenario" component={Cenario} />
+      <Stack.Screen name="Parcela" component={Parcela} />
+      <Stack.Screen name="Propostas" component={Propostas} />
+      <Stack.Screen name="AnalisarProdutos" component={AnalisarProdutos} />
+      <Stack.Screen name="CriarPartida" component={CriarPartida} />
+      <Stack.Screen name="Lobby" component={Lobby} />
+      <Stack.Screen name="SelecaoPersonagem" component={SelecaoPersonagem} />
+      <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio} />
+      <Stack.Screen name="Historico" component={Historico} />
+      <Stack.Screen name="Status" component={Status} />
+      <Stack.Screen name="MenuPolitico" component={MenuPolitico} />
+      <Stack.Screen name="Selo" component={Selo} />
+      <Stack.Screen name="Multa" component={Multa} />
       <Stack.Screen name="MultaVerMais" component={MultaVerMais} />
       <Stack.Screen name="Prevencao" component={Prevencao} />
       <Stack.Screen name="Imposto" component={Imposto} />

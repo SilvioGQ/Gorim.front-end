@@ -13,7 +13,6 @@
     ]
   },
   "dependencies": {
-    "@expo-google-fonts/rubik": "^0.1.0",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
@@ -21,9 +20,9 @@
     "core-js": "3.3.0",
     "date-fns": "^2.24.0",
     "expo": "^42.0.3",
-    "expo-app-loading": "1.1.2",
     "expo-cli": "^4.12.11",
     "expo-constants": "~11.0.1",
+    "expo-font": "~9.2.1",
     "expo-notifications": "~0.12.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
