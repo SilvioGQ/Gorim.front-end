@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
 import COLORS from '../../constants/colors';
-import { GameContext } from '../../contexts/GameContext';
+
 const Tela = Dimensions.get('screen').width;
-export default function ModalInfo({ text, onClick, modalImage, title, image, image2, image3 = false, display = 'flex' }) {
-  const { player } = useContext(GameContext);
+export default function ModalInfo({ player, text, onClick, modalImage, title, image, image2, image3 = false, display = 'flex' }) {
+
   return (
     <Modal
       animationType="fade"
@@ -13,9 +13,7 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
       <View style={styles.modal}>
         <View style={styles.container}>
           {title && (
-            <>
-              <Text style={{ marginVertical: 10, textAlign: "center",  fontSize: 24 }}>{player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}`}</Text>
-            </>
+              <Text style={{ marginVertical: 10, textAlign: "center", fontSize: 24 }}>{player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}`}</Text>
           )}
           <Text style={styles.loading}>{text}</Text>
           {image && (
@@ -58,7 +56,6 @@ export default function ModalInfo({ text, onClick, modalImage, title, image, ima
           <TouchableOpacity
             style={{ borderRadius: 20, padding: 10, elevation: 5, backgroundColor: COLORS.successButton, alignItems: 'center', width: 250, display: display }}
             onPress={onClick}
-             
           >
             <Text style={{ textAlign: 'center', fontFamily: 'Rubik_400Regular', fontSize: 18, color: COLORS.textWhite }}>VOLTAR</Text>
           </TouchableOpacity>
@@ -90,45 +87,45 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   loading: {
-    
+
     fontSize: 18,
     textAlign: 'justify',
     marginBottom: 25,
   },
   texto: {
-    marginBottom: 15, 
-    textAlign: 'left', 
-     
+    marginBottom: 15,
+    textAlign: 'left',
+
     fontSize: 14
   },
   estilo: {
-    width: 32, 
-    height: 30, 
-    borderRadius: 10, 
-    borderColor: '#58AB23', 
-    borderWidth: 2.5, 
-    marginRight: 5 
+    width: 32,
+    height: 30,
+    borderRadius: 10,
+    borderColor: '#58AB23',
+    borderWidth: 2.5,
+    marginRight: 5
   },
   texto1: {
-     
-    fontWeight: 'bold', 
-    color: '#58AB23', 
-    fontSize: 18, 
+
+    fontWeight: 'bold',
+    color: '#58AB23',
+    fontSize: 18,
     alignSelf: 'center'
   },
   estilo2: {
-    width: 32, 
-    height: 30, 
-    borderRadius: 10, 
-    borderColor: COLORS.warningButton, 
-    borderWidth: 2.5, 
+    width: 32,
+    height: 30,
+    borderRadius: 10,
+    borderColor: COLORS.warningButton,
+    borderWidth: 2.5,
     marginRight: 5
   },
   texto2: {
-     
-    fontWeight: 'bold', 
-    color: COLORS.warningButton, 
-    fontSize: 18, 
+
+    fontWeight: 'bold',
+    color: COLORS.warningButton,
+    fontSize: 18,
     alignSelf: 'center'
   }
 })

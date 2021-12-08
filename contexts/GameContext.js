@@ -185,7 +185,7 @@ const GameProvider = (props) => {
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, disableNotifySuggests, stopCallback, startTimer }}>
       {modal && (
-        <ModalInfo onClick={() => { setModal(false) }} display={socket.connected ? 'flex' : 'none'} text={'Estamos reconectando você para partida'} />
+        <ModalInfo player={state.player} onClick={() => { setModal(false) }} display={socket.connected ? 'flex' : 'none'} text={'Estamos reconectando você para partida'} />
       )}
       {props.children}
     </GameContext.Provider>

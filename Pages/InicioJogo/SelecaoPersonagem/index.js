@@ -56,7 +56,7 @@ export default function SelecaoPersonagem({ navigation }) {
               <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
           </View>
           <Text style={styles.text}>Selecione um personagem</Text>
-          {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} title={title} />}
+          {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} title={title} />}
           <View style={{ alignSelf: 'center' }}>
             <View style={{ flexDirection: 'row' }}>
               <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />

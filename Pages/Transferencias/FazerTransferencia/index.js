@@ -91,7 +91,7 @@ export default function FazerTransferencia({ navigation }) {
         <Text style={[styles.text, { marginBottom: 15 }]}>Valor:</Text>
         <CaixaDeValor value={count} setValue={setCount} increment={5} maxValue={phase === 1 ? player.coin : player.serviceSalary} coin={true} />
         <Button onClick={confirmTransfer} name='CONTINUAR' />
-        {modalText !== '' && <ModalInfo onClick={() => setModalText('')} text={modalText} />}
+        {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} />}
       </ScrollView>
     </View>
   );
