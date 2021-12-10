@@ -24,6 +24,7 @@ import Lobby from './InicioJogo/Lobby';
 import MenuJogador from './MenuJogador';
 import MenuPolitico from './MenuPolitico';
 import Status from './Status';
+import Status2 from './Status2';
 import Historico from './Historico';
 import HistoricoJogadores from './Prefeito&Vereador/HistoricoJogadores';
 import Sugestoes from './Prefeito&Vereador/Sugestoes';
@@ -69,6 +70,7 @@ export default function Routes() {
       <Stack.Screen name="ChecarAnuncio" component={ChecarAnuncio} />
       <Stack.Screen name="Historico" component={Historico} />
       <Stack.Screen name="Status" component={Status} />
+      <Stack.Screen name="Status2" component={Status2} />
       <Stack.Screen name="MenuPolitico" component={MenuPolitico} />
       <Stack.Screen name="Selo" component={Selo} />
       <Stack.Screen name="Multa" component={Multa} />

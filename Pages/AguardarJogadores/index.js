@@ -15,7 +15,7 @@ export default function AguardarJogadores({ navigation }) {
   useEffect(() => {
     let isMounted = true;
     if (stage === 'ALLFORENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'Status' }] });
-    if (stage === 'NEXTROUND' && isMounted) navigation.reset({ routes: [{ name: 'MenuJogador' }] });
+    if (stage === 'NEXTROUND' && isMounted) navigation.reset({ routes: [{ name: 'Status2' }] });
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
 
     return () => isMounted = false;

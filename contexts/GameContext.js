@@ -121,6 +121,9 @@ const GameProvider = (props) => {
     socket.on('getCityTax', (tax) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETCITYTAX', tax] });
     });
+    socket.on('nextRoundStatus', (status) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['NEXTROUNDSTATUS', status] });
+    });
     socket.on('getSuggests', (suggests) => {
       dispatch({ type: 'GETSUGGESTS', payload: suggests });
     });
