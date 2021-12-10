@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: COLORS.bgColorPrimary,
         alignItems: 'center',
-        padding: 5,
         width: Tela
     },
     icone: {
