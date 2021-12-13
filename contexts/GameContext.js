@@ -15,6 +15,8 @@ const GameProvider = (props) => {
   const [modal, setModal] = useState(false);
   const refContainer = useRef();
 
+  console.log(state.stage)
+
   const callbackForTimer = useCallback(event => {
     switch (true) {
       case event === 'ENDSTAGE':
