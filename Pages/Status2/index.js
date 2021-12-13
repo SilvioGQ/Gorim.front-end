@@ -11,7 +11,7 @@ export default function Status2({ navigation }) {
   const { oldLogs } = useContext(GameContext);
   // console.log(logsOffice)
   useEffect(() => {
-    if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
+    if (stage === 'ALLFORNEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
 
   if (stage === 'NEXTROUNDSTATUS') console.log(round)

@@ -32,6 +32,9 @@ const GameProvider = (props) => {
       case event === 'INITRESULTSVOTATION':
         addVote({ mayor: '', cityCouncilor: '', supervisor: '' });
         break;
+      case event === 'ALLFORNEXTROUND':
+        allForNextRound();
+        break;
     }
     stopCallback();
   });
@@ -107,6 +110,7 @@ const GameProvider = (props) => {
       if (msg === 'INITELECTIONS') startTimer(30, 'INITVOTATION');
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
       if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
+      if (msg === 'ALLFORNEXTROUND') startTimer(400, 'ALLFORNEXTROUND');
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -172,7 +176,7 @@ const GameProvider = (props) => {
     });
     socket.on('nextRound', (room) => {
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
-      startTimer(400, 'ENDSTAGE');
+      startTimer(30, 'ALLFORNEXTROUND');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });
@@ -329,12 +333,19 @@ const getPreventions = () => {
 const addCandidature = (candidature) => {
   socket.emit('addCandidature', candidature);
 }
+
 const addVote = (votes) => {
   socket.emit('addVote', votes);
 }
-const winnersElection= () => {
+
+const winnersElection = () => {
   socket.emit('winnersElection');
 }
+
+const allForNextRound = () => {
+  socket.emit('allForNextRound');
+}
+
 export {
   GameContext,
   GameProvider,

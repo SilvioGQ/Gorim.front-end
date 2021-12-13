@@ -54,6 +54,7 @@ const reducer = (state, action) => {
     case 'INITELECTIONS':
     case 'INITVOTATION':
     case 'INITRESULTSVOTATION':
+    case 'ALLFORNEXTROUND':
       return {
         ...state,
         stage: action.payload
