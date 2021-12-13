@@ -7,11 +7,11 @@ import IMAGES from '../../constants/imagesIcons';
 
 export default function Status2({ navigation }) {
 
-  const { player, globalPollution, data: round, stage, timer, phase } = useContext(GameContext);
+  const { player, players, globalPollution, data: round, stage, timer, phase } = useContext(GameContext);
   const { oldLogs } = useContext(GameContext);
   // console.log(logsOffice)
   useEffect(() => {
-    if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
+    if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
 
   if (stage === 'NEXTROUNDSTATUS') console.log(round)
@@ -28,12 +28,23 @@ export default function Status2({ navigation }) {
             <View style={styles.circulo}>
               <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
             </View>
-            <View style={styles.circulo1}>
-              <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}Nula:{"\n"}Entre 1 e 100:{"\n"}Acima de 200:</Text>
-            </View>
-             <View style={styles.circulo1}>
-              <Text style={styles.text3}>Medidas de prevenção{"\n"}Trat. de água:{"\n"}Trat. de lixo:{"\n"}Trat. de esgoto:</Text>
-            </View>
+            {stage === 'NEXTROUNDSTATUS' && (
+              <>
+                <View style={styles.circulo1}>
+                  <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}
+                  Nula:{round.tax.find(i=>i.name === player.city).lowProduction + " => " + "\n"}
+                  {players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax').length > 0 && (
+                    console.log(players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax'))
+                  
+                  )}
+                  Entre 1 e 100:{"\n"}
+                  Acima de 200:</Text>
+                </View>
+                <View style={styles.circulo1}>
+                  <Text style={styles.text3}>Medidas de prevenção{"\n"}Trat. de água:{"\n"}Trat. de lixo:{"\n"}Trat. de esgoto:</Text>
+                </View>
+              </>
+            )}
             <View style={styles.botao}>
               <Text>{timer}</Text>
               {/* <Button onClick={() => { navigation.navigate('') }} name={'AVANÇAR'} /> */}
