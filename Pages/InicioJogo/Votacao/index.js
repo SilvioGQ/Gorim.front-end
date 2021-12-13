@@ -17,7 +17,6 @@ export default function Votacao({ navigation }) {
   const [supervisor, setsupervisor] = useState([])
   const { data: elections, player, players, awaitPlayers, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState();
-
   useEffect(() => {
     if (stage === 'INITRESULTSVOTATION') navigation.navigate('Eleitos');
     setMayor([...elections['mayor'], { id: "", votes: 0 }])

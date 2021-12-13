@@ -16,10 +16,10 @@ const MyTheme = {
 export default function App() {
 
   const [loaded] = useFonts({
-      Rubik_300Light: require('./assets/fonts/Rubik-Light.ttf'),
-      Rubik_400Regular: require('./assets/fonts/Rubik-Bold.ttf'),
-      Rubik_700Bold: require('./assets/fonts/Rubik-Regular.ttf')
-    });
+    Rubik_300Light: require('./assets/fonts/Rubik-Light.ttf'),
+    Rubik_400Regular: require('./assets/fonts/Rubik-Regular.ttf'),
+    Rubik_700Bold: require('./assets/fonts/Rubik-Bold.ttf')
+  });
 
   if (!loaded) {
     return null;

@@ -32,6 +32,9 @@ const GameProvider = (props) => {
       case event === 'INITRESULTSVOTATION':
         addVote({ mayor: '', cityCouncilor: '', supervisor: '' });
         break;
+      case event === 'ALLFORNEXTROUND':
+        allForNextRound();
+        break;
     }
     stopCallback();
   });
@@ -53,10 +56,12 @@ const GameProvider = (props) => {
 
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
     recordStartTime(maxTime, socket.id).then(() => {
+      let callbackUsed = false;
       let interval = setInterval(() => {
         recordGetTime(socket.id).then(timer => {
           dispatch({ type: 'UPDATETIMER', payload: timer });
-          if (timer === 0) {
+          if ((timer === 0 || timer < 0) && !callbackUsed) {
+            callbackUsed = true;
             callbackForTimer(refContainer.current);
             clearInterval(interval);
           }
@@ -104,7 +109,8 @@ const GameProvider = (props) => {
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
       if (msg === 'INITELECTIONS') startTimer(30, 'INITVOTATION');
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
-      if (msg === 'INITRESULTSVOTATION') startTimer(6, 'NEXTSTAGE');
+      if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
+      if (msg === 'ALLFORNEXTROUND') startTimer(400, 'ALLFORNEXTROUND');
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -170,7 +176,7 @@ const GameProvider = (props) => {
     });
     socket.on('nextRound', (room) => {
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
-      startTimer(30, 'ENDSTAGE');
+      startTimer(30, 'ALLFORNEXTROUND');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });
@@ -327,12 +333,19 @@ const getPreventions = () => {
 const addCandidature = (candidature) => {
   socket.emit('addCandidature', candidature);
 }
+
 const addVote = (votes) => {
   socket.emit('addVote', votes);
 }
-const winnersElection= () => {
+
+const winnersElection = () => {
   socket.emit('winnersElection');
 }
+
+const allForNextRound = () => {
+  socket.emit('allForNextRound');
+}
+
 export {
   GameContext,
   GameProvider,

@@ -11,11 +11,12 @@ export default function Status2({ navigation }) {
   const { oldLogs } = useContext(GameContext);
   // console.log(logsOffice)
   useEffect(() => {
-    if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
+    if (stage === 'ALLFORNEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
 
   if (stage === 'NEXTROUNDSTATUS') console.log(round)
 
+  const findMayor = players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax')
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -33,8 +34,8 @@ export default function Status2({ navigation }) {
                 <View style={styles.circulo1}>
                   <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}
                   Nula:{round.tax.find(i=>i.name === player.city).lowProduction + " => " + "\n"}
-                  {players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax').length > 0 && (
-                    console.log(players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax'))
+                  {findMayor.length > 0 && (
+                    console.log(findMayor)
                   
                   )}
                   Entre 1 e 100:{"\n"}
