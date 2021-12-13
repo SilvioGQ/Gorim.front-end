@@ -8,7 +8,8 @@ import IMAGES from '../../constants/imagesIcons';
 export default function Status2({ navigation }) {
 
   const { player, globalPollution, data: round, stage, timer, phase } = useContext(GameContext);
-
+  const { oldLogs } = useContext(GameContext);
+  // console.log(logsOffice)
   useEffect(() => {
     if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
   }, [stage]);
@@ -21,30 +22,18 @@ export default function Status2({ navigation }) {
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.containerescuro}>
-            <Text style={styles.text}>RESUMO DA ETAPA {phase}</Text>
+            <Text style={styles.text}>RESUMO DA ETAPA{phase}</Text>
             <Image source={IMAGES[player.avatar]} style={styles.img} />
-            <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name} em {player.city}</Text>
+            <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
             </View>
-            <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição individual: {player.pollution.toFixed(1)}</Text>
+            <View style={styles.circulo1}>
+              <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}Nula:{"\n"}Entre 1 e 100:{"\n"}Acima de 200:</Text>
             </View>
-            {/* <View style={styles.circulo}>
-              <Text style={styles.text3}>Imposto pago: ${round.tax.value} {round.tax.percentual ? '= (' + round.tax.percentual + '%)' : ''}</Text>
+             <View style={styles.circulo1}>
+              <Text style={styles.text3}>Medidas de prevenção{"\n"}Trat. de água:{"\n"}Trat. de lixo:{"\n"}Trat. de esgoto:</Text>
             </View>
-            <View style={styles.circulo}>
-              <Text style={styles.text3}>Produtividade: ${round.totalProduction} = ({globalProduction}%)</Text>
-            </View> */}
-            <View style={styles.circulo}>
-              <Text style={styles.text3}>Saldo atual: ${player.coin}</Text>
-            </View>
-            {/* <View style={styles.circulo}>
-              <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>
-              </View>
-            <View style={styles.circulo}>
-              <Text style={styles.text3}>Produtividade global: 70%</Text>
-            </View> */}
             <View style={styles.botao}>
               <Text>{timer}</Text>
               {/* <Button onClick={() => { navigation.navigate('') }} name={'AVANÇAR'} /> */}
@@ -91,6 +80,11 @@ const styles = StyleSheet.create({
     marginTop: 14,
     fontSize: 18,
   },
+  text4: {
+    marginLeft: 20,
+    marginTop: 14,
+    fontSize: 13,
+  },
   img: {
     height: 85,
     width: 79,
@@ -102,6 +96,21 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     width: '85%',
     height: 51,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 4.46,
+    elevation: 2,
+  },
+  circulo1: {
+    backgroundColor: '#fff',
+    marginVertical: 2,
+    borderRadius: 17,
+    width: '85%',
+    height: 130,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
