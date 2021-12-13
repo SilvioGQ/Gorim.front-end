@@ -15,8 +15,6 @@ const GameProvider = (props) => {
   const [modal, setModal] = useState(false);
   const refContainer = useRef();
 
-  console.log(state.stage)
-
   const callbackForTimer = useCallback(event => {
     switch (true) {
       case event === 'ENDSTAGE':
@@ -55,10 +53,12 @@ const GameProvider = (props) => {
 
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
     recordStartTime(maxTime, socket.id).then(() => {
+      let callbackUsed = false;
       let interval = setInterval(() => {
         recordGetTime(socket.id).then(timer => {
           dispatch({ type: 'UPDATETIMER', payload: timer });
-          if (timer === 0) {
+          if ((timer === 0 || timer < 0) && !callbackUsed) {
+            callbackUsed = true;
             callbackForTimer(refContainer.current);
             clearInterval(interval);
           }
