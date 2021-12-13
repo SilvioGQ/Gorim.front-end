@@ -12,19 +12,27 @@ export default function Votacao({ navigation }) {
   const [type, setType] = useState('Prefeito');
   const [votes, setVotes] = useState({ mayor: '', cityCouncilor: '', supervisor: '' });
   const [voted, setVoted] = useState(false);
+  const [mayor, setMayor] = useState([])
+  const [cityCouncilor, setcityCouncilor] = useState([])
+  const [supervisor, setsupervisor] = useState([])
   const { data: elections, player, players, awaitPlayers, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState();
 
   useEffect(() => {
     if (stage === 'INITRESULTSVOTATION') navigation.navigate('Eleitos');
+    setMayor([...elections['mayor'], { id: "", votes: 0 }])
+    setcityCouncilor([...elections['cityCouncilor'], { id: "", votes: 0 }])
+    setsupervisor([...elections['supervisor'], { id: "", votes: 0 }])
+
   }, [stage]);
-
-  // const emptyVote = () => {
-  //   let p = elections['mayor'];
-  //   p.push({ id: 'dfsgfdgsfdfsdg', votes: 0 });
-  //   return p;
-  // }
-
+  console.log(mayor)
+  const playerList = (item) => {
+    if (item==='') {
+      return { name: 'Voto Branco' };
+    } else {
+      return players.find((i) => i.id === item)
+    }
+  }
   return (
     <View style={styles.container}>
       <Rodada name={'Votação'} />
@@ -41,26 +49,26 @@ export default function Votacao({ navigation }) {
       </View>
       {type === "Prefeito" && (
         <FlatList
-          data={elections['mayor']}
+          data={mayor}
           numColumns={3}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({ ...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
+          renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
         />
       )}
       {type === "Vereador" && (
         <FlatList
-          data={elections['cityCouncilor']}
+          data={cityCouncilor}
           numColumns={3}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({ ...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
+          renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
         />
       )}
       {type === "Fiscal" && (
         <FlatList
-          data={elections['supervisor']}
+          data={supervisor}
           numColumns={3}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={players.find((i) => i.id === item.id)} onClick={() => setVotes({ ...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
+          renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
         />
       )}
       {!voted && (
