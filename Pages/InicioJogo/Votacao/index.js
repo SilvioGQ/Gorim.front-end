@@ -1,37 +1,43 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, FlatList } from 'react-native';
+import { GameContext, addVote } from '../../../contexts/GameContext';
+
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
 import FilterNew from '../../../Components/FilterNew'
 import ModalAsk from '../../../Components/ModalAsk';
-import { GameContext, addVote } from '../../../contexts/GameContext';
-const Tela = Dimensions.get('screen').width
+
+const Tela = Dimensions.get('screen').width;
 export default function Votacao({ navigation }) {
   const [type, setType] = useState('Prefeito');
   const [votes, setVotes] = useState({ mayor: '', cityCouncilor: '', supervisor: '' });
   const [voted, setVoted] = useState(false);
-  const [mayor, setMayor] = useState([])
-  const [cityCouncilor, setcityCouncilor] = useState([])
-  const [supervisor, setsupervisor] = useState([])
+  const [mayor, setMayor] = useState([]);
+  const [cityCouncilor, setcityCouncilor] = useState([]);
+  const [supervisor, setsupervisor] = useState([]);
   const { data: elections, player, players, awaitPlayers, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState();
+
   useEffect(() => {
     if (stage === 'INITRESULTSVOTATION') navigation.navigate('Eleitos');
-    setMayor([...elections['mayor'], { id: "", votes: 0 }])
-    setcityCouncilor([...elections['cityCouncilor'], { id: "", votes: 0 }])
-    setsupervisor([...elections['supervisor'], { id: "", votes: 0 }])
-
   }, [stage]);
-  console.log(mayor)
+
+  useEffect(() => {
+    setMayor([...elections['mayor'], { id: "", votes: 0 }]);
+    setcityCouncilor([...elections['cityCouncilor'], { id: "", votes: 0 }]);
+    setsupervisor([...elections['supervisor'], { id: "", votes: 0 }]);
+  }, []);
+
   const playerList = (item) => {
-    if (item==='') {
+    if (item === '') {
       return { name: 'Voto Branco' };
     } else {
       return players.find((i) => i.id === item)
     }
   }
+
   return (
     <View style={styles.container}>
       <Rodada name={'Votação'} />
@@ -42,7 +48,6 @@ export default function Votacao({ navigation }) {
         />
         <Text style={styles.title}>Eleições em{"\n"}{player.city}</Text>
       </View>
-      {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => { addVote(votes); setVoted(true); setModalText(!modalText); }} back={() => setModalText(!modalText)} />}
       <View style={{ alignItems: 'center', width: Tela, }}>
         <FilterNew nome1='Prefeito' nome2='Vereador' nome3='Fiscal' type={type} setType={setType} />
       </View>
@@ -76,10 +81,10 @@ export default function Votacao({ navigation }) {
       {awaitPlayers > 0 && (
         <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom: 20, color: COLORS.warningButton }}>{awaitPlayers} de {players.length} votaram.</Text>
       )}
+      {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => { addVote(votes); setVoted(true); setModalText(!modalText); }} back={() => setModalText(!modalText)} />}
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -102,7 +107,6 @@ const styles = StyleSheet.create({
     paddingLeft: '12%'
   },
   title: {
-
     fontSize: 22,
     alignItems: 'center',
     marginVertical: 10
@@ -112,7 +116,6 @@ const styles = StyleSheet.create({
     height: 60
   },
   texto: {
-
     fontSize: 17,
     lineHeight: 18,
     alignItems: 'center',
