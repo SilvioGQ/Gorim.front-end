@@ -109,7 +109,7 @@ const GameProvider = (props) => {
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
       if (msg === 'INITELECTIONS') startTimer(30, 'INITVOTATION');
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
-      if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
+      if (msg === 'INITRESULTSVOTATION') startTimer(5, 'NEXTSTAGE');
       if (msg === 'ALLFORNEXTROUND') startTimer(400, 'ALLFORNEXTROUND');
     });
     socket.on('getProducts', (product) => {
