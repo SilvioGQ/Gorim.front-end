@@ -54,7 +54,7 @@ export default function Detalhes({ navigation }) {
                         <ScrollView horizontal={true} >
                             <View style={styles.bloquinho}>
                                 <Text style={[styles.texto, { alignSelf: 'center', marginTop: 20 }]}>Eleição Prefeito</Text>
-                                {mayor && (elections['mayor'].map((item, index) => {
+                                {mayor && (stage === 'WINNERSELECTION') && (elections['mayor'].map((item, index) => {
                                     return (
                                         <View key={index} style={styles.a}>
                                             <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
@@ -67,7 +67,7 @@ export default function Detalhes({ navigation }) {
 
                             <View style={styles.bloquinho}>
                                 <Text style={[styles.texto, { alignSelf: 'center', marginTop: 20 }]}>Eleição Vereador</Text>
-                                {cityCouncilor && (elections['cityCouncilor'].map((item, index) => {
+                                {cityCouncilor && (stage === 'WINNERSELECTION') && (elections['cityCouncilor'].map((item, index) => {
                                     return (
                                         <View key={index} style={styles.a}>
                                             <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
@@ -79,7 +79,7 @@ export default function Detalhes({ navigation }) {
                             </View>
                             <View style={styles.bloquinho}>
                                 <Text style={[styles.texto, { alignSelf: 'center', marginTop: 20 }]}>Eleição Fiscal</Text>
-                                {supervisor && (elections['supervisor'].map((item, index) => {
+                                {supervisor && (stage === 'WINNERSELECTION') && (elections['supervisor'].map((item, index) => {
                                     return (
                                         <View key={index} style={styles.a}>
                                             <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
