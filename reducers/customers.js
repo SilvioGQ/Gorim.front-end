@@ -119,6 +119,7 @@ const reducer = (state, action) => {
       };
     case 'ALLFORNEXTROUND':
       return {
+        ...state,
         stage: action.payload[0],
         round: action.payload[1].match.round,
         phase: action.payload[1].match.phase
