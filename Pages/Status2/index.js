@@ -8,22 +8,69 @@ import IMAGES from '../../constants/imagesIcons';
 export default function Status2({ navigation }) {
 
   const { player, players, globalPollution, data: round, stage, timer, phase } = useContext(GameContext);
-  const { oldLogs } = useContext(GameContext);
-  // console.log(logsOffice)
+
   useEffect(() => {
     if (stage === 'ALLFORNEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
 
   if (stage === 'NEXTROUNDSTATUS') console.log(round)
 
-  const findMayor = players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax')
+  const findMayorTax = () => {
+    if (players.find((item) => item.office === "Prefeito" && item.city === player.city)) {
+      return players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax')
+    }
+  }
+  const findMayorPre = () => {
+    if (players.find((item) => item.office === "Prefeito" && item.city === player.city)) {
+      return players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'prevention')
+    }
+  }
+  const lowProductionValue = () => {
+    let mayor = findMayorTax();
+    if (!mayor) return '';
+    let nula = mayor.filter((i) => i.label === "Produtividade nula");
+    if (nula.length !== 0) {
+      return nula[nula.length - 1].value
+    } else return ""
+  }
+  const mediumProductionValue = () => {
+    let mayor = findMayorTax();
+    if (!mayor) return '';
+    let medium = mayor.filter((i) => i.label === "Produtividade entre 1 e 200");
+    if (medium.length !== 0) {
+      return medium[medium.length - 1].percentual
+    } else return ""
+  }
+  const highProductionValue = () => {
+    let mayor = findMayorTax();
+    if (!mayor) return '';
+    let high = mayor.filter((i) => i.label === "Produtividade acima de 200");
+    if (high.length !== 0) {
+      return high[high.length - 1].percentual
+    } else return ""
+  }
+  const treatWater = () => {
+    let mayor = findMayorPre();
+    if (!mayor) return 0;
+    return mayor.filter((i) => i.label === "Tratamento de água").length;
+  }
+  const treatTrash = () => {
+    let mayor = findMayorPre();
+    if (!mayor) return 0;
+    return mayor.filter((i) => i.label === "Tratamento de lixo").length;
+  }
+  const treatSewer = () => {
+    let mayor = findMayorPre();
+    if (!mayor) return 0;
+    return mayor.filter((i) => i.label === "Tratamento de esgoto").length;
+  }
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.containerescuro}>
-            <Text style={styles.text}>RESUMO DA ETAPA{phase}</Text>
+            <Text style={styles.text}>RESUMO DA ETAPA {phase}</Text>
             <Image source={IMAGES[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
@@ -33,16 +80,15 @@ export default function Status2({ navigation }) {
               <>
                 <View style={styles.circulo1}>
                   <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}
-                  Nula:{round.tax.find(i=>i.name === player.city).lowProduction + " => " + "\n"}
-                  {findMayor.length > 0 && (
-                    console.log(findMayor)
-                  
-                  )}
-                  Entre 1 e 100:{"\n"}
-                  Acima de 200:</Text>
+                    Nula: {"$" + round.tax.find(i => i.name === player.city).lowProduction.value} {lowProductionValue() == '' ? '' : ` => $${lowProductionValue()}`}{"\n"}
+                    Entre 1 e 200: {round.tax.find(i => i.name === player.city).mediumProduction.percentual}% {mediumProductionValue() == '' ? '' : ` => ${mediumProductionValue()}%`}{"\n"}
+                    Acima de 200: {round.tax.find(i => i.name === player.city).highProduction.percentual}% {highProductionValue() == '' ? '' : ` => ${highProductionValue()}%`}</Text>
                 </View>
                 <View style={styles.circulo1}>
-                  <Text style={styles.text3}>Medidas de prevenção{"\n"}Trat. de água:{"\n"}Trat. de lixo:{"\n"}Trat. de esgoto:</Text>
+                  <Text style={styles.text3}>Medidas de prevenção{"\n"}Trat. de água: {treatWater() == 0 ? 'Não aplicado' : `Aplicado ${treatWater()}x`}{"\n"}
+                    Trat. de esgoto: {treatSewer() == 0 ? 'Não aplicado' : `Aplicado ${treatSewer()}x`}{"\n"}
+                    Trat. de lixo: {treatTrash() == 0 ? 'Não aplicado' : `Aplicado ${treatTrash()}x`}
+                  </Text>
                 </View>
               </>
             )}
