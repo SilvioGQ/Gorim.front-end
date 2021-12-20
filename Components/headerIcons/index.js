@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
-import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesMenu'
 const Tela = Dimensions.get('screen').width;
 export default function HeaderIcons({ name, icon }) {
@@ -21,7 +20,8 @@ const styles = StyleSheet.create({
         width: Tela
       },
       textFont: {
-        fontSize: 20
+        fontSize: 20,
+        alignSelf: 'center',
       },
       icon: {
         width: 63,
