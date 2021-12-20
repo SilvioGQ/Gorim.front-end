@@ -10,7 +10,7 @@ import ModalInfo from '../../../Components/ModalInfo';
 import IMAGES from '../../../constants/imagesProducts';
 import IMAGESMENU from '../../../constants/imagesMenu';
 import Rodada from '../../../Components/Rodada';
-
+import HeaderIcons from '../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function Parcela({ route, navigation }) {
 
@@ -64,6 +64,7 @@ export default function Parcela({ route, navigation }) {
     <View style={styles.container}>
       <Rodada name={'Parcela de terra'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
+      <HeaderIcons name={'Aplicação \nem parcela'} icon='Aplicação em parcela'/>
         <View style={styles.espaco}>
           <Image style={styles.parcel} source={require('../../../assets/agricultorIcones/Parcela.png')} />
           <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
