@@ -164,6 +164,5 @@ const styles = StyleSheet.create({
   },
   botao: {
     color: '#fff',
-    marginTop: 4,
   }
 });

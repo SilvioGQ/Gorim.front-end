@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io("https://gorim-backend.herokuapp.com/", { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -109,8 +109,11 @@ const GameProvider = (props) => {
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
       if (msg === 'INITELECTIONS') startTimer(30, 'INITVOTATION');
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
-      if (msg === 'INITRESULTSVOTATION') startTimer(5, 'NEXTSTAGE');
-      if (msg === 'ALLFORNEXTROUND') startTimer(400, 'ALLFORNEXTROUND');
+      if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
+    });
+    socket.on('allForNextRound', (room) => {
+      dispatch({ type: 'ALLFORNEXTROUND', payload: ['ALLFORNEXTROUND', room]});
+      startTimer(400, 'ALLFORNEXTROUND');
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });

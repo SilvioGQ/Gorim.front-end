@@ -54,7 +54,6 @@ const reducer = (state, action) => {
     case 'INITELECTIONS':
     case 'INITVOTATION':
     case 'INITRESULTSVOTATION':
-    case 'ALLFORNEXTROUND':
       return {
         ...state,
         stage: action.payload
@@ -117,6 +116,13 @@ const reducer = (state, action) => {
         notify: initialState.notify,
         phase: action.payload[1].match.phase,
         awaitPlayers: action.payload[1].awaitPlayers.length,
+      };
+    case 'ALLFORNEXTROUND':
+      return {
+        ...state,
+        stage: action.payload[0],
+        round: action.payload[1].match.round,
+        phase: action.payload[1].match.phase
       };
     case 'GETSUGGESTS':
       return {
