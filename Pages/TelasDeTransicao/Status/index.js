@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-nati
 import { GameContext } from '../../../contexts/GameContext';
 
 import COLORS from '../../../constants/colors';
-import IMAGES from '../../../constants/imagesIcons';
+import ICONS from '../../../constants/imagesIcons';
 
 export default function Status({ navigation }) {
   
@@ -24,7 +24,7 @@ export default function Status({ navigation }) {
         <View style={styles.container}>
           <View style={styles.containerescuro}>
             <Text style={styles.text}>RESUMO DA ETAPA {phase}</Text>
-            <Image source={IMAGES[player.avatar]} style={styles.img} />
+            <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>

@@ -1,4 +1,4 @@
-const IMAGES = {
+const imagesProducts = {
     "Soja": require('../../assets/products/seeds/soy.png'),
     "Arroz": require('../../assets/products/seeds/rice.png'),
     "Hortaliça": require('../../assets/products/seeds/greenery.png'),
@@ -21,4 +21,4 @@ const IMAGES = {
     "Tratamento de água" : require('../../assets/icons/water.png'),
 };
 
-export default IMAGES;
+export default imagesProducts;

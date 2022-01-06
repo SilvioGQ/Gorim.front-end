@@ -5,7 +5,7 @@ import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
 import Voto from '../../../assets/symbols/vote.png';
 import { GameContext, winnersElection } from '../../../contexts/GameContext'
-import IMAGES from '../../../constants/imagesIcons';
+import ICONS from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width
 export default function Detalhes({ navigation }) {
     const { data: elections, player, players, stage } = useContext(GameContext);
@@ -57,7 +57,7 @@ export default function Detalhes({ navigation }) {
                                 {mayor && (stage === 'WINNERSELECTION') && (elections['mayor'].map((item, index) => {
                                     return (
                                         <View key={index} style={styles.a}>
-                                            <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
+                                            <Image source={ICONS[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
                                             <Text style={styles.resultado}>{players.find(i => i.id === item.id).name} com {item.votes} votos</Text>
                                         </View>
                                     );
@@ -70,7 +70,7 @@ export default function Detalhes({ navigation }) {
                                 {cityCouncilor && (stage === 'WINNERSELECTION') && (elections['cityCouncilor'].map((item, index) => {
                                     return (
                                         <View key={index} style={styles.a}>
-                                            <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
+                                            <Image source={ICONS[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
                                             <Text style={styles.resultado}>{players.find(i => i.id === item.id).name} com {item.votes} votos</Text>
                                         </View>
                                     );
@@ -82,7 +82,7 @@ export default function Detalhes({ navigation }) {
                                 {supervisor && (stage === 'WINNERSELECTION') && (elections['supervisor'].map((item, index) => {
                                     return (
                                         <View key={index} style={styles.a}>
-                                            <Image source={IMAGES[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
+                                            <Image source={ICONS[players.find(i => i.id === item.id).avatar]} style={styles.icone} />
                                             <Text style={styles.resultado}>{players.find(i => i.id === item.id).name} com {item.votes} votos</Text>
                                         </View>
                                     );

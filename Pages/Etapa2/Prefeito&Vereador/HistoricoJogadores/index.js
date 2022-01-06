@@ -4,7 +4,7 @@ import HistoricoPlayers from '../../../../Components/HistoricoPlayers';
 import { GameContext } from '../../../../contexts/GameContext';
 // import COLORS from '../../constants/colors';
 import Rodada from '../../../../Components/Rodada';
-import FiltroHistoricoJogadores from '../../../../Components/FiltroHistoricoJogadores'
+import FilterNew from '../../../../Components/FilterNew'
 import { Fragment } from 'react';
 const Tela = Dimensions.get('screen').width;
 export default function HistoricoJogadores({ navigation }) {
@@ -23,7 +23,7 @@ export default function HistoricoJogadores({ navigation }) {
         </View>
         <Text style={styles.header}>Jogadores em {player.city}:</Text>
         <View style={{ alignItems: 'center' }}>
-          <FiltroHistoricoJogadores type={type} setType={setType} />
+        <FilterNew nome1='Agricultor' nome2='Empresário' type={type} setType={setType} />
         </View>
 
         <ScrollView>
@@ -90,6 +90,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_400Regular',
     fontSize: 20,
     marginTop: 15,
-    marginLeft: 5
   }
 });

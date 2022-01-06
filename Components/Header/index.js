@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import IMAGES from '../../constants/imagesIcons'
+import ICONS from '../../constants/imagesIcons'
 import Coin from '../Coin';
 import { GameContext } from "../../contexts/GameContext";
 
@@ -35,7 +35,7 @@ export default function Header({ typeMenu = 'player' }) {
       <View>
         {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : phase === 1 ? <Coin coin={player.coin} /> : null }
       </View>
-      <Image style={styles.person} source={IMAGES[player.avatar]} />
+      <Image style={styles.person} source={ICONS[player.avatar]} />
     </View>
   )
 }

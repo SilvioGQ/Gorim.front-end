@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'rea
 import { GameContext, toggleApprovedSuggest } from "../../contexts/GameContext";
 import ModalInfo from '../../Components/ModalInfo';
 import COLORS from '../../constants/colors';
-import IMAGES from '../../constants/imagesIcons';
+import ICONS from '../../constants/imagesIcons';
 import IMAGES2 from '../../constants/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
@@ -19,7 +19,7 @@ export default function SugestoesRecebidas({ item }) {
         <View style={styles.colunm}>
             <View style={styles.row3}>
                 <View style={{ marginLeft: 20 }}>
-                    <Image style={styles.person} source={IMAGES[Buyer().avatar]} />
+                    <Image style={styles.person} source={ICONS[Buyer().avatar]} />
                     <Text style={styles.text}>{Buyer().office.slice(0, 3)}/{Buyer().name}</Text>
                 </View>
                 <View style={{ position: 'absolute', marginLeft: 55 }}>

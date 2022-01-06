@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 
-import IMAGES from '../../constants/imagesProducts';
+import imagesProducts from '../../constants/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
 
@@ -23,7 +23,7 @@ export default function DropDown({ items, type, onClick, display }) {
       {inventory.map((item, index) => {
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}  >
-            <Image style={styles.icone} source={IMAGES[item.name]} />
+            <Image style={styles.icone} source={imagesProducts[item.name]} />
             <Text style={styles.text}>{item.name.replace(/Fertilizante|Agrotóxico/, '')} restante: {item.amount}</Text>
           </TouchableOpacity>
         );

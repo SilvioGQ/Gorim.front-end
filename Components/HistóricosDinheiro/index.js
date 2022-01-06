@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 
 import COLORS from '../../constants/colors';
 import imagesProducts from '../../constants/imagesProducts';
-import IMAGES from '../../constants/imagesIcons';
+import ICONS from '../../constants/imagesIcons';
 import { GameContext } from "../../contexts/GameContext";
 const Tela = Dimensions.get('screen').width;
 
@@ -15,7 +15,7 @@ export default function HistoricosDinheiro({ item }) {
 				<View style={styles.absolute3}>
 					<Image
 						style={styles.icone}
-						source={item.product ? imagesProducts[item.product.name] : IMAGES[player.avatar]}
+						source={item.product ? imagesProducts[item.product.name] : ICONS[player.avatar]}
 					/>
 					{item.product ?
 					<Text style={[styles.estilo, {left:-7}]}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
@@ -41,7 +41,7 @@ export default function HistoricosDinheiro({ item }) {
 				<View style={styles.absolute}>
 					<Image
 						style={styles.icone}
-						source={IMAGES[item.avatarPlayer]}
+						source={ICONS[item.avatarPlayer]}
 					/>
 					<Text style={styles.text}>{item.namePlayer}</Text>
 				</View>

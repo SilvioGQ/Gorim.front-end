@@ -115,17 +115,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   categoryprice: {
-    
     fontSize: 12,
     marginTop: 5
   },
   price: {
-    
     fontSize: 12,
   },
   row: {
     flexDirection: 'row',
-    marginHorizontal: 10,
+    marginHorizontal: 2,
     width: '95%',
     marginVertical: 15,
     justifyContent: 'space-around'

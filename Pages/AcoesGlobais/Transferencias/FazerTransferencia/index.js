@@ -8,7 +8,7 @@ import Quadrados from '../../../../Components/Quadrado';
 import Coin from '../../../../Components/Coin';
 import CaixaDeValor from '../../../../Components/CaixaDeValor';
 import Rodada from '../../../../Components/Rodada';
-import FiltroTransferencias from '../../../../Components/FiltroTransferencias';
+import FilterNew from '../../../../Components/FilterNew';
 import HeaderIcons from '../../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function FazerTransferencia({ navigation }) {
@@ -16,14 +16,14 @@ export default function FazerTransferencia({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [count, setCount] = useState(0);
   const [id, setId] = useState();
-  const [type, setType] = useState('Agricultor');
+  const [type, setType] = useState('Agr/Emp');
   const { players, player, phase } = useContext(GameContext);
 
   const confirmTransfer = () => {
     if (!id) return setModalText('Selecione o destino!');
     if (count === 0) return setModalText('Adicione um valor!');
     const destName = players.find(i => i.id === id).name
-    navigation.navigate('ConfirmarTransferencia', { idDest: id, nameDest:destName, count, provider: phase === 1 ? false : true, type: type == 'Agricultor' || type == "Empresário" ? false : true });
+    navigation.navigate('ConfirmarTransferencia', { idDest: id, nameDest:destName, count, provider: phase === 1 ? false : true, type: type == 'Agr/Emp' ? false : true });
   }
 
   return (
@@ -34,9 +34,9 @@ export default function FazerTransferencia({ navigation }) {
         <HeaderIcons name={'Fazer \nTranferência'} icon='Fazer Transferência'/>
         <Text style={styles.text}>Destinatário:</Text>
         <View style={{ alignItems: 'center' }}>
-          <FiltroTransferencias type={type} setType={setType} />
+        <FilterNew nome1='Agr/Emp' nome2='Ver/Pre/Fis' type={type} setType={setType} />
         </View>
-        {type === 'Agricultor' ?
+        {type === 'Agr/Emp' ?
           <View style={styles.margin}>
             {phase === 1 ?
               <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >

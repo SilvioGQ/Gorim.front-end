@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { GameContext } from '../../../contexts/GameContext';
 import Rodada from '../../../Components/Rodada';
-import IMAGES from '../../../constants/imagesIcons';
+import ICONS from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width;
 export default function Cenario({ navigation }) {
 
@@ -30,7 +30,7 @@ export default function Cenario({ navigation }) {
           <View style={styles.row}>
             <Image
               style={styles.image}
-              source={IMAGES[player.avatar]}
+              source={ICONS[player.avatar]}
             />
             <View>
               <Text style={styles.name}>{player.name}</Text>

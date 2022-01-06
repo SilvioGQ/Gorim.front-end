@@ -13,7 +13,7 @@ export default function ModalInfo({ player, text, onClick, modalImage, title, im
       <View style={styles.modal}>
         <View style={styles.container}>
           {title && (
-              <Text style={{ marginVertical: 10, textAlign: "center", fontSize: 24 }}>{player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}`}</Text>
+              <Text style={{ marginVertical: 10, textAlign: "center", fontSize: 20 }}>{player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}S`}</Text>
           )}
           <Text style={styles.loading}>{text}</Text>
           {image && (

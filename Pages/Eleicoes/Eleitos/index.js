@@ -4,7 +4,7 @@ import Button from '../../../Components/Button';
 import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
 import { GameContext, winnersElection } from '../../../contexts/GameContext';
-import IMAGES from '../../../constants/imagesIcons';
+import ICONS from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width
 export default function Eleitos({ navigation }) {
   const { data: elections, player, players, stage } = useContext(GameContext);
@@ -54,7 +54,7 @@ export default function Eleitos({ navigation }) {
           {mayor && stage === 'WINNERSELECTION' && (
             <View style={styles.bloquinho}>
               <Text style={styles.texto}>Prefeito</Text>
-              <Image source={IMAGES[mayor.avatar]} style={styles.icone} />
+              <Image source={ICONS[mayor.avatar]} style={styles.icone} />
               <Text style={styles.resultado}>{mayor.name}</Text>
               {elections['mayor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['mayor'][0].votes} votos</Text>  }
             </View>
@@ -62,7 +62,7 @@ export default function Eleitos({ navigation }) {
           {cityCouncilor && stage === 'WINNERSELECTION' && (
           <View style={styles.bloquinho}>
             <Text style={styles.texto}>Vereador</Text>
-            <Image source={IMAGES[cityCouncilor.avatar]} style={styles.icone} />
+            <Image source={ICONS[cityCouncilor.avatar]} style={styles.icone} />
             <Text style={styles.resultado}>{cityCouncilor.name}</Text>
             {elections['cityCouncilor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['cityCouncilor'][0].votes} votos</Text>  }
           </View>
@@ -70,7 +70,7 @@ export default function Eleitos({ navigation }) {
           {supervisor && stage === 'WINNERSELECTION' && (
           <View style={styles.bloquinho}>
             <Text style={styles.texto}>Fiscal</Text>
-            <Image source={IMAGES[supervisor.avatar]} style={styles.icone} />
+            <Image source={ICONS[supervisor.avatar]} style={styles.icone} />
             <Text style={styles.resultado}>{supervisor.name}</Text>
             {elections['supervisor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['supervisor'][0].votes} votos</Text>  }
           </View>

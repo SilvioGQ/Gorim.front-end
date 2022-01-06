@@ -6,8 +6,8 @@ import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
-
-const socket = io("https//gorim-backend.herokuapp.com/", { autoConnect: false });
+const api = 'https://gorim-backend.herokuapp.com'
+const socket = io(api, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 

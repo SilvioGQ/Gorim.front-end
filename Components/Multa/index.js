@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Picker } from 'react-native';
 import { GameContext, suggestFine } from '../../contexts/GameContext';
 import COLORS from '../../constants/colors';
-import IMAGES from '../../constants/imagesIcons';
+import ICONS from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
 
 export default function MultaComponent({ item, onclick, display, onClike }) {
@@ -20,7 +20,7 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
   return (
     <View style={styles.container}>
       <View>
-        <Image style={styles.icone} source={IMAGES[item.avatar]} />
+        <Image style={styles.icone} source={ICONS[item.avatar]} />
         <Text style={styles.textinhos}>{item.name}</Text>
       </View>
       <View>

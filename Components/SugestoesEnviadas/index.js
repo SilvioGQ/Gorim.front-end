@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'rea
 import { GameContext, deleteSuggest } from "../../contexts/GameContext";
 
 import COLORS from '../../constants/colors';
-import IMAGES from '../../constants/imagesIcons';
+import ICONS from '../../constants/imagesIcons';
 import IMAGES2 from '../../constants/imagesProducts';
 
 const Tela = Dimensions.get('screen').width;
@@ -24,7 +24,7 @@ export default function SugestoesEnviadas({ item }) {
             <View>
                 <View style={styles.row3}>
                     <View style={{ marginLeft: 20 }}>
-                        <Image style={styles.person} source={IMAGES[player.avatar]} />
+                        <Image style={styles.person} source={ICONS[player.avatar]} />
                         <Text style={styles.text}>{player.office.slice(0, 3)}/{player.name}</Text>
                     </View>
                     <View style={{ position: 'absolute', marginLeft: 55 }}>

@@ -5,7 +5,7 @@ import { GameContext } from "../../contexts/GameContext";
 import COLORS from '../../constants/colors';
 import imagesProducts from '../../constants/imagesProducts';
 import imagesCoins from '../../constants/imagesCoins';
-import IMAGES from '../../constants/imagesIcons'
+import ICONS from '../../constants/imagesIcons'
 
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer }) {
@@ -26,7 +26,7 @@ export default function Oferta({ item, confirmOffer }) {
         <View>
           <Image
             style={styles.person}
-            source={IMAGES[item.avatarSeller]}
+            source={ICONS[item.avatarSeller]}
           />
             <Text style={styles.text}>{this.selectPlayer(item.idSeller).name}</Text>
         </View>
