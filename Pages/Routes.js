@@ -1,43 +1,40 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Selo from './Fiscal/Selo';
-import Multa from './Fiscal/Multa';
-import MultaVerMais from './Fiscal/MultaVerMais';
-import Prevencao from './Prefeito&Vereador/Prevencao';
-import Imposto from './Prefeito&Vereador/Imposto';
-import Frame1 from './InicioJogo/Frame1';
+import Selo from './Etapa2/Fiscal/Selo';
+import Multa from './Etapa2/Fiscal/Multa';
+import MultaVerMais from './Etapa2/Fiscal/MultaVerMais';
+import Prevencao from './Etapa2/Prefeito&Vereador/Prevencao';
+import Imposto from './Etapa2/Prefeito&Vereador/Imposto';
+import Inicio from './InicioJogo/Inicio';
 import SorteioJogador from './InicioJogo/SorteioJogador';
-import AguardarJogadores from './AguardarJogadores';
+import AguardarJogadores from './TelasDeTransicao/AguardarJogadores';
 import SelecaoPersonagem from './InicioJogo/SelecaoPersonagem';
-import Vendas from './Empresario/Vender';
-import ChecarAnuncio from './Empresario/ChecarAnuncio';
-import FazerTransferencia from './Transferencias/FazerTransferencia';
-import ConfirmarTransferencia from './Transferencias/ConfirmarTransferencia';
-import TransferenciaConfirmada from './Transferencias/Confirmada';
-import Cenario from './Cenario';
-import ControleParcelas from './Agricultor/ControleParcelas';
-import Parcela from './Agricultor/Parcela';
-import Propostas from './Agricultor/Propostas';
-import AnalisarProdutos from './Agricultor/AnalisarProdutos';
+import Vendas from './Etapa1/Empresario/Vender';
+import ChecarAnuncio from './Etapa1/Empresario/ChecarAnuncio';
+import FazerTransferencia from './AcoesGlobais/Transferencias/FazerTransferencia';
+import ConfirmarTransferencia from './AcoesGlobais/Transferencias/ConfirmarTransferencia';
+import TransferenciaConfirmada from './AcoesGlobais/Transferencias/Confirmada';
+import Cenario from './AcoesGlobais/Cenario';
+import ControleParcelas from './Etapa1/Agricultor/ControleParcelas';
+import Parcela from './Etapa1/Agricultor/Parcela';
+import Propostas from './Etapa1/Agricultor/Propostas';
+import AnalisarProdutos from './Etapa1/Agricultor/AnalisarProdutos';
 import CriarPartida from './InicioJogo/CriarPartida';
 import Lobby from './InicioJogo/Lobby';
-import MenuJogador from './MenuJogador';
-import MenuPolitico from './MenuPolitico';
-import Status from './Status';
-import Status2 from './Status2';
-import Historico from './Historico';
-import HistoricoJogadores from './Prefeito&Vereador/HistoricoJogadores';
-import Sugestoes from './Prefeito&Vereador/Sugestoes';
-import Eleitos from './InicioJogo/Eleitos';
-import Detalhes from './InicioJogo/DetalhesEleitos';
-import Candidatura from './InicioJogo/Candidatura';
-import Votacao from './InicioJogo/Votacao';
-
-
+import MenuJogador from './Etapa1/MenuJogador';
+import MenuPolitico from './Etapa2/MenuPolitico';
+import Status from './TelasDeTransicao/Status';
+import Status2 from './TelasDeTransicao/Status2';
+import Historico from './AcoesGlobais/Historico';
+import HistoricoJogadores from './Etapa2/Prefeito&Vereador/HistoricoJogadores';
+import Sugestoes from './Etapa2/Prefeito&Vereador/Sugestoes';
+import Eleitos from './Eleicoes/Eleitos';
+import Detalhes from './Eleicoes/DetalhesEleitos';
+import Candidatura from './Eleicoes/Candidatura';
+import Votacao from './Eleicoes/Votacao';
 import { setCustomText, setCustomTouchableOpacity } from 'react-native-global-props';
 const Stack = createStackNavigator();
 export default function Routes() {
-
   const customTextProps = {
     style: {
       fontFamily: 'Rubik_300Light'
@@ -48,10 +45,9 @@ export default function Routes() {
   };
   setCustomText(customTextProps);
   setCustomTouchableOpacity(CustomTouchableOpacityProps);
-
   return (
     <Stack.Navigator initialRouteName="Gorim" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Gorim" component={Frame1} />
+      <Stack.Screen name="Gorim" component={Inicio} />
       <Stack.Screen name="SorteioJogador" component={SorteioJogador} />
       <Stack.Screen name="MenuJogador" component={MenuJogador} />
       <Stack.Screen name="AguardarJogadores" component={AguardarJogadores} />

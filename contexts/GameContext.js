@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_HERO, { autoConnect: false });
+const socket = io("https//gorim-backend.herokuapp.com/", { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
