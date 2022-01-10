@@ -46,6 +46,7 @@ export default function Prevencao({ navigation }) {
       <View style={styles.row}>
         <FlatList
           data={preventions}
+          scrollEnabled={true}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <View style={styles.quadrados}>
