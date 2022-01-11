@@ -30,7 +30,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição individual: {player.pollution.toFixed(1)}</Text>
+              <Text style={styles.text3}>Poluição individual: {player.pollution.toFixed(2)}</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Imposto pago: ${round.tax.value} {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   text3: {
     marginLeft: 20,
     marginTop: 14,
-    fontSize: 18,
+    fontSize: 17,
   },
   img: {
     height: 85,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginVertical: 2,
     borderRadius: 17,
-    width: '85%',
+    width: '88%',
     height: 51,
     shadowColor: "#000",
     shadowOffset: {
