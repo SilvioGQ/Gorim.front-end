@@ -109,9 +109,9 @@ const GameProvider = (props) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
-      if (msg === 'INITELECTIONS') startTimer(30, 'INITVOTATION');
+      if (msg === 'INITELECTIONS') startTimer(20, 'INITVOTATION');
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
-      if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
+      if (msg === 'INITRESULTSVOTATION') startTimer(20, 'NEXTSTAGE');
     });
     socket.on('allForNextRound', (room) => {
       dispatch({ type: 'ALLFORNEXTROUND', payload: ['ALLFORNEXTROUND', room]});
