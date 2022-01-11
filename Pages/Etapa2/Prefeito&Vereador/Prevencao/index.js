@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   quadrados: {
     marginVertical: 10,
-    marginHorizontal:20,
+    marginHorizontal: Tela > 350 ? 20 : 16,
   },
   texto: {
     marginTop: 18,

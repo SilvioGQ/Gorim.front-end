@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, StatusBar, Dimensions } from 'react-native';
 import { GameContext } from '../../../contexts/GameContext';
 
 import COLORS from '../../../constants/colors';
 import ICONS from '../../../constants/imagesIcons';
 
+const Tela = Dimensions.get('screen').width;
 export default function Status2({ navigation }) {
-
+  
   const { player, players, globalPollution, data: round, stage, timer, phase } = useContext(GameContext);
-
   useEffect(() => {
     if (stage === 'ALLFORNEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
@@ -72,7 +72,7 @@ export default function Status2({ navigation }) {
           <View style={styles.containerescuro}>
             <Text style={styles.text}>RESUMO DA ETAPA {phase}</Text>
             <Image source={ICONS[player.avatar]} style={styles.img} />
-            <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}/{player.name} em {player.city}</Text>
+            <Text style={styles.text2}>{player.office ? player.office.slice(0, 3) : 'cid'}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
             </View>
@@ -108,6 +108,7 @@ export default function Status2({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: Tela,
     alignItems: 'center',
     paddingVertical: 60,
   },
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
   text3: {
     marginLeft: 20,
     marginTop: 14,
-    fontSize: 18,
+    fontSize: Tela > 350 ? 18 : 12,
   },
   text4: {
     marginLeft: 20,

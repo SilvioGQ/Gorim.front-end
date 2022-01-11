@@ -17,7 +17,7 @@ export default function ModalInfo({ player, text, onClick, modalImage, title, im
           )}
           <Text style={styles.loading}>{text}</Text>
           {image && (
-            <Image source={require('../../assets/tabelaprod.png')} style={{ width: 266, height: 250, marginBottom: 25 }} />
+            <Image source={require('../../assets/tabelaprod.png')} style={{ width: Tela > 350 ? 266 : 240, height: Tela > 350 ? 240 : 224, marginBottom: 25 }} />
           )}
           {image2 && (
             <Image source={require('../../assets/Imposto.png')} style={{ width: 304, height: 210, marginBottom: 25 }} />

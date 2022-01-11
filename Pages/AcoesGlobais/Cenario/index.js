@@ -193,11 +193,13 @@ const styles = StyleSheet.create({
   },
   texto: {
     fontFamily: 'Rubik_400Regular',
-    fontSize: 20,
+    fontSize: Tela > 350 ? 20 : 14,
     textAlign: 'left',
     alignSelf: 'flex-start',
     marginVertical: 15,
-    marginLeft: 20
+    marginLeft: 20,
+    marginRight: 20
+
   },
   legenda: {
 
@@ -233,7 +235,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   numero: {
-    fontSize: 24,
+    fontSize: Tela > 350 ? 24 : 20,
 
     color: '#66BF00',
     marginTop: '15%'

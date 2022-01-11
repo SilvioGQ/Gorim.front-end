@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, StatusBar, Dimensions } from 'react-native';
 import { GameContext } from '../../../contexts/GameContext';
 
 import COLORS from '../../../constants/colors';
 import ICONS from '../../../constants/imagesIcons';
 
+const Tela = Dimensions.get('screen').width;
 export default function Status({ navigation }) {
   
   const { player, globalPollution, data: round, stage, globalProduction, timer, phase } = useContext(GameContext);
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   text3: {
     marginLeft: 20,
     marginTop: 14,
-    fontSize: 18,
+    fontSize: Tela > 350 ? 18 : 12,
   },
   img: {
     height: 85,
