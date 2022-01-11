@@ -161,7 +161,7 @@ const GameProvider = (props) => {
     });
     socket.on('endStage', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
-      startTimer(50, 'NEXTSTAGE');
+      startTimer(5, 'NEXTSTAGE');
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
@@ -181,7 +181,7 @@ const GameProvider = (props) => {
     });
     socket.on('nextRound', (room) => {
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
-      startTimer(50, 'ALLFORNEXTROUND');
+      startTimer(5, 'ALLFORNEXTROUND');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });
