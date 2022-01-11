@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   textLarge: {
     color: '#ffffff',
-    fontSize: 20,
+    fontSize: Tela > 350 ? 20 : 16,
     
     marginLeft: 5,
     alignSelf: 'center',
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   textExit: {
     color: '#ffffff',
-    fontSize: 17,
+    fontSize: Tela > 350 ? 17 : 15,
     fontFamily: 'Rubik_700Bold',
     textAlign: 'center',
   },

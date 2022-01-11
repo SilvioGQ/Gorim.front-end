@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import COLORS from '../../constants/colors';
 import ICONS from '../../constants/imagesIcons'
+const Tela = Dimensions.get('screen').width;
 export default function Quadrados({ player = null, onClick, backgroundColor, color, icon=null, abr }) {
   return (
     <TouchableOpacity onPress={onClick}  >
@@ -22,8 +23,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 7,
     backgroundColor: COLORS.textWhite,
-    width: 90,
-    height: 78,
+    width: Tela > 350 ? 90 : 80,
+    height: Tela > 350 ? 78 : 68,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {

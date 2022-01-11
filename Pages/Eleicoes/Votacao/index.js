@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, FlatList, ScrollView } from 'react-native';
 import { GameContext, addVote } from '../../../contexts/GameContext';
 
 import Button from '../../../Components/Button';
@@ -8,7 +8,6 @@ import COLORS from '../../../constants/colors';
 import Rodada from '../../../Components/Rodada';
 import FilterNew from '../../../Components/FilterNew'
 import ModalAsk from '../../../Components/ModalAsk';
-
 const Tela = Dimensions.get('screen').width;
 export default function Votacao({ navigation }) {
   const [type, setType] = useState('Prefeito');
@@ -41,6 +40,7 @@ export default function Votacao({ navigation }) {
   return (
     <View style={styles.container}>
       <Rodada name={'Votação'} />
+      <ScrollView>
       <View style={styles.self}>
         <Image
           style={styles.logo}
@@ -79,9 +79,10 @@ export default function Votacao({ navigation }) {
         <Button onClick={() => { setModalText(true); }} name='FINALIZAR VOTOS' />
       )}
       {awaitPlayers > 0 && (
-        <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom: 20, color: COLORS.warningButton }}>{awaitPlayers} de {players.length} votaram.</Text>
+        <Text style={{ fontSize: Tela > 350 ? 14 : 11, textAlign: 'center', marginTop: 10, marginBottom: 20, color: COLORS.warningButton }}>{awaitPlayers} de {players.length} votaram.</Text>
       )}
       {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => { addVote(votes); setVoted(true); setModalText(!modalText); }} back={() => setModalText(!modalText)} />}
+    </ScrollView>
     </View>
   );
 }
@@ -107,16 +108,16 @@ const styles = StyleSheet.create({
     paddingLeft: '12%'
   },
   title: {
-    fontSize: 22,
+    fontSize:  Tela > 350 ? 22 : 16,
     alignItems: 'center',
     marginVertical: 10
   },
   logo: {
-    width: 60,
-    height: 60
+    width:  Tela > 350 ? 60 : 50,
+    height: Tela > 350 ? 60 : 50,
   },
   texto: {
-    fontSize: 17,
+    fontSize: Tela > 350 ? 17 : 11,
     lineHeight: 18,
     alignItems: 'center',
     justifyContent: 'center',

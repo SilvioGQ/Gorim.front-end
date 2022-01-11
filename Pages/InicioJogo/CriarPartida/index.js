@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   input: {
     height: 45,
     marginLeft:10,
-    fontSize: 24,
+    fontSize: Tela > 350 ? 24 : 18,
     borderWidth: 1,
     width: '80%',
     textAlign: 'center',
@@ -118,8 +118,8 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   logo2: {
-    width: 101,
-    height: 95,
+    width: 95,
+    height: 90,
     margin: 12
   },
   simbolo: {
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 20,
     alignItems: 'center',
-    width: 175,
+    width: Tela > 350 ? 175 : 125,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -138,7 +138,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 4.46,
-
     elevation: 3,
     backgroundColor: '#fff',
     marginTop: 30
@@ -149,13 +148,13 @@ const styles = StyleSheet.create({
   },
   text2: {
     textTransform: 'uppercase',
-    fontSize: 18,
+    fontSize: Tela > 350 ? 18 : 16,
     textAlign: 'center',
     fontFamily:'Rubik_300Light'
   },
   botao: {
-    fontSize: 24,
-    marginTop: 7,
+    fontSize: Tela > 350 ? 24 : 18,
+    marginTop:  Tela > 350 ? 7 : 12,
   },
   arrow: {
     width: 25,

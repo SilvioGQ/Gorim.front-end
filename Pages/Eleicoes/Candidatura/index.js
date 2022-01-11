@@ -5,6 +5,7 @@ import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
 import { addCandidature, GameContext } from '../../../contexts/GameContext';
 import COLORS from '../../../constants/colors';
+const Tela = Dimensions.get('screen').width;
 export default function Candidatura({ navigation }) {
   const { players, player, awaitPlayers, stage } = useContext(GameContext);
   const [isSelected, setSelection] = useState(false);
@@ -49,11 +50,11 @@ const styles = StyleSheet.create({
     marginVertical:20
   },
   logo: {
-    height: 60,
-    width: 60
+    width:  Tela > 350 ? 60 : 50,
+    height: Tela > 350 ? 60 : 50,
   },
   title: {
-    fontSize: 23,
+    fontSize: Tela > 350 ? 23 : 16,
     marginTop: 15,
     alignItems: 'center'
   },
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     marginTop: '2%'
   },
   paragrafo: {
-    fontSize: 18,
+    fontSize:Tela > 350 ? 18 : 13,
     // lineHeight: 30,
     textAlign:'justify',
     marginHorizontal:10,

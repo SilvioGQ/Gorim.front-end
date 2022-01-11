@@ -5,6 +5,7 @@ import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesProducts';
 import IMAGES2 from '../../constants/imagesMenu';
 const Height = Dimensions.get('screen').height;
+const Tela = Dimensions.get('screen').width;
 export default function Item({ onClick, backgroundColor = '#fff', name, type, notification = null}) {
   return (
     <TouchableOpacity onPress={onClick}  >
@@ -26,8 +27,8 @@ const styles = StyleSheet.create({
     marginRight:10,
     marginVertical:10,
     backgroundColor: COLORS.textWhite,
-    width: Height > 720 && Height < 800 ? 87 : 94 ,
-    height:Height > 720 && Height < 800 ? 79 : 86,
+    width: Tela > 350 ? Height > 720 && Height < 800 ? 87 : 94 : 78 ,
+    height: Tela > 350 ? Height > 720 && Height < 800 ? 79 : 86 : 70,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -40,13 +41,13 @@ const styles = StyleSheet.create({
     elevation: 6
   },
   icone: {
-    width: 40,
-    height: 40,
+    width: Tela > 350 ? 40 : 32,
+    height: Tela > 350 ? 40 : 32,
     marginBottom: Height > 720 && Height < 800 ? 2: 5,
     marginTop: 11.5
   },
   textinhos: {
-    fontSize: Height > 720 && Height < 800 ? 9 : 11,
+    fontSize: Tela > 350 ? Height > 720 && Height < 800 ? 9 : 11 : 8,
     textAlign:'center',
     marginHorizontal:5
   },

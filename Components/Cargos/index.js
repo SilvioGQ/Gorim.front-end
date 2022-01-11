@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { GameContext } from '../../contexts/GameContext';
 
 import COLORS from '../../constants/colors';
-
+const Tela = Dimensions.get('screen').width;
 export default function Cargos({isSelected, setSelection}) {
 
   const { stage, data: elections } = useContext(GameContext);
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   candidato: {
     
-    fontSize: 20,
+    fontSize: Tela > 350 ? 20 : 12,
     alignItems: 'center',
     marginHorizontal: 12
   },
