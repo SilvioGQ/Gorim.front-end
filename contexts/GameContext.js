@@ -6,8 +6,8 @@ import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
-const api = 'https://gorim-backend.herokuapp.com'
-const socket = io(api, { autoConnect: false });
+
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -38,6 +38,8 @@ const GameProvider = (props) => {
     }
     stopCallback();
   });
+
+  console.log(state.globalPollution);
 
   const disableNotifyScene = () => {
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
@@ -107,9 +109,9 @@ const GameProvider = (props) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
-      if (msg === 'INITELECTIONS') startTimer(30, 'INITVOTATION');
+      if (msg === 'INITELECTIONS') startTimer(20, 'INITVOTATION');
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
-      if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
+      if (msg === 'INITRESULTSVOTATION') startTimer(20, 'NEXTSTAGE');
     });
     socket.on('allForNextRound', (room) => {
       dispatch({ type: 'ALLFORNEXTROUND', payload: ['ALLFORNEXTROUND', room]});
@@ -159,7 +161,7 @@ const GameProvider = (props) => {
     });
     socket.on('endStage', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
-      startTimer(5, 'NEXTSTAGE');
+      startTimer(50, 'NEXTSTAGE');
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
@@ -179,7 +181,7 @@ const GameProvider = (props) => {
     });
     socket.on('nextRound', (room) => {
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
-      startTimer(30, 'ALLFORNEXTROUND');
+      startTimer(50, 'ALLFORNEXTROUND');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });

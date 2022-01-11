@@ -17,8 +17,7 @@ export default function MenuPolitico({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
   const { players, player, awaitPlayers, stage, notify, round, phase } = useContext(GameContext);
-
-
+  console.log(player)
   useEffect(() => {
     let isMounted = true;
     if (stage === 'NAVIGATEFORSTATUS') navigation.reset({ routes: [{ name: 'Status2' }] });
