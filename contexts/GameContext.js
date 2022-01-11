@@ -107,9 +107,9 @@ const GameProvider = (props) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
-      if (msg === 'INITELECTIONS') startTimer(30, 'INITVOTATION');
+      if (msg === 'INITELECTIONS') startTimer(20, 'INITVOTATION');
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
-      if (msg === 'INITRESULTSVOTATION') startTimer(30, 'NEXTSTAGE');
+      if (msg === 'INITRESULTSVOTATION') startTimer(20, 'NEXTSTAGE');
     });
     socket.on('allForNextRound', (room) => {
       dispatch({ type: 'ALLFORNEXTROUND', payload: ['ALLFORNEXTROUND', room]});
@@ -159,7 +159,7 @@ const GameProvider = (props) => {
     });
     socket.on('endStage', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
-      startTimer(5, 'NEXTSTAGE');
+      startTimer(50, 'NEXTSTAGE');
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
@@ -179,7 +179,7 @@ const GameProvider = (props) => {
     });
     socket.on('nextRound', (room) => {
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
-      startTimer(30, 'ALLFORNEXTROUND');
+      startTimer(50, 'ALLFORNEXTROUND');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });

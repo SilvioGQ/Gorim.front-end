@@ -13,7 +13,7 @@ export default function Status2({ navigation }) {
     if (stage === 'ALLFORNEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
 
-  if (stage === 'NEXTROUNDSTATUS') console.log(round)
+  // if (stage === 'NEXTROUNDSTATUS') console.log(round)
 
   const findMayorTax = () => {
     if (players.find((item) => item.office === "Prefeito" && item.city === player.city)) {
@@ -74,7 +74,7 @@ export default function Status2({ navigation }) {
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
+              <Text style={styles.text3}>Poluição global: {round.globalPollution + '% => ' + globalPollution}%</Text>
             </View>
             {stage === 'NEXTROUNDSTATUS' && (
               <>
