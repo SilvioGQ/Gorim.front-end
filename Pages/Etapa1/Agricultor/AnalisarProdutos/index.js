@@ -11,7 +11,7 @@ import HeaderIcons from '../../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function AnalisarProdutos({navigation}) {
 
-  const [type, setType] = useState('Agrotoxico');
+  const [type, setType] = useState('Agrotóxico');
   const [modalText, setModalText] = useState('');
   const { player, data: products, stage } = useContext(GameContext);
 

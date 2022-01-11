@@ -10,7 +10,7 @@ export default function DropDown({ items, type, onClick, display }) {
 
   useEffect(() => {
     setInventory(items.filter(item => {
-      if (item.type === 'Maquina') {
+      if (item.type === 'Máquina') {
         return item.type === type && item.amount > 0 && item.name !== 'Pulverizador';
       } else {
         return item.type === type && item.amount > 0;

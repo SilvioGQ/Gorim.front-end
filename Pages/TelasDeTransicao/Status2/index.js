@@ -13,8 +13,6 @@ export default function Status2({ navigation }) {
     if (stage === 'ALLFORNEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
 
-  // if (stage === 'NEXTROUNDSTATUS') console.log(round)
-
   const findMayorTax = () => {
     if (players.find((item) => item.office === "Prefeito" && item.city === player.city)) {
       return players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax')
