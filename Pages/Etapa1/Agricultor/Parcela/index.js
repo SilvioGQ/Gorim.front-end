@@ -32,8 +32,8 @@ export default function Parcela({ route, navigation }) {
 
       if (type == 'Semente') setParcelLand({ ...parcelLand, seed: name });
       if (type == 'Fertilizante') setParcelLand({ ...parcelLand, fertilizer: name });
-      if (type == 'Agrotoxico') setParcelLand({ ...parcelLand, pesticide: name });
-      if (type == 'Maquina') setParcelLand({ ...parcelLand, machine: name });
+      if (type == 'Agrotóxico') setParcelLand({ ...parcelLand, pesticide: name });
+      if (type == 'Máquina') setParcelLand({ ...parcelLand, machine: name });
     }
     setDropDown(false);
     setDropDown2(false);
@@ -127,7 +127,7 @@ export default function Parcela({ route, navigation }) {
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'Agrotoxico'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Agrotóxico'} onClick={selectItem} display={dropDown3 ? 'flex' : 'none'} />
 
         <TouchableOpacity onPress={() => { if (!parcelLand.planted) setDropDown4(!dropDown4) }}  >
           <View style={styles.row}>
@@ -144,7 +144,7 @@ export default function Parcela({ route, navigation }) {
             )}
           </View>
         </TouchableOpacity>
-        <DropDown items={player.inventory} type={'Maquina'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
+        <DropDown items={player.inventory} type={'Máquina'} onClick={selectItem} display={dropDown4 ? 'flex' : 'none'} />
 
         {parcelLand.spray && <Text style={[styles.textparcel]}>Pulverizador ativo</Text>}
         {!parcelLand.spray && (
