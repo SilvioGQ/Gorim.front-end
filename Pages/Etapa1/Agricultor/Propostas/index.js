@@ -14,7 +14,7 @@ import HeaderIcons from '../../../../Components/headerIcons';
 const Tela = Dimensions.get('screen').width;
 export default function Propostas({navigation}) {
   const [modalText, setModalText] = useState('');
-  const [type, setType] = useState('Anuncios');
+  const [type, setType] = useState('Gerais');
   const { player, offers, disableNotifyOffers } = useContext(GameContext);
 
   useEffect(() => {
