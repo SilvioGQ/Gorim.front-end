@@ -17,7 +17,18 @@ export default function Status({ navigation }) {
     if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'INITELECTIONS') navigation.reset({ routes: [{ name: 'Candidatura' }] });
   }, [stage]);
-
+  const globalPollutionN = ()=>{
+    if(globalPollution.toString().indexOf('.00') !== -1){
+      return globalPollution.toString().slice(0,-3)
+    }
+    else return globalPollution
+  }
+  const PlayerCoin = ()=>{
+    if(player.coin.toString().indexOf('.00') !== -1){
+      return player.coin.toString().slice(0,-3)
+    }
+    else return player.coin
+  }
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -28,7 +39,7 @@ export default function Status({ navigation }) {
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
+              <Text style={styles.text3}>Poluição global: {globalPollutionN()}%</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Poluição individual: {player.pollution.toFixed(2)}</Text>
@@ -40,7 +51,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Produtividade: ${round.totalProduction} = ({globalProduction}%)</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Saldo atual: ${player.coin}</Text>
+              <Text style={styles.text3}>Saldo atual: ${PlayerCoin()}</Text>
             </View>
             {/* <View style={styles.circulo}>
               <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>

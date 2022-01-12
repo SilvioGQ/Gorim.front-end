@@ -62,6 +62,12 @@ export default function Status2({ navigation }) {
     if (!mayor) return 0;
     return mayor.filter((i) => i.label === "Tratamento de esgoto").length;
   }
+  const globalPollutionN = ()=>{
+    if(globalPollution.toString().indexOf('.00') !== -1){
+      return globalPollution.toString().slice(0,-3)
+    }
+    else return globalPollution
+  }
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -72,7 +78,7 @@ export default function Status2({ navigation }) {
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.office ? player.office.slice(0, 3) : 'cid'}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição global: {round.globalPollution + '% => ' + globalPollution}%</Text>
+              <Text style={styles.text3}>Poluição global: {round.globalPollution + '% => ' + globalPollutionN}%</Text>
             </View>
             {stage === 'NEXTROUNDSTATUS' && (
               <>
