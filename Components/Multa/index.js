@@ -24,7 +24,7 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
         <Text style={styles.textinhos}>{item.name}</Text>
       </View>
       <View>
-        <Text style={styles.text}>Total poluição: {item.pollution.toFixed(1)} </Text>
+        <Text style={styles.text}>Total poluição: {item.pollution} </Text>
         <View style={{ flexDirection: 'row', marginVertical:5 }}>
           <Text style={styles.text}>Multa:</Text>
           {stage === 'SUGGESTFINE' && (

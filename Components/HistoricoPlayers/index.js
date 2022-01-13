@@ -17,7 +17,7 @@ export default function HistoricoPlayers({ player }) {
           </TouchableOpacity>
         </View>
         <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
-          <Text style={[styles.texto]}>Poluição: {player.pollution.toFixed(1)}</Text>
+          <Text style={[styles.texto]}>Poluição: {player.pollution}</Text>
           <Text style={[styles.texto]}>Produtividade: ${player.production < 0 ? '0' : player.production}</Text>
           <Text style={[styles.texto]}>Imposto pago: ${player.logs.find((item) => item.type == 'tax').value}</Text>
 

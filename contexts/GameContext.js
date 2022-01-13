@@ -39,8 +39,6 @@ const GameProvider = (props) => {
     stopCallback();
   });
 
-  console.log(state.globalPollution);
-
   const disableNotifyScene = () => {
     dispatch({ type: 'GETNOTIFY', payload: { scene: false } });
   };

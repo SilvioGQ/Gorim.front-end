@@ -30,7 +30,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Poluição global: {globalPollution}%</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição individual: {player.pollution.toFixed(2)}</Text>
+              <Text style={styles.text3}>Poluição individual: {player.pollution}</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Imposto pago: ${round.tax.value} {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>

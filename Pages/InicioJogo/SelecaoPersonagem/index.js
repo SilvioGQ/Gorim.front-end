@@ -31,7 +31,6 @@ export default function SelecaoPersonagem({ navigation }) {
 
   const bgQuadrados = index => {
     let color = '#fff';
-    console.log(avatars)
     avatars.filter(a => {
       if(player.avatar !== a){
         if (a == index) color = '#CBCBCB';
