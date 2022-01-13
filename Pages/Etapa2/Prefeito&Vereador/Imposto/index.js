@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
   },
   font: {
     marginLeft: 25,
+    marginRight: 25,
     fontSize: 20,
     marginTop: 15,
     fontFamily: 'Rubik_300Light'
