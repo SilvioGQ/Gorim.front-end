@@ -15,6 +15,8 @@ export default function AnalisarProdutos({navigation}) {
   const [modalText, setModalText] = useState('');
   const { player, data: products, stage } = useContext(GameContext);
 
+  console.log(products)
+
   useEffect(() => {
     getProducts();
   }, []);

@@ -136,6 +136,9 @@ const GameProvider = (props) => {
     socket.on('getSuggests', (suggests) => {
       dispatch({ type: 'GETSUGGESTS', payload: suggests });
     });
+    socket.on('getPlayers', (players) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['GETPLAYERS', players] });
+    });
     socket.on('getPreventions', (preventions) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPREVENTIONS', preventions] });
     });
@@ -159,7 +162,7 @@ const GameProvider = (props) => {
     });
     socket.on('endStage', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
-      startTimer(50, 'NEXTSTAGE');
+      startTimer(20, 'NEXTSTAGE');
     });
     socket.on('updateAwaitPlayers', (awaitPlayers) => {
       dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
@@ -179,7 +182,7 @@ const GameProvider = (props) => {
     });
     socket.on('nextRound', (room) => {
       dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
-      startTimer(50, 'ALLFORNEXTROUND');
+      startTimer(20, 'ALLFORNEXTROUND');
     });
     socket.on('reconnectToRoom', (stage) => {
       dispatch({ type: 'RECONNECTED', payload: stage });
@@ -349,6 +352,14 @@ const allForNextRound = () => {
   socket.emit('allForNextRound');
 }
 
+const getPlayersOffice = () => {
+  socket.emit('getPlayersOffice');
+}
+
+const getPlayers = () => {
+  socket.emit('getPlayers');
+}
+
 export {
   GameContext,
   GameProvider,
@@ -387,5 +398,7 @@ export {
   getPreventions,
   addCandidature,
   addVote,
-  winnersElection
+  winnersElection,
+  getPlayers,
+  getPlayersOffice
 };

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView, FlatList } from 'react-native';
-import { GameContext } from "../../../../contexts/GameContext";
+import { GameContext, getPlayersOffice, getPlayers } from "../../../../contexts/GameContext";
 
 import ModalInfo from '../../../../Components/ModalInfo';
 import Button from '../../../../Components/Button';
@@ -17,7 +17,17 @@ export default function FazerTransferencia({ navigation }) {
   const [count, setCount] = useState(0);
   const [id, setId] = useState();
   const [type, setType] = useState('Agr/Emp');
-  const { players, player, phase } = useContext(GameContext);
+  const { players, player, phase, data: players2, stage } = useContext(GameContext);
+
+  useEffect(() => {
+    if (phase === 1) {
+      getPlayersOffice();
+    } else {
+      getPlayers();
+    }
+  }, []);
+
+  console.log(stage === 'GETPLAYERS');
 
   const confirmTransfer = () => {
     if (!id) return setModalText('Selecione o destino!');
