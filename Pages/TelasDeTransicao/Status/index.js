@@ -24,10 +24,11 @@ export default function Status({ navigation }) {
     else return globalPollution
   }
   const PlayerCoin = ()=>{
-    if(player.coin.toString().indexOf('.00') !== -1){
-      return player.coin.toString().slice(0,-3)
-    }
-    else return player.coin
+    // if(player.coin.toString().indexOf('.00') !== -1){
+    //   return player.coin.toString().slice(0,-3)
+    // }
+    // else 
+    return player.coin
   }
   return (
     <View style={{ flex: 1 }}>

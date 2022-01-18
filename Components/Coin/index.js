@@ -7,7 +7,8 @@ export default function Coin({coin}) {
     if(coin.toString().indexOf('.00') !== -1){
       return coin.toString().slice(0,-3)
     }
-    else return coin
+    else 
+    return coin
   }
   return (
     <View style={styles.container}>
