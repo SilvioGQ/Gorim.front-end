@@ -127,7 +127,7 @@ export default function Cenario({ navigation }) {
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
               <View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
                 <Text style={styles.italiano}>Com base nos insumos do armazém.</Text>
-                <TouchableOpacity onPress={() => { setModalText(<Text>Poluição é da soma da poluição de cada parcela dividida por 6</Text>); setImage(false); setImage2(false) }}  >
+                <TouchableOpacity onPress={() => { setModalText('Poluição é da soma da poluição de cada parcela dividida por 6'); setImage(false); setImage2(false) }}  >
                   <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ width: 18, height: 18, opacity: 0.7, marginLeft: 5, marginTop: -2 }} />
                 </TouchableOpacity>
               </View>
