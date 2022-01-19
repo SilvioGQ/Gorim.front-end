@@ -23,13 +23,6 @@ export default function Status({ navigation }) {
     }
     else return globalPollution
   }
-  const PlayerCoin = ()=>{
-    // if(player.coin.toString().indexOf('.00') !== -1){
-    //   return player.coin.toString().slice(0,-3)
-    // }
-    // else 
-    return player.coin
-  }
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -52,7 +45,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Produtividade: ${round.totalProduction} = ({globalProduction}%)</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Saldo atual: ${PlayerCoin()}</Text>
+              <Text style={styles.text3}>Saldo atual: {player.coin}</Text>
             </View>
             {/* <View style={styles.circulo}>
               <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>

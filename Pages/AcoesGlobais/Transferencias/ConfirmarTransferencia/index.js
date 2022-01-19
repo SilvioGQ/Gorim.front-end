@@ -11,6 +11,10 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest, type, provider, nameDest } = route.params;
   const { phase } = useContext(GameContext);
+  console.log(count)
+  console.log(idDest)
+  console.log(provider)
+  console.log(type)
   const make = () => {
     makeTransfer(count, idDest, provider, type);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
