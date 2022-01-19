@@ -9,16 +9,12 @@ import ModalInfo from '../../../Components/ModalInfo';
 const Height = Dimensions.get('screen').height;
 export default function SelecaoPersonagem({ navigation }) {
 
-  const [modalText, setModalText] = useState('');
-  const [avatars, setAvatars] = useState([]);
-  const [avatar, setAvatar] = useState();
-  const { players, player, stage } = useContext(GameContext);
   const [title, setTitle] = useState(true);
-
+  const [modalText, setModalText] = useState('');
+  const { players, player, stage, awaitPlayers } = useContext(GameContext);
+  
   useEffect(() => {
-    let isMounted = true, v = [];
-    players.forEach(p => { if (p.avatar) v.push(p.avatar) });
-    setAvatars(v);
+    let isMounted = true;
 
     if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
@@ -31,18 +27,18 @@ export default function SelecaoPersonagem({ navigation }) {
 
   const bgQuadrados = index => {
     let color = '#fff';
-    avatars.filter(a => {
-      if(player.avatar !== a){
-        if (a == index) color = '#CBCBCB';
-      }
-    });
-    if (avatar == index) color = '#8ACF3A'
-    return color;
+    for (let i = 0; i < players.length; i++) {
+      if (players[i].avatar === index) { color = '#CBCBCB'; break; }
+    }
+    
+    return player.avatar == index ? '#8ACF3A' : color;
   }
+
   const startGame = () => {
-    if (avatars.length < players.length) {return setTitle(false), setModalText('Aguardando outros jogadores escolherem um avatar')};
+    if (players.length < awaitPlayers) {return setTitle(false), setModalText('Aguardando outros jogadores escolherem um avatar')};
     selectedAvatars();
   }
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -60,33 +56,33 @@ export default function SelecaoPersonagem({ navigation }) {
           {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} title={title} />}
           <View style={{ alignSelf: 'center' }}>
             <View style={styles.flexRow}>
-              <Quadrados onClick={() => {setAvatar('Icon1'), selectAvatar('Icon1')}} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />
-              <Quadrados onClick={() => {setAvatar('Icon2'), selectAvatar('Icon2')}} backgroundColor={bgQuadrados('Icon2')} icon='Icon2' />
-              <Quadrados onClick={() => {setAvatar('Icon3'), selectAvatar('Icon3')}} backgroundColor={bgQuadrados('Icon3')} icon='Icon3' />
+              <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />
+              <Quadrados onClick={() => selectAvatar('Icon2')} backgroundColor={bgQuadrados('Icon2')} icon='Icon2' />
+              <Quadrados onClick={() => selectAvatar('Icon3')} backgroundColor={bgQuadrados('Icon3')} icon='Icon3' />
             </View>
             <View style={styles.flexRow}>
-              <Quadrados onClick={() => {setAvatar('Icon4'), selectAvatar('Icon4')}} backgroundColor={bgQuadrados('Icon4')} icon='Icon4' />
-              <Quadrados onClick={() => {setAvatar('Icon5'), selectAvatar('Icon5')}} backgroundColor={bgQuadrados('Icon5')} icon='Icon5' />
-              <Quadrados onClick={() => {setAvatar('Icon6'), selectAvatar('Icon6')}} backgroundColor={bgQuadrados('Icon6')} icon='Icon6' />
+              <Quadrados onClick={() => selectAvatar('Icon4')} backgroundColor={bgQuadrados('Icon4')} icon='Icon4' />
+              <Quadrados onClick={() => selectAvatar('Icon5')} backgroundColor={bgQuadrados('Icon5')} icon='Icon5' />
+              <Quadrados onClick={() => selectAvatar('Icon6')} backgroundColor={bgQuadrados('Icon6')} icon='Icon6' />
             </View>
             <View style={styles.flexRow}>
-              <Quadrados onClick={() => {setAvatar('Icon7'), selectAvatar('Icon7')}} backgroundColor={bgQuadrados('Icon7')} icon='Icon7' />
-              <Quadrados onClick={() => {setAvatar('Icon8'), selectAvatar('Icon8')}} backgroundColor={bgQuadrados('Icon8')} icon='Icon8' />
-              <Quadrados onClick={() => {setAvatar('Icon9'), selectAvatar('Icon9')}} backgroundColor={bgQuadrados('Icon9')} icon='Icon9' />
+              <Quadrados onClick={() => selectAvatar('Icon7')} backgroundColor={bgQuadrados('Icon7')} icon='Icon7' />
+              <Quadrados onClick={() => selectAvatar('Icon8')} backgroundColor={bgQuadrados('Icon8')} icon='Icon8' />
+              <Quadrados onClick={() => selectAvatar('Icon9')} backgroundColor={bgQuadrados('Icon9')} icon='Icon9' />
             </View>
             <View style={styles.flexRow}>
-              <Quadrados onClick={() => {setAvatar('Icon10'), selectAvatar('Icon10')}} backgroundColor={bgQuadrados('Icon10')} icon='Icon10' />
-              <Quadrados onClick={() => {setAvatar('Icon11'), selectAvatar('Icon11')}} backgroundColor={bgQuadrados('Icon11')} icon='Icon11' />
-              <Quadrados onClick={() => {setAvatar('Icon12'), selectAvatar('Icon12')}} backgroundColor={bgQuadrados('Icon12')} icon='Icon12' />
+              <Quadrados onClick={() => selectAvatar('Icon10')} backgroundColor={bgQuadrados('Icon10')} icon='Icon10' />
+              <Quadrados onClick={() => selectAvatar('Icon11')} backgroundColor={bgQuadrados('Icon11')} icon='Icon11' />
+              <Quadrados onClick={() => selectAvatar('Icon12')} backgroundColor={bgQuadrados('Icon12')} icon='Icon12' />
             </View>
           </View>
         </View>
-        <Text style={styles.textPlayersAmount}>{avatars.length} de {players.length}</Text>
+        <Text style={styles.textPlayersAmount}>{awaitPlayers} de {players.length}</Text>
         {player.host ?
           <View style={styles.marginButton}>
             <Button onClick={startGame} name='começar' />
           </View> :
-          <Text style={styles.finalText}>{avatars.length === players.length ? 'AGUARDANDO HOST INICIAR' : 'AGUARDANDO JOGADORES.' }</Text>
+          <Text style={styles.finalText}>{awaitPlayers === players.length ? 'AGUARDANDO HOST INICIAR' : 'AGUARDANDO JOGADORES.' }</Text>
         }
       </ScrollView>
     </View>
