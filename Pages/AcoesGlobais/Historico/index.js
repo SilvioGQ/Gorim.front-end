@@ -19,7 +19,7 @@ export default function Cenario({ navigation }) {
   const rotateZ4 = open4 ? "180deg" : "0deg";
   const rotateZ5 = open5 ? "180deg" : "0deg";
   const rotateZ6 = open6 ? "180deg" : "0deg";
-  
+
   return (
     <ScrollView>
       <View>
@@ -203,28 +203,28 @@ export default function Cenario({ navigation }) {
                 </>
                 :
                 <>
-                {player.office === "Prefeito" && (
-                  <View style={styles.backgreen}>
-                    <View style={styles.whiteRow}>
-                      <Text style={[styles.subtitle, {
-                        marginLeft: 10,
-                        marginTop: 10
-                      }]}>Arrecadação</Text>
-                      <TouchableOpacity onPress={() => { setOpen(!open) }}>
-                        <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ }] }} source={require('../../../assets/dropdown.png')} />
-                      </TouchableOpacity>
+                  {player.office === "Prefeito" && (
+                    <View style={styles.backgreen}>
+                      <View style={styles.whiteRow}>
+                        <Text style={[styles.subtitle, {
+                          marginLeft: 10,
+                          marginTop: 10
+                        }]}>Arrecadação</Text>
+                        <TouchableOpacity onPress={() => { setOpen(!open) }}>
+                          <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ }] }} source={require('../../../assets/dropdown.png')} />
+                        </TouchableOpacity>
+                      </View>
+                      <View style={{ display: open ? 'flex' : 'none' }}>
+                        {oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => {
+                          if (item.type == 'arrecadation') {
+                            return item
+                          }
+                        }).map((item, index) => {
+                          return <Text style={[styles.texto]} key={index}>{`Foram arrecadados $${item.value} de impostos nessa rodada.`}</Text>
+                        })}
+                      </View>
                     </View>
-                    <View style={{ display: open ? 'flex' : 'none' }}>
-                      {oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => {
-                        if (item.type == 'arrecadation') {
-                          return item
-                        }
-                      }).map((item, index) => {
-                        return <Text style={[styles.texto]} key={index}>{`Foram arrecadados $${item.value} de impostos nessa rodada.`}</Text>
-                      })}
-                    </View>
-                  </View>
-                )}
+                  )}
                   <View style={styles.backgreen}>
                     <View style={styles.whiteRow}>
                       <Text style={[styles.subtitle, {
@@ -255,7 +255,6 @@ export default function Cenario({ navigation }) {
                       </View>
 
                     }
-
                   </View>
                   <View style={styles.backgreen}>
                     <View style={styles.whiteRow}>
