@@ -12,7 +12,7 @@ export default function Coin({coin}) {
   }
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 19 }}>{PlayerCoin()}</Text>
+      <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 19 }}>{coin}</Text>
       <Image style={{ width: 20, height: 23 }} source={IMAGES["Moeda"]} />
     </View>
   );

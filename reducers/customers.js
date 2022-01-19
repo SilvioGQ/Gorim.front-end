@@ -7,6 +7,7 @@ const initialState = {
   oldLogs: [],
   suggests: [],
   offers: [],
+  awaitPlayers: 0,
   notify: { scene: false, offers: false, suggests: false }
 }
 
@@ -27,28 +28,34 @@ const reducer = (state, action) => {
         ...state,
         timer: action.payload
       };
+    case 'UPDATEAWAITPLAYERS':
+      return {
+        ...state,
+        awaitPlayers: action.payload
+      };
     case 'STARTGAME':
       return {
         ...state,
         stage: action.payload[0],
         round: action.payload[1].match.round,
         phase: action.payload[1].match.phase,
-        awaitPlayers: action.payload[1].awaitPlayers.length,
+        awaitPlayers: 0,
         globalProduction: action.payload[1].match.globalProduction,
         globalPollution: action.payload[1].match.globalPollution,
       };
     case 'ADDEDTOROOM':
       return {
         ...state,
+        awaitPlayers: 0,
         stage: action.payload[0],
         player: action.payload[1],
       };
     case 'REMOVEDTOROOM':
     case 'MAXPLAYERSTOROOM':
+    case 'SELECTEDAVATARS':
     case 'INGAMING':
     case 'RAFFLED':
     case 'NOTFOUND':
-    case 'SELECTEDAVATARS':
     case 'ENDSTAGE':
     case 'ALLFORENDSTAGE':
     case 'INITELECTIONS':
@@ -93,11 +100,6 @@ const reducer = (state, action) => {
           ...action.payload
         }
       }
-    case 'UPDATEAWAITPLAYERS':
-      return {
-        ...state,
-        awaitPlayers: action.payload
-      };
     case 'UPDATEGLOBALPOLLUTION':
       return {
         ...state,
@@ -115,7 +117,7 @@ const reducer = (state, action) => {
         offers: initialState.offers,
         notify: initialState.notify,
         phase: action.payload[1].match.phase,
-        awaitPlayers: action.payload[1].awaitPlayers.length,
+        awaitPlayers: 0,
       };
     case 'ALLFORNEXTROUND':
       return {
@@ -135,18 +137,13 @@ const reducer = (state, action) => {
         stage: action.payload[0],
         phase: action.payload[1].match.phase,
         round: action.payload[1].match.round,
-        awaitPlayers: action.payload[1].awaitPlayers.length,
+        awaitPlayers: 0,
       };
     case 'ENDROUND':
       return {
         ...state,
         stage: action.payload,
         notify: { ...initialState.notify }
-      };
-    case 'RECONNECTED':
-      return {
-        ...state,
-        stage: action.payload
       };
     default:
       return state;
