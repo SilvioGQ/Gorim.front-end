@@ -12,6 +12,7 @@ export default function Multa({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('Agricultor');
   const { players, player } = useContext(GameContext);
+  console.log(players.filter(p => p.city == player.city))
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />

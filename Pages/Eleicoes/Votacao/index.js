@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, FlatList, ScrollView } from 'react-native';
 import { GameContext, addVote } from '../../../contexts/GameContext';
-
 import Button from '../../../Components/Button';
 import Quadrados from '../../../Components/Quadrado';
 import COLORS from '../../../constants/colors';
@@ -51,6 +50,7 @@ export default function Votacao({ navigation }) {
       <View style={{ alignItems: 'center', width: Tela, }}>
         <FilterNew nome1='Prefeito' nome2='Vereador' nome3='Fiscal' type={type} setType={setType} />
       </View>
+      <View style={styles.margin}>
       {type === "Prefeito" && (
         <FlatList
           data={mayor}
@@ -75,11 +75,12 @@ export default function Votacao({ navigation }) {
           renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
         />
       )}
+      </View>
       {!voted && (
         <Button onClick={() => { setModalText(true); }} name='FINALIZAR VOTOS' />
       )}
       {awaitPlayers > 0 && (
-        <Text style={{ fontSize: Tela > 350 ? 14 : 11, textAlign: 'center', marginTop: 10, marginBottom: 20, color: COLORS.warningButton }}>{awaitPlayers} de {players.length} votaram.</Text>
+        <Text style={styles.aviso}>{awaitPlayers} de {players.length} votaram.</Text>
       )}
       {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => { addVote(votes); setVoted(true); setModalText(!modalText); }} back={() => setModalText(!modalText)} />}
     </ScrollView>
@@ -101,12 +102,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 20
   },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    paddingLeft: '12%'
-  },
   title: {
     fontSize:  Tela > 350 ? 22 : 16,
     alignItems: 'center',
@@ -116,11 +111,13 @@ const styles = StyleSheet.create({
     width:  Tela > 350 ? 60 : 50,
     height: Tela > 350 ? 60 : 50,
   },
-  texto: {
-    fontSize: Tela > 350 ? 17 : 11,
-    lineHeight: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 10,
+  margin:{
+    marginHorizontal:15
   },
+  aviso:{
+      fontSize: 14, 
+      textAlign: 'center', 
+      marginVertical: 20, 
+      color: COLORS.warningButton
+  }
 });
