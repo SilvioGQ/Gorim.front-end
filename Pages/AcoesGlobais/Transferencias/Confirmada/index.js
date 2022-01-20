@@ -3,11 +3,11 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import { GameContext } from "../../../../contexts/GameContext";
 
 export default function Confirmada({ navigation, route }) {
-  const { phase } = useContext(GameContext);
+  const {game } = useContext(GameContext);
   const { text } = route.params;
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.reset({ routes: [{ name: phase == 2 ? 'MenuPolitico': 'MenuJogador'}] });
+      navigation.reset({ routes: [{ name:game.phase== 2 ? 'MenuPolitico': 'MenuJogador'}] });
     }, 2000);
 
     return () => clearTimeout(timer);

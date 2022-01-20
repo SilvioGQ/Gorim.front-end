@@ -17,22 +17,24 @@ export default function FazerTransferencia({ navigation }) {
   const [count, setCount] = useState(0);
   const [id, setId] = useState();
   const [type, setType] = useState('Agr/Emp');
-  const { players, player, phase, data: players2, stage } = useContext(GameContext);
+  const { players, player, game, data: players2, stage } = useContext(GameContext);
 
   useEffect(() => {
-    if (phase === 1) {
+    if (game.phase === 1) {
       getPlayersOffice();
     } else {
       getPlayers();
     }
   }, []);
+  console.log(players2)
+  console.log(game.phase)
   const Players = () => {
-    if (phase === 1) {
+    if (game.phase === 1) {
       return players.filter(i => i.id !== player.id)
     } else return players2
   }
   const PlayersOffice = () => {
-    if (phase === 2) {
+    if (game.phase === 2) {
       return players.filter(i => i.id !== player.id)
     } else return players2
   }
@@ -40,14 +42,14 @@ export default function FazerTransferencia({ navigation }) {
     if (!id) return setModalText('Selecione o destino!');
     if (count === 0) return setModalText('Adicione um valor!');
     const destName = players.find(i => i.id === id).name
-    navigation.navigate('ConfirmarTransferencia', { idDest: id, nameDest: destName, count, provider: phase === 1 ? false : true, type: type == 'Agr/Emp' ? false : true });
+    navigation.navigate('ConfirmarTransferencia', { idDest: id, nameDest: destName, count, provider: game.phase === 1 ? false : true, type: type == 'Agr/Emp' ? false : true });
   }
 
   return (
     <View style={styles.container}>
       <Rodada name={'Fazer transferência'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
-        <Coin coin={phase === 1 ? player.coin : player.serviceSalary} />
+        <Coin coin={game.phase === 1 ? player.coin : player.serviceSalary} />
         <HeaderIcons name={'Fazer \nTranferência'} icon='Fazer Transferência' />
         <Text style={styles.text}>Destinatário:</Text>
         <View style={{ alignItems: 'center' }}>
@@ -86,7 +88,7 @@ export default function FazerTransferencia({ navigation }) {
         }
 
         <Text style={[styles.text, { marginBottom: 15 }]}>Valor:</Text>
-        <CaixaDeValor value={count} setValue={setCount} increment={5} maxValue={phase === 1 ? player.coin : player.serviceSalary} coin={true} />
+        <CaixaDeValor value={count} setValue={setCount} increment={5} maxValue={game.phase === 1 ? player.coin : player.serviceSalary} coin={true} />
         <Button onClick={confirmTransfer} name='CONTINUAR' />
         {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} />}
       </ScrollView>

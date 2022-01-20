@@ -4,10 +4,10 @@ import { GameContext } from '../../contexts/GameContext';
 const Height = Dimensions.get('screen').height;
 
 export default function FilterCenary({ type, setType }) {
-	const { player, phase } = useContext(GameContext);
+	const { player,game } = useContext(GameContext);
 	return (
 		<View style={{ flexDirection: 'row', marginHorizontal: 20, width: '80%', justifyContent: 'space-between', marginVertical: 10 }}>
-			{player.type === 'Agricultor' && phase === 1 && (
+			{player.type === 'Agricultor' &&game.phase=== 1 && (
 				<>
 					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
@@ -20,7 +20,7 @@ export default function FilterCenary({ type, setType }) {
 					</TouchableOpacity>
 				</>
 			)}
-			{player.office === 'Fiscal' && phase === 2 && (
+			{player.office === 'Fiscal' &&game.phase=== 2 && (
 				<>
 					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
@@ -33,7 +33,7 @@ export default function FilterCenary({ type, setType }) {
 					</TouchableOpacity>
 				</>
 			)}
-			{player.office === 'Prefeito' && phase === 2 && (
+			{player.office === 'Prefeito' &&game.phase=== 2 && (
 				<>
 					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
@@ -46,7 +46,7 @@ export default function FilterCenary({ type, setType }) {
 					</TouchableOpacity>
 				</>
 			)}
-			{player.office === 'Vereador' && phase === 2 && (
+			{player.office === 'Vereador' &&game.phase=== 2 && (
 				<>
 					<TouchableOpacity style={[styles.geral, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}>
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>
@@ -59,7 +59,7 @@ export default function FilterCenary({ type, setType }) {
 					</TouchableOpacity>
 				</>
 			)}
-			{!player.office && phase === 2 && (
+			{!player.office &&game.phase=== 2 && (
 				<>
 					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'tax' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('tax') }}>
 						<Text style={[styles.textSmall, { color: type == 'tax' ? '#fff' : '#000' }]}>pre/Imposto</Text>
@@ -69,7 +69,7 @@ export default function FilterCenary({ type, setType }) {
 					</TouchableOpacity>
 				</>
 			)}
-			{player.type === 'Empresário' && phase === 1 && (
+			{player.type === 'Empresário' &&game.phase=== 1 && (
 				<>
 					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'transfer' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('transfer') }}  >
 						<Text style={[styles.textSmall, { color: type == 'transfer' ? '#fff' : '#000' }]}>Transferência</Text>

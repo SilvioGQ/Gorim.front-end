@@ -10,7 +10,7 @@ const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest, type, provider, nameDest } = route.params;
-  const { phase } = useContext(GameContext);
+  const {game } = useContext(GameContext);
   console.log(count)
   console.log(idDest)
   console.log(provider)
@@ -29,7 +29,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text2}>${JSON.stringify(count)} </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={make} name='CONTINUAR' />
-          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: phase === 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button}  >
+          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name:game.phase=== 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button}  >
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
         </View>
