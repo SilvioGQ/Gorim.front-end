@@ -181,9 +181,6 @@ const GameProvider = (props) => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
       startTimer(400, 'ENDROUND');
     });
-    socket.on('endRound', () => {
-      dispatch({ type: 'ENDROUND', payload: 'ENDROUND' });
-    });
     socket.on('nextRound', () => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
       startTimer(20, 'ALLFORNEXTROUND');

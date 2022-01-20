@@ -26,7 +26,6 @@ export default function MenuJogador({ navigation }) {
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
 
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
-    if (stage === 'ENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'AguardarJogadores' }] });
 
     return () => isMounted = false;
   }, [stage]);
@@ -44,7 +43,7 @@ export default function MenuJogador({ navigation }) {
 
       <Header typeMenu="player" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
-      {modalVisible2 && <ModalAsk finish={() => { endStage(); stopCallback(); }} back={() => setModalVisible2(!modalVisible2)} />}
+      {modalVisible2 && <ModalAsk finish={() => { endStage(); stopCallback(); navigation.reset({ routes: [{ name: 'AguardarJogadores' }] }); }} back={() => setModalVisible2(!modalVisible2)} />}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
