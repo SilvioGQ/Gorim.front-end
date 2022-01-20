@@ -16,7 +16,7 @@ export default function MenuJogador({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
-  const { players, player, awaitPlayers, stage, notify, round, stopCallback, phase } = useContext(GameContext);
+  const { players, player, awaitPlayers, stage, notify, game, stopCallback } = useContext(GameContext);
 
   useEffect(() => {
     let isMounted = true;
@@ -40,7 +40,7 @@ export default function MenuJogador({ navigation }) {
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
 
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={`${round}ª Rodada - ${phase}ª Etapa`} setModalVisible={setModalVisible} />
+      <Rodada removeFromRoom={removeFromRoom} close={true} name={`${game.round}ª Rodada - ${game.phase}ª Etapa`} setModalVisible={setModalVisible} />
 
       <Header typeMenu="player" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}

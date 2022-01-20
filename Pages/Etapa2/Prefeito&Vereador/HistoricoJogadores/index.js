@@ -8,7 +8,7 @@ import FilterNew from '../../../../Components/FilterNew'
 import { Fragment } from 'react';
 const Tela = Dimensions.get('screen').width;
 export default function HistoricoJogadores({ navigation }) {
-  const { players, player, round, logs } = useContext(GameContext);
+  const { players, player } = useContext(GameContext);
   const [type, setType] = useState('Agricultor');
   return (
     <Fragment>

@@ -8,7 +8,7 @@ import ICONS from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width;
 export default function Status({ navigation }) {
   
-  const { player, globalPollution, data: round, stage, globalProduction, timer, phase } = useContext(GameContext);
+  const { player, data: round, stage, game, timer } = useContext(GameContext);
 
   useEffect(() => {
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
@@ -18,10 +18,10 @@ export default function Status({ navigation }) {
     if (stage === 'INITELECTIONS') navigation.reset({ routes: [{ name: 'Candidatura' }] });
   }, [stage]);
   const globalPollutionN = ()=>{
-    if(globalPollution.toString().indexOf('.00') !== -1){
-      return globalPollution.toString().slice(0,-3)
+    if(game.globalPollution.toString().indexOf('.00') !== -1){
+      return game.globalPollution.toString().slice(0,-3)
     }
-    else return globalPollution
+    else return game.globalPollution
   }
   return (
     <View style={{ flex: 1 }}>
@@ -29,7 +29,7 @@ export default function Status({ navigation }) {
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.containerescuro}>
-            <Text style={styles.text}>RESUMO DA ETAPA {phase}</Text>
+            <Text style={styles.text}>RESUMO DA ETAPA {game.phase}</Text>
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
@@ -42,7 +42,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Imposto pago: ${round.tax.value} {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Produtividade: ${round.totalProduction} = ({globalProduction}%)</Text>
+              <Text style={styles.text3}>Produtividade: ${round.totalProduction} = ({game.globalProduction}%)</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Saldo atual: ${player.coin}</Text>

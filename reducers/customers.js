@@ -4,6 +4,7 @@ const initialState = {
   players: [],
   player: {},
   data: null,
+  game: { round: 1, phase: 1, globalPollution: 0, globalProduction: 0 },
   oldLogs: [],
   suggests: [],
   offers: [],
@@ -33,15 +34,21 @@ const reducer = (state, action) => {
         ...state,
         awaitPlayers: action.payload
       };
+    case 'UPDATEGAME':
+      return {
+        ...state,
+        game: {
+          round: action.payload.round,
+          phase: action.payload.phase,
+          globalProduction: action.payload.globalProduction,
+          globalPollution: action.payload.globalPollution
+        }
+      }
     case 'STARTGAME':
       return {
         ...state,
-        stage: action.payload[0],
-        round: action.payload[1].match.round,
-        phase: action.payload[1].match.phase,
         awaitPlayers: 0,
-        globalProduction: action.payload[1].match.globalProduction,
-        globalPollution: action.payload[1].match.globalPollution,
+        stage: action.payload,
       };
     case 'ADDEDTOROOM':
       return {
@@ -100,31 +107,18 @@ const reducer = (state, action) => {
           ...action.payload
         }
       }
-    case 'UPDATEGLOBALPOLLUTION':
-      return {
-        ...state,
-        globalPollution: action.payload
-      };
-    case 'UPDATEGLOBALPRODUCTION':
-      return {
-        ...state,
-        globalProduction: action.payload
-      };
     case 'NEXTSTAGE':
       return {
         ...state,
-        stage: action.payload[0],
+        stage: action.payload,
         offers: initialState.offers,
         notify: initialState.notify,
-        phase: action.payload[1].match.phase,
         awaitPlayers: 0,
       };
     case 'ALLFORNEXTROUND':
       return {
         ...state,
-        stage: action.payload[0],
-        round: action.payload[1].match.round,
-        phase: action.payload[1].match.phase
+        stage: action.payload,
       };
     case 'GETSUGGESTS':
       return {
@@ -135,8 +129,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         stage: action.payload[0],
-        phase: action.payload[1].match.phase,
-        round: action.payload[1].match.round,
         awaitPlayers: 0,
       };
     case 'ENDROUND':

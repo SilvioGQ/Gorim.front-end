@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_HERO, { autoConnect: false });
+const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -88,21 +88,34 @@ const GameProvider = (props) => {
       }
       isConnected = true;
     });
+
     socket.on('refreshPlayers', (players) => {
       dispatch({ type: 'REFRESHPLAYERS', payload: players });
     });
+
     socket.on('updatePlayer', (p) => {
       player = p;
       dispatch({ type: 'UPDATEPLAYER', payload: p });
     });
-    socket.on('startGame', (room) => {
-      dispatch({ type: 'STARTGAME', payload: ['STARTGAME', room] });
+
+    socket.on('updateAwaitPlayers', (awaitPlayers) => {
+      dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
     });
+
+    socket.on('updateGame', (game) => {
+      dispatch({ type: 'UPDATEGAME', payload: game });
+    });
+
+    socket.on('startGame', () => {
+      dispatch({ type: 'STARTGAME', payload: 'STARTGAME' });
+    });
+
     socket.on('addedToRoom', (p) => {
       player = p;
       console.log(player.room)
       dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', p] });
     });
+    
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
@@ -111,8 +124,8 @@ const GameProvider = (props) => {
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
       if (msg === 'INITRESULTSVOTATION') startTimer(20, 'NEXTSTAGE');
     });
-    socket.on('allForNextRound', (room) => {
-      dispatch({ type: 'ALLFORNEXTROUND', payload: ['ALLFORNEXTROUND', room]});
+    socket.on('allForNextRound', () => {
+      dispatch({ type: 'ALLFORNEXTROUND', payload: 'ALLFORNEXTROUND'});
       startTimer(400, 'ALLFORNEXTROUND');
     });
     socket.on('getProducts', (product) => {
@@ -164,24 +177,15 @@ const GameProvider = (props) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
       startTimer(20, 'NEXTSTAGE');
     });
-    socket.on('updateAwaitPlayers', (awaitPlayers) => {
-      dispatch({ type: 'UPDATEAWAITPLAYERS', payload: awaitPlayers });
-    });
-    socket.on('updateGlobalPollution', (pollution) => {
-      dispatch({ type: 'UPDATEGLOBALPOLLUTION', payload: pollution });
-    });
-    socket.on('updateGlobalProduction', (production) => {
-      dispatch({ type: 'UPDATEGLOBALPRODUCTION', payload: production });
-    });
-    socket.on('nextStage', (room) => {
-      dispatch({ type: 'NEXTSTAGE', payload: ['NEXTSTAGE', room] });
+    socket.on('nextStage', () => {
+      dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
       startTimer(400, 'ENDROUND');
     });
     socket.on('endRound', () => {
       dispatch({ type: 'ENDROUND', payload: 'ENDROUND' });
     });
-    socket.on('nextRound', (room) => {
-      dispatch({ type: 'NEXTROUND', payload: ['NEXTROUND', room] });
+    socket.on('nextRound', () => {
+      dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
       startTimer(20, 'ALLFORNEXTROUND');
     });
     socket.on('reconnectToRoom', (stage) => {
