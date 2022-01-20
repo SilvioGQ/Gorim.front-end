@@ -10,7 +10,7 @@ export default function AguardarJogadores({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
-  const { players, player, awaitPlayers, stage } = useContext(GameContext);
+  const { players, awaitPlayers, stage } = useContext(GameContext);
 
   useEffect(() => {
     let isMounted = true;

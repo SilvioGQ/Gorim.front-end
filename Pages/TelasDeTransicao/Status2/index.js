@@ -8,7 +8,7 @@ import ICONS from '../../../constants/imagesIcons';
 const Tela = Dimensions.get('screen').width;
 export default function Status2({ navigation }) {
   
-  const { player, players, globalPollution, data: round, stage, timer, phase } = useContext(GameContext);
+  const { player, players, game, data: round, stage, timer } = useContext(GameContext);
   useEffect(() => {
     if (stage === 'ALLFORNEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
@@ -63,10 +63,10 @@ export default function Status2({ navigation }) {
     return mayor.filter((i) => i.label === "Tratamento de esgoto").length;
   }
   const globalPollutionN = ()=>{
-    if(globalPollution.toString().indexOf('.00') !== -1){
-      return globalPollution.toString().slice(0,-3)
+    if(game.globalPollution.toString().indexOf('.00') !== -1){
+      return game.globalPollution.toString().slice(0,-3)
     }
-    else return globalPollution
+    else return game.globalPollution
   }
   
   return (
@@ -75,11 +75,11 @@ export default function Status2({ navigation }) {
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.containerescuro}>
-            <Text style={styles.text}>RESUMO DA ETAPA {phase}</Text>
+            <Text style={styles.text}>RESUMO DA ETAPA {game.phase}</Text>
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.office ? player.office.slice(0, 3) : 'cid'}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição global: {round.globalPollution + '% => ' + globalPollutionN()}%</Text>
+              <Text style={styles.text3}>Poluição global: {round.game.globalPollution + '% => ' + globalPollutionN()}%</Text>
             </View>
             {stage === 'NEXTROUNDSTATUS' && (
               <>

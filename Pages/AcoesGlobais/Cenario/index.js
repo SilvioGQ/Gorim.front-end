@@ -16,7 +16,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Cenario({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
-  const { player, players, disableNotifyScene, data: tax, stage, globalPollution, globalProduction, round, phase } = useContext(GameContext);
+  const { player, players, disableNotifyScene, data: tax, stage, game } = useContext(GameContext);
   const [image, setImage] = useState(true);
   const [image2, setImage2] = useState(true);
   useEffect(() => {
@@ -25,16 +25,16 @@ export default function Cenario({ navigation }) {
     player.office ? null : setType('tax')
   }, []);
   const globalProductionN = ()=>{
-    if(globalProduction.toString().indexOf('.00') !== -1){
-      return globalProduction.toString().slice(0,-3)
+    if(game.globalProduction.toString().indexOf('.00') !== -1){
+      return game.globalProduction.toString().slice(0,-3)
     }
-    else return globalProduction
+    else return game.globalProduction
   }
   const globalPollutionN = ()=>{
-    if(globalPollution.toString().indexOf('.00') !== -1){
-      return globalPollution.toString().slice(0,-3)
+    if(game.globalPollution.toString().indexOf('.00') !== -1){
+      return game.globalPollution.toString().slice(0,-3)
     }
-    else return globalPollution
+    else return game.globalPollution
   }
   // const finded = (type) =>{
   //   players.find((item) => item.office === "Prefeito" && item.city === player.city).length > 0 ?  players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).length == 0 ?  <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type)((item, index) => {
@@ -51,7 +51,7 @@ export default function Cenario({ navigation }) {
       <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
         <View style={styles.container}>
-          {player.office && phase == 2 ? <Coin coin={phase === 1 ? player.coin : player.serviceSalary} /> : null}
+          {player.office && game.phase == 2 ? <Coin coin={game.phase === 1 ? player.coin : player.serviceSalary} /> : null}
           <View style={styles.row}>
             <Image
               style={styles.image}
@@ -60,7 +60,7 @@ export default function Cenario({ navigation }) {
             <Text style={styles.title}>Resumo do {'\n'}Cenário</Text>
           </View>
           <Text style={styles.texto}>Informações gerais:</Text>
-          {phase === 2 && (
+          {game.phase === 2 && (
             <View style={styles.numeros}>
               <TouchableOpacity style={[styles.bloquinho, { width: 155 }]} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }}  >
                 <Text style={{ fontSize: 24, color: '#66BF00', marginTop: '7%' }}>
@@ -82,7 +82,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
             </View >
           )}
-          {phase === 1 && (
+          {game.phase === 1 && (
             <View style={styles.numeros}>
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(true); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>) }}  >
                 <Text style={styles.numero}>
@@ -114,7 +114,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
             </View >
           )}
-          {round > 1 ?
+          {game.round > 1 ?
             <TouchableOpacity onPress={() => navigation.navigate('Historico')} style={styles.historico}>
               <Text style={styles.textHistorico}>HISTÓRICO</Text>
             </TouchableOpacity>
@@ -146,7 +146,7 @@ export default function Cenario({ navigation }) {
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
 
-          {phase === 1 ?
+          {game.phase === 1 ?
             player.logs.filter((item) => item.type == type).length == 0 ? <Text style={[styles.textlogs]}>Nenhuma ação executada</Text> : player.logs.filter((item) => item.type == type).map((item, index) => {
               if (item.type === 'plantation') {
                 return <HistoricosPlatacao key={index} item={item} />
@@ -166,7 +166,7 @@ export default function Cenario({ navigation }) {
             :
             <Text style={styles.textlogs}>Nenhuma ação executada</Text>
           }
-          {phase === 2 && (!player.office || player.office === "Vereador") && !!players.find((item) => item.office === "Prefeito" && item.city === player.city) ?
+          {game.phase === 2 && (!player.office || player.office === "Vereador") && !!players.find((item) => item.office === "Prefeito" && item.city === player.city) ?
             players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == 'tax' || item.type === 'prevention').length == 0 ? player.office === "Vereador" ? null: <Text style={[styles.textlogs]}>Nenhuma ação executada</Text>  : players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).map((item, index) => {
               if (item.type === 'tax' || item.type === 'prevention') {
                 return <HistoricoPolitico key={index} item={item} />

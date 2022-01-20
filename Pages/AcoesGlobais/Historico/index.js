@@ -12,7 +12,7 @@ export default function Cenario({ navigation }) {
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
-  const { player, round, oldLogs, phase } = useContext(GameContext);
+  const { player, game, oldLogs } = useContext(GameContext);
   const rotateZ = open ? "180deg" : "0deg";
   const rotateZ2 = open2 ? "180deg" : "0deg";
   const rotateZ3 = open3 ? "180deg" : "0deg";
@@ -26,7 +26,7 @@ export default function Cenario({ navigation }) {
         <Rodada name={'Historico'} arrow={true} onClick={() => navigation.goBack()} />
         <View style={styles.container}>
           <Text style={styles.header}>HISTÓRICO</Text>
-          <Text style={styles.rodada}>RODADA {round - 1}</Text>
+          <Text style={styles.rodada}>RODADA {game.round - 1}</Text>
           <View style={styles.row}>
             <Image
               style={styles.image}
@@ -34,11 +34,11 @@ export default function Cenario({ navigation }) {
             />
             <View>
               <Text style={styles.name}>{player.name}</Text>
-              <Text style={styles.subtitle}>{phase === 1 ? player.type : player.office ? player.office : 'cidadão'}</Text>
+              <Text style={styles.subtitle}>{game.phase === 1 ? player.type : player.office ? player.office : 'cidadão'}</Text>
               <Text style={styles.subtitle}>{player.city}</Text>
             </View>
           </View>
-          {phase === 1 ?
+          {game.phase === 1 ?
             <>
               <View style={styles.backgreen}>
                 <View style={styles.whiteRow}>

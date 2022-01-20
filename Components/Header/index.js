@@ -6,12 +6,12 @@ import { GameContext } from "../../contexts/GameContext";
 
 export default function Header({ typeMenu = 'player' }) {
 
-  const { player, globalPollution, phase } = useContext(GameContext);
+  const { player, game } = useContext(GameContext);
   const globalPollutionN = ()=>{
-    if(globalPollution.toString().indexOf('.00') !== -1){
-      return globalPollution.toString().slice(0,-3)
+    if(game.globalPollution.toString().indexOf('.00') !== -1){
+      return game.globalPollution.toString().slice(0,-3)
     }
-    else return globalPollution
+    else return game.globalPollution
   }
   const mudarcor = (valor) => {
     if (valor >= 0 && valor <= 50) return '#FF0000';
@@ -35,10 +35,10 @@ export default function Header({ typeMenu = 'player' }) {
           style={styles.pollution}
           source={require('../../assets/agricultorIcones/Barril.png')}
         />
-        <Text style={{ color: mudarcor(globalPollution), fontSize: 19, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollutionN()}%</Text>
+        <Text style={{ color: mudarcor(game.globalPollution), fontSize: 19, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollutionN()}%</Text>
       </View>
       <View>
-        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : phase === 1 ? <Coin coin={player.coin} /> : null }
+        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : game.phase === 1 ? <Coin coin={player.coin} /> : null }
       </View>
       <Image style={styles.person} source={ICONS[player.avatar]} />
     </View>
