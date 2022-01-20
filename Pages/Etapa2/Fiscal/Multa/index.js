@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { GameContext, sendFine } from '../../../../contexts/GameContext';
+import { GameContext, sendFine, getPlayers } from '../../../../contexts/GameContext';
 import Button from '../../../../Components/Button';
 import Rodada from '../../../../Components/Rodada';
 import MultaComponent from '../../../../Components/Multa';
@@ -11,8 +11,11 @@ const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('Agricultor');
-  const { players, player } = useContext(GameContext);
-  console.log(players.filter(p => p.city == player.city))
+  const { players, player, stage, data:playersType} = useContext(GameContext);
+  useEffect(() =>{
+    getPlayers()
+  },[])
+  console.log(players)
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -30,12 +33,15 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
       <FilterNew type={type} setType={setType} nome1={'Agricultor'} nome2={'Empresário'} />
-      {players.filter(p => p.type === type && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ?
+      {stage === 'GETPLAYERS' ? 
+      playersType.filter(p => p.type === type && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ?
         <TextBold>Não há mais multas para aplicar aqui!</TextBold>
         :
-        players.filter(p => p.type === type && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item =>
+        playersType.filter(p => p.type === type && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item =>
           <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
-      }
+      :
+      null
+        }
     </View>
   );
 }

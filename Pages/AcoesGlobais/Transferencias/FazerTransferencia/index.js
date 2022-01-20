@@ -26,14 +26,21 @@ export default function FazerTransferencia({ navigation }) {
       getPlayers();
     }
   }, []);
-
-  console.log(stage === 'GETPLAYERS');
-
+  const Players = () => {
+    if (phase === 1) {
+      return players.filter(i => i.id !== player.id)
+    } else return players2
+  }
+  const PlayersOffice = () => {
+    if (phase === 2) {
+      return players.filter(i => i.id !== player.id)
+    } else return players2
+  }
   const confirmTransfer = () => {
     if (!id) return setModalText('Selecione o destino!');
     if (count === 0) return setModalText('Adicione um valor!');
     const destName = players.find(i => i.id === id).name
-    navigation.navigate('ConfirmarTransferencia', { idDest: id, nameDest:destName, count, provider: phase === 1 ? false : true, type: type == 'Agr/Emp' ? false : true });
+    navigation.navigate('ConfirmarTransferencia', { idDest: id, nameDest: destName, count, provider: phase === 1 ? false : true, type: type == 'Agr/Emp' ? false : true });
   }
 
   return (
@@ -41,60 +48,40 @@ export default function FazerTransferencia({ navigation }) {
       <Rodada name={'Fazer transferência'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
         <Coin coin={phase === 1 ? player.coin : player.serviceSalary} />
-        <HeaderIcons name={'Fazer \nTranferência'} icon='Fazer Transferência'/>
+        <HeaderIcons name={'Fazer \nTranferência'} icon='Fazer Transferência' />
         <Text style={styles.text}>Destinatário:</Text>
         <View style={{ alignItems: 'center' }}>
-        <FilterNew nome1='Agr/Emp' nome2='Ver/Pre/Fis' type={type} setType={setType} />
+          <FilterNew nome1='Agr/Emp' nome2='Ver/Pre/Fis' type={type} setType={setType} />
         </View>
         {type === 'Agr/Emp' ?
           <View style={styles.margin}>
-            {phase === 1 ?
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
-                {
-                  players.filter(i => i.id !== player.id).map((item, index) => {
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
+              {
+                stage === 'GETPLAYERS' ?
+                  Players().map((item, index) => {
                     return (
                       <Quadrados key={index} abr={item.type.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
                     );
                   })
-                }
-              </ScrollView>
-              :
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
-                {
-                  players.filter(i => i.office).map((item, index) => {
-                    return (
-                      <Quadrados key={index} abr={item.type.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
-                    );
-                  })
-                }
-              </ScrollView>
-
-            }
+                  :
+                  null
+              }
+            </ScrollView>
           </View>
           :
           <View style={styles.margin}>
-            {phase === 2 ?
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
-                {
-                  players.filter(i => i.id !== player.id).map((item, index) => {
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
+              {
+                stage === 'GETPLAYERS' ?
+                  PlayersOffice().map((item, index) => {
                     return (
                       <Quadrados key={index} abr={item.office.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
                     );
                   })
-                }
-              </ScrollView>
-              :
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
-                {
-                  players.filter(i => i.office).map((item, index) => {
-                    return (
-                      <Quadrados key={index} abr={item.office.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
-                    );
-                  })
-                }
-              </ScrollView>
-
-            }
+                  :
+                  null
+              }
+            </ScrollView>
           </View>
         }
 
@@ -110,7 +97,7 @@ export default function FazerTransferencia({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom:30
+    marginBottom: 30
   },
   header: {
     flexDirection: 'row',
@@ -133,6 +120,6 @@ const styles = StyleSheet.create({
   },
   margin: {
     justifyContent: 'center',
-    marginHorizontal:15
+    marginHorizontal: 15
   }
 });
