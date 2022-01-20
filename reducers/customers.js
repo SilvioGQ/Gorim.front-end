@@ -63,8 +63,8 @@ const reducer = (state, action) => {
     case 'INGAMING':
     case 'RAFFLED':
     case 'NOTFOUND':
-    case 'ENDSTAGE':
     case 'ALLFORENDSTAGE':
+    case 'ALLFORNEXTROUND':
     case 'INITELECTIONS':
     case 'INITVOTATION':
     case 'INITRESULTSVOTATION':
@@ -115,11 +115,6 @@ const reducer = (state, action) => {
         notify: initialState.notify,
         awaitPlayers: 0,
       };
-    case 'ALLFORNEXTROUND':
-      return {
-        ...state,
-        stage: action.payload,
-      };
     case 'GETSUGGESTS':
       return {
         ...state,
@@ -130,11 +125,6 @@ const reducer = (state, action) => {
         ...state,
         stage: action.payload[0],
         awaitPlayers: 0,
-      };
-    case 'ENDROUND':
-      return {
-        ...state,
-        stage: action.payload,
         notify: { ...initialState.notify }
       };
     default:

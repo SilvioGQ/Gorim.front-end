@@ -24,7 +24,6 @@ export default function MenuPolitico({ navigation }) {
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
-    if (stage === 'ENDROUND' && isMounted) navigation.reset({ routes: [{ name: 'AguardarJogadores' }] });
 
     return () => isMounted = false;
   }, [stage]);
@@ -40,7 +39,7 @@ export default function MenuPolitico({ navigation }) {
       <Rodada removeFromRoom={removeFromRoom} close={true} name={`${game.round}ª Rodada - ${game.phase}ª Etapa`} setModalVisible={setModalVisible} />
       <Header typeMenu="politic" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
-      {modalVisible2 && <ModalAsk finish={() => endRound()} back={() => setModalVisible2(!modalVisible2)} />}
+      {modalVisible2 && <ModalAsk finish={() => {endRound(); navigation.reset({routes: [{name: 'AguardarJogadores' }] });} } back={() => setModalVisible2(!modalVisible2)} />}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
