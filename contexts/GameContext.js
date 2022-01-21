@@ -4,7 +4,7 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
-// import ModalInfo from '../Components/ModalInfo';
+import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
 const socket = io(API_URL_HERO, { autoConnect: false });
@@ -12,7 +12,7 @@ const GameContext = React.createContext();
 const GameProvider = (props) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false);
   const refContainer = useRef();
 
   const callbackForTimer = useCallback(event => {
@@ -26,14 +26,14 @@ const GameProvider = (props) => {
       case event === 'ENDROUND':
         endRound();
         break;
-      case event === 'NEXTROUND':
-        nextRound();
-        break;
       case event === 'INITVOTATION':
         addCandidature(null);
         break;
       case event === 'INITRESULTSVOTATION':
         addVote({ mayor: '', cityCouncilor: '', supervisor: '' });
+        break;
+      case event === 'ALLFORNEXTROUND':
+        allForNextRound();
         break;
     }
     stopCallback();
@@ -75,18 +75,18 @@ const GameProvider = (props) => {
   }
 
   useEffect(() => {
-    // let isConnected = null;
-    // let player = {};
+    let isConnected = null;
+    let player = {};
 
     socket.on('connect', () => {
-      // if (isConnected === null) {
+      if (isConnected === null) {
         console.log('Connected!');
-      // } else {
-      //   if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
-      //   reconnectToRoom(player);
-      //   console.log('Reconnected!');
-      // }
-      // isConnected = true;
+      } else {
+        if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
+        reconnectToRoom(player);
+        console.log('Reconnected!');
+      }
+      isConnected = true;
     });
 
     socket.on('refreshPlayers', (players) => {
@@ -94,7 +94,7 @@ const GameProvider = (props) => {
     });
 
     socket.on('updatePlayer', (p) => {
-      // player = p;
+      player = p;
       dispatch({ type: 'UPDATEPLAYER', payload: p });
     });
 
@@ -110,19 +110,23 @@ const GameProvider = (props) => {
       dispatch({ type: 'STARTGAME', payload: 'STARTGAME' });
     });
 
-    socket.on('addedToRoom', (player) => {
-      // player = p;
+    socket.on('addedToRoom', (p) => {
+      player = p;
       console.log(player.room)
-      dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
+      dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', p] });
     });
     
     socket.on('reportMessage', (msg) => {
-      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, allForEndRound, initElections
+      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, endStage, allForEndStage, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
       if (msg === 'selectedAvatars') startTimer(400, 'ENDSTAGE');
       if (msg === 'INITELECTIONS') startTimer(20, 'INITVOTATION');
       if (msg === 'INITVOTATION') startTimer(40, 'INITRESULTSVOTATION');
       if (msg === 'INITRESULTSVOTATION') startTimer(10, 'NEXTSTAGE');
+    });
+    socket.on('allForNextRound', () => {
+      dispatch({ type: 'ALLFORNEXTROUND', payload: 'ALLFORNEXTROUND'});
+      startTimer(400, 'ALLFORNEXTROUND');
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -138,6 +142,9 @@ const GameProvider = (props) => {
     });
     socket.on('getCityTax', (tax) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETCITYTAX', tax] });
+    });
+    socket.on('nextRoundStatus', (status) => {
+      dispatch({ type: 'CHANGEDATA', payload: ['NEXTROUNDSTATUS', status] });
     });
     socket.on('getSuggests', (suggests) => {
       dispatch({ type: 'GETSUGGESTS', payload: suggests });
@@ -166,35 +173,30 @@ const GameProvider = (props) => {
     socket.on('enableNotifySuggests', () => {
       dispatch({ type: 'GETNOTIFY', payload: { suggests: true } });
     });
-
     socket.on('endStage', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
       startTimer(10, 'NEXTSTAGE');
     });
-
     socket.on('endRound', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDROUND', round] });
       startTimer(10, 'NEXTROUND');
     });
-
     socket.on('nextStage', () => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
       startTimer(400, 'ENDROUND');
     });
-
     socket.on('nextRound', () => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
-      startTimer(400, 'ENDSTAGE');
+      startTimer(20, 'ALLFORNEXTROUND');
     });
-
-    // socket.on('reconnectToRoom', (stage) => {
-    //   dispatch({ type: 'RECONNECTED', payload: stage });
-    // });
+    socket.on('reconnectToRoom', (stage) => {
+      dispatch({ type: 'RECONNECTED', payload: stage });
+    });
     socket.on('disconnect', () => {
       if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
       console.log('Disconnected!');
-      // setModal(true);
-      // isConnected = false;
+      setModal(true);
+      isConnected = false;
     });
 
     socket.open();
@@ -202,9 +204,9 @@ const GameProvider = (props) => {
 
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, disableNotifySuggests, stopCallback, startTimer }}>
-      {/* {modal && (
+      {modal && (
         <ModalInfo player={state.player} onClick={() => { setModal(false) }} display={socket.connected ? 'flex' : 'none'} text={'Estamos reconectando você para partida'} />
-      )} */}
+      )}
       {props.children}
     </GameContext.Provider>
   );
@@ -349,6 +351,10 @@ const addVote = (votes) => {
 
 const winnersElection = () => {
   socket.emit('winnersElection');
+}
+
+const allForNextRound = () => {
+  socket.emit('allForNextRound');
 }
 
 const getPlayersOffice = () => {

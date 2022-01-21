@@ -65,10 +65,6 @@ export default function Parcela({ route, navigation }) {
       <Rodada name={'Parcela de terra'} arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
       <HeaderIcons name={'Aplicação \nem parcela'} icon='Aplicação em parcela'/>
-        <View style={styles.espaco}>
-          <Image style={styles.parcel} source={require('../../../../assets/agricultorIcones/Parcela.png')} />
-          <Text style={styles.header}>Aplicação {'\n'}em parcela</Text>
-        </View>
         {parcelLand.planted && !parcelLand.requestStamp && parcelLand.pesticide === null && (
           <TouchableOpacity style={styles.button2} onPress={() => setModalText('Tem certeza de que deseja solicitar o selo verde ao fiscal?')}   >
             <Text style={styles.buttonText}>PEDIR SELO VERDE</Text>

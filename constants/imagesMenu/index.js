@@ -10,6 +10,7 @@ const IMAGES = {
     'Histórico dos Jogadores': require('../../assets/symbols/group.png'),
     'Conceder selo verde': require('../../assets/icons/stamp.png'),
     'Aplicar multas': require('../../assets/icons/penalty.png'),
+    'Aplicação em parcela': require('../../assets/agricultorIcones/Parcela.png'),
 };
 
 export default IMAGES;
