@@ -26,7 +26,7 @@ export default function FazerTransferencia({ navigation }) {
       getPlayers();
     }
   }, []);
-  console.log(players2)
+  console.log(players)
   console.log(game.phase)
   const Players = () => {
     if (game.phase === 1) {

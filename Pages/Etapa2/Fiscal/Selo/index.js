@@ -4,26 +4,30 @@ import Button from '../../../../Components/Button';
 import Quadrados from '../../../../Components/Quadrado';
 import Rodada from '../../../../Components/Rodada';
 import ParcelaAgr from '../../../../Components/parcelaAgr'
-import { GameContext, sendStamp } from '../../../../contexts/GameContext.js'
+import { GameContext, sendStamp, getPlayers } from '../../../../contexts/GameContext.js'
 import HistoricosPlatacao from '../../../../Components/HistóricosPlatacao'
 import Modal from '../../../../Components/ModalInfo';
 import TextBold from '../../../../Components/Atons/TextBold';
 const Tela = Dimensions.get('screen').width;
 export default function Selo({ navigation, route }) {
   const [selectClient, setSelectClient] = useState(-1);
-  const { players, player, logs } = useContext(GameContext);
+  const { player, data:playersType, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
   const [farmer, setFarmer] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState([]);
   const [selectParcel, setSelectParcel] = useState([]);
 
   useEffect(() => {
-    setFarmer(players.filter(i => i.type === 'Agricultor' && i.city == player.city))
-    if (selectClient !== -1) {
-      setSelectedPlayer(players.find((p) => p.id === selectClient))
+    if(stage === 'GETPLAYERS'){
+      setFarmer(playersType.filter(i => i.type === 'Agricultor' && i.city == player.city))
+      if (selectClient !== -1) {
+        setSelectedPlayer(playersType.find((p) => p.id === selectClient))
+      }
     }
   }, [selectClient]);
-
+  useEffect(()=>{
+    getPlayers()
+  },[])
   const aplicar = () => {
     sendStamp(selectClient, selectParcel);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })

@@ -32,6 +32,7 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
             selectedValue={numero}
             style={styles.picker}
             onValueChange={(itemValue) => setNumero(itemValue)}
+            mode='dropdown'
           >
             <Picker.Item label="Nenhuma" value={"Nenhuma"} />
             <Picker.Item label="Baixa" value={"Baixa"} />
