@@ -7,10 +7,11 @@ import ICONS from '../../../constants/imagesIcons';
 
 const Tela = Dimensions.get('screen').width;
 export default function Status2({ navigation }) {
-  
+
   const { player, players, game, data: round, stage, timer } = useContext(GameContext);
+
   useEffect(() => {
-    if (stage === 'ALLFORNEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
+    if (stage === 'NEXTROUND') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
   }, [stage]);
 
   const findMayorTax = () => {
@@ -62,13 +63,13 @@ export default function Status2({ navigation }) {
     if (!mayor) return 0;
     return mayor.filter((i) => i.label === "Tratamento de esgoto").length;
   }
-  const globalPollutionN = ()=>{
-    if(game.globalPollution.toString().indexOf('.00') !== -1){
-      return game.globalPollution.toString().slice(0,-3)
+  const globalPollutionN = () => {
+    if (game.globalPollution.toString().indexOf('.00') !== -1) {
+      return game.globalPollution.toString().slice(0, -3)
     }
     else return game.globalPollution
   }
-  
+
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -79,24 +80,20 @@ export default function Status2({ navigation }) {
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.office ? player.office.slice(0, 3) : 'cid'}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição global: {round.game.globalPollution + '% => ' + globalPollutionN()}%</Text>
+              <Text style={styles.text3}>Poluição global: {game.globalPollution + '% => ' + globalPollutionN()}%</Text>
             </View>
-            {stage === 'NEXTROUNDSTATUS' && (
-              <>
-                <View style={styles.circulo1}>
-                  <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}
-                    Nula: {"$" + round.tax.find(i => i.name === player.city).lowProduction.value} {lowProductionValue() == '' ? '' : ` => $${lowProductionValue()}`}{"\n"}
-                    Entre 1 e 200: {round.tax.find(i => i.name === player.city).mediumProduction.percentual}% {mediumProductionValue() == '' ? '' : ` => ${mediumProductionValue()}%`}{"\n"}
-                    Acima de 200: {round.tax.find(i => i.name === player.city).highProduction.percentual}% {highProductionValue() == '' ? '' : ` => ${highProductionValue()}%`}</Text>
-                </View>
-                <View style={styles.circulo1}>
-                  <Text style={styles.text3}>Medidas de prevenção{"\n"}Trat. de água: {treatWater() == 0 ? 'Não aplicado' : `Aplicado ${treatWater()}x`}{"\n"}
-                    Trat. de esgoto: {treatSewer() == 0 ? 'Não aplicado' : `Aplicado ${treatSewer()}x`}{"\n"}
-                    Trat. de lixo: {treatTrash() == 0 ? 'Não aplicado' : `Aplicado ${treatTrash()}x`}
-                  </Text>
-                </View>
-              </>
-            )}
+            <View style={styles.circulo1}>
+              <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}
+                Nula: {"$" + round.tax.find(i => i.name === player.city).lowProduction.value} {lowProductionValue() == '' ? '' : ` => $${lowProductionValue()}`}{"\n"}
+                Entre 1 e 200: {round.tax.find(i => i.name === player.city).mediumProduction.percentual}% {mediumProductionValue() == '' ? '' : ` => ${mediumProductionValue()}%`}{"\n"}
+                Acima de 200: {round.tax.find(i => i.name === player.city).highProduction.percentual}% {highProductionValue() == '' ? '' : ` => ${highProductionValue()}%`}</Text>
+            </View>
+            <View style={styles.circulo1}>
+              <Text style={styles.text3}>Medidas de prevenção{"\n"}Trat. de água: {treatWater() == 0 ? 'Não aplicado' : `Aplicado ${treatWater()}x`}{"\n"}
+                Trat. de esgoto: {treatSewer() == 0 ? 'Não aplicado' : `Aplicado ${treatSewer()}x`}{"\n"}
+                Trat. de lixo: {treatTrash() == 0 ? 'Não aplicado' : `Aplicado ${treatTrash()}x`}
+              </Text>
+            </View>
             <View style={styles.botao}>
               <Text>{timer}</Text>
               {/* <Button onClick={() => { navigation.navigate('') }} name={'AVANÇAR'} /> */}
