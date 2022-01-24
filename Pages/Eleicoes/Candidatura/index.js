@@ -15,7 +15,6 @@ export default function Candidatura({ navigation }) {
   }, [stage]);
   
   return (
-    <ScrollView>
     <View style={styles.container}>
       <Rodada name={'Candidatura'} />
       <View style={styles.row}>
@@ -37,7 +36,6 @@ export default function Candidatura({ navigation }) {
       />
       <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom:20, color:COLORS.warningButton}}>{awaitPlayers} de {players.length} se candidataram</Text>
     </View>
-      </ScrollView>
   );
 }
 

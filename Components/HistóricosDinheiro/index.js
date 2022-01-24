@@ -9,42 +9,42 @@ const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
 	const { player } = useContext(GameContext);
-
+	console.log(item)
 	return (
 		<View style={styles.colunm}>
-				<View style={styles.absolute3}>
-					<Image
-						style={styles.icone}
-						source={item.product ? imagesProducts[item.product.name] : ICONS[player.avatar]}
-					/>
-					{item.product ?
-					<Text style={[styles.estilo, {left:-7}]}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
+			<View style={styles.absolute3}>
+				<Image
+					style={styles.icone}
+					source={item.product ? imagesProducts[item.product.name] : ICONS[player.avatar]}
+				/>
+				{item.product ?
+					<Text style={[styles.estilo, { left: -7 }]}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
 					:
-					<Text style={[styles.estilo, { left: 2 }]}>{player.name}</Text>
-					}
-					
+					<Text style={[styles.estilo, { left: 2 }]}>{player.type ? player.type.slice(0, 3) : player.office.slice(0, 3)}/{player.name}</Text>
+				}
+
+			</View>
+			{item.value && (
+				<View style={styles.absolute2}>
+					<Text style={[styles.text, { marginTop: 5 }]}>${item.value}</Text>
+					<Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
+					<Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
 				</View>
-				{item.value && (
-					<View style={styles.absolute2}>
-						<Text style={[styles.text, { marginTop: 5 }]}>${item.value}</Text>
-						<Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
-						<Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
-					</View>
-				)}
-				{item.product && (
-					<View style={styles.absolute2}>
-						<Text style={[styles.text, { marginTop: 5 }]}>{item.product.amount} por ${item.product.price} á unidade</Text>
-						<Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10 }} />
-						<Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'vendido(s) para'}</Text>
-					</View>
-				)}
-				<View style={styles.absolute}>
-					<Image
-						style={styles.icone}
-						source={ICONS[item.avatarPlayer]}
-					/>
-					<Text style={styles.text}>{item.namePlayer}</Text>
+			)}
+			{item.product && (
+				<View style={styles.absolute2}>
+					<Text style={[styles.text, { marginTop: 5 }]}>{item.product.amount} por ${item.product.price} á unidade</Text>
+					<Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10 }} />
+					<Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'vendido(s) para'}</Text>
 				</View>
+			)}
+			<View style={styles.absolute}>
+				<Image
+					style={styles.icone}
+					source={ICONS[item.avatarPlayer]}
+				/>
+				<Text style={styles.text}>{item.typePlayer}/{item.namePlayer}</Text>
+			</View>
 		</View>
 	);
 }
@@ -74,29 +74,29 @@ const styles = StyleSheet.create({
 	text: {
 		textAlign: 'center',
 		fontSize: 12,
-		
+
 		marginBottom: 2,
 	},
 	absolute: {
-		position:'absolute',
-		top:15,
-		right:20
+		position: 'absolute',
+		top: 15,
+		right: 20
 	},
 	absolute2: {
-		position:'absolute',
-		top:15,
-		right:88
+		position: 'absolute',
+		top: 15,
+		right: 88
 	},
 	absolute3: {
-		position:'absolute',
-		top:15,
-		left:20,
+		position: 'absolute',
+		top: 15,
+		left: 20,
 	},
 	estilo: {
-		position: 'absolute', 
-		bottom: -18, 
-		fontFamily: 'Rubik_300Light', 
-		fontSize: 12, 
+		position: 'absolute',
+		bottom: -18,
+		fontFamily: 'Rubik_300Light',
+		fontSize: 12,
 		width: 85
 	}
 });

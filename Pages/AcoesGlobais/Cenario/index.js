@@ -62,7 +62,7 @@ export default function Cenario({ navigation }) {
           <Text style={styles.texto}>Informações gerais:</Text>
           {game.phase === 2 && (
             <View style={styles.numeros}>
-              <TouchableOpacity style={[styles.bloquinho, { width: 155 }]} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }}  >
+              <TouchableOpacity style={[styles.bloquinho, { width: '39%' }]} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }}  >
                 <Text style={{ fontSize: 24, color: '#66BF00', marginTop: '7%' }}>
                   {globalProductionN()}%
                 </Text>
@@ -71,7 +71,7 @@ export default function Cenario({ navigation }) {
                 </Text>
                 <Image source={require('../../../assets/agricultorIcones/information.png')} style={[styles.imagem]} />
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.bloquinho, { width: 155 }]} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }}  >
+              <TouchableOpacity style={[styles.bloquinho, { width: '39%' }]} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }}  >
                 <Text style={{ fontSize: 24, marginTop: '7%', color: '#BF0000' }}>
                   {globalPollutionN()}%
                 </Text>
@@ -122,7 +122,7 @@ export default function Cenario({ navigation }) {
             null}
 
           {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} image={image} image2={image2} />}
-          {Height <= 720 && (
+          {Height <= 720 && player.type ? (
             <>
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
               <View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
@@ -142,7 +142,9 @@ export default function Cenario({ navigation }) {
                 </View>
               </View>
             </>
-          )}
+          )
+          : 
+          null}
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
 
@@ -209,10 +211,8 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     marginLeft: 20,
     marginRight: 20
-
   },
   legenda: {
-
     fontSize: 16,
   },
   numeros: {
@@ -230,8 +230,8 @@ const styles = StyleSheet.create({
   },
   bloquinho: {
     backgroundColor: COLORS.bgColorSecondary,
-    width: 95,
-    height: 95,
+    width:'29%',
+    height: Tela > 350 ? 95 : 79,
     alignItems: 'center',
     textAlign: 'center',
     borderRadius: 20,

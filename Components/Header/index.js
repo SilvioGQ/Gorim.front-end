@@ -7,9 +7,9 @@ import { GameContext } from "../../contexts/GameContext";
 export default function Header({ typeMenu = 'player' }) {
 
   const { player, game } = useContext(GameContext);
-  const globalPollutionN = ()=>{
-    if(game.globalPollution.toString().indexOf('.00') !== -1){
-      return game.globalPollution.toString().slice(0,-3)
+  const globalPollutionN = () => {
+    if (game.globalPollution.toString().indexOf('.00') !== -1) {
+      return game.globalPollution.toString().slice(0, -3)
     }
     else return game.globalPollution
   }
@@ -29,18 +29,18 @@ export default function Header({ typeMenu = 'player' }) {
 
   return (
     <View style={styles.row}>
-      <Text style={styles.header}>{`${getTypeMenu()}/${player.name}\nem ${player.city}`}</Text>
-      <View style={{ flexDirection: 'row', paddingTop: 15 }}>
-        <Image
-          style={styles.pollution}
-          source={require('../../assets/agricultorIcones/Barril.png')}
-        />
-        <Text style={{ color: mudarcor(game.globalPollution), fontSize: 19, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollutionN()}%</Text>
-      </View>
-      <View>
-        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : game.phase === 1 ? <Coin coin={player.coin} /> : null }
-      </View>
       <Image style={styles.person} source={ICONS[player.avatar]} />
+      <Text style={styles.header}>{`${getTypeMenu()}/${player.name}\nem ${player.city}`}</Text>
+      <View>
+        <View style={{ flexDirection: 'row'}}>
+          <Image
+            style={styles.pollution}
+            source={require('../../assets/agricultorIcones/Barril.png')}
+          />
+          <Text style={{ color: mudarcor(game.globalPollution), fontSize: 19, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollutionN()}%</Text>
+        </View>
+        {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : game.phase === 1 ? <Coin coin={player.coin} /> : null}
+      </View>
     </View>
   )
 }
@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    justifyContent: 'space-between',
-    marginHorizontal: 10,
     marginVertical: 10,
     marginLeft: 20,
     width: '90%'

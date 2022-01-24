@@ -16,7 +16,7 @@ export default function Eleitos({ navigation }) {
   }, []);
 
   useEffect(() => {
-    if (stage === 'NEXTSTAGE') navigation.navigate('MenuPolitico');
+    if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
   }, [stage]);
 
   useEffect(() => {

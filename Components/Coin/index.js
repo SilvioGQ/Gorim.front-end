@@ -12,7 +12,7 @@ export default function Coin({coin}) {
   }
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 19 }}>{coin}</Text>
+      <Text style={{ fontFamily: 'Rubik_400Regular', fontSize: 19 }}>{PlayerCoin(coin)}</Text>
       <Image style={{ width: 20, height: 23 }} source={IMAGES["Moeda"]} />
     </View>
   );
@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row-reverse',
     alignItems: 'flex-end',
-    paddingTop: 15,
     width: '90%'
   }
 });

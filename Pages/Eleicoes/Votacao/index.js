@@ -19,7 +19,7 @@ export default function Votacao({ navigation }) {
   const [modalText, setModalText] = useState();
 
   useEffect(() => {
-    if (stage === 'INITRESULTSVOTATION') navigation.navigate('Eleitos');
+    if (stage === 'INITRESULTSVOTATION') navigation.reset({ routes: [{ name: 'Eleitos' }] });
   }, [stage]);
 
   useEffect(() => {

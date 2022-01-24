@@ -22,6 +22,8 @@ export default function ConfirmarTransferencia({ navigation, route }) {
   return (
     <View style={styles.container}>
       <Rodada name={'Fazer transferência'} arrow={true} onClick={()=>navigation.goBack()}/>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.text}>Fazer transferência</Text>
         <Image style={styles.logo} source={require('../../../../assets/symbols/transfer.png')} />
         <Text style={styles.text}> Deseja confirmar a transação para {nameDest}?</Text>
         <Text style={styles.text2}>${JSON.stringify(count)} </Text>
@@ -31,6 +33,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
         </View>
+      </ScrollView>
     </View>
   );
 }
@@ -41,10 +44,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    height: Tela > 350 ? 140 : 100,
-    width: Tela > 350 ? 140 : 100,
+    height: Tela > 350 ? 140 : 90,
+    width: Tela > 350 ? 140 : 90,
     alignSelf: 'center',
-    marginVertical: 50
+    marginVertical: Tela > 350 ? 50 : 25
   },
   text: {
     fontFamily: 'Rubik_400Regular',
@@ -53,8 +56,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   text2: {
-    
-    fontSize: 48,
+    fontSize: Tela > 350 ? 48 : 24,
     textAlign: 'center',
     marginVertical: 20
   },

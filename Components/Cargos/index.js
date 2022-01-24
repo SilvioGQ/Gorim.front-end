@@ -1,8 +1,6 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { GameContext } from '../../contexts/GameContext';
-
-import COLORS from '../../constants/colors';
 const Tela = Dimensions.get('screen').width;
 export default function Cargos({isSelected, setSelection}) {
 
@@ -58,7 +56,6 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   candidato: {
-    
     fontSize: Tela > 350 ? 20 : 12,
     alignItems: 'center',
     marginHorizontal: 12

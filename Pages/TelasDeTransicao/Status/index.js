@@ -29,7 +29,7 @@ export default function Status({ navigation }) {
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.containerescuro}>
-            <Text style={styles.text}>RESUMO DA ETAPA {game.phase}</Text>
+            <Text style={styles.text}>RESUMO DA ETAPA 1</Text>
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   text3: {
     marginLeft: 20,
     marginTop: 14,
-    fontSize: Tela > 350 ? 18 : 12,
+    fontSize: Tela > 350 ? 18 : 16,
   },
   img: {
     height: 85,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     borderRadius: 17,
     width: '88%',
-    height: 51,
+    height: Tela > 350 ? 51 : 46,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
