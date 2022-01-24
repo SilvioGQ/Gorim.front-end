@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
     },
     textNormal: {
-      fontSize: 24,
+    fontSize: Tela > 350 ? 24 : 18,
     },
     text: {
       textAlign: 'center',
