@@ -9,7 +9,7 @@ const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
 	const { player } = useContext(GameContext);
-	console.log(item)
+
 	return (
 		<View style={styles.colunm}>
 			<View style={styles.absolute3}>

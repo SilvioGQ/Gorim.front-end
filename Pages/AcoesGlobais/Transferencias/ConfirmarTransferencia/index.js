@@ -11,14 +11,12 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest, type, provider, nameDest } = route.params;
   const {game } = useContext(GameContext);
-  console.log(count)
-  console.log(idDest)
-  console.log(provider)
-  console.log(type)
+
   const make = () => {
     makeTransfer(count, idDest, provider, type);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
   }
+  
   return (
     <View style={styles.container}>
       <Rodada name={'Fazer transferência'} arrow={true} onClick={()=>navigation.goBack()}/>

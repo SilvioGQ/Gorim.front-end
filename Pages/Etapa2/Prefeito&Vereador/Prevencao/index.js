@@ -15,7 +15,7 @@ export default function Prevencao({ navigation }) {
   const { player, stage, data: preventions } = useContext(GameContext);
   const [modalVisible, setModalVisible] = useState('');
   const apply = () => {
-    if (player.serviceSalary < selectMedida.value) return setModalVisible('Saldo insuficiente');
+    if (player.serviceSalary < selectMedida.value && player.office !== 'Vereador') return setModalVisible('Saldo insuficiente');
     if (Object.keys(selectMedida).length !== 0) {
       player.office === 'Prefeito' ? applyPrevention(selectMedida)
         :

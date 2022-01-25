@@ -18,8 +18,6 @@ export default function AguardarJogadores({ navigation }) {
     if (stage === 'ALLFORENDROUND' && isMounted) navigation.reset({ routes: [{ name: 'Status2' }] });
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
 
-    console.log(stage)
-
     return () => isMounted = false;
   }, [stage]);
 
