@@ -18,9 +18,9 @@ export default function HistoricosDinheiro({ item }) {
 					source={item.product ? imagesProducts[item.product.name] : ICONS[player.avatar]}
 				/>
 				{item.product ?
-					<Text style={[styles.estilo, { left: -7 }]}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
+					<Text style={styles.text}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
 					:
-					<Text style={[styles.estilo, { left: 2 }]}>{player.type ? player.type.slice(0, 3) : player.office.slice(0, 3)}/{player.name}</Text>
+					<Text style={styles.text}>{player.type ? player.type.slice(0, 3) : player.office.slice(0, 3)}/{player.name}</Text>
 				}
 
 			</View>
@@ -90,12 +90,5 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		top: 15,
 		left: 20,
-	},
-	estilo: {
-		position: 'absolute',
-		bottom: -18,
-		fontFamily: 'Rubik_300Light',
-		fontSize: 12,
-		width: 85
 	}
 });

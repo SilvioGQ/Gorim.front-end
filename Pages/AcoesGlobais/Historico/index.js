@@ -19,7 +19,6 @@ export default function Cenario({ navigation }) {
   const rotateZ4 = open4 ? "180deg" : "0deg";
   const rotateZ5 = open5 ? "180deg" : "0deg";
   const rotateZ6 = open6 ? "180deg" : "0deg";
-
   return (
     <ScrollView>
       <View>

@@ -16,17 +16,17 @@ export default function Selo({ navigation, route }) {
   const [selectedPlayer, setSelectedPlayer] = useState([]);
   const [selectParcel, setSelectParcel] = useState([]);
 
+  useEffect(() =>{
+    suggestFine();
+  },[]);
   useEffect(() => {
     if(stage === 'SUGGESTFINE'){
       setFarmer(playersType.filter(i => i.type === 'Agricultor' && i.city == player.city))
       if (selectClient !== -1) {
-        setSelectedPlayer(playersType.find((p) => p.id === selectClient))
+        setSelectedPlayer(playersType.find((p) => p.playerId === selectClient))
       }
     }
-  }, [selectClient]);
-  useEffect(() =>{
-    suggestFine();
-  },[]);
+  }, [selectClient, stage]);
   const aplicar = () => {
     sendStamp(selectClient, selectParcel);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })
@@ -46,7 +46,7 @@ export default function Selo({ navigation, route }) {
           </View>
           <Text style={styles.texto}>Destinatário:</Text>
           <View style={styles.estilo}>
-            {farmer.map((item) => <Quadrados key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
+            {farmer.map((item) => <Quadrados key={item.playerId} player={item} onClick={() => setSelectClient(item.playerId)} backgroundColor={selectClient == item.playerId ? '#8ACF3A' : '#fff'} color={selectClient == item.playerId ? '#fff' : '#000'} />)}
           </View>
           {modalText !== '' && (
             <Modal onClick={() => setModalText('')} text={modalText} />

@@ -3,18 +3,11 @@ import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions
 import Button from '../../../../Components/Button';
 import Rodada from '../../../../Components/Rodada';
 import ParcelaAgr from '../../../../Components/parcelaAgr';
-import { GameContext } from '../../../../contexts/GameContext';
 import LogsTransfer from '../../../../Components/LogsTransfers';
 const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation, route }) {
   const { client } = route.params
-  const { players } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
-  const [Logs, setLogs] = useState([]);
-
-  useEffect(() => {
-    setLogs(players.find((p) => p.id === client.id))
-  }, [client.id]);
 
   return (
     <View style={styles.container}>
@@ -31,8 +24,8 @@ export default function Multa({ navigation, route }) {
             )}
             <Text style={styles.header}>Detalhes de{'\n'}Parcelas</Text>
           </View>
-          {Logs.length !== 0 ?
-            Logs.logs.filter(i => i.type === 'plantation').map((p) => {
+          {client.length !== 0 ?
+            client.logs.filter(i => i.type === 'plantation').map((p) => {
               // if (parcel.planted === true && !parcel.pesticide) {
               return <ParcelaAgr item={p} key={p.id} vermais={false} display2='none' pedido={false} />
               // }
@@ -53,8 +46,8 @@ export default function Multa({ navigation, route }) {
             )}
             <Text style={styles.header}>Detalhes de{'\n'}Empresário</Text>
           </View>
-          {Logs.length !== 0 ?
-            Logs.logs.filter(i => i.type === 'buy').map((p) => {
+          {client.length !== 0 ?
+            client.logs.filter(i => i.type === 'buy').map((p) => {
               // if (parcel.planted === true && !parcel.pesticide) {
               return <LogsTransfer item={p} key={p.id} />
               // }

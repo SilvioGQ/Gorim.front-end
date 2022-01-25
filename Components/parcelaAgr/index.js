@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import IMAGES from '../../constants/imagesProducts';
 
 export default function ParcelaAgr({ item, backgroundGreen='#fff', display2, vermais, onClick, pedido, color}) {
+    console.log(item)
     return (
         <TouchableOpacity onPress={onClick} style={[styles.container, { backgroundColor: backgroundGreen }]}>
             <View style={{ flexDirection: 'row', marginBottom:15, marginTop:1 }}>

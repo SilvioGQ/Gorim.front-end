@@ -1,15 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Picker } from 'react-native';
-import { GameContext, suggestFine } from '../../contexts/GameContext';
+import { GameContext } from '../../contexts/GameContext';
 import COLORS from '../../constants/colors';
 import ICONS from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
-
 export default function MultaComponent({ item, onclick, display, onClike }) {
-  const { data: suggest, stage } = useContext(GameContext);
-  const [numero, setNumero] = useState();
+  const [numero, setNumero] = useState(item.gravity);
   console.log(item)
-  console.log(suggest)
   return (
     <View style={styles.container}>
       <View>
@@ -20,9 +17,8 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
         <Text style={styles.text}>Total poluição: {item.pollution} </Text>
         <View style={{ flexDirection: 'row', marginVertical:5 }}>
           <Text style={styles.text}>Multa:</Text>
-          {stage === 'SUGGESTFINE' && (
           <Picker
-            selectedValue={item.gravity}
+            selectedValue={numero}
             style={styles.picker}
             onValueChange={(itemValue) => setNumero(itemValue)}
             mode='dropdown'
@@ -32,10 +28,9 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
             <Picker.Item label="Média" value={"Média"} />
             <Picker.Item label="Alta" value={"Alta"} />
           </Picker>
-          )}
         </View>
         <View style={styles.row}>
-          <TouchableOpacity style={styles.button} onPress={() => onClike(item.id, numero)}  >
+          <TouchableOpacity style={styles.button} onPress={() => onClike(item.playerId, numero)}  >
             <Text style={styles.textbutton}>CONFIRMAR</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, { backgroundColor: '#2D7830' }]} onPress={onclick}  >

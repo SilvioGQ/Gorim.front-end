@@ -35,11 +35,11 @@ console.log()
       </View>
       <FilterNew type={type} setType={setType} nome1={'Agricultor'} nome2={'Empresário'} />
       {stage === 'SUGGESTFINE' ? 
-      playersType.filter(p => p.type === type && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ?
+      playersType.filter(p => p.type === type && player.appliedFine.indexOf(p.playerId) === -1 && p.city == player.city).length === 0 ?
         <TextBold>Não há mais multas para aplicar aqui!</TextBold>
         :
-        playersType.filter(p => p.type === type && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).map(item =>
-          <MultaComponent item={item} key={item.id} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
+        playersType.filter(p => p.type === type && player.appliedFine.indexOf(p.playerId) === -1 && p.city == player.city).map(item =>
+          <MultaComponent item={item} key={item.playerId} onClike={sendFine} onclick={() => navigation.navigate('MultaVerMais', { client: item })} />)
       :
       null
         }
