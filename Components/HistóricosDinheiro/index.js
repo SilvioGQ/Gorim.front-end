@@ -9,7 +9,7 @@ const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
 	const { player } = useContext(GameContext);
-
+	console.log(item)
 	return (
 		<View style={styles.colunm}>
 			<View style={styles.absolute3}>
@@ -43,7 +43,7 @@ export default function HistoricosDinheiro({ item }) {
 					style={styles.icone}
 					source={ICONS[item.avatarPlayer]}
 				/>
-				<Text style={styles.text}>{item.typePlayer}/{item.namePlayer}</Text>
+				<Text style={styles.text}>{item.product ? item.namePlayer : `${item.typePlayer.slice(0, 3)}/${item.namePlayer}`}</Text>
 			</View>
 		</View>
 	);
@@ -73,8 +73,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		textAlign: 'center',
-		fontSize: 12,
-
+		fontSize: 10,
 		marginBottom: 2,
 	},
 	absolute: {

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import { GameContext, sendFine, getPlayers } from '../../../../contexts/GameContext';
+import { GameContext, sendFine, suggestFine } from '../../../../contexts/GameContext';
 import Button from '../../../../Components/Button';
 import Rodada from '../../../../Components/Rodada';
 import MultaComponent from '../../../../Components/Multa';
@@ -11,12 +11,12 @@ const Tela = Dimensions.get('screen').width;
 export default function Multa({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('Agricultor');
-  const { players, player, stage, data:playersType} = useContext(GameContext);
+  const { player, stage, data:playersType} = useContext(GameContext);
   
   useEffect(() =>{
-    getPlayers();
+    suggestFine();
   },[]);
-
+console.log()
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -34,7 +34,7 @@ export default function Multa({ navigation }) {
         </TouchableOpacity>
       </View>
       <FilterNew type={type} setType={setType} nome1={'Agricultor'} nome2={'Empresário'} />
-      {stage === 'GETPLAYERS' ? 
+      {stage === 'SUGGESTFINE' ? 
       playersType.filter(p => p.type === type && player.appliedFine.indexOf(p.id) === -1 && p.city == player.city).length === 0 ?
         <TextBold>Não há mais multas para aplicar aqui!</TextBold>
         :

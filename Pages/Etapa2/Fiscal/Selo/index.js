@@ -4,8 +4,7 @@ import Button from '../../../../Components/Button';
 import Quadrados from '../../../../Components/Quadrado';
 import Rodada from '../../../../Components/Rodada';
 import ParcelaAgr from '../../../../Components/parcelaAgr'
-import { GameContext, sendStamp, getPlayers } from '../../../../contexts/GameContext.js'
-import HistoricosPlatacao from '../../../../Components/HistóricosPlatacao'
+import { GameContext, sendStamp, suggestFine } from '../../../../contexts/GameContext.js'
 import Modal from '../../../../Components/ModalInfo';
 import TextBold from '../../../../Components/Atons/TextBold';
 const Tela = Dimensions.get('screen').width;
@@ -18,16 +17,16 @@ export default function Selo({ navigation, route }) {
   const [selectParcel, setSelectParcel] = useState([]);
 
   useEffect(() => {
-    if(stage === 'GETPLAYERS'){
+    if(stage === 'SUGGESTFINE'){
       setFarmer(playersType.filter(i => i.type === 'Agricultor' && i.city == player.city))
       if (selectClient !== -1) {
         setSelectedPlayer(playersType.find((p) => p.id === selectClient))
       }
     }
   }, [selectClient]);
-  useEffect(()=>{
-    getPlayers()
-  },[])
+  useEffect(() =>{
+    suggestFine();
+  },[]);
   const aplicar = () => {
     sendStamp(selectClient, selectParcel);
     navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Selo concedido', Menu: 'MenuPolitico' } }] })

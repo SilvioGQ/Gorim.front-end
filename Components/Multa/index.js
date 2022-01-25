@@ -6,17 +6,10 @@ import ICONS from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
 
 export default function MultaComponent({ item, onclick, display, onClike }) {
-  const { player, data: suggest, stage } = useContext(GameContext);
+  const { data: suggest, stage } = useContext(GameContext);
   const [numero, setNumero] = useState();
-  useEffect(() => {
-    suggestFine();
-  }, []);
-  useEffect(() =>{
-    if(stage === 'SUGGESTFINE'){
-      setNumero(suggest.find(p => p.playerId === item.id).gravity);
-    }
-  },[stage])
-
+  console.log(item)
+  console.log(suggest)
   return (
     <View style={styles.container}>
       <View>
@@ -29,7 +22,7 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
           <Text style={styles.text}>Multa:</Text>
           {stage === 'SUGGESTFINE' && (
           <Picker
-            selectedValue={numero}
+            selectedValue={item.gravity}
             style={styles.picker}
             onValueChange={(itemValue) => setNumero(itemValue)}
             mode='dropdown'
