@@ -16,7 +16,7 @@ export default function MenuJogador({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
-  const { players, player, awaitPlayers, stage, notify, game, stopCallback } = useContext(GameContext);
+  const { players, player, awaitPlayers, stage, notify, game } = useContext(GameContext);
 
   useEffect(() => {
     let isMounted = true;
@@ -24,6 +24,7 @@ export default function MenuJogador({ navigation }) {
     if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'NAVIGATEFORSTATUS') navigation.reset({ routes: [{ name: 'Status' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
+    if (stage === 'ALLFORENDSTAGE' && isMounted) navigation.reset({ routes: [{ name: 'Status' }] });
 
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
 
@@ -43,7 +44,7 @@ export default function MenuJogador({ navigation }) {
 
       <Header typeMenu="player" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
-      {modalVisible2 && <ModalAsk finish={() => { endStage(); stopCallback(); navigation.reset({ routes: [{ name: 'AguardarJogadores' }] }); }} back={() => setModalVisible2(!modalVisible2)} />}
+      {modalVisible2 && <ModalAsk finish={() => { endStage(); navigation.reset({ routes: [{ name: 'AguardarJogadores' }] }); }} back={() => setModalVisible2(!modalVisible2)} />}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}

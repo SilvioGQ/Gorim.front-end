@@ -48,6 +48,8 @@ const reducer = (state, action) => {
     case 'SELECTEDAVATARS':
     case 'INITELECTIONS':
     case 'INITVOTATION':
+    case 'ALLFORENDSTAGE':
+    case 'ALLFORENDROUND':
       return {
         ...state,
         awaitPlayers: 0,
@@ -65,8 +67,6 @@ const reducer = (state, action) => {
     case 'INGAMING':
     case 'RAFFLED':
     case 'NOTFOUND':
-    case 'ALLFORENDSTAGE':
-    case 'ALLFORENDROUND':
     case 'INITRESULTSVOTATION':
       return {
         ...state,

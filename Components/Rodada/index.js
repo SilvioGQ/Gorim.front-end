@@ -17,7 +17,7 @@ export default function Rodada({ removeFromRoom = null, close = null, name, setM
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textLarge}>{name} {timer >= 0 ? `(${stringTimer(timer)})` : ''}</Text>
+      <Text style={styles.textLarge}>{name} {stringTimer(timer)}</Text>
       {close && (
         <>
           <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '83%', top: 25 }}  >

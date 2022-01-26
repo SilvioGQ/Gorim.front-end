@@ -23,6 +23,8 @@ export default function MenuPolitico({ navigation }) {
     if (stage === 'NAVIGATEFORSTATUS') navigation.reset({ routes: [{ name: 'Status2' }] });
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
+    if (stage === 'ALLFORENDROUND' && isMounted) navigation.reset({ routes: [{ name: 'Status2' }] });
+
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
 
     return () => isMounted = false;

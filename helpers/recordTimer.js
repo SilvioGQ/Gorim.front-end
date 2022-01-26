@@ -17,9 +17,9 @@ const recordGetTime = async (playerId) => {
     const now = new Date();
     const startTime = await AsyncStorage.getItem("@start_time" + playerId);
     const maxTime = await AsyncStorage.getItem("@maxTime" + playerId);
-    // let timer = maxTime - differenceInSeconds(now, Date.parse(startTime));
+    let timer = maxTime - differenceInSeconds(now, Date.parse(startTime));
     
-    return maxTime - differenceInSeconds(now, Date.parse(startTime));
+    return timer >= 0 ? timer : 0;
   } catch (err) {
     // TODO: handle errors from setItem properly
     console.warn(err);
