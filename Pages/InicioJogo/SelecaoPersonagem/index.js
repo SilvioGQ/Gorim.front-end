@@ -35,9 +35,13 @@ export default function SelecaoPersonagem({ navigation }) {
   }
 
   const startGame = () => {
-    if (players.length < awaitPlayers) {return setTitle(false), setModalText('Aguardando outros jogadores escolherem um avatar')};
-    selectedAvatars();
+    if (players.length === awaitPlayers) {
+    return selectedAvatars();
   }
+    return setTitle(false), setModalText('Aguardando outros jogadores escolherem um avatar');
+  }
+console.log(players.length)
+console.log(awaitPlayers)
 
   return (
     <View style={styles.container}>
