@@ -12,12 +12,14 @@ const recordStartTime = async (maxTime, playerId) => {
   }
 }
 
-const recordGetTime = async (playerId) => {
+const recordGetTime = async (originMaxTime, playerId) => {
   try {
     const now = new Date();
     const startTime = await AsyncStorage.getItem("@start_time" + playerId);
     const maxTime = await AsyncStorage.getItem("@maxTime" + playerId);
     let timer = maxTime - differenceInSeconds(now, Date.parse(startTime));
+
+    if (originMaxTime != maxTime) return undefined;
     
     return timer >= 0 ? timer : 0;
   } catch (err) {

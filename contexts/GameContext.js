@@ -25,17 +25,21 @@ const GameProvider = (props) => {
   const disableNotifySuggests = () => {
     dispatch({ type: 'GETNOTIFY', payload: { suggests: false } });
   };
-
+  
   const startTimer = (maxTime, callback) => {
     let callbackUsed = false;
-
+    
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
     recordStartTime(maxTime, socket.id).then(() => {
       let interval = setInterval(() => {
-
-        recordGetTime(socket.id).then(timer => {
-          dispatch({ type: 'UPDATETIMER', payload: timer });
-
+        
+        recordGetTime(maxTime, socket.id).then(timer => {
+          if (timer === undefined) {
+            clearInterval(interval);
+          } else {
+            dispatch({ type: 'UPDATETIMER', payload: timer });
+          }
+          
           if (timer === 0 && !callbackUsed) {
             callback();
             callbackUsed = true;
@@ -91,7 +95,7 @@ const GameProvider = (props) => {
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage, allForEndRound, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
-      if (msg === 'selectedAvatars') startTimer(20, () => endStage());
+      if (msg === 'selectedAvatars') startTimer(400, () => endStage());
       if (msg === 'INITELECTIONS') startTimer(20, () => addCandidature(null));
       if (msg === 'INITVOTATION') startTimer(20, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }));
       if (msg === 'INITRESULTSVOTATION') startTimer(20, () => nextStage());
@@ -151,12 +155,12 @@ const GameProvider = (props) => {
 
     socket.on('nextStage', () => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
-      startTimer(20, () => endRound());
+      startTimer(400, () => endRound());
     });
 
     socket.on('nextRound', () => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
-      startTimer(20, () => endStage());
+      startTimer(400, () => endStage());
     });
 
     // socket.on('reconnectToRoom', (stage) => {
