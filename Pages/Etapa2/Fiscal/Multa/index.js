@@ -16,7 +16,7 @@ export default function Multa({ navigation }) {
   useEffect(() =>{
     suggestFine();
   },[]);
-console.log()
+  
   return (
     <View style={styles.container}>
       <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />

@@ -10,7 +10,7 @@ const Tela = Dimensions.get('screen').width;
 export default function Lobby({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState(false);
-  const { players, player, stage } = useContext(GameContext);
+  const { players, awaitPlayers, player, stage } = useContext(GameContext);
 
   useEffect(() => {
     let isMounted = true;
@@ -53,7 +53,7 @@ export default function Lobby({ navigation }) {
       <>
 
         <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} />
-        <Text style={{fontSize:24, color:players.length > 5 ? COLORS.successButton : COLORS.warningButton, textAlign:'center', marginBottom:30}}>{players.length} de 10 jogadores</Text>
+        <Text style={{fontSize:24, color:players.length > 5 ? COLORS.successButton : COLORS.warningButton, textAlign:'center', marginBottom:30}}>{awaitPlayers} de 10 jogadores</Text>
         </> :
         <Text style={{
           fontSize: 20,

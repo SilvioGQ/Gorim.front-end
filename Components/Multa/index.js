@@ -4,9 +4,11 @@ import { GameContext } from '../../contexts/GameContext';
 import COLORS from '../../constants/colors';
 import ICONS from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
+
 export default function MultaComponent({ item, onclick, display, onClike }) {
+
   const [numero, setNumero] = useState(item.gravity);
-  console.log(item)
+  
   return (
     <View style={styles.container}>
       <View>
