@@ -1,15 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import HistoricoPlayers from '../../../../Components/HistoricoPlayers';
-import { GameContext } from '../../../../contexts/GameContext';
+import { GameContext, getPlayers } from '../../../../contexts/GameContext';
 // import COLORS from '../../constants/colors';
 import Rodada from '../../../../Components/Rodada';
 import FilterNew from '../../../../Components/FilterNew'
 import { Fragment } from 'react';
 const Tela = Dimensions.get('screen').width;
 export default function HistoricoJogadores({ navigation }) {
-  const { players, player } = useContext(GameContext);
+  const { player, stage, data:playersType } = useContext(GameContext);
   const [type, setType] = useState('Agricultor');
+  useEffect(()=>{
+    getPlayers()
+  },[stage])
   return (
     <Fragment>
       <Rodada name={'Histórico Jogadores'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -28,7 +31,8 @@ export default function HistoricoJogadores({ navigation }) {
 
         <ScrollView>
           <View style={styles.whiteRow}>
-            {players.filter((p) => p.type == type && p.city == player.city).map((item) => {
+            {stage === 'GETPLAYERS' &&
+            playersType.filter((p) => p.type == type && p.city == player.city).map((item) => {
               return <HistoricoPlayers key={item.id} player={item} />
             }
             )}
