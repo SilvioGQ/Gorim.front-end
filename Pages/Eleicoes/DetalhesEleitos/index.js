@@ -50,7 +50,7 @@ export default function Detalhes({ navigation }) {
 
                 </View>
                 <View style={styles.numeros}>
-                    <View style={{ width: 300 }} >
+                    <View style={styles.width} >
                         <ScrollView horizontal={true} >
                             <View style={styles.bloquinho}>
                                 <Text style={[styles.texto, { alignSelf: 'center', marginTop: 20 }]}>Eleição Prefeito</Text>
@@ -199,5 +199,8 @@ const styles = StyleSheet.create({
         paddingBottom: 25,
         paddingRight: 25
 
+    },
+    width:{
+        width:300
     }
 });
