@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 // import ModalInfo from '../Components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -30,10 +30,11 @@ const GameProvider = (props) => {
     let callbackUsed = false;
     
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
-    recordStartTime(maxTime, socket.id).then(() => {
+    recordStartTime(maxTime, socket.id).then(startTime => {
       let interval = setInterval(() => {
         
-        recordGetTime(maxTime, socket.id).then(timer => {
+        recordGetTime(startTime, socket.id).then(timer => {
+          console.log(state.timer, timer);
           if (timer === undefined) {
             clearInterval(interval);
           } else {
