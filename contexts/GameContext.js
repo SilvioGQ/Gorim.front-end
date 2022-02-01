@@ -34,7 +34,6 @@ const GameProvider = (props) => {
       let interval = setInterval(() => {
         
         recordGetTime(startTime, socket.id).then(timer => {
-          console.log(state.timer, timer);
           if (timer === undefined) {
             clearInterval(interval);
           } else {

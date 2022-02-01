@@ -80,7 +80,7 @@ export default function Status2({ navigation }) {
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.office ? player.office.slice(0, 3) : 'cid'}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição global: {game.globalPollution + '% => ' + globalPollutionN()}%</Text>
+              <Text style={styles.text3}>Poluição global: {round.globalPollution + '% => ' + globalPollutionN()}%</Text>
             </View>
             <View style={styles.circulo1}>
               <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}
