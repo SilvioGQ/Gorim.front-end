@@ -3,13 +3,17 @@ import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Cargos from '../../../Components/Cargos';
 import Button from '../../../Components/Button';
 import Rodada from '../../../Components/Rodada';
+import Modal from '../../../Components/ModalInfo';
+
 import { addCandidature, GameContext } from '../../../contexts/GameContext';
 import COLORS from '../../../constants/colors';
 const Tela = Dimensions.get('screen').width;
 export default function Candidatura({ navigation }) {
   const { players, player, awaitPlayers, stage } = useContext(GameContext);
   const [isSelected, setSelection] = useState(false);
-
+  const [modalVisible, setModalVisible] = useState('');
+  console.log(isSelected);
+  console.log(setSelection);
   useEffect(() => {
     if (stage === 'INITVOTATION') navigation.navigate('Votacao');
   }, [stage]);
@@ -24,6 +28,9 @@ export default function Candidatura({ navigation }) {
         />
         <Text style={styles.title}>Eleições em {"\n"}{player.city}</Text>
       </View>
+      {modalVisible !== '' && (
+        <Modal onClick={() => setModalVisible('')} text={modalVisible} />
+      )}
       <View style={styles.texto}>
         <Text style={styles.paragrafo}>Antes de começar, a cidade de {player.city} precisa de representantes e reguladores que serão responsáveis por gerir os recursos públicos em busca de alinhar lucro e meio ambiente. Você pode se candidatar à estes cargos e, logo, haverá uma votação para eleger os líderes da cidade! </Text>
       </View>
@@ -31,7 +38,7 @@ export default function Candidatura({ navigation }) {
           <Cargos isSelected={isSelected} setSelection={setSelection} />
       </View>
       <Button
-        onClick={() => { addCandidature(isSelected);  }  }
+        onClick={() => { isSelected !== false ? addCandidature(isSelected) : setModalVisible('Selecione alguma opção');   }  }
         name='CANDIDATAR'
       />
       <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom:20, color:COLORS.warningButton}}>{awaitPlayers} de {players.length} se candidataram</Text>
