@@ -12,6 +12,8 @@ export default function Cenario({ navigation }) {
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
+  const [open7, setOpen7] = useState(false);
+
   const { player, game, oldLogs } = useContext(GameContext);
   const rotateZ = open ? "180deg" : "0deg";
   const rotateZ2 = open2 ? "180deg" : "0deg";
@@ -19,6 +21,14 @@ export default function Cenario({ navigation }) {
   const rotateZ4 = open4 ? "180deg" : "0deg";
   const rotateZ5 = open5 ? "180deg" : "0deg";
   const rotateZ6 = open6 ? "180deg" : "0deg";
+  const rotateZ7 = open7 ? "180deg" : "0deg";
+
+  // console.log(
+  //   oldLogs.find(p => p.id === player.id).logs.filter((item) => {
+  //       return item;
+  //   }));
+  // console.log(oldLogs);
+
   return (
     <ScrollView>
       <View>
@@ -60,24 +70,42 @@ export default function Cenario({ navigation }) {
                 </View>
               </View>
               {player.type === 'Agricultor' ?
-                <View style={styles.backgreen}>
+                <><View style={styles.backgreen}>
                   <View style={styles.whiteRow}>
                     <Text style={[styles.subtitle, {
                       marginLeft: 10,
                       marginTop: 10
                     }]}>Parcela</Text>
-                    <TouchableOpacity onPress={() => { setOpen(!open) }}>
-                      <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ }] }} source={require('../../../assets/dropdown.png')} />
+                    <TouchableOpacity onPress={() => { setOpen(!open); } }>
+                      <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ7 }] }} source={require('../../../assets/dropdown.png')} />
                     </TouchableOpacity>
                   </View>
                   <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
                     {oldLogs.find(p => p.id === player.id).logs.filter((item) => item.type == 'plantation').length > 0 ? oldLogs.find(p => p.id === player.id).logs.filter((item) => item.type == 'plantation').map((item, index) => {
-                      return <Text style={[styles.texto]} key={index}>Parcela {item.parcelLand.id + 1}{'\n'}Semente: {item.parcelLand.seed},{item.parcelLand.pesticide ? ` Agrotóxico: ${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''}{item.parcelLand.fertilizer ? ` Fertilizante: ${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''}{item.parcelLand.machine ? ` Máquina: ${item.parcelLand.machine},` : ''} Pulverizador:{item.parcelLand.spray ? ' Sim' : ' Não'}{'\n'}</Text>
+                      return <Text style={[styles.texto]} key={index}>Parcela {item.parcelLand.id + 1}{'\n'}Semente: {item.parcelLand.seed},{item.parcelLand.pesticide ? ` Agrotóxico: ${item.parcelLand.pesticide.replace(/Agrotóxico /, '')},` : ''}{item.parcelLand.fertilizer ? ` Fertilizante: ${item.parcelLand.fertilizer.replace(/Fertilizante /, '')},` : ''}{item.parcelLand.machine ? ` Máquina: ${item.parcelLand.machine},` : ''} Pulverizador:{item.parcelLand.spray ? ' Sim' : ' Não'}{'\n'}</Text>;
                     })
                       :
-                      <Text style={[styles.textonao]}>Você não plantou</Text>
-                    }</View>
+                      <Text style={[styles.textonao]}>Você não plantou</Text>}
+                      </View>
                 </View>
+                <View style={styles.backgreen}>
+                    <View style={styles.whiteRow}>
+                      <Text style={[styles.subtitle, {
+                        marginLeft: 10,
+                        marginTop: 10
+                      }]}>Selos</Text>
+                      <TouchableOpacity onPress={() => { setOpen7(!open7); } }>
+                        <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ7 }] }} source={require('../../../assets/dropdown.png')} />
+                      </TouchableOpacity>
+                    </View>
+                    <View style={{ display: open7 ? 'flex' : 'none' }}>
+                      {oldLogs.find(p => p.id === player.id).logs.filter((item) => item.type == 'stamp').length > 0 ? oldLogs.find(p => p.id === player.id).logs.filter((item) => item.type == 'stamp').map((item, index) => {
+                        return <Text style={[styles.texto]} key={index}>{`Você recebeu ${item.amount} selos`}</Text>;
+                      })
+                        :
+                        <Text style={[styles.textonao]}>Você não recebeu selos</Text>}
+                    </View>
+                  </View></>
                 :
                 null
               }

@@ -30,7 +30,7 @@ export default function Votacao({ navigation }) {
 
   const playerList = (item) => {
     if (item === '') {
-      return { name: 'Voto Branco' };
+      return { name: 'Voto Branco', avatar: 'VotoBranco' };
     } else {
       return players.find((i) => i.id === item)
     }
