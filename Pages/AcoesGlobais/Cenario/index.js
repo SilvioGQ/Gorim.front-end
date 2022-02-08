@@ -22,7 +22,7 @@ export default function Cenario({ navigation }) {
   useEffect(() => {
     calcPlayerTax();
     disableNotifyScene();
-    player.office ? null : setType('tax')
+    // player.office ? null : setType('tax')
   }, []);
   const globalProductionN = ()=>{
     if(game.globalProduction.toString().indexOf('.00') !== -1){
@@ -36,6 +36,7 @@ export default function Cenario({ navigation }) {
     }
     else return game.globalPollution
   }
+
   // const finded = (type) =>{
   //   players.find((item) => item.office === "Prefeito" && item.city === player.city).length > 0 ?  players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).length == 0 ?  <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type)((item, index) => {
   //     if (item.type === 'tax' || item.type === 'prevention') {

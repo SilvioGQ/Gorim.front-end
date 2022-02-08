@@ -100,7 +100,7 @@ export default function Cenario({ navigation }) {
                     </View>
                     <View style={{ display: open7 ? 'flex' : 'none' }}>
                       {oldLogs.find(p => p.id === player.id).logs.filter((item) => item.type == 'stamp').length > 0 ? oldLogs.find(p => p.id === player.id).logs.filter((item) => item.type == 'stamp').map((item, index) => {
-                        return <Text style={[styles.texto]} key={index}>{`Você recebeu ${item.amount} selos`}</Text>;
+                        return <Text style={[styles.texto]} key={index}>{`A sua parcela ${item.parcelId+1} recebeu um selo`}</Text>;
                       })
                         :
                         <Text style={[styles.textonao]}>Você não recebeu selos</Text>}
