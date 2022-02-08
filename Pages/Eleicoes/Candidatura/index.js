@@ -12,9 +12,8 @@ export default function Candidatura({ navigation }) {
   const { players, player, awaitPlayers, stage } = useContext(GameContext);
   const [isSelected, setSelection] = useState(false);
   const [modalVisible, setModalVisible] = useState('');
-  console.log(isSelected);
-  console.log(setSelection);
-  useEffect(() => {
+
+	useEffect(() => {
     if (stage === 'INITVOTATION') navigation.navigate('Votacao');
   }, [stage]);
   

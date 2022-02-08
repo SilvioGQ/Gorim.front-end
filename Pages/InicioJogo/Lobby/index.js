@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native';
-import { GameContext, removeToRoom, startGame, makeRaffle } from '../../../contexts/GameContext';
+import { GameContext, removeToRoom, startGame } from '../../../contexts/GameContext';
 
 import COLORS from '../../../constants/colors';
 import Button from '../../../Components/Button';
@@ -52,7 +52,7 @@ export default function Lobby({ navigation }) {
       {player.host ? 
       <>
 
-        <Button name='começar' onClick={() => { startGame(); makeRaffle(); }} />
+        <Button name='começar' onClick={() => startGame()} />
         <Text style={{fontSize:24, color:players.length > 5 ? COLORS.successButton : COLORS.warningButton, textAlign:'center', marginBottom:30}}>{awaitPlayers} de 10 jogadores</Text>
         </> :
         <Text style={{

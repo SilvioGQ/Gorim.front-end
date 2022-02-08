@@ -6,12 +6,7 @@ export default function SorteioJogador({ navigation }) {
   const { stage } = useContext(GameContext);
 
   useEffect(() => {
-    if (stage === 'RAFFLED') {
-      setTimeout(() => {
-        navigation.reset({ routes: [{ name: 'SelecaoPersonagem' }] });
-      }, 2000);
-    }
-
+    if (stage === 'RAFFLED') navigation.reset({ routes: [{ name: 'SelecaoPersonagem' }] });
   }, [stage]);
 
   return (

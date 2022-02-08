@@ -202,10 +202,6 @@ const startGame = () => {
   socket.emit('startGame');
 }
 
-const makeRaffle = () => {
-  socket.emit('makeRaffle');
-}
-
 const selectAvatar = (avatar) => {
   socket.emit('selectAvatar', avatar);
 }
@@ -342,7 +338,6 @@ export {
   joinToRoom,
   removeToRoom,
   startGame,
-  makeRaffle,
   selectAvatar,
   selectedAvatars,
   toPlant,
