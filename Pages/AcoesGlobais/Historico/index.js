@@ -100,7 +100,7 @@ export default function Cenario({ navigation }) {
                     </View>
                     <View style={{ display: open7 ? 'flex' : 'none' }}>
                       {oldLogs.find(p => p.id === player.id).logs.filter((item) => item.type == 'stamp').length > 0 ? oldLogs.find(p => p.id === player.id).logs.filter((item) => item.type == 'stamp').map((item, index) => {
-                        return <Text style={[styles.texto]} key={index}>{`A sua parcela ${item.parcelId+1} recebeu um selo`}</Text>;
+                        return <Text style={[styles.texto]} key={index}>{`Parcela ${item.parcelId+1} recebeu selo`}</Text>;
                       })
                         :
                         <Text style={[styles.textonao]}>Você não recebeu selos</Text>}
@@ -201,7 +201,7 @@ export default function Cenario({ navigation }) {
                     </View>
                     <View style={{ display: open3 ? 'flex' : 'none' }}>
                       {oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => item.type == 'stamp').length > 0 ? oldLogs.find(p => p.id === player.id).logsOffice.filter((item) => item.type == 'stamp').map((item, index) => {
-                        return <Text style={[styles.texto]} key={index}>{`Você concedeu ${item.amount} selo(s),para o ${item.namePlayer}`}</Text>
+                        return <Text style={[styles.texto]} key={index}>{`Você concedeu selo para a parcela ${item.parcelId+1} do Agricultor ${item.namePlayer}`}</Text>
                       })
                         :
                         <Text style={[styles.textonao]}>Você não concedeu selos</Text>
