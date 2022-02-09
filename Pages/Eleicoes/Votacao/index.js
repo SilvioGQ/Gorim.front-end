@@ -38,7 +38,7 @@ export default function Votacao({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Votação'} />
+      <Rodada />
       <ScrollView>
       <View style={styles.self}>
         <Image

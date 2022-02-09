@@ -19,7 +19,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
   
   return (
     <View style={styles.container}>
-      <Rodada name={'Fazer transferência'} arrow={true} onClick={()=>navigation.goBack()}/>
+      <Rodada arrow={true} onClick={()=>navigation.goBack()}/>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.text}>Fazer transferência</Text>
         <Image style={styles.logo} source={require('../../../../assets/symbols/transfer.png')} />

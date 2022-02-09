@@ -11,7 +11,7 @@ export default function Multa({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Ver mais'} arrow={true} onClick={() => navigation.navigate('Multa')} />
+      <Rodada arrow={true} onClick={() => navigation.navigate('Multa')} />
       {client.type == 'Agricultor' ?
         <View>
           <View style={styles.row}>

@@ -45,7 +45,7 @@ export default function Propostas({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Checar anúncios'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
+      <Rodada arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <View style={{flex:1}}>

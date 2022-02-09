@@ -19,7 +19,7 @@ export default function Multa({ navigation }) {
   
   return (
     <View style={styles.container}>
-      <Rodada name={'Multa'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <View style={styles.row}>
         <Image
           style={styles.image}

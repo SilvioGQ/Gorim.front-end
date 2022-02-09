@@ -4,7 +4,7 @@ import { GameContext } from '../../contexts/GameContext';
 import COLORS from '../../constants/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function Rodada({ removeFromRoom = null, close = null, name, setModalVisible, arrow = null, onClick = null }) {
+export default function Rodada({ removeFromRoom = null, close = null, setModalVisible, arrow = null, onClick = null }) {
 
   const { timer } = useContext(GameContext);
 
@@ -17,10 +17,10 @@ export default function Rodada({ removeFromRoom = null, close = null, name, setM
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textLarge}>{name} {stringTimer(timer)}</Text>
+      <Text style={styles.textLarge}>Tempo {stringTimer(timer)}</Text>
       {close && (
         <>
-          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '83%', top: 25 }}  >
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '83%', top: 20, padding:5, backgroundColor:'red', borderRadius:50}}  >
             <Text style={styles.textExit}>Sair</Text>
           </TouchableOpacity>
         </>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   textExit: {
     color: '#ffffff',
-    fontSize: Tela > 350 ? 17 : 15,
+    fontSize: 15,
     fontFamily: 'Rubik_700Bold',
     textAlign: 'center',
   },

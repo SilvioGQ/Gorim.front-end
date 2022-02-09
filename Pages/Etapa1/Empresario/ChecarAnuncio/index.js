@@ -18,7 +18,7 @@ export default function ChecarAnuncio({ navigation }) {
   const { player } = useContext(GameContext);
   return (
     <View style={styles.container}>
-      <Rodada name={'Checar anúncios'} arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
       <HeaderIcons name={'Checar \nAnúncios'} icon='Checar Anúncios'/>
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}

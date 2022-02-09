@@ -36,7 +36,7 @@ export default function Detalhes({ navigation }) {
     }, [stage])
     return (
         <View style={styles.container}>
-            <Rodada name={'Detalhes'} />
+            <Rodada />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.self}>
                     <Image

@@ -30,7 +30,7 @@ export default function Prevencao({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={player.office === 'Vereador' ? 'Sugerir Medidas' : 'Aplicar Medidas'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <Coin coin={player.serviceSalary} />
       <View style={styles.espaco}>
         <Image

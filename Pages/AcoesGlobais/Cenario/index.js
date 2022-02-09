@@ -49,7 +49,7 @@ export default function Cenario({ navigation }) {
   // }
   return (
     <View>
-      <Rodada name={'Cenário'} arrow={true} onClick={() => navigation.goBack()} />
+      <Rodada arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
         <View style={styles.container}>
           {player.office && game.phase == 2 ? <Coin coin={game.phase === 1 ? player.coin : player.serviceSalary} /> : null}

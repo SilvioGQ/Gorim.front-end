@@ -35,7 +35,7 @@ export default function Eleitos({ navigation }) {
   
   return (
     <View style={styles.container}>
-      <Rodada name={'Resultados das eleições'} />
+      <Rodada />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.self}>
           <Image

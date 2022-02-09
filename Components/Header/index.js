@@ -28,11 +28,13 @@ export default function Header({ typeMenu = 'player' }) {
   }
 
   return (
-    <View style={styles.row}>
+    <View style={styles.container}>
+      <View style={styles.row}>
       <Image style={styles.person} source={ICONS[player.avatar]} />
       <Text style={styles.header}>{`${getTypeMenu()}/${player.name}\nem ${player.city}`}</Text>
+      </View>
       <View>
-        <View style={{ flexDirection: 'row'}}>
+        <View style={styles.row}>
           <Image
             style={styles.pollution}
             source={require('../../assets/agricultorIcones/Barril.png')}
@@ -46,12 +48,16 @@ export default function Header({ typeMenu = 'player' }) {
 }
 
 const styles = StyleSheet.create({
-  row: {
+  container: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
+    justifyContent:'space-between',
     marginVertical: 10,
     marginLeft: 20,
     width: '90%'
+  },
+  row:{
+    flexDirection: 'row'
   },
   header: {
     fontFamily: 'Rubik_400Regular',

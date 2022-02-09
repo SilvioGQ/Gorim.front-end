@@ -32,7 +32,7 @@ export default function Cenario({ navigation }) {
   return (
     <ScrollView>
       <View>
-        <Rodada name={'Historico'} arrow={true} onClick={() => navigation.goBack()} />
+        <Rodada arrow={true} onClick={() => navigation.goBack()} />
         <View style={styles.container}>
           <Text style={styles.header}>HISTÓRICO</Text>
           <Text style={styles.rodada}>RODADA {game.round - 1}</Text>

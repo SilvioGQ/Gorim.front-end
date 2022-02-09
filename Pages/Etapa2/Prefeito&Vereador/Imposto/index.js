@@ -34,7 +34,7 @@ const apply = ()=>{
 }
   return (
     <View style={styles.container}>
-      <Rodada name={player.office === 'Vereador' ? 'Sugerir impostos' : 'Aplicar impostos'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <ScrollView>
         <Coin coin={player.serviceSalary} />
         <View style={styles.espaco}>
