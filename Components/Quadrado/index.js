@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     elevation: 6
   },
   textinhos: {
-    
     fontSize: 10,
   },
   icone: {

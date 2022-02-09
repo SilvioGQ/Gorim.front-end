@@ -20,6 +20,7 @@ export default function AnalisarProdutos({navigation}) {
   }, []);
 
   const selectType = () => {
+    console.log(products)
     if (type !== '') {
       return products.filter(i => i.type == type);
     } else {

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 60,
+    paddingVertical: 30,
   },
   containerescuro: {
     flex: 1,
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
   },
   text3: {
     marginLeft: 20,
-    marginTop: 14,
-    fontSize: Tela > 350 ? 18 : 16,
+    marginTop: 17,
+    fontSize: 16,
   },
   img: {
     height: 85,
