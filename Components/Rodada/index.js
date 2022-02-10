@@ -20,7 +20,7 @@ export default function Rodada({ removeFromRoom = null, close = null, setModalVi
       <Text style={styles.textLarge}>Tempo {stringTimer(timer)}</Text>
       {close && (
         <>
-          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '83%', top: 20, padding:5, backgroundColor:'red', borderRadius:50}}  >
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.botaosair}  >
             <Text style={styles.textExit}>Sair</Text>
           </TouchableOpacity>
         </>
@@ -65,5 +65,23 @@ const styles = StyleSheet.create({
     width:25,
     height:25,
     tintColor:'#fff'
+  },
+  botaosair: {
+    alignSelf: 'center', 
+    position: 'absolute', 
+    left: '78%', 
+    top: 20, 
+    paddingVertical: 7, 
+    paddingHorizontal: 20, 
+    backgroundColor: '#E84857', 
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 5.46,
+    elevation: 3,
   }
 });

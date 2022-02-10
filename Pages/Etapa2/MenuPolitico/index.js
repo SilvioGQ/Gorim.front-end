@@ -39,6 +39,9 @@ export default function MenuPolitico({ navigation }) {
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
       <Rodada removeFromRoom={removeFromRoom} close={true} name={`${game.round}ª Rodada - ${game.phase}ª Etapa`} setModalVisible={setModalVisible} />
+      <View>
+        <Text style={styles.rodada}>{game.round}ª Rodada - {game.phase}ª Etapa</Text>
+      </View>
       <Header typeMenu="politic" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {modalVisible2 && <ModalAsk finish={() => {endRound(); navigation.reset({routes: [{name: 'AguardarJogadores' }] });} } back={() => setModalVisible2(!modalVisible2)} />}
@@ -108,5 +111,13 @@ const styles = StyleSheet.create({
     width: 96, 
     height: 92, 
     borderRadius: 20
+  },
+  rodada: {
+    fontFamily: 'Rubik_700Bold',
+    color: '#4A8A00',
+    fontSize: 20,
+    marginVertical: 15,
+    textAlign: 'center'
+
   }
 });
