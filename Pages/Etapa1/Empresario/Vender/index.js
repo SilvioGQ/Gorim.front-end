@@ -22,21 +22,30 @@ export default function Vendas({ navigation, route }) {
   const [selectClient, setSelectClient] = useState(-1);
   const [selectAmount, setSelectAmount] = useState(0);
   const { players, player, data: product, stage } = useContext(GameContext);
+	const [sendAdvert, setSendAdvert] = useState(false);
+	const [priceType, setPriceType] = useState("");
 
   useEffect(() => {
     getProducts(name);
   }, []);
 
+	useEffect(() => {
+		if (sendAdvert) {
+			navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada!' } }] });
+		}
+
+		return () => { if (sendAdvert) addAdvert(name, player.specialty, selectPrice, selectClient, selectAmount, priceType); }
+	}, [sendAdvert]);
+
   const confirmTransfer = () => {
-    let priceType;
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
     if (selectAmount == -1 || selectAmount == 0) return setModalText('Selecione a quantidade!');
-    if (selectPrice == product.cheap) priceType = 'Baixo';
-    if (selectPrice == product.medium) priceType = 'Normal';
-    if (selectPrice == product.expensive) priceType = 'Alto';
-    addAdvert(name, player.specialty, selectPrice, selectClient, selectAmount, priceType);
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada!' } }] });
+    if (selectPrice == product.cheap) setPriceType('Baixo');
+    if (selectPrice == product.medium) setPriceType('Normal');
+    if (selectPrice == product.expensive) setPriceType('Alto');
+    
+		setSendAdvert(true);
   }
   
   const information = () => {
