@@ -62,7 +62,7 @@ export default function Parcela({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Parcela de terra'} arrow={true} onClick={() => navigation.goBack()} />
+      <Rodada arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
       <HeaderIcons name={'Aplicação \nem parcela'} icon='Aplicação em parcela'/>
         {parcelLand.planted && !parcelLand.requestStamp && parcelLand.pesticide === null && (

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { GameContext, getProducts, addAdvert } from "../../../../contexts/GameContext";
-
+const Tela = Dimensions.get('screen').width;
 import Button from '../../../../Components/Button';
 import Quadrados from '../../../../Components/Quadrado';
 import Modal from '../../../../Components/ModalInfo'
@@ -54,9 +54,14 @@ export default function Vendas({ navigation, route }) {
     
     return p;
   }
+  const Price = [
+    {id:1, nome: 'Baixo', valor: product?.cheap, icon: IMAGESCOINS["Baixo"]},
+    {id:2, nome: 'Médio', valor: product?.medium, icon: IMAGESCOINS["Normal"]},
+    {id:3, nome: 'Alto', valor: product?.expensive, icon: IMAGESCOINS["Alto"]},
+  ]
   return (
     <View style={styles.container}>
-      <Rodada name={'Criar Anúncio'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
+      <Rodada arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Coin coin={player.coin} />
         <View style={styles.center}>
@@ -67,38 +72,24 @@ export default function Vendas({ navigation, route }) {
           </TouchableOpacity>
         </View>
         <Text style={styles.textos}> Clientes: </Text>
-        <View style={{ marginHorizontal: 10, flexDirection: 'row', width: '100%', flexWrap: 'wrap' }}>
+        <View style={styles.alignQuadrado}>
           {filterPlayers().map((item) => <Quadrados abr={false}  key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'}/>)}
         </View>
         {modalText !== '' && (
           <Modal onClick={() => setModalText('')} text={modalText} />
         )}
         <Text style={styles.textos}> Valor: </Text>
-        {stage === 'GETPRODUCTS' && (
-          <View style={styles.row}>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.cheap)}  >
-              <View style={[styles.colunm, { backgroundColor: selectPrice == product?.cheap ? "#8ACF3A" : '#fff' }]}>
-                <Image style={styles.icone} source={IMAGESCOINS["Baixo"]} />
-                <Text style={[styles.categoryprice, { color: selectPrice == product?.cheap ? "#fff" : '#000'}]}>Baixo</Text>
-                <Text style={[styles.price, { color: selectPrice == product?.cheap ? "#fff" : '#000' }]}>${product?.cheap}</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.medium)}  >
-              <View style={[styles.colunm, { backgroundColor: selectPrice == product?.medium ? "#8ACF3A" : '#fff' }]}>
-                <Image style={styles.icone} source={IMAGESCOINS["Normal"]} />
-                <Text style={[styles.categoryprice, { color: selectPrice == product?.medium ? "#fff" : '#000' }]}>Normal</Text>
-                <Text style={[styles.price, { color: selectPrice == product?.medium ? "#fff" : '#000' }]}>${product?.medium}</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSelectPrice(product?.expensive)}  >
-              <View style={[styles.colunm, { backgroundColor: selectPrice == product?.expensive ? "#8ACF3A" : '#fff' }]}>
-                <Image style={styles.icone} source={IMAGESCOINS["Alto"]} />
-                <Text style={[styles.categoryprice, { color: selectPrice == product?.expensive ? "#fff" : '#000' }]}>Alto</Text>
-                <Text style={[styles.price, { color: selectPrice == product?.expensive ? "#fff" : '#000' }]}>${product?.expensive}</Text>
-              </View>
-            </TouchableOpacity>
+        <View style={styles.alignQuadrado}>
+          {Price.map((item) => (
+          <TouchableOpacity key={item.id} onPress={() => setSelectPrice(item.valor)}  >
+          <View style={[styles.colunm, { backgroundColor: selectPrice == item.valor ? "#8ACF3A" : '#fff' }]}>
+            <Image style={styles.icone} source={item.icon} />
+            <Text style={[styles.categoryprice, { color: selectPrice == item.valor ? "#fff" : '#000'}]}>{item.nome}</Text>
+            <Text style={[styles.price, { color: selectPrice == item.valor ? "#fff" : '#000' }]}>${item.valor}</Text>
           </View>
-        )}
+        </TouchableOpacity>
+          ))}
+          </View>
         <Text style={{ fontSize: 18,  marginHorizontal: 15, marginTop: 30, marginBottom: 15 }}>Quantidade:</Text>
         {selectClient == -1 && <CaixaDeValor value={selectAmount} setValue={setSelectAmount} increment={1} />}
         {selectClient !== -1 && <Quantidades selectAmount={selectAmount} setSelectAmount={setSelectAmount} />}
@@ -136,9 +127,10 @@ const styles = StyleSheet.create({
   colunm: {
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 7,
     backgroundColor: COLORS.textWhite,
-    width: 90,
-    height: 78,
+    width: Tela > 350 ? 90 : 80,
+    height: Tela > 350 ? 78 : 68,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -147,17 +139,14 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
-
     elevation: 6
   },
   header: {
-    
     fontSize: 20,
     marginLeft: 10
   },
   textos: {
     fontSize: 18,
-    
     marginHorizontal: 15,
     marginTop: 30
   },
@@ -168,5 +157,11 @@ const styles = StyleSheet.create({
   icone: {
     width: 35,
     height: 35,
+  },
+  alignQuadrado: {
+    marginHorizontal: 10, 
+    flexDirection: 'row', 
+    width: '100%', 
+    flexWrap: 'wrap' 
   }
 });

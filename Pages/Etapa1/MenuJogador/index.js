@@ -40,8 +40,10 @@ export default function MenuJogador({ navigation }) {
     <View style={styles.container}>
       <StatusBar backgroundColor={'#58AB23'} StatusBarStyle='light-content' />
 
-      <Rodada removeFromRoom={removeFromRoom} close={true} name={`${game.round}ª Rodada - ${game.phase}ª Etapa`} setModalVisible={setModalVisible} />
-
+      <Rodada removeFromRoom={removeFromRoom} close={true} setModalVisible={setModalVisible} />
+      <View>
+        <Text style={styles.rodada}>{game.round}ª Rodada - {game.phase}ª Etapa</Text>
+      </View>
       <Header typeMenu="player" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
       {modalVisible2 && <ModalAsk finish={() => { endStage(); navigation.reset({ routes: [{ name: 'AguardarJogadores' }] }); }} back={() => setModalVisible2(!modalVisible2)} />}
@@ -193,4 +195,12 @@ const styles = StyleSheet.create({
 
     color: '#fff',
   },
+  rodada: {
+    fontFamily: 'Rubik_700Bold',
+    color: '#4A8A00',
+    fontSize: 20,
+    marginVertical: 15,
+    textAlign: 'center'
+
+  }
 });

@@ -20,6 +20,7 @@ export default function AnalisarProdutos({navigation}) {
   }, []);
 
   const selectType = () => {
+    console.log(products)
     if (type !== '') {
       return products.filter(i => i.type == type);
     } else {
@@ -29,7 +30,7 @@ export default function AnalisarProdutos({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Analisar produtos'} arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
+      <Rodada arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
         <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }} onPress={() => setModalText('Legenda:')}  >
         <HeaderIcons name={'Analisar \nprodutos'} icon='Analisar produtos'/>
           <Image source={require('../../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />

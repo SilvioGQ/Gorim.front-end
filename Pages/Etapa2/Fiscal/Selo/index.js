@@ -34,7 +34,7 @@ export default function Selo({ navigation, route }) {
 
   return (
     <View style={{ flex: 1, marginBottom: 30 }}>
-      <Rodada name={'Selo'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.row}>

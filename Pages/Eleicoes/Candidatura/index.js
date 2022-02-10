@@ -19,7 +19,7 @@ export default function Candidatura({ navigation }) {
   
   return (
     <View style={styles.container}>
-      <Rodada name={'Candidatura'} />
+      <Rodada />
       <View style={styles.row}>
         <Image
           style={styles.logo}

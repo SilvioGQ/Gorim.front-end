@@ -18,7 +18,7 @@ export default function Sugestoes({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Sugestões'} arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <Rodada  arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <Coin coin={player.serviceSalary} />
       <HeaderIcons name={'Sugestões'} icon='Sugestões'/>
       {player.office === 'Prefeito' && (

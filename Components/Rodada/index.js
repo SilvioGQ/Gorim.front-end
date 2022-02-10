@@ -4,7 +4,7 @@ import { GameContext } from '../../contexts/GameContext';
 import COLORS from '../../constants/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function Rodada({ removeFromRoom = null, close = null, name, setModalVisible, arrow = null, onClick = null }) {
+export default function Rodada({ removeFromRoom = null, close = null, setModalVisible, arrow = null, onClick = null }) {
 
   const { timer } = useContext(GameContext);
 
@@ -17,10 +17,10 @@ export default function Rodada({ removeFromRoom = null, close = null, name, setM
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textLarge}>{name} {stringTimer(timer)}</Text>
+      <Text style={styles.textLarge}>Tempo {stringTimer(timer)}</Text>
       {close && (
         <>
-          <TouchableOpacity onPress={() => setModalVisible(true)} style={{ alignSelf: 'center', position: 'absolute', left: '83%', top: 25 }}  >
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.botaosair}  >
             <Text style={styles.textExit}>Sair</Text>
           </TouchableOpacity>
         </>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   textExit: {
     color: '#ffffff',
-    fontSize: Tela > 350 ? 17 : 15,
+    fontSize: 15,
     fontFamily: 'Rubik_700Bold',
     textAlign: 'center',
   },
@@ -65,5 +65,23 @@ const styles = StyleSheet.create({
     width:25,
     height:25,
     tintColor:'#fff'
+  },
+  botaosair: {
+    alignSelf: 'center', 
+    position: 'absolute', 
+    left: '78%', 
+    top: 20, 
+    paddingVertical: 7, 
+    paddingHorizontal: 20, 
+    backgroundColor: '#E84857', 
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 5.46,
+    elevation: 3,
   }
 });
