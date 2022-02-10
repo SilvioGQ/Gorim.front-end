@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, } from 'react-native';
 import { GameContext, makeTransfer } from "../../../../contexts/GameContext";
 
@@ -10,12 +10,16 @@ const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest, type, provider, nameDest } = route.params;
-  const {game } = useContext(GameContext);
+  const { game } = useContext(GameContext);
+	const [confirmTransfer, setConfirmTransfer] = useState(false);
 
-  const make = () => {
-    makeTransfer(count, idDest, provider, type);
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
-  }
+	useEffect(() => {
+		if (confirmTransfer) {
+			navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
+		}
+
+		return () => { if (confirmTransfer) makeTransfer(count, idDest, provider, type); }
+	}, [confirmTransfer]);
   
   return (
     <View style={styles.container}>
@@ -26,7 +30,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text}> Deseja confirmar a transação para {nameDest}?</Text>
         <Text style={styles.text2}>${JSON.stringify(count)} </Text>
         <View style={{ marginVertical: 10 }}>
-          <Button onClick={make} name='CONTINUAR' />
+          <Button onClick={() => setConfirmTransfer(true)} name='CONTINUAR' />
           <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name:game.phase=== 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button}  >
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
