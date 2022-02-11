@@ -32,7 +32,7 @@ export default function ChecarAnuncio({ navigation }) {
             showsVerticalScrollIndicator={false}
             data={player.offers.filter(offer => offer.idBuyer === -1)}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={id => deleteAdvert(id)} />}
+            renderItem={({ item, index }) => <Anuncio key={index} item={item} Historico={() => navigation.navigate('Cenario')} deleteAdvert={offer => deleteAdvert(offer)} />}
           />
         :
         player.offers.filter(offer => offer.idBuyer !== -1).length === 0 ?

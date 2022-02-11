@@ -27,7 +27,7 @@ export default function Anuncio({ item, Historico, deleteAdvert }) {
           <Text style={styles.textBold}>{item.priceType}</Text>
         </View>
         <Text style={styles.textNormal}>${item.price}</Text>
-        <TouchableOpacity onPress={() => deleteAdvert(item.id)}  >
+        <TouchableOpacity onPress={() => deleteAdvert(item)}  >
           <Image source={require('../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
         </TouchableOpacity>
       </View>
