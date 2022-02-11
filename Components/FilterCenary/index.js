@@ -62,10 +62,10 @@ export default function FilterCenary({ type, setType }) {
 			{!player.office && game.phase=== 2 && (
 				<>
 					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'tax' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('tax') }}>
-						<Text style={[styles.textSmall, { color: type == 'tax' ? '#fff' : '#000' }]}>pre/Imposto</Text>
+						<Text style={[styles.textSmall, { color: type == 'tax' ? '#fff' : '#000' }]}>Pre/Imposto</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={[styles.buttonEmp, { backgroundColor: type == 'prevention' ? "#8ACF3A" : '#fff' }]} onPress={() => { setType('prevention') }}>
-						<Text style={[styles.textSmall, { color: type == 'prevention' ? '#fff' : '#000' }]}>pre/Prevenção</Text>
+						<Text style={[styles.textSmall, { color: type == 'prevention' ? '#fff' : '#000' }]}>Pre/Prevenção</Text>
 					</TouchableOpacity>
 				</>
 			)}

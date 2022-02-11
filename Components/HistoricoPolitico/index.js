@@ -9,9 +9,6 @@ const Tela = Dimensions.get('screen').width;
 
 export default function HistoricoPolitico({ item }) {
     const { player } = useContext(GameContext);
-    let quantidade = player.logsOffice.filter((item) => item.type === 'stamp').length;
-    // console.log(item.length)
-    
     
     return (
         <View style={styles.colunm}>
@@ -27,9 +24,9 @@ export default function HistoricoPolitico({ item }) {
                         </View>
 
                         <View>
-                            <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'stamp' ? `${quantidade} selos ` : `$${item.value}`} </Text>
+                            <Text style={[styles.text, { marginTop: 5 }]}>{item.type === 'stamp' ? `Parcela ${item.idParcel+1}` : `$${item.value}`} </Text>
                             <Image source={require('../../assets/Arrow.png')} style={{ width: 120, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
-                            <Text style={styles.text}>{item.type === 'stamp' ? `concedidos` : `${item.gravity}`}</Text>
+                            <Text style={styles.text}>{item.type === 'stamp' ? `concedido` : `${item.gravity}`}</Text>
                         </View>
                         <View>
                             <Image
