@@ -6,12 +6,17 @@ const Tela = Dimensions.get('screen').width;
 export default function Quadrados({ player = null, onClick, backgroundColor, color, icon=null, abr }) {
   return (
     <TouchableOpacity onPress={onClick}  >
+     
       <View style={[styles.colunm, { backgroundColor: backgroundColor }]} >
-        <Image style={styles.icone} source={player ? ICONS[player.avatar] : ICONS[icon]} />
         {player ? 
-        <Text style={[styles.textinhos, { color: color }]}>{abr ? `${abr}/${player.name}` : player.name}</Text>
+          <Text style={[styles.textinhos, { color: color }]}>{player.name}</Text>
       :
       null}
+        <Image style={styles.icone} source={player ? ICONS[player.avatar] : ICONS[icon]} />
+        {player ?
+          <Text style={[styles.textinhos, { color: color }]}>{abr ? `${abr} - ${player.city}` : player.city}</Text>
+          :
+          null}
       </View>
     </TouchableOpacity>
   );

@@ -5,13 +5,12 @@ import Coin from '../Coin';
 import { GameContext } from "../../contexts/GameContext";
 
 export default function Header({ typeMenu = 'player' }) {
-
   const { player, game } = useContext(GameContext);
   const globalPollutionN = () => {
-    if (game.globalPollution.toString().indexOf('.00') !== -1) {
-      return game.globalPollution.toString().slice(0, -3)
+    if (game.globalPollution.toString().indexOf('.') !== -1) {
+      return game.globalPollution.toFixed(2)
     }
-    else return game.globalPollution
+    return game.globalPollution
   }
   const mudarcor = (valor) => {
     if (valor >= 0 && valor <= 50) return '#FF0000';

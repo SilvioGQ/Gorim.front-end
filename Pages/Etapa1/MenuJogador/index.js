@@ -117,7 +117,7 @@ export default function MenuJogador({ navigation }) {
           {player.type === 'Agricultor' ?
             <TouchableOpacity style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]} onPress={() => setModalText('Poluição é a soma da poluição de cada parcela dividida por 6.')}  >
               <View style={{ flexDirection: 'row' }}>
-                {player.pollution ? <Text style={styles.textBar}>{player.pollution.toString().indexOf('.00') !== -1 ? player.pollution : player.pollution}</Text> : <Text style={styles.textBar}>0</Text>}
+                {player.pollution ? <Text style={styles.textBar}>{player.pollution.toString().indexOf('.') !== -1 ? player.pollution.toFixed(2) : player.pollution}</Text> : <Text style={styles.textBar}>0</Text>}
                 <Image source={require('../../../assets/agricultorIcones/information.png')} style={{ position: 'absolute', top: 0, left: 30, width: 23, height: 23, marginLeft: 70, marginTop: 10, opacity: 0.5 }} />
               </View>
               <Text style={styles.inferior}>Poluição individual</Text>
@@ -125,7 +125,7 @@ export default function MenuJogador({ navigation }) {
             :
             <View style={[styles.bar, { backgroundColor: 'rgba(255,13,13,0.7)', borderColor: '#BF0000' }]}>
               <View style={{ flexDirection: 'row' }}>
-                {player.pollution ? <Text style={styles.textBar}>{player.pollution.toString().indexOf('.00') !== -1 ? player.pollution : player.pollution}</Text> : <Text style={styles.textBar}>0</Text>}
+                {player.pollution ? <Text style={styles.textBar}>{player.pollution.toString().indexOf('.') !== -1 ? player.pollution.toFixed(2) : player.pollution}</Text> : <Text style={styles.textBar}>0</Text>}
               </View>
               <Text style={styles.inferior}>Poluição individual</Text>
             </View>

@@ -18,10 +18,10 @@ export default function Status({ navigation }) {
     if (stage === 'INITELECTIONS') navigation.reset({ routes: [{ name: 'Candidatura' }] });
   }, [stage]);
   const globalPollutionN = ()=>{
-    if(game.globalPollution.toString().indexOf('.00') !== -1){
-      return game.globalPollution.toString().slice(0,-3)
+    if(game.globalPollution.toString().indexOf('.') !== -1){
+      return game.globalPollution.toFixed(2)
     }
-    else return game.globalPollution
+    return game.globalPollution
   }
   return (
     <View style={{ flex: 1 }}>
@@ -36,7 +36,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Poluição global: {globalPollutionN()}%</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição individual: {player.pollution}</Text>
+              <Text style={styles.text3}>Poluição individual: {player.pollution.toFixed(2)}</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Imposto pago: ${round.tax.value} {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>

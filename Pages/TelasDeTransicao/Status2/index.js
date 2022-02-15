@@ -64,10 +64,10 @@ export default function Status2({ navigation }) {
     return mayor.filter((i) => i.label === "Tratamento de esgoto").length;
   }
   const globalPollutionN = () => {
-    if (game.globalPollution.toString().indexOf('.00') !== -1) {
-      return game.globalPollution.toString().slice(0, -3)
+    if (game.globalPollution.toString().indexOf('.') !== -1) {
+      return game.globalPollution.toFixed(2)
     }
-    else return game.globalPollution
+    return game.globalPollution
   }
 
   return (
