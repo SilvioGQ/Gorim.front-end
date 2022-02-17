@@ -11,42 +11,24 @@ import ModalInfo from '../../../Components/ModalInfo';
 import FilterCenary from '../../../Components/FilterCenary';
 import HistoricosDinheiro from '../../../Components/HistóricosDinheiro';
 import HistoricoPolitico from '../../../Components/HistoricoPolitico';
+import normalizeNumber from '../../../helpers/normalizeNumber';
+
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 export default function Cenario({ navigation }) {
+
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('transfer');
   const { player, players, disableNotifyScene, data: tax, stage, game } = useContext(GameContext);
   const [image, setImage] = useState(true);
   const [image2, setImage2] = useState(true);
+
   useEffect(() => {
     calcPlayerTax();
     disableNotifyScene();
     // player.office ? null : setType('tax')
   }, []);
-  const globalProductionN = ()=>{
-    if(game.globalProduction.toString().indexOf('.00') !== -1){
-      return game.globalProduction.toString().slice(0,-3)
-    }
-    else return game.globalProduction
-  }
-  const globalPollutionN = ()=>{
-    if(game.globalPollution.toString().indexOf('.00') !== -1){
-      return game.globalPollution.toString().slice(0,-3)
-    }
-    else return game.globalPollution
-  }
 
-  // const finded = (type) =>{
-  //   players.find((item) => item.office === "Prefeito" && item.city === player.city).length > 0 ?  players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type).length == 0 ?  <Text style={{ flex: 1, textAlign: 'center', fontFamily: 'Rubik_700Bold', fontSize: 18, marginVertical: 50 }}>Nenhuma ação executada</Text> : players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type == type)((item, index) => {
-  //     if (item.type === 'tax' || item.type === 'prevention') {
-  //       return <HistoricoPolitico key={index} item={item} />
-  //     }
-  //   })
-  //   :
-  //   null
-    
-  // }
   return (
     <View>
       <Rodada arrow={true} onClick={() => navigation.goBack()} />
@@ -65,7 +47,7 @@ export default function Cenario({ navigation }) {
             <View style={styles.numeros}>
               <TouchableOpacity style={[styles.bloquinho, { width: '39%' }]} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }}  >
                 <Text style={{ fontSize: 24, color: '#66BF00', marginTop: '7%' }}>
-                  {globalProductionN()}%
+                  {normalizeNumber(game.globalProduction)}%
                 </Text>
                 <Text style={styles.inferior}>
                   Produtividade
@@ -74,7 +56,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
               <TouchableOpacity style={[styles.bloquinho, { width: '39%' }]} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }}  >
                 <Text style={{ fontSize: 24, marginTop: '7%', color: '#BF0000' }}>
-                  {globalPollutionN()}%
+                  {normalizeNumber(game.globalPollution)}%
                 </Text>
                 <Text style={styles.inferior}>
                   Poluição
@@ -87,7 +69,7 @@ export default function Cenario({ navigation }) {
             <View style={styles.numeros}>
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(true); setModalText(<Text style={styles.legenda}>Impostos: serão cobrados todas rodadas, porém vai variar conforme as decisões do prefeito.</Text>) }}  >
                 <Text style={styles.numero}>
-                  {stage === 'CALCPLAYERTAX' && (tax.percentual ? `${tax.percentual}%` : `$${tax.value}`)}
+                  {stage === 'CALCPLAYERTAX' && (tax.percentual ? `${normalizeNumber(tax.percentual)}%` : `$${normalizeNumber(tax.value)}`)}
                 </Text>
                 <Text style={styles.inferior}>
                   Imposto
@@ -97,7 +79,7 @@ export default function Cenario({ navigation }) {
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(true); setImage2(false); setModalText(<Text style={styles.legenda}>Produtividade: É todo seu lucro na rodada, ele depende do quanto você vendeu/produziu e se a poluição global não está inferindo nessa produção conforme a tabela abaixo.</Text>); }}  >
 
                 <Text style={styles.numero}>
-                  {globalProductionN()}%
+                  {normalizeNumber(game.globalProduction)}%
                 </Text>
                 <Text style={styles.inferior}>
                   Produtividade
@@ -106,7 +88,7 @@ export default function Cenario({ navigation }) {
               </TouchableOpacity>
               <TouchableOpacity style={styles.bloquinho} onPress={() => { setImage(false); setImage2(false); setModalText(<Text style={styles.legenda}>Poluição: é causada pelo uso de agrotóxicos, porém cada semente também produz um determinado número de poluição</Text>); setImage(false); setImage2(false) }}  >
                 <Text style={[styles.numero, { color: '#BF0000' }]}>
-                  {globalPollutionN()}%
+                  {normalizeNumber(game.globalPollution)}%
                 </Text>
                 <Text style={styles.inferior}>
                   Poluição

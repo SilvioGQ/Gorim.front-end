@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 
 import IMAGES from '../../constants/imagesProducts';
 import COLORS from '../../constants/colors';
+import normalizeNumber from '../../helpers/normalizeNumber';
 
 export default function Produtos({ item }) {
   return (
@@ -26,7 +27,7 @@ export default function Produtos({ item }) {
         <View style={[styles.row, { marginVertical: 3 }]}>
           <Text style={styles.textinhos}>Preço:</Text>
           {/* <Text style={styles.numeros}>{item.cheap}$</Text> */}
-          <Text style={styles.numeros}>${item.medium}</Text>
+          <Text style={styles.numeros}>${normalizeNumber(item.medium)}</Text>
           {/* <Text style={styles.numeros}>{item.expensive}$</Text> */}
         </View>
       </View>

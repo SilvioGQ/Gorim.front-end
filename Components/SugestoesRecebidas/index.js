@@ -6,6 +6,7 @@ import ModalInfo from '../../Components/ModalInfo';
 import COLORS from '../../constants/colors';
 import ICONS from '../../constants/imagesIcons';
 import IMAGES2 from '../../constants/imagesProducts';
+import normalizeNumber from '../../helpers/normalizeNumber';
 
 const Tela = Dimensions.get('screen').width;
 export default function SugestoesRecebidas({ item }) {
@@ -29,7 +30,7 @@ export default function SugestoesRecebidas({ item }) {
                 <View style={{ marginLeft: 10 }}>
                     <Text style={styles.text2}>{item.type === 'tax' ? "Alteração de imposto" : "Medida de prevenção"}</Text>
                     <Text style={styles.text1}>{item.label}</Text>
-                    <Text style={styles.textBold}>{item.value > 0 ? `$${item.value}` : `${item.percentual}%`}</Text>
+                    <Text style={styles.textBold}>{item.value > 0 ? `$${normalizeNumber(item.value)}` : `${normalizeNumber(item.percentual)}%`}</Text>
                 </View>
             </View>
             <View style={styles.row}>

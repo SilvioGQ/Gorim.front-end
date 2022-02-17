@@ -3,15 +3,11 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import ICONS from '../../constants/imagesIcons'
 import Coin from '../Coin';
 import { GameContext } from "../../contexts/GameContext";
+import normalizeNumber from '../../helpers/normalizeNumber';
 
 export default function Header({ typeMenu = 'player' }) {
   const { player, game } = useContext(GameContext);
-  const globalPollutionN = () => {
-    if (game.globalPollution.toString().indexOf('.') !== -1) {
-      return game.globalPollution.toFixed(2)
-    }
-    return game.globalPollution
-  }
+	
   const mudarcor = (valor) => {
     if (valor >= 0 && valor <= 50) return '#FF0000';
     if (valor > 50 && valor <= 80) return '#A50000';
@@ -38,7 +34,7 @@ export default function Header({ typeMenu = 'player' }) {
             style={styles.pollution}
             source={require('../../assets/agricultorIcones/Barril.png')}
           />
-          <Text style={{ color: mudarcor(game.globalPollution), fontSize: 19, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{globalPollutionN()}%</Text>
+					<Text style={{ color: mudarcor(game.globalPollution), fontSize: 19, fontFamily: 'Rubik_400Regular', marginLeft: 3 }}>{normalizeNumber(game.globalPollution)}%</Text>
         </View>
         {player.office ? <Coin coin={typeMenu === 'player' ? player.coin : player.serviceSalary} /> : game.phase === 1 ? <Coin coin={player.coin} /> : null}
       </View>

@@ -4,6 +4,7 @@ import { GameContext } from '../../contexts/GameContext';
 import COLORS from '../../constants/colors';
 import ICONS from '../../constants/imagesIcons';
 import Modal from '../../Components/ModalInfo';
+import normalizeNumber from '../../helpers/normalizeNumber';
 
 export default function MultaComponent({ item, onclick, display, onClike }) {
 
@@ -16,7 +17,7 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
         <Text style={styles.textinhos}>{item.name}</Text>
       </View>
       <View>
-        <Text style={styles.text}>Total poluição: {item.pollution} </Text>
+        <Text style={styles.text}>Total poluição: {normalizeNumber(item.pollution)} </Text>
         <View style={{ flexDirection: 'row', marginVertical:5 }}>
           <Text style={styles.text}>Multa:</Text>
           <Picker

@@ -6,6 +6,8 @@ import Button from '../../../../Components/Button';
 import COLORS from '../../../../constants/colors';
 import Rodada from '../../../../Components/Rodada';
 
+import normalizeNumber from '../../../../helpers/normalizeNumber';
+
 const Tela = Dimensions.get('screen').width;
 export default function ConfirmarTransferencia({ navigation, route }) {
 
@@ -28,7 +30,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text}>Fazer transferência</Text>
         <Image style={styles.logo} source={require('../../../../assets/symbols/transfer.png')} />
         <Text style={styles.text}> Deseja confirmar a transação para {nameDest}?</Text>
-        <Text style={styles.text2}>${JSON.stringify(count)} </Text>
+        <Text style={styles.text2}>${normalizeNumber(count)} </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={() => setConfirmTransfer(true)} name='CONTINUAR' />
           <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name:game.phase=== 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button}  >

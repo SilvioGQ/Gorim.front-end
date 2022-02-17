@@ -6,6 +6,7 @@ import COLORS from '../../constants/colors';
 import imagesProducts from '../../constants/imagesProducts';
 import imagesCoins from '../../constants/imagesCoins';
 import ICONS from '../../constants/imagesIcons';
+import normalizeNumber from '../../helpers/normalizeNumber';
 
 const Tela = Dimensions.get('screen').width;
 export default function Oferta({ item, confirmOffer, rejectOffer }) {
@@ -37,7 +38,7 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
         />
         <View>
           <Text style={styles.text}>Preço:</Text>
-          <Text style={styles.textBold}>${item.price}</Text>
+          <Text style={styles.textBold}>${normalizeNumber(item.price)}</Text>
         </View>
         <Image
           style={styles.icone}

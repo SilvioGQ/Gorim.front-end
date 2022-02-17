@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import IMAGES from '../../constants/imagesProducts';
+import normalizeNumber from '../../helpers/normalizeNumber';
 
 export default function ParcelaAgr({ item, backgroundGreen = '#fff', display2, vermais, onClick, pedido, color }) {
   return (
@@ -18,12 +19,12 @@ export default function ParcelaAgr({ item, backgroundGreen = '#fff', display2, v
         {vermais ?
           <View style={{ borderRadius: 17, width: 75, height: 23, backgroundColor: '#D4F15F', alignSelf: 'center', marginLeft: 25 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-              <Text style={{ color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.pollution}</Text>
-              <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{item.parcelLand.production}</Text>
+              <Text style={{ color: '#CF0101', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{normalizeNumber(item.parcelLand.pollution)}</Text>
+              <Text style={{ color: '#6EBA16', fontSize: 16, fontFamily: 'Rubik_400Regular', fontWeight: 'bold' }}>{normalizeNumber(item.parcelLand.production)}</Text>
             </View>
           </View>
           :
-          <Text style={{ color: '#CF0101', fontSize: 14, marginLeft: 25 }}>Poluição: {item.parcelLand.pollution}</Text>
+					<Text style={{ color: '#CF0101', fontSize: 14, marginLeft: 25 }}>Poluição: {normalizeNumber(item.parcelLand.pollution)}</Text>
         }
 
         <TouchableOpacity style={{ position: 'absolute', left: '97%', display: display2 }} onPress={() => { }}  >

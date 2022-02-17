@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import normalizeNumber from '../../helpers/normalizeNumber';
 
 const Tela = Dimensions.get('screen').width;
 export default function HistoricoPlayers({ player }) {
@@ -17,9 +18,9 @@ export default function HistoricoPlayers({ player }) {
           </TouchableOpacity>
         </View>
         <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
-          <Text style={[styles.texto]}>Poluição: {player.pollution}</Text>
-          <Text style={[styles.texto]}>Produtividade: ${player.production < 0 ? '0' : player.production}</Text>
-          <Text style={[styles.texto]}>Imposto pago: ${player.logs.find((item) => item.type == 'tax').value}</Text>
+          <Text style={[styles.texto]}>Poluição: {normalizeNumber(player.pollution)}</Text>
+					<Text style={[styles.texto]}>Produtividade: ${player.production < 0 ? '0' : normalizeNumber(player.production)}</Text>
+					<Text style={[styles.texto]}>Imposto pago: ${normalizeNumber(player.logs.find((item) => item.type == 'tax').value)}</Text>
 
         </View>
       </View>
