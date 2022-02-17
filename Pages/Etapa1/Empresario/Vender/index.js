@@ -31,8 +31,8 @@ export default function Vendas({ navigation, route }) {
 	}, []);
 
 	useEffect(() => {
-		if (sendAdvert) {
-			navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada!' } }] });
+    if (sendAdvert) {
+      navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada!' } }] });
 		}
 
 		return () => { if (sendAdvert) addAdvert(name, player.specialty, selectPrice, selectClient, selectAmount, priceType); }

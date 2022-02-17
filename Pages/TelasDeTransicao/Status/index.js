@@ -18,7 +18,7 @@ export default function Status({ navigation }) {
     if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'INITELECTIONS') navigation.reset({ routes: [{ name: 'Candidatura' }] });
   }, [stage]);
-
+	
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />

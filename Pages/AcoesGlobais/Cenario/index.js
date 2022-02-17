@@ -120,7 +120,7 @@ export default function Cenario({ navigation }) {
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,1)', borderColor: '#BF0000', opacity: 0.7, }]}>
-                  <Text style={styles.numero2}>{player.pollution}</Text>
+                  <Text style={styles.numero2}>{player.pollution.toString().indexOf('.') !== -1 ? player.pollution.toFixed(2) : player.pollution}</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
               </View>
