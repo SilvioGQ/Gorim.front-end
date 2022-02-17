@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row-reverse',
     alignItems: 'flex-end',
-    width: '90%'
+    width: '90%',
+    marginTop: 8
   }
 });

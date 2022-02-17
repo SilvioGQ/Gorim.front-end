@@ -23,6 +23,12 @@ export default function Status({ navigation }) {
     }
     return game.globalPollution
   }
+  const individualPollutionN = () => {
+    if (player.pollution.toString().indexOf('.') !== -1) {
+      return player.pollution.toFixed(2)
+    }
+    return player.pollution
+  }
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -36,7 +42,7 @@ export default function Status({ navigation }) {
               <Text style={styles.text3}>Poluição global: {globalPollutionN()}%</Text>
             </View>
             <View style={styles.circulo}>
-              <Text style={styles.text3}>Poluição individual: {player.pollution.toFixed(2)}</Text>
+              <Text style={styles.text3}>Poluição individual: {individualPollutionN()}</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Imposto pago: ${round.tax.value} {round.tax.percentual ? '= (' +  round.tax.percentual + '%)' : ''}</Text>

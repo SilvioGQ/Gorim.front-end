@@ -25,18 +25,19 @@ export default function Vendas({ navigation, route }) {
 	const [sendAdvert, setSendAdvert] = useState(false);
 	const [priceType, setPriceType] = useState("");
 
+  
   useEffect(() => {
     getProducts(name);
   }, []);
-
+  
 	useEffect(() => {
-		if (sendAdvert) {
-			navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada!' } }] });
+    if (sendAdvert) {
+      navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua proposta foi enviada!' } }] });
 		}
 
 		return () => { if (sendAdvert) addAdvert(name, player.specialty, selectPrice, selectClient, selectAmount, priceType); }
 	}, [sendAdvert]);
-
+  
   const confirmTransfer = () => {
     if (!selectClient) return setModalText('Selecione um Cliente!');
     if (selectPrice == -1) return setModalText('Selecione o Preço!');
@@ -82,7 +83,7 @@ export default function Vendas({ navigation, route }) {
         </View>
         <Text style={styles.textos}> Clientes: </Text>
         <View style={styles.alignQuadrado}>
-          {filterPlayers().map((item) => <Quadrados abr={false}  key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'}/>)}
+          {filterPlayers().map((item) => <Quadrados key={item.id} abr={false} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'}/>)}
         </View>
         {modalText !== '' && (
           <Modal onClick={() => setModalText('')} text={modalText} />

@@ -23,6 +23,7 @@ export default function Cenario({ navigation }) {
   const rotateZ6 = open6 ? "180deg" : "0deg";
   const rotateZ7 = open7 ? "180deg" : "0deg";
 
+
   // console.log(
   //   oldLogs.find(p => p.id === player.id).logs.filter((item) => {
   //       return item;
@@ -65,7 +66,7 @@ export default function Cenario({ navigation }) {
                       return item
                     }
                   }).map((item, index) => {
-                    return <Text style={[styles.texto]} key={index}>{`Você poluiu ${item.pollution}, e produziu $${item.production < 0 ? 0 : item.production}.`}</Text>
+                    return <Text style={[styles.texto]} key={index}>{`Você poluiu ${item.pollution.toString().indexOf('.') !== -1 ? item.pollution.toFixed(2) : item.pollution}, e produziu $${item.production < 0 ? 0 : item.production}.`}</Text>
                   })}
                 </View>
               </View>

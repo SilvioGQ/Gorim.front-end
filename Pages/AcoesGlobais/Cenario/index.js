@@ -25,16 +25,16 @@ export default function Cenario({ navigation }) {
     // player.office ? null : setType('tax')
   }, []);
   const globalProductionN = ()=>{
-    if(game.globalProduction.toString().indexOf('.00') !== -1){
-      return game.globalProduction.toString().slice(0,-3)
+    if(game.globalProduction.toString().indexOf('.') !== -1){
+      return game.globalProduction.toFixed(2)
     }
-    else return game.globalProduction
+    return game.globalProduction
   }
   const globalPollutionN = ()=>{
-    if(game.globalPollution.toString().indexOf('.00') !== -1){
-      return game.globalPollution.toString().slice(0,-3)
+    if(game.globalPollution.toString().indexOf('.') !== -1){
+      return game.globalPollution.toFixed(2)
     }
-    else return game.globalPollution
+    return game.globalPollution
   }
 
   // const finded = (type) =>{
@@ -138,7 +138,7 @@ export default function Cenario({ navigation }) {
                   <Text style={styles.inferior2}>Produtividade</Text>
                 </View>
                 <View style={[styles.coloridos, { backgroundColor: 'rgba(255,13,13,1)', borderColor: '#BF0000', opacity: 0.7, }]}>
-                  <Text style={styles.numero2}>{player.pollution}</Text>
+                  <Text style={styles.numero2}>{player.pollution.toFixed(2)}</Text>
                   <Text style={styles.inferior2}>Poluição</Text>
                 </View>
               </View>

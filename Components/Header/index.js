@@ -22,7 +22,7 @@ export default function Header({ typeMenu = 'player' }) {
     if (typeMenu == 'player') {
       return `${player.type ? player.type.slice(0, 3) : ''}${player.type === 'Empresário' ? player.specialty[0] : ''}`;
     } else {
-      return `${player.office ? player.office.slice(0, 3) : 'cid'}`;
+      return `${player.office ? player.office.slice(0, 3) : 'Cid'}`;
     }
   }
 
