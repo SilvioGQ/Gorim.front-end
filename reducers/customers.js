@@ -57,8 +57,7 @@ const reducer = (state, action) => {
       };
     case 'ADDEDTOROOM':
       return {
-        ...state,
-        awaitPlayers: 0,
+        ...initialState,
         stage: action.payload[0],
         player: action.payload[1],
       };
