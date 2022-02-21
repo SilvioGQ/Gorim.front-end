@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity
 import { GameContext } from '../../../contexts/GameContext';
 import Rodada from '../../../Components/Rodada';
 import ICONS from '../../../constants/imagesIcons';
+import normalizeNumber from '../../../helpers/normalizeNumber';
 
 const Tela = Dimensions.get('screen').width;
 export default function Historico({ navigation }) {
@@ -81,7 +82,7 @@ export default function Historico({ navigation }) {
 											return item
 										}
 									}).map((item, index) => {
-										return <Text style={[styles.texto]} key={index}>{`Você poluiu ${item.pollution}, e produziu $${item.production < 0 ? 0 : item.production}.`}</Text>
+										return <Text style={[styles.texto]} key={index}>{`Você poluiu ${normalizeNumber(item.pollution)}, e produziu $${item.production < 0 ? 0 : normalizeNumber(item.production)}.`}</Text>
 									})}
 								</View>
 							</View>
@@ -137,7 +138,7 @@ export default function Historico({ navigation }) {
 								</View>
 								<View style={{ display: open2 ? 'flex' : 'none' }}>
 									{playerLog.logs && playerLog.logs.filter((item) => item.type == 'buy').length > 0 ? playerLog.logs.filter((item) => item.type == 'buy').map((item, index) => {
-										return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por $${item.product.price} cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por $${item.product.price} cada, para o agricultor ${item.namePlayer} \n`}</Text>
+										return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você comprou ${item.product.amount} ${item.product.name} por $${normalizeNumber(item.product.price)} cada, do empresário ${item.namePlayer} \n` : `Você vendeu ${item.product.amount} ${item.product.name} por $${normalizeNumber(item.product.price)} cada, para o agricultor ${item.namePlayer} \n`}</Text>
 									})
 										:
 										<Text style={[styles.textonao]}>Você não {player.type === 'Agricultor' ? 'teve gastos' : 'fez vendas'}</Text>
@@ -156,7 +157,7 @@ export default function Historico({ navigation }) {
 								</View>
 								<View style={{ display: open3 ? 'flex' : 'none' }}>
 									{playerLog.logs && playerLog.logs.filter((item) => item.type == 'transfer').length > 0 ? playerLog.logs.filter((item) => item.type == 'transfer').map((item, index) => {
-										return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você transferiu $${item.value} para o jogador ${item.namePlayer}\n` : `Você recebeu $${item.value} do jogador ${item.namePlayer}\n`}</Text>
+										return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você transferiu $${normalizeNumber(item.value)} para o jogador ${item.namePlayer}\n` : `Você recebeu $${normalizeNumber(item.value)} do jogador ${item.namePlayer}\n`}</Text>
 									})
 										:
 										<Text style={[styles.textonao]}>Você não fez transferências</Text>
@@ -175,7 +176,7 @@ export default function Historico({ navigation }) {
 								</View>
 								<View style={{ display: open4 ? 'flex' : 'none' }}>
 									{playerLog.logs && playerLog.logs.filter((item) => item.type == 'fine').length > 0 ? playerLog.logs.filter((item) => item.type == 'fine').map((item, index) => {
-										return <Text style={[styles.texto]} key={index}>{item.gravity !== 'Nenhuma' ? `Você pagou uma multa de $${item.value} a taxa "${item.gravity}"` : "O fiscal não te aplicou multas"}</Text>
+										return <Text style={[styles.texto]} key={index}>{item.gravity !== 'Nenhuma' ? `Você pagou uma multa de $${normalizeNumber(item.value)} a taxa "${item.gravity}"` : "O fiscal não te aplicou multas"}</Text>
 									})
 										:
 										<Text style={[styles.textonao]}>Fiscal não te aplicou multa</Text>
@@ -197,7 +198,7 @@ export default function Historico({ navigation }) {
 											return item
 										}
 									}).map((item, index) => {
-										return <Text style={[styles.texto]} key={index}>{item.percentual ? `Você pagou $${item.value} na última rodada, o que equivale a ${item.percentual}% da sua produtividade` : `Foram cobrados $${item.value} em impostos.`}</Text>
+										return <Text style={[styles.texto]} key={index}>{item.percentual ? `Você pagou $${normalizeNumber(item.value)} na última rodada, o que equivale a ${normalizeNumber(item.percentual)}% da sua produtividade` : `Foram cobrados $${item.value} em impostos.`}</Text>
 									})}</View>
 							</View>
 						</>
@@ -236,7 +237,7 @@ export default function Historico({ navigation }) {
 										</View>
 										<View style={{ display: open2 ? 'flex' : 'none' }}>
 											{playerLog.logsOffice && playerLog.logsOffice.filter((item) => item.type == 'fine').length > 0 ? playerLog.logsOffice.filter((item) => item.type == 'fine').map((item, index) => {
-												return <Text style={[styles.texto]} key={index}>{`Você aplicou multa de $${item.value} com gravidade "${item.gravity}" para o jogador ${item.namePlayer}`}</Text>
+												return <Text style={[styles.texto]} key={index}>{`Você aplicou multa de $${normalizeNumber(item.value)} com gravidade "${item.gravity}" para o jogador ${item.namePlayer}`}</Text>
 											})
 												:
 												<Text style={[styles.textonao]}>Você não aplicou multas</Text>
@@ -273,7 +274,7 @@ export default function Historico({ navigation }) {
 											<Text style={[styles.subtitle, {
 												marginLeft: 10,
 												marginTop: 10
-											}]}>{player.office === 'Vereador' ? 'Impostos aplicados' : 'Impostos aplicados'}</Text>
+											}]}>Impostos aplicados</Text>
 											<TouchableOpacity onPress={() => { setOpen4(!open4) }}>
 												<Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ4 }] }} source={require('../../../assets/dropdown.png')} />
 											</TouchableOpacity>
@@ -281,16 +282,16 @@ export default function Historico({ navigation }) {
 										{player.office === 'Vereador' ?
 											<View style={{ display: open4 ? 'flex' : 'none' }}>
 												{!!oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city) && oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'tax').length > 0 ? oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'tax').map((item, index) => {
-													return <Text style={[styles.texto]} key={index}>{`O prefeito aplicou imposto ${item.value > 0 ? `$${item.value}` : `${item.percentual}%`} para ${item.label}`}</Text>
+													return <Text style={[styles.texto]} key={index}>{`O prefeito aplicou imposto ${item.value > 0 ? `$${normalizeNumber(item.value)}` : `${normalizeNumber(item.percentual)}%`} para ${item.label}`}</Text>
 												})
 													:
 													<Text style={[styles.textonao]}>O prefeito não aplicou imposto</Text>
-												}
+												}(
 											</View>
 											:
 											<View style={{ display: open4 ? 'flex' : 'none' }}>
 												{oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city) && playerLog.logsOffice.filter((item) => item.type == 'tax').length > 0 ? playerLog.logsOffice.filter((item) => item.type == 'tax').map((item, index) => {
-													return <Text style={[styles.texto]} key={index}>{`Você aplicou imposto ${item.value > 0 ? `$${item.value} para ${item.label}` : `${item.percentual}%`} para ${item.label}`}</Text>
+													return <Text style={[styles.texto]} key={index}>{`Você aplicou imposto ${item.value > 0 ? `$${normalizeNumber(item.value)} para ${item.label}` : `${normalizeNumber(item.percentual)}%`} para ${item.label}`}</Text>
 												})
 													:
 													<Text style={[styles.textonao]}>Não aplicou imposto</Text>
@@ -343,7 +344,7 @@ export default function Historico({ navigation }) {
 								</View>
 								<View style={{ display: open6 ? 'flex' : 'none' }}>
 									{playerLog.logsOffice && playerLog.logsOffice.filter((item) => item.type == 'transfer').length > 0 ? playerLog.logsOffice.filter((item) => item.type == 'transfer').map((item, index) => {
-										return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você transferiu $${item.value} para o jogador ${item.namePlayer}\n` : `Você recebeu $${item.value} do jogador ${item.namePlayer}\n`}</Text>
+										return <Text style={[styles.texto]} key={index}>{item.ownAction ? `Você transferiu $${normalizeNumber(item.value)} para o jogador ${item.namePlayer}\n` : `Você recebeu $${normalizeNumber(item.value)} do jogador ${item.namePlayer}\n`}</Text>
 									})
 										:
 										<Text style={[styles.textonao]}>Você não fez transferências</Text>
