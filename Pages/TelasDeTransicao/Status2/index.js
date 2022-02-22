@@ -4,7 +4,6 @@ import { GameContext } from '../../../contexts/GameContext';
 
 import COLORS from '../../../constants/colors';
 import ICONS from '../../../constants/imagesIcons';
-import normalizeNumber from '../../../helpers/normalizeNumber';
 
 const Tela = Dimensions.get('screen').width;
 export default function Status2({ navigation }) {
@@ -64,6 +63,12 @@ export default function Status2({ navigation }) {
     if (!mayor) return 0;
     return mayor.filter((i) => i.label === "Tratamento de esgoto").length;
   }
+  const globalPollutionN = () => {
+    if (game.globalPollution.toString().indexOf('.') !== -1) {
+      return game.globalPollution.toFixed(2)
+    }
+    return game.globalPollution
+  }
 
   return (
     <View style={{ flex: 1 }}>
@@ -73,15 +78,15 @@ export default function Status2({ navigation }) {
           <View style={styles.containerescuro}>
             <Text style={styles.text}>RESUMO DA ETAPA 2</Text>
             <Image source={ICONS[player.avatar]} style={styles.img} />
-            <Text style={styles.text2}>{player.office ? player.office.slice(0, 3) : 'cid'}/{player.name} em {player.city}</Text>
+            <Text style={styles.text2}>{player.office ? player.office.slice(0, 3) : 'Cid'}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-							<Text style={styles.text3}>Poluição global: {normalizeNumber(round.globalPollution) + '% => ' + normalizeNumber(game.globalPollution)}%</Text>
+              <Text style={styles.text3}>Poluição global: {round.globalPollution + '% => ' + globalPollutionN()}%</Text>
             </View>
             <View style={styles.circulo1}>
               <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}
-								Nula: {"$" + normalizeNumber(round.tax.find(i => i.name === player.city).lowProduction.value)} {lowProductionValue() == '' ? '' : ` => $${normalizeNumber(lowProductionValue())}`}{"\n"}
-                Entre 1 e 200: {normalizeNumber(round.tax.find(i => i.name === player.city).mediumProduction.percentual)}% {mediumProductionValue() == '' ? '' : ` => ${normalizeNumber(mediumProductionValue())}%`}{"\n"}
-                Acima de 200: {normalizeNumber(round.tax.find(i => i.name === player.city).highProduction.percentual)}% {highProductionValue() == '' ? '' : ` => ${normalizeNumber(highProductionValue())}%`}</Text>
+                Nula: {"$" + round.tax.find(i => i.name === player.city).lowProduction.value} {lowProductionValue() == '' ? '' : ` => $${lowProductionValue()}`}{"\n"}
+                Entre 1 e 200: {round.tax.find(i => i.name === player.city).mediumProduction.percentual}% {mediumProductionValue() == '' ? '' : ` => ${mediumProductionValue()}%`}{"\n"}
+                Acima de 200: {round.tax.find(i => i.name === player.city).highProduction.percentual}% {highProductionValue() == '' ? '' : ` => ${highProductionValue()}%`}</Text>
             </View>
             <View style={styles.circulo1}>
               <Text style={styles.text3}>Medidas de prevenção{"\n"}Trat. de água: {treatWater() == 0 ? 'Não aplicado' : `Aplicado ${treatWater()}x`}{"\n"}
