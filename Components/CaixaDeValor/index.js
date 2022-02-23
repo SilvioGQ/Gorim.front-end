@@ -5,8 +5,11 @@ import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesCoins';
 
 export default function CaixaDeValor({ value, setValue, increment, minValue = 0, maxValue = value + 1, coin = null }) {
+console.log(value)
+  console.log(minValue)
+  console.log(maxValue)
 
-  const increaseValue = () => setValue(value < maxValue ? value + increment : value);
+  const increaseValue = () => setValue(value < maxValue ? value + increment > maxValue ? value : value + increment : value);
   const decreaseValue = () => setValue(value > minValue ? value - increment : value);
 
   return (

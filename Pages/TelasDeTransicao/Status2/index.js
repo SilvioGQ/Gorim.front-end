@@ -75,11 +75,11 @@ export default function Status2({ navigation }) {
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.office ? player.office.slice(0, 3) : 'cid'}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-							<Text style={styles.text3}>Poluição global: {normalizeNumber(round.globalPollution) + '% => ' + normalizeNumber(game.globalPollution)}%</Text>
+              <Text style={styles.text3}>Poluição global: {normalizeNumber(round.globalPollution) + '% => ' + normalizeNumber(game.globalPollution)}%</Text>
             </View>
             <View style={styles.circulo1}>
               <Text style={styles.text3}>Alteração de impostos {"\n"}para produtividade: {"\n"}
-								Nula: {"$" + normalizeNumber(round.tax.find(i => i.name === player.city).lowProduction.value)} {lowProductionValue() == '' ? '' : ` => $${normalizeNumber(lowProductionValue())}`}{"\n"}
+                Nula: {"$" + normalizeNumber(round.tax.find(i => i.name === player.city).lowProduction.value)} {lowProductionValue() == '' ? '' : ` => $${normalizeNumber(lowProductionValue())}`}{"\n"}
                 Entre 1 e 200: {normalizeNumber(round.tax.find(i => i.name === player.city).mediumProduction.percentual)}% {mediumProductionValue() == '' ? '' : ` => ${normalizeNumber(mediumProductionValue())}%`}{"\n"}
                 Acima de 200: {normalizeNumber(round.tax.find(i => i.name === player.city).highProduction.percentual)}% {highProductionValue() == '' ? '' : ` => ${normalizeNumber(highProductionValue())}%`}</Text>
             </View>
