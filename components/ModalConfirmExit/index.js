@@ -5,19 +5,19 @@ import COLORS from '../../constants/colors';
 
 export default function ModalConfirmExit({ deletePlayer, onClick }) {
   return (
-      <Modal animationType="fade" transparent={true} >
-        <View style={styles.modal}>
-          <View style={styles.container}>
-            <Text style={styles.text}>Tem certeza que deseja sair da partida?</Text>
+    <Modal animationType="fade" transparent={true} >
+      <View style={styles.modal}>
+        <View style={styles.container}>
+          <Text style={styles.text}>Tem certeza que deseja sair da partida?</Text>
           <TouchableOpacity style={[styles.button, { backgroundColor: COLORS.warningButton, marginRight: 20 }]} onPress={deletePlayer}   >
-                <Text style={styles.textButton}>Sim</Text>
-              </TouchableOpacity>
+            <Text style={styles.textButton}>Sim</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={onClick}  >
-                <Text style={styles.textButton}>Não</Text>
-              </TouchableOpacity>
-          </View>
+            <Text style={styles.textButton}>Não</Text>
+          </TouchableOpacity>
         </View>
-      </Modal>
+      </View>
+    </Modal>
   );
 }
 
@@ -35,23 +35,23 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorSecondary,
     padding: 25,
     borderRadius: 30,
-    shadowColor: "#000", 
-    shadowOffset: {width: 0,height: 2},
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
     margin: 20
   },
   text: {
-    
+
     fontSize: 18,
     textAlign: "center",
-    marginBottom:15,
+    marginBottom: 15,
   },
   button: {
     alignItems: 'center',
     width: 250,
-    padding:10,
+    padding: 10,
     backgroundColor: COLORS.successButton,
     borderRadius: 20,
     margin: 10,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   textButton: {
     textAlign: 'center',
     fontSize: 18,
-    
+
     color: '#fff',
-  }, 
+  },
 });

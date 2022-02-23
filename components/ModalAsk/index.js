@@ -13,7 +13,7 @@ export default function ModalAsk({ finish, back, text = 'Tem certeza que deseja 
           <TouchableOpacity style={[styles.button, { marginRight: 20, opacity: opacity }]} onPress={finish}   >
             <Text style={styles.textButton}>Sim</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, { backgroundColor: COLORS.warningButton }]} onPress={back }  >
+          <TouchableOpacity style={[styles.button, { backgroundColor: COLORS.warningButton }]} onPress={back}  >
             <Text style={styles.textButton}>Não</Text>
           </TouchableOpacity>
         </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     margin: 20
   },
   text: {
-    
+
     fontSize: 18,
     textAlign: "center",
     marginBottom: 15,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   textButton: {
     textAlign: 'center',
     fontSize: 18,
-    
+
     color: '#fff',
   },
 });

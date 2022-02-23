@@ -9,7 +9,7 @@ import normalizeNumber from '../../helpers/normalizeNumber';
 export default function MultaComponent({ item, onclick, display, onClike }) {
 
   const [numero, setNumero] = useState(item.gravity);
-  
+
   return (
     <View style={styles.container}>
       <View>
@@ -18,7 +18,7 @@ export default function MultaComponent({ item, onclick, display, onClike }) {
       </View>
       <View>
         <Text style={styles.text}>Total poluição: {normalizeNumber(item.pollution)} </Text>
-        <View style={{ flexDirection: 'row', marginVertical:5 }}>
+        <View style={{ flexDirection: 'row', marginVertical: 5 }}>
           <Text style={styles.text}>Multa:</Text>
           <Picker
             selectedValue={numero}
@@ -66,13 +66,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    
+
     alignItems: 'center',
     marginTop: 5
   },
   textinhos: {
     fontSize: 13,
-    
+
     textAlign: 'center'
   },
   row: {
@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_400Regular'
   },
   picker: {
-    height: 28, 
-    width: 155, 
+    height: 28,
+    width: 155,
     borderWidth: 1,
   }
 });

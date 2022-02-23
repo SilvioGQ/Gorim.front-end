@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, } from 'react-native';
 import { GameContext, makeTransfer } from "../../../../contexts/GameContext";
 
@@ -13,19 +13,19 @@ export default function ConfirmarTransferencia({ navigation, route }) {
 
   const { count, idDest, type, provider, nameDest } = route.params;
   const { game } = useContext(GameContext);
-	const [confirmTransfer, setConfirmTransfer] = useState(false);
+  const [confirmTransfer, setConfirmTransfer] = useState(false);
 
-	useEffect(() => {
-		if (confirmTransfer) {
-			navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
-		}
+  useEffect(() => {
+    if (confirmTransfer) {
+      navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: 'Sua transferência foi concluída!' } }] });
+    }
 
-		return () => { if (confirmTransfer) makeTransfer(count, idDest, provider, type); }
-	}, [confirmTransfer]);
-  
+    return () => { if (confirmTransfer) makeTransfer(count, idDest, provider, type); }
+  }, [confirmTransfer]);
+
   return (
     <View style={styles.container}>
-      <Rodada arrow={true} onClick={()=>navigation.goBack()}/>
+      <Rodada arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.text}>Fazer transferência</Text>
         <Image style={styles.logo} source={require('../../../../assets/symbols/transfer.png')} />
@@ -33,7 +33,7 @@ export default function ConfirmarTransferencia({ navigation, route }) {
         <Text style={styles.text2}>${normalizeNumber(count)} </Text>
         <View style={{ marginVertical: 10 }}>
           <Button onClick={() => setConfirmTransfer(true)} name='CONTINUAR' />
-          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name:game.phase=== 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button}  >
+          <TouchableOpacity onPress={() => navigation.reset({ routes: [{ name: game.phase === 1 ? 'MenuJogador' : 'MenuPolitico' }] })} style={styles.button}  >
             <Text style={styles.textButton}>CANCELAR</Text>
           </TouchableOpacity>
         </View>

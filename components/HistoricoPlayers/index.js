@@ -19,13 +19,10 @@ export default function HistoricoPlayers({ player }) {
         </View>
         <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>
           <Text style={[styles.texto]}>Poluição: {normalizeNumber(player.pollution)}</Text>
-					<Text style={[styles.texto]}>Produtividade: ${player.production < 0 ? '0' : normalizeNumber(player.production)}</Text>
-					<Text style={[styles.texto]}>Imposto pago: ${normalizeNumber(player.logs.find((item) => item.type == 'tax').value)}</Text>
-
+          <Text style={[styles.texto]}>Produtividade: ${player.production < 0 ? '0' : normalizeNumber(player.production)}</Text>
+          <Text style={[styles.texto]}>Imposto pago: ${normalizeNumber(player.logs.find((item) => item.type == 'tax').value)}</Text>
         </View>
       </View>
-
-
     </View>
   );
 }
@@ -49,8 +46,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   texto: {
-    marginLeft: 5, 
-    paddingHorizontal: 5, 
+    marginLeft: 5,
+    paddingHorizontal: 5,
     fontFamily: 'Rubik_300Light'
   }
 });

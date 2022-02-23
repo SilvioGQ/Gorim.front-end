@@ -54,12 +54,12 @@ export default function Prevencao({ navigation }) {
               <TouchableOpacity style={[styles.fundo, { backgroundColor: selectMedida.id == item.id ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectMedida({ id: item.id, value: item.value, preventionPercentual: item.pollutionReduction, label: item.label })}  >
                 <Image style={styles.image} source={IMAGES[item.label]} />
                 <Text style={[styles.texto, { color: selectMedida.id == item.id ? "#fff" : '#000' }]}>{item.label}</Text>
-                <Text style={[styles.textomenor, { color: selectMedida.id == item.id ? "#fff" : '#000' }]}>Reduz a poluição em {normalizeNumber(item.pollutionReduction*100)}%</Text>
+                <Text style={[styles.textomenor, { color: selectMedida.id == item.id ? "#fff" : '#000' }]}>Reduz a poluição em {normalizeNumber(item.pollutionReduction * 100)}%</Text>
                 <Text style={[styles.textopreco, { color: selectMedida.id == item.id ? "#fff" : '#000' }]}>Preço: ${normalizeNumber(item.value)}</Text>
               </TouchableOpacity>
             </View>
           )
-        }/>
+          } />
       </View>
       <View style={{ marginBottom: 25 }}>
         <Button

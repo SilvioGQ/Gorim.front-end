@@ -8,11 +8,11 @@ import FilterNew from '../../../../components/FilterNew'
 import { Fragment } from 'react';
 const Tela = Dimensions.get('screen').width;
 export default function HistoricoJogadores({ navigation }) {
-  const { player, stage, data:playersType } = useContext(GameContext);
+  const { player, stage, data: playersType } = useContext(GameContext);
   const [type, setType] = useState('Agricultor');
-  useEffect(()=>{
+  useEffect(() => {
     getPlayers()
-  },[stage])
+  }, [stage])
   return (
     <Fragment>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -26,16 +26,16 @@ export default function HistoricoJogadores({ navigation }) {
         </View>
         <Text style={styles.header}>Jogadores em {player.city}:</Text>
         <View style={{ alignItems: 'center' }}>
-        <FilterNew nome1='Agricultor' nome2='Empresário' type={type} setType={setType} />
+          <FilterNew nome1='Agricultor' nome2='Empresário' type={type} setType={setType} />
         </View>
 
         <ScrollView>
           <View style={styles.whiteRow}>
             {stage === 'GETPLAYERS' &&
-            playersType.filter((p) => p.type == type && p.city == player.city).map((item) => {
-              return <HistoricoPlayers key={item.id} player={item} />
-            }
-            )}
+              playersType.filter((p) => p.type == type && p.city == player.city).map((item) => {
+                return <HistoricoPlayers key={item.id} player={item} />
+              }
+              )}
           </View>
         </ScrollView>
       </View>

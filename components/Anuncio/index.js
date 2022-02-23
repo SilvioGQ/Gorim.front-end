@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Text, View, Image, TouchableOpacity,  } from 'react-native';
+import { Text, View, Image, TouchableOpacity, } from 'react-native';
 import imagesProducts from '../../constants/imagesProducts';
 import { GameContext } from '../../contexts/GameContext';
 import normalizeNumber from '../../helpers/normalizeNumber';
@@ -27,7 +27,7 @@ export default function Anuncio({ item, Historico, deleteAdvert }) {
           <Text style={styles.text}>Valor:</Text>
           <Text style={styles.textBold}>{item.priceType}</Text>
         </View>
-				<Text style={styles.textNormal}>${normalizeNumber(item.price)}</Text>
+        <Text style={styles.textNormal}>${normalizeNumber(item.price)}</Text>
         <TouchableOpacity onPress={() => deleteAdvert(item)}  >
           <Image source={require('../../assets/agricultorIcones/FecharVermelho.png')} style={{ width: 20, height: 20 }} />
         </TouchableOpacity>

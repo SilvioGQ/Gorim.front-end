@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   candidato: {
-    
+
     fontSize: 12,
     paddingHorizontal: 20
   },
@@ -50,31 +50,32 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   titulo: {
-     
-    fontSize: 12, 
+
+    fontSize: 12,
     paddingHorizontal: 5
   },
   notificacao: {
-    width: 18, 
-    height: 18, 
-    borderRadius: 9, 
-    backgroundColor: '#F19F00', 
-    marginTop: -40, 
-    shadowColor: "#000", 
-    shadowOffset: { 
-      width: 0, 
-      height: 2, }, 
-      shadowOpacity: 0.25, 
-      shadowRadius: 3.94, 
-      elevation: 6,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: '#F19F00',
+    marginTop: -40,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.94,
+    elevation: 6,
   },
   container: {
-    height: 60, 
-    justifyContent: 'space-between', 
-    flexDirection: 'row', 
-    width: '88%', 
+    height: 60,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: '88%',
     backgroundColor: COLORS.bgColorPrimary
-  
+
   }
 
 });

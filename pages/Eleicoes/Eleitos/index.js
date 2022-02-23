@@ -21,18 +21,18 @@ export default function Eleitos({ navigation }) {
 
   useEffect(() => {
     if (stage === 'WINNERSELECTION') {
-      if(elections['mayor'][0]){
+      if (elections['mayor'][0]) {
         setMayor(players.find(i => i.id === elections['mayor'][0].id));
       }
-      if(elections['cityCouncilor'][0]){
-      setCityCouncilor(players.find(i => i.id === elections['cityCouncilor'][0].id))
+      if (elections['cityCouncilor'][0]) {
+        setCityCouncilor(players.find(i => i.id === elections['cityCouncilor'][0].id))
       }
-      if(elections['supervisor'][0]){
-      setSupervisor(players.find(i => i.id === elections['supervisor'][0].id))
+      if (elections['supervisor'][0]) {
+        setSupervisor(players.find(i => i.id === elections['supervisor'][0].id))
       }
     }
   }, [stage]);
-  
+
   return (
     <View style={styles.container}>
       <Rodada />
@@ -56,24 +56,24 @@ export default function Eleitos({ navigation }) {
               <Text style={styles.texto}>Prefeito</Text>
               <Image source={ICONS[mayor.avatar]} style={styles.icone} />
               <Text style={styles.resultado}>{mayor.name}</Text>
-              {elections['mayor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['mayor'][0].votes} votos</Text>  }
+              {elections['mayor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['mayor'][0].votes} votos</Text>}
             </View>
           )}
           {cityCouncilor && stage === 'WINNERSELECTION' && (
-          <View style={styles.bloquinho}>
-            <Text style={styles.texto}>Vereador</Text>
-            <Image source={ICONS[cityCouncilor.avatar]} style={styles.icone} />
-            <Text style={styles.resultado}>{cityCouncilor.name}</Text>
-            {elections['cityCouncilor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['cityCouncilor'][0].votes} votos</Text>  }
-          </View>
+            <View style={styles.bloquinho}>
+              <Text style={styles.texto}>Vereador</Text>
+              <Image source={ICONS[cityCouncilor.avatar]} style={styles.icone} />
+              <Text style={styles.resultado}>{cityCouncilor.name}</Text>
+              {elections['cityCouncilor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['cityCouncilor'][0].votes} votos</Text>}
+            </View>
           )}
           {supervisor && stage === 'WINNERSELECTION' && (
-          <View style={styles.bloquinho}>
-            <Text style={styles.texto}>Fiscal</Text>
-            <Image source={ICONS[supervisor.avatar]} style={styles.icone} />
-            <Text style={styles.resultado}>{supervisor.name}</Text>
-            {elections['supervisor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['supervisor'][0].votes} votos</Text>  }
-          </View>
+            <View style={styles.bloquinho}>
+              <Text style={styles.texto}>Fiscal</Text>
+              <Image source={ICONS[supervisor.avatar]} style={styles.icone} />
+              <Text style={styles.resultado}>{supervisor.name}</Text>
+              {elections['supervisor'][0].votes === 0 ? null : <Text style={styles.resultado}>{elections['supervisor'][0].votes} votos</Text>}
+            </View>
           )}
         </View>
 
@@ -107,14 +107,14 @@ const styles = StyleSheet.create({
   self: {
     flexDirection: 'row',
     marginVertical: 20,
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: Tela-40,
-    marginVertical:20
+    width: Tela - 40,
+    marginVertical: 20
   },
   title: {
     fontSize: 22,
@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
     height: 30,
     backgroundColor: '#66BF00',
     borderRadius: 20,
-    paddingHorizontal:10,
-    paddingVertical:5
+    paddingHorizontal: 10,
+    paddingVertical: 5
   },
   botao: {
     color: '#fff',

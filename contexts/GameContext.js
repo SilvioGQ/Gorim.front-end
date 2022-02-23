@@ -25,21 +25,21 @@ const GameProvider = (props) => {
   const disableNotifySuggests = () => {
     dispatch({ type: 'GETNOTIFY', payload: { suggests: false } });
   };
-  
+
   const startTimer = (maxTime, callback) => {
     let callbackUsed = false;
-    
+
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
     recordStartTime(maxTime, socket.id).then(startTime => {
       let interval = setInterval(() => {
-        
+
         recordGetTime(startTime, socket.id).then(timer => {
           if (timer === undefined) {
             clearInterval(interval);
           } else {
             dispatch({ type: 'UPDATETIMER', payload: timer });
           }
-          
+
           if (timer === 0 && !callbackUsed) {
             callback();
             callbackUsed = true;

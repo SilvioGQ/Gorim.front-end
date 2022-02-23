@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
     width: 280
   },
   v: {
-    position:'absolute',
-    bottom:15,
-    right:15,
-    fontSize:12,
-    color:'#a8a8a8'
+    position: 'absolute',
+    bottom: 15,
+    right: 15,
+    fontSize: 12,
+    color: '#a8a8a8'
   }
 });

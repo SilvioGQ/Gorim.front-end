@@ -22,7 +22,7 @@ const recordGetTime = async (originStartTime, playerId) => {
     let timer = maxTime - differenceInSeconds(now, Date.parse(startTime));
 
     if (originStartTime != startTime) return undefined;
-    
+
     return timer >= 0 ? timer : 0;
   } catch (err) {
     // TODO: handle errors from setItem properly

@@ -40,50 +40,50 @@ export default function Votacao({ navigation }) {
     <View style={styles.container}>
       <Rodada />
       <ScrollView>
-      <View style={styles.self}>
-        <Image
-          style={styles.logo}
-          source={require('../../../assets/symbols/vote.png')}
-        />
-        <Text style={styles.title}>Eleições em{"\n"}{player.city}</Text>
-      </View>
-      <View style={{ alignItems: 'center', width: Tela, }}>
-        <FilterNew nome1='Prefeito' nome2='Vereador' nome3='Fiscal' type={type} setType={setType} />
-      </View>
-      <View style={styles.margin}>
-      {type === "Prefeito" && (
-        <FlatList
-          data={mayor}
-          numColumns={3}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
-        />
-      )}
-      {type === "Vereador" && (
-        <FlatList
-          data={cityCouncilor}
-          numColumns={3}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
-        />
-      )}
-      {type === "Fiscal" && (
-        <FlatList
-          data={supervisor}
-          numColumns={3}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
-        />
-      )}
-      </View>
-      {!voted && (
-        <Button onClick={() => { setModalText(true); }} name='FINALIZAR VOTOS' />
-      )}
-      {awaitPlayers > 0 && (
-        <Text style={styles.aviso}>{awaitPlayers} de {players.length} votaram.</Text>
-      )}
-      {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => { addVote(votes); setVoted(true); setModalText(!modalText); }} back={() => setModalText(!modalText)} />}
-    </ScrollView>
+        <View style={styles.self}>
+          <Image
+            style={styles.logo}
+            source={require('../../../assets/symbols/vote.png')}
+          />
+          <Text style={styles.title}>Eleições em{"\n"}{player.city}</Text>
+        </View>
+        <View style={{ alignItems: 'center', width: Tela, }}>
+          <FilterNew nome1='Prefeito' nome2='Vereador' nome3='Fiscal' type={type} setType={setType} />
+        </View>
+        <View style={styles.margin}>
+          {type === "Prefeito" && (
+            <FlatList
+              data={mayor}
+              numColumns={3}
+              keyExtractor={item => item.id}
+              renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
+            />
+          )}
+          {type === "Vereador" && (
+            <FlatList
+              data={cityCouncilor}
+              numColumns={3}
+              keyExtractor={item => item.id}
+              renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
+            />
+          )}
+          {type === "Fiscal" && (
+            <FlatList
+              data={supervisor}
+              numColumns={3}
+              keyExtractor={item => item.id}
+              renderItem={({ item }) => <Quadrados player={playerList(item.id)} onClick={() => setVotes({ ...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
+            />
+          )}
+        </View>
+        {!voted && (
+          <Button onClick={() => { setModalText(true); }} name='FINALIZAR VOTOS' />
+        )}
+        {awaitPlayers > 0 && (
+          <Text style={styles.aviso}>{awaitPlayers} de {players.length} votaram.</Text>
+        )}
+        {modalText && <ModalAsk text='Deseja confirmar seu voto?' finish={() => { addVote(votes); setVoted(true); setModalText(!modalText); }} back={() => setModalText(!modalText)} />}
+      </ScrollView>
     </View>
   );
 }
@@ -103,21 +103,21 @@ const styles = StyleSheet.create({
     marginVertical: 20
   },
   title: {
-    fontSize:  Tela > 350 ? 22 : 16,
+    fontSize: Tela > 350 ? 22 : 16,
     alignItems: 'center',
     marginVertical: 10
   },
   logo: {
-    width:  Tela > 350 ? 60 : 50,
+    width: Tela > 350 ? 60 : 50,
     height: Tela > 350 ? 60 : 50,
   },
-  margin:{
-    marginHorizontal:15
+  margin: {
+    marginHorizontal: 15
   },
-  aviso:{
-      fontSize: 14, 
-      textAlign: 'center', 
-      marginVertical: 20, 
-      color: COLORS.warningButton
+  aviso: {
+    fontSize: 14,
+    textAlign: 'center',
+    marginVertical: 20,
+    color: COLORS.warningButton
   }
 });

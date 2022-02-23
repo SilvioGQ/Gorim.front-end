@@ -9,7 +9,7 @@ import Rodada from '../../../../components/Rodada';
 import HeaderIcons from '../../../../components/headerIcons';
 
 const Tela = Dimensions.get('screen').width;
-export default function AnalisarProdutos({navigation}) {
+export default function AnalisarProdutos({ navigation }) {
 
   const [type, setType] = useState('Agrotóxico');
   const [modalText, setModalText] = useState('');
@@ -30,16 +30,16 @@ export default function AnalisarProdutos({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Rodada arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
-        <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }} onPress={() => setModalText('Legenda:')}  >
-        <HeaderIcons name={'Analisar \nprodutos'} icon='Analisar produtos'/>
-          <Image source={require('../../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
-        </TouchableOpacity>
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
+      <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '10%' }} onPress={() => setModalText('Legenda:')}  >
+        <HeaderIcons name={'Analisar \nprodutos'} icon='Analisar produtos' />
+        <Image source={require('../../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
+      </TouchableOpacity>
       <FilterType type={type} setType={setType} />
       {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} modalImage={true} />}
       {stage === 'GETPRODUCTS' && (
         <FlatList
-          data={selectType().sort((a, b) => a.medium-b.medium)}
+          data={selectType().sort((a, b) => a.medium - b.medium)}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <Produtos item={item} />}
         />

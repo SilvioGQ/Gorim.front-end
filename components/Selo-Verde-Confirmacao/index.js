@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorSecondary,
     padding: 25,
     borderRadius: 30,
-    shadowColor: "#000", 
-    shadowOffset: {width: 0,height: 2},
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
@@ -44,15 +44,15 @@ const styles = StyleSheet.create({
     width: Tela,
   },
   loading: {
-    
+
     fontSize: 18,
     textAlign: "center",
-    marginBottom:15,
+    marginBottom: 15,
   },
   button: {
     alignItems: 'center',
     width: 250,
-    padding:10,
+    padding: 10,
     backgroundColor: COLORS.successButton,
     borderRadius: 20,
     margin: 10,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   buttontext: {
     textAlign: 'center',
     fontSize: 15,
-    
+
     color: '#fff',
   }
 });

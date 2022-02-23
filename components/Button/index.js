@@ -8,11 +8,11 @@ export default function Button({ name, onClick, disabled = false, back = COLORS.
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: back}]}
+        style={[styles.button, { backgroundColor: back }]}
         onPress={onClick}
         disabled={disabled}
       >
-        <Text style={[styles.text, {color: color}]}>{name}</Text>
+        <Text style={[styles.text, { color: color }]}>{name}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLORS.successButton,
     borderWidth: 2,
-    borderColor:COLORS.successButton,
+    borderColor: COLORS.successButton,
     borderRadius: 25,
     width: '80%',
     shadowColor: "#000",

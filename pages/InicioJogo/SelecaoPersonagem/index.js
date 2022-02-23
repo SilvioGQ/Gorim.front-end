@@ -12,14 +12,14 @@ export default function SelecaoPersonagem({ navigation }) {
   const [title, setTitle] = useState(true);
   const [modalText, setModalText] = useState('');
   const { players, player, stage, awaitPlayers } = useContext(GameContext);
-  
+
   useEffect(() => {
     let isMounted = true;
 
     if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
     if (stage === 'NAVIGATEFORLOBBY') navigation.reset({ routes: [{ name: 'Lobby' }] });
-    
+
     if (stage === 'SELECTEDAVATARS' && isMounted) navigation.reset({ routes: [{ name: 'MenuJogador' }] });
 
     return () => isMounted = false;
@@ -30,14 +30,14 @@ export default function SelecaoPersonagem({ navigation }) {
     for (let i = 0; i < players.length; i++) {
       if (players[i].avatar === index) { color = '#CBCBCB'; break; }
     }
-    
+
     return player.avatar == index ? '#8ACF3A' : color;
   }
 
   const startGame = () => {
     if (players.length === awaitPlayers) {
-    return selectedAvatars();
-  }
+      return selectedAvatars();
+    }
     return setTitle(false), setModalText('Aguardando outros jogadores escolherem um avatar');
   }
 
@@ -51,8 +51,8 @@ export default function SelecaoPersonagem({ navigation }) {
               <Text style={styles.text}>VOCÊ SERÁ</Text>
               <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}S`}</Text>
             </View>
-            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
-              <TouchableOpacity onPress={() => {setTitle(true); setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.')}} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
+            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => { setTitle(true); setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.') }} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
+              <TouchableOpacity onPress={() => { setTitle(true); setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.') }} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
           </View>
           <Text style={styles.text}>Selecione um personagem</Text>
           {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} title={title} />}
@@ -84,7 +84,7 @@ export default function SelecaoPersonagem({ navigation }) {
           <View style={styles.marginButton}>
             <Button onClick={startGame} name='começar' />
           </View> :
-          <Text style={styles.finalText}>{awaitPlayers === players.length ? 'AGUARDANDO HOST INICIAR' : 'AGUARDANDO JOGADORES.' }</Text>
+          <Text style={styles.finalText}>{awaitPlayers === players.length ? 'AGUARDANDO HOST INICIAR' : 'AGUARDANDO JOGADORES.'}</Text>
         }
       </ScrollView>
     </View>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: Height > 700 ? 16 : 14,
     marginVertical: 10,
     textAlign: 'center',
-    
+
   },
   textbutton: {
     padding: 8,
@@ -141,15 +141,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Rubik_300Light'
   },
-  marginButton:{ 
+  marginButton: {
     alignItems: 'center',
-   marginVertical: 15 
+    marginVertical: 15
   },
-  textPlayersAmount:{ 
-    fontSize: 24, 
-    textAlign: 'center' 
+  textPlayersAmount: {
+    fontSize: 24,
+    textAlign: 'center'
   },
-  flexRow:{ 
-    flexDirection: 'row' 
+  flexRow: {
+    flexDirection: 'row'
   }
 });

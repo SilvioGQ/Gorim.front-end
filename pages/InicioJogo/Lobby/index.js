@@ -14,7 +14,7 @@ export default function Lobby({ navigation }) {
 
   useEffect(() => {
     let isMounted = true;
-    
+
     if (stage === 'NAVIGATEFORSELECTIONAVATARS') navigation.reset({ routes: [{ name: 'SelecaoPersonagem' }] });
     if (stage === 'NAVIGATEFORMENU') navigation.reset({ routes: [{ name: 'MenuJogador' }] });
     if (stage === 'NAVIGATEFORMENUPOLITIC') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
@@ -22,7 +22,7 @@ export default function Lobby({ navigation }) {
 
     if (stage == 'STARTGAME' && isMounted) navigation.reset({ routes: [{ name: 'SorteioJogador' }] });
     if (stage === 'REMOVEDTOROOM' && isMounted) navigation.reset({ routes: [{ name: 'Gorim' }] });
-    
+
     return () => isMounted = false;
   }, [stage]);
 
@@ -49,11 +49,11 @@ export default function Lobby({ navigation }) {
           renderItem={({ item }) => <View style={styles.line}><Text style={styles.listText}>{item.name}</Text></View>}
         />
       }
-      {player.host ? 
-      <>
+      {player.host ?
+        <>
 
-        <Button name='começar' onClick={() => startGame()} />
-        <Text style={{fontSize:24, color:players.length > 5 ? COLORS.successButton : COLORS.warningButton, textAlign:'center', marginBottom:30}}>{awaitPlayers} de 10 jogadores</Text>
+          <Button name='começar' onClick={() => startGame()} />
+          <Text style={{ fontSize: 24, color: players.length > 5 ? COLORS.successButton : COLORS.warningButton, textAlign: 'center', marginBottom: 30 }}>{awaitPlayers} de 10 jogadores</Text>
         </> :
         <Text style={{
           fontSize: 20,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 30 ,
+    paddingTop: 30,
     width: Tela
   },
   image: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 32,
-    
+
     marginTop: 5,
     textAlign: 'center',
     alignItems: 'center',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   textcod: {
     fontWeight: 'bold',
     fontSize: 32,
-    
+
     paddingTop: 7,
     textAlign: 'center',
     alignItems: 'center',
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   listText: {
     fontSize: 22,
-    
+
     marginLeft: 10,
   },
 });

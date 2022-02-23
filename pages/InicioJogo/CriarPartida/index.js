@@ -39,8 +39,8 @@ export default function CriarPartida({ navigation }) {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, height: Height - 100, alignItems: 'center', width: Tela }}>
-          <View style={{flexDirection:'row'}}>
-            <TouchableOpacity style={[styles.leftArrow,{position:'absolute',left:-40,top:5,}]} onPress={() =>navigation.reset({ routes: [{ name: 'Gorim'}] })}  >
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity style={[styles.leftArrow, { position: 'absolute', left: -40, top: 5, }]} onPress={() => navigation.reset({ routes: [{ name: 'Gorim' }] })}  >
               <Image style={styles.leftArrow} source={require('../../../assets/icons/left-arrow.png')} />
             </TouchableOpacity>
             <TextInput style={styles.input}
@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 45,
-    marginLeft:10,
+    marginLeft: 10,
     fontSize: Tela > 350 ? 24 : 18,
     borderWidth: 1,
     width: '80%',
     textAlign: 'center',
     borderRadius: 17,
-    borderColor:'#11BBA3',
-    fontFamily:'Rubik_300Light',
+    borderColor: '#11BBA3',
+    fontFamily: 'Rubik_300Light',
   },
   row: {
     flexDirection: 'row',
@@ -150,11 +150,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: Tela > 350 ? 18 : 16,
     textAlign: 'center',
-    fontFamily:'Rubik_300Light'
+    fontFamily: 'Rubik_300Light'
   },
   botao: {
     fontSize: Tela > 350 ? 24 : 18,
-    marginTop:  Tela > 350 ? 7 : 12,
+    marginTop: Tela > 350 ? 7 : 12,
   },
   arrow: {
     width: 25,
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     opacity: 0.7,
-    marginLeft:5
+    marginLeft: 5
   },
   line: { width: '80%', borderWidth: 0.6, borderColor: '#11BBA3' }
 });

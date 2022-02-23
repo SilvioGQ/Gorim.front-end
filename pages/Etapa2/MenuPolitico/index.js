@@ -44,7 +44,7 @@ export default function MenuPolitico({ navigation }) {
       </View>
       <Header typeMenu="politic" />
       {modalVisible && <ModalConfirmExit deletePlayer={removeFromRoom} onClick={() => setModalVisible(!modalVisible)} />}
-      {modalVisible2 && <ModalAsk finish={() => {endRound(); navigation.reset({routes: [{name: 'AguardarJogadores' }] });} } back={() => setModalVisible2(!modalVisible2)} />}
+      {modalVisible2 && <ModalAsk finish={() => { endRound(); navigation.reset({ routes: [{ name: 'AguardarJogadores' }] }); }} back={() => setModalVisible2(!modalVisible2)} />}
       {modalText !== '' && (
         <Modal onClick={() => setModalText('')} text={modalText} />
       )}
@@ -100,16 +100,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   await: {
-    color: 'red', 
-    marginTop: 45, 
+    color: 'red',
+    marginTop: 45,
     fontFamily: 'Rubik_300Light'
   },
   estilo: {
-    marginRight: 10, 
-    marginVertical: 10, 
-    backgroundColor: COLORS.bgColorPrimary, 
-    width: 96, 
-    height: 92, 
+    marginRight: 10,
+    marginVertical: 10,
+    backgroundColor: COLORS.bgColorPrimary,
+    width: 96,
+    height: 92,
     borderRadius: 20
   },
   rodada: {

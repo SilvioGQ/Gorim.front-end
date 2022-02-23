@@ -18,9 +18,9 @@ export default function Sugestoes({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Rodada  arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
       <Coin coin={player.serviceSalary} />
-      <HeaderIcons name={'Sugestões'} icon='Sugestões'/>
+      <HeaderIcons name={'Sugestões'} icon='Sugestões' />
       {player.office === 'Prefeito' && (
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -40,9 +40,9 @@ export default function Sugestoes({ navigation }) {
       )}
       {suggests.length === 0 && (
         player.office === 'Vereador' ?
-        <Text style={styles.textBold}>Você não fez sugestões!</Text>
-        :
-        <Text style={styles.textBold}>Não há sugestões!</Text>
+          <Text style={styles.textBold}>Você não fez sugestões!</Text>
+          :
+          <Text style={styles.textBold}>Não há sugestões!</Text>
       )}
 
     </View>

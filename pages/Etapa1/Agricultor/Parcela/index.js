@@ -64,7 +64,7 @@ export default function Parcela({ route, navigation }) {
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
-      <HeaderIcons name={'Aplicação \nem parcela'} icon='Aplicação em parcela'/>
+        <HeaderIcons name={'Aplicação \nem parcela'} icon='Aplicação em parcela' />
         {parcelLand.planted && !parcelLand.requestStamp && parcelLand.pesticide === null && (
           <TouchableOpacity style={styles.button2} onPress={() => setModalText('Tem certeza de que deseja solicitar o selo verde ao fiscal?')}   >
             <Text style={styles.buttonText}>PEDIR SELO VERDE</Text>
@@ -265,9 +265,9 @@ const styles = StyleSheet.create({
   imagem: {
     width: 20,
     height: 20,
-    paddingVertical:5,
-    paddingLeft:10,
-    paddingRight:5
+    paddingVertical: 5,
+    paddingLeft: 10,
+    paddingRight: 5
   },
   textparcel: {
     fontSize: 18,

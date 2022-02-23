@@ -27,12 +27,12 @@ export default function Imposto({ navigation }) {
       setSelectImposto3(tax.highProduction);
     }
   }, [stage, tax]);
-const apply = ()=>{
-  player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 })
-  : 
-  suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 });
-  navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Imposto Aplicado!' : 'Imposto Sugerido!' } }] });
-}
+  const apply = () => {
+    player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 })
+      :
+      suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 });
+    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Imposto Aplicado!' : 'Imposto Sugerido!' } }] });
+  }
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -89,8 +89,8 @@ const apply = ()=>{
           name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
         {player.office === 'Prefeito' && (
           <TouchableOpacity style={styles.button} onPress={() => { setSelectImposto("Médio"); setSelectImposto2("Médio"); setSelectImposto3("Médio") }}>
-          <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
-        </TouchableOpacity>
+            <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
+          </TouchableOpacity>
         )}
       </ScrollView>
     </View>
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     width: Tela
   },
   header: {
-    
+
     fontSize: 20,
   },
   font: {

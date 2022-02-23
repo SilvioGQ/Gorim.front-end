@@ -28,14 +28,14 @@ export default function HistoricosDinheiro({ item }) {
       </View>
       {item.value && (
         <View style={styles.absolute2}>
-					<Text style={[styles.text, { marginTop: 5 }]}>${normalizeNumber(item.value)}</Text>
+          <Text style={[styles.text, { marginTop: 5 }]}>${normalizeNumber(item.value)}</Text>
           <Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10, transform: item.ownAction ? [{ rotateY: "0deg" }] : [{ rotateY: "180deg" }], }} />
           <Text style={styles.text}>{item.ownAction ? 'transferido' : 'recebido'}</Text>
         </View>
       )}
       {item.product && (
         <View style={styles.absolute2}>
-					<Text style={[styles.text, { marginTop: 5 }]}>{item.product.amount} por ${normalizeNumber(item.product.price)} á unidade</Text>
+          <Text style={[styles.text, { marginTop: 5 }]}>{item.product.amount} por ${normalizeNumber(item.product.price)} á unidade</Text>
           <Image source={require('../../assets/Arrow.png')} style={{ width: 130, height: 10 }} />
           <Text style={styles.text}>{player.type == 'Agricultor' ? 'Comprados do emp' : 'vendido(s) para'}</Text>
         </View>

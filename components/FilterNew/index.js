@@ -20,13 +20,13 @@ export default function FilterNew({ type, setType, nome1, nome2, nome3 = false }
         </>
         :
         <>
-        <TouchableOpacity style={[styles.button, { backgroundColor: type == nome1 ? "#8ACF3A" : '#fff' }]} onPress={() => { setType(nome1) }}  >
-        <Text style={[styles.textSmall, { color: type == nome1 ? '#fff' : '#000' }]}>{nome1}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, { backgroundColor: type == nome2 ? "#8ACF3A" : '#fff' }]} onPress={() => { setType(nome2) }}  >
-        <Text style={[styles.textSmall, { color: type == nome2 ? '#fff' : '#000' }]}>{nome2}</Text>
-      </TouchableOpacity>
-      </>
+          <TouchableOpacity style={[styles.button, { backgroundColor: type == nome1 ? "#8ACF3A" : '#fff' }]} onPress={() => { setType(nome1) }}  >
+            <Text style={[styles.textSmall, { color: type == nome1 ? '#fff' : '#000' }]}>{nome1}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, { backgroundColor: type == nome2 ? "#8ACF3A" : '#fff' }]} onPress={() => { setType(nome2) }}  >
+            <Text style={[styles.textSmall, { color: type == nome2 ? '#fff' : '#000' }]}>{nome2}</Text>
+          </TouchableOpacity>
+        </>
       }
     </View>
   )

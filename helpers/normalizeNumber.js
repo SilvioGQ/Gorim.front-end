@@ -1,5 +1,5 @@
 export default function (number) {
-	if (number) return number.toFixed(2);
+  if (number) return number.toFixed(2);
 
-	return number;
+  return number;
 }

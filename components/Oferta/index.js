@@ -15,7 +15,7 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
   selectPlayer = (id) => {
     return players.find(player => player.id === id);
   }
-  
+
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
@@ -60,11 +60,11 @@ export default function Oferta({ item, confirmOffer, rejectOffer }) {
 
 const styles = StyleSheet.create({
   colunm: {
-    marginLeft:15,
+    marginLeft: 15,
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
-    width: Tela-30,
-    paddingVertical:10,
+    width: Tela - 30,
+    paddingVertical: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -115,11 +115,11 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 15,
-    marginBottom:1
+    marginBottom: 1
   },
   text2: {
     textAlign: 'center',
     fontSize: 15,
-    marginBottom:7
+    marginBottom: 7
   }
 });

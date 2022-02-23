@@ -8,7 +8,7 @@ import normalizeNumber from '../../../helpers/normalizeNumber';
 
 const Tela = Dimensions.get('screen').width;
 export default function Status({ navigation }) {
-  
+
   const { player, data: round, stage, game, timer } = useContext(GameContext);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Status({ navigation }) {
     if (stage === 'NEXTSTAGE') navigation.reset({ routes: [{ name: 'MenuPolitico' }] });
     if (stage === 'INITELECTIONS') navigation.reset({ routes: [{ name: 'Candidatura' }] });
   }, [stage]);
-	
+
   return (
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={COLORS.bgColorPrimary} barStyle={'dark-content'} />
@@ -29,19 +29,19 @@ export default function Status({ navigation }) {
             <Image source={ICONS[player.avatar]} style={styles.img} />
             <Text style={styles.text2}>{player.type ? player.type.slice(0, 3) : ''}{player.type === 'Empresário' ? player.specialty[0] : ''}/{player.name} em {player.city}</Text>
             <View style={styles.circulo}>
-							<Text style={styles.text3}>Poluição global: {normalizeNumber(game.globalPollution)}%</Text>
+              <Text style={styles.text3}>Poluição global: {normalizeNumber(game.globalPollution)}%</Text>
             </View>
             <View style={styles.circulo}>
               <Text style={styles.text3}>Poluição individual: {normalizeNumber(player.pollution)}</Text>
             </View>
             <View style={styles.circulo}>
-							<Text style={styles.text3}>Imposto pago: ${normalizeNumber(round.tax.value)} {round.tax.percentual ? '= (' +  normalizeNumber(round.tax.percentual) + '%)' : ''}</Text>
+              <Text style={styles.text3}>Imposto pago: ${normalizeNumber(round.tax.value)} {round.tax.percentual ? '= (' + normalizeNumber(round.tax.percentual) + '%)' : ''}</Text>
             </View>
             <View style={styles.circulo}>
-							<Text style={styles.text3}>Produtividade: ${normalizeNumber(round.totalProduction)} = ({normalizeNumber(game.globalProduction)}%)</Text>
+              <Text style={styles.text3}>Produtividade: ${normalizeNumber(round.totalProduction)} = ({normalizeNumber(game.globalProduction)}%)</Text>
             </View>
             <View style={styles.circulo}>
-							<Text style={styles.text3}>Saldo atual: ${normalizeNumber(player.coin)}</Text>
+              <Text style={styles.text3}>Saldo atual: ${normalizeNumber(player.coin)}</Text>
             </View>
             {/* <View style={styles.circulo}>
               <Text style={styles.text3}>Multa: {round.fine > 0 ? round.fine + '$' : round.nameFine}</Text>

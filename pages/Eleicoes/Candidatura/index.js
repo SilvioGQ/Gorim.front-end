@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Cargos from '../../../components/Cargos';
 import Button from '../../../components/Button';
@@ -13,10 +13,10 @@ export default function Candidatura({ navigation }) {
   const [isSelected, setSelection] = useState(false);
   const [modalVisible, setModalVisible] = useState('');
 
-	useEffect(() => {
+  useEffect(() => {
     if (stage === 'INITVOTATION') navigation.navigate('Votacao');
   }, [stage]);
-  
+
   return (
     <View style={styles.container}>
       <Rodada />
@@ -34,13 +34,13 @@ export default function Candidatura({ navigation }) {
         <Text style={styles.paragrafo}>Antes de começar, a cidade de {player.city} precisa de representantes e reguladores que serão responsáveis por gerir os recursos públicos em busca de alinhar lucro e meio ambiente. Você pode se candidatar à estes cargos e, logo, haverá uma votação para eleger os líderes da cidade! </Text>
       </View>
       <View>
-          <Cargos isSelected={isSelected} setSelection={setSelection} />
+        <Cargos isSelected={isSelected} setSelection={setSelection} />
       </View>
       <Button
-        onClick={() => { isSelected !== false ? addCandidature(isSelected) : setModalVisible('Selecione alguma opção');   }  }
+        onClick={() => { isSelected !== false ? addCandidature(isSelected) : setModalVisible('Selecione alguma opção'); }}
         name='CANDIDATAR'
       />
-      <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom:20, color:COLORS.warningButton}}>{awaitPlayers} de {players.length} se candidataram</Text>
+      <Text style={{ fontSize: 14, textAlign: 'center', marginTop: 10, marginBottom: 20, color: COLORS.warningButton }}>{awaitPlayers} de {players.length} se candidataram</Text>
     </View>
   );
 }
@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    marginVertical:20
+    marginVertical: 20
   },
   logo: {
-    width:  Tela > 350 ? 60 : 50,
+    width: Tela > 350 ? 60 : 50,
     height: Tela > 350 ? 60 : 50,
   },
   title: {
@@ -70,10 +70,10 @@ const styles = StyleSheet.create({
     marginTop: '2%'
   },
   paragrafo: {
-    fontSize:Tela > 350 ? 18 : 13,
+    fontSize: Tela > 350 ? 18 : 13,
     // lineHeight: 30,
-    textAlign:'justify',
-    marginHorizontal:10,
-    marginBottom:15
+    textAlign: 'justify',
+    marginHorizontal: 10,
+    marginBottom: 15
   }
 });

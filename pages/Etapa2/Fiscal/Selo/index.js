@@ -10,17 +10,17 @@ import TextBold from '../../../../components/Atons/TextBold';
 const Tela = Dimensions.get('screen').width;
 export default function Selo({ navigation, route }) {
   const [selectClient, setSelectClient] = useState(-1);
-  const { player, data:playersType, stage } = useContext(GameContext);
+  const { player, data: playersType, stage } = useContext(GameContext);
   const [modalText, setModalText] = useState('');
   const [farmer, setFarmer] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState([]);
   const [selectParcel, setSelectParcel] = useState([]);
 
-  useEffect(() =>{
-    suggestFine();
-  },[]);
   useEffect(() => {
-    if(stage === 'SUGGESTFINE'){
+    suggestFine();
+  }, []);
+  useEffect(() => {
+    if (stage === 'SUGGESTFINE') {
       setFarmer(playersType.filter(i => i.type === 'Agricultor' && i.city == player.city))
       if (selectClient !== -1) {
         setSelectedPlayer(playersType.find((p) => p.playerId === selectClient))
@@ -99,9 +99,9 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
   estilo: {
-    marginHorizontal: 10, 
-    flexDirection: 'row', 
-    width: '100%', 
+    marginHorizontal: 10,
+    flexDirection: 'row',
+    width: '100%',
     flexWrap: 'wrap'
   }
 });

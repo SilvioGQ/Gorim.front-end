@@ -32,16 +32,16 @@ export default function Produtos({ item }) {
         </View>
       </View>
       <View style={{
-        flexDirection: 'row', 
+        flexDirection: 'row',
         position: 'absolute',
         right: 30,
         bottom: 20,
       }}>
-        <View style={{ padding: 5, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight:5 }}>
-          <Text style={{  fontWeight: 'bold', color: '#58AB23', fontSize: 18 }}>{item.productive}{item.type === 'Semente' ? '+' : 'x'}</Text>
+        <View style={{ padding: 5, borderRadius: 10, borderColor: '#58AB23', borderWidth: 2.5, marginRight: 5 }}>
+          <Text style={{ fontWeight: 'bold', color: '#58AB23', fontSize: 18 }}>{item.productive}{item.type === 'Semente' ? '+' : 'x'}</Text>
         </View>
         {item.pollution ? <View style={{ padding: 5, borderRadius: 10, borderColor: COLORS.warningButton, borderWidth: 2.5 }}>
-          <Text style={{  fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18 }}>{item.pollution}{item.type === 'Semente' ? '+' : 'x'}</Text>
+          <Text style={{ fontWeight: 'bold', color: COLORS.warningButton, fontSize: 18 }}>{item.pollution}{item.type === 'Semente' ? '+' : 'x'}</Text>
         </View> : <View></View>}
       </View>
 
@@ -80,11 +80,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   pacotes: {
-    
+
     fontSize: 12,
   },
   sementes: {
-    
+
     fontSize: 10,
   },
   textinhos: {
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   numeros: {
-    
+
     fontSize: 18,
     marginVertical: 1,
     marginLeft: 10

@@ -12,7 +12,7 @@ import Rodada from '../../../../components/Rodada';
 import TextBold from '../../../../components/Atons/TextBold';
 import HeaderIcons from '../../../../components/headerIcons';
 const Tela = Dimensions.get('screen').width;
-export default function Propostas({navigation}) {
+export default function Propostas({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('Gerais');
   const { player, offers, disableNotifyOffers } = useContext(GameContext);
@@ -45,32 +45,32 @@ export default function Propostas({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Rodada arrow={true} onClick={()=>navigation.navigate('MenuJogador')} />
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
-      <View style={{flex:1}}>
-      <HeaderIcons name={'Checar \nAnúncios'} icon='Checar anúncios'/>
-      {/* <FilterType type={type} setType={setType} /> */}
-      <FilterNew type={type} setType={setType} nome1={'Gerais'} nome2={'Individual'}/>
-      {type==='Gerais' ? 
-      !offers.all || offers.all.length === 0 ?
-          <TextBold>Não tem anúncios gerais!</TextBold>
-          : <FlatList
-            showsVerticalScrollIndicator={false}
-            data={offers.all}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
-          />
+      <View style={{ flex: 1 }}>
+        <HeaderIcons name={'Checar \nAnúncios'} icon='Checar anúncios' />
+        {/* <FilterType type={type} setType={setType} /> */}
+        <FilterNew type={type} setType={setType} nome1={'Gerais'} nome2={'Individual'} />
+        {type === 'Gerais' ?
+          !offers.all || offers.all.length === 0 ?
+            <TextBold>Não tem anúncios gerais!</TextBold>
+            : <FlatList
+              showsVerticalScrollIndicator={false}
+              data={offers.all}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item, index }) => <OfertaGeral key={index} item={item} confirmOffer={confirmPurchase} />}
+            />
           :
           !offers.individual || offers.individual.length === 0 ?
-          <TextBold>Ninguém te mandou anúncio individual!</TextBold>
-          : <FlatList
-            showsVerticalScrollIndicator={false}
-            data={offers.individual}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
-          />
-    }
+            <TextBold>Ninguém te mandou anúncio individual!</TextBold>
+            : <FlatList
+              showsVerticalScrollIndicator={false}
+              data={offers.individual}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item, index }) => <Oferta item={item} key={index} confirmOffer={confirmPurchase} rejectOffer={rejectOffer} />}
+            />
+        }
       </View>
     </View>
   );

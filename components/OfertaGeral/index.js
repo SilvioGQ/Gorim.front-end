@@ -18,54 +18,54 @@ export default function Oferta({ item, confirmOffer }) {
   }
   const increaseCount = () => { setCount(count < (item.amount > 6 ? 6 : item.amount) ? count + 1 : count); }
   const decreaseCount = () => { setCount(count > 1 ? count - 1 : count); }
-  
+
   return (
     <View>
-    <Text style={styles.text1}>Ainda restam {item.amount} produtos</Text>
-    <View style={styles.colunm}>
-      <View style={styles.row3}>
-        <View>
-          <Image
-            style={styles.person}
-            source={ICONS[item.avatarSeller]}
-          />
+      <Text style={styles.text1}>Ainda restam {item.amount} produtos</Text>
+      <View style={styles.colunm}>
+        <View style={styles.row3}>
+          <View>
+            <Image
+              style={styles.person}
+              source={ICONS[item.avatarSeller]}
+            />
             <Text style={styles.text}>{this.selectPlayer(item.idSeller).name}</Text>
-        </View>
-        <View>
-          <Text style={styles.text}>Produto:</Text>
-          <Text style={styles.textBold}>{item.name}</Text>
-        </View>
-        <Image
-          style={styles.icone}
-          source={imagesProducts[item.name]}
-        />
-        <View>
-          <Text style={styles.text}>Preço:</Text>
-          <Text style={styles.textBold}>${normalizeNumber(item.price)}</Text>
-        </View>
-         <Image
-          style={styles.icone}
-          source={imagesCoins[item.priceType]}
-        />
-      </View>
-      <View style={styles.row}>
-          <TouchableOpacity style={styles.button} onPress={() => { confirmOffer(item, count); setCount(1); }}  >
-          <Text style={styles.textbutton}>COMPRAR</Text>
-        </TouchableOpacity>
-        <Text style={styles.text}> Quantidade:</Text>
-        <View style={styles.arrows}>
-            <TouchableOpacity onPress={decreaseCount}  >
-            <Text style={styles.textDecrease}>-</Text>
-          </TouchableOpacity>
-          <View style={styles.buttonAmount}>
-            <Text style={styles.textAmount}>{count > item.amount ? item.amount : count}</Text>
           </View>
-            <TouchableOpacity onPress={increaseCount}  >
-            <Text style={styles.textIncrease}>+</Text>
+          <View>
+            <Text style={styles.text}>Produto:</Text>
+            <Text style={styles.textBold}>{item.name}</Text>
+          </View>
+          <Image
+            style={styles.icone}
+            source={imagesProducts[item.name]}
+          />
+          <View>
+            <Text style={styles.text}>Preço:</Text>
+            <Text style={styles.textBold}>${normalizeNumber(item.price)}</Text>
+          </View>
+          <Image
+            style={styles.icone}
+            source={imagesCoins[item.priceType]}
+          />
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity style={styles.button} onPress={() => { confirmOffer(item, count); setCount(1); }}  >
+            <Text style={styles.textbutton}>COMPRAR</Text>
           </TouchableOpacity>
+          <Text style={styles.text}> Quantidade:</Text>
+          <View style={styles.arrows}>
+            <TouchableOpacity onPress={decreaseCount}  >
+              <Text style={styles.textDecrease}>-</Text>
+            </TouchableOpacity>
+            <View style={styles.buttonAmount}>
+              <Text style={styles.textAmount}>{count > item.amount ? item.amount : count}</Text>
+            </View>
+            <TouchableOpacity onPress={increaseCount}  >
+              <Text style={styles.textIncrease}>+</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
     </View>
   );
 }
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgColorPrimary,
     borderRadius: 20,
     width: Tela - 30,
-    paddingVertical:10,
+    paddingVertical: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   text1: {
     fontSize: 13,
     marginTop: 2,
-    marginLeft:15
+    marginLeft: 15
   },
   arrows: {
     flexDirection: 'row',

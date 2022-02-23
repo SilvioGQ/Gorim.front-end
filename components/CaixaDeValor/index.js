@@ -5,7 +5,7 @@ import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesCoins';
 
 export default function CaixaDeValor({ value, setValue, increment, minValue = 0, maxValue = value + 1, coin = null }) {
-console.log(value)
+  console.log(value)
   console.log(minValue)
   console.log(maxValue)
 
@@ -18,7 +18,7 @@ console.log(value)
         <Image style={[styles.arrow, { opacity: value === minValue ? 0.5 : 1 }]} source={require('../../assets/agricultorIcones/setaesquerda.png')} />
       </TouchableOpacity>
       <View style={styles.buttonAmount}>
-        {coin ===true && (<Image style={{ width: 24, height: 27, marginRight:5, alignSelf:'center', marginTop:5 }} source={IMAGES["Moeda"]} />)} 
+        {coin === true && (<Image style={{ width: 24, height: 27, marginRight: 5, alignSelf: 'center', marginTop: 5 }} source={IMAGES["Moeda"]} />)}
         <Text style={styles.textAmount}>{value}</Text>
       </View>
       <TouchableOpacity onPress={increaseValue}  >
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom:30
+    marginBottom: 30
 
   },
   arrow: {
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
     height: 38
   },
   buttonAmount: {
-    flexDirection:'row',
+    flexDirection: 'row',
     backgroundColor: COLORS.textWhite,
     borderWidth: 1,
     borderRadius: 20,
     height: 42,
     width: 170,
-    justifyContent:'center'
+    justifyContent: 'center'
   },
   textAmount: {
     alignSelf: 'center',
