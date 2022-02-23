@@ -4,7 +4,7 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
-// import ModalInfo from '../Components/ModalInfo';
+// import ModalInfo from '../components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
 const socket = io(API_URL_HERO, { autoConnect: false });
