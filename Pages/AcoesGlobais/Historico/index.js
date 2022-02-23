@@ -264,7 +264,7 @@ export default function Historico({ navigation }) {
 														return item
 													}
 												}).map((item, index) => {
-													return <Text style={[styles.texto]} key={index}>{`Foram arrecadados $${item.value} de impostos nessa rodada.`}</Text>
+													return <Text style={[styles.texto]} key={index}>{`Foram arrecadados $${normalizeNumber(item.value)} de impostos nessa rodada.`}</Text>
 												})}
 											</View>
 										</View>
@@ -286,11 +286,11 @@ export default function Historico({ navigation }) {
 												})
 													:
 													<Text style={[styles.textonao]}>O prefeito não aplicou imposto</Text>
-												}(
+												}
 											</View>
 											:
 											<View style={{ display: open4 ? 'flex' : 'none' }}>
-												{oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city) && playerLog.logsOffice.filter((item) => item.type == 'tax').length > 0 ? playerLog.logsOffice.filter((item) => item.type == 'tax').map((item, index) => {
+												{oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city) && playerLog.logsOffice?.filter((item) => item.type == 'tax').length > 0 ? playerLog.logsOffice.filter((item) => item.type == 'tax').map((item, index) => {
 													return <Text style={[styles.texto]} key={index}>{`Você aplicou imposto ${item.value > 0 ? `$${normalizeNumber(item.value)} para ${item.label}` : `${normalizeNumber(item.percentual)}%`} para ${item.label}`}</Text>
 												})
 													:
@@ -305,14 +305,14 @@ export default function Historico({ navigation }) {
 											<Text style={[styles.subtitle, {
 												marginLeft: 10,
 												marginTop: 10
-											}]}>{player.office === 'Vereador' ? 'Prevenção' : 'Prevenção'}</Text>
+											}]}>Prevenção</Text>
 											<TouchableOpacity onPress={() => { setOpen5(!open5) }}>
 												<Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ5 }] }} source={require('../../../assets/dropdown.png')} />
 											</TouchableOpacity>
 										</View>
 										{player.office === "Vereador" ?
 											<View style={{ display: open5 ? 'flex' : 'none' }}>
-												{oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'prevention').length > 0 ? oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'prevention').map((item, index) => {
+												{oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city)?.logsOffice.filter((item) => item.type == 'prevention').length > 0 ? oldLogs.find(p => p.office === 'Prefeito' && p.city === player.city).logsOffice.filter((item) => item.type == 'prevention').map((item, index) => {
 													return <Text style={[styles.texto]} key={index}>{`O prefeito aplicou ${item.label}`}</Text>
 												})
 													:
