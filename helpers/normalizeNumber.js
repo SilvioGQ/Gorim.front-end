@@ -1,5 +1,10 @@
 export default function (number) {
-  if (number) return number.toFixed(2);
+  if (number) {
+    if (number.toString().indexOf('.') == -1) {
+      return number;
+    }
+    else return number.toFixed(2);
+  }
 
   return number;
 }
