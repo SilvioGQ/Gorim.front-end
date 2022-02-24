@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { GameProvider } from './contexts/GameContext';
 import { useFonts } from 'expo-font';
-import Routes from './Pages/Routes';
+import Routes from './pages/Routes';
 
 const MyTheme = {
   ...DefaultTheme,

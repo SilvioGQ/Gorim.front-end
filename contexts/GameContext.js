@@ -4,7 +4,7 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform } from 'react-native';
-// import ModalInfo from '../Components/ModalInfo';
+// import ModalInfo from '../components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
 const socket = io(API_URL_HERO, { autoConnect: false });
@@ -25,21 +25,21 @@ const GameProvider = (props) => {
   const disableNotifySuggests = () => {
     dispatch({ type: 'GETNOTIFY', payload: { suggests: false } });
   };
-  
+
   const startTimer = (maxTime, callback) => {
     let callbackUsed = false;
-    
+
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
     recordStartTime(maxTime, socket.id).then(startTime => {
       let interval = setInterval(() => {
-        
+
         recordGetTime(startTime, socket.id).then(timer => {
           if (timer === undefined) {
             clearInterval(interval);
           } else {
             dispatch({ type: 'UPDATETIMER', payload: timer });
           }
-          
+
           if (timer === 0 && !callbackUsed) {
             callback();
             callbackUsed = true;
@@ -95,7 +95,7 @@ const GameProvider = (props) => {
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage, allForEndRound, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
-      if (msg === 'selectedAvatars') startTimer(400, () => endStage());
+      if (msg === 'selectedAvatars') startTimer(100, () => endStage());
       if (msg === 'INITELECTIONS') startTimer(20, () => addCandidature(null));
       if (msg === 'INITVOTATION') startTimer(20, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }));
       if (msg === 'INITRESULTSVOTATION') startTimer(20, () => nextStage());
@@ -155,12 +155,12 @@ const GameProvider = (props) => {
 
     socket.on('nextStage', () => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
-      startTimer(400, () => endRound());
+      startTimer(100, () => endRound());
     });
 
     socket.on('nextRound', () => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
-      startTimer(400, () => endStage());
+      startTimer(100, () => endStage());
     });
 
     // socket.on('reconnectToRoom', (stage) => {
@@ -230,8 +230,8 @@ const addAdvert = (name, specialty, price, client, amount, priceType) => {
   socket.emit('addAdvert', name, specialty, price, client, amount, priceType);
 }
 
-const deleteAdvert = (id) => {
-  socket.emit('deleteAdvert', id);
+const deleteAdvert = (offer) => {
+  socket.emit('deleteAdvert', offer);
 }
 
 const confirmOffer = (item, amount = null) => {
