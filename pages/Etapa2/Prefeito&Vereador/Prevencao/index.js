@@ -15,19 +15,25 @@ export default function Prevencao({ navigation }) {
   const [selectMedida, setSelectMedida] = useState({});
   const { player, stage, data: preventions } = useContext(GameContext);
   const [modalVisible, setModalVisible] = useState('');
-  const apply = () => {
-    if (player.serviceSalary < selectMedida.value && player.office !== 'Vereador') return setModalVisible('Saldo insuficiente');
-    if (Object.keys(selectMedida).length !== 0) {
-      player.office === 'Prefeito' ? applyPrevention(selectMedida)
-        :
-        suggestPrevention(selectMedida);
-    } else return setModalVisible('Selecione alguma medida preventiva');
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Medida aplicada!' : 'Medida Sugerida!' } }] });
-  }
+  const [executeAction, setExecuteAction] = useState(false);
 
   useEffect(() => {
     getPreventions();
   }, []);
+
+  useEffect(() => {
+    if (executeAction) navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Medida aplicada!' : 'Medida Sugerida!' } }] });
+
+    return () => { if (executeAction) player.office === 'Prefeito' ? applyPrevention(selectMedida) : suggestPrevention(selectMedida); }
+  }, [executeAction]);
+
+  const apply = () => {
+    if (player.serviceSalary < selectMedida.value && player.office !== 'Vereador') return setModalVisible('Saldo insuficiente');
+    if (Object.keys(selectMedida).length !== 0) {
+      setExecuteAction(true);
+    } else return setModalVisible('Selecione alguma medida preventiva');
+  }
+
 
   return (
     <View style={styles.container}>
