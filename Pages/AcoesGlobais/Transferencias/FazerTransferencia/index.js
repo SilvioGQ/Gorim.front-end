@@ -46,7 +46,7 @@ export default function FazerTransferencia({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Rodada name={'Fazer transferência'} arrow={true} onClick={() => navigation.goBack()} />
+      <Rodada arrow={true} onClick={() => navigation.goBack()} />
       <ScrollView>
         <Coin coin={game.phase === 1 ? player.coin : player.serviceSalary} />
         <HeaderIcons name={'Fazer \nTranferência'} icon='Fazer Transferência' />
