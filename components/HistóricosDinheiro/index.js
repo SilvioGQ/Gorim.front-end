@@ -9,12 +9,16 @@ import normalizeNumber from '../../helpers/normalizeNumber';
 const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
-
+console.log(item)
   const { player } = useContext(GameContext);
 
   return (
     <View style={styles.colunm}>
       <View style={styles.absolute3}>
+        {player ?
+          <Text style={styles.text}>{player.name}</Text>
+          :
+          null}
         <Image
           style={styles.icone}
           source={item.product ? imagesProducts[item.product.name] : ICONS[player.avatar]}
@@ -22,7 +26,7 @@ export default function HistoricosDinheiro({ item }) {
         {item.product ?
           <Text style={styles.text}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
           :
-          <Text style={styles.text}>{player.type ? player.type.slice(0, 3) : player.office.slice(0, 3)}/{player.name}</Text>
+          <Text style={styles.text}>{player.type ? player.type.slice(0, 3) : player.office.slice(0, 3)} - {player.city}</Text>
         }
 
       </View>
@@ -41,11 +45,15 @@ export default function HistoricosDinheiro({ item }) {
         </View>
       )}
       <View style={styles.absolute}>
+        {player ?
+          <Text style={styles.text}>{item.namePlayer}</Text>
+          :
+          null}
         <Image
           style={styles.icone}
           source={ICONS[item.avatarPlayer]}
         />
-        <Text style={styles.text}>{item.product ? item.namePlayer : `${item.typePlayer.slice(0, 3)}/${item.namePlayer}`}</Text>
+        <Text style={styles.text}>{item.product ? item.namePlayer : `${item.typePlayer.slice(0, 3)} - ${item.id.city}`}</Text>
       </View>
     </View>
   );
