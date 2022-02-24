@@ -107,6 +107,9 @@ export default function MenuJogador({ navigation }) {
             <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
             {player.specialty !== 'Máquina' && (<View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />)}
           </View>
+          <TouchableOpacity onPress={()=>navigation.navigate('Chat')}>
+          <Text>Clique aqui para ir para o chat</Text>
+          </TouchableOpacity>
         </View>
       )}
       {Height >= 720 && (

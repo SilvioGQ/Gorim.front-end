@@ -12,6 +12,8 @@ import SelecaoPersonagem from './InicioJogo/SelecaoPersonagem';
 import Vendas from './Etapa1/Empresario/Vender';
 import ChecarAnuncio from './Etapa1/Empresario/ChecarAnuncio';
 import FazerTransferencia from './AcoesGlobais/Transferencias/FazerTransferencia';
+import Chat from './AcoesGlobais/Chat';
+import ChatConversation from './AcoesGlobais/ChatConversation';
 import ConfirmarTransferencia from './AcoesGlobais/Transferencias/ConfirmarTransferencia';
 import TransferenciaConfirmada from './AcoesGlobais/Transferencias/Confirmada';
 import Cenario from './AcoesGlobais/Cenario';
@@ -79,7 +81,8 @@ export default function Routes() {
       <Stack.Screen name="Detalhes" component={Detalhes} />
       <Stack.Screen name="Candidatura" component={Candidatura} />
       <Stack.Screen name="Votacao" component={Votacao} />
-
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="ChatConversation" component={ChatConversation} />
     </Stack.Navigator>
   )
 }
