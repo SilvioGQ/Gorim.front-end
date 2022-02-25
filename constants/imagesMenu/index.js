@@ -11,6 +11,8 @@ const IMAGES = {
     'Conceder selo verde': require('../../assets/icons/stamp.png'),
     'Aplicar multas': require('../../assets/icons/penalty.png'),
     'Aplicação em parcela': require('../../assets/agricultorIcones/Parcela.png'),
+    'Chat': require('../../assets/icons/chat.png'),
+
 };
 
 export default IMAGES;

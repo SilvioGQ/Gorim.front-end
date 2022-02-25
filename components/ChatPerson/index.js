@@ -17,7 +17,7 @@ export default function ChatPerson({ onClick, player, notification = null }) {
       }
     return (
     <TouchableOpacity onPress={onClick}  >
-      <View>
+      <View style={styles.margem}>
         <Image
           style={styles.icone}
           source={ICONS[player.avatar]}
@@ -31,15 +31,27 @@ export default function ChatPerson({ onClick, player, notification = null }) {
 
 const styles = StyleSheet.create({
   icone: {
-    width: Tela > 350 ? 40 : 32,
-    height: Tela > 350 ? 40 : 32,
+    borderWidth: 4,
+    borderRadius: 17,
+    borderColor: '#A8DADC',
+    width: Tela > 350 ? 70 : 62,
+    height: Tela > 350 ? 70 : 62,
     marginBottom: Height > 720 && Height < 800 ? 2 : 5,
-    marginTop: 11.5
+    marginTop: 11.5,
+    position: 'absolute',
+
   },
   textinhos: {
-    fontSize: Tela > 350 ? 11 : 8,
-    textAlign: 'center',
-    marginHorizontal: 5
+    marginTop: 30,
+    fontSize: 14,
+    marginLeft: 85,
+    fontFamily: 'Rubik_700Bold',
+
+  },
+  margem: {
+    marginTop: 20,
+    marginHorizontal: 20,
+    marginVertical: 20
   },
   notificacao: {
     position: 'absolute',

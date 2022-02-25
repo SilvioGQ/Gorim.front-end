@@ -20,7 +20,7 @@ export default function Chat({ navigation }) {
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
       <Coin coin={player.coin} />
-      <HeaderIcons name={'Chat'} icon='Checar Anúncios' />
+      <HeaderIcons name={'Chat'} icon='Chat' />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
       <FilterNew type={type} setType={setType} nome1={'Pessoas'} nome2={'Grupos'} />
       {
