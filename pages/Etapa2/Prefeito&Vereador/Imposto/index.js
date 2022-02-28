@@ -15,6 +15,7 @@ export default function Imposto({ navigation }) {
   const [selectImposto2, setSelectImposto2] = useState(-1);
   const [selectImposto3, setSelectImposto3] = useState(-1);
   const { player, stage, data: tax } = useContext(GameContext);
+  const [executeAction, setExecuteAction] = useState(false);
 
   useEffect(() => {
     getCityTax();
@@ -27,12 +28,14 @@ export default function Imposto({ navigation }) {
       setSelectImposto3(tax.highProduction);
     }
   }, [stage, tax]);
-  const apply = () => {
-    player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 })
-      :
-      suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 });
-    navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Imposto Aplicado!' : 'Imposto Sugerido!' } }] });
-  }
+
+  useEffect(() => {
+    if (executeAction) navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Imposto Aplicado!' : 'Imposto Sugerido!' } }] });
+
+    return () => {
+      if (executeAction) player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }) : suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }); }
+  }, [executeAction]);
+
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
@@ -85,7 +88,7 @@ export default function Imposto({ navigation }) {
         </View>
 
         <Button
-          onClick={() => apply()}
+          onClick={() => setExecuteAction(true)}
           name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
         {player.office === 'Prefeito' && (
           <TouchableOpacity style={styles.button} onPress={() => { setSelectImposto("Médio"); setSelectImposto2("Médio"); setSelectImposto3("Médio") }}>
