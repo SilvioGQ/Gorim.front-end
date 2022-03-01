@@ -155,12 +155,12 @@ const GameProvider = (props) => {
 
     socket.on('nextStage', () => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
-      startTimer(100, () => endRound());
+      startTimer(400, () => endRound());
     });
 
     socket.on('nextRound', () => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
-      startTimer(100, () => endStage());
+      startTimer(400, () => endStage());
     });
 
     // socket.on('reconnectToRoom', (stage) => {

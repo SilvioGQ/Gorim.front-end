@@ -77,8 +77,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontSize: Tela > 350 ? 18 : 16,
-    textAlign: 'flex-start',
-    fontFamily: 'Rubik_300Light',
+    textAlign: 'left',
     color: '#000',
     paddingLeft: 20
   },
@@ -99,6 +98,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 4.46,
     elevation: 3,
-    marginTop: '150%'
+    
   },
 });
