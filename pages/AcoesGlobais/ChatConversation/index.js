@@ -1,20 +1,22 @@
 import React, { useState, useContext } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity } from 'react-native';
 import { GameContext, deleteAdvert } from "../../../contexts/GameContext";
-import Coin from '../../../components/Coin';
-import FilterNew from '../../../components/FilterNew';
-import ChatPerson from '../../../components/ChatPerson';
-import COLORS from '../../../constants/colors';
-import Modal from '../../../components/ModalInfo';
 import Rodada from '../../../components/Rodada';
 import TextBold from '../../../components/Atons/TextBold';
 import HeaderIcons from '../../../components/headerIcons';
 import ICONS from '../../../constants/imagesIcons'
-
-
+import COLORS from '../../../constants/colors';
 const Tela = Dimensions.get('screen').width;
+const Height = Dimensions.get('screen').height;
 export default function ChatConversation({ navigation }) {
   const { player, players } = useContext(GameContext);
+  const [text, onChangeText] = useState('')
+  const [messagens, setMessagens] = useState([
+    {id:0, message:'cu', owner: true},
+    {id:1, message:'cu2', owner: false},
+    {id:2, message:'cu3', owner: true},
+    {id:3, message:'cu4', owner: false},
+  ])
   // Essa tela pode ficar genericona por enquanto.
   return (
     <View style={styles.container}>
@@ -27,15 +29,26 @@ export default function ChatConversation({ navigation }) {
         <Text style={styles.textinhos}>EmpMaquinas/Silvio</Text>
       </View>
       <View style={styles.line} />
+      <View style={styles.viewMessages}>
+        {messagens ? messagens.map((i)=>{
+          return (
+            <View style={i.owner ? styles.owner : styles.instOwner}>
+            <Text style={styles.message}>{i.message}</Text>
+            </View>
+          )
+        }) 
+      :
+      null
+      }
+      </View>
+      <TouchableOpacity style={styles.enviar} onPress={()=>{if(text!== '') {onChangeText(''); setMessagens([...messagens, {id: messagens.length+2, message:text, owner:true}])}}}>
+        <Text>Enviar</Text>
+      </TouchableOpacity>
       <TextInput
-        maxLength={100}
         style={[styles.button2, styles.text2]}
-        autoCompleteType='off'
-        autoCorrect={false}
-        keyboardType='visible-password'
-        // onChangeText={room => setRoom(room.toUpperCase())}
+        onChangeText={t => onChangeText(t)}
         placeholder='Mensagem'
-      // value={room}
+        value={text}
       >
       </TextInput>
     </View>
@@ -59,8 +72,6 @@ const styles = StyleSheet.create({
     borderColor: '#A8DADC',
     width: Tela > 350 ? 60 : 52,
     height: Tela > 350 ? 60 : 52,
-    // marginBottom: Height > 720 && Height < 800 ? 2 : 5,
-    // marginTop: 8,
     position: 'absolute',
 
   },
@@ -71,7 +82,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_700Bold',
   },
   margem: {
-    //  marginTop: 10,
     marginHorizontal: 20,
     marginVertical: 20
   },
@@ -82,14 +92,12 @@ const styles = StyleSheet.create({
     paddingLeft: 20
   },
   button2: {
-
+    zIndex:1,
     backgroundColor: '#c2e0e4',
     // opacity: '50%',
     height: 60,
-    alignSelf: 'center',
     borderRadius: 93,
-    alignItems: 'flex-start',
-    width: '90%',
+    width: '80%',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -98,6 +106,39 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 4.46,
     elevation: 3,
-    
+    position: 'absolute',
+    bottom:47,
+    right:66,
   },
+  viewMessages:{
+    height: Height*60/100,
+    alignItems: 'center'
+  },
+  enviar:{
+    color:'#000',
+    alignSelf:'flex-end',
+    zIndex:5,
+    position: 'absolute',
+    bottom:63,
+    right:10,
+  },
+  owner:{
+    padding: 10,
+    borderRadius:100,
+    backgroundColor:COLORS.successButton,
+    alignSelf:'flex-end',
+    marginRight:25,
+    marginVertical:10
+  },
+  instOwner:{
+    padding: 10,
+    borderRadius:100,
+    backgroundColor:COLORS.successButton,
+    alignSelf:'flex-start',
+    marginLeft:25,
+    marginVertical:10
+  },
+  message:{
+    color: '#fff'
+  }
 });
