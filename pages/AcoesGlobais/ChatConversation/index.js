@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { GameContext, deleteAdvert } from "../../../contexts/GameContext";
 import Rodada from '../../../components/Rodada';
 import TextBold from '../../../components/Atons/TextBold';
@@ -13,7 +13,7 @@ export default function ChatConversation({ navigation }) {
   const [text, onChangeText] = useState('')
   const [messagens, setMessagens] = useState([
     {id:0, message:'cu', owner: true},
-    {id:1, message:'cu2', owner: false},
+    {id:1, message:'tes teste teste teste', owner: false},
     {id:2, message:'cu3', owner: true},
     {id:3, message:'cu4', owner: false},
   ])
@@ -29,6 +29,7 @@ export default function ChatConversation({ navigation }) {
         <Text style={styles.textinhos}>EmpMaquinas/Silvio</Text>
       </View>
       <View style={styles.line} />
+        <ScrollView>
       <View style={styles.viewMessages}>
         {messagens ? messagens.map((i)=>{
           return (
@@ -41,6 +42,8 @@ export default function ChatConversation({ navigation }) {
       null
       }
       </View>
+      </ScrollView>
+      <View style = {styles.botao}>
       <TouchableOpacity style={styles.enviar} onPress={()=>{if(text!== '') {onChangeText(''); setMessagens([...messagens, {id: messagens.length+2, message:text, owner:true}])}}}>
         <Text>Enviar</Text>
       </TouchableOpacity>
@@ -51,6 +54,7 @@ export default function ChatConversation({ navigation }) {
         value={text}
       >
       </TextInput>
+      </View>
     </View>
   );
 }
@@ -65,6 +69,9 @@ const styles = StyleSheet.create({
     borderWidth: 0.2,
     borderColor: '#AAAAAA',
     marginVertical: 10
+  },
+  botao: {
+   marginTop: 105
   },
   icone: {
     borderWidth: 4,
@@ -107,38 +114,38 @@ const styles = StyleSheet.create({
     shadowRadius: 4.46,
     elevation: 3,
     position: 'absolute',
-    bottom:47,
+    bottom:20,
     right:66,
   },
   viewMessages:{
     height: Height*60/100,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   enviar:{
     color:'#000',
     alignSelf:'flex-end',
     zIndex:5,
     position: 'absolute',
-    bottom:63,
+    bottom:43,
     right:10,
   },
   owner:{
     padding: 10,
-    borderRadius:100,
-    backgroundColor:COLORS.successButton,
+    borderRadius:17,
+    backgroundColor: '#c2e0e4',
     alignSelf:'flex-end',
-    marginRight:25,
-    marginVertical:10
+    marginHorizontal:25,
+    marginVertical:3
   },
   instOwner:{
     padding: 10,
-    borderRadius:100,
-    backgroundColor:COLORS.successButton,
+    borderRadius:17,
+    backgroundColor: '#c8eede',
     alignSelf:'flex-start',
-    marginLeft:25,
-    marginVertical:10
+    marginHorizontal: 25,
+    marginVertical:3
   },
   message:{
-    color: '#fff'
+    color: '#000'
   }
 });
