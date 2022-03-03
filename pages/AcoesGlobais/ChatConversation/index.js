@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { GameContext, deleteAdvert } from "../../../contexts/GameContext";
 import Rodada from '../../../components/Rodada';
 import TextBold from '../../../components/Atons/TextBold';
@@ -19,6 +19,7 @@ export default function ChatConversation({ navigation }) {
   ])
   // Essa tela pode ficar genericona por enquanto.
   return (
+
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('Chat')} />
       <View style={styles.margem}>
@@ -29,23 +30,37 @@ export default function ChatConversation({ navigation }) {
         <Text style={styles.textinhos}>EmpMaquinas/Silvio</Text>
       </View>
       <View style={styles.line} />
-        <ScrollView>
+
       <View style={styles.viewMessages}>
+        <KeyboardAvoidingView
+    style={styles.keyboard}
+    behavior={"padding"}
+    enabled
+    keyboardVerticalOffset={200}
+>
+        <ScrollView style={styles.scrollView}>
+      
+
         {messagens ? messagens.map((i)=>{
           return (
             <View style={i.owner ? styles.owner : styles.instOwner}>
             <Text style={styles.message}>{i.message}</Text>
             </View>
+
           )
         }) 
       :
       null
       }
-      </View>
       </ScrollView>
-      <View style = {styles.botao}>
+       {/* <View style={{ height: 70 }} /> */}
+              </KeyboardAvoidingView>
+
+      </View>
+
+      {/* <View style={styles.botao}> */}
       <TouchableOpacity style={styles.enviar} onPress={()=>{if(text!== '') {onChangeText(''); setMessagens([...messagens, {id: messagens.length+2, message:text, owner:true}])}}}>
-        <Text>Enviar</Text>
+      <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
       </TouchableOpacity>
       <TextInput
         style={[styles.button2, styles.text2]}
@@ -55,7 +70,8 @@ export default function ChatConversation({ navigation }) {
       >
       </TextInput>
       </View>
-    </View>
+    // </View>
+
   );
 }
 
@@ -64,15 +80,21 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Tela,
   },
+    keyboard: {
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
   line: {
     width: '100%',
     borderWidth: 0.2,
     borderColor: '#AAAAAA',
     marginVertical: 10
   },
-  botao: {
-   marginTop: 105
-  },
+  //   botao: {
+  //  marginTop: 70
+
+  //   },
   icone: {
     borderWidth: 4,
     borderRadius: 17,
@@ -114,21 +136,29 @@ const styles = StyleSheet.create({
     shadowRadius: 4.46,
     elevation: 3,
     position: 'absolute',
-    bottom:20,
+    bottom:10,
     right:66,
   },
   viewMessages:{
-    height: Height*60/100,
-    alignItems: 'center',
+    height: Height*63/100,
+    // alignItems: 'center',
+    // marginBottom: 100
   },
   enviar:{
     color:'#000',
     alignSelf:'flex-end',
     zIndex:5,
     position: 'absolute',
-    bottom:43,
-    right:10,
+    bottom:30,
+    right:20,
+ 
   },
+   arrow: {
+     width: 30,
+     height: 30,
+     marginTop: 40,
+     marginLeft: 10,
+   },
   owner:{
     padding: 10,
     borderRadius:17,
