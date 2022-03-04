@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { GameContext, deleteAdvert } from "../../../contexts/GameContext";
+import { format, formatDistance, formatRelative, subDays } from 'date-fns';
+
 import Rodada from '../../../components/Rodada';
 import TextBold from '../../../components/Atons/TextBold';
 import HeaderIcons from '../../../components/headerIcons';
@@ -11,6 +13,8 @@ const Height = Dimensions.get('screen').height;
 export default function ChatConversation({ navigation }) {
   const { player, players } = useContext(GameContext);
   const [text, onChangeText] = useState('')
+  const fns = require('date-fns')
+
   const [messagens, setMessagens] = useState([
     {id:0, message:'cu', owner: true},
     {id:1, message:'tes teste teste teste', owner: false},
@@ -18,6 +22,7 @@ export default function ChatConversation({ navigation }) {
     {id:3, message:'cu4', owner: false},
   ])
   // Essa tela pode ficar genericona por enquanto.
+  console.log(fns.format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS"));
   return (
 
     <View style={styles.container}>
