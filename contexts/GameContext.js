@@ -95,7 +95,7 @@ const GameProvider = (props) => {
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage, allForEndRound, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
-      if (msg === 'selectedAvatars') startTimer(100, () => endStage());
+      if (msg === 'selectedAvatars') startTimer(500, () => endStage());
       if (msg === 'INITELECTIONS') startTimer(20, () => addCandidature(null));
       if (msg === 'INITVOTATION') startTimer(20, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }));
       if (msg === 'INITRESULTSVOTATION') startTimer(20, () => nextStage());
