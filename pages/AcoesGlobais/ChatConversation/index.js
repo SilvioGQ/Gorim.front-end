@@ -16,13 +16,12 @@ export default function ChatConversation({ navigation }) {
   const fns = require('date-fns')
 
   const [messagens, setMessagens] = useState([
-    {id:0, message:'cu', owner: true},
-    {id:1, message:'tes teste teste teste', owner: false},
-    {id:2, message:'cu3', owner: true},
-    {id:3, message:'cu4', owner: false},
+    { id: 0, message: 'cu', owner: true, data: fns.format(new Date(), "HH:mm") },
+    { id: 1, message: 'tes teste teste teste', owner: false, data: fns.format(new Date(), "HH:mm") },
+    { id: 2, message: 'cu3', owner: true, data: fns.format(new Date(), "HH:mm") },
+    { id: 3, message: 'cu4', owner: false, data: fns.format(new Date(), "HH:mm") },
   ])
   // Essa tela pode ficar genericona por enquanto.
-  console.log(fns.format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS"));
   return (
 
     <View style={styles.container}>
@@ -38,34 +37,36 @@ export default function ChatConversation({ navigation }) {
 
       <View style={styles.viewMessages}>
         <KeyboardAvoidingView
-    style={styles.keyboard}
-    behavior={"padding"}
-    enabled
-    keyboardVerticalOffset={200}
->
-        <ScrollView style={styles.scrollView}>
-      
+          style={styles.keyboard}
+          behavior={"padding"}
+          enabled
+          keyboardVerticalOffset={200}
+        >
+          <ScrollView style={styles.scrollView}>
 
-        {messagens ? messagens.map((i)=>{
-          return (
-            <View style={i.owner ? styles.owner : styles.instOwner}>
-            <Text style={styles.message}>{i.message}</Text>
-            </View>
 
-          )
-        }) 
-      :
-      null
-      }
-      </ScrollView>
-       {/* <View style={{ height: 70 }} /> */}
-              </KeyboardAvoidingView>
+            {messagens ? messagens.map((i) => {
+              return (
+                <View style={i.owner ? styles.owner : styles.instOwner}>
+                  <Text style={styles.message}>{i.message}</Text>
+                  <Text style={styles.time}>{i.data}</Text>
+
+                </View>
+
+              )
+            })
+              :
+              null
+            }
+          </ScrollView>
+          {/* <View style={{ height: 70 }} /> */}
+        </KeyboardAvoidingView>
 
       </View>
 
       {/* <View style={styles.botao}> */}
-      <TouchableOpacity style={styles.enviar} onPress={()=>{if(text!== '') {onChangeText(''); setMessagens([...messagens, {id: messagens.length+2, message:text, owner:true}])}}}>
-      <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
+      <TouchableOpacity style={styles.enviar} onPress={() => { if (text !== '') { onChangeText(''); setMessagens([...messagens, { id: messagens.length + 2, message: text, owner: true, data: fns.format(new Date(), "HH:mm") }]) } }}>
+        <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
       </TouchableOpacity>
       <TextInput
         style={[styles.button2, styles.text2]}
@@ -74,7 +75,7 @@ export default function ChatConversation({ navigation }) {
         value={text}
       >
       </TextInput>
-      </View>
+    </View>
     // </View>
 
   );
@@ -85,11 +86,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Tela,
   },
-    keyboard: {
-      flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'center',
-    },
+  keyboard: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
   line: {
     width: '100%',
     borderWidth: 0.2,
@@ -119,6 +120,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 20
   },
+  time:{
+    fontSize: 9,
+    color: '#000',
+    textAlign: 'right'
+  },
   text2: {
     fontSize: Tela > 350 ? 18 : 16,
     textAlign: 'left',
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20
   },
   button2: {
-    zIndex:1,
+    zIndex: 1,
     backgroundColor: '#c2e0e4',
     // opacity: '50%',
     height: 60,
@@ -141,46 +147,46 @@ const styles = StyleSheet.create({
     shadowRadius: 4.46,
     elevation: 3,
     position: 'absolute',
-    bottom:10,
-    right:66,
+    bottom: 10,
+    right: 66,
   },
-  viewMessages:{
-    height: Height*63/100,
+  viewMessages: {
+    height: Height * 63 / 100,
     // alignItems: 'center',
     // marginBottom: 100
   },
-  enviar:{
-    color:'#000',
-    alignSelf:'flex-end',
-    zIndex:5,
+  enviar: {
+    color: '#000',
+    alignSelf: 'flex-end',
+    zIndex: 5,
     position: 'absolute',
-    bottom:30,
-    right:20,
- 
+    bottom: 30,
+    right: 20,
+
   },
-   arrow: {
-     width: 30,
-     height: 30,
-     marginTop: 40,
-     marginLeft: 10,
-   },
-  owner:{
+  arrow: {
+    width: 30,
+    height: 30,
+    marginTop: 40,
+    marginLeft: 10,
+  },
+  owner: {
     padding: 10,
-    borderRadius:17,
+    borderRadius: 17,
     backgroundColor: '#c2e0e4',
-    alignSelf:'flex-end',
-    marginHorizontal:25,
-    marginVertical:3
-  },
-  instOwner:{
-    padding: 10,
-    borderRadius:17,
-    backgroundColor: '#c8eede',
-    alignSelf:'flex-start',
+    alignSelf: 'flex-end',
     marginHorizontal: 25,
-    marginVertical:3
+    marginVertical: 3
   },
-  message:{
+  instOwner: {
+    padding: 10,
+    borderRadius: 17,
+    backgroundColor: '#c8eede',
+    alignSelf: 'flex-start',
+    marginHorizontal: 25,
+    marginVertical: 3
+  },
+  message: {
     color: '#000'
   }
 });
