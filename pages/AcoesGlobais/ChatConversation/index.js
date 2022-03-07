@@ -38,9 +38,9 @@ export default function ChatConversation({ navigation }) {
       <View style={styles.viewMessages}>
         <KeyboardAvoidingView
           style={styles.keyboard}
-          behavior={"padding"}
+          behavior={"height"}
           enabled
-          keyboardVerticalOffset={200}
+          keyboardVerticalOffset={270}
         >
           <ScrollView style={styles.scrollView}>
 
@@ -90,7 +90,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
+    width: Tela,
   },
+  // scrollView: {
+  //   flexGrow: 1,
+
+  // },
   line: {
     width: '100%',
     borderWidth: 0.2,
