@@ -10,16 +10,17 @@ import ICONS from '../../../constants/imagesIcons'
 import COLORS from '../../../constants/colors';
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
-export default function ChatConversation({ navigation }) {
-  const { player, players } = useContext(GameContext);
+export default function ChatConversation({ navigation, route }) {
+  console.log(player)
+  const {player} = route.params
   const [text, onChangeText] = useState('')
   const fns = require('date-fns')
 
   const [messagens, setMessagens] = useState([
-    { id: 0, message: 'cu', owner: true, data: fns.format(new Date(), "HH:mm") },
-    { id: 1, message: 'tes teste teste teste', owner: false, data: fns.format(new Date(), "HH:mm") },
-    { id: 2, message: 'cu3', owner: true, data: fns.format(new Date(), "HH:mm") },
-    { id: 3, message: 'cu4', owner: false, data: fns.format(new Date(), "HH:mm") },
+    { id: 0, message: 'cu', owner: true, data: '20:20' },
+    { id: 1, message: 'tes teste teste teste', owner: false, data: '20:22' },
+    { id: 2, message: 'cu3', owner: true, data: '20:22' },
+    { id: 3, message: 'cu4', owner: false, data: '20:26' },
   ])
   // Essa tela pode ficar genericona por enquanto.
   return (
@@ -27,11 +28,11 @@ export default function ChatConversation({ navigation }) {
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('Chat')} />
       <View style={styles.margem}>
-        <Image
+      <Image
           style={styles.icone}
           source={ICONS[player.avatar]}
         />
-        <Text style={styles.textinhos}>EmpMaquinas/Silvio</Text>
+        <Text style={styles.textinhos}>{player.type ? player.type : player.office} {player.name}{'\n'}{player.city}</Text>
       </View>
       <View style={styles.line} />
 
@@ -63,8 +64,6 @@ export default function ChatConversation({ navigation }) {
         </KeyboardAvoidingView>
 
       </View>
-
-      {/* <View style={styles.botao}> */}
       <TouchableOpacity style={styles.enviar} onPress={() => { if (text !== '') { onChangeText(''); setMessagens([...messagens, { id: messagens.length + 2, message: text, owner: true, data: fns.format(new Date(), "HH:mm") }]) } }}>
         <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
       </TouchableOpacity>
@@ -75,8 +74,8 @@ export default function ChatConversation({ navigation }) {
         value={text}
       >
       </TextInput>
+
     </View>
-    // </View>
 
   );
 }
@@ -112,18 +111,18 @@ const styles = StyleSheet.create({
     borderColor: '#A8DADC',
     width: Tela > 350 ? 60 : 52,
     height: Tela > 350 ? 60 : 52,
-    position: 'absolute',
-
   },
   textinhos: {
-    marginTop: 20,
-    fontSize: 16,
-    marginLeft: 65,
-    fontFamily: 'Rubik_700Bold',
+    marginTop: 10,
+    fontSize: 18,
+    fontFamily: 'Rubik_400Regular',
   },
   margem: {
-    marginHorizontal: 20,
-    marginVertical: 20
+    marginHorizontal: 10,
+    marginVertical: 20,
+    alignItems:'center',
+    alignSelf:'center',
+    flexDirection:'row'
   },
   time:{
     fontSize: 9,

@@ -29,7 +29,7 @@ export default function Chat({ navigation }) {
         showsVerticalScrollIndicator={false}
         data={players}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <ChatPerson key={index} player={item} onClick={() => navigation.navigate('ChatConversation')} />}
+        renderItem={({ item, index }) => <ChatPerson key={index} player={item} onClick={() => navigation.navigate('ChatConversation', {player: player})} />}
       />
           :
           null
