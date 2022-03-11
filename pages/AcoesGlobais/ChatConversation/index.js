@@ -17,10 +17,10 @@ export default function ChatConversation({ navigation, route }) {
   const fns = require('date-fns')
 
   const [messagens, setMessagens] = useState([
-    { id: 0, message: 'cu', owner: true, data: '20:20' },
-    { id: 1, message: 'tes teste teste teste', owner: false, data: '20:22' },
-    { id: 2, message: 'cu3', owner: true, data: '20:22' },
-    { id: 3, message: 'cu4', owner: false, data: '20:26' },
+    { id: 0, message: 'olá', owner: true, data: '20:20' },
+    { id: 1, message: 'teste teste teste teste', owner: false, data: '20:22' },
+    { id: 2, message: 'tudo bem?', owner: true, data: '20:22' },
+    { id: 3, message: 'tudo sim e você?', owner: false, data: '20:26' },
   ])
   // Essa tela pode ficar genericona por enquanto.
   return (
