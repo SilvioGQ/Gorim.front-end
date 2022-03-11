@@ -61,7 +61,7 @@ export default function FazerTransferencia({ navigation }) {
                 stage === 'GETPLAYERS' ?
                   Players().map((item, index) => {
                     return (
-                      <Quadrados key={index} abr={item.type.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
+                      <Quadrados key={index} abr={item.type.slice(0, 3)} city={true} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
                     );
                   })
                   :
@@ -76,7 +76,7 @@ export default function FazerTransferencia({ navigation }) {
                 stage === 'GETPLAYERS' ?
                   PlayersOffice().map((item, index) => {
                     return (
-                      <Quadrados key={index} abr={item.office.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
+                      <Quadrados key={index} abr={item.office.slice(0, 3)} city={true} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
                     );
                   })
                   :

@@ -46,7 +46,7 @@ export default function Selo({ navigation, route }) {
           </View>
           <Text style={styles.texto}>Destinatário:</Text>
           <View style={styles.estilo}>
-            {farmer.map((item) => <Quadrados key={item.playerId} abr={item.type.slice(0, 3)} player={item} onClick={() => setSelectClient(item.playerId)} backgroundColor={selectClient == item.playerId ? '#8ACF3A' : '#fff'} color={selectClient == item.playerId ? '#fff' : '#000'} />)}
+            {farmer.map((item) => <Quadrados city={true} key={item.playerId} abr={item.type.slice(0, 3)} player={item} onClick={() => setSelectClient(item.playerId)} backgroundColor={selectClient == item.playerId ? '#8ACF3A' : '#fff'} color={selectClient == item.playerId ? '#fff' : '#000'} />)}
           </View>
           {modalText !== '' && (
             <Modal onClick={() => setModalText('')} text={modalText} />

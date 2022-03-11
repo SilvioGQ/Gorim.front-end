@@ -16,7 +16,7 @@ export default function SugestoesEnviadas({ item }) {
     } else if (item.approved) {
       return 'Sugestão aceita';
     } else if (!item.approved) {
-      return 'Sugestação recusada';
+      return 'Sugestão recusada';
     }
   }
   return (
