@@ -54,7 +54,7 @@ export default function HistoricoPolitico({ item }) {
                 style={styles.icone}
                 source={imagesProducts[item.type === 'prevention' ? item.label : item.type]}
               />
-              <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : item.value > 0 ? `$${normalizeNumber(item.value)}` : `${normalizeNumber(item.value)}%`}</Text>
+              <Text style={styles.text}>{item.type === 'prevention' ? item.label.replace(/Tratamento /, 'Trat ') : item.value > 0 ? `$${normalizeNumber(item.value)}` : `${normalizeNumber(item.percentual)}%`}</Text>
             </View>
           </>
         }

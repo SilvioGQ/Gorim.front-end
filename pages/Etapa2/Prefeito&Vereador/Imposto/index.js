@@ -17,26 +17,52 @@ export default function Imposto({ navigation }) {
   const [selectImpostoEnviar, setSelectEnviar] = useState(-1);
   const [selectImpostoEnviar2, setSelectEnviar2] = useState(-1);
   const [selectImpostoEnviar3, setSelectEnviar3] = useState(-1);
-  const { player, stage, data: tax } = useContext(GameContext);
+  const { player, stage, data: tax, players } = useContext(GameContext);
   const [executeAction, setExecuteAction] = useState(false);
 
+  const findMayorTax = () => {
+    if (players.find((item) => item.office === "Prefeito" && item.city === player.city)) {
+      return players.find((item) => item.office === "Prefeito" && item.city === player.city).logsOffice.filter((item) => item.type === 'tax')
+    }
+  }
+  const lowProductionValue = () => {
+    let mayor = findMayorTax();
+    if (!mayor) return '';
+    let nula = mayor.filter((i) => i.label === "Produtividade nula");
+    if (nula.length !== 0) {
+      return nula[nula.length - 1].value
+    } else return ""
+  }
+  const mediumProductionValue = () => {
+    let mayor = findMayorTax();
+    if (!mayor) return '';
+    let medium = mayor.filter((i) => i.label === "Produtividade entre 1 e 200");
+    if (medium.length !== 0) {
+      return medium[medium.length - 1].percentual
+    } else return ""
+  }
+  const highProductionValue = () => {
+    let mayor = findMayorTax();
+    if (!mayor) return '';
+    let high = mayor.filter((i) => i.label === "Produtividade acima de 200");
+    if (high.length !== 0) {
+      return high[high.length - 1].percentual
+    } else return ""
+  }
   useEffect(() => {
     getCityTax();
   }, []);
-  console.log(tax);
-  console.log(selectImposto)
-  console.log(selectImpostoEnviar)
-  console.log(selectImpostoEnviar2)
-  console.log(selectImpostoEnviar3)
 
   useEffect(() => {
     if (stage === 'GETCITYTAX') {
-      // setSelectImposto(tax.lowProduction);
-      // setSelectImposto2(tax.mediumProduction);
-      // setSelectImposto3(tax.highProduction);
+      setSelectImposto(lowProductionValue());
+      setSelectImposto2(mediumProductionValue());
+      setSelectImposto3(highProductionValue());
+      setSelectEnviar(lowProductionValue() == 5 ? "Baixo" : lowProductionValue() == 10 ? "Médio" : "Alto");
+      setSelectEnviar2(mediumProductionValue() == 5 ? "Baixo" : mediumProductionValue() == 10 ? "Médio" : "Alto");
+      setSelectEnviar3(highProductionValue() == 5 ? "Baixo" : highProductionValue() == 25 ? "Médio" : "Alto");
     }
   }, [stage, tax]);
-
 
   useEffect(() => {
     if (executeAction) navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Imposto Aplicado!' : 'Imposto Sugerido!' } }] });
@@ -90,7 +116,6 @@ export default function Imposto({ navigation }) {
           )}
         </View>
 
-
         <Text style={styles.font}> Para produtividade acima de 200:</Text>
         <View style={styles.view}>
           {stage === 'GETCITYTAX' && (
@@ -106,7 +131,6 @@ export default function Imposto({ navigation }) {
               } />
           )}
         </View>
-
 
         <Button
           onClick={() => setExecuteAction(true)}
@@ -134,7 +158,6 @@ const styles = StyleSheet.create({
     width: Tela
   },
   header: {
-
     fontSize: 20,
   },
   font: {
