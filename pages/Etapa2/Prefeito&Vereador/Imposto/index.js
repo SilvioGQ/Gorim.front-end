@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, FlatList } from 'react-native';
 import { GameContext, applyTax, getCityTax, suggestTax } from '../../../../contexts/GameContext';
 
 import Button from '../../../../components/Button';
@@ -14,6 +14,9 @@ export default function Imposto({ navigation }) {
   const [selectImposto, setSelectImposto] = useState(-1);
   const [selectImposto2, setSelectImposto2] = useState(-1);
   const [selectImposto3, setSelectImposto3] = useState(-1);
+  const [selectImpostoEnviar, setSelectEnviar] = useState(-1);
+  const [selectImpostoEnviar2, setSelectEnviar2] = useState(-1);
+  const [selectImpostoEnviar3, setSelectEnviar3] = useState(-1);
   const { player, stage, data: tax } = useContext(GameContext);
   const [executeAction, setExecuteAction] = useState(false);
 
@@ -21,19 +24,25 @@ export default function Imposto({ navigation }) {
     getCityTax();
   }, []);
   console.log(tax);
+  console.log(selectImposto)
+  console.log(selectImpostoEnviar)
+  console.log(selectImpostoEnviar2)
+  console.log(selectImpostoEnviar3)
+
   useEffect(() => {
     if (stage === 'GETCITYTAX') {
-      setSelectImposto(tax.lowProduction);
-      setSelectImposto2(tax.mediumProduction);
-      setSelectImposto3(tax.highProduction);
+      // setSelectImposto(tax.lowProduction);
+      // setSelectImposto2(tax.mediumProduction);
+      // setSelectImposto3(tax.highProduction);
     }
   }, [stage, tax]);
+
 
   useEffect(() => {
     if (executeAction) navigation.reset({ routes: [{ name: 'TransferenciaConfirmada', params: { text: player.office === 'Prefeito' ? 'Imposto Aplicado!' : 'Imposto Sugerido!' } }] });
 
     return () => {
-      if (executeAction) player.office === 'Prefeito' ? applyTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 }) : suggestTax({ lowProduction: selectImposto, mediumProduction: selectImposto2, highProduction: selectImposto3 });
+      if (executeAction) player.office === 'Prefeito' ? applyTax({ lowProduction: selectImpostoEnviar, mediumProduction: selectImpostoEnviar2, highProduction: selectImpostoEnviar3 }) : suggestTax({ lowProduction: selectImpostoEnviar, mediumProduction: selectImpostoEnviar2, highProduction: selectImpostoEnviar3 });
     }
   }, [executeAction]);
 
@@ -50,55 +59,60 @@ export default function Imposto({ navigation }) {
           <Text style={styles.header}>{player.office === 'Vereador' ? 'Sugerir alteração de\nimpostos' : 'Alteração\nde impostos'}</Text>
         </View>
         <Text style={styles.font}> Para produtividade nula:</Text>
-        {stage === 'GETCITYTAX' && (
-          <View style={styles.view}>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto == "Baixo" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto("Baixo")}  >
-              <Text style={[styles.texto, { color: selectImposto == "Baixo" ? "#fff" : '#000' }]}>${tax[1].value}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto == "Médio" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto("Médio")}  >
-              <Text style={[styles.texto, { color: selectImposto == "Médio" ? "#fff" : '#000' }]}>${tax[3].value}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto == "Alto" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto("Alto")}  >
-              <Text style={[styles.texto, { color: selectImposto == "Alto" ? "#fff" : '#000' }]}>${tax[5].value}</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        <View style={styles.view}>
+          {stage === 'GETCITYTAX' && (
+            <FlatList
+              data={tax.filter(i => i.label === 'Produtividade nula')}
+              horizontal
+              keyExtractor={(item) => item.value.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto === item.value ? "#8ACF3A" : "#fff" }]} onPress={() => { setSelectImposto(item.value), setSelectEnviar(item.value == 5 ? "Baixo" : item.value == 10 ? "Médio" : "Alto") }} >
+                  <Text style={[styles.texto, { color: selectImposto == item.value ? "#fff" : '#000' }]}>${item.value}</Text>
+                </TouchableOpacity>
+              )
+              } />
+          )}
+        </View>
 
         <Text style={styles.font}> Para produtividade entre 1 e 200:</Text>
-        {stage === 'GETCITYTAX' && (
-          <View style={styles.view}>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto2 == "Baixo" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto2("Baixo")}  >
-              <Text style={[styles.texto, { color: selectImposto2 == "Baixo" ? "#fff" : '#000' }]}>{tax[0].value}%</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto2 == "Médio" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto2("Médio")}  >
-              <Text style={[styles.texto, { color: selectImposto2 == "Médio" ? "#fff" : '#000' }]}>{tax[2].value}%</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto2 == "Alto" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto2("Alto")}  >
-              <Text style={[styles.texto, { color: selectImposto2 == "Alto" ? "#fff" : '#000' }]}>{tax[4].value}%</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        <View style={styles.view}>
+          {stage === 'GETCITYTAX' && (
+            <FlatList
+              data={tax.filter(i => i.label === 'Produtividade entre 1 e 200')}
+              horizontal
+              keyExtractor={(item) => item.value.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto2 === item.value ? "#8ACF3A" : "#fff" }]} onPress={() => { setSelectImposto2(item.value), setSelectEnviar2(item.value == 5 ? "Baixo" : item.value == 10 ? "Médio" : "Alto") }} >
+                  <Text style={[styles.texto, { color: selectImposto2 == item.value ? "#fff" : '#000' }]}>{item.value}%</Text>
+                </TouchableOpacity>
+              )
+              } />
+          )}
+        </View>
+
 
         <Text style={styles.font}> Para produtividade acima de 200:</Text>
-        {stage === 'GETCITYTAX' && (
-          <View style={styles.view}>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto3 == "Baixo" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto3("Baixo")}  >
-              <Text style={[styles.texto, { color: selectImposto3 == "Baixo" ? "#fff" : '#000' }]}>{tax[6].value}%</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto3 == "Médio" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto3("Médio")}  >
-              <Text style={[styles.texto, { color: selectImposto3 == "Médio" ? "#fff" : '#000' }]}>{tax[7].value}%</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto3 == "Alto" ? "#8ACF3A" : '#fff' }]} onPress={() => setSelectImposto3("Alto")}  >
-              <Text style={[styles.texto, { color: selectImposto3 == "Alto" ? "#fff" : '#000' }]}>{tax[8].value}%</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        <View style={styles.view}>
+          {stage === 'GETCITYTAX' && (
+            <FlatList
+              data={tax.filter(i => i.label === 'Produtividade acima de 200')}
+              horizontal
+              keyExtractor={(item) => item.value.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity style={[styles.botao, { backgroundColor: selectImposto3 === item.value ? "#8ACF3A" : "#fff" }]} onPress={() => { setSelectImposto3(item.value), setSelectEnviar3(item.value == 25 ? "Baixo" : item.value == 30 ? "Médio" : "Alto") }} >
+                  <Text style={[styles.texto, { color: selectImposto3 == item.value ? "#fff" : '#000' }]}>{item.value}%</Text>
+                </TouchableOpacity>
+              )
+              } />
+          )}
+        </View>
+
 
         <Button
           onClick={() => setExecuteAction(true)}
           name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
         {player.office === 'Prefeito' && (
-          <TouchableOpacity style={styles.button} onPress={() => { setSelectImposto("Médio"); setSelectImposto2("Médio"); setSelectImposto3("Médio") }}>
+          <TouchableOpacity style={styles.button} onPress={() => { setSelectImposto(10); setSelectImposto2(10); setSelectImposto3(30); setSelectEnviar("Média"); setSelectEnviar2("Média"); setSelectEnviar3("Média") }}>
             <Text style={styles.textButton}>RETOMAR VALOR INICIAL</Text>
           </TouchableOpacity>
         )}
@@ -146,6 +160,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 40,
     marginTop: 17,
+    marginRight: 20,
     borderWidth: 1,
     shadowColor: "#000",
     shadowOffset: {
