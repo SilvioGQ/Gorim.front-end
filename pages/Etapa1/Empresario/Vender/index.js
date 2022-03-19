@@ -60,7 +60,7 @@ export default function Vendas({ navigation, route }) {
   const filterPlayers = () => {
     let p = [];
     p = players.filter(i => i.id !== player.id && i.type === 'Agricultor');
-    p.unshift({ name: 'Todos', avatar: 'Todos', id: -1 });
+    p.unshift({ name: 'Todos', avatar: 'Todos', id: -1, city: "" });
 
     return p;
   }
@@ -83,7 +83,7 @@ export default function Vendas({ navigation, route }) {
         </View>
         <Text style={styles.textos}> Clientes: </Text>
         <View style={styles.alignQuadrado}>
-          {filterPlayers().map((item) => <Quadrados abr={false} city={true} key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
+          {filterPlayers().map((item) => <Quadrados abr={false} key={item.id} player={item} onClick={() => setSelectClient(item.id)} backgroundColor={selectClient == item.id ? '#8ACF3A' : '#fff'} color={selectClient == item.id ? '#fff' : '#000'} />)}
         </View>
         {modalText !== '' && (
           <Modal onClick={() => setModalText('')} text={modalText} />

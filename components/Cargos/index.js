@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   candidato: {
-    fontSize: Tela > 350 ? 20 : 12,
+    fontSize: Tela > 390 ? 20 : 12,
     alignItems: 'center',
     marginHorizontal: 12
   },

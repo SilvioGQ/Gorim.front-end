@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'rea
 import COLORS from '../../constants/colors';
 import ICONS from '../../constants/imagesIcons'
 const Tela = Dimensions.get('screen').width;
-export default function Quadrados({ player = null, onClick, backgroundColor, color, icon = null, abr, city }) {
+export default function Quadrados({ player = null, onClick, backgroundColor, color, icon = null, abr }) {
   return (
     <TouchableOpacity onPress={onClick}  >
 
@@ -14,7 +14,7 @@ export default function Quadrados({ player = null, onClick, backgroundColor, col
           null}
         <Image style={styles.icone} source={player ? ICONS[player.avatar] : ICONS[icon]} />
         {player ?
-          <Text style={[styles.textinhos, { color: color }]}>{abr ? `${abr}`: ""} {city ? ` - ${player.city}` : ""}</Text>
+          <Text style={[styles.textinhos, { color: color }]}>{abr ? `${abr}`: ""} {player ? ` - ${player.city}` : ""}</Text>
           :
           null}
       </View>

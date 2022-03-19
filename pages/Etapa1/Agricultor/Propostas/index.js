@@ -25,11 +25,14 @@ export default function Propostas({ navigation }) {
     if (amount) {
       if (player.coin >= item.price * amount) {
         confirmOffer(item, amount);
+        console.log(item)
+        setModalText(`Parabêns você comprou ${amount} ${item.name}`)
       } else {
         setModalText('Você não possui dinheiro suficiente para esta compra.');
       }
     } else if (player.coin >= item.price * item.amount) {
       confirmOffer(item);
+      setModalText(`Parabêns você comprou ${item.amount} ${item.name}`)
     } else {
       setModalText('Você não possui dinheiro suficiente para esta compra.');
     }

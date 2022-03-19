@@ -131,7 +131,8 @@ const styles = StyleSheet.create({
   text1: {
     fontSize: 13,
     marginTop: 2,
-    marginLeft: 15
+    marginLeft: 15,
+    fontFamily:'Rubik_700Bold'
   },
   arrows: {
     flexDirection: 'row',
