@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     marginTop: 11.5
   },
   textinhos: {
-    fontSize: Tela > 350 ? 11 : 8,
+    fontSize: Tela > 350 ? 9 : 6,
     textAlign: 'center',
     marginHorizontal: 5
   },
