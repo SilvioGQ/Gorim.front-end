@@ -94,7 +94,7 @@ export default function Historico({ navigation }) {
                       marginTop: 10
                     }]}>Parcela</Text>
                     <TouchableOpacity onPress={() => { setOpen(!open); }}>
-                      <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ7 }] }} source={require('../../../assets/dropdown.png')} />
+                      <Image style={{ width: 35, height: 35, marginRight: 10, marginTop: 5, transform: [{ rotateZ: rotateZ  }] }} source={require('../../../assets/dropdown.png')} />
                     </TouchableOpacity>
                   </View>
                   <View style={{ display: open ? 'flex' : 'none', flexDirection: 'column' }}>

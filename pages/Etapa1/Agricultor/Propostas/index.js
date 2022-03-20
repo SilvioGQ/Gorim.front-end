@@ -11,7 +11,7 @@ import Modal from '../../../../components/ModalInfo';
 import Rodada from '../../../../components/Rodada';
 import TextBold from '../../../../components/Atons/TextBold';
 import HeaderIcons from '../../../../components/headerIcons';
-const Tela = Dimensions.get('screen').width;
+
 export default function Propostas({ navigation }) {
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('Gerais');

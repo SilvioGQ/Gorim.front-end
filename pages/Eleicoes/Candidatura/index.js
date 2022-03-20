@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginTop: '2%'
   },
   paragrafo: {
-    fontSize: Tela > 380 ? 18 : 12,
+    fontSize: Tela > 362 ? 18 : 12,
     // lineHeight: 30,
     textAlign: 'justify',
     marginHorizontal: 10,
