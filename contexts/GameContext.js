@@ -95,7 +95,7 @@ const GameProvider = (props) => {
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage, allForEndRound, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
-      if (msg === 'selectedAvatars') startTimer(300, () => endStage());
+      if (msg === 'selectedAvatars') startTimer(600, () => endStage());
       if (msg === 'INITELECTIONS') startTimer(60, () => addCandidature(null));
       if (msg === 'INITVOTATION') startTimer(90, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }));
       if (msg === 'INITRESULTSVOTATION') startTimer(60, () => nextStage());
@@ -155,12 +155,12 @@ const GameProvider = (props) => {
 
     socket.on('nextStage', () => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
-      startTimer(240, () => endRound());
+      startTimer(300, () => endRound());
     });
 
     socket.on('nextRound', () => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
-      startTimer(300, () => endStage());
+      startTimer(600, () => endStage());
     });
 
     // socket.on('reconnectToRoom', (stage) => {

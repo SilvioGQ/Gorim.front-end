@@ -26,7 +26,7 @@ console.log(item)
         {item.product ?
           <Text style={styles.text}>{item.product.name.replace(/Fertilizante |Agrotóxico /, '')}</Text>
           :
-          <Text style={styles.text}>{player.type ? player.type.slice(0, 3) : player.office.slice(0, 3)} - {player.city}</Text>
+          <Text style={styles.text}>{player.type ? player?.type.slice(0, 3) : player?.office.slice(0, 3)} - {player.city}</Text>
         }
 
       </View>
@@ -53,7 +53,7 @@ console.log(item)
           style={styles.icone}
           source={ICONS[item.avatarPlayer]}
         />
-        <Text style={styles.text}>{item.product ? item.namePlayer : `${item.typePlayer.slice(0, 3)} - ${item.cityPlayer}`}</Text>
+        <Text style={styles.text}>{item.product ? item.namePlayer : `${item?.typePlayer.slice(0, 3)} - ${item.cityPlayer}`}</Text>
       </View>
     </View>
   );

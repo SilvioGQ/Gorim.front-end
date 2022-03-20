@@ -25,7 +25,7 @@ export default function SugestoesEnviadas({ item }) {
         <View style={styles.row3}>
           <View style={{ marginLeft: 20 }}>
             <Image style={styles.person} source={ICONS[player.avatar]} />
-            <Text style={styles.text}>{player.office.slice(0, 3)}/{player.name}</Text>
+            <Text style={styles.text}>{player?.office.slice(0, 3)}/{player.name}</Text>
           </View>
           <View style={{ position: 'absolute', marginLeft: 55 }}>
             <Image style={styles.icon2} source={item.type === 'tax' ? IMAGES2['tax'] : IMAGES2[item.label]} />
