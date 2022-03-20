@@ -7,7 +7,7 @@ import Modal from '../../../components/ModalInfo';
 import HeaderIcons from '../../../components/headerIcons';
 import { addCandidature, GameContext } from '../../../contexts/GameContext';
 import COLORS from '../../../constants/colors';
-const Tela = Dimensions.get('screen').width;
+const Tela = Dimensions.get('screen').height;
 export default function Candidatura({ navigation }) {
   const { players, player, awaitPlayers, stage } = useContext(GameContext);
   const [isSelected, setSelection] = useState(false);
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginTop: '2%'
   },
   paragrafo: {
-    fontSize: Tela > 362 ? 18 : 12,
+    fontSize: Tela > 664 ? 18 : 12,
     // lineHeight: 30,
     textAlign: 'justify',
     marginHorizontal: 10,

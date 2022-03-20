@@ -11,7 +11,7 @@ import ModalConfirmExit from '../../../components/ModalConfirmExit';
 import Modal from '../../../components/ModalInfo';
 import ModalAsk from '../../../components/ModalAsk';
 import normalizeNumber from '../../../helpers/normalizeNumber';
-
+const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
   const [modalText, setModalText] = useState('');
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_700Bold',
     color: '#4A8A00',
     fontSize: 20,
-    marginVertical: 15,
+    marginVertical: Tela > 350 ? 15 : 5,
     textAlign: 'center'
 
   }
