@@ -7,7 +7,13 @@ const Tela = Dimensions.get('screen').width;
 
 export default function DropDown({ items, type, onClick, display }) {
   const [inventory, setInventory] = useState([]);
-
+  const inventoryList = () =>{
+    let response = [];
+    response = inventory;
+    response.push({id:0,name:"Selecione um item"})
+    return response
+  }
+  console.log(inventoryList());
   useEffect(() => {
     setInventory(items.filter(item => {
       if (item.type === 'Máquina') {

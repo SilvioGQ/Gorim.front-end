@@ -38,6 +38,7 @@ export default function Prevencao({ navigation }) {
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      <ScrollView>
       <Coin coin={player.serviceSalary} />
       <View style={styles.espaco}>
         <Image
@@ -72,6 +73,7 @@ export default function Prevencao({ navigation }) {
           onClick={() => apply()}
           name={player.office === 'Vereador' ? 'SUGERIR' : 'APLICAR'} />
       </View>
+      </ScrollView>
     </View>
   );
 }

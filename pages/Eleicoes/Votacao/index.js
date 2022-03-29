@@ -56,7 +56,7 @@ export default function Votacao({ navigation }) {
               data={mayor}
               numColumns={3}
               keyExtractor={item => item.id}
-              renderItem={({ item }) => <Quadrados player={playerList(item.id)} city={false} onClick={() => setVotes({ ...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
+              renderItem={({ item }) => <Quadrados city={""}player={playerList(item.id)}  onClick={() => setVotes({ ...votes, mayor: item.id })} backgroundColor={votes.mayor == item.id ? '#8ACF3A' : '#fff'} color={votes.mayor == item.id ? '#fff' : '#000'} />}
             />
           )}
           {type === "Vereador" && (
@@ -64,7 +64,7 @@ export default function Votacao({ navigation }) {
               data={cityCouncilor}
               numColumns={3}
               keyExtractor={item => item.id}
-              renderItem={({ item }) => <Quadrados player={playerList(item.id)} city={false} onClick={() => setVotes({ ...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
+              renderItem={({ item }) => <Quadrados city={""}player={playerList(item.id)}  onClick={() => setVotes({ ...votes, cityCouncilor: item.id })} backgroundColor={votes.cityCouncilor == item.id ? '#8ACF3A' : '#fff'} color={votes.cityCouncilor == item.id ? '#fff' : '#000'} />}
             />
           )}
           {type === "Fiscal" && (
@@ -72,7 +72,7 @@ export default function Votacao({ navigation }) {
               data={supervisor}
               numColumns={3}
               keyExtractor={item => item.id}
-              renderItem={({ item }) => <Quadrados player={playerList(item.id)} city={false} onClick={() => setVotes({ ...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
+              renderItem={({ item }) => <Quadrados city={""}player={playerList(item.id)}  onClick={() => setVotes({ ...votes, supervisor: item.id })} backgroundColor={votes.supervisor == item.id ? '#8ACF3A' : '#fff'} color={votes.supervisor == item.id ? '#fff' : '#000'} />}
             />
           )}
         </View>
