@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesProducts';
+const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosPlatacao({ item }) {
 
@@ -58,11 +59,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   textproduto: {
-    fontSize: 13,
+    fontSize: Tela > 350 ? 15 : 13,
     marginRight: 10,
     marginLeft: 10
   },
   numero: {
-    fontSize: 16,
+    fontSize: Tela > 350 ? 18 : 16,
   },
 });
