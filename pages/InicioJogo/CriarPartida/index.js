@@ -43,46 +43,53 @@ export default function CriarPartida({ navigation }) {
             <TouchableOpacity style={[styles.leftArrow, { position: 'absolute', left: -40, top: 5, }]} onPress={() => navigation.reset({ routes: [{ name: 'Gorim' }] })}  >
               <Image style={styles.leftArrow} source={require('../../../assets/icons/left-arrow.png')} />
             </TouchableOpacity>
-            <TextInput style={styles.input}
+            <TextInput style={[styles.input, styles.text3]}
               maxLength={10}
               onChangeText={name => setName(name)}
               placeholder="Digite seu nome"
               value={name}
+              placeholderTextColor="#457B9D"
+
             />
           </View>
-          <View style={{ alignItems: 'center', width: Tela, marginBottom: 50 }}>
-            <Text style={styles.header}>HOST</Text>
+          < View style={{ marginTop: 40 }}>
             <View style={styles.line} />
             <View style={styles.row}>
               <Image style={styles.logo2} source={require('../../../assets/mulhe.png')} />
+              <Text style={styles.header}>HOST</Text>
               <TouchableOpacity style={styles.button2} onPress={createRoom}   >
                 <Text style={styles.botao}>CRIAR JOGO</Text>
               </TouchableOpacity>
-              <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../../assets/flecha.png')} />
             </View>
           </View>
           {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} />}
-          <View style={{ alignItems: 'center', width: Tela, marginVertical: 40 }}>
-            <Text style={[styles.header]}>ENTRAR</Text>
+          < View style={{marginBottom: 50}}>
             <View style={styles.line} />
             <View style={styles.row}>
               <Image style={styles.logo2} source={require('../../../assets/pessoas.png')} />
-              <TextInput
-                maxLength={6}
-                style={[styles.button2, styles.text2]}
-                autoCompleteType='off'
-                autoCorrect={false}
-                keyboardType='visible-password'
-                onChangeText={room => setRoom(room.toUpperCase())}
-                placeholder='ESCREVER CÓDIGO'
-                value={room}
-              >
-              </TextInput>
-              <TouchableOpacity onPress={selectRoom}  >
-                <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
-              </TouchableOpacity>
+              <Text style={[styles.header]}>ENTRAR</Text>
+              <View style={styles.borda}>
+                <TextInput
+                  maxLength={6}
+                  style={[styles.text2]}
+                  autoCompleteType='off'
+                  autoCorrect={false}
+                  keyboardType='visible-password'
+                  onChangeText={room => setRoom(room.toUpperCase())}
+                  placeholder='ESCREVER CÓDIGO'
+                  value={room}
+                  placeholderTextColor = "#457B9D"
+
+                >
+                </TextInput>
+                <TouchableOpacity onPress={selectRoom}  >
+                  <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
+                </TouchableOpacity>
+              </View>
             </View>
+
           </View>
+
         </View>
       </ScrollView>
     </View>
@@ -94,43 +101,53 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: 45,
-    marginLeft: 5,
     width: Tela
   },
   input: {
     height: 45,
-    marginLeft: 10,
-    fontSize: Tela > 350 ? 24 : 18,
-    borderWidth: 1,
     width: '80%',
-    textAlign: 'center',
-    borderRadius: 17,
-    borderColor: '#11BBA3',
-    fontFamily: 'Rubik_300Light',
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: '#C8EEEA',
+
   },
   row: {
     flexDirection: 'row',
+    marginTop: 20,
+    width: Tela, marginBottom: 50
+  },
+  borda: {
+    marginTop: 65,
+    flexDirection: 'row',
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: '#C8EEEA',
+    height: 45,
+    width: Tela > 350 ? 215 : 125,
   },
   header: {
     fontWeight: '600',
-    fontSize: 24,
-    marginVertical: 10,
-    marginTop: 30
+    fontSize: Tela > 350 ? 24 : 18,
+    marginLeft: 150,
+    marginTop: 30,
+    position: 'absolute'
   },
   logo2: {
-    width: 95,
-    height: 90,
-    margin: 12
+    width: Tela > 350 ? 110 : 90,
+    height: Tela > 350 ? 105 : 85,
+    margin: 10,
+    marginLeft: '6%',
+    // position: 'relative'
   },
   simbolo: {
     width: 30,
     height: 30
   },
   button2: {
-    height: 45,
     borderRadius: 20,
     alignItems: 'center',
-    width: Tela > 350 ? 175 : 125,
+    height: 45,
+    width: Tela > 350 ? 215 : 115,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -140,8 +157,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4.46,
     elevation: 3,
     backgroundColor: '#fff',
-    marginTop: 30
+    marginTop: 65,
+
   },
+
   text: {
     fontSize: 24,
     marginTop: 5
@@ -149,8 +168,17 @@ const styles = StyleSheet.create({
   text2: {
     textTransform: 'uppercase',
     fontSize: Tela > 350 ? 18 : 16,
+    width: '80%',
+    fontFamily: 'Rubik_300Light',
+    marginTop: 4,
+    alignSelf: 'center',
+    marginLeft: 15,
+  },
+  text3: {
     textAlign: 'center',
-    fontFamily: 'Rubik_300Light'
+    fontFamily: 'Rubik_300Light',
+    marginLeft: 10,
+    fontSize: Tela > 350 ? 24 : 18,
   },
   botao: {
     fontSize: Tela > 350 ? 24 : 18,
@@ -159,8 +187,8 @@ const styles = StyleSheet.create({
   arrow: {
     width: 25,
     height: 25,
-    marginTop: 40,
-    marginLeft: 10
+    marginTop: 8,
+    marginRight: 5
   },
   leftArrow: {
     width: 25,
@@ -168,5 +196,5 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     marginLeft: 5
   },
-  line: { width: '80%', borderWidth: 0.6, borderColor: '#11BBA3' }
+  line: { width: '85%', alignSelf: 'center', borderWidth: 0.2, opacity: '100%', borderColor: '#D6E8E6' }
 });
