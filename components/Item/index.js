@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: COLORS.textWhite,
     width: Tela > 350 ? Height > 720 && Height < 800 ? 87 : 94 : 78,
-    height: Tela > 350 ? Height > 720 && Height < 800 ? 79 : 86 : 70,
+    height: Tela > 350 ? Height > 720 && Height < 800 ? 79 : 89 : 70,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     marginTop: 11.5
   },
   textinhos: {
-    fontSize: Tela > 350 ? 9 : 6,
+    fontSize: Tela > 350 ? 10 : 8,
     textAlign: 'center',
     marginHorizontal: 5
   },

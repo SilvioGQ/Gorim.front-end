@@ -196,5 +196,5 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     marginLeft: 5
   },
-  line: { width: '85%', alignSelf: 'center', borderWidth: 0.2, opacity: '100%', borderColor: '#D6E8E6' }
+  line: { width: '85%', alignSelf: 'center', borderWidth: 0.2, borderColor: '#D6E8E6' }
 });

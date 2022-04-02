@@ -12,8 +12,8 @@ export default function LogsTransfer({ item }) {
   return (
     <View style={styles.colunm}>
       <View style={styles.row3}>
-        <Text style={{ fontSize: 13, fontFamily: 'Rubik_300Light' }}>Item vendido {item.product.amount} vezes</Text>
-        <Text style={{ fontSize: 13, color: COLORS.warningButton, marginLeft: 10 }}>Poluição:{item.pollution}</Text>
+        <Text style={{ fontSize: 15}}>Item vendido {item.product.amount} vezes</Text>
+        <Text style={{ fontSize: 15, color: COLORS.warningButton, marginLeft: 10 }}>Poluição:{item.pollution}</Text>
       </View>
       <View>
         <Image
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: COLORS.bgColorSecondary,
     borderRadius: 20,
-    height: 100,
+    width:'86%',
+    height: 101,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

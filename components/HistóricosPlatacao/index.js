@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions } from 'react-native';
 import COLORS from '../../constants/colors';
 import IMAGES from '../../constants/imagesProducts';
 const Tela = Dimensions.get('screen').width;

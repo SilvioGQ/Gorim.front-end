@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
   colunm: {
     backgroundColor: COLORS.bgColorSecondary,
     borderRadius: 20,
-    width: 310,
-    height: 80,
+    width: '86%',
+    height: 101,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -83,22 +83,22 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontSize: 10,
+    fontSize: 14,
     marginBottom: 2,
   },
   absolute: {
     position: 'absolute',
-    top: 15,
-    right: 20
+    top: '15%',
+    right: '3%'
   },
   absolute2: {
     position: 'absolute',
-    top: 15,
-    right: 88
+    top: '15%',
+    right:'30%'
   },
   absolute3: {
     position: 'absolute',
-    top: 15,
-    left: 20,
+    top: '15%',
+    left: '3%',
   }
 });

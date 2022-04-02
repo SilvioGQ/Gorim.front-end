@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     elevation: 6
   },
   textinhos: {
-    fontSize: 10,
+    fontSize: Tela > 350 ? 11 : 10,
   },
   icone: {
     width: 40,

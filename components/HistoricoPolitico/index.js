@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: COLORS.bgColorSecondary,
     borderRadius: 20,
-    width: 255,
-    height: 80,
+    width: '86%',
+    height: 101,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontSize: 11,
+    fontSize: 14,
 
     marginBottom: 2
   }
