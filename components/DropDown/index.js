@@ -7,13 +7,13 @@ const Tela = Dimensions.get('screen').width;
 
 export default function DropDown({ items, type, onClick, display }) {
   const [inventory, setInventory] = useState([]);
-  const inventoryList = () =>{
-    let response = [];
-    response = inventory;
-    response.push({id:0,name:"Selecione um item"})
-    return response
-  }
-  console.log(inventoryList());
+  // const inventoryList = () =>{
+  //   let response = [];
+  //   response = inventory;
+  //   response.push({id:0,name:"Selecione um item"})
+  //   return response
+  // }
+  // console.log(inventoryList());
   useEffect(() => {
     setInventory(items.filter(item => {
       if (item.type === 'Máquina') {
@@ -26,6 +26,7 @@ export default function DropDown({ items, type, onClick, display }) {
 
   return (
     <View style={[styles.container, { display: display }]}>
+      <Text style={[{fontSize:16, color: '#000', marginLeft: 3, padding: 4}]}>Selecione:</Text>
       {inventory.map((item, index) => {
         return (
           <TouchableOpacity key={index} onPress={() => onClick(item.name, type)} style={styles.item}  >
