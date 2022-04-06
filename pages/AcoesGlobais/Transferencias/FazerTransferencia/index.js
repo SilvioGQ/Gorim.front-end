@@ -33,8 +33,9 @@ export default function FazerTransferencia({ navigation }) {
     } else return players2
   }
   const PlayersOffice = () => {
+    console.log(players);
     if (game.phase === 2) {
-      return players.filter(i => i.id !== player.id)
+      return players.filter(i => i.id !== player.id && i.office == "Vereador" || i.office == "Prefeito" || i.office == "Fiscal")
     } else return players2
   }
   const confirmTransfer = () => {
@@ -43,7 +44,7 @@ export default function FazerTransferencia({ navigation }) {
     const destName = players.find(i => i.id === id).name
     navigation.navigate('ConfirmarTransferencia', { idDest: id, nameDest: destName, count, provider: game.phase === 1 ? false : true, type: type == 'Agr/Emp' ? false : true });
   }
-
+  
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.goBack()} />
