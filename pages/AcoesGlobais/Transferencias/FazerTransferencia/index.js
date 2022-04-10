@@ -36,7 +36,7 @@ export default function FazerTransferencia({ navigation }) {
     console.log(players);
     if (game.phase === 2) {
       return players.filter(i => i.id !== player.id && i.office == "Vereador" || i.office == "Prefeito" || i.office == "Fiscal")
-    } else return players2
+    } else return players2.filter(i => i.office == "Vereador" || i.office == "Prefeito" || i.office == "Fiscal")
   }
   const confirmTransfer = () => {
     if (!id) return setModalText('Selecione o destino!');
