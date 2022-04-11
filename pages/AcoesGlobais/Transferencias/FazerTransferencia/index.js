@@ -35,7 +35,7 @@ export default function FazerTransferencia({ navigation }) {
   const PlayersOffice = () => {
     console.log(players);
     if (game.phase === 2) {
-      return players.filter(i => i.id !== player.id && i.office == "Vereador" || i.office == "Prefeito" || i.office == "Fiscal")
+      return players.filter(i => i.id !== player.id && i.office == "Vereador" || i.id !== player.id && i.office == "Prefeito" || i.id !== player.id && i.office == "Fiscal")
     } else return players2.filter(i => i.office == "Vereador" || i.office == "Prefeito" || i.office == "Fiscal")
   }
   const confirmTransfer = () => {
