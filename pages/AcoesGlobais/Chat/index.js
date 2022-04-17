@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
-import { GameContext, deleteAdvert } from "../../../contexts/GameContext";
+import { GameContext, deleteAdvert, getMessages } from "../../../contexts/GameContext";
 
 import Coin from '../../../components/Coin';
 import FilterNew from '../../../components/FilterNew';
@@ -15,7 +15,14 @@ export default function Chat({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('Todos');
-  const { player, players } = useContext(GameContext);
+  const { player, players, messages } = useContext(GameContext);
+
+  console.log(messages);
+
+  useEffect(() => {
+    getMessages();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />

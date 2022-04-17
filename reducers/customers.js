@@ -9,7 +9,8 @@ const initialState = {
   suggests: [],
   offers: [],
   awaitPlayers: 0,
-  notify: { scene: false, offers: false, suggests: false }
+  notify: { scene: false, offers: false, suggests: false },
+  messages: []
 }
 
 const reducer = (state, action) => {
@@ -125,6 +126,11 @@ const reducer = (state, action) => {
         stage: action.payload,
         awaitPlayers: 0,
         notify: { ...initialState.notify }
+      };
+    case 'GETMESSAGES':
+      return {
+        ...state,
+        messages: action.payload
       };
     default:
       return state;

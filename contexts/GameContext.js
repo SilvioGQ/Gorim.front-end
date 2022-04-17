@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 // import ModalInfo from '../components/ModalInfo';
 import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
 
-const socket = io("https://gorim-backend.herokuapp.com", { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -161,6 +161,11 @@ const GameProvider = (props) => {
     socket.on('nextRound', () => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
       startTimer(100, () => endStage());
+    });
+
+
+    socket.on('getMessages', (messages) => {
+      dispatch({ type: 'GETMESSAGES', payload: messages });
     });
 
     // socket.on('reconnectToRoom', (stage) => {
@@ -331,6 +336,10 @@ const getPlayers = () => {
   socket.emit('getPlayers');
 }
 
+const getMessages = () => {
+  socket.emit('getMessages');
+}
+
 export {
   GameContext,
   GameProvider,
@@ -370,5 +379,6 @@ export {
   addVote,
   winnersElection,
   getPlayers,
-  getPlayersOffice
+  getPlayersOffice,
+  getMessages
 };
