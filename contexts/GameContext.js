@@ -340,6 +340,10 @@ const getMessages = () => {
   socket.emit('getMessages');
 }
 
+const sendMessage = (id, msg) => {
+  socket.emit('sendMessage', id, msg);
+}
+
 export {
   GameContext,
   GameProvider,
@@ -380,5 +384,6 @@ export {
   winnersElection,
   getPlayers,
   getPlayersOffice,
-  getMessages
+  getMessages,
+  sendMessage
 };

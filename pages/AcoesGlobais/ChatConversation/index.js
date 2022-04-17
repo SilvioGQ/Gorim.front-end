@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
-import { GameContext, deleteAdvert } from "../../../contexts/GameContext";
+import { GameContext, deleteAdvert, sendMessage } from "../../../contexts/GameContext";
 import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 
 import Rodada from '../../../components/Rodada';
@@ -58,7 +58,10 @@ export default function ChatConversation({ navigation, route }) {
         </KeyboardAvoidingView>
       </View>
       <View style={styles.borda}>
-        <TouchableOpacity style={styles.enviar} onPress={() => { if (text !== '') { onChangeText(''); setMessagens([...messagens, { id: messagens.length + 2, message: text, owner: true, data: fns.format(new Date(), "HH:mm") }]) } }}>
+        <TouchableOpacity style={styles.enviar} onPress={() => { 
+          if (text !== '') { onChangeText(''); setMessagens([...messagens, { id: messagens.length + 2, message: text, owner: true, data: fns.format(new Date(), "HH:mm") }]) }
+          sendMessage(player.id, text);
+          }}>
           <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
         </TouchableOpacity>
         <TextInput
