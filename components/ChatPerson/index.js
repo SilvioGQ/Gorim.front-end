@@ -4,15 +4,16 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'rea
 import COLORS from '../../constants/colors';
 const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
-import GameContext from '../../contexts/GameContext'
+import {GameContext} from '../../contexts/GameContext'
 import ICONS from '../../constants/imagesIcons'
-export default function ChatPerson({ onClick, player, notification = null }) {
-//    const { game } = useContext(GameContext);
+export default function ChatPerson({ onClick, player2, notification = null, messages }) {
+  console.log(messages)
+    const { player } = useContext(GameContext);
     const getTypeMenu = () => {
        // if (game.phase == 1) {
-          return `${player.type ? player.type.slice(0, 3) : ''}${player.type === 'Empresário' ? player.specialty[0] : ''}`;
+          return `${player2.type ? player2.type.slice(0, 3) : ''}${player2.type === 'Empresário' ? player2.specialty[0] : ''}`;
        // } else {
-       //   return `${player.office ? player.office.slice(0, 3) : 'Cid'}`;
+       //   return `${player2.office ? player2.office.slice(0, 3) : 'Cid'}`;
        // }
       }
     return (
@@ -20,9 +21,33 @@ export default function ChatPerson({ onClick, player, notification = null }) {
     <TouchableOpacity onPress={onClick}  >
         <Image
           style={styles.icone}
-          source={ICONS[player.avatar]}
+          source={ICONS[player2.avatar]}
           />
-        <Text style={styles.textinhos}>{`${getTypeMenu()}/${player.name}`}</Text>
+        <Text style={styles.textinhos}>{`${getTypeMenu()}/${player2.name}`}</Text>
+        {/* {messages && messages.filter((i)=>i.player1 === player2.id && i.player2 === player2.id).length !== 0 ?
+            messages.find((i)=>i.player1 === player2.id && i.player2 === player2.id).messages[0].map((i) => {
+              return (
+                <View>
+                  <Text style={{fontSize:11}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message}</Text>
+                  <Text style={{fontSize:9}}>{i.datetime.substr(11,5)}</Text>
+                </View>
+              )
+            })
+              :
+              null
+            }
+            {messages && messages.filter((i)=>i.player1 === player2.id && i.player2 === player2.id).length !== 0 ?
+            messages.find((i)=>i.player1 === player2.id && i.player2 === player2.id).messages[0].map((i) => {
+              return (
+                <View>
+                  <Text style={{fontSize:11}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message}</Text>
+                  <Text style={{fontSize:9}}>{i.datetime.substr(11,5)}</Text>
+                </View>
+              )
+            })
+              :
+              null
+            } */}
           {notification && <View style={[styles.notificacao]} />}
     </TouchableOpacity>
       </View>

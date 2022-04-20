@@ -1,21 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList, Image, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
-import { GameContext, deleteAdvert, sendMessage } from "../../../contexts/GameContext";
-import { format, formatDistance, formatRelative, subDays } from 'date-fns';
+import { GameContext, sendMessage, getMessages } from "../../../contexts/GameContext";
 
 import Rodada from '../../../components/Rodada';
-import TextBold from '../../../components/Atons/TextBold';
-import HeaderIcons from '../../../components/headerIcons';
 import ICONS from '../../../constants/imagesIcons'
 import COLORS from '../../../constants/colors';
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function ChatConversation({ navigation, route }) {
-  const { player } = route.params
+  const { player, messages } = useContext(GameContext);
+  const { player2 } = route.params
   const [text, onChangeText] = useState('')
-  const fns = require('date-fns')
-  console.log(player)
-  const [messagens, setMessagens] = useState([{ id: 0, message: 'olá', owner: true, data: '20:20' },])
+  
+  useEffect(() => {
+    getMessages();
+  }, [messages]);
   // Essa tela pode ficar genericona por enquanto.
   return (
     <View style={styles.container}>
@@ -23,9 +22,9 @@ export default function ChatConversation({ navigation, route }) {
       <View style={styles.margem}>
         <Image
           style={styles.icone}
-          source={ICONS[player.avatar]}
+          source={ICONS[player2.avatar]}
         />
-        <Text style={styles.textinhos}>{player.type ? player.type : player.office} {player.name}{'\n'}{player.city}</Text>
+        <Text style={styles.textinhos}>{player2.type ? player2.type : player2.office} {player2.name}{'\n'}{player2.city}</Text>
       </View>
       <View style={styles.line} />
 
@@ -37,11 +36,24 @@ export default function ChatConversation({ navigation, route }) {
           keyboardVerticalOffset={270}
         >
           <ScrollView>
-            {messagens ? messagens.map((i) => {
+            {messages && messages.filter((i)=>i.player1 === player.id && i.player2 === player2.id).length !== 0 ?
+            messages.find((i)=>i.player1 === player.id && i.player2 === player2.id).messages.map((i) => {
               return (
-                <View style={i.owner ? styles.owner : styles.instOwner}>
+                <View style={i.sender == player.id ? styles.owner : styles.instOwner}>
                   <Text style={styles.message}>{i.message}</Text>
-                  <Text style={styles.time}>{i.data}</Text>
+                  <Text style={styles.time}>{i.datetime.substr(11,5)}</Text>
+                </View>
+              )
+            })
+              :
+              null
+            }
+             {messages && messages.filter((i)=>i.player2 === player.id && i.player1 === player2.id).length !== 0 ?
+            messages.find((i)=>i.player2 === player.id && i.player1 === player2.id).messages.map((i) => {
+              return (
+                <View style={i.sender == player.id ? styles.owner : styles.instOwner}>
+                  <Text style={styles.message}>{i.message}</Text>
+                  <Text style={styles.time}>{i.datetime.substr(11,5)}</Text>
                 </View>
               )
             })
@@ -53,7 +65,7 @@ export default function ChatConversation({ navigation, route }) {
       </View>
       <View style={styles.borda}>
         <TouchableOpacity style={styles.enviar} onPress={() => { 
-          if (text !== '') {sendMessage(player.id, 'texto'); onChangeText(''); }
+          if (text !== '') {sendMessage(player2.id, text); onChangeText(''); }
           }}>
           <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
         </TouchableOpacity>

@@ -14,10 +14,8 @@ const Tela = Dimensions.get('screen').width;
 export default function Chat({ navigation }) {
 
   const [modalText, setModalText] = useState('');
-  const [type, setType] = useState('Todos');
+  const [type, setType] = useState('Pessoas');
   const { player, players, messages } = useContext(GameContext);
-
-  console.log(messages);
 
   useEffect(() => {
     getMessages();
@@ -36,7 +34,7 @@ export default function Chat({ navigation }) {
         showsVerticalScrollIndicator={false}
         data={players.filter(i=>i.id !== player.id)}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <ChatPerson key={index} player={item} onClick={() => navigation.navigate('ChatConversation', {player: item})} mensagens={messages} />}
+        renderItem={({ item, index }) => <ChatPerson key={index} player2={item} onClick={() => navigation.navigate('ChatConversation', {player2: item})} messages={messages} />}
       />
           :
           null
