@@ -34,9 +34,9 @@ export default function Chat({ navigation }) {
         type === 'Pessoas' ?
         <FlatList
         showsVerticalScrollIndicator={false}
-        data={players}
+        data={players.filter(i=>i.id !== player.id)}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <ChatPerson key={index} player={item} onClick={() => navigation.navigate('ChatConversation', {player: player})} />}
+        renderItem={({ item, index }) => <ChatPerson key={index} player={item} onClick={() => navigation.navigate('ChatConversation', {player: item})} mensagens={messages} />}
       />
           :
           null
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     width: Tela,
   },
   header: {
-
     textAlign: 'center',
     fontSize: 20,
     marginBottom: 25

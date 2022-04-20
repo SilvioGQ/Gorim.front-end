@@ -11,17 +11,11 @@ import COLORS from '../../../constants/colors';
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function ChatConversation({ navigation, route }) {
-  console.log(player)
   const { player } = route.params
   const [text, onChangeText] = useState('')
   const fns = require('date-fns')
-
-  const [messagens, setMessagens] = useState([
-    { id: 0, message: 'olá', owner: true, data: '20:20' },
-    { id: 1, message: 'teste teste teste teste', owner: false, data: '20:22' },
-    { id: 2, message: 'tudo bem?', owner: true, data: '20:22' },
-    { id: 3, message: 'tudo sim e você?', owner: false, data: '20:26' },
-  ])
+  console.log(player)
+  const [messagens, setMessagens] = useState([{ id: 0, message: 'olá', owner: true, data: '20:20' },])
   // Essa tela pode ficar genericona por enquanto.
   return (
     <View style={styles.container}>
@@ -59,8 +53,7 @@ export default function ChatConversation({ navigation, route }) {
       </View>
       <View style={styles.borda}>
         <TouchableOpacity style={styles.enviar} onPress={() => { 
-          if (text !== '') { onChangeText(''); setMessagens([...messagens, { id: messagens.length + 2, message: text, owner: true, data: fns.format(new Date(), "HH:mm") }]) }
-          sendMessage(player.id, text);
+          if (text !== '') {sendMessage(player.id, 'texto'); onChangeText(''); }
           }}>
           <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
         </TouchableOpacity>
