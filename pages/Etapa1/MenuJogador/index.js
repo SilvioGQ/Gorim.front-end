@@ -64,6 +64,13 @@ export default function MenuJogador({ navigation }) {
               <Item type='Menu' onClick={() => navigation.navigate('Propostas')} name='Checar anúncios' notification={notify.offers} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('AnalisarProdutos')} name='Analisar produtos' />
+
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.items}>
+              <Item type='Menu' onClick={() => navigation.navigate('Chat')} name='Chat' />
+
             </View>
           </View>
         </>
@@ -105,11 +112,18 @@ export default function MenuJogador({ navigation }) {
             {player.specialty === 'Máquina' && (<Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Máquina', name: 'Pulverizador' })} name='Pulverizador' />)}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
             <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
-            {player.specialty !== 'Máquina' && (<View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />)}
+            {player.specialty !== 'Máquina' && (<Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' />)}
           </View>
-          <TouchableOpacity onPress={()=>navigation.navigate('Chat')}>
+
+          {player.specialty === 'Máquina' && (
+            <View style={styles.items}>
+
+              <Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' />
+            </View>
+          )}
+          {/* <TouchableOpacity onPress={()=>navigation.navigate('Chat')}>
           <Text>Clique aqui para ir para o chat</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       )}
       {Height >= 720 && (
@@ -180,6 +194,7 @@ const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+
   },
   bar: {
     padding: 6,
