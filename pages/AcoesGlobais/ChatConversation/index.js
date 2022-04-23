@@ -8,12 +8,13 @@ import COLORS from '../../../constants/colors';
 const Tela = Dimensions.get('screen').width;
 const Height = Dimensions.get('screen').height;
 export default function ChatConversation({ navigation, route }) {
-  const { player, messages } = useContext(GameContext);
+  const { player, messages, disableNotifyMessage } = useContext(GameContext);
   const { player2 } = route.params
   const [text, onChangeText] = useState('')
   
   useEffect(() => {
     getMessages();
+    disableNotifyMessage(player2.id);
   }, [messages]);
   // Essa tela pode ficar genericona por enquanto.
   return (

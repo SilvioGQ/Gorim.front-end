@@ -7,7 +7,6 @@ const Tela = Dimensions.get('screen').width;
 import {GameContext} from '../../contexts/GameContext'
 import ICONS from '../../constants/imagesIcons'
 export default function ChatPerson({ onClick, player2, notification = null, messages }) {
-  console.log(messages)
     const { player } = useContext(GameContext);
     const getTypeMenu = () => {
        // if (game.phase == 1) {

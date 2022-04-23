@@ -26,6 +26,10 @@ const GameProvider = (props) => {
     dispatch({ type: 'GETNOTIFY', payload: { suggests: false } });
   };
 
+  const disableNotifyMessage = (id) => {
+    dispatch({ type: 'GETNOTIFYMESSAGE', payload: { sender: id, action: 'disable' } });
+  };
+
   const startTimer = (maxTime, callback) => {
     let callbackUsed = false;
 
@@ -142,6 +146,9 @@ const GameProvider = (props) => {
     socket.on('enableNotifySuggests', () => {
       dispatch({ type: 'GETNOTIFY', payload: { suggests: true } });
     });
+    socket.on('enableNotifyMessage', (id) => {
+      dispatch({ type: 'GETNOTIFYMESSAGE', payload: { sender: id, action: 'enable' } });
+    });
 
     socket.on('endStage', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
@@ -182,7 +189,7 @@ const GameProvider = (props) => {
   }, []);
 
   return (
-    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, disableNotifySuggests }}>
+    <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, disableNotifySuggests, disableNotifyMessage }}>
       {/* {modal && (
         <ModalInfo player={state.player} onClick={() => { setModal(false) }} display={socket.connected ? 'flex' : 'none'} text={'Estamos reconectando você para partida'} />
       )} */}

@@ -9,7 +9,7 @@ const initialState = {
   suggests: [],
   offers: [],
   awaitPlayers: 0,
-  notify: { scene: false, offers: false, suggests: false },
+  notify: { scene: false, offers: false, suggests: false, messages: [] },
   messages: []
 }
 
@@ -105,6 +105,14 @@ const reducer = (state, action) => {
         notify: {
           ...state.notify,
           ...action.payload
+        }
+      };
+    case 'GETNOTIFYMESSAGE':
+      return {
+        ...state,
+        notify: {
+          ...state.notify,
+          messages: action.payload.action == 'enable' ? [action.payload.sender, ...state.notify.messages] : [...state.notify.messages.filter(p => p != action.payload.sender)]
         }
       }
     case 'GETSUGGESTS':

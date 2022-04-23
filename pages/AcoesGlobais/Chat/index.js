@@ -15,11 +15,13 @@ export default function Chat({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('Pessoas');
-  const { player, players, messages } = useContext(GameContext);
+  const { player, players, messages, notify } = useContext(GameContext);
 
   useEffect(() => {
     getMessages();
   }, []);
+  
+  console.log(notify.messages);
 
   return (
     <View style={styles.container}>
