@@ -6,7 +6,7 @@ const Height = Dimensions.get('screen').height;
 const Tela = Dimensions.get('screen').width;
 import {GameContext} from '../../contexts/GameContext'
 import ICONS from '../../constants/imagesIcons'
-export default function ChatPerson({ onClick, player2, notification = null, messages }) {
+export default function ChatPerson({ onClick, player2, notification, messages }) {
     const { player } = useContext(GameContext);
     const getTypeMenu = () => {
        // if (game.phase == 1) {
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   notificacao: {
     position: 'absolute',
-    left: 82,
+    right: 20,
     width: 18,
     height: 18,
     borderRadius: 9,
