@@ -15,7 +15,12 @@ export default function ChatPerson({ onClick, player2, notification = null, mess
        //   return `${player2.office ? player2.office.slice(0, 3) : 'Cid'}`;
        // }
       }
-    return (
+
+      const tamanho = () => {
+        return messages.map((i) => i.messages.length)[0]
+      }
+        console.log(messages);
+      return (
       <View style={styles.margem}>
     <TouchableOpacity onPress={onClick}  >
         <Image
@@ -23,20 +28,22 @@ export default function ChatPerson({ onClick, player2, notification = null, mess
           source={ICONS[player2.avatar]}
           />
         <Text style={styles.textinhos}>{`${getTypeMenu()}/${player2.name}`}</Text>
-        {/* {messages && messages.filter((i)=>i.player1 === player2.id && i.player2 === player2.id).length !== 0 ?
-            messages.find((i)=>i.player1 === player2.id && i.player2 === player2.id).messages[0].map((i) => {
+        {/* {messages && messages.filter((i)=>i.player1 === player.id || i.player2 === player.id).length !== 0 ?
+         [messages.find((i) => i.player1 === player.id || i.player2 === player.id).messages[tamanho() - 1]].map((i) => { //condiçao errada
               return (
                 <View>
-                  <Text style={{fontSize:11}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message}</Text>
-                  <Text style={{fontSize:9}}>{i.datetime.substr(11,5)}</Text>
+                  <Text style={{fontSize:11, marginLeft: 70}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message}</Text>
+                  <Text style={{fontSize:9, marginLeft: 70}}>{i.datetime.substr(11,5)}</Text>
                 </View>
               )
             })
               :
               null
-            }
-            {messages && messages.filter((i)=>i.player1 === player2.id && i.player2 === player2.id).length !== 0 ?
-            messages.find((i)=>i.player1 === player2.id && i.player2 === player2.id).messages[0].map((i) => {
+            } */}
+
+
+            {/* {messages && messages.filter((i)=>i.player1 === player2.id || i.player2 === player2.id).length !== 0 ?
+            messages.find((i)=>i.player1 === player2.id || i.player2 === player2.id).messages.map((i) => {
               return (
                 <View>
                   <Text style={{fontSize:11}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message}</Text>
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
 
   },
   textinhos: {
-    marginTop: 20,
+    marginTop: 16,
     fontSize: 14,
     marginLeft: 70,
     fontFamily: 'Rubik_700Bold',
