@@ -21,8 +21,8 @@ export default function Chat({ navigation }) {
     getMessages();
   }, []);
   
-  console.log(notify.messages);
-
+  console.log(notify.messages.filter(i=>i == player.id).length);
+  console.log(notify.messages.filter(i=>i == player.id));
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
@@ -36,7 +36,7 @@ export default function Chat({ navigation }) {
         showsVerticalScrollIndicator={false}
         data={players.filter(i=>i.id !== player.id)}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => <ChatPerson key={index} player2={item} onClick={() => navigation.navigate('ChatConversation', {player2: item})} messages={messages} />}
+        renderItem={({ item, index }) => <ChatPerson key={index} player2={item} onClick={() => navigation.navigate('ChatConversation', {player2: item})} messages={messages} notification={notify.messages.filter(i=>i === item.id).length > 0 ? true : false} />}
       />
           :
           null
