@@ -20,9 +20,6 @@ export default function Chat({ navigation }) {
   useEffect(() => {
     getMessages();
   }, []);
-  
-  console.log(notify.messages.filter(i=>i == player.id).length);
-  console.log(notify.messages.filter(i=>i == player.id));
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />

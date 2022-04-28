@@ -72,6 +72,7 @@ export default function MenuPolitico({ navigation }) {
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
           </View>
         )}
+         <Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' notification={notify.messages.length > 0 ? true : false}/>
       </View>
       <View style={{ paddingVertical: 25, flexDirection: 'row', }}>
         <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />

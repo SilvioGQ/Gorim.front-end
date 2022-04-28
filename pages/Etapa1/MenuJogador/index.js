@@ -69,7 +69,7 @@ export default function MenuJogador({ navigation }) {
           </View>
           <View style={styles.row}>
             <View style={styles.items}>
-              <Item type='Menu' onClick={() => navigation.navigate('Chat')} name='Chat' />
+            <Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' notification={notify.messages.length > 0 ? true : false}/>
 
             </View>
           </View>
@@ -112,13 +112,12 @@ export default function MenuJogador({ navigation }) {
             {player.specialty === 'Máquina' && (<Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Máquina', name: 'Pulverizador' })} name='Pulverizador' />)}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
             <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
-            {player.specialty !== 'Máquina' && (<Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' />)}
+            {player.specialty !== 'Máquina' && (<Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' notification={notify.messages.length > 0 ? true : false} />)}
           </View>
 
           {player.specialty === 'Máquina' && (
             <View style={styles.items}>
-
-              <Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' />
+              <Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' notification={notify.messages.length > 0 ? true : false}/>
             </View>
           )}
           {/* <TouchableOpacity onPress={()=>navigation.navigate('Chat')}>
