@@ -8,6 +8,7 @@ import {GameContext} from '../../contexts/GameContext'
 import ICONS from '../../constants/imagesIcons'
 export default function ChatPerson({ onClick, player2, notification, messages }) {
     const { player } = useContext(GameContext);
+    let playerdois = player2.id;
     const getTypeMenu = () => {
        // if (game.phase == 1) {
           return `${player2.type ? player2.type.slice(0, 3) : ''}${player2.type === 'Empresário' ? player2.specialty[0] : ''}`;
@@ -15,11 +16,6 @@ export default function ChatPerson({ onClick, player2, notification, messages })
        //   return `${player2.office ? player2.office.slice(0, 3) : 'Cid'}`;
        // }
       }
-
-      const tamanho = () => {
-        return messages.map((i) => i.messages.length)[0]
-      }
-        console.log(messages);
       return (
       <View style={styles.margem}>
     <TouchableOpacity onPress={onClick}  >
@@ -28,8 +24,8 @@ export default function ChatPerson({ onClick, player2, notification, messages })
           source={ICONS[player2.avatar]}
           />
         <Text style={styles.textinhos}>{`${getTypeMenu()}/${player2.name}`}</Text>
-        {/* {messages && messages.filter((i)=>i.player1 === player.id || i.player2 === player.id).length !== 0 ?
-         [messages.find((i) => i.player1 === player.id || i.player2 === player.id).messages[tamanho() - 1]].map((i) => { //condiçao errada
+        {messages && messages.filter((i)=> i.player1 === player.id && i.player2 === playerdois || i.player1 === playerdois && i.player2 === player.id).length !== 0 ?
+          [messages.find((i) => i.player1 === player.id && i.player2 === playerdois || i.player1 === playerdois && i.player2 === player.id).messages[messages.find((i) => i.player1 === player.id && i.player2 === playerdois || i.player1 === playerdois && i.player2 === player.id).messages.length - 1]].map((i) => {
               return (
                 <View>
                   <Text style={{fontSize:11, marginLeft: 70}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message}</Text>
@@ -39,21 +35,7 @@ export default function ChatPerson({ onClick, player2, notification, messages })
             })
               :
               null
-            } */}
-
-
-            {/* {messages && messages.filter((i)=>i.player1 === player2.id || i.player2 === player2.id).length !== 0 ?
-            messages.find((i)=>i.player1 === player2.id || i.player2 === player2.id).messages.map((i) => {
-              return (
-                <View>
-                  <Text style={{fontSize:11}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message}</Text>
-                  <Text style={{fontSize:9}}>{i.datetime.substr(11,5)}</Text>
-                </View>
-              )
-            })
-              :
-              null
-            } */}
+            }
           {notification && <View style={[styles.notificacao]} />}
     </TouchableOpacity>
       </View>
