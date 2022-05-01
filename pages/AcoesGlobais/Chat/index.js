@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Dimensions, FlatList } from 'react-native';
-import { GameContext, deleteAdvert, getMessages } from "../../../contexts/GameContext";
+import { GameContext, deleteAdvert, getMessages, sendGroupMessage } from "../../../contexts/GameContext";
 
 import Coin from '../../../components/Coin';
 import FilterNew from '../../../components/FilterNew';
@@ -19,7 +19,11 @@ export default function Chat({ navigation }) {
 
   useEffect(() => {
     getMessages();
+    sendGroupMessage(1, 'teste');
   }, []);
+  
+  console.log(messages)
+
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />

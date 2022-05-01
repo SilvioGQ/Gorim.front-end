@@ -351,6 +351,10 @@ const sendMessage = (id, msg) => {
   socket.emit('sendMessage', id, msg);
 }
 
+const sendGroupMessage = (id, msg) => {
+  socket.emit('sendGroupMessage', id, msg);
+}
+
 export {
   GameContext,
   GameProvider,
@@ -392,5 +396,6 @@ export {
   getPlayers,
   getPlayersOffice,
   getMessages,
-  sendMessage
+  sendMessage,
+  sendGroupMessage
 };
