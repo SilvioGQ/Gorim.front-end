@@ -28,8 +28,8 @@ export default function ChatPerson({ onClick, player2, notification, messages })
           [messages.find((i) => i.player1 === player.id && i.player2 === playerdois || i.player1 === playerdois && i.player2 === player.id).messages[messages.find((i) => i.player1 === player.id && i.player2 === playerdois || i.player1 === playerdois && i.player2 === player.id).messages.length - 1]].map((i) => {
               return (
                 <View>
-                  <Text style={{fontSize:11, marginLeft: 70}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message}</Text>
-                  <Text style={{fontSize:9, marginLeft: 70}}>{i.datetime.substr(11,5)}</Text>
+                  <Text style={{fontSize:11, marginLeft: 70, marginVertical: 3,}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message.substr(0,50)}</Text>
+                  <Text style={{fontSize:9, textAlign: 'right', marginRight: 7}}>{i.datetime.substr(11,5)}</Text>
                 </View>
               )
             })
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 
   },
   textinhos: {
-    marginTop: 16,
+    marginTop: 10,
     fontSize: 14,
     marginLeft: 70,
     fontFamily: 'Rubik_700Bold',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   notificacao: {
     position: 'absolute',
-    right: 20,
+    right: 10,
     width: 18,
     height: 18,
     borderRadius: 9,
