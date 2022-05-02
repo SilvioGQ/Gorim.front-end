@@ -6,17 +6,9 @@ import Papel from '../../assets/agricultorIcones/papel.png';
 export default function Cenarios({ seeScenery, endStage, notification }) {
   return (
     <View style={[styles.container]}>
-      <TouchableOpacity onPress={seeScenery} activeOpacity={0.7}>
-        <View style={[styles.resumo]}>
-          <Image style={styles.logo} source={Papel} />
-          <Text style={[styles.titulo]}> Resumo de cenário </Text>
-          {notification &&
-            <View style={[styles.notificacao]} />}
-        </View>
-      </TouchableOpacity>
       <TouchableOpacity onPress={endStage}  >
         <View style={styles.resumo}>
-          <Text style={styles.candidato}>Finalizar etapa</Text>
+          <Text style={styles.candidato}>FINALIZAR ETAPA</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -26,10 +18,11 @@ export default function Cenarios({ seeScenery, endStage, notification }) {
 const styles = StyleSheet.create({
   resumo: {
     height: 60,
-    flexDirection: 'row',
+    width: '100%',
     alignItems: 'center',
-    backgroundColor: COLORS.textWhite,
-    borderRadius: 25,
+      justifyContent: 'center',
+    backgroundColor: '#EB5656',
+    borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -40,8 +33,11 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   candidato: {
-
-    fontSize: 12,
+    fontFamily: 'Rubik_400Regular',
+    fontWeight: 'bold',
+    color: COLORS.textWhite,
+    textAlign: 'center',
+    fontSize: 14,
     paddingHorizontal: 20
   },
   logo: {
@@ -71,9 +67,10 @@ const styles = StyleSheet.create({
   },
   container: {
     height: 60,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    width: '88%',
+    justifyContent: 'center',
+    alignContent: 'center',
+    // flexDirection: 'row',
+    width: '85%',
     backgroundColor: COLORS.bgColorPrimary
 
   }

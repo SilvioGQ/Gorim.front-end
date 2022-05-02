@@ -5,12 +5,14 @@ import { GameContext, removeToRoom, endStage } from '../../../contexts/GameConte
 import COLORS from '../../../constants/colors';
 import Header from '../../../components/Header';
 import Item from '../../../components/Item';
+import ResumoEChat from '../../../components/ResumoEChat';
 import Cenarios from '../../../components/CenarioBotao';
 import Rodada from '../../../components/Rodada';
 import ModalConfirmExit from '../../../components/ModalConfirmExit';
 import Modal from '../../../components/ModalInfo';
 import ModalAsk from '../../../components/ModalAsk';
 import normalizeNumber from '../../../helpers/normalizeNumber';
+import Papel from '../../../assets/agricultorIcones/papel.png';
 
 const Height = Dimensions.get('screen').height;
 export default function MenuJogador({ navigation }) {
@@ -108,24 +110,20 @@ export default function MenuJogador({ navigation }) {
 
             </>
           )}
-          <View style={styles.items}>
+      <View style={styles.items}>
             {player.specialty === 'Máquina' && (<Item type='Produtos' onClick={() => navigation.navigate('Vendas', { type: 'Máquina', name: 'Pulverizador' })} name='Pulverizador' />)}
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
             <Item type='Menu' onClick={() => navigation.navigate('ChecarAnuncio')} name='Checar Anúncios' />
-            {player.specialty !== 'Máquina' && (<Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' notification={notify.messages.length > 0 ? true : false} />)}
+            {player.specialty !== 'Máquina' && (<View style={{ marginRight: 10, marginVertical: 10, backgroundColor: COLORS.bgColorPrimary, width: 96, height: 92, borderRadius: 20 }} />)}
           </View>
 
-          {player.specialty === 'Máquina' && (
-            <View style={styles.items}>
-              <Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' notification={notify.messages.length > 0 ? true : false}/>
-            </View>
-          )}
+
           {/* <TouchableOpacity onPress={()=>navigation.navigate('Chat')}>
           <Text>Clique aqui para ir para o chat</Text>
           </TouchableOpacity> */}
         </View>
       )}
-      {Height >= 720 && (
+      {/* {Height >= 720 && (
         <>
           <View style={[styles.bar, { backgroundColor: '#66BF00', borderColor: '#8ACF3A' }]}>
             <Text style={styles.textBar}>{normalizeNumber(player.production)}</Text>
@@ -148,10 +146,15 @@ export default function MenuJogador({ navigation }) {
             </View>
           }
         </>
-      )}
-      <View style={{ paddingVertical: 25, flexDirection: 'row', }}>
-        <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
+      )} */}
+      <View style={{ paddingTop: 50, paddingBottom: 18, flexDirection: 'row', }}>
+      <ResumoEChat seeScenery={() => navigation.navigate('Cenario')} seeChat={() => navigation.navigate('Chat')} notification={notify.scene} />
       </View>
+            <View style={{flexDirection: 'row'}}>
+
+      <Cenarios endStage={() => setModalVisible2(true)} notification={notify.scene} />
+      </View>
+
       {awaitPlayers !== 0 && <Text style={{ color: 'red', }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
   );
@@ -165,7 +168,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    marginHorizontal: 20,
+    marginHorizontal: 30,
     marginVertical: 10,
     width: '100%',
     flexWrap: 'wrap'
@@ -177,7 +180,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 12,
     backgroundColor: COLORS.bgColorSecondary,
-    width: '88%',
+    width: '100%',
     height: 50,
     borderRadius: 20,
     shadowColor: "#000",
@@ -190,7 +193,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   items: {
-    width: '90%',
+    width: '85%',
     flexDirection: 'row',
     justifyContent: 'space-between',
 

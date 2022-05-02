@@ -105,7 +105,7 @@ export default function Cenario({ navigation }) {
             null}
 
           {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} image={image} image2={image2} />}
-          {Height <= 720 && player.type ? (
+          {/* {Height <= 720 && player.type ? ( */}
             <>
               <Text style={styles.texto}>Resultado da sua plantação atual:</Text>
               <View style={{ flexDirection: 'row', alignSelf: 'flex-start' }}>
@@ -125,9 +125,9 @@ export default function Cenario({ navigation }) {
                 </View>
               </View>
             </>
-          )
+          {/* )
             :
-            null}
+            null} */}
           <Text style={styles.texto}>Resumo:</Text>
           <FilterCenary type={type} setType={setType} />
 
