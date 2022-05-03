@@ -17,8 +17,8 @@ export default function ChatPerson({ onClick, player2, notification, messages })
        // }
       }
       return (
-      <View style={styles.margem}>
-    <TouchableOpacity onPress={onClick}  >
+      // <View style={styles.margem}>
+    <TouchableOpacity onPress={onClick} style={styles.margem} >
         <Image
           style={styles.icone}
           source={ICONS[player2.avatar]}
@@ -34,11 +34,14 @@ export default function ChatPerson({ onClick, player2, notification, messages })
               )
             })
               :
-              null
+                 <View>
+                  <Text style={{fontSize:11, marginLeft: 70, marginVertical: 3,}}></Text>
+                  <Text style={{fontSize:9, textAlign: 'right', marginRight: 7}}></Text>
+                </View>
             }
           {notification && <View style={[styles.notificacao]} />}
     </TouchableOpacity>
-      </View>
+      // </View>
   )
 }
 
@@ -49,22 +52,22 @@ const styles = StyleSheet.create({
     borderColor: '#A8DADC',
     width: Tela > 350 ? 55 : 52,
     height: Tela > 350 ? 55 : 52,
-    // marginBottom: Height > 720 && Height < 800 ? 2 : 5,
+    // marginBottom: Height > 720 && Height < 800 ? 2 : 18,
     // marginTop: 11.5,
     position: 'absolute',
 
   },
   textinhos: {
-    marginTop: 10,
+    marginTop: 5,
     fontSize: 14,
     marginLeft: 70,
     fontFamily: 'Rubik_700Bold',
 
   },
   margem: {
-    // marginTop: 20,
+    marginTop: 5,
     marginHorizontal: 20,
-    marginVertical: 15
+    marginBottom: 15
   },
   notificacao: {
     position: 'absolute',

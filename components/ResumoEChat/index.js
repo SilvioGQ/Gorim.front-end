@@ -82,11 +82,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5
   },
   notificacao: {
+    position: 'absolute',
     width: 18,
     height: 18,
     borderRadius: 9,
     backgroundColor: '#F19F00',
     marginTop: -40,
+    top: 40,
+    left: '95%',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
