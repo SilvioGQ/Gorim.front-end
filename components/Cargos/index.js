@@ -4,7 +4,7 @@ import { GameContext } from '../../contexts/GameContext';
 const Tela = Dimensions.get('screen').width;
 export default function Cargos({ isSelected, setSelection }) {
 
-  const { stage, data: elections } = useContext(GameContext);
+  const { stage, data: elections, players } = useContext(GameContext);
 
   return (
     <View style={styles.container}>
@@ -23,8 +23,7 @@ export default function Cargos({ isSelected, setSelection }) {
         />
         <Text style={styles.candidato}>Me candidato a vereador! ({stage === 'GETELECTIONS' ? elections['cityCouncilor'].length : 0})</Text>
       </TouchableOpacity>
-
-
+      
       <TouchableOpacity style={styles.row} onPress={() => { setSelection("Fiscal"); }}  >
         <Image
           source={isSelected == "Fiscal" ? require("../../assets/circleselect.png") : require("../../assets/circle.png")}
@@ -32,7 +31,7 @@ export default function Cargos({ isSelected, setSelection }) {
         />
         <Text style={styles.candidato}>Me candidato a fiscal! ({stage === 'GETELECTIONS' ? elections['supervisor'].length : 0})</Text>
       </TouchableOpacity>
-
+      {players.length > 6 && (
       <TouchableOpacity style={styles.row} onPress={() => { setSelection(null); }}  >
         <Image
           source={isSelected == null ? require("../../assets/circleselect.png") : require("../../assets/circle.png")}
@@ -40,6 +39,7 @@ export default function Cargos({ isSelected, setSelection }) {
         />
         <Text style={styles.candidato}>Não quero me candidatar.</Text>
       </TouchableOpacity>
+      )}
 
     </View>
   )

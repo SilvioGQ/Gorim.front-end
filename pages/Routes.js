@@ -14,6 +14,7 @@ import ChecarAnuncio from './Etapa1/Empresario/ChecarAnuncio';
 import FazerTransferencia from './AcoesGlobais/Transferencias/FazerTransferencia';
 import Chat from './AcoesGlobais/Chat';
 import ChatConversation from './AcoesGlobais/ChatConversation';
+import ChatConversationGroup from './AcoesGlobais/ChatConversationGroup';
 import ConfirmarTransferencia from './AcoesGlobais/Transferencias/ConfirmarTransferencia';
 import TransferenciaConfirmada from './AcoesGlobais/Transferencias/Confirmada';
 import Cenario from './AcoesGlobais/Cenario';
@@ -83,6 +84,7 @@ export default function Routes() {
       <Stack.Screen name="Votacao" component={Votacao} />
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="ChatConversation" component={ChatConversation} />
+      <Stack.Screen name="ChatConversationGroup" component={ChatConversationGroup} />
     </Stack.Navigator>
   )
 }

@@ -5,6 +5,7 @@ import { GameContext, deleteAdvert, getMessages, sendGroupMessage } from "../../
 import Coin from '../../../components/Coin';
 import FilterNew from '../../../components/FilterNew';
 import ChatPerson from '../../../components/ChatPerson';
+import ChatGroup from '../../../components/ChatGroup';
 import COLORS from '../../../constants/colors';
 import Modal from '../../../components/ModalInfo';
 import Rodada from '../../../components/Rodada';
@@ -19,7 +20,6 @@ export default function Chat({ navigation }) {
 
   useEffect(() => {
     getMessages();
-    sendGroupMessage(1, 'teste');
   }, []);
   
   console.log(messages)
@@ -40,7 +40,12 @@ export default function Chat({ navigation }) {
         renderItem={({ item, index }) => <ChatPerson key={index} player2={item} onClick={() => navigation.navigate('ChatConversation', {player2: item})} messages={messages} notification={notify.messages.filter(i=>i === item.id).length > 0 ? true : false} />}
       />
           :
-          null
+          <FlatList
+          showsVerticalScrollIndicator={false}
+          data={messages.filter(i=>i.players.length !== 0)}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => <ChatGroup key={index} item={item} onClick={() => navigation.navigate('ChatConversationGroup', {group: item})} messages={messages} />}
+        />
       }
     </View>
   );
