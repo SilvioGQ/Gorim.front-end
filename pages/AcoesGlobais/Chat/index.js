@@ -42,7 +42,7 @@ export default function Chat({ navigation }) {
           :
           <FlatList
           showsVerticalScrollIndicator={false}
-          data={messages.filter(i=>i.players.length !== 0)}
+          data={messages.filter(i => typeof i.players === 'object')}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => <ChatGroup key={index} item={item} onClick={() => navigation.navigate('ChatConversationGroup', {group: item})} messages={messages} />}
         />

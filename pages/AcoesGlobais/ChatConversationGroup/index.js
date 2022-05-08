@@ -11,8 +11,10 @@ export default function ChatConversation({ navigation, route }) {
   const { player, messages, disableNotifyMessage } = useContext(GameContext);
   const { group } = route.params;
   const [text, onChangeText] = useState('');
+  
   useEffect(() => {
     getMessages();
+    disableNotifyMessage(group.id);
   }, [messages]);
   // Essa tela pode ficar genericona por enquanto.
   return (
