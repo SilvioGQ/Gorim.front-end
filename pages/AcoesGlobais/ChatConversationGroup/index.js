@@ -53,7 +53,7 @@ export default function ChatConversation({ navigation, route }) {
       </View>
       <View style={styles.borda}>
         <TouchableOpacity style={styles.enviar} onPress={() => { 
-          if (text !== '') {sendGroupMessage(messages.id, text);; onChangeText(''); }
+          if (text !== '') {sendGroupMessage(group.id, text);; onChangeText(''); }
           }}>
           <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
         </TouchableOpacity>
