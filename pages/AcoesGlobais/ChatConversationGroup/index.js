@@ -22,13 +22,13 @@ export default function ChatConversation({ navigation, route }) {
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('Chat')} />
-      {/* <View style={styles.margem}>
+      <View style={styles.margem}> 
         <Image
           style={styles.icone}
-          source={ICONS[player2.avatar]}
-        /> */}
+          source={ICONS[group.name]}></Image>
+  
         <Text style={styles.textinhos}>{group.name}</Text>
-      {/* </View> */}
+      </View>
       <View style={styles.line} />
 
       <View style={styles.viewMessages}>
@@ -44,7 +44,7 @@ export default function ChatConversation({ navigation, route }) {
             message.messages.map((i) => {
               return (
                 <View style={i.sender.id == player.id ? styles.owner : styles.instOwner}>
-                  {i.sender.id !== player.id && (<Text style={{fontWeight:'bold',color:'#005A0E'}}>{i.sender.name}</Text>)}
+                  {i.sender.id !== player.id && (<Text style={styles.name}>{i.sender.name}</Text>)}
                   <Text style={styles.message}>{i.message}</Text>
                   <Text style={styles.time}>{i.datetime.substr(11,5)}</Text>
                 </View>
@@ -88,6 +88,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: Tela,
   },
+  name:{
+    fontWeight: 'bold',
+    color: COLORS.headerColor,
+  },
   line: {
     width: '85%',
     alignSelf: 'center',
@@ -101,6 +105,7 @@ const styles = StyleSheet.create({
     height: Tela > 350 ? 60 : 52,
   },
   textinhos: {
+    paddingLeft: 4,
     marginTop: 10,
     fontSize: 18,
     fontFamily: 'Rubik_700Bold',

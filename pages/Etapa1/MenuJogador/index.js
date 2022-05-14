@@ -69,12 +69,6 @@ export default function MenuJogador({ navigation }) {
 
             </View>
           </View>
-          <View style={styles.row}>
-            <View style={styles.items}>
-            <Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' notification={notify.messages.length > 0 ? true : false}/>
-
-            </View>
-          </View>
         </>
       )}
       {player.type === 'Empresário' && (

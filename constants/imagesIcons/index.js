@@ -12,6 +12,9 @@ const ICONS = {
   'Icon11': require('../../assets/avatars/Icon11.png'),
   'Icon12': require('../../assets/avatars/Icon12.png'),
   'VotoBranco': require('../../assets/icons/voting-box.png'),
-  'Todos': require('../../assets/symbols/group.png')
+  'Todos': require('../../assets/symbols/group.png'),
+  'Empresários': require('../../assets/icons/company.png'),
+  'Agricultores': require('../../assets/icons/field.png'),
+
 };
 export default ICONS;

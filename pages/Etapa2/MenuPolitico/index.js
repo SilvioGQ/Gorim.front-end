@@ -5,6 +5,7 @@ import { GameContext, removeToRoom, endRound } from '../../../contexts/GameConte
 import COLORS from '../../../constants/colors';
 import Header from '../../../components/Header';
 import Item from '../../../components/Item';
+import ResumoEChat from '../../../components/ResumoEChat';
 import Cenarios from '../../../components/CenarioBotao';
 import Rodada from '../../../components/Rodada';
 import ModalConfirmExit from '../../../components/ModalConfirmExit';
@@ -72,12 +73,16 @@ export default function MenuPolitico({ navigation }) {
             <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
           </View>
         )}
-         <Item type='Chat' onClick={() => navigation.navigate('Chat')} name='Chat' notification={notify.messages.length > 0 ? true : false}/>
       </View>
-      <View style={{ paddingVertical: 25, flexDirection: 'row', }}>
-        <Cenarios seeScenery={() => navigation.navigate('Cenario')} endStage={() => setModalVisible2(true)} notification={notify.scene} />
+    <View style={{ paddingTop: 50, paddingBottom: 18, flexDirection: 'row', }}>
+      <ResumoEChat seeScenery={() => navigation.navigate('Cenario')} seeChat={() => navigation.navigate('Chat')} notificationChat={notify.messages.length > 0 ? true : false} notification={notify.scene} />
       </View>
-      {awaitPlayers !== 0 && <Text style={styles.await}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
+            <View style={{flexDirection: 'row'}}>
+
+      <Cenarios endStage={() => setModalVisible2(true)} notification={notify.scene} />
+      </View>
+
+      {awaitPlayers !== 0 && <Text style={{ color: 'red', }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
   );
 }

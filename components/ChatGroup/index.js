@@ -7,12 +7,15 @@ const Tela = Dimensions.get('screen').width;
 import {GameContext} from '../../contexts/GameContext'
 import ICONS from '../../constants/imagesIcons'
 export default function ChatGroup({ onClick, item, notification, messages }) {
+      const { player, game } = useContext(GameContext);
+  
+  console.log(player);
       return (
-      // <View style={styles.margem}>
+      <View style={styles.margem}>
     <TouchableOpacity onPress={onClick} style={styles.margem} >
         <Image
           style={styles.icone}
-          source={ICONS['Icon12']}
+          source={ICONS[item.name]}
           />
         <Text style={styles.textinhos}>{`${item.name}`}</Text>
         {/* {messages && messages.filter((i)=> i.player1 === player.id && i.item === playerdois || i.player1 === playerdois && i.item === player.id).length !== 0 ?
@@ -29,10 +32,10 @@ export default function ChatGroup({ onClick, item, notification, messages }) {
                   <Text style={{fontSize:11, marginLeft: 70, marginVertical: 3,}}></Text>
                   <Text style={{fontSize:9, textAlign: 'right', marginRight: 7}}></Text>
                 </View>
-            } */}
+            }  */}
           {notification && <View style={[styles.notificacao]} />}
     </TouchableOpacity>
-      // </View>
+      </View>
   )
 }
 

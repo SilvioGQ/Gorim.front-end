@@ -16,7 +16,7 @@ export default function Chat({ navigation }) {
 
   const [modalText, setModalText] = useState('');
   const [type, setType] = useState('Pessoas');
-  const { player, players, messages, notify } = useContext(GameContext);
+  const { player, players, messages, notify, game } = useContext(GameContext);
 
   useEffect(() => {
     getMessages();
@@ -26,7 +26,13 @@ export default function Chat({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
+      {game.phase === 2 ? 
+      <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
+      
+    :
+          <Rodada arrow={true} onClick={() => navigation.navigate('MenuJogador')} />
+
+      }
       <Coin coin={player.coin} />
       <HeaderIcons name={'Chat'} icon='Chat' />
       {modalText !== '' && <Modal onClick={() => setModalText('')} text={modalText} />}
