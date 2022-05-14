@@ -11,10 +11,12 @@ export default function ChatConversation({ navigation, route }) {
   const { player, messages, disableNotifyMessage } = useContext(GameContext);
   const { group } = route.params;
   const [text, onChangeText] = useState('');
-  
+  console.log(group)
+  const [message, setMessage] = useState();
   useEffect(() => {
     getMessages();
     disableNotifyMessage(group.id);
+    setMessage(messages.find(i=>i.id===group.id))
   }, [messages]);
   // Essa tela pode ficar genericona por enquanto.
   return (
@@ -24,9 +26,9 @@ export default function ChatConversation({ navigation, route }) {
         <Image
           style={styles.icone}
           source={ICONS[player2.avatar]}
-        />
-        <Text style={styles.textinhos}>{player2.type ? player2.type : player2.office} {player2.name}{'\n'}{player2.city}</Text>
-      </View> */}
+        /> */}
+        <Text style={styles.textinhos}>{group.name}</Text>
+      {/* </View> */}
       <View style={styles.line} />
 
       <View style={styles.viewMessages}>
@@ -37,16 +39,19 @@ export default function ChatConversation({ navigation, route }) {
           keyboardVerticalOffset={270}
         >
           <ScrollView>
-            {group ?
-            group.messages.map((i) => {
+            {message ?
+            message.messages.length !== 0 ?
+            message.messages.map((i) => {
               return (
-                <View style={i.sender == player.id ? styles.owner : styles.instOwner}>
-                  {i.sender !== player.id && (<Text>{i.sender.name}</Text>)}
+                <View style={i.sender.id == player.id ? styles.owner : styles.instOwner}>
+                  {i.sender.id !== player.id && (<Text style={{fontWeight:'bold',color:'#005A0E'}}>{i.sender.name}</Text>)}
                   <Text style={styles.message}>{i.message}</Text>
                   <Text style={styles.time}>{i.datetime.substr(11,5)}</Text>
                 </View>
               )
             })
+              :
+              null
               :
               null
             }
@@ -55,7 +60,7 @@ export default function ChatConversation({ navigation, route }) {
       </View>
       <View style={styles.borda}>
         <TouchableOpacity style={styles.enviar} onPress={() => { 
-          if (text !== '') {sendGroupMessage(group.id, text);; onChangeText(''); }
+          if (text !== '') {sendGroupMessage(group.id, text); onChangeText(''); }
           }}>
           <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
         </TouchableOpacity>

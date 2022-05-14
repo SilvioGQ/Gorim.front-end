@@ -4,7 +4,7 @@ import COLORS from '../../constants/colors';
 import Papel from '../../assets/agricultorIcones/papel.png';
 import Chat from '../../assets/icons/chat.png';
 
-export default function ResumoEChat({ seeScenery, seeChat, notification }) {
+export default function ResumoEChat({ seeScenery, seeChat, notification, notificationChat }) {
   return (
     <View style={[styles.container]}>
       <TouchableOpacity style={{marginRight: 50}} onPress={seeScenery} activeOpacity={0.7}>
@@ -18,6 +18,8 @@ export default function ResumoEChat({ seeScenery, seeChat, notification }) {
       <TouchableOpacity onPress={seeChat}  >
         <View style={styles.resumo1}>
           <Image style={styles.logo2} source={Chat} />
+          {notificationChat &&
+            <View style={[styles.notificacao]} />}
         </View>
       </TouchableOpacity>
     </View>

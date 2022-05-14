@@ -44,7 +44,7 @@ export default function Chat({ navigation }) {
           showsVerticalScrollIndicator={false}
           data={messages.filter(i => typeof i.players === 'object')}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => <ChatGroup key={index} item={item} onClick={() => navigation.navigate('ChatConversationGroup', {group: item})} messages={messages} />}
+          renderItem={({ item, index }) => <ChatGroup key={index} item={item} onClick={() => navigation.navigate('ChatConversationGroup', {group: item})} messages={messages} notification={notify.messages.filter(i=>i === item.id).length > 0 ? true : false} />}
         />
       }
     </View>

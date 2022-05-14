@@ -30,7 +30,7 @@ export default function ChatGroup({ onClick, item, notification, messages }) {
                   <Text style={{fontSize:9, textAlign: 'right', marginRight: 7}}></Text>
                 </View>
             } */}
-          {/* {notification && <View style={[styles.notificacao]} />} */}
+          {notification && <View style={[styles.notificacao]} />}
     </TouchableOpacity>
       // </View>
   )

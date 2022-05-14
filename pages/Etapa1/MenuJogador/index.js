@@ -148,7 +148,7 @@ export default function MenuJogador({ navigation }) {
         </>
       )} */}
       <View style={{ paddingTop: 50, paddingBottom: 18, flexDirection: 'row', }}>
-      <ResumoEChat seeScenery={() => navigation.navigate('Cenario')} seeChat={() => navigation.navigate('Chat')} notification={notify.scene} />
+      <ResumoEChat seeScenery={() => navigation.navigate('Cenario')} seeChat={() => navigation.navigate('Chat')} notificationChat={notify.messages.length > 0 ? true : false} notification={notify.scene} />
       </View>
             <View style={{flexDirection: 'row'}}>
 
