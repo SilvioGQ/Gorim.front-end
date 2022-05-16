@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   notificacao: {
+    marginTop:12,
     position: 'absolute',
     right: 10,
     width: 18,

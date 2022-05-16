@@ -17,6 +17,7 @@ export default function ChatGroup({ onClick, item, notification, messages }) {
           style={styles.icone}
           source={ICONS[item.name]}
           />
+        {notification && <View style={[styles.notificacao]} />}
         <Text style={styles.textinhos}>{`${item.name}`}</Text>
         {/* {messages && messages.filter((i)=> i.player1 === player.id && i.item === playerdois || i.player1 === playerdois && i.item === player.id).length !== 0 ?
           [messages.find((i) => i.player1 === player.id && i.item === playerdois || i.player1 === playerdois && i.item === player.id).messages[messages.find((i) => i.player1 === player.id && i.item === playerdois || i.player1 === playerdois && i.item === player.id).messages.length - 1]].map((i) => {
@@ -33,7 +34,7 @@ export default function ChatGroup({ onClick, item, notification, messages }) {
                   <Text style={{fontSize:9, textAlign: 'right', marginRight: 7}}></Text>
                 </View>
             }  */}
-          {notification && <View style={[styles.notificacao]} />}
+
     </TouchableOpacity>
       </View>
   )
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   notificacao: {
+    marginTop:7,
     position: 'absolute',
     right: 10,
     width: 18,

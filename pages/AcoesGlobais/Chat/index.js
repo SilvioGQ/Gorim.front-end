@@ -22,8 +22,8 @@ export default function Chat({ navigation }) {
     getMessages();
   }, []);
   
-  console.log(messages)
-
+ // console.log(messages)
+  console.log(notify.messages)
   return (
     <View style={styles.container}>
       {game.phase === 2 ? 
