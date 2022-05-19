@@ -1,34 +1,28 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  StatusBar,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { Text, View, StyleSheet, ScrollView, StatusBar, Dimensions, TouchableOpacity, Image } from "react-native";
 
+import DETALHES from "../../constants/imagesDetalhes";
 import COLORS from "../../constants/colors";
 const Height = Dimensions.get("screen").height;
-export default function DetailsCaracter({player, screen}) {
-//   const { players, player, } = useContext(GameContext);
+export default function DetailsCaracter({ player, screen }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem vindo ao Gorim!</Text>
-      <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}S`}</Text>
+      <Text style={styles.title}>Você foi escolhido como...</Text>
+      <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'Agricultor' : `Empresário de ${player.specialty}s`}</Text>
+
+      {player.type === 'Agricultor' ? <Image source={DETALHES["Agricultor"]} style={styles.img} /> : <Image source={DETALHES[player.specialty]} style={styles.img} />}
       <View>
         {player.type === "Agricultor" ? (
-          <Text>
-              Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.
+          <Text style={styles.paragrafo}>
+            Você será responsável por plantar! Compre e negocie os produtos necessários para a sua plantação, vendidos pelos empresários. Não gostou do preço? Chame o empresário para uma conversa! Evite também o excesso de poluição para não tomar multas.
           </Text>
         ) : (
-          <Text>
-              Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.
+          <Text style={styles.paragrafo}>
+            Você será responsável por vender {player.specialty.toLowerCase()}s, escolher seus preços e realizar negociações! Mas cuidado ao vender as coisas muito caras, ouça os seus clientes e faça a melhor decisão possível!
           </Text>
         )}
       </View>
-      <TouchableOpacity onPress={()=>screen(false)} style={styles.button}>
+      <TouchableOpacity onPress={() => screen(false)} style={styles.button}>
         <Text style={styles.textPlayersAmount}>Próximo</Text>
       </TouchableOpacity>
     </View>
@@ -37,64 +31,51 @@ export default function DetailsCaracter({player, screen}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
     width: "100%",
-    zIndex:100,
-    position: 'absolute',
-    backgroundColor:COLORS.bgColorPrimary,
+    zIndex: 1,
+    backgroundColor: COLORS.bgDetalhes,
     height: Height
   },
+  paragrafo: {
+    paddingTop: '10%',
+    marginHorizontal: '9%',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 15
+  },
+  img: {
+    alignSelf: 'center',
+    width: Height > 700 ? 300 : 200,
+    height: Height > 700 ? 305: 205,
+    marginTop: 30
+  },
   title: {
-    fontSize: 20,
-    marginVertical: 10,
+    fontSize: 14,
+    marginTop: '10%',
     textAlign: "center",
   },
-  subtitle: {
-    fontSize: Height > 700 ? 16 : 14,
-    marginVertical: 10,
-    textAlign: "center",
-  },
-  textbutton: {
-    padding: 8,
-    paddingHorizontal: 10,
-    fontSize: Height > 700 ? 12 : 11,
+
+  textbold: {
+    fontSize: Height > 700 ? 30 : 10,
+    marginVertical: 5,
     textAlign: "center",
     fontFamily: "Rubik_400Regular",
-  },
-  text: {
-    fontSize: Height > 700 ? 16 : 14,
-    marginVertical: 15,
-    textAlign: "center",
-    fontFamily: "Rubik_300Light",
-  },
-  textbold: {
-    fontSize: Height > 700 ? 16 : 14,
-    marginVertical: 15,
-    textAlign: "center",
-    fontFamily: "Rubik_700Bold",
+    color: "#447808",
+    marginHorizontal: 50
   },
   button: {
-    padding: 5,
+    marginTop: '10%',
+    padding: 10,
     alignSelf: "center",
     backgroundColor: COLORS.successButton,
     borderRadius: 20,
   },
-  finalText: {
-    fontSize: 20,
-    marginVertical: 40,
-    textAlign: "center",
-    fontFamily: "Rubik_300Light",
-  },
-  marginButton: {
-    alignItems: "center",
-    marginVertical: 15,
-  },
+
   textPlayersAmount: {
     fontSize: 15,
     textAlign: "center",
+    color: '#fff'
   },
-  flexRow: {
-    flexDirection: "row",
-  },
+
 });

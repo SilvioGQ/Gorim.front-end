@@ -20,7 +20,6 @@ export default function MenuJogador({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
   const { players, player, awaitPlayers, stage, notify, game } = useContext(GameContext);
-  console.log('notify',notify)
   useEffect(() => {
     let isMounted = true;
 

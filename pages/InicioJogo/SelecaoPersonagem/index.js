@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, StyleSheet, ScrollView, StatusBar, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, StatusBar, Dimensions, Image } from 'react-native';
 import { GameContext, selectAvatar, selectedAvatars } from '../../../contexts/GameContext';
 
 import COLORS from '../../../constants/colors';
+import DETALHES from '../../../constants/imagesDetalhes';
 import Quadrados from '../../../components/Quadrado'
 import Button from '../../../components/Button';
 import ModalInfo from '../../../components/ModalInfo';
@@ -47,7 +48,9 @@ export default function SelecaoPersonagem({ navigation }) {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {screenDetails && (<DetailsCaracter player={player} screen={setScreenDetails}/>)}
-        {/* <Text style={styles.title}>Bem vindo ao Gorim!</Text> */}
+        <Image style={styles.img} source={require('../../../assets/icons/tractor.png')}
+></Image>
+        <Text style={styles.title}>Bem vindo ao Gorim!</Text>
         <View>
           <Text style={styles.text}>Selecione um personagem</Text>
           {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} title={title} />}
@@ -96,8 +99,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    marginVertical: 10,
+    marginTop: '5%',
     textAlign: 'center',
+  },
+  img: {
+    marginTop: 30,
+    alignSelf: 'center',
+    width: 55,
+    height: 50
   },
   subtitle: {
     fontSize: Height > 700 ? 16 : 14,
@@ -113,10 +122,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik_400Regular',
   },
   text: {
-    fontSize: Height > 700 ? 16 : 14,
-    marginVertical: 15,
+    fontSize: Height > 700 ? 20 : 18,
+    marginVertical: 25,
+    marginHorizontal: '10%',
     textAlign: 'center',
-    fontFamily: 'Rubik_300Light'
+    fontFamily: 'Rubik_400Regular'
   },
   textbold: {
     fontSize: Height > 700 ? 16 : 14,
