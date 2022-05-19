@@ -23,7 +23,7 @@ export default function Chat({ navigation }) {
   }, []);
   
  // console.log(messages)
-  console.log(notify.messages)
+
   return (
     <View style={styles.container}>
       {game.phase === 2 ? 
@@ -50,7 +50,7 @@ export default function Chat({ navigation }) {
           showsVerticalScrollIndicator={false}
           data={messages.filter(i => typeof i.players === 'object')}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => <ChatGroup key={index} item={item} onClick={() => navigation.navigate('ChatConversationGroup', {group: item})} messages={messages} notification={notify.messages.filter(i=>i === item.id).length > 0 ? true : false} />}
+          renderItem={({ item, index }) => <ChatGroup key={index} item={item} onClick={() => navigation.navigate('ChatConversationGroup', {group: item})} messages={messages.find(i=>i.name==item.name)} notification={notify.messages.filter(i=>i === item.id).length > 0 ? true : false} />}
         />
       }
     </View>

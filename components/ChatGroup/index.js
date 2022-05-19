@@ -8,8 +8,10 @@ import {GameContext} from '../../contexts/GameContext'
 import ICONS from '../../constants/imagesIcons'
 export default function ChatGroup({ onClick, item, notification, messages }) {
       const { player, game } = useContext(GameContext);
-  
-  console.log(player);
+      let lastMessage;
+      if(messages.messages.length > 0){
+        lastMessage = messages.messages[messages.messages.length-1]
+  }
       return (
       // <View style={styles.margem}>
     <TouchableOpacity onPress={onClick} style={styles.margem} >
@@ -19,21 +21,12 @@ export default function ChatGroup({ onClick, item, notification, messages }) {
           />
         {notification && <View style={[styles.notificacao]} />}
         <Text style={styles.textinhos}>{`${item.name}`}</Text>
-        {/* {messages && messages.filter((i)=> i.player1 === player.id && i.item === playerdois || i.player1 === playerdois && i.item === player.id).length !== 0 ?
-          [messages.find((i) => i.player1 === player.id && i.item === playerdois || i.player1 === playerdois && i.item === player.id).messages[messages.find((i) => i.player1 === player.id && i.item === playerdois || i.player1 === playerdois && i.item === player.id).messages.length - 1]].map((i) => {
-              return (
+        {messages.messages.length > 0 && (
                 <View>
-                  <Text style={{fontSize:11, marginLeft: 70, marginVertical: 3,}}>{i.sender == player.id ? 'Você: ' : `${item.name}: `}{i.message.substr(0,50)}</Text>
-                  <Text style={{fontSize:9, textAlign: 'right', marginRight: 7}}>{i.datetime.substr(11,5)}</Text>
+                  <Text style={{fontSize:11, marginLeft: 70, marginVertical: 3,}}>{lastMessage.sender.id == player.id ? 'Você: ' : `${lastMessage.sender.name}: `}{lastMessage.message.substr(0,50)}</Text>
+                  <Text style={{fontSize:9, textAlign: 'right', marginRight: 7, marginTop:-9}}>{lastMessage.datetime.substr(11,5)}</Text>
                 </View>
-              )
-            })
-              :
-                 <View>
-                  <Text style={{fontSize:11, marginLeft: 70, marginVertical: 3,}}></Text>
-                  <Text style={{fontSize:9, textAlign: 'right', marginRight: 7}}></Text>
-                </View>
-            }  */}
+        )}
 
     </TouchableOpacity>
       // </View>
@@ -65,7 +58,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   notificacao: {
-    marginTop:7,
+    marginTop:12,
     position: 'absolute',
     right: 10,
     width: 18,

@@ -6,11 +6,13 @@ import COLORS from '../../../constants/colors';
 import Quadrados from '../../../components/Quadrado'
 import Button from '../../../components/Button';
 import ModalInfo from '../../../components/ModalInfo';
+import DetailsCaracter from '../../../components/DetailsCaracter';
 const Height = Dimensions.get('screen').height;
 export default function SelecaoPersonagem({ navigation }) {
 
   const [title, setTitle] = useState(true);
   const [modalText, setModalText] = useState('');
+  const [screenDetails, setScreenDetails] = useState(true);
   const { players, player, stage, awaitPlayers } = useContext(GameContext);
 
   useEffect(() => {
@@ -44,16 +46,9 @@ export default function SelecaoPersonagem({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>Bem vindo ao Gorim!</Text>
+        {screenDetails && (<DetailsCaracter player={player} screen={setScreenDetails}/>)}
+        {/* <Text style={styles.title}>Bem vindo ao Gorim!</Text> */}
         <View>
-          <View>
-            <View style={{ flexDirection: 'row', alignSelf: 'center', }}>
-              <Text style={styles.text}>VOCÊ SERÁ</Text>
-              <Text style={styles.textbold}> {player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}S`}</Text>
-            </View>
-            {player.type === 'Agricultor' ? <TouchableOpacity onPress={() => { setTitle(true); setModalText('Você foi selecionado como agricultor, logo você será responsável por negociar o melhor preço possivel para comprar os produtos vendidos pelos empresários, utilizar as parcelas de terras para o plantio de sementes e evitar o excesso de poluição para não tomar multas. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.') }} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity> :
-              <TouchableOpacity onPress={() => { setTitle(true); setModalText('Você foi selecionado como empresário, logo você será responsável por anunciar os preços dos seus produtos e interagir com agricultores para renegociação do preço de alguns produtos caso necessário. Você e todos outros jogadores têm o direito de se cadidatar a cargos políticos em época de eleições.') }} style={styles.button}  ><Text style={styles.textbutton}>VER DETALHES</Text></TouchableOpacity>}
-          </View>
           <Text style={styles.text}>Selecione um personagem</Text>
           {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} title={title} />}
           <View style={{ alignSelf: 'center' }}>
@@ -97,6 +92,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: StatusBar.currentHeight,
     width: '100%',
+    zIndex:1
   },
   title: {
     fontSize: 20,

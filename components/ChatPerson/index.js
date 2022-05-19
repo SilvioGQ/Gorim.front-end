@@ -29,7 +29,7 @@ export default function ChatPerson({ onClick, player2, notification, messages })
               return (
                 <View>
                   <Text style={{fontSize:11, marginLeft: 70, marginVertical: 3,}}>{i.sender == player.id ? 'Você: ' : `${player2.name}: `}{i.message.substr(0,50)}</Text>
-                  <Text style={{fontSize:9, textAlign: 'right', marginRight: 7}}>{i.datetime.substr(11,5)}</Text>
+                  <Text style={{fontSize:9, textAlign: 'right', marginRight: 7, marginTop:-9}}>{i.datetime.substr(11,5)}</Text>
                 </View>
               )
             })
