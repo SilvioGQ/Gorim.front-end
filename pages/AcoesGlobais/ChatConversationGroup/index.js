@@ -16,17 +16,18 @@ export default function ChatConversation({ navigation, route }) {
   useEffect(() => {
     getMessages();
     disableNotifyMessage(group.id);
-    setMessage(messages.find(i=>i.id===group.id))
+    setMessage(messages.find(i => i.id === group.id))
   }, [messages]);
   // Essa tela pode ficar genericona por enquanto.
   return (
+
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('Chat')} />
-      <View style={styles.margem}> 
+      <View style={styles.margem}>
         <Image
           style={styles.icone}
           source={ICONS[group.name]}></Image>
-  
+
         <Text style={styles.textinhos}>{group.name}</Text>
       </View>
       <View style={styles.line} />
@@ -40,18 +41,18 @@ export default function ChatConversation({ navigation, route }) {
         >
           <ScrollView>
             {message ?
-            message.messages.length !== 0 ?
-            message.messages.map((i) => {
-              return (
-                <View style={i.sender.id == player.id ? styles.owner : styles.instOwner}>
-                  {i.sender.id !== player.id && (<Text style={styles.name}>{i.sender.name}</Text>)}
-                  <Text style={styles.message}>{i.message}</Text>
-                  <Text style={styles.time}>{i.datetime.substr(11,5)}</Text>
-                </View>
-              )
-            })
-              :
-              null
+              message.messages.length !== 0 ?
+                message.messages.map((i) => {
+                  return (
+                    <View style={i.sender.id == player.id ? styles.owner : styles.instOwner}>
+                      {i.sender.id !== player.id && (<Text style={styles.name}>{i.sender.name}</Text>)}
+                      <Text style={styles.message}>{i.message}</Text>
+                      <Text style={styles.time}>{i.datetime.substr(11, 5)}</Text>
+                    </View>
+                  )
+                })
+                :
+                null
               :
               null
             }
@@ -59,9 +60,9 @@ export default function ChatConversation({ navigation, route }) {
         </KeyboardAvoidingView>
       </View>
       <View style={styles.borda}>
-        <TouchableOpacity style={styles.enviar} onPress={() => { 
-          if (text !== '') {sendGroupMessage(group.id, text); onChangeText(''); }
-          }}>
+        <TouchableOpacity style={styles.enviar} onPress={() => {
+          if (text !== '') { sendGroupMessage(group.id, text); onChangeText(''); }
+        }}>
           <Image style={styles.arrow} source={require('../../../assets/flecha.png')} />
         </TouchableOpacity>
         <TextInput
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: Tela,
   },
-  name:{
+  name: {
     fontWeight: 'bold',
     color: COLORS.headerColor,
   },

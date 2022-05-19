@@ -149,7 +149,7 @@ export default function MenuJogador({ navigation }) {
       <Cenarios endStage={() => setModalVisible2(true)} notification={notify.scene} />
       </View>
 
-      {awaitPlayers !== 0 && <Text style={{ color: 'red', }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
+      {awaitPlayers !== 0 && <Text style={{ color: 'red', marginTop: 5 }}>{`${awaitPlayers} de ${players.length} jogadores já finalizaram`}</Text>}
     </View>
   );
 }

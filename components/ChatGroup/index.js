@@ -11,7 +11,7 @@ export default function ChatGroup({ onClick, item, notification, messages }) {
   
   console.log(player);
       return (
-      <View style={styles.margem}>
+      // <View style={styles.margem}>
     <TouchableOpacity onPress={onClick} style={styles.margem} >
         <Image
           style={styles.icone}
@@ -36,7 +36,7 @@ export default function ChatGroup({ onClick, item, notification, messages }) {
             }  */}
 
     </TouchableOpacity>
-      </View>
+      // </View>
   )
 }
 
