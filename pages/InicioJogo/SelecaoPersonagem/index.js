@@ -46,7 +46,6 @@ export default function SelecaoPersonagem({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
         {screenDetails && (<DetailsCaracter player={player} screen={setScreenDetails}/>)}
         <Image style={styles.img} source={require('../../../assets/icons/tractor.png')}
 ></Image>
@@ -84,7 +83,6 @@ export default function SelecaoPersonagem({ navigation }) {
           </View> :
           <Text style={styles.finalText}>{awaitPlayers === players.length ? 'AGUARDANDO HOST INICIAR' : 'AGUARDANDO JOGADORES.'}</Text>
         }
-      </ScrollView>
     </View>
   );
 }
@@ -93,7 +91,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: StatusBar.currentHeight,
     width: '100%',
     zIndex:1
   },
@@ -143,17 +140,21 @@ const styles = StyleSheet.create({
   },
   finalText: {
     fontSize: 20,
-    marginVertical: 40,
+    marginVertical: 10,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light'
   },
   marginButton: {
     alignItems: 'center',
-    marginVertical: 15
+    marginVertical: 10,
+    position: 'absolute',
+    bottom: 50
   },
   textPlayersAmount: {
     fontSize: 24,
-    textAlign: 'center'
+    textAlign: 'center',
+    position: 'absolute',
+    bottom: 20
   },
   flexRow: {
     flexDirection: 'row'
