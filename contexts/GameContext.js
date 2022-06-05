@@ -5,7 +5,7 @@ import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
 // import ModalInfo from '../components/ModalInfo';
-import { recordStartTime, recordGetTime } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
@@ -40,6 +40,8 @@ const GameProvider = (props) => {
         recordGetTime(startTime, socket.id).then(timer => {
           if (timer === undefined) {
             clearInterval(interval);
+          } if (timer === "stop") {
+            return;
           } else {
             dispatch({ type: 'UPDATETIMER', payload: timer });
           }
@@ -175,10 +177,12 @@ const GameProvider = (props) => {
     });
     
     socket.on('disconnectPlayer', () => {
+      freezeTimer(socket.id);
       setModal(true);
     });
 
     socket.on('reconnectPlayer', () => {
+      restartTimer(socket.id);
       setModal(false);
     });
 
