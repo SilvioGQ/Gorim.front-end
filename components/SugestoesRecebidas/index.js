@@ -26,7 +26,7 @@ export default function SugestoesRecebidas({ item }) {
         <View style={{ position: 'absolute', marginLeft: 55 }}>
           <Image style={styles.icon} source={item.type === 'tax' ? IMAGES2['tax'] : IMAGES2[item.label]} />
         </View>
-        {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} />}
+        {modalText !== '' && <ModalInfo  onClick={() => setModalText('')} text={modalText} />}
         <View style={{ marginLeft: 10 }}>
           <Text style={styles.text2}>{item.type === 'tax' ? "Alteração de imposto" : "Medida de prevenção"}</Text>
           <Text style={styles.text1}>{item.label}</Text>

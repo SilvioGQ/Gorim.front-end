@@ -3,7 +3,7 @@ import { Text, View, Modal, TouchableOpacity, Image, StyleSheet, Dimensions } fr
 import COLORS from '../../constants/colors';
 
 const Tela = Dimensions.get('screen').width;
-export default function ModalInfo({ player, text, onClick, modalImage, title, image, image2, image3 = false, display = 'flex' }) {
+export default function ModalInfo({ text, onClick, modalImage, image, image2, image3 = false, display = 'flex' }) {
 
   return (
     <Modal
@@ -12,9 +12,6 @@ export default function ModalInfo({ player, text, onClick, modalImage, title, im
     >
       <View style={styles.modal}>
         <View style={styles.container}>
-          {title && (
-            <Text style={{ marginVertical: 10, textAlign: "center", fontSize: 20 }}>{player.type === 'Agricultor' ? 'AGRICULTOR' : `EMPRESÁRIO DE ${player.specialty.toUpperCase()}S`}</Text>
-          )}
           <Text style={styles.loading}>{text}</Text>
           {image && (
             <Image source={require('../../assets/tabelaprod.png')} style={{ width: Tela > 350 ? 266 : 240, height: Tela > 350 ? 240 : 224, marginBottom: 25 }} />

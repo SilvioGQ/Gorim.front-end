@@ -53,7 +53,7 @@ export default function SelecaoPersonagem({ navigation }) {
         <Text style={styles.title}>Bem vindo ao Gorim!</Text>
         <View>
           <Text style={styles.text}>Selecione um personagem</Text>
-          {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} title={title} />}
+          {modalText !== '' && <ModalInfo  onClick={() => setModalText('')} text={modalText} title={title} />}
           <View style={{ alignSelf: 'center' }}>
             <View style={styles.flexRow}>
               <Quadrados onClick={() => selectAvatar('Icon1')} backgroundColor={bgQuadrados('Icon1')} icon='Icon1' />

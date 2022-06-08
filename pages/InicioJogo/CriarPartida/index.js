@@ -61,7 +61,7 @@ export default function CriarPartida({ navigation }) {
               <Image style={[styles.arrow, { opacity: 0 }]} source={require('../../../assets/flecha.png')} />
             </View>
           </View>
-          {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} />}
+          {modalText !== '' && <ModalInfo  onClick={() => setModalText('')} text={modalText} />}
           <View style={{ alignItems: 'center', width: Tela, marginVertical: 40 }}>
             <Text style={[styles.header]}>ENTRAR</Text>
             <View style={styles.line} />

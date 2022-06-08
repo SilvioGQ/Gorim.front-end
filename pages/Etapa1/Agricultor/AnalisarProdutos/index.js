@@ -36,7 +36,7 @@ export default function AnalisarProdutos({ navigation }) {
         <Image source={require('../../../../assets/agricultorIcones/information.png')} style={{ width: 20, height: 20, marginVertical: 5, marginLeft: 10 }} />
       </TouchableOpacity>
       <FilterType type={type} setType={setType} />
-      {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} modalImage={true} />}
+      {modalText !== '' && <ModalInfo  onClick={() => setModalText('')} text={modalText} modalImage={true} />}
       {stage === 'GETPRODUCTS' && (
         <FlatList
           data={selectType().sort((a, b) => a.medium - b.medium)}

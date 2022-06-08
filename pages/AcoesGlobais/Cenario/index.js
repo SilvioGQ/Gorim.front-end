@@ -104,7 +104,7 @@ export default function Cenario({ navigation }) {
             :
             null}
 
-          {modalText !== '' && <ModalInfo player={player} onClick={() => setModalText('')} text={modalText} image={image} image2={image2} />}
+          {modalText !== '' && <ModalInfo  onClick={() => setModalText('')} text={modalText} image={image} image2={image2} />}
           {/* {Height <= 720 && player.type ? ( */}
 
                  {game.phase == 1 ?

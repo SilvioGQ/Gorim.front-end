@@ -4,7 +4,7 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
-// import ModalInfo from '../components/ModalInfo';
+import ModalInfo from '../components/ModalInfo';
 import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
@@ -198,33 +198,9 @@ const GameProvider = (props) => {
 
     socket.open();
   }, []);
-
-  const Tela = Dimensions.get('screen').width;
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, disableNotifySuggests, disableNotifyMessage }}>
-      {modal && (
-        <View style={{
-          flex: 1,
-          alignSelf: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#000000aa',
-          width: Tela}}>
-          <View style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: 20,
-            margin: 20,
-            borderRadius: 30,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.25,
-            shadowRadius: 4,
-            elevation: 5,
-          }}>
-            <Text>Um usuário foi desconectado! Aguarde até que ele retorne.</Text>
-          </View>
-        </View>
-      )}
+      {modal && (<ModalInfo  onClick={() => {}} text={'Um usuário foi desconectado, aguarde reconexão.'} />)}
       {props.children}
     </GameContext.Provider>
   );
