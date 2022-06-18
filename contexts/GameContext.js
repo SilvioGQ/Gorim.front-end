@@ -5,6 +5,8 @@ import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
 import ModalInfo from '../components/ModalInfo';
+import * as Navigation from '../helpers/navigation';
+
 import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
@@ -57,18 +59,8 @@ const GameProvider = (props) => {
   }
 
   useEffect(() => {
-    // let isConnected = null;
-    // let player = {};
-
     socket.on('connect', () => {
-      // if (isConnected === null) {
       console.log('Connected!');
-      // } else {
-      //   if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
-      //   reconnectToRoom(player);
-      //   console.log('Reconnected!');
-      // }
-      // isConnected = true;
     });
 
     socket.on('refreshPlayers', (players) => {
@@ -76,7 +68,6 @@ const GameProvider = (props) => {
     });
 
     socket.on('updatePlayer', (p) => {
-      // player = p;
       dispatch({ type: 'UPDATEPLAYER', payload: p });
     });
 
@@ -92,10 +83,14 @@ const GameProvider = (props) => {
       dispatch({ type: 'STARTGAME', payload: 'STARTGAME' });
     });
 
-    socket.on('addedToRoom', (player) => {
-      // player = p;
+    socket.on('addedToRoom', (player, syncPage) => {
       console.log(player.room)
-      dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
+      if (syncPage) {
+        dispatch({ type: 'UPDATEPLAYER', payload: player });
+        Navigation.navigate(syncPage, {});
+      } else {
+        dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
+      }
     });
 
     socket.on('reportMessage', (msg) => {
@@ -186,14 +181,9 @@ const GameProvider = (props) => {
       setModal(false);
     });
 
-    // socket.on('reconnectToRoom', (stage) => {
-      //   dispatch({ type: 'RECONNECTED', payload: stage });
-      // });
-      socket.on('disconnect', () => {
-        if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
-        console.log('Disconnected!');
-        // setModal(true);
-      // isConnected = false;
+    socket.on('disconnect', () => {
+      if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
+      console.log('Disconnected!');
     });
 
     socket.open();
