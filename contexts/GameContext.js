@@ -83,11 +83,10 @@ const GameProvider = (props) => {
       dispatch({ type: 'STARTGAME', payload: 'STARTGAME' });
     });
 
-    socket.on('addedToRoom', (player, syncPage) => {
+    socket.on('addedToRoom', (player, syncPlayer) => {
       console.log(player.room)
-      if (syncPage) {
+      if (syncPlayer) {
         dispatch({ type: 'UPDATEPLAYER', payload: player });
-        // Navigation.navigate(syncPage, {});
       } else {
         dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
       }
