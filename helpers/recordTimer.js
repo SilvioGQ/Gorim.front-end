@@ -1,14 +1,20 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { differenceInSeconds } from "date-fns";
 
-const recordStartTime = async (maxTime, playerId) => {
+const recordStartTime = async (maxTime, playerId, startTime = null) => {
   try {
-    const now = new Date();
-    await AsyncStorage.setItem("@start_time" + playerId, now.toISOString());
     await AsyncStorage.setItem("@maxTime" + playerId, maxTime.toString());
     await AsyncStorage.setItem("@status" + playerId, "start");
 
-    return now.toISOString();
+    const now = new Date();
+    if (!startTime) {
+      await AsyncStorage.setItem("@start_time" + playerId, now.toISOString());
+      return now.toISOString();
+    } else {
+      await AsyncStorage.setItem("@start_time" + playerId, startTime);
+      return startTime;
+    }
+
   } catch (err) {
     // TODO: handle errors from setItem properly
     console.warn(err);
@@ -50,7 +56,7 @@ const restartTimer = async (playerId) => {
 }
 
 const infoTimer = async (playerId) => {
-  const startTime = await AsyncStorage.getItem("@start_time" + playerId);
+  const startTime = await AsyncStorage.getItem("@freezeTime" + playerId);
   const maxTime = await AsyncStorage.getItem("@maxTime" + playerId);
   const status = await AsyncStorage.getItem("@status" + playerId);
 

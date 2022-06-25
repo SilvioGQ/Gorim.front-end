@@ -7,7 +7,7 @@ import { Platform, Dimensions, Text, View } from 'react-native';
 import ModalInfo from '../components/ModalInfo';
 import * as Navigation from '../helpers/navigation';
 
-import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer, recoveryTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
@@ -32,11 +32,11 @@ const GameProvider = (props) => {
     dispatch({ type: 'GETNOTIFYMESSAGE', payload: { sender: id, action: 'disable' } });
   };
 
-  const startTimer = (maxTime, callback) => {
+  const startTimer = (maxTime, callback, startTimeRecovery = null) => {
     let callbackUsed = false;
 
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
-    recordStartTime(maxTime, socket.id).then(startTime => {
+    recordStartTime(maxTime, socket.id, startTimeRecovery).then(startTime => {
       let interval = setInterval(() => {
 
         recordGetTime(startTime, socket.id).then(timer => {
@@ -87,7 +87,7 @@ const GameProvider = (props) => {
       console.log(player.room)
       if (syncPage) {
         dispatch({ type: 'UPDATEPLAYER', payload: player });
-        Navigation.navigate(syncPage, {});
+        // Navigation.navigate(syncPage, {});
       } else {
         dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
       }
@@ -183,9 +183,19 @@ const GameProvider = (props) => {
 
     socket.on('infoRoomReport', () => {
       infoTimer(socket.id).then(res => {
-        console.log(res)
         roomReport(res, Navigation.currentScreen());
       });
+    });
+
+    socket.on('roomReport', (infoTimer, currentScreen) => {
+      console.log(infoTimer, currentScreen);
+      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
+      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
+      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
+      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
+      // recoveryTimer(infoTimer);
+      startTimer(infoTimer.maxTime, () => { }, infoTimer.startTime);
+      Navigation.navigate(currentScreen);
     });
 
     socket.on('disconnect', () => {
