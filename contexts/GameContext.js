@@ -7,7 +7,7 @@ import { Platform, Dimensions, Text, View } from 'react-native';
 import ModalInfo from '../components/ModalInfo';
 import * as Navigation from '../helpers/navigation';
 
-import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
@@ -181,6 +181,13 @@ const GameProvider = (props) => {
       setModal(false);
     });
 
+    socket.on('infoRoomReport', () => {
+      infoTimer(socket.id).then(res => {
+        console.log(res)
+        roomReport(res, Navigation.currentScreen());
+      });
+    });
+
     socket.on('disconnect', () => {
       if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
       console.log('Disconnected!');
@@ -351,6 +358,10 @@ const sendMessage = (id, msg) => {
 
 const sendGroupMessage = (id, msg) => {
   socket.emit('sendGroupMessage', id, msg);
+}
+
+const roomReport = (infoTimer, currentScreen) => {
+  socket.emit('roomReport', infoTimer, currentScreen);
 }
 
 export {
