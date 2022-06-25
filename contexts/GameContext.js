@@ -7,7 +7,7 @@ import { Platform, Dimensions, Text, View } from 'react-native';
 import ModalInfo from '../components/ModalInfo';
 import * as Navigation from '../helpers/navigation';
 
-import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer, recoveryTimer } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
@@ -192,7 +192,6 @@ const GameProvider = (props) => {
       // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
       // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
       // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
-      // recoveryTimer(infoTimer);
       startTimer(infoTimer.maxTime, () => { }, infoTimer.startTime);
       Navigation.navigate(currentScreen);
     });
