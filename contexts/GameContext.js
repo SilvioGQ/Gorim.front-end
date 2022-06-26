@@ -4,7 +4,7 @@ import { API_URL_HERO, API_URL_LOCAL } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
-import ModalInfo from '../components/ModalInfo';
+import WaitingRecconection from '../components/WaitingRecconection';
 import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
@@ -200,7 +200,7 @@ const GameProvider = (props) => {
   }, []);
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, disableNotifySuggests, disableNotifyMessage }}>
-      {modal && (<ModalInfo  onClick={() => {}} text={'Um usuário foi desconectado, aguarde reconexão.'} />)}
+      {modal && (<WaitingRecconection exit={() => {}}/>)}
       {props.children}
     </GameContext.Provider>
   );
