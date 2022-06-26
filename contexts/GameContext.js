@@ -6,6 +6,9 @@ import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
 import WaitingRecconection from '../components/WaitingRecconection';
 import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
+import * as Navigation from '../helpers/navigation';
+
+import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
@@ -30,11 +33,11 @@ const GameProvider = (props) => {
     dispatch({ type: 'GETNOTIFYMESSAGE', payload: { sender: id, action: 'disable' } });
   };
 
-  const startTimer = (maxTime, callback) => {
+  const startTimer = (maxTime, callback, startTimeRecovery = null) => {
     let callbackUsed = false;
 
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
-    recordStartTime(maxTime, socket.id).then(startTime => {
+    recordStartTime(maxTime, socket.id, startTimeRecovery).then(startTime => {
       let interval = setInterval(() => {
 
         recordGetTime(startTime, socket.id).then(timer => {
@@ -57,18 +60,8 @@ const GameProvider = (props) => {
   }
 
   useEffect(() => {
-    // let isConnected = null;
-    // let player = {};
-
     socket.on('connect', () => {
-      // if (isConnected === null) {
       console.log('Connected!');
-      // } else {
-      //   if (Platform.OS !== "web") schedulePushNotification('RECONNECTED');
-      //   reconnectToRoom(player);
-      //   console.log('Reconnected!');
-      // }
-      // isConnected = true;
     });
 
     socket.on('refreshPlayers', (players) => {
@@ -76,7 +69,6 @@ const GameProvider = (props) => {
     });
 
     socket.on('updatePlayer', (p) => {
-      // player = p;
       dispatch({ type: 'UPDATEPLAYER', payload: p });
     });
 
@@ -92,10 +84,13 @@ const GameProvider = (props) => {
       dispatch({ type: 'STARTGAME', payload: 'STARTGAME' });
     });
 
-    socket.on('addedToRoom', (player) => {
-      // player = p;
+    socket.on('addedToRoom', (player, syncPlayer) => {
       console.log(player.room)
-      dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
+      if (syncPlayer) {
+        dispatch({ type: 'UPDATEPLAYER', payload: player });
+      } else {
+        dispatch({ type: 'ADDEDTOROOM', payload: ['ADDEDTOROOM', player] });
+      }
     });
 
     socket.on('reportMessage', (msg) => {
@@ -186,14 +181,25 @@ const GameProvider = (props) => {
       setModal(false);
     });
 
-    // socket.on('reconnectToRoom', (stage) => {
-      //   dispatch({ type: 'RECONNECTED', payload: stage });
-      // });
-      socket.on('disconnect', () => {
-        if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
-        console.log('Disconnected!');
-        // setModal(true);
-      // isConnected = false;
+    socket.on('infoRoomReport', () => {
+      infoTimer(socket.id).then(res => {
+        roomReport(res, Navigation.currentScreen());
+      });
+    });
+
+    socket.on('roomReport', (infoTimer, currentScreen) => {
+      console.log(infoTimer, currentScreen);
+      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
+      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
+      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
+      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
+      startTimer(infoTimer.maxTime, () => { }, infoTimer.startTime);
+      Navigation.navigate(currentScreen);
+    });
+
+    socket.on('disconnect', () => {
+      if (Platform.OS !== "web") schedulePushNotification('DISCONNECTED');
+      console.log('Disconnected!');
     });
 
     socket.open();
@@ -361,6 +367,10 @@ const sendMessage = (id, msg) => {
 
 const sendGroupMessage = (id, msg) => {
   socket.emit('sendGroupMessage', id, msg);
+}
+
+const roomReport = (infoTimer, currentScreen) => {
+  socket.emit('roomReport', infoTimer, currentScreen);
 }
 
 export {

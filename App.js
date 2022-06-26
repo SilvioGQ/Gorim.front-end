@@ -1,6 +1,7 @@
 import React from 'react';
 // import 'react-native-gesture-handler';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { navigationRef } from './helpers/navigation';
 import { GameProvider } from './contexts/GameContext';
 import { useFonts } from 'expo-font';
 import Routes from './pages/Routes';
@@ -27,7 +28,7 @@ export default function App() {
 
   return (
     <GameProvider>
-      <NavigationContainer theme={MyTheme}>
+      <NavigationContainer theme={MyTheme} ref={navigationRef}>
         <Routes />
       </NavigationContainer>
     </GameProvider>
