@@ -95,10 +95,22 @@ const GameProvider = (props) => {
     socket.on('reportMessage', (msg) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage, allForEndRound, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
-      if (msg === 'selectedAvatars') startTimer(400, () => endStage());
-      if (msg === 'INITELECTIONS') startTimer(20, () => addCandidature(null));
-      if (msg === 'INITVOTATION') startTimer(20, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }));
-      if (msg === 'INITRESULTSVOTATION') startTimer(20, () => nextStage());
+      if (msg === 'selectedAvatars') {
+        startTimer(30, () => endStage());
+        roomEndTimer('endStage()');
+      }
+      if (msg === 'INITELECTIONS') {
+        startTimer(20, () => addCandidature(null));
+        roomEndTimer('addCandidature(null)');
+      }
+      if (msg === 'INITVOTATION') {
+        startTimer(20, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }));
+        roomEndTimer('addVote({ mayor: "", cityCouncilor: "", supervisor: "" })');
+      }
+      if (msg === 'INITRESULTSVOTATION') {
+        startTimer(20, () => nextStage());
+        roomEndTimer('nextStage()');
+      }
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -149,21 +161,25 @@ const GameProvider = (props) => {
     socket.on('endStage', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
       startTimer(20, () => nextStage());
+      roomEndTimer('nextStage()');
     });
 
     socket.on('endRound', (round) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDROUND', round] });
       startTimer(20, () => nextRound());
+      roomEndTimer('nextRound()');
     });
 
     socket.on('nextStage', () => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
       startTimer(100, () => endRound());
+      roomEndTimer('endRound()');
     });
 
     socket.on('nextRound', () => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
       startTimer(100, () => endStage());
+      roomEndTimer('endStage()');
     });
 
     socket.on('getMessages', (messages) => {
@@ -186,13 +202,14 @@ const GameProvider = (props) => {
       });
     });
 
-    socket.on('roomReport', (infoTimer, currentScreen) => {
+    socket.on('roomReport', (infoTimer, currentScreen, callback) => {
       console.log(infoTimer, currentScreen);
       // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
       // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
       // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
       // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
-      startTimer(infoTimer.maxTime, () => { }, infoTimer.startTime);
+      startTimer(infoTimer.maxTime, () => eval(callback), infoTimer.startTime);
+      console.log(callback);
       Navigation.navigate(currentScreen);
     });
 
@@ -370,6 +387,10 @@ const sendGroupMessage = (id, msg) => {
 
 const roomReport = (infoTimer, currentScreen) => {
   socket.emit('roomReport', infoTimer, currentScreen);
+}
+
+const roomEndTimer = (callback) => {
+  socket.emit('roomEndTimer', callback);
 }
 
 export {
