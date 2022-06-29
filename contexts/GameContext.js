@@ -5,10 +5,9 @@ import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
 import WaitingRecconection from '../components/WaitingRecconection';
-import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer } from '../helpers/recordTimer';
 import * as Navigation from '../helpers/navigation';
 
-import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer } from '../helpers/recordTimer';
 
 const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
