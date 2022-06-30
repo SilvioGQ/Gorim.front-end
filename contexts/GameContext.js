@@ -222,7 +222,7 @@ const GameProvider = (props) => {
   }, []);
   return (
     <GameContext.Provider value={{ ...state, disableNotifyScene, disableNotifyOffers, disableNotifySuggests, disableNotifyMessage }}>
-      {modal && (<WaitingRecconection exit={() => {}}/>)}
+      {modal && (<WaitingRecconection exit={() => {removeToRoom(); setModal(false)}}/>)}
       {props.children}
     </GameContext.Provider>
   );
