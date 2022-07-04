@@ -5,7 +5,7 @@ import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
 import WaitingRecconection from '../components/WaitingRecconection';
-import { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
 import * as Navigation from '../helpers/navigation';
 
 
@@ -192,24 +192,15 @@ const GameProvider = (props) => {
     });
 
     socket.on('reconnectPlayer', () => {
-      restartTimer(socket.id);
+      restartTimer(socket.id).then(res => {
+        roomReport(res, Navigation.currentScreen());
+        console.log(res);
+      });
       setModal(false);
     });
 
-    socket.on('infoRoomReport', () => {
-      infoTimer(socket.id).then(res => {
-        roomReport(res, Navigation.currentScreen());
-      });
-    });
-
     socket.on('roomReport', (infoTimer, currentScreen, callback) => {
-      console.log(infoTimer, currentScreen);
-      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
-      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
-      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
-      // if (currentScreen == 'MenuJogador') startTimer(infoTimer.maxTime, 'teste');
       startTimer(infoTimer.maxTime, () => eval(callback), infoTimer.startTime);
-      console.log(callback);
       Navigation.navigate(currentScreen);
     });
 

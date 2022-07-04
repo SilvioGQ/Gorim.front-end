@@ -47,24 +47,19 @@ const freezeTimer = async (playerId) => {
 
 const restartTimer = async (playerId) => {
   const now = new Date();
+  const startTime = await AsyncStorage.getItem("@start_time" + playerId);
   const freezeTime = await AsyncStorage.getItem("@freezeTime" + playerId);
   const maxTime = await AsyncStorage.getItem("@maxTime" + playerId);
   let newMaxTime = parseInt(maxTime) + parseInt(differenceInSeconds(now, Date.parse(freezeTime)));
 
   await AsyncStorage.setItem("@status" + playerId, "start");
   await AsyncStorage.setItem("@maxTime" + playerId, newMaxTime.toString());
-}
-
-const infoTimer = async (playerId) => {
-  const startTime = await AsyncStorage.getItem("@freezeTime" + playerId);
-  const maxTime = await AsyncStorage.getItem("@maxTime" + playerId);
-  const status = await AsyncStorage.getItem("@status" + playerId);
 
   return {
     startTime,
-    maxTime,
-    status
+    maxTime: newMaxTime,
+    status: "start"
   }
 }
 
-export { recordStartTime, recordGetTime, freezeTimer, restartTimer, infoTimer }
+export { recordStartTime, recordGetTime, freezeTimer, restartTimer }
