@@ -5,7 +5,7 @@ import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
 import WaitingRecconection from '../components/WaitingRecconection';
-import { recordStartTime, recordGetTime, freezeTimer, restartTimer } from '../helpers/recordTimer';
+import { recordStartTime, recordGetTime, freezeTimer, restartTimer, changeStatusTimer } from '../helpers/recordTimer';
 import * as Navigation from '../helpers/navigation';
 
 
@@ -32,11 +32,11 @@ const GameProvider = (props) => {
     dispatch({ type: 'GETNOTIFYMESSAGE', payload: { sender: id, action: 'disable' } });
   };
 
-  const startTimer = (maxTime, callback, startTimeRecovery = null) => {
+  const startTimer = (maxTime, callback, startTimeRecovery = null, freezeTimeRecovery = null) => {
     let callbackUsed = false;
 
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
-    recordStartTime(maxTime, socket.id, startTimeRecovery).then(startTime => {
+    recordStartTime(maxTime, socket.id, startTimeRecovery, freezeTimeRecovery).then(startTime => {
       let interval = setInterval(() => {
 
         recordGetTime(startTime, socket.id).then(timer => {
@@ -194,14 +194,18 @@ const GameProvider = (props) => {
     socket.on('reconnectPlayer', () => {
       restartTimer(socket.id).then(res => {
         roomReport(res, Navigation.currentScreen());
-        console.log(res);
       });
-      setModal(false);
     });
-
+    
     socket.on('roomReport', (infoTimer, currentScreen, callback) => {
-      startTimer(infoTimer.maxTime, () => eval(callback), infoTimer.startTime);
+      startTimer(infoTimer.maxTime, () => eval(callback), infoTimer.startTime, infoTimer.freezeTime);
       Navigation.navigate(currentScreen);
+      setModal(true);
+    });
+    
+    socket.on('changeStatusTimer', () => {
+      changeStatusTimer(socket.id);
+      setModal(false);
     });
 
     socket.on('disconnect', () => {

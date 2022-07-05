@@ -1,17 +1,19 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { differenceInSeconds } from "date-fns";
 
-const recordStartTime = async (maxTime, playerId, startTime = null) => {
+const recordStartTime = async (maxTime, playerId, startTime = null, freezeTime) => {
   try {
     await AsyncStorage.setItem("@maxTime" + playerId, maxTime.toString());
-    await AsyncStorage.setItem("@status" + playerId, "start");
-
+    
     const now = new Date();
     if (!startTime) {
+      await AsyncStorage.setItem("@status" + playerId, "start");
       await AsyncStorage.setItem("@start_time" + playerId, now.toISOString());
       return now.toISOString();
     } else {
+      await AsyncStorage.setItem("@status" + playerId, "stop");
       await AsyncStorage.setItem("@start_time" + playerId, startTime);
+      await AsyncStorage.setItem("@freezeTime" + playerId, freezeTime);
       return startTime;
     }
 
@@ -52,14 +54,18 @@ const restartTimer = async (playerId) => {
   const maxTime = await AsyncStorage.getItem("@maxTime" + playerId);
   let newMaxTime = parseInt(maxTime) + parseInt(differenceInSeconds(now, Date.parse(freezeTime)));
 
-  await AsyncStorage.setItem("@status" + playerId, "start");
   await AsyncStorage.setItem("@maxTime" + playerId, newMaxTime.toString());
-
+  
   return {
     startTime,
+    freezeTime,
     maxTime: newMaxTime,
-    status: "start"
+    status: "stop"
   }
 }
 
-export { recordStartTime, recordGetTime, freezeTimer, restartTimer }
+const changeStatusTimer = async (playerId) => {
+  await AsyncStorage.setItem("@status" + playerId, "start");
+}
+
+export { recordStartTime, recordGetTime, freezeTimer, restartTimer, changeStatusTimer }
