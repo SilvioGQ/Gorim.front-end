@@ -66,6 +66,7 @@ const restartTimer = async (playerId) => {
 
 const changeStatusTimer = async (playerId) => {
   await AsyncStorage.setItem("@status" + playerId, "start");
+  return;
 }
 
 export { recordStartTime, recordGetTime, freezeTimer, restartTimer, changeStatusTimer }

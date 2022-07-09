@@ -9,7 +9,7 @@ import { recordStartTime, recordGetTime, freezeTimer, restartTimer, changeStatus
 import * as Navigation from '../helpers/navigation';
 
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -96,7 +96,7 @@ const GameProvider = (props) => {
       // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage, allForEndRound, initElections
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
       if (msg === 'selectedAvatars') {
-        startTimer(30, () => endStage());
+        startTimer(400, () => endStage());
         roomEndTimer('endStage()');
       }
       if (msg === 'INITELECTIONS') {
@@ -204,8 +204,9 @@ const GameProvider = (props) => {
     });
     
     socket.on('changeStatusTimer', () => {
-      changeStatusTimer(socket.id);
-      setModal(false);
+      changeStatusTimer(socket.id).then(() => {
+        setModal(false);
+      });
     });
 
     socket.on('disconnect', () => {
