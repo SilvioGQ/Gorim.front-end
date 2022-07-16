@@ -1,21 +1,18 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { differenceInSeconds } from "date-fns";
 
-const recordStartTime = async (maxTime, playerId, startTime = null, freezeTime) => {
+const recordStartTime = async (maxTime, playerId, startTime, status) => {
   try {
     await AsyncStorage.setItem("@maxTime" + playerId, maxTime.toString());
+    await AsyncStorage.setItem("@start_time" + playerId, startTime);
     
-    const now = new Date();
-    if (!startTime) {
-      await AsyncStorage.setItem("@status" + playerId, "start");
-      await AsyncStorage.setItem("@start_time" + playerId, now.toISOString());
-      return now.toISOString();
-    } else {
+    if (status) {
       await AsyncStorage.setItem("@status" + playerId, "stop");
-      await AsyncStorage.setItem("@start_time" + playerId, startTime);
-      await AsyncStorage.setItem("@freezeTime" + playerId, freezeTime);
-      return startTime;
+    } else {
+      await AsyncStorage.setItem("@status" + playerId, "start");
     }
+
+    return startTime;
 
   } catch (err) {
     // TODO: handle errors from setItem properly
@@ -42,30 +39,21 @@ const recordGetTime = async (originStartTime, playerId) => {
 }
 
 const freezeTimer = async (playerId) => {
-  const now = new Date();
-  await AsyncStorage.setItem("@freezeTime" + playerId, now.toISOString());
   await AsyncStorage.setItem("@status" + playerId, "stop");
 }
 
 const restartTimer = async (playerId) => {
-  const now = new Date();
-  const startTime = await AsyncStorage.getItem("@start_time" + playerId);
-  const freezeTime = await AsyncStorage.getItem("@freezeTime" + playerId);
   const maxTime = await AsyncStorage.getItem("@maxTime" + playerId);
-  let newMaxTime = parseInt(maxTime) + parseInt(differenceInSeconds(now, Date.parse(freezeTime)));
 
-  await AsyncStorage.setItem("@maxTime" + playerId, newMaxTime.toString());
-  
   return {
-    startTime,
-    freezeTime,
-    maxTime: newMaxTime,
+    maxTime: maxTime,
     status: "stop"
   }
 }
 
-const changeStatusTimer = async (playerId) => {
+const changeStatusTimer = async (playerId, maxTime) => {
   await AsyncStorage.setItem("@status" + playerId, "start");
+  await AsyncStorage.setItem("@maxTime" + playerId, maxTime);
   return;
 }
 
