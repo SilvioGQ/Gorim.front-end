@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 12,
     backgroundColor: COLORS.bgColorSecondary,
-    width: '100%',
+    width: '86%',
     height: 50,
     borderRadius: 20,
     shadowColor: "#000",

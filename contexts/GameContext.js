@@ -8,8 +8,7 @@ import WaitingRecconection from '../components/WaitingRecconection';
 import { recordStartTime, recordGetTime, freezeTimer, restartTimer, changeStatusTimer } from '../helpers/recordTimer';
 import * as Navigation from '../helpers/navigation';
 
-
-const socket = io(API_URL_HERO, { autoConnect: false });
+const socket = io(API_URL_LOCAL, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
