@@ -8,7 +8,7 @@ import WaitingRecconection from '../components/WaitingRecconection';
 import { recordStartTime, recordGetTime, freezeTimer, restartTimer, changeStatusTimer } from '../helpers/recordTimer';
 import * as Navigation from '../helpers/navigation';
 
-const socket = io(API_URL_LOCAL, { autoConnect: false });
+const socket = io(API_URL_HERO, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
@@ -31,11 +31,11 @@ const GameProvider = (props) => {
     dispatch({ type: 'GETNOTIFYMESSAGE', payload: { sender: id, action: 'disable' } });
   };
 
-  const startTimer = (maxTime, callback, startTimeRecovery = null, freezeTimeRecovery = null) => {
+  const startTimer = (maxTime, callback, startTimeRecovery = null, status = null) => {
     let callbackUsed = false;
 
     dispatch({ type: 'UPDATETIMER', payload: maxTime });
-    recordStartTime(maxTime, socket.id, startTimeRecovery, freezeTimeRecovery).then(startTime => {
+    recordStartTime(maxTime, socket.id, startTimeRecovery, status).then(startTime => {
       let interval = setInterval(() => {
 
         recordGetTime(startTime, socket.id).then(timer => {
@@ -91,25 +91,38 @@ const GameProvider = (props) => {
       }
     });
 
+    socket.on('selectedAvatars', (timer) => {
+      startTimer(400, () => endStage(), timer);
+      roomEndTimer('endStage()');
+
+      dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
+    });
+
+    socket.on('initElections', (timer) => {
+      startTimer(20, () => addCandidature(null), timer);
+      roomEndTimer('addCandidature(null)');
+
+      dispatch({ type: 'INITELECTIONS', payload: 'INITELECTIONS' });
+    });
+
+    socket.on('initVotation', (timer) => {
+      startTimer(20, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }), timer);
+      roomEndTimer('addVote({ mayor: "", cityCouncilor: "", supervisor: "" })');
+
+      dispatch({ type: 'INITVOTATION', payload: 'INITVOTATION' });
+    });
+
+    socket.on('initResultsVotation', (timer) => {
+      startTimer(20, () => nextStage(), timer);
+      roomEndTimer('nextStage()');
+
+      dispatch({ type: 'INITRESULTSVOTATION', payload: 'INITRESULTSVOTATION' });
+    });
+
     socket.on('reportMessage', (msg) => {
-      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, selectedAvatars, allForEndStage, allForEndRound, initElections
+      // removedToRoom, maxPlayersToRoom, inGaming, raffled, notFound, allForEndStage, allForEndRound
       dispatch({ type: msg.toUpperCase(), payload: msg.toUpperCase() });
-      if (msg === 'selectedAvatars') {
-        startTimer(400, () => endStage());
-        roomEndTimer('endStage()');
-      }
-      if (msg === 'INITELECTIONS') {
-        startTimer(20, () => addCandidature(null));
-        roomEndTimer('addCandidature(null)');
-      }
-      if (msg === 'INITVOTATION') {
-        startTimer(20, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }));
-        roomEndTimer('addVote({ mayor: "", cityCouncilor: "", supervisor: "" })');
-      }
-      if (msg === 'INITRESULTSVOTATION') {
-        startTimer(20, () => nextStage());
-        roomEndTimer('nextStage()');
-      }
+
     });
     socket.on('getProducts', (product) => {
       dispatch({ type: 'CHANGEDATA', payload: ['GETPRODUCTS', product] });
@@ -157,27 +170,27 @@ const GameProvider = (props) => {
       dispatch({ type: 'GETNOTIFYMESSAGE', payload: { sender: id, action: 'enable' } });
     });
 
-    socket.on('endStage', (round) => {
+    socket.on('endStage', (round, timer) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
-      startTimer(20, () => nextStage());
+      startTimer(20, () => nextStage(), timer);
       roomEndTimer('nextStage()');
     });
 
-    socket.on('endRound', (round) => {
+    socket.on('endRound', (round, timer) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDROUND', round] });
-      startTimer(20, () => nextRound());
+      startTimer(20, () => nextRound(), timer);
       roomEndTimer('nextRound()');
     });
 
-    socket.on('nextStage', () => {
+    socket.on('nextStage', (timer) => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
-      startTimer(100, () => endRound());
+      startTimer(100, () => endRound(), timer);
       roomEndTimer('endRound()');
     });
 
-    socket.on('nextRound', () => {
+    socket.on('nextRound', (timer) => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
-      startTimer(100, () => endStage());
+      startTimer(100, () => endStage(), timer);
       roomEndTimer('endStage()');
     });
 
@@ -197,13 +210,13 @@ const GameProvider = (props) => {
     });
     
     socket.on('roomReport', (infoTimer, currentScreen, callback) => {
-      startTimer(infoTimer.maxTime, () => eval(callback), infoTimer.startTime, infoTimer.freezeTime);
+      startTimer(infoTimer.maxTime, () => eval(callback), infoTimer.startTime, true);
       Navigation.navigate(currentScreen);
       setModal(true);
     });
     
-    socket.on('changeStatusTimer', () => {
-      changeStatusTimer(socket.id).then(() => {
+    socket.on('changeStatusTimer', (maxTime) => {
+      changeStatusTimer(socket.id, maxTime).then(() => {
         setModal(false);
       });
     });
