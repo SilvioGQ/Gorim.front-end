@@ -26,7 +26,7 @@ export default function Votacao({ navigation }) {
     setMayor([...elections['mayor'], { id: "", votes: 0 }]);
     setcityCouncilor([...elections['cityCouncilor'], { id: "", votes: 0 }]);
     setsupervisor([...elections['supervisor'], { id: "", votes: 0 }]);
-  }, []);
+  }, [elections]);
 
   const playerList = (item) => {
     if (item === '') {

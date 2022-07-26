@@ -31,7 +31,7 @@ export default function Eleitos({ navigation }) {
         setSupervisor(players.find(i => i.id === elections['supervisor'][0].id))
       }
     }
-  }, [stage]);
+  }, [stage, elections]);
 
   return (
     <View style={styles.container}>
