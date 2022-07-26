@@ -38,9 +38,9 @@ export default function ChatConversation({ navigation, route }) {
         >
           <ScrollView>
             {messages && messages.filter((i)=>i.player1 === player.id && i.player2 === player2.id).length !== 0 ?
-            messages.find((i)=>i.player1 === player.id && i.player2 === player2.id).messages.map((i) => {
+            messages.find((i)=>i.player1 === player.id && i.player2 === player2.id).messages.map((i, key) => {
               return (
-                <View style={i.sender == player.id ? styles.owner : styles.instOwner}>
+                <View key={key} style={i.sender == player.id ? styles.owner : styles.instOwner}>
                   <Text style={styles.message}>{i.message}</Text>
                   <Text style={styles.time}>{i.datetime.substr(11,5)}</Text>
                 </View>
@@ -50,9 +50,9 @@ export default function ChatConversation({ navigation, route }) {
               null
             }
              {messages && messages.filter((i)=>i.player2 === player.id && i.player1 === player2.id).length !== 0 ?
-            messages.find((i)=>i.player2 === player.id && i.player1 === player2.id).messages.map((i) => {
+            messages.find((i)=>i.player2 === player.id && i.player1 === player2.id).messages.map((i, key) => {
               return (
-                <View style={i.sender == player.id ? styles.owner : styles.instOwner}>
+                <View key={key} style={i.sender == player.id ? styles.owner : styles.instOwner}>
                   <Text style={styles.message}>{i.message}</Text>
                   <Text style={styles.time}>{i.datetime.substr(11,5)}</Text>
                 </View>
