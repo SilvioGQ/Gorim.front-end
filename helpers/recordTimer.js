@@ -53,7 +53,7 @@ const restartTimer = async (playerId) => {
 
 const changeStatusTimer = async (playerId, maxTime) => {
   await AsyncStorage.setItem("@status" + playerId, "start");
-  await AsyncStorage.setItem("@maxTime" + playerId, maxTime);
+  await AsyncStorage.setItem("@maxTime" + playerId, maxTime.toString());
   return;
 }
 
