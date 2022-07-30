@@ -65,7 +65,6 @@ export default function MenuJogador({ navigation }) {
               <Item type='Menu' onClick={() => navigation.navigate('Propostas')} name='Checar anúncios' notification={notify.offers} />
               <Item type='Menu' onClick={() => navigation.navigate('FazerTransferencia')} name='Fazer Transferência' />
               <Item type='Menu' onClick={() => navigation.navigate('AnalisarProdutos')} name='Analisar produtos' />
-
             </View>
           </View>
         </>

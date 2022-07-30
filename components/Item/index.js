@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginVertical: 10,
     backgroundColor: COLORS.textWhite,
-    width: Tela > 350 ? Height > 720 && Height < 800 ? 87 : 94 : 78,
-    height: Tela > 350 ? Height > 720 && Height < 800 ? 79 : 86 : 70,
+    width: Tela > 350 ? 94 : 78,
+    height: Tela > 350 ? 86 : 70,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
     elevation: 6
   },
   icone: {
-    width: Tela > 350 ? 40 : 32,
-    height: Tela > 350 ? 40 : 32,
+    width: Tela > 350 ? 38 : 32,
+    height: Tela > 350 ? 38 : 32,
     marginBottom: Height > 720 && Height < 800 ? 2 : 5,
-    marginTop: 11.5
+    marginTop: 10.5
   },
   textinhos: {
-    fontSize: Tela > 350 ? 11 : 8,
+    fontSize: Tela > 350 ? 10.5 : 8,
     textAlign: 'center',
     marginHorizontal: 5
   },

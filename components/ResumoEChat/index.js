@@ -6,8 +6,8 @@ import Chat from '../../assets/icons/chat.png';
 
 export default function ResumoEChat({ seeScenery, seeChat, notification, notificationChat }) {
   return (
-    <View style={[styles.container]}>
-      <TouchableOpacity style={{marginRight: 50}} onPress={seeScenery} activeOpacity={0.7}>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={seeScenery} activeOpacity={0.7}>
         <View style={[styles.resumo]}>
           <Image style={styles.logo} source={Papel} />
           <Text style={[styles.titulo]}> Resumo de cenário </Text>
@@ -29,7 +29,7 @@ export default function ResumoEChat({ seeScenery, seeChat, notification, notific
 const styles = StyleSheet.create({
   resumo: {
     height: 60,
-    width: '120%',
+    width: '110%',
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: COLORS.textWhite,
@@ -61,11 +61,6 @@ const styles = StyleSheet.create({
     shadowRadius: 5.46,
     elevation: 3,
   },
-  candidato: {
-
-    fontSize: 12,
-    paddingHorizontal: 20
-  },
   logo: {
     width: 30,
     height: 30,
@@ -79,7 +74,6 @@ const styles = StyleSheet.create({
 
     },
   titulo: {
-
     fontSize: 12,
     paddingHorizontal: 5
   },
@@ -103,9 +97,9 @@ const styles = StyleSheet.create({
   },
   container: {
     height: 60,
-    // justifyContent: 'space-between',
+    justifyContent: 'space-between',
     flexDirection: 'row',
-    width: '85%',
+    width: '83%',
     backgroundColor: COLORS.bgColorPrimary
 
   }

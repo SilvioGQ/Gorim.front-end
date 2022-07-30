@@ -148,13 +148,13 @@ const styles = StyleSheet.create({
   },
   text2: {
     textTransform: 'uppercase',
-    fontSize: Tela > 350 ? 18 : 16,
+    fontSize: 16,
     textAlign: 'center',
     fontFamily: 'Rubik_300Light'
   },
   botao: {
-    fontSize: Tela > 350 ? 24 : 18,
-    marginTop: Tela > 350 ? 7 : 12,
+    fontSize: Tela > 350 ? 21 : 18,
+    marginTop: Tela > 350 ? 9 : 12,
   },
   arrow: {
     width: 25,

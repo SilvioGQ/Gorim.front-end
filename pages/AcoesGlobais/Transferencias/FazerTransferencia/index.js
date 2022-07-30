@@ -74,7 +74,7 @@ export default function FazerTransferencia({ navigation }) {
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
               {
                 stage === 'GETPLAYERS' ?
-                  PlayersOffice().map((item, index) => {
+                  PlayersOffice().filter(i=>i.office).map((item, index) => {
                     return (
                       <Quadrados key={index} abr={item.office.slice(0, 3)} player={item} onClick={() => { setId(item.id); }} backgroundColor={id == item.id ? '#8ACF3A' : '#fff'} color={id == item.id ? '#fff' : '#000'} />
                     );
