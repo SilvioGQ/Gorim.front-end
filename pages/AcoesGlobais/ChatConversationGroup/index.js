@@ -102,17 +102,17 @@ const styles = StyleSheet.create({
   },
   icone: {
     paddingHorizontal: 8,
-    width: Tela > 350 ? 60 : 52,
-    height: Tela > 350 ? 60 : 52,
+    width: Tela > 350 ? 50 : 42,
+    height: Tela > 350 ? 50 : 42,
   },
   textinhos: {
     paddingLeft: 4,
     marginTop: 10,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Rubik_700Bold',
   },
   margem: {
-    marginHorizontal: 10,
+    marginHorizontal: 45,
     marginVertical: 20,
     alignItems: 'center',
     alignSelf: 'center',
