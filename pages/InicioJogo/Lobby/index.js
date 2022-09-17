@@ -51,7 +51,6 @@ export default function Lobby({ navigation }) {
       }
       {player.host ?
         <>
-
           <Button name='começar' onClick={() => startGame()} />
           <Text style={{ fontSize: 24, color: players.length > 5 ? COLORS.successButton : COLORS.warningButton, textAlign: 'center', marginBottom: 30 }}>{awaitPlayers} de 10 jogadores</Text>
         </> :

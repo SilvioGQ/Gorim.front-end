@@ -184,13 +184,13 @@ const GameProvider = (props) => {
 
     socket.on('nextStage', (timer) => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
-      startTimer(100, () => endRound(), timer);
+      startTimer(400, () => endRound(), timer);
       roomEndTimer('endRound()');
     });
 
     socket.on('nextRound', (timer) => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
-      startTimer(100, () => endStage(), timer);
+      startTimer(400, () => endStage(), timer);
       roomEndTimer('endStage()');
     });
 

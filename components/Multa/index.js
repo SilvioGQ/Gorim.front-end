@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, Picker } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { GameContext } from '../../contexts/GameContext';
 import COLORS from '../../constants/colors';
 import ICONS from '../../constants/imagesIcons';
@@ -103,7 +104,9 @@ const styles = StyleSheet.create({
   },
   picker: {
     height: 28,
-    width: 155,
+    width: 140,
     borderWidth: 1,
+    borderRadius:5,
+    borderColor:'#000'
   }
 });
