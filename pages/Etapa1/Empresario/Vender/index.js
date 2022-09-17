@@ -172,6 +172,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     flexDirection: 'row',
     width: '100%',
+    paddingRight: 5,
     flexWrap: 'wrap'
   }
 });

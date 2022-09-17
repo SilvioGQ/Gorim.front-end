@@ -53,7 +53,7 @@ console.log(item)
           style={styles.icone}
           source={ICONS[item.avatarPlayer]}
         />
-        <Text style={styles.text}>{item.product ? item.namePlayer : `${item.typePlayer.slice(0, 3)} - ${item.id.city}`}</Text>
+        <Text style={styles.text}>{item.product ? item.namePlayer : `${item.typePlayer.slice(0, 3)} - ${item.city}`}</Text>
       </View>
     </View>
   );

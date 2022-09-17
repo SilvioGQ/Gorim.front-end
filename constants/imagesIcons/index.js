@@ -15,6 +15,10 @@ const ICONS = {
   'Todos': require('../../assets/symbols/group.png'),
   'Empresários': require('../../assets/icons/company.png'),
   'Agricultores': require('../../assets/icons/field.png'),
+  'Empresário de Semente e agricultores': require('../../assets/products/seeds/rice.png'),
+  'Empresário de Fertilizante e agricultores': require('../../assets/products/fertilizers/fertilizerMedium.png'),
+  'Empresário de Agrotóxico e agricultores': require('../../assets/products/pesticides/pesticideMedium.png'),
+  'Empresário de Máquina e agricultores': require('../../assets/products/machines/tractor.png'),
 
 };
 export default ICONS;
