@@ -1,13 +1,22 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Constants from "expo-constants";
-
 import COLORS from '../../../constants/colors';
 import Button from '../../../components/Button';
-
+import AppIntroSlider from 'react-native-app-intro-slider';
+import { slides } from "./slides";
 export default function Frame1({ navigation }) {
+  
   return (
-    <View style={styles.container}>
+    <>
+    {page === 1 && (
+        <>
+        <AppIntroSlider skipLabel={' '} doneLabel={' '} nextLabel={' '} prevLabel={' '} renderItem={({item, key})=> <Apresentation item={item} />} data={slides}/>
+        <TouchableOpacity onPress={()=>{setPage(2)}}><Text>Skip</Text></TouchableOpacity>
+        </>
+      )}
+      {page === 2 && (
+        <View style={styles.container}>
       <View style={styles.row}>
         <Image
           style={styles.logo}
@@ -26,6 +35,9 @@ export default function Frame1({ navigation }) {
       </View>
       <Text style={styles.v}>v{Constants.manifest.version}</Text>
     </View>
+      )}
+    
+    </>
   );
 }
 

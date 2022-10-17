@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { GameContext, sendFine, suggestFine } from '../../../../contexts/GameContext';
-import Button from '../../../../components/Button';
 import Rodada from '../../../../components/Rodada';
 import MultaComponent from '../../../../components/Multa';
 import Modal from '../../../../components/ModalInfo';
