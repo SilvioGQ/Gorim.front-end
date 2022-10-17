@@ -1,39 +1,42 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import Constants from "expo-constants";
 import {
-  Dimensions, View, StyleSheet
+  Dimensions, View, StyleSheet, Image, Text, TouchableOpacity
 } from "react-native";
+import COLORS from "../../constants/colors";
 const Height = Dimensions.get("screen").height;
-const Apresentacao = ({ item, key}) => {
+const Apresentacao = ({ item, setPage}) => {
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={{position:'absolute', top:60, right:20, backgroundColor:COLORS.successButton, padding:8, paddingHorizontal:16, borderRadius:50}} onPress={()=>{setPage(2)}}><Text style={{color:'#fff'}}>Skip</Text></TouchableOpacity>
+      <Image source={item.image} />
       <Text style={styles.cardTitle}>{item.title}</Text>
-      <Logo style={{width: item.key == 1 ? Height > 950 ? '77.5%' : Height > 815 ? '97.5%' : '73%' : item.key == 2 ? Height > 950 ? '70.5%' : Height > 815 ? '97.5%' : '78%' : Height > 950 ? '77.5%' : Height > 815 ? '97.5%' : '73%', height: item.key == 1 ? Height > 950 ? '55%' : Height > 815 ? '43.5%' : '40%' : item.key == 2 ? Height > 950 ? '55%' : '48%' : Height > 950 ? '55%' : '43.5%'}} source={item.image} />
       <Text style={styles.normalText}>{item.text}</Text>
     </View>
   );
 };
 const styles = StyleSheet.create({
     container:{
+        flex:1,
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "center",
         padding: 20,
-        backgroundColor: '#fff',
     },
     cardTitle:{
         textAlign: "center",
         fontSize: 24,
         lineHeight: 42,
-        // font-family: "Muli",
+        color:COLORS.headerColor,
+        fontFamily: "Rubik_700Bold",
         marginTop: 50
     },
     normalText: {
         textAlign: "center",
         alignSelf: "center",
         lineHeight: 24,
-        fontSize: 14,
-        marginBottom: 25,
+        fontSize: 13,
+        marginBottom: 10,
     }
 });
 export default Apresentacao;
