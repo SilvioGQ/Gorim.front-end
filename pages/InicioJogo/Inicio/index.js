@@ -28,17 +28,17 @@ export default function Frame1({ navigation }) {
         style={styles.logo2}
         source={require('../../../assets/symbols/logo.png')}
       />
-      <View style={styles.buttons}>
+      <View style={{position:'absolute', bottom:105}}>
         <Button
           onClick={() => navigation.navigate('CriarPartida')}
           name='começar' />
-      <View style={{position:'absolute', bottom:50}}>
+        </View>
+      <View style={{position:'absolute', bottom:40}}>
         <Button
           onClick={() => setPage(1)}
           name='Tutorial' 
           back='#fff'
           color={COLORS.successButton}/>
-      </View>
       </View>
       <Text style={styles.v}>v{Constants.manifest.version}</Text>
     </View>
@@ -51,7 +51,7 @@ export default function Frame1({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   buttons: {
@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
     color: COLORS.successButton,
   },
   row: {
+    position: 'absolute',
+    top: 80,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'

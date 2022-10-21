@@ -19,8 +19,8 @@ export default function Multa({ navigation }) {
     if(stage === 'SUGGESTFINE'){
       setFilterPlayers(playersType.filter(p => p.type === type && player.appliedFine.indexOf(p.playerId) === -1 && p.city == player.city))
     }
-  },[stage, type, playersType])
-  // acho que se colocar o sendFine nesse [] resolve o problema de não ficar atualizando.
+  },[stage, type, playersType, sendFine])
+  // acho que se colocar o filterPlayers nesse [] resolve o problema de não ficar atualizando.
   return (
     <View style={styles.container}>
       <Rodada arrow={true} onClick={() => navigation.navigate('MenuPolitico')} />
