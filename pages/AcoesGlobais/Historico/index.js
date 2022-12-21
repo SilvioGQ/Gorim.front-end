@@ -25,7 +25,7 @@ export default function Historico({ navigation }) {
   const rotateZ6 = open6 ? "180deg" : "0deg";
   const rotateZ7 = open7 ? "180deg" : "0deg";
 
-  const [playerLog, setplayerLog] = useState([]);
+  const [playerLog, setPlayerLog] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
@@ -38,7 +38,9 @@ export default function Historico({ navigation }) {
   }, [stage]);
 
   useEffect(() => {
-    setplayerLog(oldLogs.find(p => p.id === player.id));
+    if(oldLogs){
+      setPlayerLog(oldLogs.find(p => p.id === player.id));
+    }
   }, [oldLogs]);
   // console.log(
   //  playerLog.logs.filter((item) => {
@@ -64,7 +66,8 @@ export default function Historico({ navigation }) {
               <Text style={styles.subtitle}>{player.city}</Text>
             </View>
           </View>
-          {game.phase === 1 ?
+          {playerLog ?
+          game.phase === 1 ?
             <>
               <View style={styles.backgreen}>
                 <View style={styles.whiteRow}>
@@ -77,7 +80,7 @@ export default function Historico({ navigation }) {
                   </TouchableOpacity>
                 </View>
                 <View style={{ display: open6 ? 'flex' : 'none' }}>
-                  {playerLog.logs && playerLog.logs.filter((item) => {
+                  {playerLog.logs && playerLog.logs.length > 0 && playerLog.logs.filter((item) => {
                     if (item.type == 'info') {
                       return item
                     }
@@ -352,7 +355,10 @@ export default function Historico({ navigation }) {
 
               </View>
             </>
+            :
+            <Text>Você caiu do jogo e perdeu seu histórico</Text>
           }
+          
         </View>
       </View>
     </ScrollView>

@@ -92,28 +92,28 @@ const GameProvider = (props) => {
     });
 
     socket.on('selectedAvatars', (timer) => {
-      startTimer(400, () => endStage(), timer);
+      startTimer(600, () => endStage(), timer);
       roomEndTimer('endStage()');
 
       dispatch({ type: 'SELECTEDAVATARS', payload: 'SELECTEDAVATARS' });
     });
 
     socket.on('initElections', (timer) => {
-      startTimer(20, () => addCandidature(null), timer);
+      startTimer(30, () => addCandidature(null), timer);
       roomEndTimer('addCandidature(null)');
 
       dispatch({ type: 'INITELECTIONS', payload: 'INITELECTIONS' });
     });
 
     socket.on('initVotation', (timer) => {
-      startTimer(20, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }), timer);
+      startTimer(40, () => addVote({ mayor: '', cityCouncilor: '', supervisor: '' }), timer);
       roomEndTimer('addVote({ mayor: "", cityCouncilor: "", supervisor: "" })');
 
       dispatch({ type: 'INITVOTATION', payload: 'INITVOTATION' });
     });
 
     socket.on('initResultsVotation', (timer) => {
-      startTimer(20, () => nextStage(), timer);
+      startTimer(30, () => nextStage(), timer);
       roomEndTimer('nextStage()');
 
       dispatch({ type: 'INITRESULTSVOTATION', payload: 'INITRESULTSVOTATION' });
@@ -172,25 +172,25 @@ const GameProvider = (props) => {
 
     socket.on('endStage', (round, timer) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDSTAGE', round] });
-      startTimer(20, () => nextStage(), timer);
+      startTimer(40, () => nextStage(), timer);
       roomEndTimer('nextStage()');
     });
 
     socket.on('endRound', (round, timer) => {
       dispatch({ type: 'CHANGEDATA', payload: ['ENDROUND', round] });
-      startTimer(20, () => nextRound(), timer);
+      startTimer(40, () => nextRound(), timer);
       roomEndTimer('nextRound()');
     });
 
     socket.on('nextStage', (timer) => {
       dispatch({ type: 'NEXTSTAGE', payload: 'NEXTSTAGE' });
-      startTimer(400, () => endRound(), timer);
+      startTimer(450, () => endRound(), timer);
       roomEndTimer('endRound()');
     });
 
     socket.on('nextRound', (timer) => {
       dispatch({ type: 'NEXTROUND', payload: 'NEXTROUND' });
-      startTimer(400, () => endStage(), timer);
+      startTimer(450, () => endStage(), timer);
       roomEndTimer('endStage()');
     });
 

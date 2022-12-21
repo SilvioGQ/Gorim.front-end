@@ -23,7 +23,7 @@
         "backgroundColor": "#EBFFFD"
       },
       "package": "com.ifrs.gorim",
-      "versionCode": 2
+      "versionCode": 3
     },
     "ios": {
       "supportsTablet": true,

@@ -24,15 +24,15 @@ export default function Multa({ navigation, route }) {
             )}
             <Text style={styles.header}>Detalhes de{'\n'}Parcelas</Text>
           </View>
-          {client.length !== 0 ?
+          <ScrollView>
+          {client.length !== 0 &&
             client.logs.filter(i => i.type === 'plantation').map((p) => {
               // if (parcel.planted === true && !parcel.pesticide) {
               return <ParcelaAgr item={p} key={p.id} vermais={false} display2='none' pedido={false} />
               // }
             })
-            :
-            null
           }
+          </ScrollView>
         </View>
         :
         <View>
@@ -46,15 +46,15 @@ export default function Multa({ navigation, route }) {
             )}
             <Text style={styles.header}>Detalhes de{'\n'}Empresário</Text>
           </View>
-          {client.length !== 0 ?
+          <ScrollView>
+          {client.length !== 0 &&
             client.logs.filter(i => i.type === 'buy').map((p) => {
               // if (parcel.planted === true && !parcel.pesticide) {
               return <LogsTransfer item={p} key={p.id} />
               // }
             })
-            :
-            null
           }
+          </ScrollView>
         </View>
       }
 

@@ -9,7 +9,6 @@ import normalizeNumber from '../../helpers/normalizeNumber';
 const Tela = Dimensions.get('screen').width;
 
 export default function HistoricosDinheiro({ item }) {
-console.log(item)
   const { player } = useContext(GameContext);
 
   return (
@@ -45,15 +44,12 @@ console.log(item)
         </View>
       )}
       <View style={styles.absolute}>
-        {player ?
-          <Text style={styles.text}>{item.namePlayer}</Text>
-          :
-          null}
+        {player && <Text style={styles.text}>{item.namePlayer}</Text>}
         <Image
           style={styles.icone}
           source={ICONS[item.avatarPlayer]}
         />
-        <Text style={styles.text}>{item.product ? item.namePlayer : `${item.typePlayer.slice(0, 3)} - ${item.city}`}</Text>
+        <Text style={styles.text}>{item.product ? item.namePlayer : `${item.typePlayer.slice(0, 3)} - ${item.cityPlayer}`}</Text>
       </View>
     </View>
   );
