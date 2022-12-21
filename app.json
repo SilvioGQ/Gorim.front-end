@@ -2,7 +2,8 @@
   "expo": {
     "name": "Gorim",
     "slug": "Gorim",
-    "version": "1.0.1",
+    "owner": "silvioquintanarg",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -26,7 +27,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.1"
+      "buildNumber": "1.0.2"
     },
     "web": {
       "favicon": "./assets/icon.png"
