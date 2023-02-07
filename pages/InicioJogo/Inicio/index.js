@@ -40,7 +40,7 @@ export default function Frame1({ navigation }) {
           back='#fff'
           color={COLORS.successButton}/>
       </View>
-      <Text style={styles.v}>v{Constants.manifest.version}</Text>
+      <Text style={styles.v}>v1.0.4</Text>
     </View>
       )}
     

@@ -3,7 +3,7 @@
     "name": "Gorim",
     "slug": "Gorim",
     "owner": "silvioquintanarg",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -12,7 +12,8 @@
       "backgroundColor": "#EBFFFD"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/3cb59e9d-7b4c-4f4b-9e34-959f1ee95ab2"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -27,14 +28,24 @@
     },
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.2"
+      "buildNumber": "1.0.4"
     },
     "web": {
       "favicon": "./assets/icon.png"
     },
     "description": "RPG online\n",
     "plugins": [
-      ["expo-notifications"]
-    ]
+      [
+        "expo-notifications"
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "3cb59e9d-7b4c-4f4b-9e34-959f1ee95ab2"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    }
   }
 }
