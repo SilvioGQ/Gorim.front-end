@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import io from 'socket.io-client';
-import {  API_URL_LOCAL } from '@env';
+import {  API_URL_RENDER } from '@env';
 import { initialState, reducer } from '../reducers/customers';
 import { schedulePushNotification } from '../helpers/schedulePushNotification';
 import { Platform, Dimensions, Text, View } from 'react-native';
@@ -8,7 +8,7 @@ import WaitingRecconection from '../components/WaitingRecconection';
 import { recordStartTime, recordGetTime, freezeTimer, restartTimer, changeStatusTimer } from '../helpers/recordTimer';
 import * as Navigation from '../helpers/navigation';
 
-const socket = io('https://gorim-backend.onrender.com', { autoConnect: false });
+const socket = io(API_URL_RENDER, { autoConnect: false });
 const GameContext = React.createContext();
 const GameProvider = (props) => {
 
